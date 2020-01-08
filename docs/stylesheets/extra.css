@@ -1,0 +1,117 @@
+body {
+    font-family: "Helvetica Neue", "Open Sans", Helvetica, Arial, sans-serif;
+}
+
+
+.md-typeset a,
+.md-nav__link--active {
+    color: #000000;
+    opacity: 0.54;
+}
+
+.md-typeset a:hover,
+.md-nav__link:hover {
+    color: #000000;
+}
+
+[data-md-color-primary="white"] .md-header {
+    background-image: linear-gradient(90deg, rgba(3, 119, 205, 1), rgba(3, 119, 205, 1) 52.52%, rgba(251, 130, 115, 1));
+    color: #ffffff;
+}
+[data-md-color-primary="white"] .md-tabs  {
+    background-image: linear-gradient(50deg, rgba(3, 119, 205, 1), rgba(3, 119, 205, 1) 52.52%, rgba(251, 130, 115, 1));
+    color: #ffffff;
+}
+
+
+
+.md-header[data-md-state="shadow"] {
+    box-shadow: none;
+    border-bottom: 0.05rem solid #ffffff;
+}
+
+.md-source__facts {
+    display: none;
+}
+
+.md-logo {
+    padding-top: 0.3rem;
+}
+
+.md-logo img {
+    width: 131px;
+    height: 30px;
+}
+
+.md-footer {
+    border-top: 0.05rem solid #ffffff;
+}
+
+.md-footer-nav__link {
+    padding-top: 0.8rem;
+    padding-bottom: 0;
+}
+
+.md-footer-nav {
+    background-color: #0377cd;
+}
+
+.md-footer-nav__link {
+    color: #ffffff;
+    opacity: 0.75;
+}
+
+.md-footer-nav__direction {
+    color: #ffffff;
+    opacity: 0.75;
+}
+
+.md-footer-nav__link:hover,
+.md-footer-nav__direction:hover {
+    opacity: 1;
+}
+
+.md-footer-meta {
+    background-color: rgb(1, 98, 170);
+}
+
+html .md-footer-meta .md-footer-meta__inner a {
+    color: #ffffff;
+}
+
+.md-footer-meta__inner {
+    padding: 0 0.2rem;
+}
+
+.md-footer-copyright {
+    padding: 0.7rem 0;
+}
+
+.md-footer-social {
+    padding: 0.4rem 0;
+}
+
+.md-search-result__link[data-md-state="active"] {
+    background-color: #ffffff;
+}
+
+.md-typeset h1[id] .headerlink:focus,
+.md-typeset h1[id]:hover .headerlink:hover,
+.md-typeset h1[id]:target .headerlink,
+.md-typeset h2[id] .headerlink:focus,
+.md-typeset h2[id]:hover .headerlink:hover,
+.md-typeset h2[id]:target .headerlink,
+.md-typeset h3[id] .headerlink:focus,
+.md-typeset h3[id]:hover .headerlink:hover,
+.md-typeset h3[id]:target .headerlink,
+.md-typeset h4[id] .headerlink:focus,
+.md-typeset h4[id]:hover .headerlink:hover,
+.md-typeset h4[id]:target .headerlink,
+.md-typeset h5[id] .headerlink:focus,
+.md-typeset h5[id]:hover .headerlink:hover,
+.md-typeset h5[id]:target .headerlink,
+.md-typeset h6[id] .headerlink:focus,
+.md-typeset h6[id]:hover .headerlink:hover,
+.md-typeset h6[id]:target .headerlink {
+    color: #0377cd;
+}

@@ -1,0 +1,63 @@
+# Project information
+site_name: 'User Documentation'
+site_description: 'InvenioRDM user documentation web site'
+site_url: 'https://docs-invenio-rdm'
+
+# Repository
+repo_name: 'docs-invenio-rdm'
+repo_url: 'https://github.com/inveniosoftware/docs-invenio-rdm'
+
+# Copyright
+copyright: 'Copyright &copy; 2019 CERN and Northwestern University.'
+
+# Configuration
+theme:
+  name: 'material'
+  custom_dir: 'theme'
+  palette:
+    primary: 'white'
+  font:
+    text: 'Open Sans'
+    code: 'Roboto Mono'
+  logo: 'images/logo-rdm.png'
+  favicon: 'images/favicon.ico'
+  feature:
+    tabs: true
+
+nav:
+  - Home: 'index.md'
+  - Quickstart: 
+    - Quickstart: 'quickstart/quickstart.md'
+    - Initialization: 'quickstart/init.md'
+    - Build and Setup: 'quickstart/build_setup.md'
+    - Run: 'quickstart/server.md'
+    - Configuration: 'quickstart/config.md'
+    - Customization: 'quickstart/customize.md'
+    - Troubleshooting: 'quickstart/troubleshoot.md'
+    - Cleanup: 'quickstart/cleanup.md'
+  - Deployment:
+    - Kubernetes: 'deployment/kubernetes.md'
+    - OpenShift: 'deployment/openshift.md'
+
+
+# Customization
+extra:
+  social:
+  - type: 'github'
+    link: 'https://github.com/inveniosoftware'
+  - type: 'twitter'
+    link: 'https://twitter.com/invenio'
+  - type: 'comments'
+    link: 'https://invenio-talk.web.cern.ch/c/projects/invenio-rdm'
+  - type: 'globe'
+    link: 'https://inveniosoftware.org/products/rdm/'
+extra_css:
+  - stylesheets/extra.css
+
+# Extensions
+markdown_extensions:
+  - admonition
+  - codehilite:
+      guess_lang: false
+  - toc:
+      permalink: true
