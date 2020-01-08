@@ -33,11 +33,11 @@ When we set `RECORDS_PERMISSIONS_RECORD_POLICY = MyRecordPermissionPolicy`, we a
 
 That's it configuration-wise. If we try to create a record through the API, your instance will check if you are a super user before allowing you. The same approach to configuration holds for any other setting you would like to override. Now we must stop the current instance, rebuild the application image and re-start it to see our changes take effect.
 
-You can run the same `build` command. If you are in a hurry, you can skip locking dependencies and building the base image.
+You can run the same `build` command. If you are in a hurry, you can skip locking dependencies.
 
 ``` console
 (your-virtualenv)$ invenio-cli server --containers --stop
-(your-virtualenv)$ invenio-cli build --pre --containers [--skip-base --skip-lock]
+(your-virtualenv)$ invenio-cli build --pre --containers [--skip-lock]
 (your-virtualenv)$ invenio-cli server --containers --start
 ```
 
@@ -93,7 +93,7 @@ Note that this user will have ID 2.
 # TODO Wait until invenio-oauthclient REST only is integrated
 ```
 
-Afterwards we can test if the new permissions are working correctly. 
+Afterwards we can test if the new permissions are working correctly.
 
 ``` console
 $ curl -k -XPOST -H "Authorization:Bearer sHHq1K9y7a2v5doKDRSFmSFOxa1tZDHFcbs31npaxm1sFEt27yomLMt0ynkl" -H "Content-Type: application/json" https://localhost/api/records/ -d '

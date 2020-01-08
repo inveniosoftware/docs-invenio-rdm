@@ -7,7 +7,7 @@ The CLI supports two deployment modes: local development and containerized *semi
 Before going on, let's move into the project directory:
 
 ``` console
-$ cd december-release
+$ cd january-release
 ```
 
 **Known issues**:
@@ -21,7 +21,7 @@ The error message is not intuitive: it is not because no flavour was specified t
 
 ### Build the docker images
 
-We use the `build` command with the `--containers` flag to build the images specified in the `december-release/docker-compose.full.yml`.
+We use the `build` command with the `--containers` flag to build the images specified in the `january-release/docker-compose.full.yml`.
 In addition, we need to add ``--pre`` in order to allow `pipenv` to install alpha releases, since many InvenioRDM packages are now in this phase. Be patient, the docker images might take some time to build.
 
 ``` console
@@ -29,12 +29,11 @@ In addition, we need to add ``--pre`` in order to allow `pipenv` to install alph
 Building RDM application...
 Locking dependencies...
 Bootstrapping server...
-Building base docker image...
 Building applications docker image...
 Creating services...
 ```
 
-As a result, six images (December-Release, Nginx, Redis, PostgreSQL, RabbitMQ and Elasticsearch) have been built.
+As a result, six images (january-release, Nginx, Redis, PostgreSQL, RabbitMQ and Elasticsearch) have been built.
 
 ### Setup the DB, ES and others
 

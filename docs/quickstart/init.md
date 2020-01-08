@@ -69,7 +69,6 @@ drwxr-xr-x 4 youruser youruser 4096 Dec 19 13:45 docker/
 -rw-r--r-- 1 youruser youruser 2932 Dec 19 13:45 docker-compose.full.yml
 -rw-r--r-- 1 youruser youruser  943 Dec 19 13:45 docker-compose.yml
 -rw-r--r-- 1 youruser youruser 1152 Dec 19 13:45 Dockerfile
--rw-r--r-- 1 youruser youruser  703 Dec 19 13:45 Dockerfile.base
 -rw-r--r-- 1 youruser youruser 2665 Dec 19 13:45 docker-services.yml
 -rw-r--r-- 1 youruser youruser 2018 Dec 19 13:45 .invenio
 -rw-r--r-- 1 youruser youruser 1504 Dec 19 13:45 invenio.cfg
