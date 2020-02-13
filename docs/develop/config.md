@@ -31,20 +31,12 @@ When we set `RECORDS_PERMISSIONS_RECORD_POLICY = MyRecordPermissionPolicy`, we a
 
 **Pro tip** : You can type `can_create = []` to achieve the same effect; any empty permission list only allows super users.
 
-That's it configuration-wise. If we try to create a record through the API, your instance will check if you are a super user before allowing you. The same approach to configuration holds for any other setting you would like to override. Now we must stop the current instance, rebuild the application image and re-start it to see our changes take effect.
-
-You can run the same `build` command. If you are in a hurry, you can skip locking dependencies.
-
-``` console
-(your-virtualenv)$ invenio-cli server --containers --stop
-(your-virtualenv)$ invenio-cli build --pre --containers [--skip-lock]
-(your-virtualenv)$ invenio-cli server --containers --start
-```
+That's it configuration-wise. If we try to create a record through the API, your instance will check if you are a super user before allowing you. The same approach to configuration holds for any other setting you would like to override.
 
 Did the changes work? We are going to try to create a new record:
 
 ``` console
- $ curl -k -XPOST -H "Content-Type: application/json" https://localhost/api/records/ -d '
+$ curl -k -XPOST -H "Content-Type: application/json" https://localhost:5000/api/records/ -d '
 {
     "access": {
         "metadata_restricted": "false",
@@ -74,7 +66,7 @@ As you can see, the server could not know if we are authenticated/superuser and 
 1- Create a user, for example using the web UI (*sign up* button). Alternatively, you can do so with the CLI, executing the following command (Wait until you read point number *2* before executing):
 
 ``` console
-invenio-cli users create user@test.ch --password=123456
+pipenv run invenio users create user@test.ch --password=123456
 ```
 
 Note that the user will have ID 1 if it was the first one created.
@@ -82,7 +74,7 @@ Note that the user will have ID 1 if it was the first one created.
 2- Grant admin access to it. In order to do so, we only have to add the `-a` flag to the previous command:
 
 ``` console
-invenio-cli users create admin@test.ch -a --password=123456
+pipenv run invenio users create admin@test.ch -a --password=123456
 ```
 
 Note that this user will have ID 2.
@@ -96,7 +88,7 @@ Note that this user will have ID 2.
 Afterwards we can test if the new permissions are working correctly.
 
 ``` console
-$ curl -k -XPOST -H "Authorization:Bearer sHHq1K9y7a2v5doKDRSFmSFOxa1tZDHFcbs31npaxm1sFEt27yomLMt0ynkl" -H "Content-Type: application/json" https://localhost/api/records/ -d '
+$ curl -k -XPOST -H "Authorization:Bearer sHHq1K9y7a2v5doKDRSFmSFOxa1tZDHFcbs31npaxm1sFEt27yomLMt0ynkl" -H "Content-Type: application/json" https://localhost:5000/api/records/ -d '
 {
     "access": {
         "metadata_restricted": "false",

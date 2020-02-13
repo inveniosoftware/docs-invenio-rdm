@@ -8,13 +8,17 @@ We are going to change the logo, take an *svg* file and update your **local** st
 $ cp ./path/to/new/color/logo.svg static/images/logo.svg
 ```
 
-Then, use the update command:
+Then, use the `update` command:
 
 ``` console
-(your-virtualenv)$ invenio-cli update --containers
-Updating static files...
+$ invenio-cli update --no-install-js
+Collecting statics and assets...
+Copying project statics and assets...
+Building assets...
 ```
 
-Go to the browser [*https://localhost/*](https://localhost) or refresh the page. And voila! The logo has been changed!
+Passing the `--no-install-js` option, skips re-installation of JS dependencies.
+
+Go to the browser [*https://localhost:5000/*](https://localhost:5000) or refresh the page. And voila! The logo has been changed!
 
 **WARNING**: If you do not see it changing, check in an incognito window, the browser might have cached the logo.

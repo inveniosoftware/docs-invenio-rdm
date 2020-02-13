@@ -1,35 +1,15 @@
 # Run it!
 
-## Run the instance
-
-Let's get it rolling!
-
-Once the images have been built, they just need to run. For that, the `server` command is executed. **WARNING: It is the SERVER command, NOT the RUN command**.
+Once the application is installed locally and the services are running, our
+application just needs to run. For that, the `run` command is executed.
 
 ``` console
-(your-virtualenv)$ invenio-cli server --containers
-Booting up server...
-Starting docker containers. It might take up to a minute.
-Containers started use --stop to stop server.
-```
-
-**Known issues**:
-
-The Elasticsearch container might crash due to lack of memory. One solution is to increase the maximum allowed allocation per process (See more [here](https://www.elastic.co/guide/en/elasticsearch/reference/6.6/docker.html)). Solving this issue depends on your OS:
-
-On Linux, add the following to ``/etc/sysctl.conf`` on your local machine (host machine):
-
-```console
-# Memory mapped max size set for ElasticSearch
-vm.max_map_count=262144
-```
-
-On macOS, do the following:
-
-```console
-screen ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/tty
-# and in the shell
-sysctl -w vm.max_map_count=262144
+$ invenio-cli run
+Making sure containers are up...
+Starting celery worker...
+Starting up local (development) server...
+Instance running!
+Visit https://localhost:5000
 ```
 
 ## Use your instance: have fun!
@@ -41,7 +21,7 @@ Are we done? Yes, let the fun begin...
 Let's see what is in the instance by querying the API. Using another terminal:
 
 ``` console
-$ curl -k -XGET https://localhost/api/records/ | python3 -m json.tool
+$ curl -k -XGET https://localhost:5000/api/records/ | python3 -m json.tool
 {
     "aggregations": {
         "access_right": {
@@ -71,8 +51,8 @@ $ curl -k -XGET https://localhost/api/records/ | python3 -m json.tool
                 "created": "2019-12-19T20:15:29.167218+00:00",
                 "id": "s2pwq-mzw48",
                 "links": {
-                    "files": "https://localhost/api/records/s2pwq-mzw48/files",
-                    "self": "https://localhost/api/records/s2pwq-mzw48"
+                    "files": "https://localhost:5000/api/records/s2pwq-mzw48/files",
+                    "self": "https://localhost:5000/api/records/s2pwq-mzw48"
                 },
                 "metadata": {
                     "_access": {
@@ -109,7 +89,7 @@ $ curl -k -XGET https://localhost/api/records/ | python3 -m json.tool
 **Pro Tip**: You can use [jq](https://github.com/stedolan/jq) for color highlighting:
 
 ```console
-$ curl -k -XGET https://localhost/api/records/ | jq .
+$ curl -k -XGET https://localhost:5000/api/records/ | jq .
 ...
 ```
 
@@ -118,7 +98,7 @@ $ curl -k -XGET https://localhost/api/records/ | jq .
 You can create a new record using the API:
 
 ```console
-$ curl -k -XPOST -H "Content-Type: application/json" https://localhost/api/records/ -d '
+$ curl -k -XPOST -H "Content-Type: application/json" https://localhost:5000/api/records/ -d '
 {
     "access": {
         "metadata_restricted": "false",
@@ -140,7 +120,7 @@ $ curl -k -XPOST -H "Content-Type: application/json" https://localhost/api/recor
 And then search for it:
 
 ``` console
-$ curl -k -XGET https://localhost/api/records/?q=doge | python3 -m json.tool
+$ curl -k -XGET https://localhost:5000/api/records/?q=doge | python3 -m json.tool
 {
     "aggregations": {
         [...]
@@ -151,7 +131,7 @@ $ curl -k -XGET https://localhost/api/records/?q=doge | python3 -m json.tool
                 "created": "2019-12-19T13:05:48.479895+00:00",
                 "id": "pv1dx-rwa61",
                 "links": {
-                    "self": "https://localhost/api/records/pv1dx-rwa61"
+                    "self": "https://localhost:5000/api/records/pv1dx-rwa61"
                 },
                 "metadata": {
                     [...]
@@ -164,19 +144,19 @@ $ curl -k -XGET https://localhost/api/records/?q=doge | python3 -m json.tool
         "total": 1
     },
     "links": {
-        "self": "https://localhost/api/records/?sort=bestmatch&q=doge&size=10&page=1"
+        "self": "https://localhost:5000/api/records/?sort=bestmatch&q=doge&size=10&page=1"
     }
 }
 ```
 
-### ** NEW ** Use your browser
+### Use your browser
 
 Alternatively, you can use the web UI.
 
-Navigate to https://localhost/search . Note that you might need to accept the SSL exception since it's using a test certificate.
+Navigate to https://localhost:5000/search . Note that you might need to accept the SSL exception since it's using a test certificate.
 And visit the record page for the newly created record. You will see it has no files associated with it. Let's change that!
 
-### ** NEW ** Upload a file to a record
+### Upload a file to a record
 
 For demonstration purposes, we will attach this scientific photo:
 
@@ -184,13 +164,12 @@ For demonstration purposes, we will attach this scientific photo:
 
 By <a href="https://unsplash.com/@matyssik" target="_blank" rel="noopener noreferrer">Ian Matyssik</a>
 
-
 Save it as `snow_doge.jpg` in your current directory. Then upload it to the record:
 
 **WARNING** Change `pv1dx-rwa61` in the URLs below for the recid of your record.
 
 ```
-$ curl -k -X PUT https://localhost/api/records/pv1dx-rwa61/files/snow_doge.jpg \
+$ curl -k -X PUT https://localhost:5000/api/records/pv1dx-rwa61/files/snow_doge.jpg \
         -H "Content-Type: application/octet-stream" \
         --data-binary @snow_doge.jpg
 ```
@@ -202,5 +181,7 @@ This file can then be previewed on the record page and even downloaded.
 We have reached the end of this journey, we are going to stop the instance. Nonetheless you can keep testing and playing around with configurations!
 
 ``` console
-(your-virtualenv)$ invenio-cli server --containers --stop
+^C
+Stopping server and worker...
+Server and worker stopped...
 ```
