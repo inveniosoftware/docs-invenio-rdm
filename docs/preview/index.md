@@ -13,7 +13,7 @@ First, we need to create the project - the necessary files and folders for your 
 The CLI will require the following data:
 
 - **Project name**: Title of your project with space allowed (project name for humans)
-- **Project short name**: Hyphenated and lowercased title or (project name for machines)
+- **Project short name**: Hyphenated and lowercased title (project name for machines)
 - **Project website**: URL where the project will be deployed
 - **Github repository**: Repository in format `<owner>/<code repository>`
 - **Description**: Short description of project
@@ -68,10 +68,12 @@ $ ls -la february-release
 total 56
 drwxr-xr-x 5 youruser youruser 4096 Feb 19 13:45 ./
 drwxr-xr-x 5 youruser youruser 4096 Feb 19 13:45 ../
+drwxr-xr-x 3 youruser youruser 4096 Feb 19 13:45 assets/
 drwxr-xr-x 4 youruser youruser 4096 Feb 19 13:45 docker/
 -rw-r--r-- 1 youruser youruser 2932 Feb 19 13:45 docker-compose.full.yml
 -rw-r--r-- 1 youruser youruser  943 Feb 19 13:45 docker-compose.yml
 -rw-r--r-- 1 youruser youruser 1152 Feb 19 13:45 Dockerfile
+-rw-r--r-- 1 youruser youruser   46 Feb 19 13:45 .dockerignore
 -rw-r--r-- 1 youruser youruser 2665 Feb 19 13:45 docker-services.yml
 -rw-r--r-- 1 youruser youruser 2018 Feb 19 13:45 .invenio
 -rw-r--r-- 1 youruser youruser 1504 Feb 19 13:45 invenio.cfg
@@ -79,6 +81,7 @@ drwxr-xr-x 2 youruser youruser 4096 Feb 19 13:45 logs/
 -rw-r--r-- 1 youruser youruser  431 Feb 19 13:45 Pipfile
 -rw-r--r-- 1 youruser youruser  756 Feb 19 13:45 README.rst
 drwxr-xr-x 3 youruser youruser 4096 Feb 19 13:45 static/
+drwxr-xr-x 2 youruser youruser 4096 Feb 19 13:45 templates/
 ```
 
 **Notes and Known Issues**
@@ -104,8 +107,30 @@ Visit https://localhost
 $ firefox https://localhost
 ```
 
-That is literally it! You now have a running instance of InvenioRDM at
-https://localhost . You can get a sense for what InvenioRDM offers and explore.
+You now have a running instance of InvenioRDM at [https://localhost](https://localhost),
+but it doesn't have any records in it. For demonstration purposes, we will add
+randomly generated records:
+
+``` console
+$ invenio-cli demo --containers
+```
+
+You can now get a full sense for what InvenioRDM offers and explore.
+
+
+## Running Invenio commands
+
+If you are already familiar with Invenio and the many commands its CLI (`invenio`)
+provides, you might be wondering how to execute those. Because the entire application
+is containerized, you need to connect to the web-api or web-ui container in order
+to use one of those commands. In fact, this is what `invenio-cli` does behind the scene!
+
+``` console
+$ docker exec -it <container name or id> /bin/bash
+# invenio <your command>
+```
+
+You can use `docker ps` to get the name or id of the web-api or web-ui container.
 
 
 ## Conclusions
@@ -124,5 +149,5 @@ $ firefox https://localhost
 
 These instructions don't provide you with a nice development experience though.
 You need to run `invenio-cli containerize` for every change you make in your
-project. That's slow and cumbersome. Up next, we show how to develop your
-local instance and set yourself up to be productive!
+project. That's slow and cumbersome. Up next, we show how to [develop your
+local instance](../develop/index.md) and set yourself up to be productive!

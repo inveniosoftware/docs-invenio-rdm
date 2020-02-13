@@ -70,7 +70,7 @@ Assigning superuser access to admin role...
 
 **Known issues**:
 
-The Elasticsearch container might crash due to lack of memory. One solution is to increase the maximum allowed allocation per process (See more [here](https://www.elastic.co/guide/en/elasticsearch/reference/6.6/docker.html)). Solving this issue depends on your OS:
+The Elasticsearch container might crash due to lack of memory. One solution is to increase the maximum allowed allocation per process (See more [here](https://www.elastic.co/guide/en/elasticsearch/reference/7.6/docker.html)). Solving this issue depends on your OS:
 
 On Linux, add the following to ``/etc/sysctl.conf`` on your local machine (host machine):
 

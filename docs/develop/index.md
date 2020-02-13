@@ -1,9 +1,9 @@
 # Getting Started
 
 You are now ready to learn how to create, customize and iterate on your own
-InvenioRDM instance. The previous section showed you what is the equivalent of
-a deploy compilation when working with a compiled language: it gets you the final
-result, but you wouldn't do that when developing.
+InvenioRDM instance. In fact, the previous section showed you the last step before
+deploying. You wouldn't want to fully containerize your application in the day
+to day of developing your instance.
 
 When working on your InvenioRDM application, you will want to use the commands
 and the workflow we explain in these pages.
