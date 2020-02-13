@@ -19,6 +19,6 @@ Building assets...
 
 Passing the `--no-install-js` option, skips re-installation of JS dependencies.
 
-Go to the browser [*https://localhost:5000/*](https://localhost:5000) or refresh the page. And voila! The logo has been changed!
+Go to the browser [*https://localhost:5000/*](https://localhost:5000) or refresh the page. And voilà! The logo has been changed!
 
 **WARNING**: If you do not see it changing, check in an incognito window, the browser might have cached the logo.

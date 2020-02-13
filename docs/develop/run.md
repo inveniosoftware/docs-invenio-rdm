@@ -153,7 +153,7 @@ $ curl -k -XGET https://localhost:5000/api/records/?q=doge | python3 -m json.too
 
 Alternatively, you can use the web UI.
 
-Navigate to https://localhost:5000/search . Note that you might need to accept the SSL exception since it's using a test certificate.
+Navigate to https://localhost:5000/ . Note that you might need to accept the SSL exception since it's using a test certificate.
 And visit the record page for the newly created record. You will see it has no files associated with it. Let's change that!
 
 ### Upload a file to a record
@@ -169,9 +169,7 @@ Save it as `snow_doge.jpg` in your current directory. Then upload it to the reco
 **WARNING** Change `pv1dx-rwa61` in the URLs below for the recid of your record.
 
 ```
-$ curl -k -X PUT https://localhost:5000/api/records/pv1dx-rwa61/files/snow_doge.jpg \
-        -H "Content-Type: application/octet-stream" \
-        --data-binary @snow_doge.jpg
+$ curl -k -X PUT https://localhost:5000/api/records/pv1dx-rwa61/files/snow_doge.jpg -H "Content-Type: application/octet-stream" --data-binary @snow_doge.jpg
 ```
 
 This file can then be previewed on the record page and even downloaded.

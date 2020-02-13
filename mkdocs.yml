@@ -8,7 +8,7 @@ repo_name: 'docs-invenio-rdm'
 repo_url: 'https://github.com/inveniosoftware/docs-invenio-rdm'
 
 # Copyright
-copyright: 'Copyright &copy; 2020 CERN and Northwestern University.'
+copyright: 'Copyright &copy; 2019-2020 CERN and Northwestern University.'
 
 # Configuration
 theme:
@@ -29,7 +29,7 @@ nav:
   - Install: 'install/index.md'
   - Preview: 'preview/index.md'
   - Develop:
-    - Getting Started: 'develop/init.md'
+    - Getting Started: 'develop/index.md'
     - Install Locally: 'develop/install_locally.md'
     - Run: 'develop/run.md'
     - Configuration: 'develop/config.md'
