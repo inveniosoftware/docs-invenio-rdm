@@ -8,7 +8,7 @@ repo_name: 'docs-invenio-rdm'
 repo_url: 'https://github.com/inveniosoftware/docs-invenio-rdm'
 
 # Copyright
-copyright: 'Copyright &copy; 2019 CERN and Northwestern University.'
+copyright: 'Copyright &copy; 2020 CERN and Northwestern University.'
 
 # Configuration
 theme:
@@ -26,16 +26,17 @@ theme:
 
 nav:
   - Home: 'index.md'
-  - Quickstart: 
-    - Quickstart: 'quickstart/quickstart.md'
-    - Initialization: 'quickstart/init.md'
-    - Build and Setup: 'quickstart/build_setup.md'
-    - Run: 'quickstart/server.md'
-    - Configuration: 'quickstart/config.md'
-    - Customization: 'quickstart/customize.md'
-    - Troubleshooting: 'quickstart/troubleshoot.md'
-    - Cleanup: 'quickstart/cleanup.md'
-  - Deployment:
+  - Install: 'install/index.md'
+  - Preview: 'preview/index.md'
+  - Develop:
+    - Getting Started: 'develop/init.md'
+    - Install Locally: 'develop/install_locally.md'
+    - Run: 'develop/run.md'
+    - Configuration: 'develop/config.md'
+    - Customization: 'develop/customize.md'
+    - Troubleshooting: 'develop/troubleshoot.md'
+    - Cleanup: 'develop/cleanup.md'
+  - Deploy:
     - Kubernetes: 'deployment/kubernetes.md'
     - OpenShift: 'deployment/openshift.md'
 
