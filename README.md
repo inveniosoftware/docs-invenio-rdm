@@ -1,6 +1,6 @@
-# inveniordm.docs.cern.ch
+# [inveniordm.docs.cern.ch](inveniordm.docs.cern.ch)
 
-[![Travis Build Status](https://img.shields.io/travis/inveniosoftware/docs-invenio-rdm.svg)](https://travis-ci.org/inveniosoftware/docs-invenio-rdm.svg) [![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/inveniosoftware/InvenioRDM?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) [![License](https://img.shields.io/github/license/inveniosoftware/InvenioRDM.svg)](https://github.com/inveniosoftware/docs-invenio-rdm/blob/master/LICENSE)
+[![Gitter](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/inveniosoftware/InvenioRDM?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge) [![License](https://img.shields.io/github/license/inveniosoftware/InvenioRDM.svg)](https://github.com/inveniosoftware/docs-invenio-rdm/blob/master/LICENSE)
 
 ## About
 
