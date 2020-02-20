@@ -7,10 +7,13 @@ command line tool for creating and updating your instance.
 
 Some system requirements are needed beforehand:
 
-- [Python](https://www.python.org/) (3.6 only)
+- [Python](https://www.python.org/) (3.6.2 only)
 - [nodejs](https://nodejs.org) (8.0.0+) (not needed to preview, only needed to develop)
 - [Docker](https://docs.docker.com/) (1.13.0+)
 - [Docker-Compose](https://docs.docker.com/compose/) (1.17.0+)
+
+!!! warning "Other Python distributions"
+    InvenioRDM works with Python 3.6.2. However, many users have reported errors when running Python from Anaconda.
 
 In addition, make sure the user that will be executing the CLI has access to
 the docker command (i.e. it is not only available for the root user):
@@ -18,6 +21,9 @@ the docker command (i.e. it is not only available for the root user):
 ```console
 $ sudo usermod --append --groups docker $USER
 ```
+
+!!! note "Hardware requirements"
+    We usually deploy the RDM in machines that have around 8GB of RAM and at least 4 cores. InvenioRDM can certainly run (for demo purposes) with less, just take into account that you are going to be runing between 4 and 8 containers (among them ES, which is quite demanging).
 
 Once you have installed these requirements, you can install the CLI.
 
