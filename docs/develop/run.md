@@ -166,7 +166,8 @@ By <a href="https://unsplash.com/@matyssik" target="_blank" rel="noopener norefe
 
 Save it as `snow_doge.jpg` in your current directory. Then upload it to the record:
 
-**WARNING** Change `pv1dx-rwa61` in the URLs below for the recid of your record.
+!!! warning "Change the `recid`"
+    Change `pv1dx-rwa61` in the URLs below for the recid of your record.
 
 ```
 $ curl -k -X PUT https://localhost:5000/api/records/pv1dx-rwa61/files/snow_doge.jpg -H "Content-Type: application/octet-stream" --data-binary @snow_doge.jpg

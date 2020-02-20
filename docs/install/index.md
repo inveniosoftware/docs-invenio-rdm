@@ -58,4 +58,5 @@ $ invenio-cli --version
 invenio-cli, version 0.10.0
 ```
 
-*Note: The CLI is in pre 1.0 release. The last release's version is **0.10.0**. Your version may be different than the above.*
+!!! note "CLI version"
+    The CLI is in pre 1.0 release. The last release's version is **0.10.0**. Your version may be different than the above.*
