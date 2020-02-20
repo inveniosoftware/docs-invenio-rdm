@@ -37,7 +37,9 @@ nav:
     - Troubleshooting: 'develop/troubleshoot.md'
     - Cleanup: 'develop/cleanup.md'
   - Extensions:
+    - What can be added?: 'extensions/index.md'
     - Add your extensions: 'extensions/custom.md'
+    - S3 Storage: 'extensions/s3.md'
   - Deploy:
     - Kubernetes: 'deployment/kubernetes.md'
     - OpenShift: 'deployment/openshift.md'
