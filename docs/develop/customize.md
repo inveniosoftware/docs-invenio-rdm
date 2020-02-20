@@ -23,3 +23,5 @@ Go to the browser [*https://localhost:5000/*](https://localhost:5000) or refresh
 
 !!! warning "That evil cache"
     If you do not see it changing, check in an incognito window, the browser might have cached the logo.
+
+Need further customizations? Have you thought of creating your own extensions? How to add them to your InvenioRDM instance is explained in the next section - [here](../extensions/custom.md).

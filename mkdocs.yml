@@ -36,6 +36,8 @@ nav:
     - Customization: 'develop/customize.md'
     - Troubleshooting: 'develop/troubleshoot.md'
     - Cleanup: 'develop/cleanup.md'
+  - Extensions:
+    - Add your extensions: 'extensions/custom.md'
   - Deploy:
     - Kubernetes: 'deployment/kubernetes.md'
     - OpenShift: 'deployment/openshift.md'
