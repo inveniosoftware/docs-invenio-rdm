@@ -1,7 +1,7 @@
 # Project information
 site_name: 'User Documentation'
 site_description: 'InvenioRDM user documentation web site'
-site_url: 'https://docs-invenio-rdm'
+site_url: 'https://inveniordm.docs.cern.ch'
 
 # Repository
 repo_name: 'docs-invenio-rdm'
