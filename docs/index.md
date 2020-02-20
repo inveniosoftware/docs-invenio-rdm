@@ -37,6 +37,12 @@ the workflow to be effective with them.
 
 [> Getting Started on your Instance](preview/index.md)
 
+## Extensions
+
+InvenioRDM supports a great variety of extensions that can help you adapt it to your infrastructure, it also supports the addition of custom made ones.
+
+[> Extensions setup](extensions/index.md)
+
 ## Deploy
 
 Ready to deploy into production? Follow these guides to put a small instance in
