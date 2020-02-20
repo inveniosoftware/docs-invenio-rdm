@@ -115,3 +115,7 @@ html .md-footer-meta .md-footer-meta__inner a {
 .md-typeset h6[id]:target .headerlink {
     color: #0377cd;
 }
+
+::placeholder {
+    color: #ffffff;
+}
