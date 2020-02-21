@@ -36,7 +36,7 @@ $ pip install invenio-cli
 Via pipenv:
 
 ``` console
-$ pipenv install --pre invenio-cli
+$ pipenv install invenio-cli
 ```
 
 Via pipx:
