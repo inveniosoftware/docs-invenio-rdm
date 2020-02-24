@@ -1,8 +1,12 @@
 # What can be added?
 
-InvenioRDM supports a great variety of extensions that can help you adapt it to your infrastructure. The currently supported extensions are listed below. If you need even more, you can develop your own! Check how to do so [here](custom.md).
+InvenioRDM supports a great variety of extensions that can help you adapt it to your infrastructure. The currently supported extensions are listed below.
 
-## Supported extensions
+## Develop your own extension
+
+If you want to add custom functionality to your RDM instance, you need to develop your own module. We have the docs and cookiecutter template to get you started in no time.
+
+[> Develop an extension](custom.md)
 
 ### Storage
 

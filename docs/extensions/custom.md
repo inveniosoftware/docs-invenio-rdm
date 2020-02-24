@@ -59,3 +59,6 @@ It's all set, run your instance with the cli and you will have your new features
 ``` console
 $ invenio-cli run
 ```
+
+!!! note "UI related extensions"
+    if your extension adds scss and/or javascript, you will need to update your final static files before running your instance! You can do so with the CLI: `invenio-cli update [--no-install-js]`
