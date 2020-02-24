@@ -34,6 +34,10 @@ Select elasticsearch:
 1 - 7
 2 - 6
 Choose from 1, 2 (1, 2) [1]:
+Select file_storage:
+1 - local
+2 - S3
+Choose from 1, 2 (1, 2) [1]:
 -------------------------------------------------------------------------------
 
 Generating SSL certificate and private key for testing....
