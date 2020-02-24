@@ -1,9 +1,9 @@
 # Extensions
 
-If you need to add custom functionalaty to your RDM instance you need to develop your own module. You can start it by using the [cookiecutter-invenio-module](https://github.com/inveniosoftware/cookiecutter-invenio-module) template. It will get you started in no time.
+If you want to add custom functionality to your RDM instance, you need to develop your own module. You can start in no time by using the [cookiecutter-invenio-module](https://github.com/inveniosoftware/cookiecutter-invenio-module) template.
 
 ## Create your module
-Lets assume you have already done so:
+Let's run the cookiecutter:
 
 ``` console
 $ cookiecutter https://github.com/inveniosoftware/cookiecutter-invenio-module
@@ -13,10 +13,11 @@ $ cookiecutter https://github.com/inveniosoftware/cookiecutter-invenio-module
 
 ## Add your functionality
 
-And you have added a simple view to the blue print in the `<your_custom_module>/views.py`, which looks like:
+We've added a simple view to the blueprint in `<your_custom_module>/views.py`, which looks like:
 
 ``` python
-[...]
+# Other code ignored for clarity
+
 blueprint = Blueprint(
     'invenio_rdm_extension_demo',
     __name__
@@ -38,7 +39,7 @@ $ cd path/to/your/instance
 $ pipenv install [--pre] -e path/to/your/extension
 ```
 
-As you can see, `--pre` is optional, it is only needed when the package is in a pre-release state. In addition, note that you do not need to specify a local path, if the package is available e.g. via PyPi you can just install it by its name.
+As you can see, `--pre` is optional. It is only needed when the package is in a pre-release state. In addition, note that you do not need to specify a local path. If the package is available e.g. via PyPi, you can just install it by its name.
 
 ## Sanity check and run!
 

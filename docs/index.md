@@ -39,7 +39,7 @@ the workflow to be effective with them.
 
 ## Extensions
 
-InvenioRDM supports a great variety of extensions that can help you adapt it to your infrastructure, it also supports the addition of custom made ones.
+InvenioRDM supports a great variety of extensions that can adapt it to your infrastructure. It also supports the addition of custom made ones.
 
 [> Extensions setup](extensions/index.md)
 

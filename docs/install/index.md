@@ -13,7 +13,7 @@ Some system requirements are needed beforehand:
 - [Docker-Compose](https://docs.docker.com/compose/) (1.17.0+)
 
 !!! warning "Other Python distributions"
-    InvenioRDM works with Python 3.6.2. However, many users have reported errors when running Python from Anaconda.
+    InvenioRDM targets CPython 3.6 (lowest 3.6.2). Anaconda Python in particular is not currently supported and other Python distributions are not tested.
 
 In addition, make sure the user that will be executing the CLI has access to
 the docker command (i.e. it is not only available for the root user):
@@ -23,7 +23,7 @@ $ sudo usermod --append --groups docker $USER
 ```
 
 !!! note "Hardware requirements"
-    We usually deploy the RDM in machines that have around 8GB of RAM and at least 4 cores. InvenioRDM can certainly run (for demo purposes) with less, just take into account that you are going to be runing between 4 and 8 containers (among them ES, which is quite demanging).
+    We usually deploy the RDM in machines that have around 8GB of RAM and at least 4 cores. InvenioRDM can certainly run (for demo purposes) with less, just take into account that you are going to be running between 4 and 8 containers (among them an Elasticsearch container, which is quite demanding).
 
 Once you have installed these requirements, you can install the CLI.
 
@@ -59,4 +59,4 @@ invenio-cli, version 0.10.0
 ```
 
 !!! note "CLI version"
-    The CLI is in pre 1.0 release. The last release's version is **0.10.0**. Your version may be different than the above.*
+    The CLI is in pre 1.0 release. The last release's version is **0.10.0**. Your version may be different than the above.
