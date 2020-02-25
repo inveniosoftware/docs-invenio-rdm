@@ -36,22 +36,74 @@ That's it configuration-wise. If we try to create a record through the API, your
 Did the changes work? We are going to try to create a new record:
 
 ``` console
-$ curl -k -XPOST -H "Content-Type: application/json" https://localhost:5000/api/records/ -d '
-{
-    "access": {
-        "metadata_restricted": "false",
-        "files_restricted": "false"
+$ curl -k -XPOST -H "Content-Type: application/json" https://localhost:5000/api/records/ -d '{
+	    "_access": {
+		"metadata_restricted": false,
+		"files_restricted": false
+	},
+	"_owners": [1],
+	"_created_by": 1,
+	"access_right": "open",
+	"resource_type": {
+		"type": "image",
+		"subtype": "photo"
+	},
+	"identifiers": [
+        {
+            "identifier": "10.9999/rdm.9999999",
+            "scheme": "DOI"
+        }, {
+            "identifier": "9999.99999",
+            "scheme": "arXiv"
+        }
+    ],
+	"creators": [
+        {
+            "name": "Julio Cesar",
+            "type": "Personal",
+            "given_name": "Julio",
+            "family_name": "Cesar",
+            "identifiers": [
+                {
+                    "identifier": "9999-9999-9999-9999",
+                    "scheme": "Orcid"
+                }
+            ],
+            "affiliations": [
+                {
+                    "name": "Entity One",
+                    "identifier": "entity-one",
+                    "scheme": "entity-id-scheme"
+                }
+            ]
+	    }
+    ],
+	"titles": [
+        {
+		    "title": "A Romans story",
+		    "type": "Other",
+		    "lang": "eng"
+	    }
+    ],
+    "descriptions": [
+        {
+            "description": "A story on how Julio Cesar relates to Gladiator.",
+            "type": "Abstract",
+            "lang": "eng"
+        }
+    ],
+    "community": {
+        "primary": "Maincom",
+        "secondary": ["Subcom One", "Subcom Two"]
     },
-    "access_right": "open",
-    "contributors": [{"name": "Jon Doe"}],
-    "description": "A Holiday Record description",
-    "owners": [1],
-    "publication_date": "25/12/2019",
-    "resource_type": {
-        "type": "Dataset",
-        "subtype": "dataset"
-    },
-    "title": "A Holiday Record"
+    "licenses": [
+        {
+            "license": "Berkeley Software Distribution 3",
+            "uri": "https://opensource.org/licenses/BSD-3-Clause",
+            "identifier": "BSD-3",
+            "scheme": "BSD-3"
+        }
+    ]
 }'
 ```
 
@@ -88,22 +140,74 @@ Note that this user will have ID 2.
 Afterwards we can test if the new permissions are working correctly.
 
 ``` console
-$ curl -k -XPOST -H "Authorization:Bearer sHHq1K9y7a2v5doKDRSFmSFOxa1tZDHFcbs31npaxm1sFEt27yomLMt0ynkl" -H "Content-Type: application/json" https://localhost:5000/api/records/ -d '
-{
-    "access": {
-        "metadata_restricted": "false",
-        "files_restricted": "false"
+$ curl -k -XPOST -H "Authorization:Bearer sHHq1K9y7a2v5doKDRSFmSFOxa1tZDHFcbs31npaxm1sFEt27yomLMt0ynkl" -H "Content-Type: application/json" https://localhost:5000/api/records/ -d '{
+        "_access": {
+		"metadata_restricted": false,
+		"files_restricted": false
+	},
+	"_owners": [1],
+	"_created_by": 1,
+	"access_right": "open",
+	"resource_type": {
+		"type": "image",
+		"subtype": "photo"
+	},
+	"identifiers": [
+        {
+            "identifier": "10.9999/rdm.9999999",
+            "scheme": "DOI"
+        }, {
+            "identifier": "9999.99999",
+            "scheme": "arXiv"
+        }
+    ],
+	"creators": [
+        {
+            "name": "Julio Cesar",
+            "type": "Personal",
+            "given_name": "Julio",
+            "family_name": "Cesar",
+            "identifiers": [
+                {
+                    "identifier": "9999-9999-9999-9999",
+                    "scheme": "Orcid"
+                }
+            ],
+            "affiliations": [
+                {
+                    "name": "Entity One",
+                    "identifier": "entity-one",
+                    "scheme": "entity-id-scheme"
+                }
+            ]
+	    }
+    ],
+	"titles": [
+        {
+		    "title": "A Romans story",
+		    "type": "Other",
+		    "lang": "eng"
+	    }
+    ],
+    "descriptions": [
+        {
+            "description": "A story on how Julio Cesar relates to Gladiator.",
+            "type": "Abstract",
+            "lang": "eng"
+        }
+    ],
+    "community": {
+        "primary": "Maincom",
+        "secondary": ["Subcom One", "Subcom Two"]
     },
-    "access_right": "open",
-    "contributors": [{"name": "Jon Doe"}],
-    "description": "A Holiday Record description",
-    "owners": [1],
-    "publication_date": "25/12/2019",
-    "resource_type": {
-        "type": "Dataset",
-        "subtype": "dataset"
-    },
-    "title": "A Holiday Record"
+    "licenses": [
+        {
+            "license": "Berkeley Software Distribution 3",
+            "uri": "https://opensource.org/licenses/BSD-3-Clause",
+            "identifier": "BSD-3",
+            "scheme": "BSD-3"
+        }
+    ]
 }'
 ```
 
