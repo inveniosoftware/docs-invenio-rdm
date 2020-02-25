@@ -2,6 +2,8 @@
 
 As we just saw, overriding configured values is an easy and common way of customizing your instance to your needs. Sometimes, however, you need to provide custom files too: logos, templates... We show how to perform these custom changes.
 
+## Update the logo
+
 We are going to change the logo, take an *svg* file and update your **local** static files (You can use the [invenio color logo](https://github.com/inveniosoftware/invenio-theme/blob/master/invenio_theme/static/images/invenio-color.svg)):
 
 ``` console
@@ -25,3 +27,66 @@ Go to the browser [*https://localhost:5000/*](https://localhost:5000) or refresh
     If you do not see it changing, check in an incognito window; the browser might have cached the logo.
 
 Need further customizations? Have you thought of creating your own extensions? How to add them to your InvenioRDM instance is explained in the next section - [here](../extensions/custom.md).
+
+## Change colors
+
+You might also be wondering: *How do I change the colors so I can make my instance look like my institution's theme?*
+
+We are going to change the top header section in the frontpage to apply our custom background color. Open the `assets/scss/<your instance shortname>/variables.scss` file and edit it as below:
+
+``` console
+$navbar_background_image: unset;
+$navbar_background_color: #000000; // Note this hex value is an example. Choose yours.
+```
+
+Then, run the `invenio-cli update` command as above and refresh the page! You should be able to see your top header's color changed! You can find all the available variables that you can change [here](https://github.com/inveniosoftware/invenio-app-rdm/blob/master/invenio_app_rdm/theme/assets/scss/invenio_app_rdm/variables.scss).
+
+## Change search results
+
+Changing how your results are presented in the search page is also something quite common.
+
+We are going to update the search result template so we can show more text in the result's description. Create a file called `ResultsItemTemplate.jsx` inside `assets/templates/search` folder and then edit it as below:
+
+```console
+import React from 'react';
+import {Item} from 'semantic-ui-react';
+import _truncate from 'lodash/truncate';
+
+export function ResultsItemTemplate(record, index) {
+  return (
+    <Item key={index} href={`/records/${record.id}`}>
+      <Item.Content>
+        <Item.Header>{record.metadata.titles[0].title}</Item.Header>
+        <Item.Description>
+          {_truncate(record.metadata.descriptions[0].description, { length: 400 })}
+        </Item.Description>
+      </Item.Content>
+    </Item>
+  )
+};
+```
+
+Then, run the `invenio-cli update` command as above and refresh the page! You should be able to see more text in each result's description! You can find all the available templates [here](https://github.com/inveniosoftware/invenio-app-rdm/tree/master/invenio_app_rdm/theme/assets/templates/search).
+
+## Change the record landing page
+
+When you click on a search result, you navigate in the details page of a specific record. This section shows you how to change the way the information is displayed in the details page.
+
+We are going to configure our instance to use our template for displaying the information in the record's landing page. Open the `invenio.cfg` file and add the below:
+
+```console
+from invenio_rdm_records.config import RECORDS_UI_ENDPOINTS
+RECORDS_UI_ENDPOINTS['recid'].update(template='my_record_landing_page.html')
+```
+
+Then, we create a file `my_record_landing_page.html` inside the `templates` folder and edit it as below:
+
+```console
+{%- extends 'invenio_rdm_records/record_landing_page.html' %}
+
+{%- block page_body %}
+<!-- // Paste your code here -->
+{%- endblock page_body %}
+```
+
+Inside the `page_body` block you can restructure the page as you want! You can check the default record landing page template [here](https://github.com/inveniosoftware/invenio-rdm-records/blob/master/invenio_rdm_records/theme/templates/invenio_rdm_records/record_landing_page.html).
