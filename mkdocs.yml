@@ -26,8 +26,10 @@ theme:
 
 nav:
   - Home: 'index.md'
-  - Install: 'install/index.md'
-  - Preview: 'preview/index.md'
+  - Install:
+    - Installation: 'install/index.md'
+  - Preview:
+    - Quick preview of InvenioRDM: 'preview/index.md'
   - Develop:
     - Getting Started: 'develop/index.md'
     - Install Locally: 'develop/install_locally.md'
