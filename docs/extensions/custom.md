@@ -61,4 +61,4 @@ $ invenio-cli run
 ```
 
 !!! note "UI related extensions"
-    if your extension adds scss and/or javascript, you will need to update your final static files before running your instance! You can do so with the CLI: `invenio-cli update [--no-install-js]`
+    If your extension adds scss and/or javascript, you will need to update your final static files before running your instance! You can do so with the CLI: `invenio-cli update [--no-install-js]`
