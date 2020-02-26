@@ -55,8 +55,8 @@ To make sure you've installed successfully:
 
 ``` console
 $ invenio-cli --version
-invenio-cli, version 0.10.0
+invenio-cli, version 0.10.1
 ```
 
 !!! note "CLI version"
-    The CLI is in pre 1.0 release. The last release's version is **0.10.0**. Your version may be different than the above.
+    The CLI is in pre 1.0 release. The last release's version is **0.10.1**. Your version may be different than the above.
