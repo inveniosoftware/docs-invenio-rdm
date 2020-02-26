@@ -28,8 +28,10 @@ It will also generate a test private key.
 
 Let's do it! Pressing `[Enter]` selects the option in brackets `[]`.
 
+``` bash
+invenio-cli init --flavour=RDM
+```
 ``` console
-$ invenio-cli init --flavour=RDM
 Initializing RDM application...
 project_name [My Site]: February Release
 project_shortname [february-release]:
@@ -68,8 +70,10 @@ Creating logs directory...
 
 Observe the generated files. A full description of each of them can be found in the [invenio-cli RFC](https://github.com/inveniosoftware/rfcs/pull/4)
 
+``` bash
+ls -la february-release
+```
 ``` console
-$ ls -la february-release
 total 56
 drwxr-xr-x 5 youruser youruser 4096 Feb 19 13:45 ./
 drwxr-xr-x 5 youruser youruser 4096 Feb 19 13:45 ../
@@ -103,21 +107,25 @@ drwxr-xr-x 2 youruser youruser 4096 Feb 19 13:45 templates/
 The project is initialized, we just need to run it. Switch to the project
 directory and do so:
 
+``` bash
+cd february-release
+invenio-cli containerize
+```
 ``` console
-$ cd february-release
-$ invenio-cli containerize
 <... build output ignored ...>
 Instance running!
 Visit https://localhost
-$ firefox https://localhost
+```
+``` bash
+firefox https://localhost
 ```
 
 You now have a running instance of InvenioRDM at [https://localhost](https://localhost),
 but it doesn't have any records in it. For demonstration purposes, we will add
 randomly generated records:
 
-``` console
-$ invenio-cli demo --containers
+``` bash
+invenio-cli demo --containers
 ```
 
 You can now get a full sense for what InvenioRDM offers and explore.
@@ -130,9 +138,9 @@ provides, you might be wondering how to execute those. Because the entire applic
 is containerized, you need to connect to the web-api or web-ui container in order
 to use one of those commands. In fact, this is what `invenio-cli` does behind the scene!
 
-``` console
-$ docker exec -it <container name or id> /bin/bash
-# invenio <your command>
+``` bash
+docker exec -it <container name or id> /bin/bash
+invenio <your command>
 ```
 
 You can use `docker ps` to get the name or id of the web-api or web-ui container.
@@ -142,14 +150,10 @@ You can use `docker ps` to get the name or id of the web-api or web-ui container
 
 In just two commands you can get a preview of InvenioRDM:
 
-``` console
-$ invenio-cli init --flavour=RDM
-$ cd <project name>
-$ invenio-cli containerize
-<... build output ignored ...>
-Instance running!
-Visit https://localhost
-$ firefox https://localhost
+``` bash
+invenio-cli init --flavour=RDM
+cd <project name>
+invenio-cli containerize
 ```
 
 These instructions don't provide you with a nice development experience though.

@@ -1,18 +1,18 @@
 # Troubleshooting
 
-Something has gone wrong, now what? InvenioRDM provides logs in two ways, depending on where the error happened. If the error comes from the local development instance (`invenio-cli run`), your section is the [CLI](#cli). On the other hand, if once the fully containerized application is running (`invenio-cli containerize`) you get an error, you should go to the [Web Application](#web-application) section.
-
-## CLI
-
-All the logs show up in the terminal at the same time that you execute the commands.
+Something has gone wrong, now what? InvenioRDM provides logs in two ways, depending on where the error happened.
+If the error comes from the local development instance (`invenio-cli run`), look at the terminal, the logs show up there.
+On the other hand, if the error comes from the fully containerized application (`invenio-cli containerize`), you won't see logs on the terminal directly.
+See below.
 
 ## Web Application
 
 If you are running the containerized environment you need to get the logs from the corresponding containers. It can be done in two steps, first obtaining the container IDs and then getting their logs:
 
+``` bash
+docker ps -a
+```
 ``` console
-$ docker ps -a
-
 CONTAINER ID        IMAGE                                                     COMMAND                  CREATED             STATUS                           PORTS                                                                                        NAMES
 5cb64814ed2a        my-site-frontend                                          "nginx -g 'daemon of…"   24 minutes ago      Up 1 minute                                                                                                                   mysite_frontend_1
 39993dcbb84f        my-site                                                   "bash -c 'celery wor…"   24 minutes ago      Up 1 minute                                                                                                                   mysite_worker_1
@@ -26,9 +26,10 @@ cbdac8cbd6a9        rabbitmq:3-management                                     "d
 
 The most interesting ones will be the `web-ui` and `web-api` containers, which in this case have id `a99532c10a8b` and `ff9a589845e4` respectively. The logs can be obtained by using the `logs` command of `docker`. An example of a working instance of the `web-api` container would show the following (trimmed output for clarity):
 
+``` bash
+docker logs ff9a589845e4
+```
 ``` console
-$ docker logs ff9a589845e4
-
 [uWSGI] getting INI configuration from /opt/invenio/var/instance/uwsgi_rest.ini
 *** Starting uWSGI 2.0.18 (64bit) on [Wed Jan  8 13:09:07 2020] ***
 [...]

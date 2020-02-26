@@ -14,8 +14,10 @@ We start by creating a new project in a different folder. We will just follow wh
 did in the [Preview section](../preview/index.md). Feel free to use your own
 project name.
 
+``` bash
+invenio-cli init --flavour=RDM
+```
 ``` console
-$ invenio-cli init --flavour=RDM
 Initializing RDM application...
 project_name [My Site]: February Release 2
 project_shortname [february-release-2]:
