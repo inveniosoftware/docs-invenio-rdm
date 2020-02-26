@@ -22,6 +22,7 @@ The CLI will require the following data:
 - **Year**: The current year
 - **One of the three available storage systems**: postgresql (default), mysql or sqlite
 - **The version of Elasticsearch**: 7 (default) or 6
+- **Storage backend**: Local file system or in a S3-like backend. If S3 is chosen a MinIO container is provided, however, you can set it up to use your own. See more in [S3 extension](../extensions/s3.md)
 
 It will also generate a test private key.
 
