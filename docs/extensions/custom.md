@@ -5,10 +5,8 @@ If you want to add custom functionality to your RDM instance, you need to develo
 ## Create your module
 Let's run the cookiecutter:
 
-``` console
-$ cookiecutter https://github.com/inveniosoftware/cookiecutter-invenio-module
-
-[...]
+``` bash
+cookiecutter https://github.com/inveniosoftware/cookiecutter-invenio-module
 ```
 
 ## Add your functionality
@@ -34,9 +32,9 @@ def index():
 
 Once you have your functionality ready, in order to add it to your instance you just have to install the module via pipenv:
 
-``` console
-$ cd path/to/your/instance
-$ pipenv install [--pre] -e path/to/your/extension
+``` bash
+cd path/to/your/instance
+pipenv install [--pre] -e path/to/your/extension
 ```
 
 As you can see, `--pre` is optional. It is only needed when the package is in a pre-release state. In addition, note that you do not need to specify a local path. If the package is available e.g. via PyPi, you can just install it by its name.
@@ -56,8 +54,8 @@ invenio-rdm-extension-demo = {editable = true, path="../invenio-rdm-ext-demo"}
 
 It's all set, run your instance with the cli and you will have your new features available!
 
-``` console
-$ invenio-cli run
+``` bash
+invenio-cli run
 ```
 
 !!! note "UI related extensions"

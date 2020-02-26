@@ -3,8 +3,11 @@
 Once the application is installed locally and the services are running, our
 application just needs to run. For that, the `run` command is executed.
 
+``` bash
+invenio-cli run
+```
 ``` console
-$ invenio-cli run
+# Summarized output
 Making sure containers are up...
 Starting celery worker...
 Starting up local (development) server...
@@ -20,8 +23,10 @@ Are we done? Yes, let the fun begin...
 
 Let's see what is in the instance by querying the API. Using another terminal:
 
-``` console
-$ curl -k -XGET https://localhost:5000/api/records/ | python3 -m json.tool
+``` bash
+curl -k -XGET https://localhost:5000/api/records/ | python3 -m json.tool
+```
+``` json
 {
     "aggregations": {
         "access_right": {
@@ -211,17 +216,16 @@ $ curl -k -XGET https://localhost:5000/api/records/ | python3 -m json.tool
 
 **Pro Tip**: You can use [jq](https://github.com/stedolan/jq) for color highlighting:
 
-```console
-$ curl -k -XGET https://localhost:5000/api/records/ | jq .
-...
+```bash
+curl -k -XGET https://localhost:5000/api/records/ | jq .
 ```
 
 ### Create records
 
 You can create a new record using the API:
 
-```console
-$ curl -k -XPOST -H "Content-Type: application/json" https://localhost:5000/api/records/ -d '{
+```bash
+curl -k -XPOST -H "Content-Type: application/json" https://localhost:5000/api/records/ -d '{
     "_access": {
         "metadata_restricted": false,
         "files_restricted": false
@@ -294,36 +298,127 @@ $ curl -k -XPOST -H "Content-Type: application/json" https://localhost:5000/api/
 
 And then search for it:
 
-``` console
-$ curl -k -XGET https://localhost:5000/api/records/?q=Romans | python3 -m json.tool
+``` bash
+curl -k -XGET https://localhost:5000/api/records/?q=Gladiator | python3 -m json.tool
+```
+``` json
 {
     "aggregations": {
-        [...]
+        "access_right": {
+            "buckets": [
+                {
+                    "doc_count": 1,
+                    "key": "open"
+                }
+            ],
+            "doc_count_error_upper_bound": 0,
+            "sum_other_doc_count": 0
+        },
+        "resource_type": {
+            "buckets": [
+                {
+                    "doc_count": 1,
+                    "key": "image"
+                }
+            ],
+            "doc_count_error_upper_bound": 0,
+            "sum_other_doc_count": 0
+        }
     },
     "hits": {
         "hits": [
             {
-                "created": "2019-12-19T13:05:48.479895+00:00",
-                "id": "pv1dx-rwa61",
+                "created": "2020-02-26T15:46:55.000116+00:00",
+                "id": "8wtcp-1bs44",
                 "links": {
-                    "self": "https://localhost:5000/api/records/pv1dx-rwa61"
+                    "files": "https://localhost:5000/api/records/8wtcp-1bs44/files",
+                    "self": "https://localhost:5000/api/records/8wtcp-1bs44"
                 },
                 "metadata": {
-                    [...]
-                    "titles": [{
-                        "title": "A Romans story",
-                        "type": "Other",
-                        "lang": "eng"
-                    }]
+                    "_access": {
+                        "files_restricted": false,
+                        "metadata_restricted": false
+                    },
+                    "_created_by": 1,
+                    "_owners": [
+                        1
+                    ],
+                    "access_right": "open",
+                    "community": {
+                        "primary": "Maincom",
+                        "secondary": [
+                            "Subcom One",
+                            "Subcom Two"
+                        ]
+                    },
+                    "creators": [
+                        {
+                            "affiliations": [
+                                {
+                                    "identifier": "entity-one",
+                                    "name": "Entity One",
+                                    "scheme": "entity-id-scheme"
+                                }
+                            ],
+                            "family_name": "Cesar",
+                            "given_name": "Julio",
+                            "identifiers": [
+                                {
+                                    "identifier": "9999-9999-9999-9999",
+                                    "scheme": "Orcid"
+                                }
+                            ],
+                            "name": "Julio Cesar",
+                            "type": "Personal"
+                        }
+                    ],
+                    "descriptions": [
+                        {
+                            "description": "A story on how Julio Cesar relates to Gladiator.",
+                            "lang": "eng",
+                            "type": "Abstract"
+                        }
+                    ],
+                    "identifiers": [
+                        {
+                            "identifier": "10.9999/rdm.9999999",
+                            "scheme": "DOI"
+                        },
+                        {
+                            "identifier": "9999.99999",
+                            "scheme": "arXiv"
+                        }
+                    ],
+                    "licenses": [
+                        {
+                            "identifier": "BSD-3",
+                            "license": "Berkeley Software Distribution 3",
+                            "scheme": "BSD-3",
+                            "uri": "https://opensource.org/licenses/BSD-3-Clause"
+                        }
+                    ],
+                    "publication_date": "2020-02-26",
+                    "recid": "8wtcp-1bs44",
+                    "resource_type": {
+                        "subtype": "photo",
+                        "type": "image"
+                    },
+                    "titles": [
+                        {
+                            "lang": "eng",
+                            "title": "A Romans story",
+                            "type": "Other"
+                        }
+                    ]
                 },
                 "revision": 0,
-                "updated": "2019-12-19T13:05:48.479900+00:00"
+                "updated": "2020-02-26T15:46:55.000119+00:00"
             }
         ],
         "total": 1
     },
     "links": {
-        "self": "https://localhost:5000/api/records/?sort=bestmatch&q=doge&size=10&page=1"
+        "self": "https://localhost:5000/api/records/?sort=bestmatch&q=Gladiator&size=10&page=1"
     }
 }
 ```
@@ -332,7 +427,7 @@ $ curl -k -XGET https://localhost:5000/api/records/?q=Romans | python3 -m json.t
 
 Alternatively, you can use the web UI.
 
-Navigate to https://localhost:5000/ . Note that you might need to accept the SSL exception since it's using a test certificate.
+Navigate to [https://localhost:5000](https://localhost:5000) . Note that you might need to accept the SSL exception since it's using a test certificate.
 And visit the record page for the newly created record. You will see it has no files associated with it. Let's change that!
 
 ### Upload a file to a record
@@ -341,25 +436,15 @@ For demonstration purposes, we will attach this scientific photo:
 
 ![Very scientific picture of a shiba in the snow](https://images.unsplash.com/photo-1548116137-c9ac24e446c9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80)
 
-By <a href="https://unsplash.com/@matyssik" target="_blank" rel="noopener noreferrer">Ian Matyssik</a>
+by <a href="https://unsplash.com/@matyssik" target="_blank" rel="noopener noreferrer">Ian Matyssik</a>.
 
 Save it as `snow_doge.jpg` in your current directory. Then upload it to the record:
 
 !!! warning "Change the `recid`"
     Change `pv1dx-rwa61` in the URLs below for the recid of your record.
 
-```
-$ curl -k -X PUT https://localhost:5000/api/records/pv1dx-rwa61/files/snow_doge.jpg -H "Content-Type: application/octet-stream" --data-binary @snow_doge.jpg
+``` bash
+curl -k -X PUT https://localhost:5000/api/records/pv1dx-rwa61/files/snow_doge.jpg -H "Content-Type: application/octet-stream" --data-binary @snow_doge.jpg
 ```
 
 This file can then be previewed on the record page and even downloaded.
-
-## Stop the instance
-
-We have reached the end of this journey, we are going to stop the instance. Nonetheless you can keep testing and playing around with configurations!
-
-``` console
-^C
-Stopping server and worker...
-Server and worker stopped...
-```

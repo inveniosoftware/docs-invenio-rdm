@@ -6,8 +6,8 @@ For the purpose of this example, we will only allow super users to create record
 
 Open the `invenio.cfg` file with your favorite editor. We will use `vim` to avoid `emacs` and other wars ;).
 
-``` console
-$ vim invenio.cfg
+``` bash
+vim invenio.cfg
 ```
 
 Let's add the following to the file:
@@ -27,7 +27,21 @@ class MyRecordPermissionPolicy(RDMRecordPermissionPolicy):
 RECORDS_PERMISSIONS_RECORD_POLICY = MyRecordPermissionPolicy
 ```
 
-When we set `RECORDS_PERMISSIONS_RECORD_POLICY = MyRecordPermissionPolicy`, we are overriding `RECORDS_PERMISSIONS_RECORD_POLICY` provided by [invenio-records-permissions](https://github.com/inveniosoftware/invenio-app-rdm). You will note that `invenio.cfg` is really just a Python module. How convenient!
+And stop and start the server:
+
+```bash
+^C
+Stopping server and worker...
+Server and worker stopped...
+```
+``` bash
+invenio-cli run
+```
+
+!!! warning
+    Changes to `invenio.cfg` **MUST** be accompanied by a restart to be picked up. This only restarts the server; it does not destroy any data.
+
+When we set `RECORDS_PERMISSIONS_RECORD_POLICY = MyRecordPermissionPolicy`, we are overriding `RECORDS_PERMISSIONS_RECORD_POLICY` provided by [invenio-records-permissions](https://github.com/inveniosoftware/invenio-records-permissions). You will note that `invenio.cfg` is really just a Python module. How convenient!
 
 **Pro tip** : You can type `can_create = []` to achieve the same effect; any empty permission list only allows super users.
 
@@ -35,8 +49,8 @@ That's it configuration-wise. If we try to create a record through the API, your
 
 Did the changes work? We are going to try to create a new record:
 
-``` console
-$ curl -k -XPOST -H "Content-Type: application/json" https://localhost:5000/api/records/ -d '{
+``` bash
+curl -k -XPOST -H "Content-Type: application/json" https://localhost:5000/api/records/ -d '{
     "_access": {
         "metadata_restricted": false,
         "files_restricted": false
@@ -59,10 +73,10 @@ $ curl -k -XPOST -H "Content-Type: application/json" https://localhost:5000/api/
     ],
     "creators": [
         {
-            "name": "Julio Cesar",
+            "name": "Marcus Junius Brutus",
             "type": "Personal",
-            "given_name": "Julio",
-            "family_name": "Cesar",
+            "given_name": "Marcus",
+            "family_name": "Brutus",
             "identifiers": [
                 {
                     "identifier": "9999-9999-9999-9999",
@@ -80,7 +94,7 @@ $ curl -k -XPOST -H "Content-Type: application/json" https://localhost:5000/api/
     ],
     "titles": [
         {
-            "title": "A Romans story",
+            "title": "A permission story",
             "type": "Other",
             "lang": "eng"
         }
@@ -109,106 +123,14 @@ $ curl -k -XPOST -H "Content-Type: application/json" https://localhost:5000/api/
 
 As you can see, the server could not know if we are authenticated/superuser and rejected us:
 
-``` console
-{"message":"The server could not verify that you are authorized to access the URL requested. You either supplied the wrong credentials (e.g. a bad password), or your browser doesn't understand how to supply the credentials required.","status":401}
+``` json
+{
+    "message": "The server could not verify that you are authorized to access the URL requested. You either supplied the wrong credentials (e.g. a bad password), or your browser doesn't understand how to supply the credentials required.",
+    "status": 401
+}
 ```
 
-**Advanced example**:
+!!!todo
+    Document how to generate an API token when permissions via token work.
 
-1- Create a user, for example using the web UI (*sign up* button). Alternatively, you can do so with the CLI, executing the following command (Wait until you read point number *2* before executing):
-
-``` console
-pipenv run invenio users create user@test.ch --password=123456
-```
-
-Note that the user will have ID 1 if it was the first one created.
-
-2- Grant admin access to it. In order to do so, we only have to add the `-a` flag to the previous command:
-
-``` console
-pipenv run invenio users create admin@test.ch -a --password=123456
-```
-
-Note that this user will have ID 2.
-
-3- Get a token and try to create the record again. You can do so on the UI by going to `settings->applications-->new token`. Alternatively you can do it in the terminal by executing the following command:
-
-``` console
-# TODO Wait until invenio-oauthclient REST only is integrated
-```
-
-Afterwards we can test if the new permissions are working correctly.
-
-``` console
-$ curl -k -XPOST -H "Authorization:Bearer sHHq1K9y7a2v5doKDRSFmSFOxa1tZDHFcbs31npaxm1sFEt27yomLMt0ynkl" -H "Content-Type: application/json" https://localhost:5000/api/records/ -d '{
-    "_access": {
-        "metadata_restricted": false,
-        "files_restricted": false
-    },
-    "_owners": [1],
-    "_created_by": 1,
-    "access_right": "open",
-    "resource_type": {
-        "type": "image",
-        "subtype": "photo"
-    },
-    "identifiers": [
-        {
-            "identifier": "10.9999/rdm.9999999",
-            "scheme": "DOI"
-        }, {
-            "identifier": "9999.99999",
-            "scheme": "arXiv"
-        }
-    ],
-    "creators": [
-        {
-            "name": "Julio Cesar",
-            "type": "Personal",
-            "given_name": "Julio",
-            "family_name": "Cesar",
-            "identifiers": [
-                {
-                    "identifier": "9999-9999-9999-9999",
-                    "scheme": "Orcid"
-                }
-            ],
-            "affiliations": [
-                {
-                    "name": "Entity One",
-                    "identifier": "entity-one",
-                    "scheme": "entity-id-scheme"
-                }
-            ]
-        }
-    ],
-    "titles": [
-        {
-            "title": "A Romans story",
-            "type": "Other",
-            "lang": "eng"
-        }
-    ],
-    "descriptions": [
-        {
-            "description": "A story on how Julio Cesar relates to Gladiator.",
-            "type": "Abstract",
-            "lang": "eng"
-        }
-    ],
-    "community": {
-        "primary": "Maincom",
-        "secondary": ["Subcom One", "Subcom Two"]
-    },
-    "licenses": [
-        {
-            "license": "Berkeley Software Distribution 3",
-            "uri": "https://opensource.org/licenses/BSD-3-Clause",
-            "identifier": "BSD-3",
-            "scheme": "BSD-3"
-        }
-    ]
-}'
-```
-
-It works!
+Revert the changes in `invenio.cfg` and restart the server to get back to where we were.

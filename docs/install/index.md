@@ -18,8 +18,8 @@ Some system requirements are needed beforehand:
 In addition, make sure the user that will be executing the CLI has access to
 the docker command (i.e. it is not only available for the root user):
 
-```console
-$ sudo usermod --append --groups docker $USER
+```bash
+sudo usermod --append --groups docker $USER
 ```
 
 !!! note "Hardware requirements"
@@ -35,26 +35,28 @@ Use your favorite way to install a Python package:
 
 Via pip:
 
-``` console
-$ pip install invenio-cli
+``` bash
+pip install invenio-cli
 ```
 
 Via pipenv:
 
-``` console
-$ pipenv install invenio-cli
+``` bash
+pipenv install invenio-cli
 ```
 
 Via pipx:
 
-``` console
-$ pipx install invenio-cli
+``` bash
+pipx install invenio-cli
 ```
 
 To make sure you've installed successfully:
 
+``` bash
+invenio-cli --version
+```
 ``` console
-$ invenio-cli --version
 invenio-cli, version 0.10.1
 ```
 
