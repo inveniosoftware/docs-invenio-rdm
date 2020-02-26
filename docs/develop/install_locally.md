@@ -14,13 +14,11 @@ $ cd february-release-2
 ```
 
 To run the application locally, we will need to install it and its dependencies
-first. We use the `install` command with the `--pre` flag. We need to add `--pre`
-in order to allow `pipenv` to install alpha releases, since many InvenioRDM packages
-are now in this phase. Be patient, it might take some time to build.
+first. We do not need to add `--pre`, since we do not have to install any alpha releases. Nonetheless, this option is still available if you need it. Be patient, it might take some time to build.
 
 
 ``` console
-$ invenio-cli install --pre
+$ invenio-cli install
 Installing python dependencies...
 Symlinking invenio.cfg...
 Symlinking templates/...
