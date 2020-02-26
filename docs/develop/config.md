@@ -37,18 +37,18 @@ Did the changes work? We are going to try to create a new record:
 
 ``` console
 $ curl -k -XPOST -H "Content-Type: application/json" https://localhost:5000/api/records/ -d '{
-	    "_access": {
-		"metadata_restricted": false,
-		"files_restricted": false
-	},
-	"_owners": [1],
-	"_created_by": 1,
-	"access_right": "open",
-	"resource_type": {
-		"type": "image",
-		"subtype": "photo"
-	},
-	"identifiers": [
+    "_access": {
+        "metadata_restricted": false,
+        "files_restricted": false
+    },
+    "_owners": [1],
+    "_created_by": 1,
+    "access_right": "open",
+    "resource_type": {
+        "type": "image",
+        "subtype": "photo"
+    },
+    "identifiers": [
         {
             "identifier": "10.9999/rdm.9999999",
             "scheme": "DOI"
@@ -57,7 +57,7 @@ $ curl -k -XPOST -H "Content-Type: application/json" https://localhost:5000/api/
             "scheme": "arXiv"
         }
     ],
-	"creators": [
+    "creators": [
         {
             "name": "Julio Cesar",
             "type": "Personal",
@@ -76,14 +76,14 @@ $ curl -k -XPOST -H "Content-Type: application/json" https://localhost:5000/api/
                     "scheme": "entity-id-scheme"
                 }
             ]
-	    }
+        }
     ],
-	"titles": [
+    "titles": [
         {
-		    "title": "A Romans story",
-		    "type": "Other",
-		    "lang": "eng"
-	    }
+            "title": "A Romans story",
+            "type": "Other",
+            "lang": "eng"
+        }
     ],
     "descriptions": [
         {
@@ -141,18 +141,18 @@ Afterwards we can test if the new permissions are working correctly.
 
 ``` console
 $ curl -k -XPOST -H "Authorization:Bearer sHHq1K9y7a2v5doKDRSFmSFOxa1tZDHFcbs31npaxm1sFEt27yomLMt0ynkl" -H "Content-Type: application/json" https://localhost:5000/api/records/ -d '{
-        "_access": {
-		"metadata_restricted": false,
-		"files_restricted": false
-	},
-	"_owners": [1],
-	"_created_by": 1,
-	"access_right": "open",
-	"resource_type": {
-		"type": "image",
-		"subtype": "photo"
-	},
-	"identifiers": [
+    "_access": {
+        "metadata_restricted": false,
+        "files_restricted": false
+    },
+    "_owners": [1],
+    "_created_by": 1,
+    "access_right": "open",
+    "resource_type": {
+        "type": "image",
+        "subtype": "photo"
+    },
+    "identifiers": [
         {
             "identifier": "10.9999/rdm.9999999",
             "scheme": "DOI"
@@ -161,7 +161,7 @@ $ curl -k -XPOST -H "Authorization:Bearer sHHq1K9y7a2v5doKDRSFmSFOxa1tZDHFcbs31n
             "scheme": "arXiv"
         }
     ],
-	"creators": [
+    "creators": [
         {
             "name": "Julio Cesar",
             "type": "Personal",
@@ -180,14 +180,14 @@ $ curl -k -XPOST -H "Authorization:Bearer sHHq1K9y7a2v5doKDRSFmSFOxa1tZDHFcbs31n
                     "scheme": "entity-id-scheme"
                 }
             ]
-	    }
+        }
     ],
-	"titles": [
+    "titles": [
         {
-		    "title": "A Romans story",
-		    "type": "Other",
-		    "lang": "eng"
-	    }
+            "title": "A Romans story",
+            "type": "Other",
+            "lang": "eng"
+        }
     ],
     "descriptions": [
         {

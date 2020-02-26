@@ -70,16 +70,11 @@ $ curl -k -XGET https://localhost:5000/api/records/ | python3 -m json.tool
                             "user": "inveniouser"
                         }
                     ],
-                    "_owners": [
-                        1
-                    ],
+                    "_owners": [1],
                     "access_right": "open",
                     "community": {
                         "primary": "Maincom",
-                        "secondary": [
-                            "Subcom One",
-                            "Subcom Two"
-                        ]
+                        "secondary": ["Subcom One", "Subcom Two"]
                     },
                     "contact": "info@inveniosoftware.org",
                     "contributors": [
@@ -206,7 +201,9 @@ $ curl -k -XGET https://localhost:5000/api/records/ | python3 -m json.tool
                     "version": "v0.0.1"
                 }
             },
-  ...
+            ...
+        ]
+    }
 }
 ```
 
@@ -226,17 +223,17 @@ You can create a new record using the API:
 ```console
 $ curl -k -XPOST -H "Content-Type: application/json" https://localhost:5000/api/records/ -d '{
     "_access": {
-		"metadata_restricted": false,
-		"files_restricted": false
-	},
-	"_owners": [1],
-	"_created_by": 1,
-	"access_right": "open",
-	"resource_type": {
-		"type": "image",
-		"subtype": "photo"
-	},
-	"identifiers": [
+        "metadata_restricted": false,
+        "files_restricted": false
+    },
+    "_owners": [1],
+    "_created_by": 1,
+    "access_right": "open",
+    "resource_type": {
+        "type": "image",
+        "subtype": "photo"
+    },
+    "identifiers": [
         {
             "identifier": "10.9999/rdm.9999999",
             "scheme": "DOI"
@@ -245,7 +242,7 @@ $ curl -k -XPOST -H "Content-Type: application/json" https://localhost:5000/api/
             "scheme": "arXiv"
         }
     ],
-	"creators": [
+    "creators": [
         {
             "name": "Julio Cesar",
             "type": "Personal",
@@ -264,14 +261,14 @@ $ curl -k -XPOST -H "Content-Type: application/json" https://localhost:5000/api/
                     "scheme": "entity-id-scheme"
                 }
             ]
-	    }
+        }
     ],
-	"titles": [
+    "titles": [
         {
-		    "title": "A Romans story",
-		    "type": "Other",
-		    "lang": "eng"
-	    }
+            "title": "A Romans story",
+            "type": "Other",
+            "lang": "eng"
+        }
     ],
     "descriptions": [
         {
