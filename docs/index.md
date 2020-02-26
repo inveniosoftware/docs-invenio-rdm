@@ -35,7 +35,7 @@ configure, customize, debug and iterate -, you will want to setup your project
 for development. Various commands are at your disposal and we walk you through
 the workflow to be effective with them.
 
-[> Getting Started on your Instance](preview/index.md)
+[> Getting Started on your Instance](develop/index.md)
 
 ## Extensions
 
