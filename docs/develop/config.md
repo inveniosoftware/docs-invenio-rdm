@@ -64,11 +64,8 @@ curl -k -XPOST -H "Content-Type: application/json" https://localhost:5000/api/re
     },
     "identifiers": [
         {
-            "identifier": "10.9999/rdm.9999999",
+            "identifier": "10.9999/rdm.0",
             "scheme": "DOI"
-        }, {
-            "identifier": "9999.99999",
-            "scheme": "arXiv"
         }
     ],
     "creators": [
@@ -79,7 +76,7 @@ curl -k -XPOST -H "Content-Type: application/json" https://localhost:5000/api/re
             "family_name": "Brutus",
             "identifiers": [
                 {
-                    "identifier": "9999-9999-9999-9999",
+                    "identifier": "9999-9999-9999-9990",
                     "scheme": "Orcid"
                 }
             ],
@@ -101,7 +98,7 @@ curl -k -XPOST -H "Content-Type: application/json" https://localhost:5000/api/re
     ],
     "descriptions": [
         {
-            "description": "A story on how Julio Cesar relates to Gladiator.",
+            "description": "A story about how permissions work.",
             "type": "Abstract",
             "lang": "eng"
         }
@@ -130,7 +127,31 @@ As you can see, the server could not know if we are authenticated/superuser and 
 }
 ```
 
-!!!todo
-    Document how to generate an API token when permissions via token work.
+Let's create a user with the right permission, generate her token and use the API
+with it.
 
-Revert the changes in `invenio.cfg` and restart the server to get back to where we were.
+``` bash
+pipenv run invenio users create admin@test.ch --password=123456 --active
+```
+
+``` bash
+pipenv run invenio roles add admin@test.ch admin
+```
+
+Login through the browser as `admin@test.ch` with password `123456`. Then
+in the dropdown menu of the username (top-right), select `Applications`. Then
+click on `New token`, name your token and click `Create`. Copy this token (we
+will refer to it as `<your token>`) and put it in the API call as such:
+
+``` bash
+curl -k -XPOST -H "Authorization:Bearer <your token>" -H "Content-Type: application/json" https://localhost:5000/api/records/ -d '{
+    ...<fill with the above>...
+}'
+```
+
+And it works! That's because InvenioRDM creates an `admin` role with super user
+access permissions when initially setting up the database. Above, we set
+`admin@test.ch` to be an admin, so that user can create records.
+
+Revert the changes in `invenio.cfg` and restart the server to get back to where
+we were.
