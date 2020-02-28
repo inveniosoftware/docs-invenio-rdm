@@ -7,7 +7,7 @@ command line tool for creating and updating your instance.
 
 Some system requirements are needed beforehand:
 
-- [Python](https://www.python.org/) (3.6.2 only)
+- [Python](https://www.python.org/) (3.6.2 <= supported version < 3.7.0 only)
 - [nodejs](https://nodejs.org) (8.0.0+) (not needed to preview, only needed to develop)
 - [Docker](https://docs.docker.com/) (1.13.0+)
 - [Docker-Compose](https://docs.docker.com/compose/) (1.17.0+)
