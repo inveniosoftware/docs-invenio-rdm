@@ -44,10 +44,10 @@ nav:
     - S3 Storage: 'extensions/s3.md'
   - Deploy:
     - How can I deploy it?: 'deployment/index.md'
+    - OpenShift: 'deployment/openshift.md'
+    - Kubernetes: 'deployment/kubernetes.md'
     - System components: 'deployment/services.md'
     - Configuration:  'deployment/configuration.md'
-    - Kubernetes: 'deployment/kubernetes.md'
-    - OpenShift: 'deployment/openshift.md'
 
 
 # Customization

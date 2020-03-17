@@ -8,7 +8,7 @@
 
 ## Deploying InvenioRDM
 
-First of all login and select the right project in your OpenShift cluster:
+First of all, log in and select the right project in your OpenShift cluster:
 
 ```console
 $ oc login <your.openshift.cluster>
@@ -17,7 +17,7 @@ $ oc project invenio
 
 ### Secrets
 
-Before deploying in need to provide the credentials so the application can access the different services:
+Before deploying, you need to provide the credentials so the application can access the different services. Replace the credentials and configuration below with your own:
 
 **Database secrets:**
 
@@ -47,7 +47,7 @@ secret "mq-secrets" created
 
 **Elasticsearch secrets:**
 
-!!! info "Elasticaserch variables"
+!!! info "Elasticsearch variables"
     Currently, and until [invenio-search#198](https://github.com/inveniosoftware/invenio-search/issues/198) has been addressed, the Elasticsearch configuration
     has to be loaded in a single environment variable.
 
@@ -59,13 +59,13 @@ $ oc create secret generic \
 ```
 
 !!! info "Extra configuration is possible"
-    Note that you might need to add extra configuration to the elasticsearch hosts, sucha as vertificate verification (`verify_certs`), prefixing (`url_prefix`) and more.
+    Note that you might need to add extra configuration to the Elasticsearch hosts, such as certificate verification (`verify_certs`), prefixing (`url_prefix`) and more.
 
 ### Install InvenioRDM
 
-Before installing you need to configure two things, the rest are optional and you can read more about it [here](configuration.md):
+Before installing you need to configure two things in your `values.yml` file. The rest are optional and you can read more about them [here](configuration.md):
 
-- Your host in a `values.yaml` file.
+- The host.
 - The web/worker docker images.
 
 ``` yaml
@@ -78,7 +78,7 @@ worker:
   image: your/invenio-image
 ```
 
-The next step is the installation itself, with your own configuration in the `values.yaml`. If you added the repository you can install it by using the chart name and the desired version:
+The next step is the installation itself, with your own configuration in the `values.yaml`. If you added the repository, you can install it by using the chart name and the desired version:
 
 ``` console
 $ helm install -f values.yaml invenio helm-invenio/invenio --version 0.2.0
@@ -144,8 +144,9 @@ $ oc process -f job.yml --param JOB_NAME='demo-data-1' \
 
 **Cron job**
 
-Now imagine you might have some bulk record creation that needs to be indexed, or any other task that you have to do every certain period of time.
-For that you can define cronjobs:
+Now, imagine you have some bulk record indexing, or any other task that you have to do periodically.
+
+For that, you can define cronjobs:
 
 ``` console
 $ oc process -f cronjob.yml --param JOB_NAME=index-run \
@@ -155,7 +156,7 @@ $ oc process -f cronjob.yml --param JOB_NAME=index-run \
 ### Upgrade your instance
 
 If you have performed some changes to your instance (e.g. configuration) or you want to upgrade the version of the charts, you can do so with
-the `upgrade` command of `helm`, note that you still need to disable the openapi validation which is only supoprted after version 3.1.2:
+the `upgrade` command of `helm`. Note that you still need to disable the openapi validation which is yet not supported in version 3.1.2 (However, it is merged into the master branch and should come out soon):
 
 ``` console
 $ helm upgrade -f values.yaml --disable-openapi-validation

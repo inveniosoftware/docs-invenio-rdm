@@ -1,16 +1,16 @@
 # Configuration
 
-This section explain the current configuration options that are available for the different components that are deployed but the Helm charts.
+This section explains the current configuration options that are available for the different components deployed by these Helm charts.
 
 ## Global
 
-The is only one mandatory configuration, which is the host name, for example:
+There is only one mandatory configuration: the host name.
 
 ```yaml
 host: your-rdm-instance.com
 ```
 
-Moreover, the services can be deployed along, note that it is recommended to deploy separatelly Elasticsearch and PostgreSQL for a production deployment.
+Moreover, the services can be deployed along. Note that it is recommended to deploy Elasticsearch and PostgreSQL separately for a production deployment.
 Therefore, by default only `redis` and `rabbitmq` are enabled. Example configuration:
 
 ``` yaml
@@ -27,24 +27,16 @@ elasticsearch:
 
 ## HAProxy
 
-You can change the number of connections allowed by the haproxy with the `maxconn` variable:
+You can change the number of connections allowed by haproxy with the `maxconn` variable:
 
 ```
 haproxy:
   maxconn: 100
 ```
 
-!!! warning "Only one parent element"
-    By default the HAProxy is enabled, `inside_cluster` has the value `true`, nonetheless if you decide to set it, you only need
-    to specify once the `haproxy` parent in the yaml file. Otherwise the last one will override the previous. It should be something like:
-    ``` yaml
-    haproxy:
-        inside_cluster: true
-        maxconn: 100
-    ```
 ## Nginx
 
-The charts allow you to configure the amount of connections per nginx node (replica) and the amount of nodes:
+These charts allow you to configure the amount of connections per nginx node (replica) and the amount of nodes:
 
 ```
 nginx:
@@ -54,9 +46,9 @@ nginx:
 
 ## Web nodes
 
-The web nodes host the WSGI application, in order to be scalable you can configure the number of "nodes", called replicas, how many processes do each node run and with how many threads per process. The only mandatory parameter is the docker image (`image`) that should get as value the url where to pull the image from.
+The web nodes host the WSGI application. In order to be scalable you can configure the number of "nodes", called replicas, with how many processes each node runs and with how many threads per process. The only mandatory parameter is the docker image (`image`) that should get as value the url where to pull the image from.
 
-In addition, you can add automatic scaling, by setting minimum and maximum replicas and the threshold of cpu usage in which a new node should be spawned. For example, with a threshold of 65%, it meand that when the average CPU utilization of the nodes reaches 65% a new node will de spawned, till it reaches the setted maximum:
+In addition, you can add automatic scaling by setting minimum (`min_web_replicas`) and maximum (`max_web_replicas`) replicas, and the cpu usage threshold in percentage (`scaler_cpu_utilization`) that spawns a new node. For example, with a `scaler_cpu_utilization` value of 65, it means that when the average CPU utilization of the nodes reaches 65%, a new node will be spawned. This process will repeat itself until the maximum number of replicas has been reached:
 
 ``` yaml
 web:
@@ -75,10 +67,9 @@ web:
 
 ## Worker nodes
 
-Finally, the worker nodes. By default they are enabled, but you can cancel their deployment by setting `enabled` to `false`. If enabled, in the same fashion than the web nodes
-they require an `image`.
+Finally, the worker nodes. By default they are enabled, but you can cancel their deployment by setting `enabled` to `false`. If enabled, they require an `image` like the web nodes.
 
-In addition, you can configure how many worker nodes (replicas) will be deployed, which the application they will run, with which concurrency level and the logging level.
+In addition, you can configure the number of worker nodes (replicas) to be deployed, the application they will run, their concurrency level and their logging level.
 
 ``` yaml
 worker:
