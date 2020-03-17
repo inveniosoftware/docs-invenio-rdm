@@ -49,4 +49,4 @@ Ready to deploy into production? Follow these guides to put a small instance in
 production and learn the avenues to take and decisions to make to grow it.
 Whether you use Openshift or Kubernetes, we've got you covered.
 
-[> Deployment Guides](deployment/openshift.md)
+[> Deployment Guides](deployment/index.md)
