@@ -48,6 +48,7 @@ nav:
     - Kubernetes: 'deployment/kubernetes.md'
     - System components: 'deployment/services.md'
     - Configuration:  'deployment/configuration.md'
+    - Benchmarking: 'deployment/benchmark.md'
 
 
 # Customization
