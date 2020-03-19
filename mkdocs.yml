@@ -20,7 +20,7 @@ theme:
     text: 'Open Sans'
     code: 'Roboto Mono'
   logo: 'images/logo-rdm.png'
-  favicon: 'images/favicon.ico'
+  favicon: 'images/favicon.svg'
   feature:
     tabs: true
 
