@@ -78,6 +78,9 @@ worker:
   image: your/invenio-image
 ```
 
+!!! info "Image registries"
+    You can get to know more about where and how to store you instance's docker image [here](./registries).
+
 The next step is the installation itself, with your own configuration in the `values.yaml`. If you added the repository, you can install it by using the chart name and the desired version:
 
 ``` console

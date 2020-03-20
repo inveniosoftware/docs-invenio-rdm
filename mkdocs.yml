@@ -48,6 +48,8 @@ nav:
     - Kubernetes: 'deployment/kubernetes.md'
     - System components: 'deployment/services.md'
     - Configuration:  'deployment/configuration.md'
+    - Building your image: 'deployment/image.md'
+    - Image registries: 'deployment/registries.md'
     - Benchmarking: 'deployment/benchmark.md'
 
 
