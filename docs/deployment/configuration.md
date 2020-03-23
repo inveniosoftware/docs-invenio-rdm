@@ -1,6 +1,6 @@
 # Configuration
 
-This section explains the current configuration options that are available for the different components deployed by these Helm charts.
+This section explains the current configuration options that are available for the different components deployed by this Helm chart.
 
 ## Global
 
@@ -36,7 +36,7 @@ haproxy:
 
 ## Nginx
 
-These charts allow you to configure the amount of connections per nginx node (replica) and the amount of nodes:
+This chart allows you to configure the amount of connections per nginx node (replica) and the amount of nodes:
 
 ```
 nginx:

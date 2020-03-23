@@ -15,9 +15,9 @@ A Helm chart is a definition of the architecture of the system, meaning how all 
 
 In addition, Helm allows you to **install, version, upgrade and rollback** your InvenioRDM installation in an easy way. You can find more information about Helm [here](https://helm.sh/docs/intro/quickstart/).
 
-### Charts description
+### Chart description
 
-The current charts propose the following architecture:
+The current chart proposes the following architecture:
 
 - HAProxy as entry point. It provides load balancing and queuing of requests.
 - Nginx as reverse proxy. It serves as reverse proxy, to help HAproxy and uWSGI "talk" the same language (protocol).
@@ -30,7 +30,16 @@ For more in-depth documentation see the [services description](services.md) and 
 ## Pre-Requirements
 
 - [Helm](https://helm.sh/docs/intro/install/) version 3.x
-- Adding the [helm-invenio](https://github.com/inveniosoftware/helm-invenio) repository
+- Adding the [helm-invenio](https://github.com/inveniosoftware/helm-invenio) repository.
+
+To install Helm, follow the official documentation linked above. Once you have it installed you can [add
+the repository](https://helm.sh/docs/helm/helm_repo_add/). The syntax is as follows:
+
+``` console
+helm repo add [NAME] [URL] [flags]
+```
+
+Let's add the `helm-invenio` (NAME) repository and check that it has been added correctly:
 
 ``` console
 $ helm repo add helm-invenio https://inveniosoftware.github.io/helm-invenio/
@@ -54,7 +63,7 @@ In this case, you will need to reference the `./invenio` folder rather than the 
 ## Supported Platforms
 
 !!! warning "Only compatible with OpenShift"
-    Please note that currently these Helm charts are only compatible with OpenShift.
+    Please note that currently this Helm chart is only compatible with OpenShift.
 
 - [OpenShift](openshift.md)
 - [Kubernetes](kubernetes.md)
