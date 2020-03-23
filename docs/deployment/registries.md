@@ -17,13 +17,13 @@ To store your image in GitHub you will need a repository. You can use your insta
 *https://github/yourusername/rdmrepo*. In addition, you will need to [create an access token](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line). This access token must have
 `read:packages` and `write:packages` scopes.
 
-The first step is to login in GitHub's docker registry:
+The first step is to log in to GitHub's docker registry:
 
 ``` console
 $ docker login docker.pkg.github.com -u <YOU_GITHUB_USERNAME> -p <YOUR_GITHUB_TOKEN>
 ```
 
-Then find your docker image and tag it you the url of your GitHub registry:
+Then, find your docker image and tag it with the url of your GitHub registry:
 
 ```
 $ docker images
@@ -45,7 +45,7 @@ demo-inveniordm                                                 latest          
 docker.pkg.github.com/yourusername/rdmrepo/rdmimage:latest      latest              9b6dd5ae6b48        17 hours ago        2.33GB
 ```
 
-The last step is to push your package to the github registry:
+The last step is to push your package to the GitHub registry:
 
 ``` console
 docker push docker.pkg.github.com/yourusername/rdmrepo/rdmimage:latest
@@ -54,7 +54,11 @@ docker push docker.pkg.github.com/yourusername/rdmrepo/rdmimage:latest
 In order to use this image, you must set the following value in your `values.yaml` file (for both `web` and `worker`):
 
 ```
-image: docker.pkg.github.com/yourusername/rdmrepo/rdmimage:latest 
+web:
+    image: docker.pkg.github.com/yourusername/rdmrepo/rdmimage:latest
+
+worker:
+    image: docker.pkg.github.com/yourusername/rdmrepo/rdmimage:latest
 ```
 
 Even if your project and/or image is public, GitHub requires you to be authenticated in order to pull your image.
@@ -71,7 +75,7 @@ $ oc secrets link default <SECRET_NAME> --for=pull \
 
 ## OpenShift
 
-First you need to login in your OpenShift cluster and its image registry:
+First you need to log in to your OpenShift cluster and its image registry:
 
 ``` console
 $ docker login -u openshift -p $(oc whoami -t) <registry_ip>:<port>
@@ -80,7 +84,7 @@ $ oc project
 Using project "inveniordm" on server "<registry_ip>:<port>".
 ```
 
-Then find your docker image and tag it you the url of your OpenShift registry:
+Then, find your docker image and tag it with the url of your OpenShift registry:
 
 ``` console
 $ docker images
@@ -91,7 +95,7 @@ $ docker tag demo-inveniordm <registry_ip>:<port>/inveniordm/demo-inveniordm:lat
 ```
 
 !!! info "Project name"
-    Note that `inveniordm` is the name of the OpenShift project we are using. It's value should be the one returned
+    Note that `inveniordm` is the name of the OpenShift project we are using. Its value should be the one returned
     by the `oc project` command. Therefore the tag is: ``<registry_ip>:<port>/<project_name>/<name_of_your_image>:<version>``
 
 Check that it was tagged correctly:
@@ -112,5 +116,9 @@ $ docker push <registry_ip>:<port>/inveniordm/demo-inveniordm:latest
 In order to use this image, you must set the following value in your `values.yaml` file (for both `web` and `worker`):
 
 ``` console
-image: <registry_ip>:<port>/inveniordm/demo-inveniordm:rdm 
+web:
+    image: <registry_ip>:<port>/inveniordm/demo-inveniordm:rdm
+
+worker:
+    image: <registry_ip>:<port>/inveniordm/demo-inveniordm:rdm
 ```
