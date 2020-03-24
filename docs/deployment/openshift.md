@@ -159,7 +159,7 @@ If you have performed some changes to your instance (e.g. configuration) or you 
 the `upgrade` command of `helm`.
 
 !!! warning "Not supported yet"
-    Note that you still need to disable the openapi validation which is yet not supported in version 3.1.2 (However, it is merged into the master branch and should come out soon). For now we will have to `helm uninstall` and then install again.
+    Note that you still need to disable the openapi validation which is not supported yet in version 3.1.2 (However, it is merged into the master branch and should come out soon). For now we will have to `helm uninstall` and then install again.
 
 ``` console
 $ helm upgrade -f values.yaml --disable-openapi-validation
