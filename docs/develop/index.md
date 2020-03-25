@@ -19,13 +19,13 @@ invenio-cli init --flavour=RDM
 ```
 ``` console
 Initializing RDM application...
-project_name [My Site]: February Release 2
-project_shortname [february-release-2]:
-project_site [february-release-2.com]:
-github_repo [february-release-2/february-release-2]:
-description [Invenio RDM February Release 2 Instance]:
+project_name [My Site]: Development Instance
+project_shortname [development-instance]:
+project_site [development-instance.com]:
+github_repo [development-instance/development-instance]:
+description [Invenio RDM Development Instance Instance]:
 author_name [CERN]:
-author_email [info@february-release-2.com]:
+author_email [info@development-instance.com]:
 year [2020]:
 Select database:
 1 - postgresql

@@ -10,7 +10,7 @@ allowing you to iterate on your local instance quickly.
 Before going on, let's move into the project directory:
 
 ``` bash
-cd february-release-2
+cd development-instance
 ```
 
 To run the application locally, we will need to install it and its dependencies
@@ -50,12 +50,12 @@ invenio-cli services
 ```
 ``` console
 Making sure containers are up...
-Creating network "february-release-2_default" with the default driver
-Creating february-release-2_cache_1 ... done
-Creating february-release-2_es_1    ... done
-Creating february-release-2_db_1    ... done
-Creating february-release-2_mq_1    ... done
-Creating database postgresql+psycopg2://february-release-2:february-release-2@localhost/february-release-2
+Creating network "development-instance_default" with the default driver
+Creating development-instance_cache_1 ... done
+Creating development-instance_es_1    ... done
+Creating development-instance_db_1    ... done
+Creating development-instance_mq_1    ... done
+Creating database postgresql+psycopg2://development-instance:development-instance@localhost/development-instance
 Creating all tables!
 INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
 INFO  [alembic.runtime.migration] Will assume transactional DDL.
@@ -80,16 +80,16 @@ invenio-cli services --force
 ```
 ``` console
 Making sure containers are up...
-february-release-2_mq_1 is up-to-date
-february-release-2_db_1 is up-to-date
-february-release-2_cache_1 is up-to-date
-february-release-2_es_1 is up-to-date
+development-instance_mq_1 is up-to-date
+development-instance_db_1 is up-to-date
+development-instance_cache_1 is up-to-date
+development-instance_es_1 is up-to-date
 Cache cleared
-Destroying database postgresql+psycopg2://february-release-2:february-release-2@localhost/february-release-2
+Destroying database postgresql+psycopg2://development-instance:development-instance@localhost/development-instance
 Destroying indexes...
 Indexing queue has been initialized.
 Indexing queue has been purged.
-Creating database postgresql+psycopg2://february-release-2:february-release-2@localhost/february-release-2
+Creating database postgresql+psycopg2://development-instance:development-instance@localhost/development-instance
 Creating all tables!
   [####################################]  100%
 INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
@@ -130,13 +130,12 @@ invenio-cli demo --local
 ```
 ``` console
 Making sure containers are up...
-february-release-2_mq_1 is up-to-date
-february-release-2_db_1 is up-to-date
-february-release-2_cache_1 is up-to-date
-february-release-2_es_1 is up-to-date
+development-instance_mq_1 is up-to-date
+development-instance_db_1 is up-to-date
+development-instance_cache_1 is up-to-date
+development-instance_es_1 is up-to-date
 Creating demo records...
 Created records!
-
 ```
 
 We are ready to run it in the next section.
