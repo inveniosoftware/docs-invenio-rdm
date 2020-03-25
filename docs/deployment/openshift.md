@@ -19,6 +19,15 @@ $ oc project invenio
 
 Before deploying, you need to provide the credentials so the application can access the different services. Replace the credentials and configuration below with your own:
 
+**Invenio secret key**:
+
+  ```console
+ $ SECRET_KEY=$(openssl rand -hex 8)
+ $ oc create secret generic \
+   --from-literal="INVENIO_SECRET_KEY=$SECRET_KEY" \
+   invenio-secrets
+ ```
+
 **Database secrets:**
 
 ```console
