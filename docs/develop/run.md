@@ -42,8 +42,24 @@ curl -k -XGET https://localhost:5000/api/records/ | python3 -m json.tool
         "resource_type": {
             "buckets": [
                 {
-                    "doc_count": 10,
+                    "doc_count": 4,
+                    "key": "book"
+                },
+                {
+                    "doc_count": 3,
+                    "key": "text"
+                },
+                {
+                    "doc_count": 1,
                     "key": "image"
+                },
+                {
+                    "doc_count": 1,
+                    "key": "multimedia"
+                },
+                {
+                    "doc_count": 1,
+                    "key": "periodical"
                 }
             ],
             "doc_count_error_upper_bound": 0,
@@ -91,12 +107,9 @@ curl -k -XGET https://localhost:5000/api/records/ | python3 -m json.tool
                                     "scheme": "entity-id-scheme"
                                 }
                             ],
-                            "identifiers": [
-                                {
-                                    "identifier": "9999-9999-9999-9998",
-                                    "scheme": "Orcid"
-                                }
-                            ],
+                            "identifiers": {
+                                "Orcid": "9999-9999-9999-9998"
+                            },
                             "name": "Gina Brown",
                             "role": "RightsHolder",
                             "type": "Personal"
@@ -111,12 +124,9 @@ curl -k -XGET https://localhost:5000/api/records/ | python3 -m json.tool
                                     "scheme": "entity-id-scheme"
                                 }
                             ],
-                            "identifiers": [
-                                {
-                                    "identifier": "9999-9999-9999-9999",
-                                    "scheme": "Orcid"
-                                }
-                            ],
+                            "identifiers": {
+                                "Orcid": "9999-9999-9999-9999"
+                            },
                             "name": "Christina Wright",
                             "type": "Personal"
                         }
@@ -136,16 +146,10 @@ curl -k -XGET https://localhost:5000/api/records/ | python3 -m json.tool
                         }
                     ],
                     "embargo_date": "1997-12-01",
-                    "identifiers": [
-                        {
-                            "identifier": "10.9999/rdm.9999999",
-                            "scheme": "DOI"
-                        },
-                        {
-                            "identifier": "9999.99999",
-                            "scheme": "arXiv"
-                        }
-                    ],
+                    "identifiers": {
+                            "DOI": "10.9999/rdm.9999999",
+                            "arXiv": "9999.99999"
+                    },
                     "language": "eng",
                     "licenses": [
                         {
@@ -179,14 +183,14 @@ curl -k -XGET https://localhost:5000/api/records/ | python3 -m json.tool
                             "identifier": "10.9999/rdm.9999988",
                             "relation_type": "Requires",
                             "resource_type": {
-                                "subtype": "photo",
+                                "subtype": "image-photo",
                                 "type": "image"
                             },
                             "scheme": "DOI"
                         }
                     ],
                     "resource_type": {
-                        "subtype": "photo",
+                        "subtype": "image-photo",
                         "type": "image"
                     },
                     "subjects": [
@@ -234,30 +238,22 @@ curl -k -XPOST -H "Content-Type: application/json" https://localhost:5000/api/re
     "_created_by": 1,
     "access_right": "open",
     "resource_type": {
-        "type": "image",
-        "subtype": "photo"
+        "type": "publication",
+        "subtype": "publication-article"
     },
-    "identifiers": [
-        {
-            "identifier": "10.9999/rdm.9999999",
-            "scheme": "DOI"
-        }, {
-            "identifier": "9999.99999",
-            "scheme": "arXiv"
-        }
-    ],
+    "identifiers": {
+        "DOI": "10.9999/rdm.9999999",
+        "arXiv": "9999.99999"
+    },
     "creators": [
         {
             "name": "Julio Cesar",
             "type": "Personal",
             "given_name": "Julio",
             "family_name": "Cesar",
-            "identifiers": [
-                {
-                    "identifier": "9999-9999-9999-9999",
-                    "scheme": "Orcid"
-                }
-            ],
+            "identifiers": {
+                "Orcid": "9999-9999-9999-9999"
+            },
             "affiliations": [
                 {
                     "name": "Entity One",
@@ -318,7 +314,7 @@ curl -k -XGET https://localhost:5000/api/records/?q=Gladiator | python3 -m json.
             "buckets": [
                 {
                     "doc_count": 1,
-                    "key": "image"
+                    "key": "publication"
                 }
             ],
             "doc_count_error_upper_bound": 0,
@@ -362,12 +358,9 @@ curl -k -XGET https://localhost:5000/api/records/?q=Gladiator | python3 -m json.
                             ],
                             "family_name": "Cesar",
                             "given_name": "Julio",
-                            "identifiers": [
-                                {
-                                    "identifier": "9999-9999-9999-9999",
-                                    "scheme": "Orcid"
-                                }
-                            ],
+                            "identifiers": {
+                                "Orcid": "9999-9999-9999-9999"
+                            },
                             "name": "Julio Cesar",
                             "type": "Personal"
                         }
@@ -379,16 +372,10 @@ curl -k -XGET https://localhost:5000/api/records/?q=Gladiator | python3 -m json.
                             "type": "Abstract"
                         }
                     ],
-                    "identifiers": [
-                        {
-                            "identifier": "10.9999/rdm.9999999",
-                            "scheme": "DOI"
-                        },
-                        {
-                            "identifier": "9999.99999",
-                            "scheme": "arXiv"
-                        }
-                    ],
+                    "identifiers": {
+                        "DOI": "10.9999/rdm.9999999",
+                        "arXiv": "9999.99999"
+                    },
                     "licenses": [
                         {
                             "identifier": "BSD-3",
@@ -400,8 +387,8 @@ curl -k -XGET https://localhost:5000/api/records/?q=Gladiator | python3 -m json.
                     "publication_date": "2020-02-26",
                     "recid": "8wtcp-1bs44",
                     "resource_type": {
-                        "subtype": "photo",
-                        "type": "image"
+                        "subtype": "publication-article",
+                        "type": "publication"
                     },
                     "titles": [
                         {
