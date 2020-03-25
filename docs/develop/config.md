@@ -60,26 +60,20 @@ curl -k -XPOST -H "Content-Type: application/json" https://localhost:5000/api/re
     "access_right": "open",
     "resource_type": {
         "type": "image",
-        "subtype": "photo"
+        "subtype": "image-photo"
     },
-    "identifiers": [
-        {
-            "identifier": "10.9999/rdm.0",
-            "scheme": "DOI"
-        }
-    ],
+    "identifiers": {
+        "DOI": "10.9999/rdm.0",
+    },
     "creators": [
         {
             "name": "Marcus Junius Brutus",
             "type": "Personal",
             "given_name": "Marcus",
             "family_name": "Brutus",
-            "identifiers": [
-                {
-                    "identifier": "9999-9999-9999-9990",
-                    "scheme": "Orcid"
-                }
-            ],
+            "identifiers": {
+                "Orcid": "9999-9999-9999-9990"
+            },
             "affiliations": [
                 {
                     "name": "Entity One",
