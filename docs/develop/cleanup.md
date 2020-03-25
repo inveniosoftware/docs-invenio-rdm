@@ -13,7 +13,7 @@ Server and worker stopped...
 ## Destroy the instance
 
 If you want to get to a clean state with no images, containers or volumes, then destroy the instance. This **WILL** permanently erase your volume data (database and Elasticsearch indices).
-It destroys the images, containers and volumes defined in the `february-release-2/docker-compose.full.yml`.
+It destroys the images, containers and volumes defined in the `development-instance/docker-compose.full.yml`.
 
 After stopping the application per above, destroy it:
 

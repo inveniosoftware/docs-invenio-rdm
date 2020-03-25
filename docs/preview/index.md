@@ -33,13 +33,13 @@ invenio-cli init --flavour=RDM
 ```
 ``` console
 Initializing RDM application...
-project_name [My Site]: February Release
-project_shortname [february-release]:
-project_site [february-release.com]:
-github_repo [february-release/february-release]:
-description [Invenio RDM February Release Instance]:
+project_name [My Site]: InvenioRDM Preview
+project_shortname [inveniordm-preview]:
+project_site [inveniordm-preview.com]:
+github_repo [inveniordm-preview/inveniordm-preview]:
+description [Invenio RDM InvenioRDM Preview Instance]:
 author_name [CERN]:
-author_email [info@february-release.com]:
+author_email [info@inveniordm-preview.com]:
 year [2020]:
 Select database:
 1 - postgresql
@@ -71,7 +71,7 @@ Creating logs directory...
 Observe the generated files. A full description of each of them can be found in the [invenio-cli RFC](https://github.com/inveniosoftware/rfcs/pull/4)
 
 ``` bash
-ls -la february-release
+ls -la inveniordm-preview
 ```
 ``` console
 total 56
@@ -108,7 +108,7 @@ The project is initialized, we just need to run it. Switch to the project
 directory and do so:
 
 ``` bash
-cd february-release
+cd inveniordm-preview
 invenio-cli containerize
 ```
 ``` console
