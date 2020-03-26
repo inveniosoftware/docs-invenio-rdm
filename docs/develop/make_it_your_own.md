@@ -149,10 +149,46 @@ Inside the `page_body` block you can restructure the page as you want! You can c
 Since we modified `invenio.cfg`, we need to re-start the server to see our changes take effect.
 
 
-## Use a custom controlled vocabulary
+## Define a custom controlled vocabulary
+
+InvenioRDM deals with many controlled vocabularies. And since agreeing on standard
+vocabularies is notoriously difficult, InvenioRDM allows you to use the controlled
+vocabularies **you** want. Here we show how to customize your resource types vocabulary,
+but the same approach holds true for any other vocabulary.
+
+We start by copying [the default resource types vocabulary file](https://github.com/inveniosoftware/invenio-rdm-records/raw/master/invenio_rdm_records/vocabularies/resource_types.csv)
+and modifying it with our own vocabulary entries. Make sure to keep the same headers!
+
+!!! info "Use the hierarchy to your advantage"
+    You will notice the hierarchy in the default file. It reduces repetition and makes sections visually clear. You can use that pattern for your own entries too.
+
+Save this file in the `app_data/vocabularies/` folder. We call ours `resource_types.csv`. Very original!
+Then edit `invenio.cfg` to tell InvenioRDM to use this file.
+
+```python
+# imports at the top...
+from os.path import abspath, dirname, join
+
+# ...
+
+# At the bottom
+# Our custom Vocabularies
+RDM_RECORDS_CUSTOM_VOCABULARIES = {
+    'resource_types': join(
+        dirname(abspath(__file__)),
+        'app_data', 'vocabularies', 'resource_types.csv')
+}
+```
+
+!!! info "Other vocabularies"
+    See the [Vocabulary source code](https://github.com/inveniosoftware/invenio-rdm-records/blob/master/invenio_rdm_records/vocabularies/__init__.py)
+    in invenio-rdm-records to know the keys for the other vocabularies.
+
+Restart your server and your vocabulary will now be used for resource types!
 
 
 ## Extend the metadata
+TODO
 
 
 ## Change permissions
