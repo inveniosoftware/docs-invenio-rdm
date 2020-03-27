@@ -187,14 +187,118 @@ RDM_RECORDS_CUSTOM_VOCABULARIES = {
 Restart your server and your vocabulary will now be used for resource types!
 
 
-## Extend the metadata
-TODO
+## Extend the metadata model
+
+We've designed the default InvenioRDM metadata model to incorporate much of the
+useful fields the digital repository community has adopted over the years. From
+Subjects to Language to Location fields, there is a lot of depth to the out-of-the-box
+model. We encourage you to explore it fully before you consider adding your own
+fields. But adding your own fields is possible and no hacks are necessary.
+
+Metadata extensions are defined via two configurations: the additional fields'
+namespaces, a unique identifying url to prevent field clashes with other extensions,
+and the extensions (fields) themselves, a name, validation schema type and
+ElasticSearch storage type.
+
+To extend the metadata model, we edit the corresponding configuration variables
+in our familiar friend `invenio.cfg`. For our purposes, we first add the new
+namespace:
+
+
+```python
+# At the bottom
+RDM_RECORDS_METADATA_NAMESPACES = {
+    'dwc': {
+        # A URL ensures uniqueness (it doesn't *have* to resolve)
+        '@context': 'https://example.com/dwc/terms'
+    }
+}
+```
+
+New keys to `RDM_RECORDS_METADATA_NAMESPACES` (e.g. `'dwc'`) are shorthands for
+the unique `@context` values. They are used as namespace prefixes below.
+
+We then use the namespaces to prefix any field from that context in
+`RDM_RECORDS_METADATA_EXTENSIONS`, the dict of fields:
+
+```python
+# imports at the top...
+from marshmallow.fields import Bool
+
+from invenio_records_rest.schemas.fields import SanitizedUnicode
+
+# ...
+
+# At the bottom after RDM_RECORDS_METADATA_NAMESPACES above
+RDM_RECORDS_METADATA_EXTENSIONS = {
+    'dwc:family': {
+        'elasticsearch': 'keyword',
+        # You could make a field required if you wanted by using required=True
+        # e.g., SanitizedUnicode(required=True)
+        'marshmallow': SanitizedUnicode()
+    },
+    'dwc:behavior': {
+        'elasticsearch': 'text',
+        'marshmallow': SanitizedUnicode()
+    },
+    'dwc:right_or_wrong': {
+        'elasticsearch': 'boolean',
+        'marshmallow': Bool()
+    }
+}
+```
+
+Each key of `RDM_RECORDS_METADATA_EXTENSIONS` is of the form: `<prefix>:<field_key>`
+and each value a dict with the `'elasticsearch'` storage type and the `'marshmallow'`
+storage type. As of writing, the supported Elasticsearch storage types are:
+`'keyword'`, `'text'`, `'boolean'`, `'date'` and `'long'`. The supported
+Marshmallow schema types are:
+
+- `from marshmallow.fields`: `Bool`, `Integer`
+- `from invenio_records_rest.schemas.fields`: `DateString`, `SanitizedUnicode`
+
+and `marshmallow.fields.List` of the above.
+
+Restart the server. Creating a record now looks like this:
+
+```bash
+curl -k -XPOST -H "Content-Type: application/json" https://localhost:5000/api/records/ -d '{
+    "_access": {
+        "metadata_restricted": False,
+        "files_restricted": False
+    },
+    "_owners": [1],
+    "_created_by": 1,
+    "access_right": "open",
+    "resource_type": {
+        "type": "image",
+        "subtype": "image-photo"
+    },
+    "titles": [{
+        "title": "An Extended Record",
+        "type": "Other",
+        "lang": "eng"
+    }],
+    "extensions": {
+        "dwc:family": "Felidae",
+        "dwc:behavior": "Plays with yarn, sleeps in cardboard box.",
+        "dwc:right_or_wrong": true
+    }
+}'
+```
+
+You'll notice there wasn't any mention of human readable fields. We rely on the
+translation system to convert the identifiers into human readable names. Make sure
+to provide them to have them eventually display on the UI properly.
+
+You are now a master of the metadata model!
 
 
 ## Change permissions
 
-For the purpose of this example, we will only allow super users to create
-records through the REST API. To do so, we define our own permission policy.
+Here, we show how to change the permissions required to perform actions in
+the system. For the purpose of this example, we will only allow super users to
+create records through the REST API. To do so, we define our own permission policy.
 
 Open the `invenio.cfg` in your favorite text editor (or least favorite if you
 like to suffer) and add the following to the file:
