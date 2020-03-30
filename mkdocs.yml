@@ -1,75 +1,78 @@
 # Project information
-site_name: 'User Documentation'
-site_description: 'InvenioRDM user documentation web site'
-site_url: 'https://inveniordm.docs.cern.ch'
+site_name: User Documentation
+site_description: InvenioRDM user documentation web site
+site_url: https://inveniordm.docs.cern.ch
 
 # Repository
-repo_name: 'docs-invenio-rdm'
-repo_url: 'https://github.com/inveniosoftware/docs-invenio-rdm'
+repo_name: docs-invenio-rdm
+repo_url: https://github.com/inveniosoftware/docs-invenio-rdm
 
 # Copyright
-copyright: 'Copyright &copy; 2019-2020 CERN and Northwestern University.'
+copyright: Copyright &copy; 2019-2020 CERN and Northwestern University.
 
 # Configuration
 theme:
-  name: 'material'
-  custom_dir: 'theme'
-  palette:
-    primary: 'white'
-  font:
-    text: 'Open Sans'
-    code: 'Roboto Mono'
-  logo: 'images/logo-rdm.png'
-  favicon: 'images/favicon.svg'
-  feature:
-    tabs: true
+    name: material
+    custom_dir: theme
+    palette:
+        primary: white
+    font:
+        text: Open Sans
+        code: Roboto Mono
+    logo: images/logo-rdm.png
+    favicon: images/favicon.svg
+    feature:
+        tabs: true
 
 nav:
-  - Home: 'index.md'
+  - Home: index.md
   - Install:
-    - Installation: 'install/index.md'
+      - Installation: install/index.md
   - Preview:
-    - Quick preview of InvenioRDM: 'preview/index.md'
+      - Quick preview of InvenioRDM: preview/index.md
   - Develop:
-    - Getting Started: 'develop/index.md'
-    - Install Locally: 'develop/install_locally.md'
-    - Run: 'develop/run.md'
-    - Make it your own: 'develop/make_it_your_own.md'
-    - Troubleshooting: 'develop/troubleshoot.md'
-    - Cleanup: 'develop/cleanup.md'
+      - Getting Started: develop/index.md
+      - Install Locally: develop/install_locally.md
+      - Run: develop/run.md
+      - Make it your own: 'develop/make_it_your_own.md'
+      - Troubleshooting: develop/troubleshoot.md
+      - Cleanup: develop/cleanup.md
   - Extensions:
-    - What can be added?: 'extensions/index.md'
-    - Add your extensions: 'extensions/custom.md'
-    - S3 Storage: 'extensions/s3.md'
+      - What can be added?: extensions/index.md
+      - Add your extensions: extensions/custom.md
+      - S3 Storage: extensions/s3.md
   - Deploy:
-    - How can I deploy it?: 'deployment/index.md'
-    - OpenShift: 'deployment/openshift.md'
-    - Kubernetes: 'deployment/kubernetes.md'
-    - System components: 'deployment/services.md'
-    - Configuration:  'deployment/configuration.md'
-    - Building your image: 'deployment/image.md'
-    - Image registries: 'deployment/registries.md'
-    - Benchmarking: 'deployment/benchmark.md'
+      - How can I deploy it?: deployment/index.md
+      - OpenShift: deployment/openshift.md
+      - Kubernetes: deployment/kubernetes.md
+      - System components: deployment/services.md
+      - Configuration: deployment/configuration.md
+      - Building your image: deployment/image.md
+      - Image registries: deployment/registries.md
+      - Benchmarking: deployment/benchmark.md
 
 
 # Customization
 extra:
-  social:
-  - type: 'github'
-    link: 'https://github.com/inveniosoftware'
-  - type: 'twitter'
-    link: 'https://twitter.com/inveniosoftware'
-  - type: 'comments'
-    link: 'https://invenio-talk.web.cern.ch/c/projects/invenio-rdm'
-  - type: 'globe'
-    link: 'https://inveniosoftware.org/products/rdm/'
+    social:
+      - type: github
+        link: https://github.com/inveniosoftware
+      - type: twitter
+        link: https://twitter.com/inveniosoftware
+      - type: comments
+        link: https://invenio-talk.web.cern.ch/c/projects/invenio-rdm
+      - type: globe
+        link: https://inveniosoftware.org/products/rdm/
 extra_css:
   - stylesheets/extra.css
 
 # Extensions
+  - css/version-select.css
 markdown_extensions:
   - admonition
   - codehilite:
-      guess_lang: false
+        guess_lang: false
   - toc:
-      permalink: true
+        permalink: true
+extra_javascript:
+  - js/version-select.js
