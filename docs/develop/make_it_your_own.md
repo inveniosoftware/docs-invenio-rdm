@@ -196,12 +196,12 @@ model. We encourage you to explore it fully before you consider adding your own
 fields. But adding your own fields is possible and no hacks are necessary.
 
 Metadata extensions are defined via two configurations: the additional fields'
-namespaces, a unique identifying url to prevent field clashes with other extensions,
+namespaces, a unique identifying url to prevent field collisions with other extensions,
 and the extensions (fields) themselves, a name, validation schema type and
 ElasticSearch storage type.
 
 To extend the metadata model, we edit the corresponding configuration variables
-in our familiar friend `invenio.cfg`. For our purposes, we first add the new
+in our familiar friend `invenio.cfg`. For example, we first add the new
 namespace:
 
 
@@ -264,8 +264,8 @@ Restart the server. Creating a record now looks like this:
 ```bash
 curl -k -XPOST -H "Content-Type: application/json" https://localhost:5000/api/records/ -d '{
     "_access": {
-        "metadata_restricted": False,
-        "files_restricted": False
+        "metadata_restricted": false,
+        "files_restricted": false
     },
     "_owners": [1],
     "_created_by": 1,

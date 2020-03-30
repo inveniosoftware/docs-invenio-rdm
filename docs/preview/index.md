@@ -77,6 +77,7 @@ ls -la inveniordm-preview
 total 56
 drwxr-xr-x 5 youruser youruser 4096 Feb 19 13:45 ./
 drwxr-xr-x 5 youruser youruser 4096 Feb 19 13:45 ../
+drwxr-xr-x 3 youruser youruser 4096 Feb 19 13:45 app_data/
 drwxr-xr-x 3 youruser youruser 4096 Feb 19 13:45 assets/
 drwxr-xr-x 4 youruser youruser 4096 Feb 19 13:45 docker/
 -rw-r--r-- 1 youruser youruser 2932 Feb 19 13:45 docker-compose.full.yml
