@@ -270,6 +270,7 @@ curl -k -XPOST -H "Content-Type: application/json" https://localhost:5000/api/re
     "_owners": [1],
     "_created_by": 1,
     "access_right": "open",
+    "creators": [],
     "resource_type": {
         "type": "image",
         "subtype": "image-photo"
