@@ -421,6 +421,16 @@ in the dropdown menu of the username (top-right), select `Applications`. Then
 click on `New token`, name your token and click `Create`. Copy this token (we
 will refer to it as `<your token>`) and put it in the API call as such:
 
+Alternatively, you can get a token using the invenio command, where `-n` is
+the name of the token (your choice) and `-u` the email of the user created
+right before.
+
+``` bash
+ pipenv run invenio tokens create -n permission-demo -u admin@test.ch
+ ```
+
+Then use the obtained token to perform the query:
+
 ``` bash
 curl -k -XPOST -H "Authorization:Bearer <your token>" -H "Content-Type: application/json" https://localhost:5000/api/records/ -d '{
     ...<fill with the above>...
