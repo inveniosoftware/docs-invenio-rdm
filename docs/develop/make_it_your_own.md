@@ -270,7 +270,14 @@ curl -k -XPOST -H "Content-Type: application/json" https://localhost:5000/api/re
     "_owners": [1],
     "_created_by": 1,
     "access_right": "open",
+    "community": {
+        "primary": "Maincom",
+        "secondary": ["Subcom One", "Subcom Two"]
+    },
     "creators": [],
+    "identifiers": {
+        "DOI": "10.9999/rdm.9999999"
+    },
     "resource_type": {
         "type": "image",
         "subtype": "image-photo"
@@ -280,6 +287,13 @@ curl -k -XPOST -H "Content-Type: application/json" https://localhost:5000/api/re
         "type": "Other",
         "lang": "eng"
     }],
+    "descriptions": [
+        {
+            "description": "A story on how Julio Cesar relates to Gladiator.",
+            "type": "Abstract",
+            "lang": "eng"
+        }
+    ],
     "extensions": {
         "dwc:family": "Felidae",
         "dwc:behavior": "Plays with yarn, sleeps in cardboard box.",
