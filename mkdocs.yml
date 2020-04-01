@@ -65,9 +65,9 @@ extra:
         link: https://inveniosoftware.org/products/rdm/
 extra_css:
   - stylesheets/extra.css
+  - css/version-select.css
 
 # Extensions
-  - css/version-select.css
 markdown_extensions:
   - admonition
   - codehilite:
