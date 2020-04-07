@@ -57,8 +57,8 @@ To make sure you've installed successfully:
 invenio-cli --version
 ```
 ``` console
-invenio-cli, version 0.11.0
+invenio-cli, version 0.x.0
 ```
 
 !!! note "CLI version"
-    The CLI is in pre 1.0 release. The last release's version is **0.11.0**. Your version may be different than the above.
+     The CLI is in pre 1.0 release. The latest released version is listed on [GitHub](https://github.com/inveniosoftware/invenio-cli/releases) and available via [PyPi](https://pypi.org/project/invenio-cli/)
