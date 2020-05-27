@@ -33,6 +33,7 @@ invenio-cli init --flavour=RDM
 ```
 ``` console
 Initializing RDM application...
+Running cookiecutter...
 project_name [My Site]: InvenioRDM Preview
 project_shortname [inveniordm-preview]:
 project_site [inveniordm-preview.com]:
@@ -41,19 +42,24 @@ description [Invenio RDM InvenioRDM Preview Instance]:
 author_name [CERN]:
 author_email [info@inveniordm-preview.com]:
 year [2020]:
+Select python_version:
+1 - 3.6
+2 - 3.7 (development only)
+3 - 3.8 (untested)
+Choose from 1, 2, 3 [1]:
 Select database:
 1 - postgresql
 2 - mysql
 3 - sqlite
-Choose from 1, 2, 3 (1, 2, 3) [1]:
+Choose from 1, 2, 3 [1]:
 Select elasticsearch:
 1 - 7
 2 - 6
-Choose from 1, 2 (1, 2) [1]:
+Choose from 1, 2 [1]:
 Select file_storage:
 1 - local
 2 - S3
-Choose from 1, 2 (1, 2) [1]:
+Choose from 1, 2 [1]:
 -------------------------------------------------------------------------------
 
 Generating SSL certificate and private key for testing....
