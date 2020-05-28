@@ -14,11 +14,11 @@ cd development-instance
 ```
 
 To run the application locally, we will need to install it and its dependencies
-first. We do not need to add `--pre`, since we do not have to install any alpha releases. Nonetheless, this option is still available if you need it. Be patient, it might take some time to build.
+first. For this release, we will need to add `--pre`, since we do have to install alpha releases. Be patient, it might take some time to build.
 
 
 ``` bash
-invenio-cli install
+invenio-cli install --pre
 ```
 ``` console
 # Summarized output
