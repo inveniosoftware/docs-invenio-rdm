@@ -15,7 +15,7 @@ did in the [Preview section](../preview/index.md). Feel free to use your own
 project name.
 
 ``` bash
-invenio-cli init --flavour=RDM
+invenio-cli init rdm
 ```
 ``` console
 Initializing RDM application...
@@ -49,8 +49,6 @@ Choose from 1, 2 [1]:
 -------------------------------------------------------------------------------
 
 Generating SSL certificate and private key for testing....
-Can't load /home/youruser/.rnd into RNG
-139989104693696:error:2406F079:random number generator:RAND_load_file:Cannot open file:../crypto/rand/randfile.c:88:Filename=/home/youruser/.rnd
 Generating a RSA private key
 ..................++++
 ..................................++++

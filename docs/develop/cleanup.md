@@ -17,6 +17,9 @@ It destroys the images, containers and volumes defined in the `development-insta
 
 After stopping the application per above, destroy it:
 
+!!! warning "Temporarily unavailable"
+    The destroy command is temporarily unavailable. We are sorry for the inconvenience.
+
 ``` bash
 invenio-cli destroy
 ```

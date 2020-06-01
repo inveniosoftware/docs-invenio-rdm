@@ -7,13 +7,13 @@ command line tool for creating and updating your instance.
 
 Some system requirements are needed beforehand:
 
-- [Python](https://www.python.org/) (3.6.2 <= supported version < 3.7.0 only)
-- [nodejs](https://nodejs.org) (13.0.0+) (not needed to preview, only needed to develop)
-- [Docker](https://docs.docker.com/) (1.13.0+)
-- [Docker-Compose](https://docs.docker.com/compose/) (1.17.0+)
+- [Python](https://www.python.org/) 3.6.2+ (Python 3.7 has been tested successfully. However, there is still no docker image available and therefore is only available for development).
+- [nodejs](https://nodejs.org) 13.0.0+ (not needed to preview, only needed to develop)
+- [Docker](https://docs.docker.com/) 1.13.0+
+- [Docker-Compose](https://docs.docker.com/compose/) 1.17.0+
 
 !!! warning "Other Python distributions"
-    InvenioRDM targets CPython 3.6 (lowest 3.6.2). Anaconda Python in particular is not currently supported and other Python distributions are not tested.
+    InvenioRDM targets CPython 3.6 and 3.7 (lowest 3.6.2). Anaconda Python in particular is not currently supported and other Python distributions are not tested.
 
 In addition, make sure the user that will be executing the CLI has access to
 the docker command (i.e. it is not only available for the root user):
