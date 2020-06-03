@@ -131,7 +131,7 @@ invenio-cli containerize --pre
 ``` console
 <... build output ignored ...>
 Instance running!
-Visit https://localhost
+Visit https://127.0.0.1
 ```
 ``` bash
 firefox https://localhost
