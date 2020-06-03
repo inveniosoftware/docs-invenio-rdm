@@ -12,7 +12,7 @@ Making sure containers are up...
 Starting celery worker...
 Starting up local (development) server...
 Instance running!
-Visit https://localhost:5000
+Visit https://127.0.0.1:5000
 ```
 
 ## Use your instance: have fun!
@@ -21,7 +21,8 @@ Are we done? Yes, let the fun begin...
 
 ### List records
 
-Let's see what is in the instance by querying the API. Using another terminal:
+Let's see what is in the instance by querying the API. Note that localhost and 127.0.0.1 can
+be used interchangeably. Using another terminal:
 
 ``` bash
 curl -k -XGET https://localhost:5000/api/records/ | python3 -m json.tool
@@ -93,10 +94,6 @@ curl -k -XGET https://localhost:5000/api/records/ | python3 -m json.tool
                     ],
                     "_owners": [1],
                     "access_right": "open",
-                    "community": {
-                        "primary": "Maincom",
-                        "secondary": ["Subcom One", "Subcom Two"]
-                    },
                     "contact": "info@inveniosoftware.org",
                     "contributors": [
                         {
@@ -277,10 +274,6 @@ curl -k -XPOST -H "Content-Type: application/json" https://localhost:5000/api/re
             "lang": "eng"
         }
     ],
-    "community": {
-        "primary": "Maincom",
-        "secondary": ["Subcom One", "Subcom Two"]
-    },
     "licenses": [
         {
             "license": "Berkeley Software Distribution 3",
@@ -340,13 +333,6 @@ curl -k -XGET https://localhost:5000/api/records/?q=Gladiator | python3 -m json.
                         1
                     ],
                     "access_right": "open",
-                    "community": {
-                        "primary": "Maincom",
-                        "secondary": [
-                            "Subcom One",
-                            "Subcom Two"
-                        ]
-                    },
                     "creators": [
                         {
                             "affiliations": [

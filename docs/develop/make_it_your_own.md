@@ -273,10 +273,6 @@ curl -k -XPOST -H "Content-Type: application/json" https://localhost:5000/api/re
     "_owners": [1],
     "_created_by": 1,
     "access_right": "open",
-    "community": {
-        "primary": "Maincom",
-        "secondary": ["Subcom One", "Subcom Two"]
-    },
     "creators": [],
     "identifiers": {
         "DOI": "10.9999/rdm.9999999"
@@ -398,10 +394,6 @@ curl -k -XPOST -H "Content-Type: application/json" https://localhost:5000/api/re
             "lang": "eng"
         }
     ],
-    "community": {
-        "primary": "Maincom",
-        "secondary": ["Subcom One", "Subcom Two"]
-    },
     "licenses": [
         {
             "license": "Berkeley Software Distribution 3",
