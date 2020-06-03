@@ -10,9 +10,34 @@ and the workflow we explain in these pages.
 
 ## Initialize your file system
 
-We start by creating a new project in a different folder. We will just follow what we
+We start by creating a new project in a different folder. We will follow what we
 did in the [Preview section](../preview/index.md). Feel free to use your own
 project name.
+
+!!! warning "New pre-requisite: set FLASK_ENV=development"
+    To be able to modify assets and work on dependent modules, the environment variable
+    `FLASK_ENV` must be set to `development` in your shell for all subsequent operations.
+    This was not needed when running `invenio-cli containerize` since everything runs in
+    containers and you are not developing. We show how to do so below, but you can also
+    consult the [development setup page](https://github.com/inveniosoftware/invenio-app-rdm/wiki/Development-Setup)
+    for more up-to-date and advanced information.
+
+We need to set the `FLASK_ENV` environment variable. Make sure you do so in each terminal you are
+running `invenio-cli` commands from now on.
+
+With the bash shell:
+
+``` bash
+export FLASK_ENV=development
+```
+
+With the fish shell:
+
+```fish
+set --export FLASK_ENV development
+```
+
+Then we can run the initialization command:
 
 ``` bash
 invenio-cli init rdm
