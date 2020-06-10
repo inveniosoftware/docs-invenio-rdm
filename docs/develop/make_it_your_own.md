@@ -1,8 +1,5 @@
 # Make it your own
 
-!!! error "Temporarily not supported"
-    Due to the migration to Semantic-UI the UI customization features are not supported. They will be enabled as soon as possible. However, it is possible to customize the vocabularies, permissions, datamodel and add custom functionality. This means you can continue from the [*vocabulary customization*](#define-a-custom-controlled-vocabulary) section onwards.
-
 You can configure and customize your InvenioRDM instance to best suit your needs.
 From changing the style and look, to extending the data model and defining your
 own permissions, InvenioRDM provides you with much control. And if none of this
@@ -86,42 +83,20 @@ potentially execute `update` and/or rerun the server.
 
 You might also be wondering: *How do I change the colors so I can make my instance look like my institution's theme?*
 
-We are going to change the top header section in the frontpage to apply our custom background color. Open the `assets/scss/<your instance shortname>/variables.scss` file and edit it as below:
+We are going to change the top header section in the frontpage to apply our custom background color. Open the `assets/less/variables.less` file and edit it as below:
 
-``` scss
-$navbar_background_image: unset;
-$navbar_background_color: #000000; // Note this hex value is an example. Choose yours.
+``` less
+@navbar_background_image: unset;
+@navbar_background_color: #000000; // Note this hex value is an example. Choose yours.
 ```
 
-Then, run the `invenio-cli update` command as above and refresh the page! You should be able to see your top header's color changed! You can find all the available styling variables that you can change [here](https://github.com/inveniosoftware/invenio-app-rdm/blob/master/invenio_app_rdm/theme/assets/scss/invenio_app_rdm/variables.scss).
+Then, run the `invenio-cli update` command as above and refresh the page! You should be able to see your top header's color changed! You can find all the available styling variables that you can change [here](https://github.com/inveniosoftware/invenio-app-rdm/blob/master/invenio_app_rdm/theme/assets/semantic-ui/less/invenio_app_rdm/variables.less).
 
 
 ## Change search results
 
-Changing how your results are presented in the search page is also something quite common.
-
-We are going to update the search result template so we can show more text in the result's description. Create a file called `ResultsItemTemplate.jsx` inside `assets/templates/search` folder and then edit it as below:
-
-```js
-import React from 'react';
-import {Item} from 'semantic-ui-react';
-import _truncate from 'lodash/truncate';
-
-export function ResultsItemTemplate(record, index) {
-  return (
-    <Item key={index} href={`/records/${record.id}`}>
-      <Item.Content>
-        <Item.Header>{record.metadata.titles[0].title}</Item.Header>
-        <Item.Description>
-          {_truncate(record.metadata.descriptions[0].description, { length: 400 })}
-        </Item.Description>
-      </Item.Content>
-    </Item>
-  )
-};
-```
-
-Then, run the `invenio-cli update` command as above and refresh the page! You should be able to see more text in each result's description! You can find all the available templates [here](https://github.com/inveniosoftware/invenio-app-rdm/tree/master/invenio_app_rdm/theme/assets/templates/search).
+!!! error "Temporarily not supported"
+    Due to the migration to Semantic-UI the UI customization features are not supported. They will be enabled as soon as possible.
 
 
 ## Change the record landing page
