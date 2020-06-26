@@ -99,14 +99,12 @@ curl -k -XGET https://localhost:5000/api/records/ | python3 -m json.tool
                         {
                             "affiliations": [
                                 {
-                                    "identifier": "entity-one",
-                                    "name": "Doyle, Miller and Williams",
-                                    "scheme": "entity-id-scheme"
+                                    "identifiers": {
+                                        "ror": "03yrm5c26"
+                                    },
+                                    "name": "Doyle, Miller and Williams"
                                 }
                             ],
-                            "identifiers": {
-                                "Orcid": "9999-9999-9999-9998"
-                            },
                             "name": "Gina Brown",
                             "role": "RightsHolder",
                             "type": "Personal"
@@ -116,13 +114,14 @@ curl -k -XGET https://localhost:5000/api/records/ | python3 -m json.tool
                         {
                             "affiliations": [
                                 {
-                                    "identifier": "entity-one",
+                                    "identifiers": {
+                                        "ror": "03yrm5c26"
+                                    },
                                     "name": "Pacheco Ltd",
-                                    "scheme": "entity-id-scheme"
                                 }
                             ],
                             "identifiers": {
-                                "Orcid": "9999-9999-9999-9999"
+                                "Orcid": "0000-0002-1825-0097"
                             },
                             "name": "Christina Wright",
                             "type": "Personal"
@@ -249,13 +248,14 @@ curl -k -XPOST -H "Content-Type: application/json" https://localhost:5000/api/re
             "given_name": "Julio",
             "family_name": "Cesar",
             "identifiers": {
-                "Orcid": "9999-9999-9999-9999"
+                "Orcid": "0000-0002-1825-0097"
             },
             "affiliations": [
                 {
                     "name": "Entity One",
-                    "identifier": "entity-one",
-                    "scheme": "entity-id-scheme"
+                    "identifiers": {
+                        "ror": "03yrm5c26"
+                    }
                 }
             ]
         }
@@ -337,15 +337,16 @@ curl -k -XGET https://localhost:5000/api/records/?q=Gladiator | python3 -m json.
                         {
                             "affiliations": [
                                 {
-                                    "identifier": "entity-one",
+                                    "identifiers": {
+                                        "ror": "03yrm5c26"
+                                    },
                                     "name": "Entity One",
-                                    "scheme": "entity-id-scheme"
                                 }
                             ],
                             "family_name": "Cesar",
                             "given_name": "Julio",
                             "identifiers": {
-                                "Orcid": "9999-9999-9999-9999"
+                                "Orcid": "0000-0002-1825-0097"
                             },
                             "name": "Julio Cesar",
                             "type": "Personal"
