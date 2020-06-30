@@ -24,7 +24,7 @@ Take an *svg* file and copy it to your **local** static files.
 We'll use the [invenio color logo](https://github.com/inveniosoftware/invenio-theme/raw/master/invenio_theme/static/images/invenio-color.svg) as an example:
 
 ``` bash
-cp ./path/to/new/color/logo.svg static/images/logo.svg
+cp ./path/to/new/color/logo.svg static/images/invenio-rdm.svg
 ```
 
 Then, use the `update` command:
@@ -90,7 +90,7 @@ We are going to change the top header section in the frontpage to apply our cust
 @navbar_background_color: #000000; // Note this hex value is an example. Choose yours.
 ```
 
-Then, run the `invenio-cli update` command as above and refresh the page! You should be able to see your top header's color changed! You can find all the available styling variables that you can change [here](https://github.com/inveniosoftware/invenio-app-rdm/blob/master/invenio_app_rdm/theme/assets/semantic-ui/less/invenio_app_rdm/variables.less).
+Then, run the `invenio-cli update --no-install-js` command as above and refresh the page! You should be able to see your top header's color changed! You can find all the available styling variables that you can change [here](https://github.com/inveniosoftware/invenio-app-rdm/blob/master/invenio_app_rdm/theme/assets/semantic-ui/less/invenio_app_rdm/variables.less).
 
 
 ## Change search results

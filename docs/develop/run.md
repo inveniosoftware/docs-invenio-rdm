@@ -281,7 +281,8 @@ curl -k -XPOST -H "Content-Type: application/json" https://localhost:5000/api/re
             "identifier": "BSD-3",
             "scheme": "BSD-3"
         }
-    ]
+    ],
+    "version": "v0.0.1"
 }'
 ```
 
