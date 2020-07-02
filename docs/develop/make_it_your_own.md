@@ -344,13 +344,14 @@ curl -k -XPOST -H "Content-Type: application/json" https://localhost:5000/api/re
             "given_name": "Marcus",
             "family_name": "Brutus",
             "identifiers": {
-                "Orcid": "9999-9999-9999-9990"
+                "Orcid": "0000-0002-1825-0097"
             },
             "affiliations": [
                 {
                     "name": "Entity One",
-                    "identifier": "entity-one",
-                    "scheme": "entity-id-scheme"
+                    "identifiers": {
+                        "ror": "02ex6cf31"
+                    }
                 }
             ]
         }
@@ -411,7 +412,7 @@ right before.
 
 ``` bash
  pipenv run invenio tokens create -n permission-demo -u admin@test.ch
- ```
+```
 
 Then use the obtained token to perform the query:
 

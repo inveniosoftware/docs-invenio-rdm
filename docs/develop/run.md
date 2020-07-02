@@ -341,7 +341,7 @@ curl -k -XGET https://localhost:5000/api/records/?q=Gladiator | python3 -m json.
                                     "identifiers": {
                                         "ror": "03yrm5c26"
                                     },
-                                    "name": "Entity One",
+                                    "name": "Entity One"
                                 }
                             ],
                             "family_name": "Cesar",
