@@ -335,7 +335,7 @@ curl -k -XPOST -H "Content-Type: application/json" https://localhost:5000/api/re
         "subtype": "image-photo"
     },
     "identifiers": {
-        "DOI": "10.9999/rdm.0",
+        "DOI": "10.9999/rdm.0"
     },
     "creators": [
         {
