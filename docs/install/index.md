@@ -11,6 +11,7 @@ Some system requirements are needed beforehand:
 - [nodejs](https://nodejs.org) 13.0.0+ (not needed to preview, only needed to develop)
 - [Docker](https://docs.docker.com/) 1.13.0+
 - [Docker-Compose](https://docs.docker.com/compose/) 1.17.0+
+- [Cairo](https://invenio-formatter.readthedocs.io/en/latest/installation.html) needed for badges to be properly displayed.
 
 !!! warning "Other Python distributions"
     InvenioRDM targets CPython 3.6 and 3.7 (lowest 3.6.2). Anaconda Python in particular is not currently supported and other Python distributions are not tested.
