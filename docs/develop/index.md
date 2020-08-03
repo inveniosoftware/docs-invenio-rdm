@@ -14,7 +14,7 @@ We start by creating a new project in a different folder. We will follow what we
 did in the [Preview section](../preview/index.md). Feel free to use your own
 project name.
 
-!!! warning "New pre-requisite: set FLASK_ENV=development"
+!!! warning "Pre-requisite: set FLASK_ENV=development"
     To be able to modify assets and work on dependent modules, the environment variable
     `FLASK_ENV` must be set to `development` in your shell for all subsequent operations.
     This was not needed when running `invenio-cli containerize` since everything runs in
@@ -55,8 +55,8 @@ author_email [info@development-instance.com]:
 year [2020]:
 Select python_version:
 1 - 3.6
-2 - 3.7 (development only)
-3 - 3.8 (untested)
+2 - 3.7 (beta)
+3 - 3.8 (beta)
 Choose from 1, 2, 3 [1]:
 Select database:
 1 - postgresql
