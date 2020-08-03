@@ -32,12 +32,6 @@ Let's do it! Pressing `[Enter]` selects the option in brackets `[]`.
 !!! warning "Choose Python 3.6"
     This tutorial takes you through the creation of a containerized instance. Therefore, only Python 3.6 is supported, if you wish to use other versions please follow the [development](../develop/index.md) tutorial.
 
-!!! info "Flavour is now an argument"
-    The flavour is now an argument, which defaults to RDM. In addition, it is
-    case insensitive so it accepts both *rdm* and *RDM*. We have added it
-    below for completion but it is not needed, `invenio-cli init` would have
-    the same effect.
-
 ``` bash
 invenio-cli init rdm
 ```
@@ -55,8 +49,8 @@ author_email [info@inveniordm-preview.com]:
 year [2020]:
 Select python_version:
 1 - 3.6
-2 - 3.7 (development only)
-3 - 3.8 (untested)
+2 - 3.7 (beta)
+3 - 3.8 (beta)
 Choose from 1, 2, 3 [1]:
 Select database:
 1 - postgresql
@@ -105,7 +99,7 @@ drwxr-xr-x 4 youruser youruser 4096 Feb 19 13:45 docker/
 -rw-r--r-- 1 youruser youruser 1504 Feb 19 13:45 invenio.cfg
 drwxr-xr-x 2 youruser youruser 4096 Feb 19 13:45 logs/
 -rw-r--r-- 1 youruser youruser  431 Feb 19 13:45 Pipfile
--rw-r--r-- 1 youruser youruser  756 Feb 19 13:45 README.rst
+-rw-r--r-- 1 youruser youruser  756 Feb 19 13:45 README.md
 drwxr-xr-x 3 youruser youruser 4096 Feb 19 13:45 static/
 drwxr-xr-x 2 youruser youruser 4096 Feb 19 13:45 templates/
 ```
@@ -134,14 +128,14 @@ Instance running!
 Visit https://127.0.0.1
 ```
 ``` bash
-firefox https://localhost
+firefox https://127.0.0.1
 ```
 
 **Notes and Known Issues**
 
 - You may see the following error message `TypeError: Object.fromEntries is not a function`.
   This means you need to update your base Invenio docker image because node 13+ is needed.
-  Run `docker pull inveniosoftware/centos7-python:3.6` before running `invenio-cli containerize --pre` again.
+  Run `docker pull inveniosoftware/centos8-python:3.6` (adapt it to your python version)  before running `invenio-cli containerize --pre` again.
 
 ## Add random records
 
