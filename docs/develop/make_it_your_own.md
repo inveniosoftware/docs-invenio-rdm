@@ -240,7 +240,7 @@ and `marshmallow.fields.List` of the above.
 Restart the server. Creating a record now looks like this:
 
 ```bash
-curl -k -XPOST -H "Content-Type: application/json" https://localhost:5000/api/records/ -d '{
+curl -k -XPOST -H "Content-Type: application/json" https://localhost:5000/api/rdm-records -d '{
     "_access": {
         "metadata_restricted": false,
         "files_restricted": false
@@ -285,6 +285,11 @@ You are now a master of the metadata model!
 
 ## Change permissions
 
+!!! warning "POST creates a record"
+    Note that the following applies now to *drafts*. If you want to make it into a record
+    (i.e. to obtain a landing page), you need to publish it as it was shown in the [run](./run.md)
+    section.
+
 Here, we show how to change the permissions required to perform actions in
 the system. For the purpose of this example, we will only allow super users to
 create records through the REST API. To do so, we define our own permission policy.
@@ -322,7 +327,7 @@ your instance will check if you are a super user before allowing you.
 Did the changes work? We are going to try to create a new record:
 
 ``` bash
-curl -k -XPOST -H "Content-Type: application/json" https://localhost:5000/api/records/ -d '{
+curl -k -XPOST -H "Content-Type: application/json" https://localhost:5000/api/rdm-records -d '{
     "_access": {
         "metadata_restricted": false,
         "files_restricted": false
@@ -417,7 +422,7 @@ right before.
 Then use the obtained token to perform the query:
 
 ``` bash
-curl -k -XPOST -H "Authorization:Bearer <your token>" -H "Content-Type: application/json" https://localhost:5000/api/records/ -d '{
+curl -k -XPOST -H "Authorization:Bearer <your token>" -H "Content-Type: application/json" https://localhost:5000/api/rdm-records -d '{
     ...<fill with the above>...
 }'
 ```
