@@ -24,8 +24,12 @@ Are we done? Yes, let the fun begin...
 Let's see what is in the instance by querying the API. Note that localhost and 127.0.0.1 can
 be used interchangeably. Using another terminal:
 
+!!! warning "New API endpoints"
+    The new implementation of the backend is available through the `/api/rdm-records` endpoint.
+    Please crosscheck if you are using already crafted requests.
+
 ``` bash
-curl -k -XGET https://localhost:5000/api/records/ | python3 -m json.tool
+curl -k -XGET https://localhost:5000/api/rdm-records | python3 -m json.tool
 ```
 ``` json
 {
@@ -217,15 +221,15 @@ curl -k -XGET https://localhost:5000/api/records/ | python3 -m json.tool
 **Pro Tip**: You can use [jq](https://github.com/stedolan/jq) for color highlighting:
 
 ```bash
-curl -k -XGET https://localhost:5000/api/records/ | jq .
+curl -k -XGET https://localhost:5000/api/rdm-records | jq .
 ```
 
 ### Create records
 
-You can create a new record using the API:
+You can create a new record **draft** using the API:
 
 ```bash
-curl -k -XPOST -H "Content-Type: application/json" https://localhost:5000/api/records/ -d '{
+curl -k -XPOST -H "Content-Type: application/json" https://localhost:5000/api/rdm-records/ -d '{
     "_access": {
         "metadata_restricted": false,
         "files_restricted": false
@@ -286,6 +290,13 @@ curl -k -XPOST -H "Content-Type: application/json" https://localhost:5000/api/re
 }'
 ```
 
+Then you will need to publish it, for that you will need the `pid` field from the response
+you got when creating the draft. In the example case is `jnmmp-51n47`:
+
+```bash
+curl -k -X POST https://localhost:5000/api/rdm-records/jnmmp-51n47/draft/actions/publish
+```
+
 And then search for it:
 
 ``` bash
@@ -319,7 +330,7 @@ curl -k -XGET https://localhost:5000/api/records/?q=Gladiator | python3 -m json.
         "hits": [
             {
                 "created": "2020-02-26T15:46:55.000116+00:00",
-                "id": "8wtcp-1bs44",
+                "id": "jnmmp-51n47",
                 "links": {
                     "files": "https://localhost:5000/api/records/8wtcp-1bs44/files",
                     "self": "https://localhost:5000/api/records/8wtcp-1bs44"
@@ -373,7 +384,7 @@ curl -k -XGET https://localhost:5000/api/records/?q=Gladiator | python3 -m json.
                         }
                     ],
                     "publication_date": "2020-02-26",
-                    "recid": "8wtcp-1bs44",
+                    "pid": "jnmmp-51n47",
                     "resource_type": {
                         "subtype": "publication-article",
                         "type": "publication"
@@ -407,6 +418,10 @@ And visit the record page for the newly created record. You will see it has no f
 
 ### Upload a file to a record
 
+!!! warning "Temporarily disabled!"
+    This is temporarily disabled until the new API is fully compatible with it.
+
+
 For demonstration purposes, we will attach this scientific photo:
 
 ![Very scientific picture of a shiba in the snow](https://images.unsplash.com/photo-1548116137-c9ac24e446c9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80)
@@ -416,10 +431,10 @@ by <a href="https://unsplash.com/@matyssik" target="_blank" rel="noopener norefe
 Save it as `snow_doge.jpg` in your current directory. Then upload it to the record:
 
 !!! warning "Change the `recid`"
-    Change `pv1dx-rwa61` in the URLs below for the recid of your record.
+    Change `jnmmp-51n47` in the URLs below for the recid of your record.
 
 ``` bash
-curl -k -X PUT https://localhost:5000/api/records/pv1dx-rwa61/files/snow_doge.jpg -H "Content-Type: application/octet-stream" --data-binary @snow_doge.jpg
+curl -k -X PUT https://localhost:5000/api/records/jnmmp-51n47/files/snow_doge.jpg -H "Content-Type: application/octet-stream" --data-binary @snow_doge.jpg
 ```
 
 This file can then be previewed on the record page and even downloaded.
