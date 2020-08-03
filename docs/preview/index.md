@@ -135,7 +135,7 @@ firefox https://127.0.0.1
 
 - You may see the following error message `TypeError: Object.fromEntries is not a function`.
   This means you need to update your base Invenio docker image because node 13+ is needed.
-  Run `docker pull inveniosoftware/centos8-python:3.6` (adapt it to your python version)  before running `invenio-cli containerize --pre` again.
+  Run `docker pull inveniosoftware/centos7-python:3.6` or `docker pull inveniosoftware/centos8-python:3.7` (or python 3.8)  before running `invenio-cli containerize --pre` again.
 
 ## Add random records
 
