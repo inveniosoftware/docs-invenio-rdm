@@ -312,7 +312,7 @@ class MyRecordPermissionPolicy(RDMRecordPermissionPolicy):
 RECORDS_PERMISSIONS_RECORD_POLICY = MyRecordPermissionPolicy
 ```
 
-and re-start the server.
+For demo purposes *any user* can currently *publish* a draft. If you want to change that to only admins too, you need to also add `can_publish = [SuperUser()]` to the above policy. Then re-start the server.
 
 When we set `RECORDS_PERMISSIONS_RECORD_POLICY = MyRecordPermissionPolicy`,
 we are overriding `RECORDS_PERMISSIONS_RECORD_POLICY` provided by

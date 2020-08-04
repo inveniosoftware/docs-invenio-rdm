@@ -77,7 +77,7 @@ curl -k -XGET https://localhost:5000/api/rdm-records | python3 -m json.tool
                 "created": "2020-02-25T15:54:52.127129+00:00",
                 "updated": "2020-02-25T15:54:52.127134+00:00",
                 "revision": 0,
-                "id": "zgxnf-z7n12",
+                "pid": "zgxnf-z7n12",
                 "links": {
                     "files": "https://localhost:5000/api/records/zgxnf-z7n12/files",
                     "self": "https://localhost:5000/api/records/zgxnf-z7n12"
@@ -229,7 +229,7 @@ curl -k -XGET https://localhost:5000/api/rdm-records | jq .
 You can create a new record **draft** using the API:
 
 ```bash
-curl -k -XPOST -H "Content-Type: application/json" https://localhost:5000/api/rdm-records/ -d '{
+curl -k -XPOST -H "Content-Type: application/json" https://localhost:5000/api/rdm-records -d '{
     "_access": {
         "metadata_restricted": false,
         "files_restricted": false
@@ -300,7 +300,7 @@ curl -k -X POST https://localhost:5000/api/rdm-records/jnmmp-51n47/draft/actions
 And then search for it:
 
 ``` bash
-curl -k -XGET https://localhost:5000/api/records/?q=Gladiator | python3 -m json.tool
+curl -k -XGET https://localhost:5000/api/rdm-records?q=Gladiator | python3 -m json.tool
 ```
 ``` json
 {
@@ -330,7 +330,7 @@ curl -k -XGET https://localhost:5000/api/records/?q=Gladiator | python3 -m json.
         "hits": [
             {
                 "created": "2020-02-26T15:46:55.000116+00:00",
-                "id": "jnmmp-51n47",
+                "pid": "jnmmp-51n47",
                 "links": {
                     "files": "https://localhost:5000/api/records/8wtcp-1bs44/files",
                     "self": "https://localhost:5000/api/records/8wtcp-1bs44"
@@ -418,7 +418,7 @@ And visit the record page for the newly created record. You will see it has no f
 
 ### Upload a file to a record
 
-!!! warning "Temporarily disabled!"
+!!! error "Temporarily not supported"
     This is temporarily disabled until the new API is fully compatible with it.
 
 
