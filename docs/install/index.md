@@ -7,7 +7,7 @@ command line tool for creating and updating your instance.
 
 Some system requirements are needed beforehand:
 
-- [Python](https://www.python.org/) 3.6.2+ (Docker images are available for Python 3.6, 3.7 and 3.8. However, the latest is in beta testing phase).
+- [Python](https://www.python.org/) 3.6.2+ (Docker images are available for Python 3.6, 3.7 and 3.8. However, Python 3.8 is in beta testing phase).
 - [nodejs](https://nodejs.org) 13.0.0+ (not needed to preview, only needed to develop)
 - [Docker](https://docs.docker.com/) 1.13.0+
 - [Docker-Compose](https://docs.docker.com/compose/) 1.17.0+
