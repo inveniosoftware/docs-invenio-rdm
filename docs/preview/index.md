@@ -20,7 +20,7 @@ The CLI will require the following data:
 - **Author name**: Your name or that of your organization
 - **Author email**: Email for communication
 - **Year**: The current year
-- **Python version**: 3.6 (default), 3.7 (only available for [development](../develop/index.md)) and 3.8 (untested).
+- **Python version**: 3.6 (default), 3.7 and 3.8 (beta).
 - **One of the three available storage systems**: postgresql (default), mysql or sqlite
 - **The version of Elasticsearch**: 7 (default) or 6
 - **Storage backend**: Local file system (default) or in a S3-like backend. If S3 is chosen a MinIO container is provided, however, you can set it up to use your own. See more in [S3 extension](../extensions/s3.md)
@@ -28,9 +28,6 @@ The CLI will require the following data:
 It will also generate a test private key.
 
 Let's do it! Pressing `[Enter]` selects the option in brackets `[]`.
-
-!!! warning "Choose Python 3.6"
-    This tutorial takes you through the creation of a containerized instance. Therefore, only Python 3.6 is supported, if you wish to use other versions please follow the [development](../develop/index.md) tutorial.
 
 ``` bash
 invenio-cli init rdm
@@ -49,7 +46,7 @@ author_email [info@inveniordm-preview.com]:
 year [2020]:
 Select python_version:
 1 - 3.6
-2 - 3.7 (beta)
+2 - 3.7
 3 - 3.8 (beta)
 Choose from 1, 2, 3 [1]:
 Select database:
