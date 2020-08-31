@@ -48,7 +48,7 @@ Passing the `--no-install-js` option, skips re-installation of JS dependencies.
 !!! info "Assets and statics need to be updated"
     Whenever you change files in `assets/` or `static/`, you typically want to run `invenio-cli update --no-install-js`. In case of uncertainty, just run the `update` command; it isn't destructive.
 
-Go to the browser [*https://localhost:5000/*](https://localhost:5000) or refresh the page. And voilà! The logo has been changed!
+In the browser, go to [https://127.0.0.1:5000/](https://127.0.0.1:5000) or refresh the page. And voilà! The logo has changed!
 
 !!! warning "That evil cache"
     If you do not see it changing, check in an incognito window; the browser might have cached the logo.
@@ -240,7 +240,7 @@ and `marshmallow.fields.List` of the above.
 Restart the server. Creating a record now looks like this:
 
 ```bash
-curl -k -XPOST -H "Content-Type: application/json" https://localhost:5000/api/rdm-records -d '{
+curl -k -XPOST -H "Content-Type: application/json" https://127.0.0.1:5000/api/rdm-records -d '{
     "_access": {
         "metadata_restricted": false,
         "files_restricted": false
@@ -252,6 +252,7 @@ curl -k -XPOST -H "Content-Type: application/json" https://localhost:5000/api/rd
     "identifiers": {
         "DOI": "10.9999/rdm.9999999"
     },
+    "publication_date": "2020-08-31",
     "resource_type": {
         "type": "image",
         "subtype": "image-photo"
@@ -327,7 +328,7 @@ your instance will check if you are a super user before allowing you.
 Did the changes work? We are going to try to create a new record:
 
 ``` bash
-curl -k -XPOST -H "Content-Type: application/json" https://localhost:5000/api/rdm-records -d '{
+curl -k -XPOST -H "Content-Type: application/json" https://127.0.0.1:5000/api/rdm-records -d '{
     "_access": {
         "metadata_restricted": false,
         "files_restricted": false
@@ -335,6 +336,7 @@ curl -k -XPOST -H "Content-Type: application/json" https://localhost:5000/api/rd
     "_owners": [1],
     "_created_by": 1,
     "access_right": "open",
+    "publication_date": "2020-08-31",
     "resource_type": {
         "type": "image",
         "subtype": "image-photo"
@@ -422,7 +424,7 @@ right before.
 Then use the obtained token to perform the query:
 
 ``` bash
-curl -k -XPOST -H "Authorization:Bearer <your token>" -H "Content-Type: application/json" https://localhost:5000/api/rdm-records -d '{
+curl -k -XPOST -H "Authorization:Bearer <your token>" -H "Content-Type: application/json" https://127.0.0.1:5000/api/rdm-records -d '{
     ...<fill with the above>...
 }'
 ```

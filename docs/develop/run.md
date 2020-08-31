@@ -29,48 +29,11 @@ be used interchangeably. Using another terminal:
     Please crosscheck if you are using already crafted requests.
 
 ``` bash
-curl -k -XGET https://localhost:5000/api/rdm-records | python3 -m json.tool
+curl -k -XGET https://127.0.0.1:5000/api/rdm-records | python3 -m json.tool
 ```
 ``` json
 {
-    "aggregations": {
-        "access_right": {
-            "buckets": [
-                {
-                    "doc_count": 10,
-                    "key": "open"
-                }
-            ],
-            "doc_count_error_upper_bound": 0,
-            "sum_other_doc_count": 0
-        },
-        "resource_type": {
-            "buckets": [
-                {
-                    "doc_count": 4,
-                    "key": "book"
-                },
-                {
-                    "doc_count": 3,
-                    "key": "text"
-                },
-                {
-                    "doc_count": 1,
-                    "key": "image"
-                },
-                {
-                    "doc_count": 1,
-                    "key": "multimedia"
-                },
-                {
-                    "doc_count": 1,
-                    "key": "periodical"
-                }
-            ],
-            "doc_count_error_upper_bound": 0,
-            "sum_other_doc_count": 0
-        }
-    },
+    "aggregations": {},
     "hits": {
         "hits": [
             {
@@ -79,8 +42,10 @@ curl -k -XGET https://localhost:5000/api/rdm-records | python3 -m json.tool
                 "revision": 0,
                 "pid": "zgxnf-z7n12",
                 "links": {
-                    "files": "https://localhost:5000/api/records/zgxnf-z7n12/files",
-                    "self": "https://localhost:5000/api/records/zgxnf-z7n12"
+                    "self": "https://127.0.0.1:5000/api/rdm-records/zgxnf-z7n12",
+                    "self_html": "https://127.0.0.1:5000/records/zgxnf-z7n12",
+                    "files": "https://127.0.0.1:5000/api/rdm-records/zgxnf-z7n12/files",
+                    "edit": "https://127.0.0.1:5000/api/rdm-records/zgxnf-z7n12/draft"
                 },
                 "metadata": {
                     "_access": {
@@ -97,7 +62,9 @@ curl -k -XGET https://localhost:5000/api/rdm-records | python3 -m json.tool
                         }
                     ],
                     "_owners": [1],
+                    "_publication_date_search": "2020-08-31",
                     "access_right": "open",
+                    "conceptrecid": "5fk5g-mq814",
                     "contact": "info@inveniosoftware.org",
                     "contributors": [
                         {
@@ -212,39 +179,44 @@ curl -k -XGET https://localhost:5000/api/rdm-records | python3 -m json.tool
             },
             ...
         ]
+    },
+    "links": {
+        "self": "https://127.0.0.1/api/rdm-records?size=25&page=1",
+        "next": "https://127.0.0.1/api/rdm-records?size=25&page=2"
     }
 }
 ```
 
-**Note**: Output shortened for readability. Your records will be different because they are generated randomly.
+#### Notes
 
-**Pro Tip**: You can use [jq](https://github.com/stedolan/jq) for color highlighting:
+- The output is shortened for readability and your records will be different because they are generated randomly.
+- We did the hard work of fully switching to the new API at the cost of temporarily disabling aggregations.
+  They will be back in the next release!
+- `"links"` have been added!
+- You can use [jq](https://github.com/stedolan/jq) for color highlighting:
 
-```bash
-curl -k -XGET https://localhost:5000/api/rdm-records | jq .
-```
+    ```bash
+    curl -k -XGET https://127.0.0.1:5000/api/rdm-records | jq .
+    ```
 
 ### Create records
 
 You can create a new record **draft** using the API:
 
+!!! warning "Required `publication_date`"
+    Since the August release, it is required to pass a `publication_date`.
+    Note its addition below.
+
+
 ```bash
-curl -k -XPOST -H "Content-Type: application/json" https://localhost:5000/api/rdm-records -d '{
+curl -k -XPOST -H "Content-Type: application/json" https://127.0.0.1:5000/api/rdm-records -d '{
     "_access": {
         "metadata_restricted": false,
         "files_restricted": false
     },
-    "_owners": [1],
     "_created_by": 1,
+    "_owners": [1],
     "access_right": "open",
-    "resource_type": {
-        "type": "publication",
-        "subtype": "publication-article"
-    },
-    "identifiers": {
-        "DOI": "10.9999/rdm.9999999",
-        "arXiv": "9999.99999"
-    },
     "creators": [
         {
             "name": "Julio Cesar",
@@ -264,13 +236,6 @@ curl -k -XPOST -H "Content-Type: application/json" https://localhost:5000/api/rd
             ]
         }
     ],
-    "titles": [
-        {
-            "title": "A Romans story",
-            "type": "Other",
-            "lang": "eng"
-        }
-    ],
     "descriptions": [
         {
             "description": "A story on how Julio Cesar relates to Gladiator.",
@@ -278,6 +243,10 @@ curl -k -XPOST -H "Content-Type: application/json" https://localhost:5000/api/rd
             "lang": "eng"
         }
     ],
+    "identifiers": {
+        "DOI": "10.9999/rdm.9999999",
+        "arXiv": "9999.99999"
+    },
     "licenses": [
         {
             "license": "Berkeley Software Distribution 3",
@@ -286,54 +255,56 @@ curl -k -XPOST -H "Content-Type: application/json" https://localhost:5000/api/rd
             "scheme": "BSD-3"
         }
     ],
+    "publication_date": "2020-08-31",
+    "resource_type": {
+        "type": "publication",
+        "subtype": "publication-article"
+    },
+    "titles": [
+        {
+            "title": "A Romans story",
+            "type": "Other",
+            "lang": "eng"
+        }
+    ],
     "version": "v0.0.1"
 }'
 ```
 
-Then you will need to publish it, for that you will need the `pid` field from the response
-you got when creating the draft. In the example case is `jnmmp-51n47`:
+To publish it, you can take the `"publish"` link from the response:
+
+```json
+"links": {
+    "self": "https://127.0.0.1:5000/api/rdm-records/jnmmp-51n47/draft",
+    "self_html": "https://127.0.0.1:5000/deposits/jnmmp-51n47/edit",
+    "publish": "https://127.0.0.1:5000/api/rdm-records/jnmmp-51n47/draft/actions/publish"
+}
+```
+
+and `POST` to it:
 
 ```bash
-curl -k -X POST https://localhost:5000/api/rdm-records/jnmmp-51n47/draft/actions/publish
+curl -k -X POST https://127.0.0.1:5000/api/rdm-records/jnmmp-51n47/draft/actions/publish
 ```
 
 And then search for it:
 
 ``` bash
-curl -k -XGET https://localhost:5000/api/rdm-records?q=Gladiator | python3 -m json.tool
+curl -k -XGET https://127.0.0.1:5000/api/rdm-records?q=Gladiator | python3 -m json.tool
 ```
 ``` json
 {
-    "aggregations": {
-        "access_right": {
-            "buckets": [
-                {
-                    "doc_count": 1,
-                    "key": "open"
-                }
-            ],
-            "doc_count_error_upper_bound": 0,
-            "sum_other_doc_count": 0
-        },
-        "resource_type": {
-            "buckets": [
-                {
-                    "doc_count": 1,
-                    "key": "publication"
-                }
-            ],
-            "doc_count_error_upper_bound": 0,
-            "sum_other_doc_count": 0
-        }
-    },
+    "aggregations": {},
     "hits": {
         "hits": [
             {
                 "created": "2020-02-26T15:46:55.000116+00:00",
                 "pid": "jnmmp-51n47",
                 "links": {
-                    "files": "https://localhost:5000/api/records/8wtcp-1bs44/files",
-                    "self": "https://localhost:5000/api/records/8wtcp-1bs44"
+                    "self": "https://127.0.0.1/api/rdm-records/jnmmp-51n47",
+                    "self_html": "https://127.0.0.1/records/jnmmp-51n47",
+                    "files": "https://127.0.0.1/api/rdm-records/jnmmp-51n47/files",
+                    "edit": "https://127.0.0.1/api/rdm-records/jnmmp-51n47/draft"
                 },
                 "metadata": {
                     "_access": {
@@ -403,9 +374,10 @@ curl -k -XGET https://localhost:5000/api/rdm-records?q=Gladiator | python3 -m js
         ],
         "total": 1
     },
-    "links": {
-        "self": "https://localhost:5000/api/records/?sort=bestmatch&q=Gladiator&size=10&page=1"
-    }
+     "links": {
+        "self": "https://127.0.0.1/api/rdm-records?size=25&page=1&q=Gladiator",
+        "next": "https://127.0.0.1/api/rdm-records?size=25&page=2&q=Gladiator"
+    },
 }
 ```
 
@@ -413,7 +385,7 @@ curl -k -XGET https://localhost:5000/api/rdm-records?q=Gladiator | python3 -m js
 
 Alternatively, you can use the web UI.
 
-Navigate to [https://localhost:5000](https://localhost:5000) . Note that you might need to accept the SSL exception since it's using a test certificate.
+Navigate to [https://127.0.0.1:5000](https://127.0.0.1:5000) . Note that you might need to accept the SSL exception since it's using a test certificate.
 And visit the record page for the newly created record. You will see it has no files associated with it. Let's change that!
 
 ### Upload a file to a record
@@ -434,7 +406,7 @@ Save it as `snow_doge.jpg` in your current directory. Then upload it to the reco
     Change `jnmmp-51n47` in the URLs below for the recid of your record.
 
 ``` bash
-curl -k -X PUT https://localhost:5000/api/records/jnmmp-51n47/files/snow_doge.jpg -H "Content-Type: application/octet-stream" --data-binary @snow_doge.jpg
+curl -k -X PUT https://127.0.0.1:5000/api/rdm-records/jnmmp-51n47/files/snow_doge.jpg -H "Content-Type: application/octet-stream" --data-binary @snow_doge.jpg
 ```
 
 This file can then be previewed on the record page and even downloaded.
