@@ -112,7 +112,21 @@ drwxr-xr-x 2 youruser youruser 4096 Feb 19 13:45 templates/
 
 ## Containerize and run your instance
 
-The project is initialized, we just need to run it. Switch to the project
+!!! warning "NEW: Adjust `SERVER_HOSTNAME` in `invenio.cfg`"
+    New in the August release: change `SERVER_HOSTNAME` in `invenio.cfg` as below.
+
+Before running your instance, change the following in `invenio.cfg`:
+
+```diff
+- SERVER_HOSTNAME = "127.0.0.1:5000"
++ SERVER_HOSTNAME = "127.0.0.1"
+```
+
+This is because `invenio-cli init rdm` generates a config file (`invenio.cfg`)
+for [development usage](../develop/index.md) by default. We need to tweak it,
+because we are only previewing InvenioRDM.
+
+The project is initialized, we now run it. Switch to the project
 directory and do so:
 
 ``` bash
@@ -169,6 +183,7 @@ In just two commands you can get a preview of InvenioRDM:
 ``` bash
 invenio-cli init rdm
 cd <project name>
+# Set SERVER_HOSTNAME = "127.0.0.1" in invenio.cfg
 invenio-cli containerize --pre
 ```
 
