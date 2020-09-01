@@ -145,8 +145,11 @@ firefox https://127.0.0.1
 **Notes and Known Issues**
 
 - You may see the following error message `TypeError: Object.fromEntries is not a function`.
-  This means you need to update your base Invenio docker image because node 13+ is needed.
+  This means you need to update your base Invenio docker image because Node.js 14+ is needed.
   Run `docker pull inveniosoftware/centos7-python:3.6` or `docker pull inveniosoftware/centos8-python:3.7` (or python 3.8)  before running `invenio-cli containerize --pre` again.
+- You may see `SystemError: Parent module 'setuptools' not loaded, cannot perform relative import`
+  at the dependency locking step when running `invenio-cli containerize --pre`. This depends on your version of `setuptools` (bleeding edge causes this)
+  and can be solved by setting an environment variable: `SETUPTOOLS_USE_DISTUTILS=stdlib`. [See more details](https://github.com/pypa/setuptools/blob/17cb9d6bf249cefe653d3bdb712582409035a7db/CHANGES.rst#v5000). This sudden upstream change will be addressed more systematically in future releases.
 
 ## Add random records
 
