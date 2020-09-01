@@ -37,6 +37,13 @@ As a result, the Python dependencies for the project have been installed in
 a new virtualenv for the application and many of the files in your project directory
 have been symlinked inside it.
 
+**Notes and Known Issues**
+
+- You may see `SystemError: Parent module 'setuptools' not loaded, cannot perform relative import`
+  at the dependency locking step. This depends on your version of `setuptools` (bleeding edge causes this)
+  and can be solved by setting an environment variable: `SETUPTOOLS_USE_DISTUTILS=stdlib`. [See more details](https://github.com/pypa/setuptools/blob/17cb9d6bf249cefe653d3bdb712582409035a7db/CHANGES.rst#v5000). This sudden upstream change will be addressed more systematically in future releases.
+
+
 ## Setup the database, Elasticsearch, Redis and RabbitMQ
 
 We need to initialize the database, the indices and so on. For this, we use
