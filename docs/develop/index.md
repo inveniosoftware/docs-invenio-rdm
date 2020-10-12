@@ -54,9 +54,9 @@ author_name [CERN]:
 author_email [info@development-instance.com]:
 year [2020]:
 Select python_version:
-1 - 3.6
-2 - 3.7
-3 - 3.8 (beta)
+1 - 3.7
+2 - 3.8 (beta)
+3 - 3.6
 Choose from 1, 2, 3 [1]:
 Select database:
 1 - postgresql

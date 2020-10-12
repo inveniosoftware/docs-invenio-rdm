@@ -32,14 +32,104 @@ curl -k -XGET https://127.0.0.1:5000/api/records | python3 -m json.tool
 ```
 ``` json
 {
-    "aggregations": {},
+    "aggregations": {
+        "resource_type": {
+            "doc_count_error_upper_bound": 0,
+            "sum_other_doc_count": 0,
+            "buckets": [
+                {
+                    "key": "publication",
+                    "doc_count": 8,
+                    "subtype": {
+                        "doc_count_error_upper_bound": 0,
+                        "sum_other_doc_count": 0,
+                        "buckets": [
+                            {
+                                "key": "publication-other",
+                                "doc_count": 2
+                            },
+                            {
+                                "key": "publication-article",
+                                "doc_count": 1
+                            },
+                            {
+                                "key": "publication-deliverable",
+                                "doc_count": 1
+                            },
+                            {
+                                "key": "publication-patent",
+                                "doc_count": 1
+                            },
+                            {
+                                "key": "publication-report",
+                                "doc_count": 1
+                            },
+                            {
+                                "key": "publication-taxonomictreatment",
+                                "doc_count": 1
+                            },
+                            {
+                                "key": "publication-thesis",
+                                "doc_count": 1
+                            }
+                        ]
+                    }
+                },
+                {
+                    "key": "dataset",
+                    "doc_count": 1,
+                    "subtype": {
+                        "doc_count_error_upper_bound": 0,
+                        "sum_other_doc_count": 0,
+                        "buckets": [
+                            {
+                                "key": "",
+                                "doc_count": 1
+                            }
+                        ]
+                    }
+                },
+                {
+                    "key": "image",
+                    "doc_count": 1,
+                    "subtype": {
+                        "doc_count_error_upper_bound": 0,
+                        "sum_other_doc_count": 0,
+                        "buckets": [
+                            {
+                                "key": "image-photo",
+                                "doc_count": 1
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "access_right": {
+            "doc_count_error_upper_bound": 0,
+            "sum_other_doc_count": 0,
+            "buckets": [
+                {
+                    "key": "open",
+                    "doc_count": 10
+                }
+            ]
+        }
+    },
     "hits": {
         "hits": [
             {
-                "created": "2020-02-25T15:54:52.127129+00:00",
-                "updated": "2020-02-25T15:54:52.127134+00:00",
-                "revision": 0,
-                "pid": "zgxnf-z7n12",
+                "access": {
+                    "files_restricted": false,
+                    "created_by": 1,
+                    "owners": [1],
+                    "access_right": "open",
+                    "metadata_restricted": false
+                },
+                "created": "2020-10-12 16:25:20.729095",
+                "updated": "2020-10-12 16:25:20.729095",
+                "revision": 1,
+                "id": "zgxnf-z7n12",
                 "links": {
                     "self": "https://127.0.0.1:5000/api/records/zgxnf-z7n12",
                     "self_html": "https://127.0.0.1:5000/records/zgxnf-z7n12",
@@ -47,12 +137,6 @@ curl -k -XGET https://127.0.0.1:5000/api/records | python3 -m json.tool
                     "edit": "https://127.0.0.1:5000/api/records/zgxnf-z7n12/draft"
                 },
                 "metadata": {
-                    "_access": {
-                        "files_restricted": false,
-                        "metadata_restricted": false
-                    },
-                    "_created_by": 2,
-                    "_default_preview": "previewer one",
                     "_internal_notes": [
                         {
                             "note": "RDM record",
@@ -60,11 +144,7 @@ curl -k -XGET https://127.0.0.1:5000/api/records | python3 -m json.tool
                             "user": "inveniouser"
                         }
                     ],
-                    "_owners": [1],
-                    "_publication_date_search": "2020-08-31",
-                    "access_right": "open",
-                    "conceptrecid": "5fk5g-mq814",
-                    "contact": "info@inveniosoftware.org",
+                    "conceptid": "5fk5g-mq814",
                     "contributors": [
                         {
                             "affiliations": [
@@ -111,7 +191,6 @@ curl -k -XGET https://127.0.0.1:5000/api/records | python3 -m json.tool
                             "type": "Abstract"
                         }
                     ],
-                    "embargo_date": "1997-12-01",
                     "identifiers": {
                             "DOI": "10.9999/rdm.9999999",
                             "arXiv": "9999.99999"
@@ -136,7 +215,6 @@ curl -k -XGET https://127.0.0.1:5000/api/records | python3 -m json.tool
                         }
                     ],
                     "publication_date": "1970-12-05",
-                    "recid": "zgxnf-z7n12",
                     "references": [
                         {
                             "identifier": "9999.99988",
@@ -156,8 +234,8 @@ curl -k -XGET https://127.0.0.1:5000/api/records | python3 -m json.tool
                         }
                     ],
                     "resource_type": {
-                        "subtype": "image-photo",
-                        "type": "image"
+                        "subtype": "publication-thesis",
+                        "type": "publication"
                     },
                     "subjects": [
                         {
@@ -180,8 +258,7 @@ curl -k -XGET https://127.0.0.1:5000/api/records | python3 -m json.tool
         ]
     },
     "links": {
-        "self": "https://127.0.0.1/api/records?size=25&page=1",
-        "next": "https://127.0.0.1/api/records?size=25&page=2"
+        "self": "https://127.0.0.1/api/records?page=1&size=25&sort=newest"
     }
 }
 ```
@@ -189,9 +266,6 @@ curl -k -XGET https://127.0.0.1:5000/api/records | python3 -m json.tool
 #### Notes
 
 - The output is shortened for readability and your records will be different because they are generated randomly.
-- We did the hard work of fully switching to the new API at the cost of temporarily disabling aggregations.
-  They will be back in the next release!
-- `"links"` have been added!
 - You can use [jq](https://github.com/stedolan/jq) for color highlighting:
 
     ```bash
@@ -209,64 +283,62 @@ You can create a new record **draft** using the API:
 
 ```bash
 curl -k -XPOST -H "Content-Type: application/json" https://127.0.0.1:5000/api/records -d '{
-    "_access": {
+    "access": {
         "metadata_restricted": false,
-        "files_restricted": false
+        "files_restricted": false,
+        "owners": [1],
+        "access_right": "open",
+        "created_by": 1,
     },
-    "_created_by": 1,
-    "_owners": [1],
-    "access_right": "open",
-    "creators": [
-        {
-            "name": "Julio Cesar",
-            "type": "Personal",
-            "given_name": "Julio",
-            "family_name": "Cesar",
-            "identifiers": {
-                "Orcid": "0000-0002-1825-0097"
-            },
-            "affiliations": [
-                {
-                    "name": "Entity One",
-                    "identifiers": {
-                        "ror": "03yrm5c26"
+    "metadata": {
+        "creators": [
+            {
+                "name": "Julio Cesar",
+                "type": "Personal",
+                "given_name": "Julio",
+                "family_name": "Cesar",
+                "identifiers": {
+                    "Orcid": "0000-0002-1825-0097"
+                },
+                "affiliations": [
+                    {
+                        "name": "Entity One",
+                        "identifiers": {
+                            "ror": "03yrm5c26"
+                        }
                     }
-                }
-            ]
-        }
-    ],
-    "descriptions": [
-        {
-            "description": "A story on how Julio Cesar relates to Gladiator.",
-            "type": "Abstract",
-            "lang": "eng"
-        }
-    ],
-    "identifiers": {
-        "DOI": "10.9999/rdm.9999999",
-        "arXiv": "9999.99999"
-    },
-    "licenses": [
-        {
-            "license": "Berkeley Software Distribution 3",
-            "uri": "https://opensource.org/licenses/BSD-3-Clause",
-            "identifier": "BSD-3",
-            "scheme": "BSD-3"
-        }
-    ],
-    "publication_date": "2020-08-31",
-    "resource_type": {
-        "type": "publication",
-        "subtype": "publication-article"
-    },
-    "titles": [
-        {
-            "title": "A Romans story",
-            "type": "Other",
-            "lang": "eng"
-        }
-    ],
-    "version": "v0.0.1"
+                ]
+            }
+        ],
+        "descriptions": [
+            {
+                "description": "A story on how Julio Cesar relates to Gladiator.",
+                "type": "Abstract",
+                "lang": "eng"
+            }
+        ],
+        "licenses": [
+            {
+                "license": "Berkeley Software Distribution 3",
+                "uri": "https://opensource.org/licenses/BSD-3-Clause",
+                "identifier": "BSD-3",
+                "scheme": "BSD-3"
+            }
+        ],
+        "publication_date": "2020-06-01",
+        "resource_type": {
+            "type": "publication",
+            "subtype": "publication-article"
+        },
+        "titles": [
+            {
+                "title": "A Romans story",
+                "type": "Other",
+                "lang": "eng"
+            }
+        ],
+        "version": "v0.0.1"
+    }
 }'
 ```
 
@@ -275,7 +347,7 @@ To publish it, you can take the `"publish"` link from the response:
 ```json
 "links": {
     "self": "https://127.0.0.1:5000/api/records/jnmmp-51n47/draft",
-    "self_html": "https://127.0.0.1:5000/deposits/jnmmp-51n47/edit",
+    "self_html": "https://127.0.0.1:5000/uploads/jnmmp-51n47",
     "publish": "https://127.0.0.1:5000/api/records/jnmmp-51n47/draft/actions/publish"
 }
 ```
@@ -297,8 +369,15 @@ curl -k -XGET https://127.0.0.1:5000/api/records?q=Gladiator | python3 -m json.t
     "hits": {
         "hits": [
             {
-                "created": "2020-02-26T15:46:55.000116+00:00",
-                "pid": "jnmmp-51n47",
+                "access": {
+                    "metadata_restricted": false,
+                    "files_restricted": false,
+                    "owners": [1],
+                    "access_right": "open",
+                    "created_by": 1,
+                },
+                "created": "2020-10-13 17:25:20.654095",
+                "id": "jnmmp-51n47",
                 "links": {
                     "self": "https://127.0.0.1/api/records/jnmmp-51n47",
                     "self_html": "https://127.0.0.1/records/jnmmp-51n47",
@@ -306,76 +385,62 @@ curl -k -XGET https://127.0.0.1:5000/api/records?q=Gladiator | python3 -m json.t
                     "edit": "https://127.0.0.1/api/records/jnmmp-51n47/draft"
                 },
                 "metadata": {
-                    "_access": {
-                        "files_restricted": false,
-                        "metadata_restricted": false
-                    },
-                    "_created_by": 1,
-                    "_owners": [
-                        1
-                    ],
-                    "access_right": "open",
                     "creators": [
                         {
                             "affiliations": [
                                 {
+                                    "name": "Entity One",
                                     "identifiers": {
                                         "ror": "03yrm5c26"
-                                    },
-                                    "name": "Entity One"
+                                    }
                                 }
                             ],
                             "family_name": "Cesar",
-                            "given_name": "Julio",
                             "identifiers": {
                                 "Orcid": "0000-0002-1825-0097"
                             },
+                            "given_name": "Julio",
                             "name": "Julio Cesar",
-                            "type": "Personal"
+                            "type": "Personal",
                         }
                     ],
                     "descriptions": [
                         {
                             "description": "A story on how Julio Cesar relates to Gladiator.",
-                            "lang": "eng",
-                            "type": "Abstract"
+                            "type": "Abstract",
+                            "lang": "eng"
                         }
                     ],
-                    "identifiers": {
-                        "DOI": "10.9999/rdm.9999999",
-                        "arXiv": "9999.99999"
-                    },
                     "licenses": [
                         {
-                            "identifier": "BSD-3",
                             "license": "Berkeley Software Distribution 3",
-                            "scheme": "BSD-3",
-                            "uri": "https://opensource.org/licenses/BSD-3-Clause"
+                            "uri": "https://opensource.org/licenses/BSD-3-Clause",
+                            "identifier": "BSD-3",
+                            "scheme": "BSD-3"
                         }
                     ],
-                    "publication_date": "2020-02-26",
-                    "pid": "jnmmp-51n47",
+                    "publication_date": "2020-06-01",
                     "resource_type": {
-                        "subtype": "publication-article",
-                        "type": "publication"
+                        "type": "publication",
+                        "subtype": "publication-article"
                     },
                     "titles": [
                         {
-                            "lang": "eng",
                             "title": "A Romans story",
-                            "type": "Other"
+                            "type": "Other",
+                            "lang": "eng"
                         }
-                    ]
+                    ],
+                    "version": "v0.0.1"
                 },
-                "revision": 0,
-                "updated": "2020-02-26T15:46:55.000119+00:00"
+                "revision": 1,
+                "updated": "2020-10-13 17:25:20.694095"
             }
         ],
         "total": 1
     },
      "links": {
-        "self": "https://127.0.0.1/api/records?size=25&page=1&q=Gladiator",
-        "next": "https://127.0.0.1/api/records?size=25&page=2&q=Gladiator"
+        "self": "https://127.0.0.1/api/records?size=25&page=1&q=Gladiator"
     },
 }
 ```
