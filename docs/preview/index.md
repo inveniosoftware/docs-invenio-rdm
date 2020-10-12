@@ -143,7 +143,7 @@ firefox https://127.0.0.1
 ```
 
 !!! warning "Use 127.0.0.1"
-    Due to CSP it is important that you use 127.0.0.1, and not localhost. Unless you ser the `SERVER_HOSTNAME` to localhost.
+    Due to CSP it is important that you use 127.0.0.1, and not localhost. Unless you set the `SERVER_HOSTNAME` to localhost.
 
 **Notes and Known Issues**
 
