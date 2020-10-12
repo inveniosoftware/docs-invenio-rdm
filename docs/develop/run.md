@@ -21,15 +21,14 @@ Are we done? Yes, let the fun begin...
 
 ### List records
 
-Let's see what is in the instance by querying the API. Note that localhost and 127.0.0.1 can
-be used interchangeably. Using another terminal:
+!!! warning "Use 127.0.0.1"
+    Due to CSP it is important that you use 127.0.0.1, and not localhost. Unless you ser the `SERVER_HOSTNAME` to localhost.
 
-!!! warning "New API endpoints"
-    The new implementation of the backend is available through the `/api/rdm-records` endpoint.
-    Please crosscheck if you are using already crafted requests.
+Let's see what is in the instance by querying the API. Using another terminal:
+
 
 ``` bash
-curl -k -XGET https://127.0.0.1:5000/api/rdm-records | python3 -m json.tool
+curl -k -XGET https://127.0.0.1:5000/api/records | python3 -m json.tool
 ```
 ``` json
 {
@@ -42,10 +41,10 @@ curl -k -XGET https://127.0.0.1:5000/api/rdm-records | python3 -m json.tool
                 "revision": 0,
                 "pid": "zgxnf-z7n12",
                 "links": {
-                    "self": "https://127.0.0.1:5000/api/rdm-records/zgxnf-z7n12",
+                    "self": "https://127.0.0.1:5000/api/records/zgxnf-z7n12",
                     "self_html": "https://127.0.0.1:5000/records/zgxnf-z7n12",
-                    "files": "https://127.0.0.1:5000/api/rdm-records/zgxnf-z7n12/files",
-                    "edit": "https://127.0.0.1:5000/api/rdm-records/zgxnf-z7n12/draft"
+                    "files": "https://127.0.0.1:5000/api/records/zgxnf-z7n12/files",
+                    "edit": "https://127.0.0.1:5000/api/records/zgxnf-z7n12/draft"
                 },
                 "metadata": {
                     "_access": {
@@ -181,8 +180,8 @@ curl -k -XGET https://127.0.0.1:5000/api/rdm-records | python3 -m json.tool
         ]
     },
     "links": {
-        "self": "https://127.0.0.1/api/rdm-records?size=25&page=1",
-        "next": "https://127.0.0.1/api/rdm-records?size=25&page=2"
+        "self": "https://127.0.0.1/api/records?size=25&page=1",
+        "next": "https://127.0.0.1/api/records?size=25&page=2"
     }
 }
 ```
@@ -196,7 +195,7 @@ curl -k -XGET https://127.0.0.1:5000/api/rdm-records | python3 -m json.tool
 - You can use [jq](https://github.com/stedolan/jq) for color highlighting:
 
     ```bash
-    curl -k -XGET https://127.0.0.1:5000/api/rdm-records | jq .
+    curl -k -XGET https://127.0.0.1:5000/api/records | jq .
     ```
 
 ### Create records
@@ -209,7 +208,7 @@ You can create a new record **draft** using the API:
 
 
 ```bash
-curl -k -XPOST -H "Content-Type: application/json" https://127.0.0.1:5000/api/rdm-records -d '{
+curl -k -XPOST -H "Content-Type: application/json" https://127.0.0.1:5000/api/records -d '{
     "_access": {
         "metadata_restricted": false,
         "files_restricted": false
@@ -275,22 +274,22 @@ To publish it, you can take the `"publish"` link from the response:
 
 ```json
 "links": {
-    "self": "https://127.0.0.1:5000/api/rdm-records/jnmmp-51n47/draft",
+    "self": "https://127.0.0.1:5000/api/records/jnmmp-51n47/draft",
     "self_html": "https://127.0.0.1:5000/deposits/jnmmp-51n47/edit",
-    "publish": "https://127.0.0.1:5000/api/rdm-records/jnmmp-51n47/draft/actions/publish"
+    "publish": "https://127.0.0.1:5000/api/records/jnmmp-51n47/draft/actions/publish"
 }
 ```
 
 and `POST` to it:
 
 ```bash
-curl -k -X POST https://127.0.0.1:5000/api/rdm-records/jnmmp-51n47/draft/actions/publish
+curl -k -X POST https://127.0.0.1:5000/api/records/jnmmp-51n47/draft/actions/publish
 ```
 
 And then search for it:
 
 ``` bash
-curl -k -XGET https://127.0.0.1:5000/api/rdm-records?q=Gladiator | python3 -m json.tool
+curl -k -XGET https://127.0.0.1:5000/api/records?q=Gladiator | python3 -m json.tool
 ```
 ``` json
 {
@@ -301,10 +300,10 @@ curl -k -XGET https://127.0.0.1:5000/api/rdm-records?q=Gladiator | python3 -m js
                 "created": "2020-02-26T15:46:55.000116+00:00",
                 "pid": "jnmmp-51n47",
                 "links": {
-                    "self": "https://127.0.0.1/api/rdm-records/jnmmp-51n47",
+                    "self": "https://127.0.0.1/api/records/jnmmp-51n47",
                     "self_html": "https://127.0.0.1/records/jnmmp-51n47",
-                    "files": "https://127.0.0.1/api/rdm-records/jnmmp-51n47/files",
-                    "edit": "https://127.0.0.1/api/rdm-records/jnmmp-51n47/draft"
+                    "files": "https://127.0.0.1/api/records/jnmmp-51n47/files",
+                    "edit": "https://127.0.0.1/api/records/jnmmp-51n47/draft"
                 },
                 "metadata": {
                     "_access": {
@@ -375,8 +374,8 @@ curl -k -XGET https://127.0.0.1:5000/api/rdm-records?q=Gladiator | python3 -m js
         "total": 1
     },
      "links": {
-        "self": "https://127.0.0.1/api/rdm-records?size=25&page=1&q=Gladiator",
-        "next": "https://127.0.0.1/api/rdm-records?size=25&page=2&q=Gladiator"
+        "self": "https://127.0.0.1/api/records?size=25&page=1&q=Gladiator",
+        "next": "https://127.0.0.1/api/records?size=25&page=2&q=Gladiator"
     },
 }
 ```
@@ -406,7 +405,7 @@ Save it as `snow_doge.jpg` in your current directory. Then upload it to the reco
     Change `jnmmp-51n47` in the URLs below for the recid of your record.
 
 ``` bash
-curl -k -X PUT https://127.0.0.1:5000/api/rdm-records/jnmmp-51n47/files/snow_doge.jpg -H "Content-Type: application/octet-stream" --data-binary @snow_doge.jpg
+curl -k -X PUT https://127.0.0.1:5000/api/records/jnmmp-51n47/files/snow_doge.jpg -H "Content-Type: application/octet-stream" --data-binary @snow_doge.jpg
 ```
 
 This file can then be previewed on the record page and even downloaded.

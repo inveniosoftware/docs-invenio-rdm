@@ -95,9 +95,30 @@ Then, run the `invenio-cli update --no-install-js` command as above and refresh 
 
 ## Change search results
 
-!!! error "Temporarily not supported"
-    Due to the migration to Semantic-UI the UI customization features are not supported. They will be enabled as soon as possible.
+Changing how your results are presented in the search page is also something quite common.
 
+We are going to update the search result template so we can show more text in the result's description. Create a file called `ResultsItemTemplate.jsx` inside `assets/templates/search` folder and then edit it as below:
+
+```js
+import React from 'react';
+import {Item} from 'semantic-ui-react';
+import _truncate from 'lodash/truncate';
+
+export function ResultsItemTemplate(record, index) {
+return (
+    <Item key={index} href={`/records/${record.id}`}>
+    <Item.Content>
+        <Item.Header>{record.metadata.titles[0].title}</Item.Header>
+        <Item.Description>
+        {_truncate(record.metadata.descriptions[0].description, { length: 400 })}
+        </Item.Description>
+    </Item.Content>
+    </Item>
+)
+};
+```
+
+Then, run the `invenio-cli update` command as above and refresh the page! You should be able to see more text in each result's description! You can find all the available templates [here](https://github.com/inveniosoftware/invenio-app-rdm/tree/master/invenio_app_rdm/theme/assets/templates/search).
 
 ## Change the record landing page
 
@@ -166,6 +187,9 @@ Restart your server and your vocabulary will now be used for resource types!
 
 
 ## Extend the metadata model
+
+!!! error "Temporarily not supported"
+    This functionality is temporarily disabled.
 
 We've designed the default InvenioRDM metadata model to incorporate much of the
 useful fields the digital repository community has adopted over the years. From
@@ -285,6 +309,9 @@ You are now a master of the metadata model!
 
 
 ## Change permissions
+
+!!! error "Temporarily not supported"
+    This functionality is temporarily disabled.
 
 !!! warning "POST creates a record"
     Note that the following applies now to *drafts*. If you want to make it into a record
