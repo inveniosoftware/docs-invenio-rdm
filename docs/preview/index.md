@@ -20,7 +20,7 @@ The CLI will require the following data:
 - **Author name**: Your name or that of your organization
 - **Author email**: Email for communication
 - **Year**: The current year
-- **Python version**: 3.6 (default), 3.7 and 3.8 (beta).
+- **Python version**: 3.7 (default), 3.6, and 3.8 (beta).
 - **One of the three available storage systems**: postgresql (default), mysql or sqlite
 - **The version of Elasticsearch**: 7 (default) or 6
 - **Storage backend**: Local file system (default) or in a S3-like backend. If S3 is chosen a MinIO container is provided, however, you can set it up to use your own. See more in [S3 extension](../extensions/s3.md)
@@ -45,8 +45,8 @@ author_name [CERN]:
 author_email [info@inveniordm-preview.com]:
 year [2020]:
 Select python_version:
-1 - 3.6
-2 - 3.7
+1 - 3.7
+2 - 3.6
 3 - 3.8 (beta)
 Choose from 1, 2, 3 [1]:
 Select database:
@@ -141,6 +141,9 @@ Visit https://127.0.0.1
 ``` bash
 firefox https://127.0.0.1
 ```
+
+!!! warning "Use 127.0.0.1"
+    Due to CSP it is important that you use 127.0.0.1, and not localhost. Unless you set the `SERVER_HOSTNAME` to localhost.
 
 **Notes and Known Issues**
 
