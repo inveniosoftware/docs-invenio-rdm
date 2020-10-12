@@ -22,7 +22,7 @@ Are we done? Yes, let the fun begin...
 ### List records
 
 !!! warning "Use 127.0.0.1"
-    Due to CSP it is important that you use 127.0.0.1, and not localhost. Unless you ser the `SERVER_HOSTNAME` to localhost.
+    Due to CSP it is important that you use 127.0.0.1, and not localhost. Unless you set the `SERVER_HOSTNAME` to localhost.
 
 Let's see what is in the instance by querying the API. Using another terminal:
 
