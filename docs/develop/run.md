@@ -268,9 +268,9 @@ curl -k -XGET https://127.0.0.1:5000/api/records | python3 -m json.tool
 - The output is shortened for readability and your records will be different because they are generated randomly.
 - You can use [jq](https://github.com/stedolan/jq) for color highlighting:
 
-    ```bash
-    curl -k -XGET https://127.0.0.1:5000/api/records | jq .
-    ```
+```bash
+curl -k -XGET https://127.0.0.1:5000/api/records | jq .
+```
 
 ### Create records
 
@@ -288,7 +288,7 @@ curl -k -XPOST -H "Content-Type: application/json" https://127.0.0.1:5000/api/re
         "files_restricted": false,
         "owners": [1],
         "access_right": "open",
-        "created_by": 1,
+        "created_by": 1
     },
     "metadata": {
         "creators": [

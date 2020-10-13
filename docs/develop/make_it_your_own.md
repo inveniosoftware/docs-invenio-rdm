@@ -79,7 +79,7 @@ All other changes below follow the same pattern: add files and/or edit `invenio.
 potentially execute `update` and/or rerun the server.
 
 
-## Change colors
+## Change the colors
 
 You might also be wondering: *How do I change the colors so I can make my instance look like my institution's theme?*
 
@@ -93,11 +93,11 @@ We are going to change the top header section in the frontpage to apply our cust
 Then, run the `invenio-cli update --no-install-js` command as above and refresh the page! You should be able to see your top header's color changed! You can find all the available styling variables that you can change [here](https://github.com/inveniosoftware/invenio-app-rdm/blob/master/invenio_app_rdm/theme/assets/semantic-ui/less/invenio_app_rdm/variables.less).
 
 
-## Change search results
+## Change the search results
 
 Changing how your results are presented in the search page is also something quite common.
 
-We are going to update the search result template so we can show more text in the result's description. Create a file called `ResultsItemTemplate.jsx` inside `assets/templates/search` folder and then edit it as below:
+We are going to update the search result template so we can show more text in the result's description. Create a file called `ResultsItemTemplate.jsx` inside the `assets/templates/search` folder and then edit it as below:
 
 ```js
 import React from 'react';
@@ -105,20 +105,21 @@ import {Item} from 'semantic-ui-react';
 import _truncate from 'lodash/truncate';
 
 export function ResultsItemTemplate(record, index) {
-return (
+  return (
     <Item key={index} href={`/records/${record.id}`}>
-    <Item.Content>
+      <Item.Content>
         <Item.Header>{record.metadata.titles[0].title}</Item.Header>
         <Item.Description>
         {_truncate(record.metadata.descriptions[0].description, { length: 400 })}
         </Item.Description>
-    </Item.Content>
+      </Item.Content>
     </Item>
-)
+  )
 };
 ```
 
 Then, run the `invenio-cli update` command as above and refresh the page! You should be able to see more text in each result's description! You can find all the available templates [here](https://github.com/inveniosoftware/invenio-app-rdm/tree/master/invenio_app_rdm/theme/assets/templates/search).
+
 
 ## Change the record landing page
 
@@ -308,124 +309,123 @@ to provide them to have them eventually display on the UI properly.
 You are now a master of the metadata model!
 
 
-## Change permissions
-
-!!! error "Temporarily not supported"
-    This functionality is temporarily disabled.
-
-!!! warning "POST creates a record"
-    Note that the following applies now to *drafts*. If you want to make it into a record
-    (i.e. to obtain a landing page), you need to publish it as it was shown in the [run](./run.md)
-    section.
+## Change the permissions
 
 Here, we show how to change the permissions required to perform actions in
-the system. For the purpose of this example, we will only allow super users to
-create records through the REST API. To do so, we define our own permission policy.
+the system. For the purpose of this example, we will restrict the creation of
+*drafts* to super users only. To do so, we define our own [permission policy](https://invenio-records-permissions.readthedocs.io/en/latest/usage.html#policies).
 
-Open the `invenio.cfg` in your favorite text editor (or least favorite if you
+### Modify invenio.cfg
+
+Open `invenio.cfg` in your favorite text editor (or least favorite if you
 like to suffer) and add the following to the file:
 
 ```python
-# imports at the top...
 from invenio_rdm_records.permissions import RDMRecordPermissionPolicy
+from invenio_rdm_records.services import BibliographicRecordServiceConfig
 from invenio_records_permissions.generators import SuperUser
 
-# ...
 
-# At the bottom
-# Our custom Permission Policy
 class MyRecordPermissionPolicy(RDMRecordPermissionPolicy):
     can_create = [SuperUser()]
 
-RECORDS_PERMISSIONS_RECORD_POLICY = MyRecordPermissionPolicy
+
+class MyBibliographicRecordServiceConfig(BibliographicRecordServiceConfig):
+    permission_policy_cls = MyRecordPermissionPolicy
+
+
+RDM_RECORDS_BIBLIOGRAPHIC_SERVICE_CONFIG = MyBibliographicRecordServiceConfig
 ```
 
-For demo purposes *any user* can currently *publish* a draft. If you want to change that to only admins too, you need to also add `can_publish = [SuperUser()]` to the above policy. Then re-start the server.
+Then re-start the server.
 
-When we set `RECORDS_PERMISSIONS_RECORD_POLICY = MyRecordPermissionPolicy`,
-we are overriding `RECORDS_PERMISSIONS_RECORD_POLICY` provided by
-[invenio-records-permissions](https://github.com/inveniosoftware/invenio-records-permissions).
+!!! info "Change the permission to publish"
+    For demo purposes, *any user* can currently publish a draft. If you want to change that to only super users as well, you need to add `can_publish = [SuperUser()]` to the above policy. Don't forget to re-start the server after your changes.
+
+When we set `RDM_RECORDS_BIBLIOGRAPHIC_SERVICE_CONFIG = MyBibliographicRecordServiceConfig`,
+we are overriding the default service configuration `BibliographicRecordServiceConfig`provided by [invenio-rdm-records](https://github.com/inveniosoftware/invenio-rdm-records). Many more record related features can be customized by overriding other values in the new `MyBibliographicRecordServiceConfig` class.
 
 !!! info "Pro tip"
     You can type `can_create = []` to achieve the same effect; any empty permission list only allows super users.
 
-That's it configuration-wise. If we try to create a record through the API,
-your instance will check if you are a super user before allowing you.
+That's it configuration-wise.
 
-Did the changes work? We are going to try to create a new record:
+### Test that non super users are denied
+
+Did the changes work? We are going to try to create a new draft:
 
 ``` bash
-curl -k -XPOST -H "Content-Type: application/json" https://127.0.0.1:5000/api/rdm-records -d '{
-    "_access": {
+curl -k -XPOST -H "Content-Type: application/json" https://127.0.0.1:5000/api/records -d '{
+    "access": {
         "metadata_restricted": false,
-        "files_restricted": false
+        "files_restricted": false,
+        "owners": [1],
+        "access_right": "open",
+        "created_by": 1
     },
-    "_owners": [1],
-    "_created_by": 1,
-    "access_right": "open",
-    "publication_date": "2020-08-31",
-    "resource_type": {
-        "type": "image",
-        "subtype": "image-photo"
-    },
-    "identifiers": {
-        "DOI": "10.9999/rdm.0"
-    },
-    "creators": [
-        {
-            "name": "Marcus Junius Brutus",
-            "type": "Personal",
-            "given_name": "Marcus",
-            "family_name": "Brutus",
-            "identifiers": {
-                "Orcid": "0000-0002-1825-0097"
-            },
-            "affiliations": [
-                {
-                    "name": "Entity One",
-                    "identifiers": {
-                        "ror": "02ex6cf31"
+    "metadata": {
+        "creators": [
+            {
+                "name": "Marcus Junius Brutus",
+                "type": "Personal",
+                "given_name": "Marcus",
+                "family_name": "Brutus",
+                "identifiers": {
+                    "Orcid": "0000-0002-1825-0097"
+                },
+                "affiliations": [
+                    {
+                        "name": "Entity One",
+                        "identifiers": {
+                            "ror": "02ex6cf31"
+                        }
                     }
-                }
-            ]
-        }
-    ],
-    "titles": [
-        {
-            "title": "A permission story",
-            "type": "Other",
-            "lang": "eng"
-        }
-    ],
-    "descriptions": [
-        {
-            "description": "A story about how permissions work.",
-            "type": "Abstract",
-            "lang": "eng"
-        }
-    ],
-    "licenses": [
-        {
-            "license": "Berkeley Software Distribution 3",
-            "uri": "https://opensource.org/licenses/BSD-3-Clause",
-            "identifier": "BSD-3",
-            "scheme": "BSD-3"
-        }
-    ]
+                ]
+            }
+        ],
+        "descriptions": [
+            {
+                "description": "A story about how permissions work.",
+                "type": "Abstract",
+                "lang": "eng"
+            }
+        ],
+        "licenses": [
+            {
+                "license": "Berkeley Software Distribution 3",
+                "uri": "https://opensource.org/licenses/BSD-3-Clause",
+                "identifier": "BSD-3",
+                "scheme": "BSD-3"
+            }
+        ],
+        "publication_date": "2020-08-31",
+        "resource_type": {
+            "type": "image",
+            "subtype": "image-photo"
+        },
+        "titles": [
+            {
+                "title": "A permission story",
+                "type": "Other",
+                "lang": "eng"
+            }
+        ],
+        "version": "v0.0.1"
 }'
 ```
 
-As you can see, the server could not know if we are authenticated/superuser and rejected us:
+As you can see, the server rejected us, because we were not a super user:
 
 ``` json
 {
-    "message": "The server could not verify that you are authorized to access the URL requested. You either supplied the wrong credentials (e.g. a bad password), or your browser doesn't understand how to supply the credentials required.",
-    "status": 401
+    "status": 403,
+    "message": "Permission denied."
 }
 ```
 
-Let's create a user with the right permission, generate her token and use the API
-with it.
+### Test that super users are allowed
+
+Let's create a user with the right permission:
 
 ``` bash
 pipenv run invenio users create admin@test.ch --password=123456 --active
@@ -435,24 +435,25 @@ pipenv run invenio users create admin@test.ch --password=123456 --active
 pipenv run invenio roles add admin@test.ch admin
 ```
 
+Generate her token:
+
 Login through the browser as `admin@test.ch` with password `123456`. Then
 in the dropdown menu of the username (top-right), select `Applications`. Then
 click on `New token`, name your token and click `Create`. Copy this token (we
-will refer to it as `<your token>`) and put it in the API call as such:
+will refer to it as `<your token>`).
 
-Alternatively, you can get a token using the invenio command, where `-n` is
-the name of the token (your choice) and `-u` the email of the user created
-right before.
+Alternatively, you can get a token using the `invenio` command, where `-n` is
+the name of the token (your choice) and `-u` the email of the user:
 
 ``` bash
- pipenv run invenio tokens create -n permission-demo -u admin@test.ch
+pipenv run invenio tokens create -n permission-demo -u admin@test.ch
 ```
 
-Then use the obtained token to perform the query:
+Finally, use the obtained token to perform the query:
 
 ``` bash
-curl -k -XPOST -H "Authorization:Bearer <your token>" -H "Content-Type: application/json" https://127.0.0.1:5000/api/rdm-records -d '{
-    ...<fill with the above>...
+curl -k -XPOST -H "Authorization: Bearer <your token>" -H "Content-Type: application/json" https://127.0.0.1:5000/api/records -d '{
+    ...<fill with the same json as above>...
 }'
 ```
 
