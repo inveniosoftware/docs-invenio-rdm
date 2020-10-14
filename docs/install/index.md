@@ -25,8 +25,8 @@ the docker command (i.e. it is not only available for the root user):
 sudo usermod --append --groups docker $USER
 ```
 
-!!! note "Hardware requirements"
-    We usually deploy the RDM in machines that have around 8GB of RAM and at least 4 cores. InvenioRDM can certainly run (for demo purposes) with less, just take into account that you are going to be running between 4 and 8 containers (among them an Elasticsearch container, which is quite demanding).
+!!! note "Hardware and Docker requirements"
+    We usually deploy the RDM in machines that have around 8GB of RAM and at least 4 cores. On the same topic, make sure that docker has enough memory to run. Be default it gets 2GB of RAM, which most likely won't be enough. If you can allocate 6-8GB to it might be optimal. In OS X you can do that in `Docker --> preferences --> resources --> advanced` and adjust the `Memory` to the corresponding value. If you have a few cores more to spare, it might be a good idea to give more than 2. Take into account that you are going to be running between 4 and 8 containers (among them an Elasticsearch container, which is quite demanding).
 
 Once you have installed these requirements, you can install the CLI.
 
