@@ -321,8 +321,8 @@ Open `invenio.cfg` in your favorite text editor (or least favorite if you
 like to suffer) and add the following to the file:
 
 ```python
-from invenio_rdm_records.permissions import RDMRecordPermissionPolicy
-from invenio_rdm_records.services import BibliographicRecordServiceConfig
+from invenio_rdm_records.services import BibliographicRecordServiceConfig, \
+    RDMRecordPermissionPolicy
 from invenio_records_permissions.generators import SuperUser
 
 
