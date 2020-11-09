@@ -51,6 +51,8 @@ nav:
     - Building your image: 'deployment/image.md'
     - Image registries: 'deployment/registries.md'
     - Benchmarking: 'deployment/benchmark.md'
+  - Reference:
+    - Metadata: reference/metadata.md
 
 
 # Customization
