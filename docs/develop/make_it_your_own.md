@@ -15,6 +15,13 @@ the name used in the configurations for them, you won't even need to edit `inven
 
 No worries, we go through *all* of the common customizations below.
 
+!!! info "Using `--development` might save some time"
+    This is recommended for developers and advanced users only. Most of the change
+    below require a `invenio-cli assets update` call. However, if you create symbolic
+    links from the beggining and watch the CSS changes as described in the
+    [following section](./edit_a_module.md) most of the changes will be available
+    instantly.
+
 ## Change the logo
 
 Having your instance represent your institution starts with using your
@@ -27,10 +34,10 @@ We'll use the [invenio color logo](https://github.com/inveniosoftware/invenio-th
 cp ./path/to/new/color/logo.svg static/images/invenio-rdm.svg
 ```
 
-Then, use the `update` command:
+Then, use the `assets update` command:
 
 ``` bash
-invenio-cli update --no-install-js
+invenio-cli assets update
 ```
 ``` console
 # Summarized output
@@ -43,10 +50,8 @@ Building assets...
 Built webpack project.
 ```
 
-Passing the `--no-install-js` option, skips re-installation of JS dependencies.
-
 !!! info "Assets and statics need to be updated"
-    Whenever you change files in `assets/` or `static/`, you typically want to run `invenio-cli update --no-install-js`. In case of uncertainty, just run the `update` command; it isn't destructive.
+    Whenever you change files in `assets/` or `static/`, you typically want to run `invenio-cli assets update`. In case of uncertainty, just run the `update` command; it isn't destructive.
 
 In the browser, go to [https://127.0.0.1:5000/](https://127.0.0.1:5000) or refresh the page. And voilà! The logo has changed!
 
@@ -60,7 +65,7 @@ If your logo isn't an svg, you still copy it to `static/images/`, but you need t
 + THEME_LOGO="images/my-logo.png"
 ```
 
-You also need to run `update` as above and additionally restart the server:
+You also need to run `assets update` as above and additionally restart the server:
 
 ```bash
 ^C
@@ -68,7 +73,7 @@ Stopping server and worker...
 Server and worker stopped...
 ```
 ```bash
-invenio-cli update --no-install-js
+invenio-cli assets update
 invenio-cli run
 ```
 
@@ -76,7 +81,7 @@ invenio-cli run
     All changes to `invenio.cfg` **MUST** be accompanied by a restart like the above to be picked up. This only restarts the server; it does not destroy any data.
 
 All other changes below follow the same pattern: add files and/or edit `invenio.cfg` and
-potentially execute `update` and/or rerun the server.
+potentially execute `assets update` and/or rerun the server.
 
 
 ## Change the colors
@@ -90,7 +95,7 @@ We are going to change the top header section in the frontpage to apply our cust
 @navbar_background_color: #000000; // Note this hex value is an example. Choose yours.
 ```
 
-Then, run the `invenio-cli update --no-install-js` command as above and refresh the page! You should be able to see your top header's color changed! You can find all the available styling variables that you can change [here](https://github.com/inveniosoftware/invenio-app-rdm/blob/master/invenio_app_rdm/theme/assets/semantic-ui/less/invenio_app_rdm/variables.less).
+Then, run the `invenio-cli assets update` command as above and refresh the page! You should be able to see your top header's color changed! You can find all the available styling variables that you can change [here](https://github.com/inveniosoftware/invenio-app-rdm/blob/master/invenio_app_rdm/theme/assets/semantic-ui/less/invenio_app_rdm/variables.less).
 
 
 ## Change the search results
@@ -118,7 +123,7 @@ export function ResultsItemTemplate(record, index) {
 };
 ```
 
-Then, run the `invenio-cli update` command as above and refresh the page! You should be able to see more text in each result's description! You can find all the available templates [here](https://github.com/inveniosoftware/invenio-app-rdm/tree/master/invenio_app_rdm/theme/assets/templates/search).
+Then, run the `invenio-cli assets update` command as above and refresh the page! You should be able to see more text in each result's description! You can find all the available templates [here](https://github.com/inveniosoftware/invenio-app-rdm/tree/master/invenio_app_rdm/theme/assets/templates/search).
 
 
 ## Change the record landing page
@@ -467,8 +472,6 @@ we were.
 
 ## Add functionality
 
-Need further customizations or additional features? Have you thought of
-creating your own extensions?
-
-How to make an extension and add it to your InvenioRDM instance is explained in
-the [Extensions section](../extensions/custom.md).
+Need further customizations or additional features? If you are developing a
+features in an existing module check the [Develop or edit a module section](./edit_a_module.md).
+If you are creating your own extensions check the [Extensions section](../extensions/custom.md).
