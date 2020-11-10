@@ -3,9 +3,13 @@
 Once the application is installed locally and the services are running, our
 application just needs to run. For that, the `run` command is executed.
 
+This time you can avoid setting the `SITE_HOSTNAME` by using the `--host`
+and `--port` flags.
+
 ``` bash
-invenio-cli run
+invenio-cli run --host 127.0.0.1 --port 5000
 ```
+
 ``` console
 # Summarized output
 Making sure containers are up...
@@ -21,11 +25,12 @@ Are we done? Yes, let the fun begin...
 
 ### List records
 
-!!! warning "Use 127.0.0.1"
-    Due to CSP it is important that you use 127.0.0.1, and not localhost. Unless you set the `SERVER_HOSTNAME` to localhost.
+!!! warning "Use the specified host and port"
+    Due to CSP it is important that you use the host and port specified when
+    running the instance. This means, `localhost` and `127.0.0.1` are not
+    interchangable as usually. The default is `127.0.0.1:5000`.
 
 Let's see what is in the instance by querying the API. Using another terminal:
-
 
 ``` bash
 curl -k -XGET https://127.0.0.1:5000/api/records | python3 -m json.tool
@@ -363,6 +368,7 @@ And then search for it:
 ``` bash
 curl -k -XGET https://127.0.0.1:5000/api/records?q=Gladiator | python3 -m json.tool
 ```
+
 ``` json
 {
     "aggregations": {},
@@ -457,7 +463,6 @@ And visit the record page for the newly created record. You will see it has no f
 !!! error "Temporarily not supported"
     This is temporarily disabled until the new API is fully compatible with it.
 
-
 For demonstration purposes, we will attach this scientific photo:
 
 ![Very scientific picture of a shiba in the snow](https://images.unsplash.com/photo-1548116137-c9ac24e446c9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80)
@@ -474,3 +479,15 @@ curl -k -X PUT https://127.0.0.1:5000/api/records/jnmmp-51n47/files/snow_doge.jp
 ```
 
 This file can then be previewed on the record page and even downloaded.
+
+## Stop it
+
+If you want to temporarily stop the instance, without loosing the data that
+was generated you can use the `stop` command:
+
+```bash
+invenio-cli stop
+```
+
+Check the [Celanup section](./cleanup.md) if you wish to remove every
+reference to InvenioRDM from Docker (containers, images, networks, etc.).

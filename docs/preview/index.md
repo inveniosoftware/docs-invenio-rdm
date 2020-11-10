@@ -101,7 +101,7 @@ drwxr-xr-x 3 youruser youruser 4096 Feb 19 13:45 static/
 drwxr-xr-x 2 youruser youruser 4096 Feb 19 13:45 templates/
 ```
 
-**Notes and Known Issues**
+#### Notes and Known Issues
 
 - For now, the only available flavour is RDM (Research Data Management). In the future, there will be others, for example ILS (Integrated Library System).
 
@@ -110,21 +110,39 @@ drwxr-xr-x 2 youruser youruser 4096 Feb 19 13:45 templates/
 - Some OpenSSL versions display an error message when obtaining random numbers, but this has no incidence (as far as we can tell) on functionality. We are investigating a possible solution to raise less eyebrows for appearance sake.
 
 
-## Containerize and run your instance
+## Preview instance
 
-!!! warning "NEW: Adjust `SERVER_HOSTNAME` in `invenio.cfg`"
-    New in the August release: change `SERVER_HOSTNAME` in `invenio.cfg` as below.
+!!! warning "NEW: Adjust `SITE_HOSTNAME`"
+    New in the November release the `SERVER_HOSTNAME` is now called `SITE_HOSTNAME` and can be modified in `invenio.cfg` or using environment variables.
+
+#### Set SITE_HOSTNAME
+
+This is required because `invenio-cli init rdm` generates a config file (`invenio.cfg`)
+for [development usage](../develop/index.md) by default. We need to tweak it,
+because we are only previewing InvenioRDM.
 
 Before running your instance, change the following in `invenio.cfg`:
 
 ```diff
-- SERVER_HOSTNAME = "127.0.0.1:5000"
-+ SERVER_HOSTNAME = "127.0.0.1"
+- SITE_HOSTNAME = "127.0.0.1:5000"
++ SITE_HOSTNAME = "127.0.0.1"
 ```
 
-This is because `invenio-cli init rdm` generates a config file (`invenio.cfg`)
-for [development usage](../develop/index.md) by default. We need to tweak it,
-because we are only previewing InvenioRDM.
+Alernatively, you can export it in your environment. If you do so, remember to prefix it with `INVENIO_`.
+
+Using a bash shell:
+
+```bash
+export INVENIO_SITE_HOSTNAME="127.0.0.1"
+```
+
+Using a fish shell:
+
+```fish
+set --export INVENIO_SITE_HOSTNAME "127.0.0.1"
+```
+
+#### Containerize and run
 
 The project is initialized, we now run it. Switch to the project
 directory and do so:
@@ -143,9 +161,9 @@ firefox https://127.0.0.1
 ```
 
 !!! warning "Use 127.0.0.1"
-    Due to CSP it is important that you use 127.0.0.1, and not localhost. Unless you set the `SERVER_HOSTNAME` to localhost.
+    Due to CSP it is important that you use 127.0.0.1, and not localhost. Unless you set the `SITE_HOSTNAME` to localhost.
 
-**Notes and Known Issues**
+#### Notes and Known Issues
 
 - You may see the following error message `TypeError: Object.fromEntries is not a function`.
   This means you need to update your base Invenio docker image because Node.js 14+ is needed.
@@ -181,6 +199,22 @@ invenio <your command>
 
 You can use `docker ps` to get the name or id of the web-api or web-ui container.
 
+## Stop it
+
+If you want to temporarily stop the instance, without loosing the data that
+was generated you can use the `stop` command:
+
+```bash
+invenio-cli stop
+```
+
+On the other hand, if you wish clean up and delete every Docker trace
+InvenioRDM you can use the `destroy` command. Note that `destroy` will
+also `stop` the containers, so there is no need to run the previous command:
+
+```bash
+invenio-cli destroy
+```
 
 ## Conclusions
 
@@ -189,8 +223,9 @@ In just two commands you can get a preview of InvenioRDM:
 ``` bash
 invenio-cli init rdm
 cd <project name>
-# Set SERVER_HOSTNAME = "127.0.0.1" in invenio.cfg
+# Export INVENIO_SITE_HOSTNAME = "127.0.0.1" or set it in invenio.cfg
 invenio-cli containerize --pre
+invenio-cli stop
 ```
 
 These instructions don't provide you with a nice development experience though.

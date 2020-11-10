@@ -29,6 +29,7 @@ The most interesting ones will be the `web-ui` and `web-api` containers, which i
 ``` bash
 docker logs ff9a589845e4
 ```
+
 ``` console
 [uWSGI] getting INI configuration from /opt/invenio/var/instance/uwsgi_rest.ini
 *** Starting uWSGI 2.0.18 (64bit) on [Wed Jan  8 13:09:07 2020] ***

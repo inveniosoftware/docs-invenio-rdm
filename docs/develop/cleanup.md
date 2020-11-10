@@ -18,5 +18,5 @@ It destroys the images, containers and volumes defined in the `development-insta
 After stopping the application per above, destroy it:
 
 ``` bash
-invenio-cli destroy [--local | --containers]
+invenio-cli destroy
 ```
