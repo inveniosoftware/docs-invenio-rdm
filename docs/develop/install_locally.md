@@ -14,12 +14,22 @@ cd development-instance
 ```
 
 To run the application locally, we will need to install it and its dependencies
-first. For this release, we will need to add `--pre`, since we do have to install alpha releases. Be patient, it might take some time to build.
+first. For this release, we will need to add `--pre`, since we do have to
+install alpha releases. Be patient, it might take some time to build.
 
+!!! info "Pre-requisite: FLASK_ENV is available via invenio-cli flags"
+    You do not need to export `FLASK_ENV` anymore, just call the commands with
+    `--development` or `-d`.
+    To be able to modify assets and work on dependent modules, the environment
+    variable `FLASK_ENV` must be set to `development`. This will instruct the
+    different commands to create symbolic links to your files so the changes
+    are easily propagated. There are two operations that require this flag:
+    `install` and `update`.
 
 ``` bash
-invenio-cli install --pre
+invenio-cli install --pre --development
 ```
+
 ``` console
 # Summarized output
 Installing python dependencies...
@@ -34,14 +44,17 @@ Built webpack project.
 ```
 
 As a result, the Python dependencies for the project have been installed in
-a new virtualenv for the application and many of the files in your project directory
-have been symlinked inside it.
+a new virtualenv for the application and many of the files in your project
+directory have been symlinked inside it.
 
 **Notes and Known Issues**
 
 - You may see `SystemError: Parent module 'setuptools' not loaded, cannot perform relative import`
-  at the dependency locking step. This depends on your version of `setuptools` (bleeding edge causes this)
-  and can be solved by setting an environment variable: `SETUPTOOLS_USE_DISTUTILS=stdlib`. [See more details](https://github.com/pypa/setuptools/blob/17cb9d6bf249cefe653d3bdb712582409035a7db/CHANGES.rst#v5000). This sudden upstream change will be addressed more systematically in future releases.
+  at the dependency locking step. This depends on your version of
+  `setuptools` (bleeding edge causes this) and can be solved by setting an
+  environment variable: `SETUPTOOLS_USE_DISTUTILS=stdlib`.
+  [See more details](https://github.com/pypa/setuptools/blob/17cb9d6bf249cefe653d3bdb712582409035a7db/CHANGES.rst#v5000).
+  This sudden upstream change will be addressed more systematically in future releases.
 
 
 ## Setup the database, Elasticsearch, Redis and RabbitMQ
@@ -52,10 +65,10 @@ setup correctly and the containers running them will even restart upon a reboot
 of your machine. If you stop and restart those containers, your data will still
 be there. Upon running this command again, the initial setup is skipped.
 
-
 ``` bash
 invenio-cli services
 ```
+
 ``` console
 Making sure containers are up...
 Creating network "development-instance_default" with the default driver
@@ -86,6 +99,7 @@ you can use `--force` and nuke the content!
 ``` bash
 invenio-cli services --force
 ```
+
 ``` console
 Making sure containers are up...
 development-instance_mq_1 is up-to-date
@@ -109,25 +123,6 @@ Creating indexes...
 Putting templates...
 ```
 
-**Known issues**:
-
-The Elasticsearch container might crash due to lack of memory. One solution is to increase the maximum allowed allocation per process (See more [here](https://www.elastic.co/guide/en/elasticsearch/reference/7.6/docker.html)). Solving this issue depends on your OS:
-
-On Linux, add the following to ``/etc/sysctl.conf`` on your local machine (host machine):
-
-```bash
-# Memory mapped max size set for ElasticSearch
-vm.max_map_count=262144
-```
-
-On macOS, do the following:
-
-```bash
-screen ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/tty
-# and in the shell
-sysctl -w vm.max_map_count=262144
-```
-
 ## Populate DB
 
 Let's add some content so you can interact a bit with the instance. For this
@@ -136,6 +131,7 @@ you will generate 10 random demo records, using the `demo` command:
 ``` bash
 invenio-cli demo --local
 ```
+
 ``` console
 Making sure containers are up...
 development-instance_mq_1 is up-to-date
