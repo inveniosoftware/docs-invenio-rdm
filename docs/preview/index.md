@@ -15,7 +15,7 @@ The CLI will require the following data:
 - **Project name**: Title of your project with space allowed (project name for humans)
 - **Project short name**: Hyphenated and lowercased title (project name for machines)
 - **Project website**: URL where the project will be deployed
-- **Github repository**: Repository in format `<owner>/<code repository>`
+- **GitHub repository**: Repository in format `<owner>/<code repository>`
 - **Description**: Short description of project
 - **Author name**: Your name or that of your organization
 - **Author email**: Email for communication
@@ -113,7 +113,8 @@ drwxr-xr-x 2 youruser youruser 4096 Feb 19 13:45 templates/
 ## Preview instance
 
 !!! warning "NEW: Adjust `SITE_HOSTNAME`"
-    New in the November release the `SERVER_HOSTNAME` is now called `SITE_HOSTNAME` and can be modified in `invenio.cfg` or using environment variables.
+    New in the October release: the `SERVER_HOSTNAME` configuration variable is now called `SITE_HOSTNAME`
+    and can be modified in `invenio.cfg` or using the `INVENIO_SITE_HOSTNAME` environment variable.
 
 #### Set SITE_HOSTNAME
 
@@ -182,7 +183,7 @@ randomly generated records:
 invenio-cli demo --containers
 ```
 
-You can now get a full sense for what InvenioRDM offers and explore.
+You can now get a full sense for what InvenioRDM offers. Explore!
 
 
 ## Running Invenio commands
@@ -193,30 +194,28 @@ is containerized, you need to connect to the web-api or web-ui container in orde
 to use one of those commands. In fact, this is what `invenio-cli` does behind the scene!
 
 ``` bash
-docker exec -it <container name or id> /bin/bash
-invenio <your command>
+docker-compose --file docker-compose.full.yml exec web-ui /bin/bash -c "invenio <your command>"
 ```
 
-You can use `docker ps` to get the name or id of the web-api or web-ui container.
 
 ## Stop it
 
-If you want to temporarily stop the instance, without loosing the data that
-was generated you can use the `stop` command:
+If you want to temporarily stop the instance without losing the data that
+was generated, you can use the `stop` command:
 
 ```bash
 invenio-cli stop
 ```
 
-On the other hand, if you wish clean up and delete every Docker trace
-InvenioRDM you can use the `destroy` command. Note that `destroy` will
-also `stop` the containers, so there is no need to run the previous command:
+On the other hand, if you wish to clean up and delete all Docker artefacts,
+you can use the `destroy` command. It removes all containers, images and voluments.
+Note that `destroy` will also `stop` the containers, so there is no need to run the previous command:
 
 ```bash
 invenio-cli destroy
 ```
 
-## Conclusions
+## Conclusion
 
 In just two commands you can get a preview of InvenioRDM:
 

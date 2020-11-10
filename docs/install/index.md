@@ -19,7 +19,7 @@ Some system requirements are needed beforehand:
     InvenioRDM targets CPython 3.6 and 3.7 (lowest 3.6.2). Anaconda Python in particular is not currently supported and other Python distributions are not tested.
 
 In addition, make sure the user that will be executing the CLI has access to
-the docker command (i.e. it is not only available for the root user):
+the `docker` command (i.e. it is not only available for the root user):
 
 ```bash
 sudo usermod --append --groups docker $USER
@@ -27,26 +27,25 @@ sudo usermod --append --groups docker $USER
 
 #### Hardware and Docker requirements
 
-We usually deploy the RDM in machines that have around 8GB of RAM and at least
-4 cores. On the same topic, make sure that docker has enough memory to run. Be
-default it gets 2GB of RAM, which most likely won't be enough. If you can
-allocate 6-8GB to it might be optimal. 
+We usually deploy the RDM on machines that have around 8GB of RAM and at least
+4 cores.
 
-In Linux based systems Docker can use all available memory. In OS X you can do
-that in `Docker --> preferences --> resources` and adjust the `Memory` to the
-corresponding value. If you have a few cores more to spare, it might be a good
-idea to give more than 2. Take into account that you are going to be running
-between 4 and 8 containers (among them an Elasticsearch container, which is
-quite demanding).
+On the same topic, make sure that Docker itself has enough memory to run.
+In Linux based systems Docker can use all available memory. In OS X,
+by default, it gets 2GB of RAM which most likely won't be enough. Allocating
+6-8GB to it is optimal. You can do that in `Docker --> preferences --> resources`
+and adjust the `Memory` to the corresponding value. If you have a few cores
+more to spare, it might be a good idea to give more than 2. Take into account
+that you will run between 4 and 8 containers.
 
-In previous releases we recommended to increase the maximum allowed allocation
-per process (See more [here](https://www.elastic.co/guide/en/elasticsearch/reference/7.6/docker.html)).
-However, it has been reported to not be working anymore.
+Among the containers you will run is an Elasticsearch container which is quite demanding.
+Per Elasticsearch's [Docker documentation](https://www.elastic.co/guide/en/elasticsearch/reference/7.9/docker.html#docker-prod-prerequisites),
+you will want to apply the following kernel setting:
 
 On Linux, add the following to ``/etc/sysctl.conf`` on your local machine (host machine):
 
 ```bash
-# Memory mapped max size set for ElasticSearch
+# Maximum number of memory map areas a process (ElasticSearch) may have
 vm.max_map_count=262144
 ```
 
@@ -60,8 +59,7 @@ sysctl -w vm.max_map_count=262144
 
 ## Install the CLI
 
-Once you have installed these requirements, you can install the Invenio-CLI
-and manage your InvenioRDM instance using the Invenio CLI package,
+Once you have installed these requirements, you can install the Invenio CLI package,
 aptly named `invenio-cli`. The package is available on [PyPI](https://pypi.org/project/invenio-cli/).
 Use your favorite way to install a Python package:
 
