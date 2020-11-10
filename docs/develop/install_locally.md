@@ -13,12 +13,14 @@ Before going on, let's move into the project directory:
 cd development-instance
 ```
 
+## Install for development
+
 To run the application locally, we will need to install it and its dependencies
-first. For this release, we will need to add `--pre`, since we do have to
+first. For this release, we need to add `--pre`, since we do have to
 install alpha releases. Be patient, it might take some time to build.
 
 !!! info "Pre-requisite: FLASK_ENV is available via invenio-cli flags"
-    You do not need to export `FLASK_ENV` anymore, just call the commands with
+    You do not need to export `FLASK_ENV` anymore. Just call the commands with
     `--development` or `-d`.
     To be able to modify assets and work on dependent modules, the environment
     variable `FLASK_ENV` must be set to `development`. This will instruct the
@@ -47,7 +49,7 @@ As a result, the Python dependencies for the project have been installed in
 a new virtualenv for the application and many of the files in your project
 directory have been symlinked inside it.
 
-**Notes and Known Issues**
+#### Notes and Known Issues
 
 - You may see `SystemError: Parent module 'setuptools' not loaded, cannot perform relative import`
   at the dependency locking step. This depends on your version of
