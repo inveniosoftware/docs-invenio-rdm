@@ -35,6 +35,7 @@ nav:
     - Install Locally: 'develop/install_locally.md'
     - Run: 'develop/run.md'
     - Make it your own: 'develop/make_it_your_own.md'
+    - Develop/Edit a module: 'develop/edit_module.md'
     - Troubleshooting: 'develop/troubleshoot.md'
     - Cleanup: 'develop/cleanup.md'
   - Extensions:
