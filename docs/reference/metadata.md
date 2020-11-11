@@ -925,11 +925,12 @@ Example:
 }
 ```
 
-### Items (0-n)
+### Entries (0-n)
 
-The items lists the associated digital files for the resource described by the
-record. The files must all be registered in Invenio-Files-REST store independently.
-This is to ensure that files can be tracked and fixity can be checked.
+The entries field lists the associated digital files for the resource described
+by the record. The files must all be registered in Invenio-Files-REST store
+independently. This is to ensure that files can be tracked and fixity can be
+checked.
 
 The key (``paper.pdf`` below) represents a file path.
 
@@ -949,7 +950,7 @@ Example:
 ```json
 {
     "files": {
-        "items": {
+        "entries": {
             "paper.pdf": {
                 "version_id": "<object-version-id>",
                 "bucket_id": "<bucket-id>",
@@ -1256,7 +1257,7 @@ Following is a full example of a record:
         "height": 1280
       }
     },
-    "items": {
+    "entries": {
       "paper.pdf": {
         "version_id": "<object-version-id>",
         "bucket_id": "<bucket-id>",
