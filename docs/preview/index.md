@@ -148,6 +148,8 @@ set --export INVENIO_SITE_HOSTNAME "127.0.0.1"
 The project is initialized, we now run it. Switch to the project
 directory and do so:
 
+**NOTE**: Ensure you have done the steps in [Set SITE HOSTNAME](#Set-SITE_HOSTNAME) before you proceed!
+
 ``` bash
 cd inveniordm-preview
 invenio-cli containerize --pre
