@@ -15,7 +15,7 @@ process when using webpack, but Invenio-CLI got you covered.
 First you have to install the module you want to edit:
 
 ```
-pip install ../path/to/new-module
+invenio-cli ext module-install ../path/to/new-module
 ```
 
 Then you have to clean the assets (`--force` or `-f`), and create symbolic links
@@ -62,7 +62,7 @@ module you have to install and watch it. Invenio-CLI has commands for that
 too. To install a module run:
 
 ```
-invenio-cli install-module ../path/to/react-module
+invenio-cli assets install-module ../path/to/react-module
 ```
 
 Then you have to watch it. open another terminal in your instance path
@@ -71,5 +71,5 @@ virtual environment. Note that if you are already watching some python
 module, this action is independent (and per module):
 
 ```
-invenio-cli watch-module  react-module
+invenio-cli assets watch-module  react-module
 ```

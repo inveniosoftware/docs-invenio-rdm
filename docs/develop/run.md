@@ -130,19 +130,13 @@ curl -k -XGET https://127.0.0.1:5000/api/records | python3 -m json.tool
                 "created": "2020-10-12 16:25:20.729095",
                 "updated": "2020-10-12 16:25:20.729095",
                 "revision_id": 1,
+                "conceptid": "5fk5g-mq814",
                 "id": "zgxnf-z7n12",
                 "links": {
                     "self": "https://127.0.0.1:5000/api/records/zgxnf-z7n12",
                     "self_html": "https://127.0.0.1:5000/records/zgxnf-z7n12"
                 },
                 "metadata": {
-                    "_internal_notes": [
-                        {
-                            "note": "RDM record",
-                            "timestamp": "1981-12-29",
-                            "user": "inveniouser"
-                        }
-                    ],
                     "additional_descriptions": [
                         {
                             "description": "This description has been shortened.",
@@ -162,7 +156,6 @@ curl -k -XGET https://127.0.0.1:5000/api/records | python3 -m json.tool
                             "type": "alternativetitle"
                         }
                     ],
-                    "conceptid": "5fk5g-mq814",
                     "contributors": [
                         {
                             "affiliations": [
@@ -222,6 +215,20 @@ curl -k -XGET https://127.0.0.1:5000/api/records | python3 -m json.tool
                         }
                     ],
                     "languages": ["eng"],
+                    "locations": [
+                        {
+                            "place": "Valday",
+                            "identifiers": {
+                                "geonames": "12345abcde",
+                                "wikidata": "12345abcde"
+                            },
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [36.1315755, -132.239372]
+                            },
+                            "description": "Random place on land..."
+                        }
+                    ],
                     "publisher": "InvenioRDM",
                     "publication_date": "1970-12-05",
                     "references": [
@@ -273,7 +280,7 @@ curl -k -XGET https://127.0.0.1:5000/api/records | python3 -m json.tool
         "total": 10
     },
     "links": {
-        "self": "https://127.0.0.1/api/records?page=1&size=25&sort=newest"
+        "self": "https://127.0.0.1:5000/api/records?page=1&size=25&sort=newest"
     },
     "sortBy": "newest"
 }
@@ -373,9 +380,7 @@ curl -k -XGET https://127.0.0.1:5000/api/records?q=Gladiator | python3 -m json.t
                 "access": {
                     "access_right": "open",
                     "files": false,
-                    "owned_by": [
-                        1
-                    ],
+                    "owned_by": [1],
                     "metadata": false,
                     "embargo_date": "2021-02-15"
                 },
