@@ -7,7 +7,7 @@ command line tool for creating and updating your instance.
 
 Some system requirements are needed beforehand:
 
-- [Python](https://www.python.org/) 3.6.2+ (Docker images are available for Python 3.6, 3.7 and 3.8. However, Python 3.8 is in beta testing phase).
+- [Python](https://www.python.org/) 3.6.2+ (Docker images are available for Python 3.6, 3.7 and 3.8.
 - Python development headers. On Ubuntu: `sudo apt install python3-dev`. On RHEL/Fedora: `yum install -y python3-devel.x86_64`.
   On macOS: install XCode and activate the command line utilities.
 - [Node.js](https://nodejs.org) 14.0.0+ (not needed to preview, only needed to develop)
@@ -16,7 +16,7 @@ Some system requirements are needed beforehand:
 - [Cairo](https://invenio-formatter.readthedocs.io/en/latest/installation.html) needed for badges to be properly displayed.
 
 !!! warning "Other Python distributions"
-    InvenioRDM targets CPython 3.6 and 3.7 (lowest 3.6.2). Anaconda Python in particular is not currently supported and other Python distributions are not tested.
+    InvenioRDM targets CPython 3.6, 3.7 and 3.8 (lowest 3.6.2). Anaconda Python in particular is not currently supported and other Python distributions are not tested.
 
 In addition, make sure the user that will be executing the CLI has access to
 the `docker` command (i.e. it is not only available for the root user):

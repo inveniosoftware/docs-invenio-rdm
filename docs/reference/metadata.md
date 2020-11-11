@@ -291,7 +291,7 @@ Example:
 
 The description of a record.
 
-The fields is compatible with *17. Description* in DataCite.
+The fields is compatible with *17. Description* in DataCite. Compared to DataCite the field does not support specifying the language of the description.
 
 The description may use a whitelist of HTML tags and attributes to style the text.
 
@@ -496,7 +496,7 @@ Persistent identifiers for the resource other than the ones registered as system
 
 This field is compatible with *11. Alternate Identifiers* in DataCite.
 
-The main difference between the system-managed identifiers and this field, is that system-managed identifiers are fully controlled and managed by InvenioRDM, while identifiers listed here are use solely for . For instance, a DOI registered in the system-managed identifiers will prevent another record with the same DOI from being created. A DOI included in this field, will not prevent another record from including the same DOI in this field.
+The main difference between the system-managed identifiers and this field, is that system-managed identifiers are fully controlled and managed by InvenioRDM, while identifiers listed here are use solely for display purposes. For instance, a DOI registered in the system-managed identifiers will prevent another record with the same DOI from being created. A DOI included in this field, will not prevent another record from including the same DOI in this field.
 
 Subfields:
 
@@ -751,6 +751,10 @@ Example:
 ```
 
 ## Extensions
+
+!!! warning "Work in progress"
+    The access control fields are subject to change during December-January
+    2020 when the custom fields feature is being finalized.
 
 InvenioRDM supports extending records with custom metadata per instance. The
 instance must configure all the fields. Here, we only describe how the
