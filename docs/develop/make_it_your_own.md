@@ -362,21 +362,21 @@ Did the changes work? We are going to try to create a new draft:
 ``` bash
 curl -k -XPOST -H "Content-Type: application/json" https://127.0.0.1:5000/api/records -d '{
     "access": {
-        "metadata_restricted": false,
-        "files_restricted": false,
-        "owners": [1],
         "access_right": "open",
-        "created_by": 1
+        "files": false,
+        "owned_by": [1],
+        "metadata": false,
+        "embargo_date": "2021-02-15"
     },
     "metadata": {
         "creators": [
             {
                 "name": "Marcus Junius Brutus",
-                "type": "Personal",
+                "type": "personal",
                 "given_name": "Marcus",
                 "family_name": "Brutus",
                 "identifiers": {
-                    "Orcid": "0000-0002-1825-0097"
+                    "orcid": "0000-0002-1825-0097"
                 },
                 "affiliations": [
                     {
@@ -388,16 +388,10 @@ curl -k -XPOST -H "Content-Type: application/json" https://127.0.0.1:5000/api/re
                 ]
             }
         ],
-        "descriptions": [
+        "description": "A story about how permissions work.",
+        "rights": [
             {
-                "description": "A story about how permissions work.",
-                "type": "Abstract",
-                "lang": "eng"
-            }
-        ],
-        "licenses": [
-            {
-                "license": "Berkeley Software Distribution 3",
+                "rights": "Berkeley Software Distribution 3",
                 "uri": "https://opensource.org/licenses/BSD-3-Clause",
                 "identifier": "BSD-3",
                 "scheme": "BSD-3"
@@ -408,13 +402,7 @@ curl -k -XPOST -H "Content-Type: application/json" https://127.0.0.1:5000/api/re
             "type": "image",
             "subtype": "image-photo"
         },
-        "titles": [
-            {
-                "title": "A permission story",
-                "type": "Other",
-                "lang": "eng"
-            }
-        ],
+        "title": "A permission story",
         "version": "v0.0.1"
 }'
 ```

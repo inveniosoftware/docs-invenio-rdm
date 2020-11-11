@@ -10,6 +10,12 @@ Stopping server and worker...
 Server and worker stopped...
 ```
 
+If you wish to stop the service containers without destroying them nor wiping their content, use the `stop` command:
+
+```bash
+invenio-cli stop
+```
+
 ## Destroy the instance
 
 If you want to get to a clean state with no images, containers or volumes, then destroy the instance. This **WILL** permanently erase your volume data (database and Elasticsearch indices).

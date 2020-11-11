@@ -34,10 +34,8 @@ Once you have your functionality ready, in order to add it to your instance you 
 
 ``` bash
 cd path/to/your/instance
-pipenv install [--pre] -e path/to/your/extension
+invenio-cli ext module-install path/to/your/extension
 ```
-
-As you can see, `--pre` is optional. It is only needed when the package is in a pre-release state. In addition, note that you do not need to specify a local path. If the package is available e.g. via PyPi, you can just install it by its name.
 
 ## Sanity check and run!
 
@@ -59,4 +57,4 @@ invenio-cli run
 ```
 
 !!! note "UI related extensions"
-    If your extension adds scss and/or javascript, you will need to update your final static files before running your instance! You can do so with the CLI: `invenio-cli update [--no-install-js]`
+    If your extension adds scss and/or javascript, you will need to update your final static files before running your instance! You can do so with the CLI: `invenio-cli assets update --development --force`

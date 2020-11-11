@@ -87,6 +87,11 @@ worker:
   image: your/invenio-image
 ```
 
+!!! error "`INVENIO_SITE_HOSTNAME` needs to be set up"
+    The Helm charts need to be updated to support this variable in the `values.yaml`. In the meantime,
+    this value can be set manually in the ConfigMap, or hardcode it in the web charts. The value should
+    be the URL or your instance (Same as the `host` above).
+
 !!! info "Image registries"
     You can get to know more about where and how to store you instance's docker image [here](./registries).
 
