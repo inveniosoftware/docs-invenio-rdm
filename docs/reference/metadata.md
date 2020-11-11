@@ -2,11 +2,11 @@
 
 **Summary**
 
-The following document is a reference guide for the internal metadata schema for bibliographic records in InvenioRDM.
+The following document is a reference guide for the internal metadata schema of bibliographic records in InvenioRDM.
 
 **Intended audience**
 
-The guide is intended for advanced users, administrators and developers of InvenioRDM with significant prior experience.
+This guide is intended for advanced users, administrators and developers of InvenioRDM with significant prior experience.
 
 ## Overview
 
@@ -18,7 +18,7 @@ and modifications.
 
 All records contain a schema definition in the top-level key ``$schema``. The value
 is a link to the internal JSONSchema which is being used to validate the structure of the record.
-The field is fully system-managed.
+This field is fully system-managed.
 
 ```json
 {
@@ -31,18 +31,20 @@ The field is fully system-managed.
 
 Following is an overview of the top-level fields in a record:
 
-- ``id``/``pid`` - The internal persistent identifier for a specific version.
-- ``conceptid``/``conceptpid``  - The internal persistent identifier for all versions.
-- ``pids`` - System-managed external persistent identifiers (DOIs, Handles, OAI-PMH identifiers).
-- ``metadata`` - Descriptive metadata for the resource.
-- ``ext`` - Instance specific descriptive metadata for the resource.
-- ``provenance`` - System-managed provenance information.
-- ``access`` - Access control information.
-- ``files`` - Associated files information.
-- ``tombstone`` - Tombstone information.
+| Field |   Description   |
+|:-----:|:----------------|
+|  ``id``/``pid``  | The internal persistent identifier for a specific version.  |
+|  ``conceptid``/``conceptpid``  | The internal persistent identifier for all versions.  |
+|  ``pids`` | System-managed external persistent identifiers (DOIs, Handles, OAI-PMH identifiers).  |
+|  ``metadata`` | Descriptive metadata for the resource.  |
+|  ``ext`` | Instance specific descriptive metadata for the resource.  |
+|  ``provenance`` | System-managed provenance information.  |
+|  ``access`` | Access control information.  |
+|  ``files`` | Associated files information.  |
+|  ``tombstone`` | Tombstone information.  |
 
-Each of these keys will be explained below. Following is an example of the
-top-level fields in a record looks like:
+Each of these keys will be explained below. Following is an example of how the
+top-level fields in a record look like:
 
 ```json
 {
@@ -65,8 +67,10 @@ top-level fields in a record looks like:
 In addition to the JSON document, the following fields are also stored for each
 record in the database table:
 
-- creation timestamp (UTC)
-- modification timestamp (UTC)
+- Creation timestamp (UTC).
+- Modification timestamp (UTC).
+
+When querying for a record, they are shown as `created` and `updated` in the top level of the record JSON.
 
 ## System-managed persistent identifiers
 
@@ -79,13 +83,17 @@ A record stores information about two internal PIDs:
 
 Specific version PID:
 
-- ``id`` - the value of the internal record identifier.
-- ``pid`` - object level information about the identifier needed for operational reasons.
+| Field |   Description   |
+|:-----:|:----------------|
+|``id`` | The value of the internal record identifier. |
+| ``pid`` | Object level information about the identifier needed for operational reasons. |
 
 Concept version PID:
 
-- ``conceptid`` - the value of the internal record identifier.
-- ``conceptpid`` - object level information about the identifier needed for operational reasons.
+| Field |   Description   |
+|:-----:|:----------------|
+| ``conceptid`` | The value of the internal record identifier. |
+| ``conceptpid`` | Object level information about the identifier needed for operational reasons. |
 
 Example:
 
@@ -106,17 +114,19 @@ Example:
 
 ### External PIDs
 
-External PIDs a persistent identifiers managed via Invenio-PIDStore and that may require integration
+External PIDs are persistent identifiers managed via Invenio-PIDStore and that may require integration
 with external registration services.
 
 Persistent identifiers are globally unique in the system, thus you cannot have two records
-with the same system-managed persistent identifer (see also Metadata > Identifiers).
+with the same system-managed persistent identifer (see also [Metadata > Identifiers](#identifiers-0-n)).
 
 Only one identifier can be registered per system defined scheme. Each identifier has the following subfields:
 
-- ``identifier`` (1) - the identifier value
-- ``provider`` (1) - the provider identifier used internally by the system.
-- ``client`` (0-1) - the client identifier used for connecting with an external registration service.
+| Field | Cardinality |   Description   |
+|:-----:|:-----------:|:----------------|
+|``identifier`` | (1) | The identifier value. |
+| ``provider`` | (1) | the provider identifier used internally by the system. |
+| ``client`` | (0-1) | The client identifier used for connecting with an external registration service. |
 
 ```json
 {
@@ -138,18 +148,22 @@ Other system managed identifiers will also be be recorded here such as the OAI i
 
 ## Metadata
 
+The cardinality of each field is expressed in between parenthesis on the title of each field's section.
+
 ### Resource Type (1)
 
 The type of the resource described by the record. The resource type must be selected from a  controlled vocabulary which can be customized by each InvenioRDM instance.
 
-This fields is compatible with ``10. Resource Type`` in DataCite. DataCite allows free text for the specific subtype, however InvenioRDM requires this to come from an customizable controlled vocabulary.
+This field is compatible with *10. Resource Type`* in DataCite. DataCite allows free text for the specific subtype, however InvenioRDM requires this to come from an customizable controlled vocabulary.
 
-The resource type vocabulary also defines mappings to other vocabularies such as Schema.org, Citation Style Language, BibTeX, DataCite and OpenAIRE. These mappings are very important for correct generation of citations due to how different types are being interpreted by reference management systems.
+The resource type vocabulary also defines mappings to other vocabularies such as Schema.org, Citation Style Language, BibTeX, DataCite and OpenAIRE. These mappings are very important for the correct generation of citations due to how different types are being interpreted by reference management systems.
 
 Subfields:
 
-- ``type`` - The general resource type from the controlled vocabulary.
-- ``subtype`` -  The specific resource type from the controlled vocabulary.
+| Field |   Description   |
+|:-----:|:----------------|
+| ``type`` | The general resource type from the controlled vocabulary. |
+| ``subtype`` |  The specific resource type from the controlled vocabulary. |
 
 Example:
 
@@ -164,29 +178,35 @@ Example:
 
 ### Creators (1-n)
 
-The creators field record those persons or organisations that should be credited for the resource described in by the record. The list of person or organisations in the creators field is used for e.g. generating citations, while person or organisations listed in the contributors field are not included the generated citations.
+The creators field registers those persons or organisations that should be credited for the resource described in by the record. The list of person or organisations in the creators field is used for e.g. generating citations, while persons or organisations listed in the contributors field are not included the generated citations.
 
 The field is compatible with *2. Creator* in DataCite. In addition we are adding the possiblity of associating a role (like for contributors). This is specifically for cases where e.g. an editor needs to be credited for the work, while authors of individual articles will be listed under contributors.
 
 Subfields:
 
-- ``name`` (1) - The full name of the person or organisation.
-- ``type`` (0-1, CV) - The type of name. Either ``personal`` or ``organisational``.
-- ``role`` (0-1, CV) - The role of the person or organisation selected from a customizable controlled vocabulary.
-- ``given_name``  (0-1) - Given name(s) if the type is a personal name.
-- ``family_name`` (0-1) - Family name if type is a personal name.
-- ``identifiers``  (0-n) - Person or organisation identifiers.
-- ``affiliations`` (0-n) - Affilations if type is a personal name.
+| Field | Cardinality |   Description   |
+|:-----:|:-----------:|:----------------|
+| ``name`` | (1) | The full name of the person or organisation. |
+| ``type`` | (0-1, CV) | The type of name. Either ``personal`` or ``organisational``. |
+| ``role`` | (0-1, CV) | The role of the person or organisation selected from a customizable controlled vocabulary. |
+| ``given_name``  | (0-1) | Given name(s) if the type is a personal name. |
+| ``family_name`` | (0-1) | Family name if type is a personal name. |
+| ``identifiers``  | (0-n) | Person or organisation identifiers. |
+| ``affiliations`` | (0-n) | Affilations if type is a personal name. |
 
 Affiliations are described with the following subfields:
 
-- ``name`` (1) - The organizational or institutional affiliation of the creator.
-- ``identifiers`` (0-n) - Organisation identifiers.
+| Field | Cardinality |   Description   |
+|:-----:|:-----------:|:----------------|
+| ``name`` | (1) | The organizational or institutional affiliation of the creator. |
+| ``identifiers`` | (0-n) | Organisation identifiers. |
 
 Identifiers are described with the following subfields (note, we only support one identifier per scheme):
 
-- ``scheme`` (1, CV) - The identifier scheme.
-- ``value`` (1) -
+| Field | Cardinality |   Description   |
+|:-----:|:-----------:|:----------------|
+| ``scheme`` | (1, CV) | The identifier scheme. |
+| ``value`` | (1) | Actual value of the identifier. |
 
 Supported creator identifier schemes:
 
@@ -225,6 +245,8 @@ Example:
     }],
 }
 ```
+
+Note that the identifier's schemes are lowercased.
 
 ### Title (1)
 
