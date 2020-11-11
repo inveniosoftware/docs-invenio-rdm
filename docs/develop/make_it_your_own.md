@@ -13,7 +13,7 @@ you (e.g. `app_data/`, `assets/`, `static/`, `templates/`). The configuration fi
 and their dependencies. Conveniently, this means that if you name your files by
 the name used in the configurations for them, you won't even need to edit `invenio.cfg`!
 
-No worries, we go through *all* of the common customizations below.
+No worries, we go through the common customizations below.
 
 !!! info "Using `--development` might save some time"
     This is recommended for developers and advanced users only. Most of the change
@@ -128,9 +128,9 @@ Then, run the `invenio-cli assets update` command as above and refresh the page!
 
 ## Change the record landing page
 
-When you click on a search result, you navigate in the details page of a specific record. This section shows you how to change the way the information is displayed in the details page.
+When you click on a search result, you navigate to the details page of a specific record, often called the record landing page. This section shows you how to change this page.
 
-We are going to configure our instance to use our template for displaying the information in the record's landing page. Open the `invenio.cfg` file and add the below:
+We are going to configure our instance to render the record landing page with our custom template. Open `invenio.cfg` and add the below:
 
 ```python
 from invenio_rdm_records.config import RECORDS_UI_ENDPOINTS
@@ -460,6 +460,6 @@ we were.
 
 ## Add functionality
 
-Need further customizations or additional features? If you are developing a
-features in an existing module check the [Develop or edit a module section](./edit_a_module.md).
-If you are creating your own extensions check the [Extensions section](../extensions/custom.md).
+Need further customizations or additional features? If you are developing
+features in an existing module, check the [Develop or edit a module section](./edit_a_module.md).
+If you are creating your own extensions, check the [Extensions section](../extensions/custom.md).
