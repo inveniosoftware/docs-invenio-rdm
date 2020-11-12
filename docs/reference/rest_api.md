@@ -397,7 +397,7 @@ Content-Type: application/json
   "created": "2020-11-27 10:52:23.945755",
   "expires_at": "2020-11-27 10:52:23.945868",
   "files": {
-    "enabled": true
+    "enabled": false
   },
   "id": "{id}",
   "is_published": false,
@@ -497,7 +497,7 @@ Content-Type: application/json
   "created": "2020-11-27 10:52:23.945755",
   "expires_at": "2020-11-27 10:52:23.945868",
   "files": {
-    "enabled": true
+    "enabled": false
   },
   "id": "{id}",
   "is_published": true,
@@ -597,7 +597,7 @@ Content-Type: application/json
   "created": "2020-11-27 10:52:23.945755",
   "expires_at": "2020-11-27 10:52:23.945868",
   "files": {
-    "enabled": true
+    "enabled": false
   },
   "id": "{id}",
   "is_published": false,
