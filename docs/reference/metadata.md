@@ -59,6 +59,7 @@ top-level fields in a record look like:
     "provenance" : { ... },
     "access" : { ... },
     "files" : { ... },
+    "tombstone" : { ... },
 }
 ```
 
@@ -112,6 +113,8 @@ Example:
 }
 ```
 
+Comment: Why again did we split the internal identiier into `id` and `pid` and not just `pid` with subentries `id`, `pk`, `status`.
+
 ### External PIDs
 
 External PIDs are persistent identifiers managed via Invenio-PIDStore and that may require integration
@@ -152,18 +155,18 @@ The cardinality of each field is expressed in between parenthesis on the title o
 
 ### Resource Type (1)
 
-The type of the resource described by the record. The resource type must be selected from a  controlled vocabulary which can be customized by each InvenioRDM instance.
+The type of the resource described by the record. The resource type must be selected from a controlled vocabulary which can be customized by each InvenioRDM instance.
 
-This field is compatible with *10. Resource Type`* in DataCite. DataCite allows free text for the specific subtype, however InvenioRDM requires this to come from an customizable controlled vocabulary.
+This field is compatible with *10. Resource Type`* in DataCite. DataCite allows free text for the specific subtype, however InvenioRDM requires this to come from a customizable controlled vocabulary.
 
 The resource type vocabulary also defines mappings to other vocabularies such as Schema.org, Citation Style Language, BibTeX, DataCite and OpenAIRE. These mappings are very important for the correct generation of citations due to how different types are being interpreted by reference management systems.
 
 Subfields:
 
-| Field |   Description   |
-|:-----:|:----------------|
-| ``type`` | The general resource type from the controlled vocabulary. |
-| ``subtype`` |  The specific resource type from the controlled vocabulary. |
+| Field | Cardinality |   Description   |
+|:-----:|:-----------:|:----------------|
+| ``type`` | (1, CV) | The general resource type from the controlled vocabulary. |
+| ``subtype`` | (0-1, CV) | The specific resource type from the controlled vocabulary. |
 
 Example:
 
@@ -175,6 +178,8 @@ Example:
     }
 }
 ```
+
+Note that only the subtype (which is more specific) is displayed if it exists.
 
 ### Creators (1-n)
 
@@ -209,7 +214,7 @@ Affiliations are described with the following subfields:
 
 Identifiers are described with the following subfields (note, we only support one identifier per scheme):
 
-| Field | Cardinality |   Description   |
+| Term | Cardinality |   Description   |
 |:-----:|:-----------:|:----------------|
 | ``scheme`` | (1, CV) | The identifier scheme. |
 | ``identifier`` | (1) | Actual value of the identifier. |
@@ -275,14 +280,15 @@ Example:
 
 Additional names or titles by which a resource is known.
 
-The fields is compatible with *3. Title* in DataCite. Compared to DataCite, InvenioRDM splits *3. Title* into two separate fields ``title`` and ``additional_titles``. This is to ensure consistent usage of a record's title throughout the entire software stack for display purposes.
+The field is compatible with *3. Title* in DataCite. Compared to DataCite, InvenioRDM splits *3. Title* into two separate fields ``title`` and ``additional_titles``. This is to ensure consistent usage of a record's title throughout the entire software stack for display purposes.
 
 Subfields:
 
-- ``title`` (1) - The addtional title.
-- ``type`` (1, CV) - The type of the title. One of: ``alternative_title``, ``subtitle`` ``translated_title`` or ``other``.
-Other
-- ``lang`` (0-1, CV) - The language of the title. ISO 639-3 language code.
+| Field | Cardinality |   Description   |
+|:-----:|:-----------:|:----------------|
+| ``title`` | (1) | The addtional title.  |
+| ``type`` | (1, CV) | The type of the title. One of: ``alternative_title``, ``subtitle`` ``translated_title`` or ``other``. Other |
+| ``lang`` | (0-1, CV) | The language of the title. ISO 639-3 language code. |
 
 Example:
 
@@ -296,7 +302,7 @@ Example:
 }
 ```
 
-### Description (1)
+### Description (0-1)
 
 The description of a record.
 
@@ -317,13 +323,15 @@ Example:
 Additional descriptions in addition to the primary description (e.g. abstracts in other
 languages), methods or further notes.
 
-The fields is compatible with *17. Description* in DataCite.
+The field is compatible with *17. Description* in DataCite.
 
 Subfields:
 
-- ``description`` (1) - Free text.
-- ``type`` (1, CV) - The type of the description. One of ``abstract``, ``method``, ``seriesinformation``, ``tableofcontents``, ``technicalinfo``, ``other``.
-- ``lang`` (0-1) -  The language of the description. ISO 639-3 language code.
+| Field | Cardinality |   Description   |
+|:-----:|:-----------:|:----------------|
+| ``description`` | (1) | Free text. |
+| ``type`` | (1, CV) | The type of the description. One of ``abstract``, ``method``, ``seriesinformation``, ``tableofcontents``, ``technicalinfo``, ``other``. |
+| ``lang`` | (0-1) |  The language of the description. ISO 639-3 language code. |
 
 Example:
 
@@ -337,9 +345,9 @@ Example:
 }
 ```
 
-### Publisher (1)
+### Publisher (0-1)
 
-The name of the entity that holds, archives, publishes prints, distributes, releases, issues, or produces the resource. This property will be used to formulate the citation, so consider the prominence of the role. For software, use Publisher for the code repository. If there is an entity other than a code repository, that "holds, archives, publishes, prints, distributes, releases, issues, or produces" the code, use the property Contributor/contributorType/ hostingInstitution for the code repository.
+The name of the entity that holds, archives, publishes, prints, distributes, releases, issues, or produces the resource. This property will be used to formulate the citation, so consider the prominence of the role. For software, use Publisher for the code repository. If there is an entity other than a code repository, that "holds, archives, publishes, prints, distributes, releases, issues, or produces" the code, use the property Contributor/contributorType/ hostingInstitution for the code repository.
 
 Defaults to the name of the repository.
 
@@ -355,19 +363,19 @@ Example:
 
 The date when the resource was or will be made publicly available.
 
-The field is compatible *5. PublicationYear* in DataCite. In case of time intervals the earlist date
+The field is compatible *5. PublicationYear* in DataCite. In case of time intervals, the earliest date is used for DataCite.
 
 Format:
 
-The string must be be formatted according to [Extended Date Time Format (EDTF)](http://loc.gov/standards/datetime/) Level. Only a *"Date"* or a *"Time Interval"* is supported. A *"Date and Time"* is not supported. Following are examples of valid values:
+The string must be be formatted according to [Extended Date Time Format (EDTF)](http://loc.gov/standards/datetime/) Level. Only a *"Date"* or a *"Date Interval"* is supported. A *"Date and Time"* is not supported. Following are examples of valid values:
 
 - Date:
     - ``2020-11-10`` - a complete ISO8601 date.
     - ``2020-11`` - a date with month precision
     - ``2020`` - a date with year precision
-- Time Interval:
-    - ``1939/1945`` a time interval with year precision, beginning sometime in 1939 and ending sometime in 1945.
-    - ``1939-09-01/1945-09`` a time interval with day and month precision, beginning September 1st, 1939 and ending sometime in September 1945.
+- Date Interval:
+    - ``1939/1945`` a date interval with year precision, beginning sometime in 1939 and ending sometime in 1945.
+    - ``1939-09-01/1945-09`` a date interval with day and month precision, beginning September 1st, 1939 and ending sometime in September 1945.
 
 
 The localization (L10N) of EDTF dates is based on the [skeletons](http://cldr.unicode.org/translation/date-time-1/date-time-patterns) defined by the [Unicode Common Locale Data Repository (CLDR)](http://cldr.unicode.org).
@@ -394,9 +402,11 @@ This field is compatible with *6. Subject* in DataCite.
 
 Subfields:
 
-- ``subject`` (1) - free text, the subject term.
-- ``identifier`` (0-1) - the identifier of the term (``scheme`` also be specified).
-- ``scheme`` (0-1, CV) - the subject scheme or classification code or authority.
+| Field | Cardinality |   Description   |
+|:-----:|:-----------:|:----------------|
+| ``subject`` | (1) | free text, the subject term.
+| ``identifier`` | (0-1) | the identifier of the term (``scheme`` also be specified).
+| ``scheme`` | (0-1, CV) | the subject scheme or classification code or authority.
 
 Supported subject schemes:
 
@@ -423,13 +433,13 @@ Example:
 
 The organisation or person responsible for collecting, managing, distributing, or otherwise contributing to the development of the resource.
 
-This field is compatible with 7. Contributor in DataCite.
+This field is compatible with *7. Contributor* in DataCite.
 
-The structure is identical to the Creators field. The creators field record those persons or organisations that should be credited for the resource described in by the record (e.g. for citation purposes). The contributors field record all other persons or organisations that have contributed but which should not be credited for citation purposes.
+The structure is identical to the Creators field. The "creators" field records those persons or organisations that should be credited for the resource described by the record (e.g. for citation purposes). The "contributors" field records all other persons or organisations that have contributed, but which should not be credited for citation purposes.
 
 Subfields:
 
-- *Please see Creators field.*
+- *See [Creators field](#creators-1-n).*
 
 Note that Creators and Contributors may use different controlled vocabularies for the role field.
 
@@ -471,9 +481,11 @@ The field is compatible with *8. Date* in DataCite.
 
 Subfields:
 
-- ``date`` (1) - A date or time interval according to Extended Date Time Format level 0.
-- ``type`` (1, CV) - The type of date. A value from a customizable controlled vocabulary (defaults to DataCite's date type vocabulary).
-- ``description`` (0-1) - free text, specific information about the date.
+| Field | Cardinality |   Description   |
+|:-----:|:-----------:|:----------------|
+| ``date`` | (1) | A date or time interval according to Extended Date Time Format level 0.
+| ``type`` | (1, CV) | The type of date. A value from a customizable controlled vocabulary (defaults to DataCite's date type vocabulary).
+| ``description`` | (0-1) | free text, specific information about the date.
 
 Example:
 
@@ -511,12 +523,14 @@ Persistent identifiers for the resource other than the ones registered as system
 
 This field is compatible with *11. Alternate Identifiers* in DataCite.
 
-The main difference between the system-managed identifiers and this field, is that system-managed identifiers are fully controlled and managed by InvenioRDM, while identifiers listed here are use solely for display purposes. For instance, a DOI registered in the system-managed identifiers will prevent another record with the same DOI from being created. A DOI included in this field, will not prevent another record from including the same DOI in this field.
+The main difference between the system-managed identifiers and this field, is that system-managed identifiers are fully controlled and managed by InvenioRDM, while identifiers listed here are used solely for display purposes. For instance, a DOI registered in the system-managed identifiers will prevent another record with the same DOI from being created. A DOI included in this field, will not prevent another record from including the same DOI in this field.
 
 Subfields:
 
-- ``identifier`` -
-- ``scheme`` -
+| Field | Cardinality |   Description   |
+|:-----:|:-----------:|:----------------|
+| ``identifier`` | (1) | identifier value |
+| ``scheme`` | (1, CV) | The scheme of the identifier. |
 
 Supported identifier schemes:
 
@@ -542,10 +556,12 @@ does not support the subfields *12.c relatedMetadataScheme*, *12.d schemeURI* an
 
 Subfields:
 
-- ``identifier`` (1, CV) - A global unique persistent identifier for a related resource.
-- ``scheme`` (1, CV) - The scheme of the identifier.
-- ``relation`` (1, CV) -
-- ``resource_type`` (0-1, CV) - The resource type of the related resource. Uses the same customizable vocabulary as the Resource Type field.
+| Field | Cardinality |   Description   |
+|:-----:|:-----------:|:----------------|
+| ``identifier`` | (1, CV) | A global unique persistent identifier for a related resource.
+| ``scheme`` | (1, CV) | The scheme of the identifier.
+| ``relation`` | (1, CV) | The relation of the record to this related resource.
+| ``resource_type`` | (0-1, CV) | The resource type of the related resource. Uses the same customizable vocabulary as the Resource Type field.
 
 Supported identifier schemes:
 
@@ -584,7 +600,7 @@ Example:
 
 Technical format of the resource.
 
-This field is compatible with *14. Version*
+This field is compatible with *14. Format* in Datacite.
 
 Example:
 
@@ -612,10 +628,6 @@ Example:
 
 ### Rights (0-n)
 
-!!! warning "Work in progress"
-    This field may change after work done on controlled vocabulary management is
-    completed during December 2020.
-
 Rights management statement for the resource.
 
 This field is compatible with *16. Rights* in DataCite.
@@ -628,17 +640,21 @@ The rights statements does not have any impact on access control to the resource
 
 Subfields:
 
-- ``rights``
-- ``scheme``
-- ``identifier``
-- ``url``
+| Field | Cardinality |   Description   |
+|:-----:|:-----------:|:----------------|
+| ``description`` | (0-1) | Human readable license text |
+| ``id`` | (0-1) | Identifier value |
+| ``identifier`` | (0-1) | Identifier value for scheme |
+| ``link`` | (0-1) | Link to full license |
+| ``scheme`` | (0-1) | Provenance / scheme / namespace for identifier of rights |
+| ``title`` | (0-1) | Human readable license text |
 
 Example:
 
 ```json
 {
   "rights": [{
-      "rights": "Creative Commons Attribution 4.0 International",
+      "title": "Creative Commons Attribution 4.0 International",
       "scheme": "spdx",
       "identifier": "cc-by-4.0",
       "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -650,7 +666,7 @@ Example:
 
 Spatial region or named place where the data was gathered or about which the data is focused.
 
-The field is compatible with *18. GeoLocation* in DataCite Metadata Schema. The field however have important differences:
+The field is compatible with *18. GeoLocation* in DataCite Metadata Schema. The field however has important differences:
 
 - The field allows associating geographical identifiers with a location.
 - The field allows associating a free text description to the location.
@@ -661,14 +677,18 @@ the type information as well as ``"properties": null`` in order to make it valid
 
 Subfields:
 
-- ``features`` (1) - a list of GeoJSON feature objects. The reason for this keyword is to align with GeoJSON and allow for later expanded with other subfields such as bounding box (``bbox``) from the GeoJSON spec.
+| Field | Cardinality |   Description   |
+|:-----:|:-----------:|:----------------|
+| ``features`` | (1) | A list of GeoJSON feature objects. The reason for this keyword is to align with GeoJSON and allow for later expansion with other subfields such as bounding box (``bbox``) from the GeoJSON spec. |
 
 Subfields of items in ``features``:
 
-- ``geometry`` (0-1) - a GeoJSON [Geometry Object](https://tools.ietf.org/html/rfc7946#section-3.1) according to RFC 7946. Note, GeoJSON's coordinate reference system is [WGS84](https://tools.ietf.org/html/rfc7946#section-4).
-- ``identifiers``(0-1) -  Identifiers for the geographic locations. This could for instance be from [GeoNames](https://www.geonames.org) or [Getty Thesaurus of Geographic Names](http://www.getty.edu/research/tools/vocabularies/tgn/) (TGN) which would allow linking to historic places.
-- ``place`` (0-1) - free text, used to describe a geographical location.
-- ``description`` (0-1) - free text, used for any extra information related to the location.
+| Field | Cardinality |   Description   |
+|:-----:|:-----------:|:----------------|
+| ``geometry`` | (0-1) | A GeoJSON [Geometry Object](https://tools.ietf.org/html/rfc7946#section-3.1) according to RFC 7946. Note, GeoJSON's coordinate reference system is [WGS84](https://tools.ietf.org/html/rfc7946#section-4). |
+| ``identifiers`` | (0-1) | Identifiers for the geographic locations. This could for instance be from [GeoNames](https://www.geonames.org) or [Getty Thesaurus of Geographic Names](http://www.getty.edu/research/tools/vocabularies/tgn/) (TGN) which would allow linking to historic places. |
+| ``place`` | (0-1) | Free text, used to describe a geographical location. |
+| ``description`` | (0-1) | Free text, used for any extra information related to the location. |
 
 Notes:
 
@@ -712,14 +732,18 @@ The funder subfield is intended to be linked to a customizable vocabulary from O
 
 Subfields:
 
-- ``funder`` (1) - The organisation of the funding provider.
-- ``award`` (0-1) - The award (grant) sponsored by the funder.
+| Field | Cardinality |   Description   |
+|:-----:|:-----------:|:----------------|
+| ``funder`` | (1) | The organisation of the funding provider. |
+| ``award`` | (0-1) | The award (grant) sponsored by the funder. |
 
 Funder subfields:
 
-- ``name`` - The name of the funder.
-- ``identifer`` -  An unique identifier for the funder.
-- ``scheme`` - The scheme of the identifier.
+| Field | Cardinality |   Description   |
+|:-----:|:-----------:|:----------------|
+| ``name`` | (1) | The name of the funder. |
+| ``identifer`` | (0-1) | An unique identifier for the funder. |
+| ``scheme`` | (0-1, CV) | The scheme of the identifier. |
 
 Supported schemes:
 
@@ -731,10 +755,12 @@ Supported schemes:
 
 Award subfields:
 
-- ``title`` (0-1) - The title of the award
-- ``number`` (0-1) - The code assigned by the funder to a sponsored award (grant).
-- ``identifer`` (0-1) - An unique identifier for the funder.
-- ``scheme`` (0-1) - The scheme of the identifier.
+| Field | Cardinality |   Description   |
+|:-----:|:-----------:|:----------------|
+| ``title`` | (1) | The title of the award |
+| ``number`` | (1) | The code assigned by the funder to a sponsored award (grant). |
+| ``identifer`` | (0-1) | A unique identifier for the funder. |
+| ``scheme`` | (0-1) | The scheme of the identifier. |
 
 Example:
 
@@ -765,9 +791,11 @@ A list of reference strings
 
 Subfields:
 
-- ``reference`` (1) - free text, the full reference string
-- ``identifier`` (0-1) - the identifer if known.
-- ``scheme`` (0-1) - the scheme of the identifier.
+| Field | Cardinality |   Description   |
+|:-----:|:-----------:|:----------------|
+| ``reference`` | (1) | free text, the full reference string |
+| ``identifier`` | (0-1) | the identifer if known. |
+| ``scheme`` | (0-1) | the scheme of the identifier. |
 
 Example:
 
@@ -830,7 +858,7 @@ primitive types:
 - dates (encoded as strings)
 - array of any of above primitive types
 
-Extra validation on top of these fields is provided by when configuring the
+Extra validation on top of these fields is provided when configuring the
 fields.
 
 Example:
@@ -854,8 +882,10 @@ Basic provenance information is recorded under the top-level ``provenance`` key.
 
 Subfields:
 
-- ``created_by`` (1) - The agent who originally created the record (currently only users are supported)
-- ``on_behalf_of`` (0-1) - For mediated deposits (currently only users are supported).
+| Field | Cardinality |   Description   |
+|:-----:|:-----------:|:----------------|
+| ``created_by`` | (1) | The agent who originally created the record (currently only users are supported) |
+| ``on_behalf_of`` | (0-1) | For mediated deposits (currently only users are supported). |
 
 Example:
 
@@ -875,7 +905,10 @@ Example:
 ### Owners (1-n)
 
 The owners of the record. All records must be owned by an agent in the system.
-Records
+
+The field's name  is `owned_by`.
+
+Example:
 
 ```json
 {
@@ -911,9 +944,23 @@ is made publicly accessible. The `embargo` field has this structure:
 
 | Field | Cardinality |   Description   |
 |:-----:|:-----------:|:----------------|
-|`active` | (1) | boolean. Is the record under embargo or not. |
-| `until` | (1) | ISO date string. When to lift the embargo. e.g., `"2100-10-01"` |
+| `active` | (1) | boolean. Is the record under embargo or not. |
+| `until` | (0-1) | Required if `active` true. ISO date string. When to lift the embargo. e.g., `"2100-10-01"` |
 | `reason` | (0-1) | string. Explanation behing embargo. |
+
+Example:
+
+```json
+{
+  "access": {
+    "record": "public",
+    "files": "public",
+    "embargo": {
+      "active": false
+    }
+  },
+}
+```
 
 
 ## Files
@@ -924,7 +971,7 @@ increase the overall size of the JSON document.
 
 ### Enabled (1)
 
-The enabled field, determine if the record is a metadata-only records or if
+The enabled field determines if the record is a metadata-only record or if
 files are associated.
 
 Example:
@@ -937,6 +984,8 @@ Example:
 }
 ```
 
+In this case, the record has no associated files.
+
 ### Entries (0-n)
 
 The entries field lists the associated digital files for the resource described
@@ -948,14 +997,16 @@ The key (``paper.pdf`` below) represents a file path.
 
 Subfields:
 
-- ``bucket_id`` (1) - The bucket identifier.
-- ``version_id`` (1) - The logical object identifier.
-- ``file_id`` (1) -  The digital file instance identifier (references a file on storage).
-- ``backend:`` (1) - The backend for the file.
-- ``key`` (1) - The filepath of the file.
-- ``mimetype`` (1) - The mimetype of the file.
-- ``size`` (1) - The size in bytes of the file.
-- ``checksum`` (1) - The checksum of the file in the form ``<algorithm>:<value>``.
+| Field | Cardinality |   Description   |
+|:-----:|:-----------:|:----------------|
+| ``bucket_id`` | (1) | The bucket identifier. |
+| ``version_id`` | (1) | The logical object identifier. |
+| ``file_id`` | (1) |  The digital file instance identifier (references a file on storage). |
+| ``backend:`` | (1) | The backend for the file. |
+| ``key`` | (1) | The filepath of the file. |
+| ``mimetype`` | (1) | The mimetype of the file. |
+| ``size`` | (1) | The size in bytes of the file. |
+| ``checksum`` | (1) | The checksum of the file in the form ``<algorithm>:<value>``. |
 
 Example:
 
@@ -1042,10 +1093,12 @@ removed the record and when.
 
 Subfields:
 
-- ``reason`` - Free text, the reason for removal.
-- ``category`` - An identifier for a category of reasons. Used for statistics purposes and for extracting e.g. spam records from the system.
-- ``removed_by`` - The user who removed the record.
-- ``timestamp`` - The UTC timestamp when the record was removed.
+| Field | Cardinality |   Description   |
+|:-----:|:-----------:|:----------------|
+| ``reason`` | (1) | Free text, the reason for removal. |
+| ``category`` | (1) | An identifier for a category of reasons. Used for statistics purposes and for extracting e.g. spam records from the system. |
+| ``removed_by`` | (1) | The user who removed the record. |
+| ``timestamp`` | (1) | The UTC timestamp when the record was removed. |
 
 Example:
 
@@ -1115,19 +1168,22 @@ Following is a full example of a record:
       "subtype": "article"
     },
     "creators": [{
-      "name": "Nielsen, Lars Holm",
-      "type": "personal",
-      "given_name": "Lars Holm",
-      "family_name": "Nielsen",
-      "identifiers": {
-        "orcid": "0000-0001-8135-3489"
+      "person_or_org": {
+        "family_name": "Collins",
+        "given_name": "Thomas",
+        "identifiers": [{
+          "identifier": "0000-0002-1825-0097",
+          "scheme": "orcid"
+        }],
+        "name": "Collins, Thomas",
+        "type": "personal"
       },
       "affiliations": [{
-        "name": "CERN",
-        "identifiers": {
-          "ror": "01ggx4157",
-          "isni": "000000012156142X"
-        }
+        "identifiers": [{
+          "identifier": "03yrm5c26",
+          "scheme": "ror"
+        }],
+        "name": "Entity One"
       }]
     }],
     "title": "InvenioRDM",
@@ -1144,20 +1200,26 @@ Following is a full example of a record:
       "scheme": "dewey"
     }],
     "contributors": [{
-      "name": "Nielsen, Lars Holm",
-      "type": "personal",
-      "role": "other",
-      "given_name": "Lars Holm",
-      "family_name": "Nielsen",
-      "identifiers": {
-        "orcid": "0000-0001-8135-3489"
+      "person_or_org": {
+        "name": "Nielsen, Lars Holm",
+        "type": "personal",
+        "given_name": "Lars Holm",
+        "family_name": "Nielsen",
+        "identifiers": [{
+          "scheme": "orcid",
+          "identifier": "0000-0001-8135-3489"
+        }],
+        "role": "editor"
       },
       "affiliations": [{
         "name": "CERN",
-        "identifiers": {
-          "ror": "01ggx4157",
-          "isni": "000000012156142X"
-        }
+        "identifiers": [{
+          "scheme": "ror",
+          "identifier": "01ggx4157",
+        }, {
+          "scheme": "isni",
+          "identifier": "000000012156142X",
+        }]
       }]
     }],
     "dates": [{
@@ -1186,7 +1248,7 @@ Following is a full example of a record:
     ],
     "version": "v1.0",
     "rights": [{
-      "rights": "Creative Commons Attribution 4.0 International",
+      "title": "Creative Commons Attribution 4.0 International",
       "scheme": "spdx",
       "identifier": "cc-by-4.0",
       "url": "https://creativecommons.org/licenses/by/4.0/"
@@ -1247,13 +1309,10 @@ Following is a full example of a record:
     }
   },
   "access": {
-    "owned_by": [{
-      "user": 1
-    }],
-    "embargo_date": "2021-01-01T00:00:00+0000",
-    "access_condition": {
-      "condition": "Medical doctors.",
-      "default_link_validity": 30
+    "record": "public",
+    "files": "public",
+    "embargo": {
+      "active": false
     }
   },
   "files": {
