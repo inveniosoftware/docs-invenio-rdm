@@ -10,7 +10,7 @@ Some system requirements are needed beforehand:
 - [Python](https://www.python.org/) 3.6.2+ (Docker images are available for Python 3.6, 3.7 and 3.8.
 - Python development headers. On Ubuntu: `sudo apt install python3-dev`. On RHEL/Fedora: `yum install -y python3-devel.x86_64`.
   On macOS: install XCode and activate the command line utilities.
-- [Node.js](https://nodejs.org) 14.0.0+ (not needed to preview, only needed to develop)
+- [Node.js](https://nodejs.org) 14.0.0+ (needed for local installation)
 - [Docker](https://docs.docker.com/) 1.13.0+
 - [Docker-Compose](https://docs.docker.com/compose/) 1.17.0+
 - [Cairo](https://invenio-formatter.readthedocs.io/en/latest/installation.html) needed for badges to be properly displayed.
