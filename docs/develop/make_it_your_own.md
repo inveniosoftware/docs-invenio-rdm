@@ -13,14 +13,7 @@ you (e.g. `app_data/`, `assets/`, `static/`, `templates/`). The configuration fi
 and their dependencies. Conveniently, this means that if you name your files by
 the name used in the configurations for them, you won't even need to edit `invenio.cfg`!
 
-No worries, we go through the common customizations below.
-
-!!! info "Using `--development` might save some time"
-    This is recommended for developers and advanced users only. Most of the change
-    below require a `invenio-cli assets update` call. However, if you create symbolic
-    links from the beggining and watch the CSS changes as described in the
-    [following section](./edit_a_module.md) most of the changes will be available
-    instantly.
+We go through common customizations and show you the workflow below.
 
 ## Change the logo
 
@@ -37,7 +30,7 @@ cp ./path/to/new/color/logo.svg static/images/invenio-rdm.svg
 Then, use the `assets update` command:
 
 ``` bash
-invenio-cli assets update
+invenio-cli assets update --development
 ```
 ``` console
 # Summarized output
@@ -50,8 +43,9 @@ Building assets...
 Built webpack project.
 ```
 
-!!! info "Assets and statics need to be updated"
-    Whenever you change files in `assets/` or `static/`, you typically want to run `invenio-cli assets update`. In case of uncertainty, just run the `update` command; it isn't destructive.
+This command makes sure files you have in `static/`, `assets/`, `templates/` and so on are placed in the right location with other similar files for the application.
+The `--development` (or `-d` for short) does so by symlinking the files, while the `--production` (or `-p` for short) copies the files over. Symlinking makes future
+modifications to those files translate directly. No need to run `invenio-cli assets update` again for them.
 
 In the browser, go to [https://127.0.0.1:5000/](https://127.0.0.1:5000) or refresh the page. And voilà! The logo has changed!
 
@@ -65,7 +59,7 @@ If your logo isn't an svg, you still copy it to `static/images/`, but you need t
 + THEME_LOGO="images/my-logo.png"
 ```
 
-You also need to run `assets update` as above and additionally restart the server:
+Then, run `assets update` as above and additionally restart the server:
 
 ```bash
 ^C
@@ -73,29 +67,45 @@ Stopping server and worker...
 Server and worker stopped...
 ```
 ```bash
-invenio-cli assets update
+invenio-cli assets update -d
 invenio-cli run
 ```
 
 !!! info "Re-run when invenio.cfg changes"
     All changes to `invenio.cfg` **MUST** be accompanied by a restart like the above to be picked up. This only restarts the server; it does not destroy any data.
 
-All other changes below follow the same pattern: add files and/or edit `invenio.cfg` and
-potentially execute `assets update` and/or rerun the server.
+This workflow stands for all `static/` files:
+
+- if you add a new file, run `invenio-cli assets update -d`
+- if you modify `invenio.cfg`, re-run `invenio-cli run` (because `invenio.cfg` has been symlinked above, you don't need to run `assets update`)
+- if you modify a previously symlinked file, you don't need to do anything
 
 
 ## Change the colors
 
 You might also be wondering: *How do I change the colors so I can make my instance look like my institution's theme?*
 
-We are going to change the top header section in the frontpage to apply our custom background color. Open the `assets/less/variables.less` file and edit it as below:
+We are going to change the top header section in the frontpage to apply our custom background color. It's a good example of the workflow for when `assets/` files change.
+
+Open the `assets/less/variables.less` file and edit it as below:
 
 ``` less
 @navbar_background_image: unset;
 @navbar_background_color: #000000; // Note this hex value is an example. Choose yours.
 ```
 
-Then, run the `invenio-cli assets update` command as above and refresh the page! You should be able to see your top header's color changed! You can find all the available styling variables that you can change [here](https://github.com/inveniosoftware/invenio-app-rdm/blob/master/invenio_app_rdm/theme/assets/semantic-ui/less/invenio_app_rdm/variables.less).
+Then, run the `invenio-cli assets update -d` command as above and refresh the page! You should be able to see your top header's color changed!
+
+You can override any styling variables in your `variables.less` file. The available styling variables are found in the `variables.less` or `.variables` files of the various invenio modules installed. The ones above are originally defined [here](https://github.com/inveniosoftware/invenio-app-rdm/blob/master/invenio_app_rdm/theme/assets/semantic-ui/less/invenio_app_rdm/variables.less). The `invenio-theme` module defines a large number of them [here](https://github.com/inveniosoftware/invenio-theme/tree/master/invenio_theme/assets/semantic-ui/less/invenio_theme/theme).
+
+However, you may notice further changes are not picked up unless `invenio-cli assets update` is run again each time, even though we symlinked these files! That's because `.less` files (and javascript files below) always need to be transformed into their final form first. `invenio-cli assets update` does that. There is a way to get the same workflow as `static/` files, without having to re-run that command over and over: run `invenio-cli assets watch`. It watches for changes to assets and rebuilds them automatically.
+
+The workflow for `assets/` files is then:
+
+- start `invenio-cli assets watch` in a terminal (you will need a different terminal for the other commands)
+- if you add a new file, run `invenio-cli assets update -d`
+- if you modify `invenio.cfg`, re-run `invenio-cli run`
+- if you modify a previously symlinked file, you now don't need to do anything
 
 
 ## Change the search results
@@ -318,7 +328,8 @@ You are now a master of the metadata model!
 
 Here, we show how to change the permissions required to perform actions in
 the system. For the purpose of this example, we will restrict the creation of
-*drafts* to super users only. To do so, we define our own [permission policy](https://invenio-records-permissions.readthedocs.io/en/latest/usage.html#policies).
+*drafts* to super users only. To do so, we define our own
+[permission policy](https://invenio-records-permissions.readthedocs.io/en/latest/usage.html#policies).
 
 ### Modify invenio.cfg
 
