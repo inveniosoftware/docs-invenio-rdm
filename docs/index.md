@@ -50,3 +50,10 @@ production and learn the avenues to take and decisions to make to grow it.
 Whether you use Openshift or Kubernetes, we've got you covered.
 
 [> Deployment Guides](deployment/index.md)
+
+## Reference
+
+Read up on the internal metadata schema used by InvenioRDM. All fields
+are detailed here, so you understand what we store and how.
+
+[> Metadata Reference Document](reference/metadata.md)
