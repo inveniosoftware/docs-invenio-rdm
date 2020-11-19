@@ -179,9 +179,11 @@ from os.path import abspath, dirname, join
 # At the bottom
 # Our custom Vocabularies
 RDM_RECORDS_CUSTOM_VOCABULARIES = {
-    'resource_types': join(
-        dirname(abspath(__file__)),
-        'app_data', 'vocabularies', 'resource_types.csv')
+    'resource_type': {
+        'path': join(
+            dirname(abspath(__file__)),
+            'app_data', 'vocabularies', 'resource_types.csv')
+    }
 }
 ```
 
