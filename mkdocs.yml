@@ -54,6 +54,8 @@ nav:
   - Reference:
     - Metadata: reference/metadata.md
     - Invenio CLI: reference/cli.md
+  - Contribute:
+    - Contribute to InvenioRDM: contribute/index.md
 
 
 # Customization
