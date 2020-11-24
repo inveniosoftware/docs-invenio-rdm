@@ -639,20 +639,35 @@ The field is compatible with *18. GeoLocation* in DataCite Metadata Schema. The 
 
 - The field allows associating geographical identifiers with a location.
 - The field allows associating a free text description to the location.
-- The field uses the GeoJSON specification for describing geospatial coordinates instead of the invidiual fields used by DataCite.
+- The field uses the GeoJSON specification for describing geospatial coordinates instead of the individual fields used by DataCite.
+
+The location fields is modelled over GeoJSON [FeatureCollection](https://tools.ietf.org/html/rfc7946#section-3.3) and [Feature](https://tools.ietf.org/html/rfc7946#section-3.2) objects using foreign members (for ``identifiers``, ``place`` and ``description``). We do not store the GeoJSON type information (e.g. ``"type": "FeatureCollection"`` and ``"type": "Feature"``) because this information is implicit. The JSON served on the REST API (external JSON), *will* include
+the type information as well as ``"properties": null`` in order to make it valid GeoJSON.
 
 Subfields:
 
-- ``geometry`` (0-1) - a GeoJSON [Geometry Object](https://tools.ietf.org/html/rfc7946#section-3.1) according to RFC 7946. Initially only [``Point``](https://tools.ietf.org/html/rfc7946#section-3.1.2) objects will be supported, but later we will expand with more objects.
+- ``features`` (1) - a list of GeoJSON feature objects. The reason for this keyword is to align with GeoJSON and allow for later expanded with other subfields such as bounding box (``bbox``) from the GeoJSON spec.
+
+Subfields of items in ``features``:
+
+- ``geometry`` (0-1) - a GeoJSON [Geometry Object](https://tools.ietf.org/html/rfc7946#section-3.1) according to RFC 7946. Note, GeoJSON's coordinate reference system is [WGS84](https://tools.ietf.org/html/rfc7946#section-4).
 - ``identifiers``(0-1) -  Identifiers for the geographic locations. This could for instance be from [GeoNames](https://www.geonames.org) or [Getty Thesaurus of Geographic Names](http://www.getty.edu/research/tools/vocabularies/tgn/) (TGN) which would allow linking to historic places.
 - ``place`` (0-1) - free text, used to describe a geographical location.
 - ``description`` (0-1) - free text, used for any extra information related to the location.
+
+Notes:
+
+- Indexing: The ``geometry`` field is indexed as a [``geo_shape``](https://www.elastic.co/guide/en/elasticsearch/reference/current/geo-shape.html) field type in Elasticsearch which allows advanced geospatial querying.
+  In addition, for each geometry object, we calculate the centroid using the [Shapely](https://pypi.org/project/Shapely/) library and index it as a [``geo_point``](https://www.elastic.co/guide/en/elasticsearch/reference/current/geo-point.html) field type in Elasticsearch which supports more specialised queries for points.
+- Initially only [``Point``](https://tools.ietf.org/html/rfc7946#section-3.1.2) objects will be supported in the upload form and landing page.
+  This is primarily due to need for a user-friendly field.
 
 Example:
 
 ```json
 {
-    "locations": [{
+  "locations": {
+    "features": [{
       "geometry": {
         "type": "Point",
         "coordinates": [6.05, 46.23333]
@@ -663,7 +678,8 @@ Example:
       },
       "place": "CERN",
       "description": "Invenio birth place."
-    }]
+    }],
+  },
 }
 ```
 
@@ -1185,18 +1201,20 @@ Following is a full example of a record:
       "type": "methods",
       "lang": "eng"
     }],
-    "locations": [{
-      "geometry": {
-        "type": "Point",
-        "coordinates": [6.05, 46.23333]
-      },
-      "identifiers": {
-        "geonames": "2661235",
-        "tgn": "http://vocab.getty.edu/tgn/8703679"
-      },
-      "place": "CERN",
-      "description": "Invenio birth place."
-    }],
+    "locations": {
+      "features": [{
+        "geometry": {
+          "type": "Point",
+          "coordinates": [6.05, 46.23333]
+        },
+        "identifiers": {
+          "geonames": "2661235",
+          "tgn": "http://vocab.getty.edu/tgn/8703679"
+        },
+        "place": "CERN",
+        "description": "Invenio birth place."
+      }],
+    },
     "funding": [{
       "funder": {
         "name": "European Commission",
