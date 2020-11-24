@@ -57,3 +57,8 @@ Read up on the internal metadata schema used by InvenioRDM. All fields
 are detailed here, so you understand what we store and how.
 
 [> Metadata Reference Document](reference/metadata.md)
+
+Read up on the Command Line Tool used by InvenioRDM to bootstrap,
+install and manage the instance and its required services.
+
+[> InvenioCLI Reference Document](reference/cli.md)
