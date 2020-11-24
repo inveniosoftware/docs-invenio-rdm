@@ -53,6 +53,7 @@ nav:
     - Benchmarking: 'deployment/benchmark.md'
   - Reference:
     - Metadata: reference/metadata.md
+    - Invenio CLI: reference/cli.md
 
 
 # Customization
