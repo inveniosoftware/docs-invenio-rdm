@@ -24,7 +24,7 @@ Statics and assets management commands.
 | Command | Description | Supported |
 |:--------|:------------|:---------:|
 | install | Install and link a React module. | v0.19.0 |
-| update  | Updates the current application static/assets files. | v0.19.0 |
+| build   | Build the current application static/assets files. | v0.19.0 |
 | watch   | Statics and assets watch commands. | v0.19.0 |
 
 #### Install
@@ -35,13 +35,13 @@ Install and link the React module specified by the path. For example:
 invenio-cli assets install ../my-react-module/
 ```
 
-#### Update
+#### Build
 
-Updates the current application static/assets files.
+Build the current application static/assets files.
 
 **Options**
-- `-f`, `--force` Force the full recreation the assets and statics. Removes existint assets and static files.
-- `-p`, `--production` / `-d`, `--development` Production mode copies files. Development mode creates symbolic links, this allows to have real-time changes of the files.
+- `-n`, `--no-wipe` Force the full recreation the assets and statics. Removes existint assets and static files. By default assets will be removed.
+- `-p`, `--production` / `-d`, `--development` Production mode copies files. Development mode creates symbolic links, this allows to have real-time changes of the files. Defaults to development.
 
 #### Watch
 
@@ -183,6 +183,10 @@ Commands for package management.
 #### Install
 
 Install one or a list of Python packages in the local environment.
+
+**Options**
+
+- `-s`, `--skip-build`  Do not rebuild the assets.
 
 #### Lock
 
