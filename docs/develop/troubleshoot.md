@@ -2,7 +2,7 @@
 
 Something has gone wrong, now what? InvenioRDM provides logs in two ways, depending on where the error happened.
 If the error comes from the local development instance (`invenio-cli run`), look at the terminal, the logs show up there.
-On the other hand, if the error comes from the fully containerized application (`invenio-cli containerize`), you won't see logs on the terminal directly.
+On the other hand, if the error comes from the fully containerized application (`invenio-cli containers start`), you won't see logs on the terminal directly.
 See below.
 
 ## Web Application

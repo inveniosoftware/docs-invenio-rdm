@@ -111,6 +111,7 @@ Setup containerized services. If `--no-services` is not specified this command w
 Start containerized services and application.
 
 **Options**
+
 - `--lock` / `--skip-lock` Lock Python dependencies (default=False).
 - `--build` / `--no-build` Build images (default=False).
 - `--setup` / `--no-setup` Setup services (default=False). It will run with force=True.
@@ -129,7 +130,7 @@ However, for demo/preview purposes it allows to perform the other commands as we
 
 Checks if the services are up and running.
 
-!!! "Supported services"
+!!! info "Supported services"
     currently only ES, DB (postgresql/mysql) and redis are supported.
 
 **Options**

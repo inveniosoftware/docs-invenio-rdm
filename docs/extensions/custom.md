@@ -34,7 +34,7 @@ Once you have your functionality ready, in order to add it to your instance you 
 
 ``` bash
 cd path/to/your/instance
-invenio-cli ext module-install path/to/your/extension
+invenio-cli package install path/to/your/extension
 ```
 
 ## Sanity check and run!
