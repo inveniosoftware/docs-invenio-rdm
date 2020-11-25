@@ -5,7 +5,7 @@
 | Command | Description | Supported |
 |:--------|:------------|:---------:|
 | assets  | Statics and assets management commands. | v0.19.0 |
-| check-requirements | Checks the system fulfills the pre-requirements. | - |
+| check-requirements | Checks the system fulfills the pre-requirements. | v0.19.0 |
 | containers         | Containers management commands. | v0.19.0 |
 | destroy            | Removes all associated resources (containers, images, virtual environment, etc.) | v0.19.0 |
 | init               | Initializes the application according to the chosen flavour (Currently only RDM is available) | v0.19.0 |
@@ -68,7 +68,11 @@ invenio-cli assets watch module --link /path/toreact-invenio-desposit
 
 ### Check requirements command
 
-!!! error "Not supported yet"
+Checks the system fulfills the pre-requirements.
+
+**Options**
+
+- `-d`, `--development` Check development requirements.
 
 ### Containers command
 

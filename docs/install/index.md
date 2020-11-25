@@ -25,6 +25,12 @@ the `docker` command (i.e. it is not only available for the root user):
 sudo usermod --append --groups docker $USER
 ```
 
+Most of this requirements can be automatically checked using the Invenio-CLI. Currently it is able to check Python, Node.js, Docker, Docker-Compose and Pipenv. If you are planning on doing development add the `--development` flag.
+
+```bash
+invenio-cli check-requirements [--development]
+```
+
 #### Hardware and Docker requirements
 
 We usually deploy the RDM on machines that have around 8GB of RAM and at least
