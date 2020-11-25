@@ -37,7 +37,7 @@ the workflow for how to be effective with them.
 
 [> Getting Started on your Instance](develop/index.md)
 
-## Extensions
+## Extend
 
 InvenioRDM supports a great variety of extensions that can adapt it to your infrastructure. It also supports the addition of custom ones.
 
@@ -62,3 +62,11 @@ Read up on the Command Line Tool used by InvenioRDM to bootstrap,
 install and manage the instance and its required services.
 
 [> InvenioCLI Reference Document](reference/cli.md)
+
+## Contribute
+
+InvenioRDM is an open-source project that welcomes contributions. This is how we operate
+and how you can participate. Contributions don't have to just be code: we love feedback, metadata
+expertise, community outreach, translations and documentation too.
+
+[> Contribute to InvenioRDM](contribute/index.md)
