@@ -9,7 +9,7 @@ little bit helps, and credit will always be given.
 
 ## Governance
 
-How the project is governed is outlined [here](https://invenio-software.org/governance/).
+How the project is governed is outlined [here](https://inveniosoftware.org/governance/).
 
 ## Release process
 
