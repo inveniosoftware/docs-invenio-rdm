@@ -5,7 +5,7 @@
 | Command | Description | Supported |
 |:--------|:------------|:---------:|
 | assets  | Statics and assets management commands. | v0.19.0 |
-| check-requirements | Checks the system fulfills the pre-requirements. | - |
+| check-requirements | Checks the system fulfills the pre-requirements. | v0.19.0 |
 | containers         | Containers management commands. | v0.19.0 |
 | destroy            | Removes all associated resources (containers, images, virtual environment, etc.) | v0.19.0 |
 | init               | Initializes the application according to the chosen flavour (Currently only RDM is available) | v0.19.0 |
@@ -24,7 +24,7 @@ Statics and assets management commands.
 | Command | Description | Supported |
 |:--------|:------------|:---------:|
 | install | Install and link a React module. | v0.19.0 |
-| update  | Updates the current application static/assets files. | v0.19.0 |
+| build   | Build the current application static/assets files. | v0.19.0 |
 | watch   | Statics and assets watch commands. | v0.19.0 |
 
 #### Install
@@ -35,13 +35,13 @@ Install and link the React module specified by the path. For example:
 invenio-cli assets install ../my-react-module/
 ```
 
-#### Update
+#### Build
 
-Updates the current application static/assets files.
+Build the current application static/assets files.
 
 **Options**
-- `-f`, `--force` Force the full recreation the assets and statics. Removes existint assets and static files.
-- `-p`, `--production` / `-d`, `--development` Production mode copies files. Development mode creates symbolic links, this allows to have real-time changes of the files.
+- `-n`, `--no-wipe` Force the full recreation the assets and statics. Removes existint assets and static files. By default assets will be removed.
+- `-p`, `--production` / `-d`, `--development` Production mode copies files. Development mode creates symbolic links, this allows to have real-time changes of the files. Defaults to development.
 
 #### Watch
 
@@ -68,7 +68,11 @@ invenio-cli assets watch module --link /path/toreact-invenio-desposit
 
 ### Check requirements command
 
-!!! error "Not supported yet"
+Checks the system fulfills the pre-requirements.
+
+**Options**
+
+- `-d`, `--development` Check development requirements.
 
 ### Containers command
 
@@ -111,6 +115,7 @@ Setup containerized services. If `--no-services` is not specified this command w
 Start containerized services and application.
 
 **Options**
+
 - `--lock` / `--skip-lock` Lock Python dependencies (default=False).
 - `--build` / `--no-build` Build images (default=False).
 - `--setup` / `--no-setup` Setup services (default=False). It will run with force=True.
@@ -129,7 +134,7 @@ However, for demo/preview purposes it allows to perform the other commands as we
 
 Checks if the services are up and running.
 
-!!! "Supported services"
+!!! info "Supported services"
     currently only ES, DB (postgresql/mysql) and redis are supported.
 
 **Options**
@@ -178,6 +183,10 @@ Commands for package management.
 #### Install
 
 Install one or a list of Python packages in the local environment.
+
+**Options**
+
+- `-s`, `--skip-build`  Do not rebuild the assets.
 
 #### Lock
 

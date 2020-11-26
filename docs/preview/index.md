@@ -152,7 +152,7 @@ directory and do so:
 
 ``` bash
 cd inveniordm-preview
-invenio-cli containerize --pre
+invenio-cli containers start --lock --build --setup
 ```
 ``` console
 <... build output ignored ...>
@@ -169,24 +169,16 @@ firefox https://127.0.0.1
 #### Notes and Known Issues
 
 - You may see the following error message `TypeError: Object.fromEntries is not a function`.
-  This means you need to update your base Invenio docker image because Node.js 14+ is needed.
-  Run `docker pull inveniosoftware/centos7-python:3.6` or `docker pull inveniosoftware/centos8-python:3.7` (or python 3.8)  before running `invenio-cli containerize --pre` again.
+  This means you need to update your base Invenio docker image because Node.js 14+ is needed. Make sure the base Invenio image is up to date. You can re-build your instance image with `invenio-cli containers build --pull --no-cache` to make sure things are done from scratch.
 - You may see `SystemError: Parent module 'setuptools' not loaded, cannot perform relative import`
-  at the dependency locking step when running `invenio-cli containerize --pre`. This depends on your version of `setuptools` (bleeding edge causes this)
+  at the dependency locking step when running `invenio-cli containers start`. This depends on your version of `setuptools` (bleeding edge causes this)
   and can be solved by setting an environment variable: `SETUPTOOLS_USE_DISTUTILS=stdlib`. [See more details](https://github.com/pypa/setuptools/blob/17cb9d6bf249cefe653d3bdb712582409035a7db/CHANGES.rst#v5000). This sudden upstream change will be addressed more systematically in future releases.
 
 ## Add random records
 
-You now have a running instance of InvenioRDM at [https://127.0.0.1](https://127.0.0.1),
-but it doesn't have any records in it. For demonstration purposes, we will add
-randomly generated records:
+Demo records are added by default when the `--setup` flag was passed to `invenio-cli containers start`. If you wish to remove them run `invenio-cli containers setup --force --no-demo-data`.
 
-``` bash
-invenio-cli demo --containers
-```
-
-You can now get a full sense for what InvenioRDM offers. Explore!
-
+Go and explore your InvenioRDM instance at [https://127.0.0.1](https://127.0.0.1).
 
 ## Running Invenio commands
 
@@ -206,12 +198,18 @@ If you want to temporarily stop the instance without losing the data that
 was generated, you can use the `stop` command:
 
 ```bash
-invenio-cli stop
+invenio-cli containers stop
 ```
 
 On the other hand, if you wish to clean up and delete all Docker artefacts,
 you can use the `destroy` command. It removes all containers, images and voluments.
 Note that `destroy` will also `stop` the containers, so there is no need to run the previous command:
+
+```bash
+invenio-cli containers destroy
+```
+
+If you also want to destroy a pipenv managed virtual environment along with the containers you can use the global `destroy command`:
 
 ```bash
 invenio-cli destroy
@@ -225,11 +223,11 @@ In just two commands you can get a preview of InvenioRDM:
 invenio-cli init rdm
 cd <project name>
 # Export INVENIO_SITE_HOSTNAME = "127.0.0.1" or set it in invenio.cfg
-invenio-cli containerize --pre
-invenio-cli stop
+invenio-cli containers start --lock --build --setup
+invenio-cli containers stop
 ```
 
 These instructions don't provide you with a nice development experience though.
-You need to run `invenio-cli containerize` for every change you make in your
+You need to run `invenio-cli containers start` for every change you make in your
 project. That's slow and cumbersome. Up next, we show how to [develop your
 local instance](../develop/index.md) and set yourself up to be productive!

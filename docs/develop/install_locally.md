@@ -68,7 +68,7 @@ of your machine. If you stop and restart those containers, your data will still
 be there. Upon running this command again, the initial setup is skipped.
 
 ``` bash
-invenio-cli services
+invenio-cli services setup
 ```
 
 ``` console
@@ -89,17 +89,11 @@ Creating indexes...
 Putting templates...
 ```
 
-!!!note
-    You will notice `Making sure containers are up...` like the above and a 30s
-    delay in the output of the commands we cover next. This is because they make
-    doubly sure the containers are running. In future releases, we will reduce
-    this delay.
-
 In case you want to wipe out the data that was there (say to start fresh),
 you can use `--force` and nuke the content!
 
 ``` bash
-invenio-cli services --force
+invenio-cli services setup --force
 ```
 
 ``` console
@@ -127,21 +121,8 @@ Putting templates...
 
 ## Populate DB
 
-Let's add some content so you can interact a bit with the instance. For this
-you will generate 10 random demo records, using the `demo` command:
+Demo records come now by default! If you want to avoid having them when setting up your instance pass the `--no-demo-data` flag to the `setup` command:
 
-``` bash
-invenio-cli demo --local
+```bash
+invenio-cli services setup --no-demo-data
 ```
-
-``` console
-Making sure containers are up...
-development-instance_mq_1 is up-to-date
-development-instance_db_1 is up-to-date
-development-instance_cache_1 is up-to-date
-development-instance_es_1 is up-to-date
-Creating demo records...
-Created records!
-```
-
-We are ready to run it in the next section.

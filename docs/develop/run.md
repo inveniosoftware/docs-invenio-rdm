@@ -506,7 +506,7 @@ If you want to temporarily stop the instance, without losing the data that
 was generated you can use the `stop` command:
 
 ```bash
-invenio-cli stop
+invenio-cli services stop
 ```
 
 Check the [Cleanup section](./cleanup.md) if you wish to remove every
