@@ -11,7 +11,7 @@ docker build -t demo-inveniordm /path/to/your/instance --build-arg include_asset
 
 **Why is the `include_assets` flag needed**
 
-When running InvenioRDM in local (`invenio-cli run`), you are running the uWSGI server on your own machine where you have built the statics. On the other hand, when running `invenio-cli containers start` you are building the docker image and then running it along the other containers. There, `invenio-cli` takes care of building the statics in the mounted volume for you. However, when building the image on your own (e.g. deploying somewhere else), you need to take care of the statics yourself.
+When running InvenioRDM locally (`invenio-cli run`), you are running the uWSGI server on your own machine where you have built the statics. On the other hand, when running `invenio-cli containers start` you are building the docker image and then running it along the other containers. There, `invenio-cli` takes care of building the statics in the mounted volume for you. However, when building the image on your own (e.g. deploying somewhere else), you need to take care of the statics yourself.
 
 This is the case when deploying in OpenShift. To solve this problem the chart defines a shared volume mounted on the Nginx and the Web containers.
 

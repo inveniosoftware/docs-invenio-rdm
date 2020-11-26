@@ -124,5 +124,5 @@ Putting templates...
 Demo records come now by default! If you want to avoid having them when setting up your instance pass the `--no-demo-data` flag to the `setup` command:
 
 ```bash
-invenio-cli containers setup --no-demo-data
+invenio-cli services setup --no-demo-data
 ```

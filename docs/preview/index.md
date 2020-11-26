@@ -178,7 +178,7 @@ firefox https://127.0.0.1
 
 Demo records are added by default when the `--setup` flag was passed to `invenio-cli containers start`. If you wish to remove them run `invenio-cli containers setup --force --no-demo-data`.
 
-Otherwise go and explore your InvenioRDM instance at [https://127.0.0.1](https://127.0.0.1).
+Go and explore your InvenioRDM instance at [https://127.0.0.1](https://127.0.0.1).
 
 ## Running Invenio commands
 
