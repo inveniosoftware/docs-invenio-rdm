@@ -53,6 +53,7 @@ nav:
     - Benchmarking: 'deployment/benchmark.md'
   - Reference:
     - Metadata: reference/metadata.md
+    - REST API: reference/rest_api.md
     - Invenio CLI: reference/cli.md
   - Contribute:
     - Contribute to InvenioRDM: contribute/index.md
