@@ -1,82 +1,200 @@
-# InvenioCLI reference
+# CLI reference
 
-## Main commands
+**Summary**
 
-| Command | Description | Supported |
-|:--------|:------------|:---------:|
-| assets  | Statics and assets management commands. | v0.19.0 |
-| check-requirements | Checks the system fulfills the pre-requirements. | v0.19.0 |
-| containers         | Containers management commands. | v0.19.0 |
-| destroy            | Removes all associated resources (containers, images, virtual environment, etc.) | v0.19.0 |
-| init               | Initializes the application according to the chosen flavour (Currently only RDM is available) | v0.19.0 |
-| install            | Installs the project locally. | v0.19.0 |
-| packages           | Commands for package management. | v0.19.0 |
-| pyshell            | Python shell command. | v0.19.0 |
-| run                | Starts the local development server. | v0.19.0 |
-| services           | Commands for services management. | v0.19.0 |
-| shell              | Shell command. | v0.19.0 |
-| upgrade            | Upgrades the current application to the specified specified InvenioRDM version | - |
+The following document is a reference guide to the commands provided by the
+Invenio-CLI tool.
 
-### Assets command
+**Intended audience**
 
-Statics and assets management commands.
+This guide is intended for system administrators and developers of InvenioRDM.
+
+## Overview
+
+Following is an overview of the root-level commands in Invenio-CLI:
 
 | Command | Description | Supported |
 |:--------|:------------|:---------:|
-| install | Install and link a React module. | v0.19.0 |
-| build   | Build the current application static/assets files. | v0.19.0 |
-| watch   | Statics and assets watch commands. | v0.19.0 |
+| ``assets``  | Statics and assets management commands. | v0.19.0 |
+| ``check-requirements`` | Checks the system fulfills the pre-requirements. | v0.19.0 |
+| ``containers``         | Containers management commands. | v0.19.0 |
+| ``destroy``            | Removes all associated resources (containers, images, virtual environment, etc.) | v0.19.0 |
+| ``init``               | Initializes the application according to the chosen flavour (Currently only RDM is available) | v0.19.0 |
+| ``install``            | Installs the project locally. | v0.19.0 |
+| ``packages``           | Commands for package management. | v0.19.0 |
+| ``pyshell``            | Python shell command. | v0.19.0 |
+| ``run``                | Starts the local development server. | v0.19.0 |
+| ``services``           | Commands for services management. | v0.19.0 |
+| ``shell``              | Shell command. | v0.19.0 |
+| ``upgrade``            | Upgrades the current application to the specified specified InvenioRDM version | - |
 
-#### Install
+### Shell completion
 
-Install and link the React module specified by the path. For example:
+Invenio-CLI provides support for tab completion of commands and options for Bash, Zsh and Fish shells. You can install the shell completion
 
-```bash
-invenio-cli assets install ../my-react-module/
-```
+For Bash, add this to ``~/.bashrc``:
 
-#### Build
+    eval "$(_INVENIO_CLI_COMPLETE=source_bash invenio-cli)"
 
-Build the current application static/assets files.
+For Zsh, add this to ``~/.zshrc``:
+
+    eval "$(_INVENIO_CLI_COMPLETE=source_zsh invenio-cli)"
+
+For Fish, add this to ``~/.config/fish/completions/invenio-cli.fish``:
+
+    eval (env _INVENIO_CLI_COMPLETE=source_fish invenio-cli)
+
+The above ``eval`` commands will invoke your application every time a shell is started.
+This may slow down shell startup time.
+
+Alternatively, create an activation script:
+
+For Bash:
+
+    _INVENIO_CLI_COMPLETE=source_bash invenio-cli > invenio-cli-complete.sh
+
+For Zsh:
+
+    _INVENIO_CLI_COMPLETE=source_zsh invenio-cli > invenio-cli-complete.sh
+
+In ``.bashrc`` or ``.zshrc``, source the script instead of the ``eval`` command:
+
+    . /path/to/invenio-cli-complete.sh
+
+For Fish, add the file to the completions directory:
+
+    _INVENIO_CLI_COMPLETE=source_fish invenio-cli > ~/.config/fish/completions/invenio-cli-complete.fish
+
+## General commands
+
+### **``check-requirements``**
+
+Checks the minimal system requirements are met.
 
 **Options**
-- `-n`, `--no-wipe` Force the full recreation the assets and statics. Removes existint assets and static files. By default assets will be removed.
-- `-p`, `--production` / `-d`, `--development` Production mode copies files. Development mode creates symbolic links, this allows to have real-time changes of the files. Defaults to development.
 
-#### Watch
+- `-d`, `--development` Check also development requirements (defaults to not checking development requirements).
 
-Statics and assets watch commands.
+### **``destroy``**
 
-| Command | Description | Supported |
-|:--------|:------------|:---------:|
-| assets |  Watch assets files for changes and rebuild | v0.19.0 |
-| module  | Watch a React module. | v0.19.0 |
+Removes all associated resources (containers, images, volumes, Python virtual environment).
 
-Use `assets` to watch changes on python modules' files. To avoid redundancy this is the default of `watch`. The two commands below are equivalent:
+All data in services are lost.
 
-```bash
-invenio-cli assets watch
-invenio-cli assets watch assets
-```
+### **``init``**
 
-Use `module` to watch changes on a React module. Before watching a React module, it should be linked. This can be done with the `assets install` command mentioned above. Nonetheless, if already installed it can be linked using the `-l`/`--link` option. For example:
-
-```bash
-invenio-cli assets watch module /path/toreact-invenio-desposit
-invenio-cli assets watch module --link /path/toreact-invenio-desposit
-```
-
-### Check requirements command
-
-Checks the system fulfills the pre-requirements.
+Initializes the application skeleton for the chosen flavour. Currently only `rdm` flavour is supported and it is the default value.
 
 **Options**
 
-- `-d`, `--development` Check development requirements.
+- `-t`, `--template` ``TEXT``  Path or git URL to the Cookiecutter template.
+- `-c`, `--checkout` ``TEXT``  Branch, tag or commit to checkout if `--template` is a git URL.
 
-### Containers command
+### **``install``**
+
+Installs the  project locally.
+
+Installs Python dependencies, creates an instance directory, symlinks the ``invenio.cfg``, templates, static files, assets, and finally builds front-end assets.
+
+A python virtual environment is created if does not already exists.
+
+**Options**
+
+- `--pre` If specified, allows the installation of alpha releases
+- `-p`, `--production` / `-d`, `--development` Production mode copies statics/assets. Development mode symlinks statics/assets (default).
+
+### ``run``
+
+Starts the local development server.
+
+**Options**
+
+- `-h`, `--host` TEXT The interface to bind to.
+- `-p`, `--port` INTEGER The port to bind to.
+- `-d`, `--debug` / `--no-debug` Debug mode enables Flask development mode, auto-reloading and more (default: enabled).
+- `-s`, `--services` / `-n`, `--no-services` Run dockerized services along with the instance or not.
+
+
+## Assets commands
+
+Statics files and assets management commands.
+
+| Command | Description | Supported |
+|:--------|:------------|:---------:|
+| ``install`` | Install and link a React module. | v0.19.0 |
+| ``build``   | Build the current application static/assets files. | v0.19.0 |
+| ``watch``   | Statics and assets watch commands. | v0.19.0 |
+| ``watch-module`` | Watch a JavaScript/React module. | v0.19.0 |
+
+### **``assets install``**
+
+Install and link the JavaScript/React package specified by the path. For example:
+
+```bash
+invenio-cli assets install ~/src/react-invenio-awesome/
+```
+
+### **``assets build``**
+
+Build the current application's static/assets files.
+
+The default behavior of the command is to:
+
+- Remove any existing
+    1. Static files
+    2. Webpack project
+    3. Installed Node modules
+- Collect
+    1. Static files
+    2. Assets for the Webpack project
+    3. InvenioRDM's instance statics and assets.
+- Install all Node modules specified by the Webpack project's ``package.json``.
+- Build the Webpack project.
+
+The command by default symlinks the static files and assets. This enables you to
+run the ``watch``. If you build with ``--production``, no symlinks are created,
+and the ``watch`` will not detect changes to your local development files.
+
+**Options**
+
+- `-n`, `--no-wipe` Do not remove existing assets.
+- `-p`, `--production` / `-d`, `--development` Production mode copies files. Development mode creates symbolic links, this allows to have real-time changes of the files. Defaults to ``--development``.
+
+### **``assets watch``**
+
+Watches InvenioRDM's Webpack project for changes, and automatically rebuild the project if a file is changed.
+
+This command is useful for instance if you're editing the LESS or JavaScript files in your InvenioRDM instance.
+
+Note, if you run ``assets build`` with the ``--production`` option, then you local development files are not symlinked, and the
+``assets watch`` command will not detect edits of your local development files.
+
+### **``assets watch-module``**
+
+Watch a JavaScript/React package for changes, and automatically rebuild the package.
+
+This command is useful if you are developing a React package (e.g. React-Searchkit).
+
+Before watching a React package, it must be installed and linked. This can be done with the `assets install` command. If the package is not already installed and linked you can use the `-l`/`--link` option.
+
+**Options**
+
+- `-l`/`--link` Install and link the JavaScript/React package before watching for changes.
+
+
+!!! info
+    The command ``assets watch-module`` only rebuilds the JavaScript/React package into InvenioRDM's Webpack project. However, before you can
+    see the changes, you must also rebuild InvenioRDM's Webpack project. Hence, you normally always use ``assets watch-module`` and ``assets watch`` in together:
+
+        invenio-cli assets watch-module --link ~/src/react-invenio-deposit
+        invenio-cli assets watch
+
+
+## Container commands
 
 Containers management commands.
+
+The container management commands intends to bring up a full infrastructure environment for **development purposes** that looks similar to your production environment.
 
 | Command | Description | Supported |
 |:--------|:------------|:---------:|
@@ -84,53 +202,71 @@ Containers management commands.
 | destroy | Destroy containerized services and application. | v0.19.0 |
 | setup   | Setup containerized services. | v0.19.0 |
 | start   | Start containerized services and application. | v0.19.0 |
-| status   | Checks if the services are up and running. | v0.19.0 |
+| status  | Checks if the services are up and running. | v0.19.0 |
 | stop    | Stop containerized services and application. | v0.19.0 |
 
-#### Build
+The container management commands uses Docker-Compose behind the scenes, and
+specifically relies on the ``docker-compose.full.yml`` file.
 
-Build application and service images.
+### **``containers build``**
 
-**Options**
-- `--pull` / `--no-pull` Download newer versions of the images/ Defaults to pull.
-- `--cache` / `--no-cache` Use or not use the cache when building images. Defaults to cache (use).
-
-#### Destroy
-
-Destroy containerized services and application.
-
-#### Setup
-
-Setup containerized services. If `--no-services` is not specified this command will boot up the dockerized services and will not stop them afterwards unless `--stop-services` is specified.
+Build the application and service images.
 
 **Options**
 
-- `-f`, `--force` Force recreation of db tables, ES indices, queues, etc.
+- `--pull` / `--no-pull` Download newer versions of the image. Defaults to pull.
+- `--cache` / `--no-cache` Use or do not use the cache when building images. Defaults to using the cache.
+
+### **``containers destroy``**
+
+Destroy the containerized services and application.
+
+### **``containers setup``**
+
+Setup containerized services.
+
+By default this command will build and boot all the containerized services, and will not stop them afterwards unless ``--stop-services`` are used. If, ``--no-services`` is specified, not services are booted up.
+
+This command:
+
+- Initialize and create the database, Elasticsearch indexes, cache and message queue.
+- Create an admin role.
+- Create a the default location for files.
+
+**Options**
+
+- `-f`, `--force` Force recreation of database tables, Elasticsearch indexes and queues.
 - `-n`, `--no-demo-data` Disable the creation of demo data.
 - `--stop-services` Stop containers after setup.
-- `-s`, `--services` / `-n`, `--no-services` Boot up or not the dockerized services. Defaults to boot them up.
+- `-s`, `--services` / `-n`, `--no-services` Boot up or not the containerized services. Defaults to boot them up.
 
-#### Start
+### **``containers start``**
 
-Start containerized services and application.
+Start the containerized services and application.
 
 **Options**
 
-- `--lock` / `--skip-lock` Lock Python dependencies (default=False).
-- `--build` / `--no-build` Build images (default=False).
-- `--setup` / `--no-setup` Setup services (default=False). It will run with force=True.
-- `--demo-data` / `--no-demo-data` Include demo records (default=True), requires --setup.
-- `-s`, `--services` / `-n`, `--no-services` Boot up or not the dockerized services. Defaults to boot them up.
+- `--lock` / `--skip-lock` Lock Python dependencies (defaults to ``--skip-lock``).
+- `--build` / `--no-build` Build images (defaults to ``--no-build``).
+- `--setup` / `--no-setup` Setup services (defaults to ``--no-setup``).
+- `--demo-data` / `--no-demo-data` Create demo records if ``--setup`` is specified. (default=True).
+- `-s`, `--services` / `-n`, `--no-services` Boot up or not the containerized services. Defaults to booting them up.
 
-This command is intended to only start the containers needed to run a full dockerize instance, for example:
+This command is intended to only start the containers needed to run a full containerised instance, for example:
 
 ```bash
 invenio-cli containers start
 ```
 
-However, for demo/preview purposes it allows to perform the other commands as well. Note that the taken steps are exacly the same (e.g. adding `--setup` is equivalent to `invenio-cli containers setup --force`).
+However, for demo/preview purposes it allows to perform a full build and setup. For instance, if you have a freshly initialized instance you can build and boot it with:
 
-#### Status
+```bash
+invenio-cli containers start --lock --build --setup
+```
+
+Note, that ``--lock`` is done locally on your machine, and not inside the containers.
+
+### **``containers status``**
 
 Checks if the services are up and running.
 
@@ -142,36 +278,13 @@ Checks if the services are up and running.
 - `-v`, `--verbose` Verbose mode will show all logs in the console.
 
 
-#### Stop
+### **``containers stop``**
 
 Stop containerized services and application.
 
-### Destroy command
+## Packages commands
 
-Removes all associated resources (containers, images, volumes).
-
-### Init command
-
-Initializes the application according to the chosen flavour. Currently only `RDM` flavour is supported and it is the default value.
-
-**Options**
-
-- `-t`, `--template` TEXT  Cookiecutter path or git url to template
-- `-c`, `--checkout` TEXT  Branch, tag or commit to checkout if `--template` is a git url
-
-### Install command
-
-Installs the  project locally.
-
-Installs dependencies, creates instance directory, links invenio.cfg + templates, copies images and other statics and finally builds front-end assets.
-
-**Options**
-- `--pre` If specified, allows the installation of alpha releases
-- `-p`, `--production` / `-d`, `--development` Production mode (default) copies statics/assets. Development mode symlinks statics/assets.
-
-### Packages command
-
-Commands for package management.
+Commands for Python package management.
 
 | Command | Description | Supported |
 |:--------|:------------|:---------:|
@@ -180,99 +293,111 @@ Commands for package management.
 | outdated   | Show outdated Python dependencies. | - |
 | update   | Update a single Python python package. | - |
 
-#### Install
+### **``packages install``**
 
-Install one or a list of Python packages in the local environment.
+Install one or more Python packages as editable packages in the local Python virtual environment.
+
+The primary intended purpose of this command is for developers to install a development version of an Invenio module they are working on.
+
+!!! warning "Don't skip assets rebuild"
+
+    The command by default rebuilds the assets afterwards (same as running ``assets build``). If you skip rebuilding the assets, you will likely have outdated files in InvenioRDM's Webpack project, and you are very likely going to have problems.
 
 **Options**
 
 - `-s`, `--skip-build`  Do not rebuild the assets.
 
-#### Lock
+### **``packages lock``**
 
 Lock Python dependencies.
+
+This creates a ``Pipfile.lock`` in your instance with hashes and versions of all
+Python packages. This ensures you have reproducible builds, and that you don't risk
+having new patch-level versions of third-party Python packages break your build.
 
 **Options**
 
 - `--pre` Allows the installation of alpha releases.
 - `--dev` Include development devepencies.
 
-#### Outdated
+### **``packages outdated``**
 
-!!! error "Not supported yet"
+!!! error "Not yet supported"
 
-#### Update
+### **``packages update``**
 
-!!! error "Not supported yet"
+!!! error "Not yet supported"
 
-### Pyshell command
-
-Python shell command.
-
-**Options**
-`-d`, `--debug` / `--no-debug` Debug mode enables Flask development mode (default: disabled).
-
-### Run command
-
-Starts the local development server.
-
-**Options**
-
-- `-h`, `--host` TEXT The interface to bind to.
-- `-p`, `--port` INTEGER The port to bind to.
-- `-d`, `--debug` / `--no-debug` Debug mode enables Flask development mode, auto-reloading and more (default: enabled).
-- `-s`, `--services` / `-n`, `--no-services` Run dockerized services along with the instance or not.
-
-### Services command
+## Services commands
 
 Commands for services management.
 
+The services management commands intends to bring up a minimal infrastructure environment for **development purposes**.
+
 | Command | Description | Supported |
 |:--------|:------------|:---------:|
-| destroy   | Destroy developement services. | v0.19.0 |
+| destroy   | Destroy development services. | v0.19.0 |
 | setup | Setup local services. | v0.19.0 |
 | start   | Start local services. | v0.19.0 |
 | status | Checks if the services are up and running. | v0.19.0 |
 | stop   | Stop local services. | v0.19.0 |
 
-#### Destroy
+The services management commands uses Docker-Compose behind the scenes, and specifically relies on the ``docker-compose.yml`` file. The ``containers`` commands instead relies on the ``docker-compose.full.yml`` file.
 
-Destroy developement services.
+### **``services destroy``**
 
-#### Setup
+Destroy development services and any data in them.
 
-Setup containerized services. If `--no-services` is not specified this command will boot up the dockerized services and will not stop them afterwards unless `--stop-services` is specified.
+### **``services setup``**
+
+Setup containerized services.
+
+By default this command will build and boot all the containerized services, and will not stop them afterwards unless ``--stop-services`` are used. If, ``--no-services`` is specified, no services are booted up.
 
 **Options**
 
-- `-f`, `--force` Force recreation of db tables, ES indices, queues, etc.
+- `-f`, `--force` Force recreation of database tables, Elasticsearch indices and queues.
 - `-n`, `--no-demo-data` Disable the creation of demo data.
 - `--stop-services` Stop containers after setup.
-- `-s`, `--services` / `-n`, `--no-services` Boot up or not the dockerized services. Defaults to boot them up.
+- `-s`, `--services` / `-n`, `--no-services` Boot up or not the containerized services. Defaults to boot them up.
 
-#### Start
+### **``services start``**
 
-Start local dockerized services.
+Start the containerized services.
 
-#### Status
+### **``services status``**
 
 Checks if the services are up and running.
 
-!!! "Supported services"
-    currently only ES, DB (postgresql/mysql) and redis are supported.
+!!! info "Supported services"
+    Currently only Elasticsearch, databases (PostgreSQL/MySQL) and Redis are supported.
 
 **Options**
 
 - `-v`, `--verbose` Verbose mode will show all logs in the console.
 
-#### Stop
+### **``services stop``**
 
-Stop local dockerized services.
+Stop containerized services.
 
-### Shell command
+The command does not destroy any data in the services.
 
-Creates a new shell using Pipenv, which means that it will activate a new virtual environment.
+## Shell commands
 
-### Upgrade command
+### **``shell``**
 
-!!! error "Not supported yet"
+Starts a new shell (bash/zsh/...) and activates the Python virtual environment.
+
+### **``pyshell``**
+
+Starts an interactive Python interpreter with the InvenioRDM application loaded.
+
+**Options**
+
+`-d`, `--debug` / `--no-debug` Debug mode enables Flask development mode (default: disabled).
+
+## Upgrade command
+
+### **``upgrade``**
+
+!!! error "Not yet supported"
