@@ -1,6 +1,6 @@
 # Project information
-site_name: 'User Documentation'
-site_description: 'InvenioRDM user documentation web site'
+site_name: 'Documentation'
+site_description: 'InvenioRDM documentation site'
 site_url: 'https://inveniordm.docs.cern.ch'
 
 # Repository
@@ -52,9 +52,12 @@ nav:
     - Image registries: 'deployment/registries.md'
     - Benchmarking: 'deployment/benchmark.md'
   - Reference:
-    - Metadata: reference/metadata.md
+    - Overview: reference/index.md
+    - CLI: reference/cli.md
+    - Configuration: reference/configuration.md
     - REST API: reference/rest_api.md
-    - Invenio CLI: reference/cli.md
+    - Metadata: reference/metadata.md
+
   - Contribute:
     - Contribute to InvenioRDM: contribute/index.md
 
