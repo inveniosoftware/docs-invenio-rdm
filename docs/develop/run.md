@@ -8,17 +8,23 @@ and `--port` flags. Otherwise, `SITE_HOSTNAME` from `invenio.cfg` or from the
 environment is used.
 
 ``` bash
-invenio-cli run --host 127.0.0.1 --port 5000
+invenio-cli run
 ```
 
 ``` console
 # Summarized output
-Making sure containers are up...
+redis up and running!
+postgresql up and running!
+es up and running!
 Starting celery worker...
 Starting up local (development) server...
 Instance running!
 Visit https://127.0.0.1:5000
 ```
+
+!!! info "Change the host and port"
+    By default, the host is `127.0.0.1` and the port is `5000`. Pass `--host` and `--port`
+    to change them e.g., `invenio-cli run --host 127.0.0.2 --port 5001`.
 
 ## Use your instance: have fun!
 
@@ -311,7 +317,6 @@ curl -k -XPOST -H "Content-Type: application/json" https://127.0.0.1:5000/api/re
     "metadata": {
         "creators": [
             {
-                "name": "Julio Cesar",
                 "type": "personal",
                 "given_name": "Julio",
                 "family_name": "Cesar",
@@ -352,16 +357,17 @@ To publish it, you can take the `"publish"` link from the response:
 
 ```json
 "links": {
-    "self": "https://127.0.0.1:5000/api/records/jnmmp-51n47/draft",
+    "publish": "https://127.0.0.1:5000/api/records/jnmmp-51n47/draft/actions/publish",
     "self_html": "https://127.0.0.1:5000/uploads/jnmmp-51n47",
-    "publish": "https://127.0.0.1:5000/api/records/jnmmp-51n47/draft/actions/publish"
+    "files": "https://127.0.0.1:5000/api/records/jnmmp-51n47/draft/files",
+    "self": "https://127.0.0.1:5000/api/records/jnmmp-51n47/draft",
 }
 ```
 
 and `POST` to it:
 
 ```bash
-curl -k -X POST https://127.0.0.1:5000/api/records/jnmmp-51n47/draft/actions/publish
+curl -k -XPOST https://127.0.0.1:5000/api/records/jnmmp-51n47/draft/actions/publish
 ```
 
 And then search for it:
@@ -375,7 +381,7 @@ curl -k -XGET https://127.0.0.1:5000/api/records?q=Gladiator | python3 -m json.t
     "hits": {
         "hits": [
             {
-                "revision_id": 1,
+                "revision_id": 2,
                 "updated": "2020-11-10 22:59:47.203708",
                 "access": {
                     "access_right": "open",
@@ -404,7 +410,7 @@ curl -k -XGET https://127.0.0.1:5000/api/records?q=Gladiator | python3 -m json.t
                                 "orcid": "0000-0002-1825-0097"
                             },
                             "given_name": "Julio",
-                            "name": "Julio Cesar",
+                            "name": "Cesar, Julio",
                             "family_name": "Cesar",
                             "affiliations": [
                                 {
@@ -426,6 +432,7 @@ curl -k -XGET https://127.0.0.1:5000/api/records?q=Gladiator | python3 -m json.t
                 "conceptid": "b2jgw-r0229",
                 "links": {
                     "self_html": "https://127.0.0.1:5000/records/90xv7-xwd20",
+                    "files": "https://127.0.0.1:5000/api/records/90xv7-xwd20/files",
                     "self": "https://127.0.0.1:5000/api/records/90xv7-xwd20"
                 }
             }
@@ -476,29 +483,58 @@ curl -k -XGET https://127.0.0.1:5000/api/records?q=Gladiator | python3 -m json.t
 Alternatively, you can use the web UI.
 
 Navigate to [https://127.0.0.1:5000](https://127.0.0.1:5000) . Note that you might need to accept the SSL exception since it's using a test certificate.
-And visit the record page for the newly created record. You will see it has no files associated with it. Let's change that!
+And visit the record page for the newly created record (`self_html` above or just search for it). You will see it has no files associated with it. Let's change that!
 
 ### Upload a file to a record
 
-!!! error "Temporarily not supported"
-    This is temporarily disabled until the new API is fully compatible with it.
+For demonstration purposes, we will attach this scientific photo to our record:
 
-For demonstration purposes, we will attach this scientific photo:
+![Very scientific picture of a shiba in autumn](img/jaycee-xie-unsplash-shiba.jpg)
 
-![Very scientific picture of a shiba in the snow](https://images.unsplash.com/photo-1548116137-c9ac24e446c9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80)
+Photo by <a href="https://unsplash.com/@jayceexie?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Jaycee Xie</a> on <a href="https://unsplash.com/@jayceexie?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>.
 
-by <a href="https://unsplash.com/@matyssik" target="_blank" rel="noopener noreferrer">Ian Matyssik</a>.
+Save it as `leaf_doge.jpg` in your current directory.
 
-Save it as `snow_doge.jpg` in your current directory. Then upload it to the record:
+**First**, we need to work with a draft, so we create one from our published record:
 
 !!! warning "Change the `recid`"
     Change `jnmmp-51n47` in the URLs below for the recid of your record.
 
-``` bash
-curl -k -X PUT https://127.0.0.1:5000/api/records/jnmmp-51n47/files/snow_doge.jpg -H "Content-Type: application/octet-stream" --data-binary @snow_doge.jpg
+```bash
+curl -k -XPOST https://127.0.0.1:5000/api/records/jnmmp-51n47/draft
+```
+
+**Second**, we start the upload process by initializing the file key:
+
+```bash
+curl -k -XPOST https://127.0.0.1:5000/api/records/jnmmp-51n47/draft/files -H "Content-Type: application/json" -d '[
+  {"key": "leaf_doge.jpg"},
+]
+'
+```
+
+This "pre-flight" API call will allow us to support third-party source/storage in the future.
+
+**Third**, we now upload the insightful picture by using the `"content"` link returned:
+
+```bash
+curl -k -XPUT https://127.0.0.1:5000/api/records/jnmmp-51n47/draft/files/leaf_doge.jpg/content -H "Content-Type: application/octet-stream" --data-binary @leaf_doge.jpg
+```
+
+**Fourth**, we complete the upload process by using the `"commit"` link returned:
+
+```bash
+curl -k -XPOST https://127.0.0.1:5000/api/records/jnmmp-51n47/draft/files/leaf_doge.jpg/commit
+```
+
+**Finally**, we publish our updated record:
+
+```bash
+curl -k -XPOST https://127.0.0.1:5000/api/records/jnmmp-51n47/draft/actions/publish
 ```
 
 This file can then be previewed on the record page and even downloaded.
+
 
 ## Stop it
 

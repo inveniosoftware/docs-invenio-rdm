@@ -27,10 +27,10 @@ We'll use the [invenio color logo](https://github.com/inveniosoftware/invenio-th
 cp ./path/to/new/color/logo.svg static/images/invenio-rdm.svg
 ```
 
-Then, use the `assets update` command:
+Then, use the `assets build` command:
 
 ``` bash
-invenio-cli assets update --development
+invenio-cli assets build --development
 ```
 ``` console
 # Summarized output
@@ -45,7 +45,7 @@ Built webpack project.
 
 This command makes sure files you have in `static/`, `assets/`, `templates/` and so on are placed in the right location with other similar files for the application.
 The `--development` (or `-d` for short) does so by symlinking the files, while the `--production` (or `-p` for short) copies the files over. Symlinking makes future
-modifications to those files translate directly. No need to run `invenio-cli assets update` again for them.
+modifications to those files translate directly. No need to run `invenio-cli assets build` again for them.
 
 In the browser, go to [https://127.0.0.1:5000/](https://127.0.0.1:5000) or refresh the page. And voilà! The logo has changed!
 
@@ -59,7 +59,7 @@ If your logo isn't an svg, you still copy it to `static/images/`, but you need t
 + THEME_LOGO="images/my-logo.png"
 ```
 
-Then, run `assets update` as above and additionally restart the server:
+Then, run `assets build` as above and additionally restart the server:
 
 ```bash
 ^C
@@ -67,7 +67,7 @@ Stopping server and worker...
 Server and worker stopped...
 ```
 ```bash
-invenio-cli assets update -d
+invenio-cli assets build -d
 invenio-cli run
 ```
 
@@ -76,14 +76,14 @@ invenio-cli run
 
 This workflow stands for all `static/` files:
 
-- if you add a new file, run `invenio-cli assets update -d`
-- if you modify `invenio.cfg`, re-run `invenio-cli run` (because `invenio.cfg` has been symlinked above, you don't need to run `assets update`)
+- if you add a new file, run `invenio-cli assets build -d`
+- if you modify `invenio.cfg`, re-run `invenio-cli run` (because `invenio.cfg` has been symlinked above, you don't need to run `assets build`)
 - if you modify a previously symlinked file, you don't need to do anything
 
 
 ## Change the colors
 
-You might also be wondering: *How do I change the colors so I can make my instance look like my institution's theme?*
+You might also be wondering: *How do I change the colors so I can make my instance adopt my institution's theme?*
 
 We are going to change the top header section in the frontpage to apply our custom background color. It's a good example of the workflow for when `assets/` files change.
 
@@ -94,16 +94,16 @@ Open the `assets/less/variables.less` file and edit it as below:
 @navbar_background_color: #000000; // Note this hex value is an example. Choose yours.
 ```
 
-Then, run the `invenio-cli assets update -d` command as above and refresh the page! You should be able to see your top header's color changed!
+Then, run the `invenio-cli assets build -d` command as above and refresh the page! You should be able to see your top header's color changed!
 
 You can override any styling variables in your `variables.less` file. The available styling variables are found in the `variables.less` or `.variables` files of the various invenio modules installed. The ones above are originally defined [here](https://github.com/inveniosoftware/invenio-app-rdm/blob/master/invenio_app_rdm/theme/assets/semantic-ui/less/invenio_app_rdm/variables.less). The `invenio-theme` module defines a large number of them [here](https://github.com/inveniosoftware/invenio-theme/tree/master/invenio_theme/assets/semantic-ui/less/invenio_theme/theme).
 
-However, you may notice further changes are not picked up unless `invenio-cli assets update` is run again each time, even though we symlinked these files! That's because `.less` files (and javascript files below) always need to be transformed into their final form first. `invenio-cli assets update` does that. There is a way to get the same workflow as `static/` files, without having to re-run that command over and over: run `invenio-cli assets watch`. It watches for changes to assets and rebuilds them automatically.
+However, you may notice further changes to the `variables.less` file are not picked up unless `invenio-cli assets build` is run again each time even though we symlinked these files! That's because `.less` files (and javascript files below) always need to be transformed into their final form first. `invenio-cli assets build` does that. There is a way to get the same workflow as `static/` files, without having to re-run that command over and over: run `invenio-cli assets watch`. It watches for changes to assets and rebuilds them automatically.
 
 The workflow for `assets/` files is then:
 
 - start `invenio-cli assets watch` in a terminal (you will need a different terminal for the other commands)
-- if you add a new file, run `invenio-cli assets update -d`
+- if you add a new file, run `invenio-cli assets build -d`
 - if you modify `invenio.cfg`, re-run `invenio-cli run`
 - if you modify a previously symlinked file, you now don't need to do anything
 
@@ -133,7 +133,7 @@ export function ResultsItemTemplate(record, index) {
 };
 ```
 
-Then, run the `invenio-cli assets update` command as above and refresh the page! You should be able to see more text in each result's description! You can find all the available templates [here](https://github.com/inveniosoftware/invenio-app-rdm/tree/master/invenio_app_rdm/theme/assets/templates/search).
+Then, run the `invenio-cli assets build` command as above and refresh the page! You should be able to see more text in each result's description! You can find all the available templates [here](https://github.com/inveniosoftware/invenio-app-rdm/tree/master/invenio_app_rdm/theme/assets/templates/search).
 
 
 ## Change the record landing page
@@ -184,20 +184,23 @@ Then edit `invenio.cfg` to tell InvenioRDM to use this file.
 # imports at the top...
 from os.path import abspath, dirname, join
 
-# ...
+# ... content of the invenio.cfg file omitted for brevity ...
 
 # At the bottom
 # Our custom Vocabularies
 RDM_RECORDS_CUSTOM_VOCABULARIES = {
-    'resource_types': join(
-        dirname(abspath(__file__)),
-        'app_data', 'vocabularies', 'resource_types.csv')
+    'resource_type': {  # Pre-defined key. See note below
+        'path': join(
+            dirname(abspath(__file__)),
+            'app_data', 'vocabularies', 'resource_types.csv'
+        )
+    }
 }
 ```
 
 !!! info "Other vocabularies"
     See the [Vocabulary source code](https://github.com/inveniosoftware/invenio-rdm-records/blob/master/invenio_rdm_records/vocabularies/__init__.py)
-    in invenio-rdm-records to know the keys for the other vocabularies.
+    in invenio-rdm-records to know the keys for all supported vocabularies.
 
 Restart your server and your vocabulary will now be used for resource types!
 
@@ -435,19 +438,15 @@ Let's create a user with the right permission:
 pipenv run invenio users create admin@test.ch --password=123456 --active
 ```
 
+Assign them the admin role (admins have super user permission:
+
 ``` bash
 pipenv run invenio roles add admin@test.ch admin
 ```
 
-Generate her token:
+Generate her token where `-n` is the name of the token (your choice) and
+`-u` the email of the user:
 
-Login through the browser as `admin@test.ch` with password `123456`. Then
-in the dropdown menu of the username (top-right), select `Applications`. Then
-click on `New token`, name your token and click `Create`. Copy this token (we
-will refer to it as `<your token>`).
-
-Alternatively, you can get a token using the `invenio` command, where `-n` is
-the name of the token (your choice) and `-u` the email of the user:
 
 ``` bash
 pipenv run invenio tokens create -n permission-demo -u admin@test.ch
@@ -461,9 +460,7 @@ curl -k -XPOST -H "Authorization: Bearer <your token>" -H "Content-Type: applica
 }'
 ```
 
-And it works! That's because InvenioRDM creates an `admin` role with super user
-access permissions when initially setting up the database. Above, we set
-`admin@test.ch` to be an admin, so that user can create records.
+And it works, because we are making the API call as a user with super user access!
 
 Revert the changes in `invenio.cfg` and restart the server to get back to where
 we were.

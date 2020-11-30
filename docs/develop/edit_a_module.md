@@ -15,21 +15,16 @@ process when using webpack, but Invenio-CLI has you covered.
 First, you have to install the module you want to edit:
 
 ```
-invenio-cli packages install /path/to/new-module
+invenio-cli packages install /path/to/module
 ```
 
-Then you have to clean the assets (`--force` or `-f`), and create symbolic links
-(`--development` or `-d`):
+and then re-start the instance.
 
-```
-invenio-cli assets update --development --force
-```
-
-Cleaning the assets is required for two reasons, first the
-module might have already been installed from upstream and therefore some
-links already exist, or these files already exist (as hard copies) if the
+The command takes care of cleaning the assets for you. This is convenient for
+two reasons, first the module might have already been installed from upstream and
+therefore some links already exist, or these files already exist (as hard copies) if the
 installation was not done using the `--development` flag. As you can see, many
-things can go wrong, so cleaning the assets is the wise thing to do.
+things can go wrong, so the added time is worth it.
 
 In addition, if you want to modify CSS and see it when reloading the page you
 need to *watch* the assets. This will automatically rebuild the webpack bundles
@@ -48,18 +43,18 @@ invenio-cli assets watch
     to disable your cache or use an incognito window when developing web UI.
 
 This is a continually running operation, so do not close the terminal. You
-will be able to see the rebuilding progress there -usually a percentage in the last
+will be able to see the rebuilding progress there -usually a percentage on the last
 line- and the errors in case there were any.
 
 !!! warning "You might see an UnfinishedManifest error"
-    Rebuilding the webpack bundles is not a speed-of-light operation, it might
+    Rebuilding the webpack bundles is not a speed-of-light operation. It might
     take a few seconds. If you see an `UnfinishedManifest` error in your
-    browser when you refresh, check the terminal to see if the assets are simply still
-    building or if build errors (e.g. syntax errors) occurred.
+    browser when you refresh, check the terminal to see whether the assets are
+    simply still building or if an actual build error (e.g. syntax error) occurred.
 
 ## React modules
 
-In a similar fashion than in the previous section, to develop on a react
+In a similar fashion as in the previous section, to develop on a react
 module you have to install and watch it. Invenio-CLI has commands for that
 too. To install a module run:
 
@@ -73,5 +68,7 @@ virtual environment. Note that if you are already watching some python
 module, this action is independent (and per module):
 
 ```
-invenio-cli assets watch module  /path/to/react-module
+invenio-cli assets watch-module --link /path/to/react-module
 ```
+
+You may have to restart `invenio-cli assets watch`.

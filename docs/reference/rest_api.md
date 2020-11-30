@@ -789,7 +789,7 @@ Content-Type: application/json
 }
 ```
 
-### Initialize draft file upload(s)
+### Start draft file upload(s)
 
 `POST /api/records/{id}/draft/files`
 
