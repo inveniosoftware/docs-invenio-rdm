@@ -309,7 +309,7 @@ You can create a new record **draft** using the API:
 curl -k -XPOST -H "Content-Type: application/json" https://127.0.0.1:5000/api/records -d '{
     "access": {
         "access_right": "open",
-        "files": false,
+        "files": true,
         "owned_by": [1],
         "metadata": false,
         "embargo_date": "2021-02-15"
@@ -385,7 +385,7 @@ curl -k -XGET https://127.0.0.1:5000/api/records?q=Gladiator | python3 -m json.t
                 "updated": "2020-11-10 22:59:47.203708",
                 "access": {
                     "access_right": "open",
-                    "files": false,
+                    "files": true,
                     "owned_by": [1],
                     "metadata": false,
                     "embargo_date": "2021-02-15"
@@ -508,9 +508,8 @@ curl -k -XPOST https://127.0.0.1:5000/api/records/jnmmp-51n47/draft
 
 ```bash
 curl -k -XPOST https://127.0.0.1:5000/api/records/jnmmp-51n47/draft/files -H "Content-Type: application/json" -d '[
-  {"key": "leaf_doge.jpg"},
-]
-'
+  {"key": "leaf_doge.jpg"}
+]'
 ```
 
 This "pre-flight" API call will allow us to support third-party source/storage in the future.
