@@ -45,6 +45,11 @@ curl -k -XGET https://127.0.0.1:5000/api/records | python3 -m json.tool
 ``` json
 {
     "aggregations": {
+        "languages": {
+            "doc_count_error_upper_bound": 0,
+            "sum_other_doc_count": 0,
+            "buckets": []
+        },
         "resource_type": {
             "doc_count_error_upper_bound": 0,
             "sum_other_doc_count": 0,
@@ -489,11 +494,11 @@ And visit the record page for the newly created record (`self_html` above or jus
 
 For demonstration purposes, we will attach this scientific photo to our record:
 
-![Very scientific picture of a shiba in autumn](img/jaycee-xie-unsplash-shiba.jpg)
+![Very scientific picture of a shiba in autumn](img/jaycee-xie-unsplash-shiba.png)
 
 Photo by <a href="https://unsplash.com/@jayceexie?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Jaycee Xie</a> on <a href="https://unsplash.com/@jayceexie?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>.
 
-Save it as `leaf_doge.jpg` in your current directory.
+Save it as `leaf_shiba.png` in your current directory.
 
 **First**, we need to work with a draft, so we create one from our published record:
 
@@ -508,7 +513,7 @@ curl -k -XPOST https://127.0.0.1:5000/api/records/jnmmp-51n47/draft
 
 ```bash
 curl -k -XPOST https://127.0.0.1:5000/api/records/jnmmp-51n47/draft/files -H "Content-Type: application/json" -d '[
-  {"key": "leaf_doge.jpg"}
+  {"key": "leaf_shiba.png"}
 ]'
 ```
 
@@ -517,13 +522,13 @@ This "pre-flight" API call will allow us to support third-party source/storage i
 **Third**, we now upload the insightful picture by using the `"content"` link returned:
 
 ```bash
-curl -k -XPUT https://127.0.0.1:5000/api/records/jnmmp-51n47/draft/files/leaf_doge.jpg/content -H "Content-Type: application/octet-stream" --data-binary @leaf_doge.jpg
+curl -k -XPUT https://127.0.0.1:5000/api/records/jnmmp-51n47/draft/files/leaf_shiba.png/content -H "Content-Type: application/octet-stream" --data-binary @leaf_shiba.png
 ```
 
 **Fourth**, we complete the upload process by using the `"commit"` link returned:
 
 ```bash
-curl -k -XPOST https://127.0.0.1:5000/api/records/jnmmp-51n47/draft/files/leaf_doge.jpg/commit
+curl -k -XPOST https://127.0.0.1:5000/api/records/jnmmp-51n47/draft/files/leaf_shiba.png/commit
 ```
 
 **Finally**, we publish our updated record:
