@@ -113,43 +113,10 @@ drwxr-xr-x 2 youruser youruser 4096 Feb 19 13:45 templates/
 
 ## Preview instance
 
-!!! warning "NEW: Adjust `SITE_HOSTNAME`"
-    New in the October release: the `SERVER_HOSTNAME` configuration variable is now called `SITE_HOSTNAME`
-    and can be modified in `invenio.cfg` or using the `INVENIO_SITE_HOSTNAME` environment variable.
-
-#### Set SITE_HOSTNAME
-
-This is required because `invenio-cli init rdm` generates a config file (`invenio.cfg`)
-for [development usage](../develop/index.md) by default. We need to tweak it,
-because we are only previewing InvenioRDM.
-
-Before running your instance, change the following in `invenio.cfg`:
-
-```diff
-- SITE_HOSTNAME = "127.0.0.1:5000"
-+ SITE_HOSTNAME = "127.0.0.1"
-```
-
-Alernatively, you can export it in your environment. If you do so, remember to prefix it with `INVENIO_`.
-
-Using a bash shell:
-
-```bash
-export INVENIO_SITE_HOSTNAME="127.0.0.1"
-```
-
-Using a fish shell:
-
-```fish
-set --export INVENIO_SITE_HOSTNAME "127.0.0.1"
-```
-
 #### Containerize and run
 
 The project is initialized, we now run it. Switch to the project
 directory and do so:
-
-**NOTE**: Ensure you have done the steps in [Set SITE HOSTNAME](#Set-SITE_HOSTNAME) before you proceed!
 
 ``` bash
 cd inveniordm-preview
