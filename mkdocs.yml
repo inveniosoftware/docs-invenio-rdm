@@ -57,6 +57,8 @@ nav:
     - Configuration: reference/configuration.md
     - REST API: reference/rest_api.md
     - Metadata: reference/metadata.md
+  - Maintenance guide:
+    - Demo site: maintenance/demosite.md
 
   - Contribute:
     - Contribute to InvenioRDM: contribute/index.md
