@@ -37,18 +37,7 @@ cd path/to/your/instance
 invenio-cli packages install path/to/your/extension
 ```
 
-## Sanity check and run!
-
-Check that the Pipfile got a new line with your extension. For example:
-
-``` console
-...
-
-[packages]
-...
-invenio-rdm-extension-demo = {editable = true, path="../invenio-rdm-ext-demo"}
-...
-```
+## Run!
 
 It's all set, run your instance with the cli and you will have your new features available!
 
