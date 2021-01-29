@@ -120,14 +120,6 @@ Creating indexes...
 Putting templates...
 ```
 
-## Import vocabularies
-
-To import vocabularies such as licenses or languages in your instance do the following:
-
-```bash
-pipenv run invenio vocabularies import languages licenses
-```
-
 ## (Don't) Populate the database
 
 Demo records now come by default! If you want to avoid having them when setting up your instance, pass the `--no-demo-data` flag to the `setup` command:
@@ -135,3 +127,6 @@ Demo records now come by default! If you want to avoid having them when setting 
 ```bash
 invenio-cli services setup --no-demo-data
 ```
+
+!!! warning "Don't do this in 0.21.0 (January release)"
+    Demo data is tied to vocabulary loading in the latest release. Until the two are separate, you should not use the `--no-demo-data` as it would not load the vocabularies.

@@ -371,57 +371,25 @@ That's it configuration-wise.
 
 ### Test that non super users are denied
 
-Did the changes work? We are going to try to create a new draft:
+Did the changes work? We are going to try to create a new draft.
+
+Simply do as seen in [the previous section](./run.md#create-a-draft).
+You can customize the metadata if you would like. For instance, we use
+a different title.
+
+We shorten the content for readability.
 
 ``` bash
 curl -k -XPOST -H "Content-Type: application/json" https://127.0.0.1:5000/api/records -d '{
-    "access": {
-        "access_right": "open",
-        "files": false,
-        "owned_by": [1],
-        "metadata": false,
-        "embargo_date": "2021-02-15"
-    },
+    "access": { ... },
     "metadata": {
-        "creators": [
-            {
-                "name": "Marcus Junius Brutus",
-                "type": "personal",
-                "given_name": "Marcus",
-                "family_name": "Brutus",
-                "identifiers": {
-                    "orcid": "0000-0002-1825-0097"
-                },
-                "affiliations": [
-                    {
-                        "name": "Entity One",
-                        "identifiers": {
-                            "ror": "02ex6cf31"
-                        }
-                    }
-                ]
-            }
-        ],
-        "description": "A story about how permissions work.",
-        "rights": [
-            {
-                "rights": "Berkeley Software Distribution 3",
-                "uri": "https://opensource.org/licenses/BSD-3-Clause",
-                "identifier": "BSD-3",
-                "scheme": "BSD-3"
-            }
-        ],
-        "publication_date": "2020-08-31",
-        "resource_type": {
-            "type": "image",
-            "subtype": "image-photo"
-        },
         "title": "A permission story",
-        "version": "v0.0.1"
+        ...
+    }
 }'
 ```
 
-As you can see, the server rejected us, because we were not a super user:
+This is what we get back:
 
 ``` json
 {
@@ -429,6 +397,8 @@ As you can see, the server rejected us, because we were not a super user:
     "message": "Permission denied."
 }
 ```
+
+As you can see, the server rejected us, because we were not a super user. Good!
 
 ### Test that super users are allowed
 

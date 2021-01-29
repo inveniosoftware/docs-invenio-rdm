@@ -186,13 +186,19 @@ Subfields:
 
 | Field | Cardinality |   Description   |
 |:-----:|:-----------:|:----------------|
-| ``name`` | (1) | The full name of the person or organisation. |
+| ``person_or_org`` | (1) | The person or organization. |
+| ``affiliations`` | (0-n) | Affilations if type is a personal name. |
+
+A `person_or_org` is described with the following subfields:
+
+| Field | Cardinality |   Description   |
+|:-----:|:-----------:|:----------------|
+| ``name`` | (0 if `type` is `personal` / 1 if `type` is `organisational`) | The full name of the organisation. For a person this field is generated from `given_name` and `family_name` |
 | ``type`` | (0-1, CV) | The type of name. Either ``personal`` or ``organisational``. |
 | ``role`` | (0-1, CV) | The role of the person or organisation selected from a customizable controlled vocabulary. |
-| ``given_name``  | (0-1) | Given name(s) if the type is a personal name. |
-| ``family_name`` | (0-1) | Family name if type is a personal name. |
+| ``given_name``  | (1 if `type` is `personal` / 0 if `type` is `organisational`) | Given name(s) if the type is a personal name. |
+| ``family_name`` | (1 if `type` is `personal` / 0 if `type` is `organisational`) | Family name if type is a personal name. |
 | ``identifiers``  | (0-n) | Person or organisation identifiers. |
-| ``affiliations`` | (0-n) | Affilations if type is a personal name. |
 
 Affiliations are described with the following subfields:
 
@@ -206,7 +212,7 @@ Identifiers are described with the following subfields (note, we only support on
 | Field | Cardinality |   Description   |
 |:-----:|:-----------:|:----------------|
 | ``scheme`` | (1, CV) | The identifier scheme. |
-| ``value`` | (1) | Actual value of the identifier. |
+| ``identifier`` | (1) | Actual value of the identifier. |
 
 Supported creator identifier schemes:
 
@@ -225,22 +231,25 @@ Example:
 ```json
 {
     "creators": [{
-      "name": "Nielsen, Lars Holm",
-      "role": "creator",
-      "type": "personal",
-      "given_name": "Lars Holm",
-      "family_name": "Nielsen",
-      "identifiers": {
-        "orcid": "0000-0001-8135-3489",
-        "<scheme>": "<value>"
+      "person_or_org": {
+        "name": "Nielsen, Lars Holm",
+        "type": "personal",
+        "given_name": "Lars Holm",
+        "family_name": "Nielsen",
+        "identifiers": [{
+          "scheme": "orcid",
+          "identifier": "0000-0001-8135-3489"
+        }],
       },
       "affiliations": [{
-        "name": "CERN",
-        "identifiers": {
-          "ror": "01ggx4157",
-          "isni": "000000012156142X",
-          "<scheme>": "<value>"
-        }
+          "name": "CERN",
+          "identifiers": [{
+              "scheme": "ror",
+              "identifier": "01ggx4157",
+          }, {
+              "scheme": "isni",
+              "identifier": "000000012156142X",
+          }]
       }]
     }],
 }
@@ -429,21 +438,27 @@ Example:
 ```json
 {
   "contributors": [{
+    "person_or_org": {
       "name": "Nielsen, Lars Holm",
       "type": "personal",
-      "role": "other",
       "given_name": "Lars Holm",
       "family_name": "Nielsen",
-      "identifiers": {
-        "orcid": "0000-0001-8135-3489"
-      },
-      "affiliations": [{
+      "identifiers": [{
+        "scheme": "orcid",
+        "identifier": "0000-0001-8135-3489"
+      }],
+      "role": "Editor"
+    },
+    "affiliations": [{
         "name": "CERN",
-        "identifiers": {
-          "ror": "01ggx4157",
-          "isni": "000000012156142X"
-        }
-      }]
+        "identifiers": [{
+            "scheme": "ror",
+            "identifier": "01ggx4157",
+        }, {
+            "scheme": "isni",
+            "identifier": "000000012156142X",
+        }]
+    }]
   }],
 }
 ```

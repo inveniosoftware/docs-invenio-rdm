@@ -45,88 +45,17 @@ curl -k -XGET https://127.0.0.1:5000/api/records | python3 -m json.tool
 ``` json
 {
     "aggregations": {
-        "languages": {
-            "doc_count_error_upper_bound": 0,
-            "sum_other_doc_count": 0,
-            "buckets": []
-        },
-        "resource_type": {
-            "doc_count_error_upper_bound": 0,
-            "sum_other_doc_count": 0,
-            "buckets": [
-                {
-                    "key": "publication",
-                    "doc_count": 8,
-                    "subtype": {
-                        "doc_count_error_upper_bound": 0,
-                        "sum_other_doc_count": 0,
-                        "buckets": [
-                            {
-                                "key": "publication-other",
-                                "doc_count": 2
-                            },
-                            {
-                                "key": "publication-article",
-                                "doc_count": 1
-                            },
-                            {
-                                "key": "publication-deliverable",
-                                "doc_count": 1
-                            },
-                            {
-                                "key": "publication-patent",
-                                "doc_count": 1
-                            },
-                            {
-                                "key": "publication-report",
-                                "doc_count": 1
-                            },
-                            {
-                                "key": "publication-taxonomictreatment",
-                                "doc_count": 1
-                            },
-                            {
-                                "key": "publication-thesis",
-                                "doc_count": 1
-                            }
-                        ]
-                    }
-                },
-                {
-                    "key": "dataset",
-                    "doc_count": 1,
-                    "subtype": {
-                        "doc_count_error_upper_bound": 0,
-                        "sum_other_doc_count": 0,
-                        "buckets": []
-                    }
-                },
-                {
-                    "key": "image",
-                    "doc_count": 1,
-                    "subtype": {
-                        "doc_count_error_upper_bound": 0,
-                        "sum_other_doc_count": 0,
-                        "buckets": [
-                            {
-                                "key": "image-photo",
-                                "doc_count": 1
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
         "access_right": {
             "doc_count_error_upper_bound": 0,
             "sum_other_doc_count": 0,
             "buckets": [
                 {
                     "key": "open",
-                    "doc_count": 10
+                    "doc_count": 100
                 }
             ]
-        }
+        },
+        ...
     },
     "hits": {
         "hits": [
@@ -134,7 +63,7 @@ curl -k -XGET https://127.0.0.1:5000/api/records | python3 -m json.tool
                 "access": {
                     "access_right": "open",
                     "files": false,
-                    "owned_by": [1],
+                    "owned_by": [{"user": 1}],
                     "metadata": false,
                     "embargo_date": "2021-02-15"
                 },
@@ -144,6 +73,7 @@ curl -k -XGET https://127.0.0.1:5000/api/records | python3 -m json.tool
                 "conceptid": "5fk5g-mq814",
                 "id": "zgxnf-z7n12",
                 "links": {
+                    "files": "https://127.0.0.1:5000/api/records/zgxnf-z7n12/files",
                     "self": "https://127.0.0.1:5000/api/records/zgxnf-z7n12",
                     "self_html": "https://127.0.0.1:5000/records/zgxnf-z7n12"
                 },
@@ -169,34 +99,76 @@ curl -k -XGET https://127.0.0.1:5000/api/records | python3 -m json.tool
                     ],
                     "contributors": [
                         {
+                            "person_or_org": {
+                                "given_name": "John",
+                                "family_name": "Davis",
+                                "type": "personal",
+                                "name": "Davis, John"
+                            },
+                            "role": "rightsholder",
                             "affiliations": [
                                 {
-                                    "identifiers": {
-                                        "ror": "03yrm5c26"
-                                    },
-                                    "name": "Doyle, Miller and Williams"
+                                    "identifiers": [
+                                        {
+                                            "identifier": "03yrm5c26",
+                                            "scheme": "ror"
+                                        }
+                                    ],
+                                    "name": "Tran-Kirby"
                                 }
-                            ],
-                            "name": "Gina Brown",
-                            "role": "rightsholder",
-                            "type": "personal"
+                            ]
                         }
                     ],
                     "creators": [
                         {
+                            "person_or_org": {
+                                "given_name": "Thomas",
+                                "identifiers": [
+                                    {
+                                        "identifier": "0000-0002-1825-0097",
+                                        "scheme": "orcid"
+                                    }
+                                ],
+                                "family_name": "Collins",
+                                "type": "personal",
+                                "name": "Collins, Thomas"
+                            },
                             "affiliations": [
                                 {
-                                    "identifiers": {
-                                        "ror": "03yrm5c26"
-                                    },
-                                    "name": "Pacheco Ltd",
+                                    "identifiers": [
+                                        {
+                                            "identifier": "03yrm5c26",
+                                            "scheme": "ror"
+                                        }
+                                    ],
+                                    "name": "Campos LLC"
                                 }
-                            ],
-                            "identifiers": {
-                                "orcid": "0000-0002-1825-0097"
+                            ]
+                        },
+                        {
+                            "person_or_org": {
+                                "given_name": "Jeffrey",
+                                "identifiers": [
+                                    {
+                                        "identifier": "0000-0002-1825-0097",
+                                        "scheme": "orcid"
+                                    }
+                                ],
+                                "family_name": "Padilla",
+                                "type": "personal",
+                                "name": "Padilla, Jeffrey"
                             },
-                            "name": "Christina Wright",
-                            "type": "personal"
+                            "affiliations": [
+                                {
+                                    "identifiers": [
+                                        {
+                                            "identifier": "03yrm5c26",
+                                            "scheme": "ror"
+                                        }
+                                    ],
+                                    "name": "Mcdaniel, Bowen and Church"
+                                }
+                            ]
                         }
                     ],
                     "dates": [
@@ -244,11 +216,10 @@ curl -k -XGET https://127.0.0.1:5000/api/records | python3 -m json.tool
                     "publication_date": "1970-12-05",
                     "references": [
                         {
-                            "identifier": "9999.99988",
                             "reference": "Reference to something et al.",
-                            "scheme": "grid"
-                        }
-                    ],
+                            "identifier": "0000000114559647",
+                            "scheme": "isni"
+                        }                    ],
                     "related_identifiers": [
                         {
                             "identifier": "10.9999/rdm.9999988",
@@ -277,9 +248,9 @@ curl -k -XGET https://127.0.0.1:5000/api/records | python3 -m json.tool
                     ],
                     "subjects": [
                         {
-                            "identifier": "subj-1",
-                            "scheme": "no-scheme",
-                            "subject": "Romans"
+                            "subject": "note",
+                            "identifier": "03yrm5c26",
+                            "scheme": "ror"
                         }
                     ],
                     "title": "Hicks and Sons's gallery",
@@ -288,10 +259,11 @@ curl -k -XGET https://127.0.0.1:5000/api/records | python3 -m json.tool
             },
             ...
         ],
-        "total": 10
+        "total": 25
     },
     "links": {
-        "self": "https://127.0.0.1:5000/api/records?page=1&size=25&sort=newest"
+        "self": "https://127.0.0.1:5000/api/records?page=1&size=25&sort=newest",
+        "next": "https://127.0.0.1:5000/api/records?page=2&size=25&sort=newest"
     },
     "sortBy": "newest"
 }
@@ -308,6 +280,8 @@ curl -k -XGET https://127.0.0.1:5000/api/records | jq .
 
 ### Create records
 
+#### Create a draft
+
 You can create a new record **draft** using the API:
 
 ```bash
@@ -315,38 +289,43 @@ curl -k -XPOST -H "Content-Type: application/json" https://127.0.0.1:5000/api/re
     "access": {
         "access_right": "open",
         "files": true,
-        "owned_by": [1],
+        "owned_by": [
+            {
+                "user": 1
+            }
+        ],
         "metadata": false,
         "embargo_date": "2021-02-15"
     },
     "metadata": {
         "creators": [
             {
-                "type": "personal",
-                "given_name": "Julio",
-                "family_name": "Cesar",
-                "identifiers": {
-                    "orcid": "0000-0002-1825-0097"
+                "person_or_org": {
+                    "family_name": "Collins",
+                    "given_name": "Thomas",
+                    "identifiers": [
+                        {
+                            "identifier": "0000-0002-1825-0097",
+                            "scheme": "orcid"
+                        }
+                    ],
+                    "name": "Collins, Thomas",
+                    "type": "personal"
                 },
                 "affiliations": [
                     {
-                        "name": "Entity One",
-                        "identifiers": {
-                            "ror": "03yrm5c26"
-                        }
+                        "identifiers": [
+                            {
+                                "identifier": "03yrm5c26",
+                                "scheme": "ror"
+                            }
+                        ],
+                        "name": "Entity One"
                     }
                 ]
             }
         ],
         "description": "A story on how Julio Cesar relates to Gladiator.",
-        "rights": [
-            {
-                "rights": "Berkeley Software Distribution 3",
-                "uri": "https://opensource.org/licenses/BSD-3-Clause",
-                "identifier": "BSD-3",
-                "scheme": "BSD-3"
-            }
-        ],
         "publication_date": "2020-06-01",
         "resource_type": {
             "type": "publication",
@@ -358,14 +337,16 @@ curl -k -XPOST -H "Content-Type: application/json" https://127.0.0.1:5000/api/re
 }'
 ```
 
+#### Publish a draft
+
 To publish it, you can take the `"publish"` link from the response:
 
 ```json
 "links": {
-    "publish": "https://127.0.0.1:5000/api/records/jnmmp-51n47/draft/actions/publish",
-    "self_html": "https://127.0.0.1:5000/uploads/jnmmp-51n47",
     "files": "https://127.0.0.1:5000/api/records/jnmmp-51n47/draft/files",
+    "publish": "https://127.0.0.1:5000/api/records/jnmmp-51n47/draft/actions/publish",
     "self": "https://127.0.0.1:5000/api/records/jnmmp-51n47/draft",
+    "self_html": "https://127.0.0.1:5000/uploads/jnmmp-51n47"
 }
 ```
 
@@ -375,112 +356,18 @@ and `POST` to it:
 curl -k -XPOST https://127.0.0.1:5000/api/records/jnmmp-51n47/draft/actions/publish
 ```
 
-And then search for it:
+### Get a record
+
+To confirm the record is published, you can search for it:
 
 ``` bash
 curl -k -XGET https://127.0.0.1:5000/api/records?q=Gladiator | python3 -m json.tool
 ```
 
-``` json
-{
-    "hits": {
-        "hits": [
-            {
-                "revision_id": 2,
-                "updated": "2020-11-10 22:59:47.203708",
-                "access": {
-                    "access_right": "open",
-                    "files": true,
-                    "owned_by": [1],
-                    "metadata": false,
-                    "embargo_date": "2021-02-15"
-                },
-                "metadata": {
-                    "resource_type": {
-                        "type": "publication",
-                        "subtype": "publication-article"
-                    },
-                    "description": "A story on how Julio Cesar relates to Gladiator.",
-                    "rights": [
-                        {
-                            "rights": "Berkeley Software Distribution 3",
-                            "uri": "https://opensource.org/licenses/BSD-3-Clause",
-                            "identifier": "BSD-3",
-                            "scheme": "BSD-3"
-                        }
-                    ],
-                    "creators": [
-                        {
-                            "identifiers": {
-                                "orcid": "0000-0002-1825-0097"
-                            },
-                            "given_name": "Julio",
-                            "name": "Cesar, Julio",
-                            "family_name": "Cesar",
-                            "affiliations": [
-                                {
-                                    "identifiers": {
-                                        "ror": "03yrm5c26"
-                                    },
-                                    "name": "Entity One"
-                                }
-                            ],
-                            "type": "personal"
-                        }
-                    ],
-                    "version": "v0.0.1",
-                    "publication_date": "2020-06-01",
-                    "title": "A Romans story"
-                },
-                "id": "90xv7-xwd20",
-                "created": "2020-11-10 22:59:47.103850",
-                "conceptid": "b2jgw-r0229",
-                "links": {
-                    "self_html": "https://127.0.0.1:5000/records/90xv7-xwd20",
-                    "files": "https://127.0.0.1:5000/api/records/90xv7-xwd20/files",
-                    "self": "https://127.0.0.1:5000/api/records/90xv7-xwd20"
-                }
-            }
-        ],
-        "total": 1
-    },
-    "links": {
-        "self": "https://127.0.0.1:5000/api/records?page=1&q=Gladiator&size=25&sort=bestmatch"
-    },
-    "sortBy": "bestmatch",
-    "aggregations": {
-        "resource_type": {
-            "doc_count_error_upper_bound": 0,
-            "sum_other_doc_count": 0,
-            "buckets": [
-                {
-                    "key": "publication",
-                    "doc_count": 1,
-                    "subtype": {
-                        "doc_count_error_upper_bound": 0,
-                        "sum_other_doc_count": 0,
-                        "buckets": [
-                            {
-                                "key": "publication-article",
-                                "doc_count": 1
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "access_right": {
-            "doc_count_error_upper_bound": 0,
-            "sum_other_doc_count": 0,
-            "buckets": [
-                {
-                    "key": "open",
-                    "doc_count": 1
-                }
-            ]
-        }
-    }
-}
+or access it directly using the id from the publish response (e.g. `90xv7-xwd20`):
+
+``` bash
+curl -k -XGET https://127.0.0.1:5000/api/records/90xv7-xwd20 | python3 -m json.tool
 ```
 
 ### Use your browser
@@ -539,6 +426,9 @@ curl -k -XPOST https://127.0.0.1:5000/api/records/jnmmp-51n47/draft/actions/publ
 
 This file can then be previewed on the record page and even downloaded.
 
+## Explore the API
+
+To see what other API calls exist, go to the [API reference section](../reference/rest_api.md).
 
 ## Stop it
 
