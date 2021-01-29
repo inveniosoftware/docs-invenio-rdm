@@ -67,8 +67,12 @@ Content-Type: application/json
 {
   "aggregations": {...},
   "hits": {...},
+  "links": {...},
+  "sortBy": ...,
 }
 ```
+
+Each hit looks like a record below.
 
 ### Get a record
 
@@ -271,6 +275,8 @@ Content-Type: application/json
 {
   "aggregations": {...},
   "hits": {...},
+  "links": {...},
+  "sortBy": ...,
 }
 ```
 
@@ -282,8 +288,8 @@ Content-Type: application/json
 
 | Name       | Type   | Location | Description                                                  |
 | ---------- | ------ | -------- | ------------------------------------------------------------ |
-| `metadata` | object | body     | Metadata of the record (see metadata reference for examples). |
 | `access`   | object | body     | Access options for the record (TBD).                         |
+| `metadata` | object | body     | Metadata of the record (see metadata reference for examples). |
 
 **Request**
 
@@ -292,42 +298,42 @@ POST /api/records HTTP/1.1
 Content-Type: application/json
 
 {
+  "access": {
+    "metadata": false,
+    "files": false,
+    "owned_by": [{"user": 1}],
+    "access_right": "open"
+  },
   "metadata": {
     "resource_type": { "type": "image", "subtype": "image-photo" },
     "title": "A Romans story",
     "publication_date": "2020-06-01",
     "creators": [
-      {
-        "given_name": "Troy",
+      "person_or_org": {
         "family_name": "Brown",
+        "given_name": "Troy",
         "type": "personal"
       },
       {
-        "given_name": "Phillip",
-        "family_name": "Lester",
-        "type": "personal",
-        "identifiers": { "orcid": "0000-0002-1825-0097" },
+        "person_or_org": {
+          "family_name": "Collins",
+          "given_name": "Thomas",
+          "identifiers": [
+            {"scheme": "orcid", "identifier": "0000-0002-1825-0097"}
+          ],
+          "name": "Collins, Thomas",
+          "type": "personal"
+        },
         "affiliations": [
-          { "name": "Carter-Morris", "identifiers": { "ror": "03yrm5c26" } }
-        ]
-      },
-      {
-        "given_name": "Steven",
-        "family_name": "Williamson",
-        "type": "personal",
-        "identifiers": { "orcid": "0000-0002-1825-0097" },
-        "affiliations": [
-          { "name": "Ritter and Sons", "identifiers": { "ror": "03yrm5c26" } },
-          { "name": "Montgomery, Bush and Madden", "identifiers": { "ror": "03yrm5c26" } }
+          {
+            "identifiers": [
+              {"scheme": "ror", "identifier": "03yrm5c26"}
+            ],
+            "name": "Entity One"
+          }
         ]
       }
     ]
-  },
-  "access": {
-    "metadata": false,
-    "files": false,
-    "owned_by": [1],
-    "access_right": "open"
   }
 }
 ```
@@ -350,37 +356,34 @@ Content-Type: application/json
     "title": "A Romans story",
     "publication_date": "2020-06-01",
     "creators": [
-      {
-        "name": "Brown, Troy",
-        "type": "personal",
+      "person_or_org": {
         "family_name": "Brown",
-        "given_name": "Troy"
+        "given_name": "Troy",
+        "type": "personal"
       },
       {
-        "name": "Lester, Phillip",
-        "type": "personal",
+        "person_or_org": {
+          "family_name": "Collins",
+          "given_name": "Thomas",
+          "identifiers": [
+            {"scheme": "orcid", "identifier": "0000-0002-1825-0097"}
+          ],
+          "name": "Collins, Thomas",
+          "type": "personal"
+        },
         "affiliations": [
-          { "name": "Carter-Morris", "identifiers": { "ror": "03yrm5c26" } }
-        ],
-        "family_name": "Lester",
-        "identifiers": { "orcid": "0000-0002-1825-0097" },
-        "given_name": "Phillip"
-      },
-      {
-        "name": "Williamson, Steven",
-        "type": "personal",
-        "affiliations": [
-          { "name": "Ritter and Sons", "identifiers": { "ror": "03yrm5c26" } },
-          { "name": "Montgomery, Bush and Madden", "identifiers": { "ror": "03yrm5c26" } }
-        ],
-        "family_name": "Williamson",
-        "identifiers": { "orcid": "0000-0002-1825-0097" },
-        "given_name": "Steven"
+          {
+            "identifiers": [
+              {"scheme": "ror", "identifier": "03yrm5c26"}
+            ],
+            "name": "Entity One"
+          }
+        ]
       }
     ],
   },
   "access": {
-    "owned_by": [ 1 ],
+    "owned_by": [ {"user": 1} ],
     "access_right": "open",
     "metadata": false,
     "files": false
@@ -430,37 +433,34 @@ Content-Type: application/json
     "title": "A Romans story",
     "publication_date": "2020-06-01",
     "creators": [
-      {
-        "name": "Brown, Troy",
-        "type": "personal",
+      "person_or_org": {
         "family_name": "Brown",
-        "given_name": "Troy"
+        "given_name": "Troy",
+        "type": "personal"
       },
       {
-        "name": "Lester, Phillip",
-        "type": "personal",
+        "person_or_org": {
+          "family_name": "Collins",
+          "given_name": "Thomas",
+          "identifiers": [
+            {"scheme": "orcid", "identifier": "0000-0002-1825-0097"}
+          ],
+          "name": "Collins, Thomas",
+          "type": "personal"
+        },
         "affiliations": [
-          { "name": "Carter-Morris", "identifiers": { "ror": "03yrm5c26" } }
-        ],
-        "family_name": "Lester",
-        "identifiers": { "orcid": "0000-0002-1825-0097" },
-        "given_name": "Phillip"
-      },
-      {
-        "name": "Williamson, Steven",
-        "type": "personal",
-        "affiliations": [
-          { "name": "Ritter and Sons", "identifiers": { "ror": "03yrm5c26" } },
-          { "name": "Montgomery, Bush and Madden", "identifiers": { "ror": "03yrm5c26" } }
-        ],
-        "family_name": "Williamson",
-        "identifiers": { "orcid": "0000-0002-1825-0097" },
-        "given_name": "Steven"
+          {
+            "identifiers": [
+              {"scheme": "ror", "identifier": "03yrm5c26"}
+            ],
+            "name": "Entity One"
+          }
+        ]
       }
     ],
   },
   "access": {
-    "owned_by": [ 1 ],
+    "owned_by": [ {"user": 1} ],
     "access_right": "open",
     "metadata": false,
     "files": false
@@ -489,7 +489,7 @@ Content-Type: application/json
 **Request**
 
 ```http
-PUT /api/records HTTP/1.1
+PUT /api/records/{id}/draft HTTP/1.1
 Content-Type: application/json
 
 {
@@ -498,28 +498,28 @@ Content-Type: application/json
     "title": "A new Romans story",
     "publication_date": "2020-06-01",
     "creators": [
-      {
-        "given_name": "Troy",
+      "person_or_org": {
         "family_name": "Brown",
+        "given_name": "Troy",
         "type": "personal"
       },
       {
-        "given_name": "Phillip",
-        "family_name": "Lester",
-        "type": "personal",
-        "identifiers": { "orcid": "0000-0002-1825-0097" },
+        "person_or_org": {
+          "family_name": "Collins",
+          "given_name": "Thomas",
+          "identifiers": [
+            {"scheme": "orcid", "identifier": "0000-0002-1825-0097"}
+          ],
+          "name": "Collins, Thomas",
+          "type": "personal"
+        },
         "affiliations": [
-          { "name": "Carter-Morris", "identifiers": { "ror": "03yrm5c26" } }
-        ]
-      },
-      {
-        "given_name": "Steven",
-        "family_name": "Williamson",
-        "type": "personal",
-        "identifiers": { "orcid": "0000-0002-1825-0097" },
-        "affiliations": [
-          { "name": "Ritter and Sons", "identifiers": { "ror": "03yrm5c26" } },
-          { "name": "Montgomery, Bush and Madden", "identifiers": { "ror": "03yrm5c26" } }
+          {
+            "identifiers": [
+              {"scheme": "ror", "identifier": "03yrm5c26"}
+            ],
+            "name": "Entity One"
+          }
         ]
       }
     ]
@@ -527,7 +527,7 @@ Content-Type: application/json
   "access": {
     "metadata": false,
     "files": false,
-    "owned_by": [1],
+    "owned_by": [{"user": 1}],
     "access_right": "open"
   }
 }
@@ -552,36 +552,28 @@ Content-Type: application/json
     "publication_date": "2020-06-01",
     "creators": [
       {
-        "name": "Brown, Troy",
-        "type": "personal",
-        "family_name": "Brown",
-        "given_name": "Troy"
-      },
-      {
-        "name": "Lester, Phillip",
-        "type": "personal",
+        "person_or_org": {
+          "family_name": "Collins",
+          "given_name": "Thomas",
+          "identifiers": [
+            {"scheme": "orcid", "identifier": "0000-0002-1825-0097"}
+          ],
+          "name": "Collins, Thomas",
+          "type": "personal"
+        },
         "affiliations": [
-          { "name": "Carter-Morris", "identifiers": { "ror": "03yrm5c26" } }
-        ],
-        "family_name": "Lester",
-        "identifiers": { "orcid": "0000-0002-1825-0097" },
-        "given_name": "Phillip"
-      },
-      {
-        "name": "Williamson, Steven",
-        "type": "personal",
-        "affiliations": [
-          { "name": "Ritter and Sons", "identifiers": { "ror": "03yrm5c26" } },
-          { "name": "Montgomery, Bush and Madden", "identifiers": { "ror": "03yrm5c26" } }
-        ],
-        "family_name": "Williamson",
-        "identifiers": { "orcid": "0000-0002-1825-0097" },
-        "given_name": "Steven"
+          {
+            "identifiers": [
+              {"scheme": "ror", "identifier": "03yrm5c26"}
+            ],
+            "name": "Entity One"
+          }
+        ]
       }
     ],
   },
   "access": {
-    "owned_by": [ 1 ],
+    "owned_by": [{"user": 1}],
     "access_right": "open",
     "metadata": false,
     "files": false
@@ -630,36 +622,28 @@ Content-Type: application/json
     "publication_date": "2020-06-01",
     "creators": [
       {
-        "name": "Brown, Troy",
-        "type": "personal",
-        "family_name": "Brown",
-        "given_name": "Troy"
-      },
-      {
-        "name": "Lester, Phillip",
-        "type": "personal",
+        "person_or_org": {
+          "family_name": "Collins",
+          "given_name": "Thomas",
+          "identifiers": [
+            {"scheme": "orcid", "identifier": "0000-0002-1825-0097"}
+          ],
+          "name": "Collins, Thomas",
+          "type": "personal"
+        },
         "affiliations": [
-          { "name": "Carter-Morris", "identifiers": { "ror": "03yrm5c26" } }
-        ],
-        "family_name": "Lester",
-        "identifiers": { "orcid": "0000-0002-1825-0097" },
-        "given_name": "Phillip"
-      },
-      {
-        "name": "Williamson, Steven",
-        "type": "personal",
-        "affiliations": [
-          { "name": "Ritter and Sons", "identifiers": { "ror": "03yrm5c26" } },
-          { "name": "Montgomery, Bush and Madden", "identifiers": { "ror": "03yrm5c26" } }
-        ],
-        "family_name": "Williamson",
-        "identifiers": { "orcid": "0000-0002-1825-0097" },
-        "given_name": "Steven"
+          {
+            "identifiers": [
+              {"scheme": "ror", "identifier": "03yrm5c26"}
+            ],
+            "name": "Entity One"
+          }
+        ]
       }
     ],
   },
   "access": {
-    "owned_by": [ 1 ],
+    "owned_by": [{"user": 1}],
     "access_right": "open",
     "metadata": false,
     "files": false
@@ -709,36 +693,28 @@ Content-Type: application/json
     "publication_date": "2020-06-01",
     "creators": [
       {
-        "name": "Brown, Troy",
-        "type": "personal",
-        "family_name": "Brown",
-        "given_name": "Troy"
-      },
-      {
-        "name": "Lester, Phillip",
-        "type": "personal",
+        "person_or_org": {
+          "family_name": "Collins",
+          "given_name": "Thomas",
+          "identifiers": [
+            {"scheme": "orcid", "identifier": "0000-0002-1825-0097"}
+          ],
+          "name": "Collins, Thomas",
+          "type": "personal"
+        },
         "affiliations": [
-          { "name": "Carter-Morris", "identifiers": { "ror": "03yrm5c26" } }
-        ],
-        "family_name": "Lester",
-        "identifiers": { "orcid": "0000-0002-1825-0097" },
-        "given_name": "Phillip"
-      },
-      {
-        "name": "Williamson, Steven",
-        "type": "personal",
-        "affiliations": [
-          { "name": "Ritter and Sons", "identifiers": { "ror": "03yrm5c26" } },
-          { "name": "Montgomery, Bush and Madden", "identifiers": { "ror": "03yrm5c26" } }
-        ],
-        "family_name": "Williamson",
-        "identifiers": { "orcid": "0000-0002-1825-0097" },
-        "given_name": "Steven"
+          {
+            "identifiers": [
+              {"scheme": "ror", "identifier": "03yrm5c26"}
+            ],
+            "name": "Entity One"
+          }
+        ]
       }
     ],
   },
   "access": {
-    "owned_by": [ 1 ],
+    "owned_by": [{"user": 1}],
     "access_right": "open",
     "metadata": false,
     "files": false
