@@ -1,4 +1,4 @@
-# Maintenance guide Documentation
+# Maintenance guide
 
 **Intended audience**
 
@@ -8,4 +8,4 @@ This guide is intended for maintainers and developers of InvenioRDM itself.
 
 - **[Development workflow](development_workflow.md)**: A reference guide for the development workflows
 - **[Style guide](styleguide.md)**: A reference guide for the UX styling.
-- **[Demo site/Docs deployment](demosite.md)**: A reference guide for deploying the demo site and docs.
+- **[Demo site & docs deployment](demosite.md)**: A reference guide for deploying the demo site and docs.
