@@ -57,11 +57,11 @@ nav:
     - Configuration: reference/configuration.md
     - REST API: reference/rest_api.md
     - Metadata: reference/metadata.md
-  - Maintenance guide:
+  - Maintainers:
     - Overview: maintenance/index.md
     - Development workflow: maintenance/development_workflow.md
     - Style guide: maintenance/styleguide.md
-    - Demo site/Docs Deployment: maintenance/demosite.md
+    - Demo site & docs deployment: maintenance/demosite.md
   - Contribute:
     - Contribute to InvenioRDM: contribute/index.md
 
