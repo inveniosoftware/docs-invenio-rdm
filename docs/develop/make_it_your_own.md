@@ -81,20 +81,29 @@ This workflow stands for all `static/` files:
 - if you modify a previously symlinked file, you don't need to do anything
 
 
-## Change the colors
+## Change the theme
 
 You might also be wondering: *How do I change the colors so I can make my instance adopt my institution's theme?*
 
-We are going to change the top header section in the frontpage to apply our custom background color. It's a good example of the workflow for when `assets/` files change.
+The theme comprises the header, footer and main color(s). We are going to modify them. It's a good example of the workflow for when `assets/` files change.
 
 Open the `assets/less/variables.less` file and edit it as below:
 
 ``` less
+@brandColor: /* your brand color here */ ;
+
 @navbar_background_image: unset;
-@navbar_background_color: #000000; // Note this hex value is an example. Choose yours.
+@navbar_background_color: @brandColor;
+@footerLightColor: @brandColor;
+@footerDarkColor: /* a shade of your brandColor */;
 ```
 
-Then, run the `invenio-cli assets build -d` command as above and refresh the page! You should be able to see your top header's color changed!
+!!! info "Less configuration in the future"
+
+    We plan on requiring even less variable overrides in the future to change the theme.
+    `@navbar_background_color` could be preset to the brand color and so on for example.
+
+Then, run the `invenio-cli assets build -d` command as above and refresh the page! You should be able to see your theme color(s)!
 
 You can override any styling variables in your `variables.less` file. The available styling variables are found in the `variables.less` or `.variables` files of the various invenio modules installed. The ones above are originally defined [here](https://github.com/inveniosoftware/invenio-app-rdm/blob/master/invenio_app_rdm/theme/assets/semantic-ui/less/invenio_app_rdm/variables.less). The `invenio-theme` module defines a large number of them [here](https://github.com/inveniosoftware/invenio-theme/tree/master/invenio_theme/assets/semantic-ui/less/invenio_theme/theme).
 
