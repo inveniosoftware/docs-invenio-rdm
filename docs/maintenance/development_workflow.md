@@ -167,6 +167,27 @@ The following
 
 ## Release checklist
 
+### Initial iteration
+
+In the beginning of each month start by releasing minor versions of the below modules in the order they specified:
+
+- flask-resources
+- react-invenio-forms
+- invenio-records-resources
+    - bump flask-resources
+- react-invenio-deposit
+    - bump react-invenio-forms
+- invenio-drafts-resources
+    - bump invenio-records-resources
+- invenio-vocabularies
+    - bump invenio-records-resources
+- invenio-rdm-records
+    - bump invenio-drafts-resources
+    - bump invenio-vocabularies
+- invenio-app-rdm
+    - bump invenio-rdm-records
+    - bump react-invenio-deposit
+
 ### Pre-release
 
 - Cookiecutter-Invenio-RDM:
