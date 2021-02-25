@@ -117,60 +117,42 @@ The workflow for `assets/` files is then:
 - if you modify a previously symlinked file, you now don't need to do anything
 
 
-## Change the search results
-
-Changing how your results are presented in the search page is also something quite common.
-
-We are going to update the search result template so we can show more text in the result's description. Create a file called `ResultsItemTemplate.jsx` inside the `assets/templates/search` folder and then edit it as below:
-
-```js
-import React from 'react';
-import {Item} from 'semantic-ui-react';
-import _truncate from 'lodash/truncate';
-
-export function ResultsItemTemplate(record, index) {
-  return (
-    <Item key={index} href={`/records/${record.id}`}>
-      <Item.Content>
-        <Item.Header>{record.metadata.titles[0].title}</Item.Header>
-        <Item.Description>
-        {_truncate(record.metadata.descriptions[0].description, { length: 400 })}
-        </Item.Description>
-      </Item.Content>
-    </Item>
-  )
-};
-```
-
-Then, run the `invenio-cli assets build` command as above and refresh the page! You should be able to see more text in each result's description! You can find all the available templates [here](https://github.com/inveniosoftware/invenio-app-rdm/tree/master/invenio_app_rdm/theme/assets/templates/search).
-
-
 ## Change the record landing page
 
 When you click on a search result, you navigate to the details page of a specific record, often called the record landing page. This section shows you how to change this page.
 
-We are going to configure our instance to render the record landing page with our custom template. Open `invenio.cfg` and add the below:
-
-```python
-from invenio_rdm_records.config import RECORDS_UI_ENDPOINTS
-RECORDS_UI_ENDPOINTS['recid'].update(template='my_record_landing_page.html')
-```
-
-You will note that `invenio.cfg` is really just a Python module. How convenient!
-
-Then, we create a file `my_record_landing_page.html` inside the `templates` folder and edit it as below:
+Let's create a file `my_record_landing_page.html` inside our instance's `templates/` folder and edit it as you see fit:
 
 ```jinja
-{%- extends 'invenio_rdm_records/record_landing_page.html' %}
+{%- extends "invenio_app_rdm/records/detail.html" %}
 
-{%- block page_body %}
-<!-- // Paste your code here -->
-{%- endblock page_body %}
+<!-- Override any Jinja blocks here. For example: -->
+
+{%- block head_title %}
+  <title>My Customized title!</title>
+{%- endblock head_title %}
 ```
 
-Inside the `page_body` block you can restructure the page as you want! You can check the default record landing page template [here](https://github.com/inveniosoftware/invenio-rdm-records/blob/master/invenio_rdm_records/theme/templates/invenio_rdm_records/record_landing_page.html).
+You can check the default record landing page template [here](https://github.com/inveniosoftware/invenio-app-rdm/blob/master/invenio_app_rdm/records_ui/templates/semantic-ui/invenio_app_rdm/records/detail.html).
+
+Then, let's make sure it's used. Open `invenio.cfg` and add the below:
+
+```python
+APP_RDM_RECORD_DETAIL_TEMPLATE = 'my_record_landing_page.html'
+```
 
 Since we modified `invenio.cfg`, we need to re-start the server to see our changes take effect.
+
+### Change other pages
+
+The same pattern applies for any page. The following configuration variables can be overridden with your custom templates:
+
+- `APP_RDM_RECORD_DETAIL_TEMPLATE`
+- `APP_RDM_RECORD_EXPORT_TEMPLATE`
+- `APP_RDM_RECORD_TOMBSTONE_TEMPLATE`
+- `APP_RDM_DEPOSIT_SEARCH_TEMPLATE`
+- `APP_RDM_DEPOSIT_TEMPLATE`
+- `SEARCH_UI_SEARCH_TEMPLATE` (for the search page - yes it's the odd one out)
 
 
 ## Define a custom controlled vocabulary
