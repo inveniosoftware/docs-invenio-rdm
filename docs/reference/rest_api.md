@@ -36,6 +36,23 @@ When you create your API token you can also specify **scopes** that control what
 | ------------ | ----------------------------------------- |
 | `user:email` | Allows access to the user's email address |
 
+## General information
+
+### Timestamps
+
+Timestamps are in UTC and formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601).
+
+### Pretty print JSON
+
+If you are exploring the API via a browser, you can have the JSON formatted by
+adding ``prettyprint=1`` in the query string.
+
+**Example request**
+
+```http
+GET /api/records?prettyprint=1 HTTP/1.1
+```
+
 ## Records
 
 Used for accessing published records.
@@ -55,7 +72,7 @@ Used for accessing published records.
 **Request**
 
 ```http
-GET /api/records/ HTTP/1.1
+GET /api/records HTTP/1.1
 ```
 
 **Response**
@@ -1126,5 +1143,114 @@ Content-Type: application/json
   "links": {
     "self": "/api/records/{id}/draft/files"
   },
+}
+```
+
+## Vocabularies
+
+Used for accessing vocabulary records. Currently the following vocabularies
+are supported:
+
+- Languages (ISO 639-3 language codes)
+- Licenses (SPDX licenses)
+
+### Search vocabularies
+
+**Parameters**
+
+| Name     | Type    | Location | Description                                                  |
+| -------- | ------- | -------- | ------------------------------------------------------------ |
+| `type`   | string  | path     | Vocabulary (one of ``languages`` or ``licenses``)            |
+| `q`      | string  | query    | Search query used to filter results based on [ElasticSearch's query string syntax](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax). |
+| `tags`   | string  | query    | Filter results to the tag                                    |
+| `sort`   | string  | query    | Sort search results.                                         |
+| `size`   | integer | query    | Specify number of items in the results page (default: 10).   |
+| `page`   | integer | query    | Specify the page of results.                                 |
+| `accept` | string  | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
+
+Specifically for the `application/vnd.inveniordm.v1+json` format:
+
+| Name     | Type   | Location | Description                                                  |
+| -------- | ------ | -------- | ------------------------------------------------------------ |
+| `ln`     | string | query     | Locale used to localize the title and description (e.g. `en` or `en_US`) |
+| `accept-language` | string | header   | Locale used to localize the title and description (e.g. `en` or `en_US`) |
+
+The API uses a locale matching algorithm, that will do it's best effort to translate the vocabulary record's title and description.
+
+**Request**
+
+```http
+GET /api/vocabularies/{type} HTTP/1.1
+```
+
+**Response**
+
+For all vocabularies:
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "aggregations": {...},
+  "hits": {...},
+  "links": {...},
+  "sortBy": ...,
+}
+```
+
+Each hit looks like a vocabulary record below.
+
+### Get a vocabulary record
+
+`GET /api/vocabularies/{type}/{id}`
+
+**Parameters**
+
+| Name     | Type   | Location | Description                                                  |
+| -------- | ------ | -------- | ------------------------------------------------------------ |
+| `type`   | string | path     | Vocabulary (one of `languages` or `licenses`)            |
+| `id`     | string | path     | Identifier of the record, e.g. `eng`                        |
+| `accept` | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
+| `accept-language` | string | header   | For- `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
+
+Specifically for the `application/vnd.inveniordm.v1+json` format:
+
+| Name     | Type   | Location | Description                                                  |
+| -------- | ------ | -------- | ------------------------------------------------------------ |
+| `ln`     | string | query     | Locale used to localize the title and description (e.g. `en` or `en_US`) |
+| `accept-language` | string | header   | Locale used to localize the title and description (e.g. `en` or `en_US`) |
+
+The API uses a locale matching algorithm, that will do it's best effort to translate the vocabulary record's title and description.
+
+**Request**
+
+```http
+GET /api/vocabularies/{type}/{id} HTTP/1.1
+```
+
+**Response**
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+
+  "id": "{id}",
+  "type": "{type}",
+  "created": "2020-11-26T19:20:39",
+  "updated": "2020-11-26T19:20:39",
+  "revision_id": 1,
+  "title": {
+    "en": "..."
+  },
+  "description": {
+    "en": "..."
+  },
+  "icon": "...",
+  "props": { ... },
+  "tags": [...],
+  "links": { ... }
 }
 ```
