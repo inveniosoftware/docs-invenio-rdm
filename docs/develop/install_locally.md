@@ -128,5 +128,3 @@ Demo records now come by default! If you want to avoid having them when setting 
 invenio-cli services setup --no-demo-data
 ```
 
-!!! warning "Don't do this in 0.21.0 (January release)"
-    Demo data is tied to vocabulary loading in the latest release. Until the two are separate, you should not use the `--no-demo-data` as it would not load the vocabularies.

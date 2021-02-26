@@ -54,207 +54,275 @@ curl -k -XGET https://127.0.0.1:5000/api/records | python3 -m json.tool
                     "doc_count": 100
                 }
             ]
-        },
-        ...
+        }
     },
+    ...
     "hits": {
         "hits": [
             {
                 "access": {
-                    "access_right": "open",
-                    "files": false,
-                    "owned_by": [{"user": 1}],
-                    "metadata": false,
-                    "embargo_date": "2021-02-15"
+                    "files": "restricted",
+                    "embargo": {
+                        "reason": "top secret material",
+                        "until": "2021-08-09",
+                        "active": true
+                    },
+                    "record": "public",
+                    "owned_by": [
+                        {
+                            "user": 1
+                        }
+                    ]
                 },
-                "created": "2020-10-12 16:25:20.729095",
-                "updated": "2020-10-12 16:25:20.729095",
-                "revision_id": 1,
-                "conceptid": "5fk5g-mq814",
-                "id": "zgxnf-z7n12",
-                "links": {
-                    "files": "https://127.0.0.1:5000/api/records/zgxnf-z7n12/files",
-                    "self": "https://127.0.0.1:5000/api/records/zgxnf-z7n12",
-                    "self_html": "https://127.0.0.1:5000/records/zgxnf-z7n12"
-                },
+                "id": "mrewd-axc44",
                 "metadata": {
+                    "sizes": [
+                        "11 pages"
+                    ],
+                    "references": [
+                        {
+                            "identifier": "0000000114559647",
+                            "scheme": "isni",
+                            "reference": "Reference to something et al."
+                        }
+                    ],
                     "additional_descriptions": [
                         {
-                            "description": "This description has been shortened.",
                             "lang": "eng",
-                            "type": "Abstract"
-                        }
-                    ],
-                    "additional_titles": [
-                        {
-                            "lang": "eng",
-                            "title": "a research data management platform",
-                            "type": "subtitle"
+                            "description": "The ten free worry lose receive. Feeling church know anyone significant. Public note part style want discussion.",
+                            "type": "methods"
                         },
                         {
                             "lang": "eng",
-                            "title": "White, Contreras and Hill's gallery",
-                            "type": "alternativetitle"
+                            "description": "Make voice store worry artist real. Ever movement policy born.\nAlmost trial new if. Keep someone keep light heavy indicate.\nSon improve both. Budget home mean evidence crime by.",
+                            "type": "methods"
                         }
-                    ],
-                    "contributors": [
-                        {
-                            "person_or_org": {
-                                "given_name": "John",
-                                "family_name": "Davis",
-                                "type": "personal",
-                                "name": "Davis, John"
-                            },
-                            "role": "rightsholder",
-                            "affiliations": [
-                                {
-                                    "identifiers": [
-                                        {
-                                            "identifier": "03yrm5c26",
-                                            "scheme": "ror"
-                                        }
-                                    ],
-                                    "name": "Tran-Kirby"
-                                }
-                            ]
-                        }
-                    ],
-                    "creators": [
-                        {
-                            "person_or_org": {
-                                "given_name": "Thomas",
-                                "identifiers": [
-                                    {
-                                        "identifier": "0000-0002-1825-0097",
-                                        "scheme": "orcid"
-                                    }
-                                ],
-                                "family_name": "Collins",
-                                "type": "personal",
-                                "name": "Collins, Thomas"
-                            },
-                            "affiliations": [
-                                {
-                                    "identifiers": [
-                                        {
-                                            "identifier": "03yrm5c26",
-                                            "scheme": "ror"
-                                        }
-                                    ],
-                                    "name": "Campos LLC"
-                                }
-                            ]
-                        },
-                        {
-                            "person_or_org": {
-                                "given_name": "Jeffrey",
-                                "identifiers": [
-                                    {
-                                        "identifier": "0000-0002-1825-0097",
-                                        "scheme": "orcid"
-                                    }
-                                ],
-                                "family_name": "Padilla",
-                                "type": "personal",
-                                "name": "Padilla, Jeffrey"
-                            },
-                            "affiliations": [
-                                {
-                                    "identifiers": [
-                                        {
-                                            "identifier": "03yrm5c26",
-                                            "scheme": "ror"
-                                        }
-                                    ],
-                                    "name": "Mcdaniel, Bowen and Church"
-                                }
-                            ]
-                        }
-                    ],
-                    "dates": [
-                        {
-                            "date": "1989-07-06",
-                            "description": "Random test date",
-                            "type": "other"
-                        }
-                    ],
-                    "description": "This description has been shortened.",
-                    "formats": [
-                        "application/pdf"
                     ],
                     "funding": [
                         {
                             "funder": {
+                                "identifier": "03yrm5c26",
                                 "scheme": "ror",
-                                "identifier": "1234",
                                 "name": "European Commission"
                             },
                             "award": {
-                                "title": "OpenAIRE",
-                                "scheme": "openaire",
-                                "identifier": ".../246686",
-                                "number": "246686"
+                                "identifier": "0000-0002-1825-0097",
+                                "scheme": "orcid",
+                                "number": "246686",
+                                "title": "OpenAIRE"
                             }
                         }
                     ],
-                    "languages": ["eng"],
-                    "locations": [
-                        {
-                            "place": "Valday",
-                            "identifiers": {
-                                "geonames": "12345abcde",
-                                "wikidata": "12345abcde"
-                            },
-                            "geometry": {
-                                "type": "Point",
-                                "coordinates": [36.1315755, -132.239372]
-                            },
-                            "description": "Random place on land..."
-                        }
+                    "formats": [
+                        "application/pdf"
                     ],
-                    "publisher": "InvenioRDM",
-                    "publication_date": "1970-12-05",
-                    "references": [
+                    "creators": [
                         {
-                            "reference": "Reference to something et al.",
-                            "identifier": "0000000114559647",
-                            "scheme": "isni"
-                        }                    ],
-                    "related_identifiers": [
-                        {
-                            "identifier": "10.9999/rdm.9999988",
-                            "relation_type": "requires",
-                            "resource_type": {
-                                "subtype": "image-photo",
-                                "type": "image"
+                            "person_or_org": {
+                                "type": "personal",
+                                "identifiers": [
+                                    {
+                                        "identifier": "0000-0002-1825-0097",
+                                        "scheme": "orcid"
+                                    }
+                                ],
+                                "family_name": "Mercado",
+                                "given_name": "Jessica",
+                                "name": "Mercado, Jessica"
                             },
-                            "scheme": "doi"
+                            "affiliations": [
+                                {
+                                    "identifiers": [
+                                        {
+                                            "identifier": "03yrm5c26",
+                                            "scheme": "ror"
+                                        }
+                                    ],
+                                    "name": "Harris-Grimes"
+                                }
+                            ]
+                        },
+                        {
+                            "person_or_org": {
+                                "type": "personal",
+                                "identifiers": [
+                                    {
+                                        "identifier": "0000-0002-1825-0097",
+                                        "scheme": "orcid"
+                                    }
+                                ],
+                                "family_name": "Arnold",
+                                "given_name": "Rebecca",
+                                "name": "Arnold, Rebecca"
+                            },
+                            "affiliations": [
+                                {
+                                    "identifiers": [
+                                        {
+                                            "identifier": "03yrm5c26",
+                                            "scheme": "ror"
+                                        }
+                                    ],
+                                    "name": "Miller-Smith"
+                                }
+                            ]
+                        },
+                        {
+                            "person_or_org": {
+                                "type": "personal",
+                                "identifiers": [
+                                    {
+                                        "identifier": "0000-0002-1825-0097",
+                                        "scheme": "orcid"
+                                    }
+                                ],
+                                "family_name": "Lara",
+                                "given_name": "Sherri",
+                                "name": "Lara, Sherri"
+                            },
+                            "affiliations": [
+                                {
+                                    "identifiers": [
+                                        {
+                                            "identifier": "03yrm5c26",
+                                            "scheme": "ror"
+                                        }
+                                    ],
+                                    "name": "Jensen-Dunn"
+                                }
+                            ]
+                        },
+                        {
+                            "person_or_org": {
+                                "type": "personal",
+                                "identifiers": [
+                                    {
+                                        "identifier": "0000-0002-1825-0097",
+                                        "scheme": "orcid"
+                                    }
+                                ],
+                                "family_name": "Garcia",
+                                "given_name": "Steven",
+                                "name": "Garcia, Steven"
+                            },
+                            "affiliations": [
+                                {
+                                    "identifiers": [
+                                        {
+                                            "identifier": "03yrm5c26",
+                                            "scheme": "ror"
+                                        }
+                                    ],
+                                    "name": "Hernandez Group"
+                                }
+                            ]
                         }
                     ],
                     "resource_type": {
-                        "subtype": "publication-thesis",
                         "type": "publication"
                     },
-                    "rights": [
+                    "publication_date": "1971-12/1973-06-22",
+                    "publisher": "InvenioRDM",
+                    "additional_titles": [
                         {
-                            "rights": "Berkeley Software Distribution 3",
-                            "uri": "https://opensource.org/licenses/BSD-3-Clause",
-                            "identifier": "BSD-3",
-                            "scheme": "BSD-3"
+                            "lang": "eng",
+                            "type": "subtitle",
+                            "title": "a research data management platform"
+                        },
+                        {
+                            "lang": "eng",
+                            "type": "alternativetitle",
+                            "title": "Anderson and Sons's gallery"
                         }
                     ],
-                    "sizes": [
-                        "11 pages"
+                    "version": "v0.0.1",
+                    "contributors": [
+                        {
+                            "role": "rightsholder",
+                            "person_or_org": {
+                                "type": "personal",
+                                "family_name": "Cruz",
+                                "given_name": "Ashley",
+                                "name": "Cruz, Ashley"
+                            },
+                            "affiliations": [
+                                {
+                                    "identifiers": [
+                                        {
+                                            "identifier": "03yrm5c26",
+                                            "scheme": "ror"
+                                        }
+                                    ],
+                                    "name": "Clark-Garrett"
+                                }
+                            ]
+                        },
+                        {
+                            "role": "rightsholder",
+                            "person_or_org": {
+                                "type": "personal",
+                                "family_name": "Peck",
+                                "given_name": "Abigail",
+                                "name": "Peck, Abigail"
+                            },
+                            "affiliations": [
+                                {
+                                    "identifiers": [
+                                        {
+                                            "identifier": "03yrm5c26",
+                                            "scheme": "ror"
+                                        }
+                                    ],
+                                    "name": "Barnes, Hall and Ramos"
+                                }
+                            ]
+                        },
+                        {
+                            "role": "rightsholder",
+                            "person_or_org": {
+                                "type": "personal",
+                                "family_name": "Davies",
+                                "given_name": "Karen",
+                                "name": "Davies, Karen"
+                            },
+                            "affiliations": [
+                                {
+                                    "identifiers": [
+                                        {
+                                            "identifier": "03yrm5c26",
+                                            "scheme": "ror"
+                                        }
+                                    ],
+                                    "name": "Russell and Sons"
+                                }
+                            ]
+                        }
                     ],
                     "subjects": [
                         {
-                            "subject": "note",
                             "identifier": "03yrm5c26",
-                            "scheme": "ror"
+                            "scheme": "ror",
+                            "subject": "child"
+                        },
+                        {
+                            "identifier": "03yrm5c26",
+                            "scheme": "ror",
+                            "subject": "strategy"
                         }
                     ],
-                    "title": "Hicks and Sons's gallery",
-                    "version": "v0.0.1"
+                    "description": "Picture risk field article. Do meeting measure nothing option drug. Marriage test evidence. Whole will paper give thing task.\nLawyer music hard report game generation answer rock. Window great surface piece involve lay all. Hour far great he close when official surface......",
+                    "title": "Howard LLC's gallery"
+                },
+                "created": "2021-02-26 10:28:02.245807",
+                "updated": "2021-02-26 10:28:02.261941",
+                "published": true,
+                "status": "published",
+                "conceptid": "62fe3-3t414",
+                "revision_id": 1,
+                "links": {
+                    "files": "https://127.0.0.1:5000/api/records/mrewd-axc44/files",
+                    "self": "https://127.0.0.1:5000/api/records/mrewd-axc44",
+                    "self_html": "https://127.0.0.1:5000/records/mrewd-axc44"
                 }
             },
             ...
@@ -280,60 +348,43 @@ curl -k -XGET https://127.0.0.1:5000/api/records | jq .
 
 ### Create records
 
+!!! info "Authentication required"
+
+    All requests to the create-related REST API endpoints require authentication.
+
 #### Create a draft
 
 You can create a new record **draft** using the API:
 
 ```bash
 curl -k -XPOST -H "Content-Type: application/json" https://127.0.0.1:5000/api/records -d '{
-    "access": {
-        "access_right": "open",
-        "files": true,
-        "owned_by": [
-            {
-                "user": 1
-            }
-        ],
-        "metadata": false,
-        "embargo_date": "2021-02-15"
+"access": {
+    "record": "public",
+    "files": "public"
+},
+"metadata": {
+    "publication_date": "2020-06-01",
+    "resource_type": {
+        "type": "image",
+        "subtype": "image-photo"
     },
-    "metadata": {
-        "creators": [
-            {
-                "person_or_org": {
-                    "family_name": "Collins",
-                    "given_name": "Thomas",
-                    "identifiers": [
-                        {
-                            "identifier": "0000-0002-1825-0097",
-                            "scheme": "orcid"
-                        }
-                    ],
-                    "name": "Collins, Thomas",
-                    "type": "personal"
-                },
-                "affiliations": [
-                    {
-                        "identifiers": [
-                            {
-                                "identifier": "03yrm5c26",
-                                "scheme": "ror"
-                            }
-                        ],
-                        "name": "Entity One"
-                    }
-                ]
+    "creators": [
+        {
+            "person_or_org": {
+                "family_name": "Brown",
+                "given_name": "Troy",
+                "type": "personal"
             }
-        ],
-        "description": "A story on how Julio Cesar relates to Gladiator.",
-        "publication_date": "2020-06-01",
-        "resource_type": {
-            "type": "publication",
-            "subtype": "publication-article"
         },
-        "title": "A Romans story",
-        "version": "v0.0.1"
-    }
+        {
+            "person_or_org": {
+                "name": "Troy Inc.",
+                "type": "organizational"
+            }
+        }
+    ],
+    "title": "A Romans story"
+}
 }'
 ```
 
