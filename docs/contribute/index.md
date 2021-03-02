@@ -11,43 +11,6 @@ little bit helps, and credit will always be given.
 
 How the project is governed is outlined [here](https://inveniosoftware.org/governance/).
 
-## Release process
-
-InvenioRDM's development is split into monthly releases with the occasional
-help from Invenio (the underlying framework) sprints. For example, the
-"November release" is worked on during the month of November and is released
-during the first week of December.
-
-A monthly board is setup on GitHub with high-level goals and lower-level tasks:
-[https://github.com/orgs/inveniosoftware/projects](https://github.com/orgs/inveniosoftware/projects).
-The monthly work starts with a planning and an initial release of the upcoming month's packages
-except for `invenio-cli`. This typically includes new versions of:
-
-- flask-resource
-- invenio-records-resources
-- invenio-drafts-resources
-- invenio-rdm-records
-- invenio-app-rdm
-- react-invenio-deposit
-- cookiecutter-invenio-rdm
-
-Releasing new versions of the packages at the beginning of the monthly sprint rather
-than at the end reduces coordination problems during typically busy last days, prevents
-repeated ad-hoc version increases during the same month, isolates new changes from
-the previously released modules and makes releasing for production a continuous process
-throughout the month.
-
-At the end of the month, only `invenio-cli` needs to be released. It shifts the window
-of acceptable dependencies, and coordinates and exposes the already released modules widely.
-
-For maintainers, releasing `<version X>` (release commit merged in `master` already) is simply:
-
-``` bash
-git checkout master
-git tags -a <version X> -m "<version X>"
-git push upstream --follow-tags
-```
-
 ## Types of Contributions
 
 ### Report Bugs and ask for features

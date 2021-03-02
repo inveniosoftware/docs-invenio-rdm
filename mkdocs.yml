@@ -59,9 +59,13 @@ nav:
     - Metadata: reference/metadata.md
   - Maintainers:
     - Overview: maintenance/index.md
-    - Development workflow: maintenance/development_workflow.md
+    - Newcomers: maintenance/newcomers.md
+    - Sprintboard workflow: maintenance/board-workflow.md
+    - Release management: maintenance/release-management.md
     - Style guide: maintenance/styleguide.md
-    - Demo site & docs deployment: maintenance/demosite.md
+    - Demo site & Docs: maintenance/demosite.md
+    - Architecture: maintenance/architecture.md
+    - Use cases: maintenance/use-cases.md
   - Contribute:
     - Contribute to InvenioRDM: contribute/index.md
 
