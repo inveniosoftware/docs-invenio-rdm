@@ -340,7 +340,7 @@ Then re-start the server.
     For demo purposes, *any user* can currently publish a draft. If you want to change that to only super users as well, you need to add `can_publish = [SuperUser()]` to the above policy. Don't forget to re-start the server after your changes.
 
 When we set `RDM_RECORDS_BIBLIOGRAPHIC_SERVICE_CONFIG = MyBibliographicRecordServiceConfig`,
-we are overriding the default service configuration `BibliographicRecordServiceConfig`provided by [invenio-rdm-records](https://github.com/inveniosoftware/invenio-rdm-records). Many more record related features can be customized by overriding other values in the new `MyBibliographicRecordServiceConfig` class.
+we are overriding the default service configuration `RDMRecordServiceConfig`provided by [invenio-rdm-records](https://github.com/inveniosoftware/invenio-rdm-records). Many more record related features can be customized by overriding other values in the new `MyBibliographicRecordServiceConfig` class.
 
 !!! info "Pro tip"
     You can type `can_create = []` to achieve the same effect; any empty permission list only allows super users.
