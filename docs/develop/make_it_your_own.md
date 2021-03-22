@@ -87,7 +87,7 @@ You might also be wondering: *How do I change the colors so I can make my instan
 
 The theme comprises the header, footer and main color(s). We are going to modify them. It's a good example of the workflow for when `assets/` files change.
 
-Open the `assets/less/variables.less` file and edit it as below:
+Open the `assets/less/site/globals/site.variables` file and edit it as below:
 
 ``` less
 @brandColor: /* your brand color here */ ;
