@@ -1,0 +1,248 @@
+# Build, setup and run
+
+Now, that we have created a project folder, we need to build and setup the InvenioRDM application.
+
+The application can be built and installed in two different ways:
+
+- Local (good for developers or for customizing your instance): The application is installed locally on your machine in a Python virtual environment managed by the ``pipenv`` tool.
+- Container (good for quick preview): The application is built inside a Docker image.
+
+## For the impatient
+
+For the impatient, here's the commands that you can run to build, setup and run InvenioRDM. For clarity we have decomposed below commands into individual steps in the guide below:
+
+Container:
+
+```bash
+invenio-cli containers start --lock --build --setup
+```
+
+Local:
+
+```bash
+invenio-cli install --pre
+invenio-cli services setup
+invenio-cli run
+```
+
+!!! info
+    If you run above commands, you're all set for this section. If you like to learn more about the build process,
+    then follow the steps below instead.
+
+
+## Python dependencies
+
+First, we start by locking the Python dependencies, which ensures that you will always have the same versions of dependencies if you reinstall in the future. Locked dependencies are important for having reproducible installs.
+
+This steps will normally be executed automatically by both the local and container installation options, but here we run it explicitly.
+
+Let's try it:
+
+```bash
+cd my-site/
+invenio-cli packages lock
+```
+```console
+Locking dependencies... Allow pre-releases: False. Include dev-packages: False.
+Locking python dependencies...
+Creating a virtualenv for this project…
+Pipfile: /Users/johnsmith/src/tmp/my-site/Pipfile
+Using /Users/johnsmith/.virtualenvs/cli/bin/python3.8 (3.8.5) to create virtualenv…
+⠇ Creating virtual environment...created virtual environment CPython3.8.5.final.0-64 in 542ms
+  creator CPython3Posix(dest=/Users/johnsmith/.virtualenvs/my-site-0wtHqD1g, clear=False, global=False)
+  seeder FromAppData(download=False, pip=bundle, setuptools=bundle, wheel=bundle, via=copy, app_data_dir=/Users/johnsmith/Library/Application Support/virtualenv)
+    added seed packages: pip==21.0.1, setuptools==53.1.0, wheel==0.36.2
+  activators BashActivator,CShellActivator,FishActivator,PowerShellActivator,PythonActivator,XonshActivator
+
+✔ Successfully created virtual environment!
+Virtualenv location: /Users/johnsmith/.virtualenvs/my-site-0wtHqD1g
+Locking [dev-packages] dependencies…
+Building requirements...
+Resolving dependencies...
+✔ Success!
+Locking [packages] dependencies…
+Building requirements...
+Resolving dependencies...
+✔ Success!
+Updated Pipfile.lock (271a6d)!
+Dependencies locked successfully.
+```
+
+A new file ``Pipfile.lock`` has now been created with the locked dependencies.
+
+Next, choose one of option 1 or 2 for you preferred installation method.
+
+## Option 1: Container install
+
+The container install is good for a quick preview, or if you don't want all dependencies locally. It is not good for development or for customizing your instance, as it requires you to rebuild the Docker image for every change which can be time consuming.
+
+### Build
+
+For the container build, you first build the Docker application image using
+the following command:
+
+```bash
+invenio-cli containers build
+```
+```console
+Building images... Pull newer versions True, use cache True
+Checking if dependencies are locked.
+Dependencies are locked
+Building images...
+
+[...]
+
+Successfully built f1fc95ce1037
+Successfully tagged my-site:latest
+Images built successfully.
+```
+
+The command will:
+
+- Download the Docker images for the services (database, cache, search engine, etc.)
+- Build the Docker image for the InvenioRDM application using the ``Dockerfile`` in your project.
+- Install Python dependencies (according the ``Pipfile.lock``)
+- Install JavaScript dependencies
+- Build the JavaScript/CSS web assets
+
+### Setup
+
+Once the Docker application image has been built, we need to initialize the database, the indices and so on. For this, we use again the ``containers`` command.
+
+The first time this command is run, the services will be setup correctly and the containers running them will even restart upon a reboot of your machine. If you stop and restart those containers, your data will still be there. Upon running this command again, the initial setup is skipped.
+
+```bash
+invenio-cli containers setup
+```
+```console
+Making sure containers are up...
+Creating network "my-site_default" with the default driver
+Creating my-site_cache_1 ... done
+Creating my-site_es_1    ... done
+Creating my-site_db_1    ... done
+Creating my-site_mq_1    ... done
+Creating database postgresql+psycopg2://my-site:my-site@localhost/my-site
+Creating all tables!
+INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+INFO  [alembic.runtime.migration] Will assume transactional DDL.
+Created all tables!
+Location default-location /your/path/to/var/instance/data as default True created
+Role "admin" created successfully.
+Creating indexes...
+Putting templates...
+```
+
+The command will:
+
+- Create the database and Elasticsearch indexes.
+- Load fixtures data into InvenioRDM
+- Create demo records (can be skipped with the ``-N`` option).
+
+!!! tip
+
+    You can skip the creation of random demo records by using the ``--no-demo-data`` option:
+
+    ``` console
+    invenio-cli containers setup --no-demo-data
+    ```
+
+### Run
+
+You can now run the application container and related services:
+
+```bash
+export INVENIO_SITE_NAME=https://127.0.0.1
+invenio-cli containers start
+```
+
+Go and explore your InvenioRDM instance at [https://127.0.0.1:5000](https://127.0.0.1:5000).
+
+!!! warning "Use 127.0.0.1, not localhost"
+    Due to Content Security Policy (CSP) headers it is important that you use ``127.0.0.1``, and not ``localhost``. Unless you set the `SITE_HOSTNAME` to localhost.
+
+!!! tip
+    You can provide configuration variables by setting them as environment variables with the ``INVENIO_`` prefix (see the ``INVENIO_SITE_NAME`` example above).
+
+## Option 2: Local install
+
+The local install is good for developers or if you like to customize InvenioRDM as it avoids the waiting time for building a new Docker image. For instance, changing the layout will be much faster with a local install.
+
+### Build
+
+The local build steps involve installing all the Python dependencies into local Python virtual environment. This is done with the command (the virtualenv is managed by ``pipenv``):
+
+```bash
+invenio-cli install --pre
+```
+```console
+Installing python dependencies... Please be patient, this operation might take some time...
+Installing dependencies from Pipfile.lock (271a6d)…
+  🐍   ▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉ 200/200 — 00:02:00
+
+[...]
+
+Built webpack project.
+Assets and statics updated.
+Dependencies installed successfully.
+```
+
+!!! info
+    The ``--pre`` option is needed until we reach the final LTS release in July 2021.
+
+The command will similar to the ``containers`` command do the following:
+
+- Install Python dependencies (according the ``Pipfile.lock``)
+- Install JavaScript dependencies
+- Build the JavaScript/CSS web assets
+
+### Setup
+
+We need to initialize the database, the indices and so on. For this, we use the services command. The first time this command is run, the services will be setup correctly and the containers running them will even restart upon a reboot of your machine. If you stop and restart those containers, your data will still be there. Upon running this command again, the initial setup is skipped.
+
+```bash
+invenio-cli services setup
+```
+```console
+Making sure containers are up...
+Creating network "my-site_default" with the default driver
+Creating my-site_cache_1 ... done
+Creating my-site_es_1    ... done
+Creating my-site_db_1    ... done
+Creating my-site_mq_1    ... done
+Creating database postgresql+psycopg2://my-site:my-site@localhost/my-site
+Creating all tables!
+INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+INFO  [alembic.runtime.migration] Will assume transactional DDL.
+Created all tables!
+Location default-location /your/path/to/var/instance/data as default True created
+Role "admin" created successfully.
+Creating indexes...
+Putting templates...
+```
+
+### Run
+
+You can now run the application locally:
+
+```bash
+invenio-cli run
+```
+
+Go and explore your InvenioRDM instance at [https://127.0.0.1:5000](https://127.0.0.1:5000).
+
+!!! warning "Use 127.0.0.1, not localhost"
+    Due to Content Security Policy (CSP) headers it is important that you use ``127.0.0.1``, and not ``localhost``. Unless you set the `SITE_HOSTNAME` to localhost.
+
+!!! tip "Change the host and port"
+    By default, the host is `127.0.0.1` and the port is `5000`. Pass `--host` and `--port`
+    to change them e.g., `invenio-cli run --host 127.0.0.2 --port 5001`.
+
+
+## Troubleshooting
+
+- You may see the following error message `TypeError: Object.fromEntries is not a function`.
+  This means you need to update your base Invenio docker image because Node.js 14+ is needed. Make sure the base Invenio image is up to date. You can re-build your instance image with `invenio-cli containers build --pull --no-cache` to make sure things are done from scratch.
+- You may see `SystemError: Parent module 'setuptools' not loaded, cannot perform relative import`
+  at the dependency locking step when running `invenio-cli containers start`. This depends on your version of `setuptools` (bleeding edge causes this)
+  and can be solved by setting an environment variable: `SETUPTOOLS_USE_DISTUTILS=stdlib`. [See more details](https://github.com/pypa/setuptools/blob/17cb9d6bf249cefe653d3bdb712582409035a7db/CHANGES.rst#v5000). This sudden upstream change will be addressed more systematically in future releases.
+

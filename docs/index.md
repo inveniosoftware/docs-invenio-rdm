@@ -1,4 +1,4 @@
-# Home
+# InvenioRDM
 
 Welcome to the InvenioRDM project!
 

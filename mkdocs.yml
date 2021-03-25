@@ -27,21 +27,21 @@ theme:
 nav:
   - Home: 'index.md'
   - Install:
-    - Installation: 'install/index.md'
-  - Preview:
-    - Quick preview of InvenioRDM: 'preview/index.md'
-  - Develop:
-    - Getting Started: 'develop/index.md'
-    - Install Locally: 'develop/install_locally.md'
-    - Run: 'develop/run.md'
-    - Make it your own: 'develop/make_it_your_own.md'
-    - Develop/Edit a module: 'develop/edit_a_module.md'
-    - Troubleshooting: 'develop/troubleshoot.md'
-    - Cleanup: 'develop/cleanup.md'
-  - Extensions:
-    - What can be added?: 'extensions/index.md'
-    - Add your extensions: 'extensions/custom.md'
-    - S3 Storage: 'extensions/s3.md'
+    - Quick start: 'install/index.md'
+    - System requirements: 'install/requirements.md'
+    - Install CLI: 'install/cli.md'
+    - Scaffold: 'install/scaffold.md'
+    - Build, setup & run: 'install/install.md'
+    - Configure: 'install/configuration.md'
+    - Use: 'install/run.md'
+    - Destroy: 'install/destroy.md'
+    - Troubleshooting: 'install/troubleshoot.md'
+  - Customize:
+    - Overview: 'customize/index.md'
+    - Styling: 'customize/styling.md'
+    - Authentication: 'customize/authentication.md'
+    - Metadata: 'customize/metadata.md'
+    - Permissions: 'customize/permissions.md'
   - Deploy:
     - How can I deploy it?: 'deployment/index.md'
     - OpenShift: 'deployment/openshift.md'
@@ -51,6 +51,12 @@ nav:
     - Building your image: 'deployment/image.md'
     - Image registries: 'deployment/registries.md'
     - Benchmarking: 'deployment/benchmark.md'
+  - Extensions:
+    - What can be added?: 'extensions/index.md'
+    - Add your extensions: 'extensions/custom.md'
+    - S3 Storage: 'extensions/s3.md'
+  - Develop:
+    - Overview: 'develop/index.md'
   - Reference:
     - Overview: reference/index.md
     - CLI: reference/cli.md
@@ -63,9 +69,10 @@ nav:
     - Sprintboard workflow: maintenance/board-workflow.md
     - Release management: maintenance/release-management.md
     - Style guide: maintenance/styleguide.md
-    - Demo site & Docs: maintenance/demosite.md
+    - Demo site & docs: maintenance/demosite.md
     - Architecture: maintenance/architecture.md
     - Use cases: maintenance/use-cases.md
+    - RFCs: maintenance/rfcs.md
   - Contribute:
     - Contribute to InvenioRDM: contribute/index.md
 

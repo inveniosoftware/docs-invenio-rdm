@@ -1,101 +1,77 @@
 # Installation
 
-To get started with InvenioRDM, you need to install `invenio-cli`, our
-command line tool for creating and updating your instance.
+**Intended audience**
 
-## Pre-Requirements
+The guide is intended for system administrators and developers who want to try, customize or develop with InvenioRDM on their _local machine_.
 
-Some system requirements are needed beforehand:
+**Scope**
 
-- [Python](https://www.python.org/) 3.6.2+ (Docker images are available for Python 3.6, 3.7 and 3.8.
-- Python development headers. On Ubuntu: `sudo apt install python3-dev`. On RHEL/Fedora: `yum install -y python3-devel.x86_64`.
-  On macOS: install XCode and activate the command line utilities.
-- [Node.js](https://nodejs.org) 14.0.0+ (needed for local installation). The recommended way of installing node is through [nvm](https://github.com/nvm-sh/nvm).
-- [npm](https://www.npmjs.com/get-npm) < 7.
-- [Docker](https://docs.docker.com/) 1.13.0+
-- [Docker-Compose](https://docs.docker.com/compose/) 1.17.0+
-- [Cairo](https://invenio-formatter.readthedocs.io/en/latest/installation.html) needed for badges to be properly displayed.
+This guide covers how to install InvenioRDM locally on your machine, how to setup and configure your system for InvenioRDM.
 
-!!! warning "Other Python distributions"
-    InvenioRDM targets CPython 3.6, 3.7 and 3.8 (lowest 3.6.2). Anaconda Python in particular is not currently supported and other Python distributions are not tested.
+Checkout the [Deploy Guide](../deployment/index.md) if you are looking for a guide on how to deploy InvenioRDM to a server infrastructure.
 
-In addition, make sure the user that will be executing the CLI has access to
-the `docker` command (i.e. it is not only available for the root user):
+!!! info "Project status"
+    **InvenioRDM is NOT suitable for production use yet.** We expect to release the first Long-Term Support (LTS) release of InvenioRDM in July 2021. Until then, we are making a new major-version release every month with breaking changes.
+    For more information, see our [project roadmap](https://inveniosoftware.org/products/rdm/roadmap/).
 
-```bash
-sudo usermod --append --groups docker $USER
-```
+## Quick start
 
-Most of these requirements can be automatically checked using the Invenio-CLI. Currently it is able to check Python, Node.js, Docker, Docker-Compose and Pipenv. If you are planning on doing development add the `--development` flag.
+#### [1. Install CLI tool](cli.md)
 
-```bash
-invenio-cli check-requirements [--development]
-```
+Install the InvenioRDM CLI tool (see [reference](../reference/cli.md)):
 
-#### Hardware and Docker requirements
-
-We usually deploy the RDM on machines that have around 8GB of RAM and at least
-4 cores.
-
-On the same topic, make sure that Docker itself has enough memory to run.
-In Linux based systems Docker can use all available memory. In OS X,
-by default, it gets 2GB of RAM which most likely won't be enough. Allocating
-6-8GB to it is optimal. You can do that in `Docker --> preferences --> resources`
-and adjust the `Memory` to the corresponding value. If you have a few cores
-more to spare, it might be a good idea to give more than 2. Take into account
-that you will run between 4 and 8 containers.
-
-Among the containers you will run is an Elasticsearch container which is quite demanding.
-Per Elasticsearch's [Docker documentation](https://www.elastic.co/guide/en/elasticsearch/reference/7.9/docker.html#docker-prod-prerequisites),
-you will want to apply the following kernel setting:
-
-On Linux, add the following to ``/etc/sysctl.conf`` on your local machine (host machine):
-
-```bash
-# Maximum number of memory map areas a process (ElasticSearch) may have
-vm.max_map_count=262144
-```
-
-On macOS, do the following:
-
-```bash
-screen ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/tty
-# and in the shell
-sysctl -w vm.max_map_count=262144
-```
-
-## Install the CLI
-
-Once you have installed these requirements, you can install the Invenio CLI package,
-aptly named `invenio-cli`. The package is available on [PyPI](https://pypi.org/project/invenio-cli/).
-Use your favorite way to install a Python package:
-
-Via pip:
-
-``` bash
+```console
 pip install invenio-cli
 ```
 
-Via pipenv:
+#### [2. Check system requirements](requirements.md)
 
-``` bash
-pipenv install invenio-cli
+Do read the [system requirements](requirements.md) section. There's important information related to supported versions.
+
+```console
+invenio-cli check-requirements --development
 ```
 
-Via pipx:
+#### [3. Scaffold project](scaffold.md)
 
-``` bash
-pipx install invenio-cli
+Scaffold your InvenioRDM instance. You will be asked several questions. If in doubt, choose the default:
+
+```
+invenio-cli init rdm
 ```
 
-To make sure you've installed successfully:
+#### 4. [Build, setup and run](install.md)
 
-``` bash
-invenio-cli --version
-```
-``` console
-invenio-cli, version 0.x.0
+You can run the main InvenioRDM application in two modes (choose one):
+
+- Containerized application and services (good for a quick preview)
+- Local application with containerized services (good for developers or if want to customize InvenioRDM).
+
+**Containerized application**
+
+```console
+cd my-site/
+invenio-cli containers start --lock --build --setup
 ```
 
-!!! note "CLI version"
-     The CLI is in pre 1.0 release. The latest released version is listed on [GitHub](https://github.com/inveniosoftware/invenio-cli/releases) and available via [PyPi](https://pypi.org/project/invenio-cli/)
+**Local application**
+
+```console
+cd my-site/
+invenio-cli install --pre
+invenio-cli services setup
+invenio-cli run
+```
+
+#### 5. Explore InvenioRDM
+
+Go and explore your InvenioRDM instance at on:
+
+- Local: [https://127.0.0.1:5000](https://127.0.0.1:5000)
+- Container: [https://127.0.0.1](https://127.0.0.1)
+
+!!! warning "Self-signed SSL certificate"
+
+    Your browser will display a big warning about an invalid SSL certificate. This is because InvenioRDM generates a self-signed SSL certificate when you scaffold a new instance and because InvenioRDM requires that all traffic is over a secure HTTPS connection.
+
+    All major browsers allow you to bypass the warning (not easily though). In Chrome/Edge you have to click in the browser window and type ``thisisunsafe``.

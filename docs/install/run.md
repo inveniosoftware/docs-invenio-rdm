@@ -1,34 +1,4 @@
-# Run it!
-
-Once the application is installed locally and the services are running, our
-application just needs to run. For that, the `run` command is executed.
-
-This time, you can avoid setting the `SITE_HOSTNAME` by using the `--host`
-and `--port` flags. Otherwise, `SITE_HOSTNAME` from `invenio.cfg` or from the
-environment is used.
-
-``` bash
-invenio-cli run
-```
-
-``` console
-# Summarized output
-redis up and running!
-postgresql up and running!
-es up and running!
-Starting celery worker...
-Starting up local (development) server...
-Instance running!
-Visit https://127.0.0.1:5000
-```
-
-!!! info "Change the host and port"
-    By default, the host is `127.0.0.1` and the port is `5000`. Pass `--host` and `--port`
-    to change them e.g., `invenio-cli run --host 127.0.0.2 --port 5001`.
-
-## Use your instance: have fun!
-
-Are we done? Yes, let the fun begin...
+# Use InvenioRDM
 
 ### List records
 

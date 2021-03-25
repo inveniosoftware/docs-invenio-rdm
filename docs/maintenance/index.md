@@ -12,7 +12,8 @@ This guide is intended for maintainers and developers of InvenioRDM itself.
 - **[UX Style guide](styleguide.md)**: A reference guide for the UX styling.
 - **[Demo site & docs deployment](demosite.md)**: A reference guide for deploying the demo site and docs.
 
-## Design documents
+## References
 
 - **[High-level architecture](architecture.md)**: A primer to the most important InvenioRDM architecture.
 - **[Use case scenarios](use-cases.md)**: A high-level overview of how InvenioRDM is being used.
+- **[RFCs](rfcs.md)**: An overview of RFCs relevant for InvenioRDM.

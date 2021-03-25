@@ -1,71 +1,74 @@
-# Getting Started
+# Develop or edit a module
 
-You are now ready to learn how to create, customize and iterate on your own
-InvenioRDM instance. In fact, the previous section showed you the last step before
-deploying. You wouldn't want to fully containerize your application in the day
-to day of developing your instance.
+Customization might not be enough for you if you are implementing a feature or
+fixing a bug. The point is that you need to install a module from a local path
+and see the changes reflected on your instance.
 
-When working on your InvenioRDM application, you will want to use the commands
-and the workflow we explain in these pages.
+If it is a backend change, simply installing the module from the local path
+should be enough. In some corner cases, you might have to re-start the
+instance (for that run `stop` and `run` again). For frontend (e.g. templates,
+css, etc.) you need to symlink and re-build the assets. This can be a complex
+process when using webpack, but Invenio-CLI has you covered.
 
-## Initialize your file system
+## Templates and CSS
 
-We start by creating a new project in a different folder. We will follow what we
-did in the [Preview section](../preview/index.md). Feel free to use your own
-project name.
+First, you have to install the module you want to edit:
 
-Then we can run the initialization command:
-
-``` bash
-invenio-cli init rdm
 ```
-``` console
-Initializing RDM application...
-Running cookiecutter...
-project_name [My Site]: Development Instance
-project_shortname [development-instance]:
-project_site [development-instance.com]:
-github_repo [development-instance/development-instance]:
-description [Invenio RDM Development Instance Instance]:
-author_name [CERN]:
-author_email [info@development-instance.com]:
-year [2021]:
-Select python_version:
-1 - 3.8
-2 - 3.7
-3 - 3.6
-4 - 3.9 (alpha)
-Choose from 1, 2, 3, 4 [1]:
-Select database:
-1 - postgresql
-2 - mysql
-3 - sqlite
-Choose from 1, 2, 3 [1]:
-Select elasticsearch:
-1 - 7
-2 - 6
-Choose from 1, 2 [1]:
-Select file_storage:
-1 - local
-2 - S3
-Choose from 1, 2 [1]:
--------------------------------------------------------------------------------
-
-Generating SSL certificate and private key for testing....
-Generating a RSA private key
-..................++++
-..................................++++
-writing new private key to 'docker/nginx/test.key'
------
--------------------------------------------------------------------------------
-Creating logs directory...
+invenio-cli packages install /path/to/module
 ```
 
+and then re-start the instance.
 
-**Notes and Known Issues**
+The command takes care of cleaning the assets for you. This is convenient for
+two reasons, first the module might have already been installed from upstream and
+therefore some links already exist, or these files already exist (as hard copies) if the
+installation was not done using the `--development` flag. As you can see, many
+things can go wrong, so the added time is worth it.
 
-- For now, the only available flavour is RDM (Research Data Management). In the future, there will be others, for example ILS (Integrated Library System).
+In addition, if you want to modify CSS and see it when reloading the page you
+need to *watch* the assets. This will automatically rebuild the webpack bundles
+when you change the CSS (`.less`) files. In order to watch them, open another
+terminal (still in your instance path i.e. `development-instance/`)
+and activate the same virtual environment. Then run:
 
-- You may be prompted with `You've downloaded /home/<username>/.cookiecutters/cookiecutter-invenio-rdm before. Is it okay to delete and re-download it? [yes]:`. Press `[Enter]` in that case. This will download the latest cookiecutter template.
+```
+invenio-cli assets watch
+```
 
-- Some OpenSSL versions display an error message when obtaining random numbers, but this has no incidence (as far as we can tell) on functionality. We are investigating a possible solution to raise less eyebrows for appearance sake.
+!!! warning "No hot reloading"
+    There is no hot reloading available. This means that even if the assets
+    are watched and rebuilt, you need to refresh your browser to see the
+    changes. In addition, **be aware of the cache**, it might be a good idea
+    to disable your cache or use an incognito window when developing web UI.
+
+This is a continually running operation, so do not close the terminal. You
+will be able to see the rebuilding progress there -usually a percentage on the last
+line- and the errors in case there were any.
+
+!!! warning "You might see an UnfinishedManifest error"
+    Rebuilding the webpack bundles is not a speed-of-light operation. It might
+    take a few seconds. If you see an `UnfinishedManifest` error in your
+    browser when you refresh, check the terminal to see whether the assets are
+    simply still building or if an actual build error (e.g. syntax error) occurred.
+
+## React modules
+
+In a similar fashion as in the previous section, to develop on a react
+module you have to install and watch it. Invenio-CLI has commands for that
+too. To install a module run:
+
+```
+invenio-cli assets install /path/to/react-module
+```
+
+Then you have to watch it. Open another terminal in your instance path
+(`development-instance/` as before) and activate the same
+virtual environment. Note that if you are already watching some python
+module, this action is independent (and per module):
+
+```
+invenio-cli assets watch-module --link /path/to/react-module
+```
+
+You may have to restart `invenio-cli assets watch`.
