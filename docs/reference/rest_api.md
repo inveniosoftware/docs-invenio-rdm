@@ -53,251 +53,15 @@ adding ``prettyprint=1`` in the query string.
 GET /api/records?prettyprint=1 HTTP/1.1
 ```
 
-## Records
-
-Used for accessing published records.
-
-### Search records
-
-**Parameters**
-
-| Name     | Type    | Location | Description                                                  |
-| -------- | ------- | -------- | ------------------------------------------------------------ |
-| `q`      | string  | query    | Search query used to filter results based on [ElasticSearch's query string syntax](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax). |
-| `sort`   | string  | query    | Sort search results.                                         |
-| `size`   | integer | query    | Specify number of items in the results page (default: 10).   |
-| `page`   | integer | query    | Specify the page of results.                                 |
-| `accept` | string  | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
-
-**Request**
-
-```http
-GET /api/records HTTP/1.1
-```
-
-**Response**
-
-```http
-HTTP/1.1 200 OK
-Content-Type: application/json
-
-{
-  "aggregations": {...},
-  "hits": {...},
-  "links": {...},
-  "sortBy": ...,
-}
-```
-
-Each hit looks like a record below.
-
-### Get a record
-
-`GET /api/records/{id}`
-
-**Parameters**
-
-| Name     | Type   | Location | Description                                                  |
-| -------- | ------ | -------- | ------------------------------------------------------------ |
-| `id`     | string | path     | Identifier of the record, e.g. `cbc2k-q9x58`                 |
-| `accept` | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
-
-**Request**
-
-```http
-GET /api/records/{id} HTTP/1.1
-```
-
-**Response**
-
-```http
-HTTP/1.1 200 OK
-Content-Type: application/json
-
-{
-  "id": "{id}",
-  "conceptid": ...,
-  "updated": "2020-11-26T19:20:39",
-  "created": "2020-11-26T19:20:39",
-  "revision_id": 2,
-  "metadata": {...},
-  "access": {...},
-  "links": {...},
-}
-```
-
-## Record files
-
-### List a record's files
-
-`GET /api/records/{id}/files`
-
-**Parameters**
-
-| Name     | Type   | Location | Description                                  |
-| -------- | ------ | -------- | -------------------------------------------- |
-| `id`     | string | path     | Identifier of the record, e.g. `cbc2k-q9x58` |
-| `accept` | string | header   | - `application/json` (default)               |
-
-**Request**
-
-```http
-GET /api/records/{id}/files HTTP/1.1
-```
-
-**Response**
-
-```http
-HTTP/1.1 200 OK
-Content-Type: application/json
-
-{
-  "enabled": true,
-  "default_preview": "article.pdf",
-  "order": [],
-  "entries": [
-  	{
-      "key": "article.pdf",
-      "created": "2020-11-26 14:30:53.911912",
-			"updated": "2020-11-26 14:30:53.920544",
-      "checksum": "md5:71449104d017a6056ac1a5fb58754975",
-      "mimetype": "application/pdf",
-      "size": 76122,
-      "status": "completed",
-      "metadata": {...},
-      "file_id": "...",
-      "version_id": "...",
-      "bucket_id": "...",
-      "storage_class": "S",
-      "links": {
-        "content": "/api/records/{id}/files/article.pdf/content",
-        "self": "/api/records/{id}/files/article.pdf"
-      }
-    }
-  ]
-  "links": {...},
-}
-```
-
-### Get a record file's metadata
-
-`GET /api/records/{id}/files/{filename}`
-
-**Parameters**
-
-| Name       | Type   | Location | Description                                  |
-| ---------- | ------ | -------- | -------------------------------------------- |
-| `id`       | string | path     | Identifier of the record, e.g. `cbc2k-q9x58` |
-| `filename` | string | path     | Name of a file                               |
-| `accept`   | string | header   | - `application/json` (default)               |
-
-**Request**
-
-```http
-GET /api/records/{id}/files/{filename} HTTP/1.1
-```
-
-**Response**
-
-```http
-HTTP/1.1 200 OK
-Content-Type: application/json
-
-{
-  "key": "{filename}",
-  "created": "2020-11-26 14:30:53.911912",
-  "updated": "2020-11-26 14:30:53.920544",
-  "checksum": "md5:71449104d017a6056ac1a5fb58754975",
-  "mimetype": "application/pdf",
-  "size": 76122,
-  "status": "completed",
-  "metadata": {...},
-  "file_id": "...",
-  "version_id": "...",
-  "bucket_id": "...",
-  "storage_class": "S",
-  "links": {
-    "content": "/api/records/{id}/files/{filename}/content",
-    "self": "/api/records/{id}/files/{filename}"
-  }
-}
-```
-
-### Download a record file
-
-`GET /api/records/{id}/files/{filename}/content`
-
-**Parameters**
-
-| Name       | Type   | Location | Description                                  |
-| ---------- | ------ | -------- | -------------------------------------------- |
-| `id`       | string | path     | Identifier of the record, e.g. `cbc2k-q9x58` |
-| `filename` | string | path     | Name of a file                               |
-
-**Request**
-
-```http
-GET /api/records/{id}/files/{filename}/content HTTP/1.1
-```
-
-**Response**
-
-```http
-HTTP/1.1 200 OK
-Content-Disposition: inline
-Content-Length: 76122
-Content-MD5: 71449104d017a6056ac1a5fb58754975
-Content-Type: image/pdf
-Date: Thu, 26 Nov 2020 18:35:33 GMT
-ETag: "md5:71449104d017a6056ac1a5fb58754975"
-Last-Modified: Thu, 26 Nov 2020 14:30:06 GMT
-
-<...file binary data...>
-```
-
 ## Drafts
 
-Used for accessing unpublished or edited draft records.
+Used for interacting with unpublished or edited draft records.
 
 !!! info "Authentication required"
 
     All requests to the draft-related REST API endpoints require authentication.
 
-### List draft records
-
-`GET /api/user/records`
-
-**Parameters**
-
-| Name     | Type    | Location | Description                                                  |
-| -------- | ------- | -------- | ------------------------------------------------------------ |
-| `q`      | string  | query    | Search query used to filter results based on [ElasticSearch's query string syntax](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax). |
-| `sort`   | string  | query    | Sort search results.                                         |
-| `size`   | integer | query    | Specify number of items in the results page (default: 10).   |
-| `page`   | integer | query    | Specify the page of results.                                 |
-| `accept` | string  | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
-
-**Request**
-
-```http
-GET /api/user/records HTTP/1.1
-```
-
-**Response**
-
-```http
-HTTP/1.1 200 OK
-Content-Type: application/json
-
-{
-  "aggregations": {...},
-  "hits": {...},
-  "links": {...},
-  "sortBy": ...,
-}
-```
-
-### Create a record draft
+### Create a draft record
 
 `POST /api/records`
 
@@ -305,8 +69,9 @@ Content-Type: application/json
 
 | Name       | Type   | Location | Description                                                  |
 | ---------- | ------ | -------- | ------------------------------------------------------------ |
-| `access`   | object | body     | Access options for the record (TBD).                         |
-| `metadata` | object | body     | Metadata of the record (see metadata reference for examples). |
+| `access`   | object | body     | [Access options](metadata.md#access-information) for the record. |
+| `metadata` | object | body     | [Metadata](metadata.md#metadata) of the record. |
+
 
 **Request**
 
@@ -316,10 +81,8 @@ Content-Type: application/json
 
 {
   "access": {
-    "metadata": false,
-    "files": false,
-    "owned_by": [{"user": 1}],
-    "access_right": "open"
+    "record": "public",
+    "files": "public"
   },
   "metadata": {
     "resource_type": { "type": "image", "subtype": "image-photo" },
@@ -362,12 +125,28 @@ HTTP/1.1 201 CREATED
 Content-Type: application/json
 
 {
-  "id": "{id}",
-  "conceptid": "{conceptid}",
-  "updated": "2020-11-27 10:52:23.969244",
+  "access": {
+    "record": "public",
+    "files": "public",
+    "embargo": {
+      "reason": null,
+      "active": false
+    }
+  },
   "created": "2020-11-27 10:52:23.945755",
-  "revision_id": 2,
   "expires_at": "2020-11-27 10:52:23.945868",
+  "id": "{id}",
+  "is_published": false,
+  "links": {
+    "latest": "{scheme+hostname}/api/records/{id}/versions/latest",
+    "versions": "{scheme+hostname}/api/records/{id}/versions",
+    "self_html": "{scheme+hostname}/uploads/{id}",
+    "publish": "{scheme+hostname}/api/records/{id}/draft/actions/publish",
+    "latest_html": "{scheme+hostname}/records/{id}/latest",
+    "self": "{scheme+hostname}/api/records/{id}/draft",
+    "files": "{scheme+hostname}/api/records/{id}/draft/files",
+    "access_links": "{scheme+hostname}/api/records/{id}/access/links",
+  },
   "metadata": {
     "resource_type": { "subtype": "image-photo", "type": "image" },
     "title": "A Romans story",
@@ -399,22 +178,29 @@ Content-Type: application/json
       }
     ],
   },
-  "access": {
-    "owned_by": [ {"user": 1} ],
-    "access_right": "open",
-    "metadata": false,
-    "files": false
+  "parent": {
+    "id": "{parent-id}",
+    "access": {
+      "owned_by": [
+        {
+            "user": {user-id}
+        }
+      ],
+      "links": []
+    }
   },
-  "links": {
-    "publish": "/api/records/{id}/draft/actions/publish",
-    "self": "/api/records/{id}/draft",
-    "self_html": "/uploads/{id}",
-    "files": "/api/records/{id}/draft/files"
-  },
+  "revision_id": 3,
+  "updated": "2020-11-27 10:52:23.969244",
+  "versions": {
+    "index": 1,
+    "is_latest": false,
+    "is_latest_draft": true
+  }
 }
 ```
 
-### Get a record draft
+
+### Get a draft record
 
 `GET /api/records/{id}/draft`
 
@@ -439,12 +225,28 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-  "id": "{id}",
-  "conceptid": "{conceptid}",
-  "updated": "2020-11-27 10:52:23.969244",
+  "access": {
+    "record": "public",
+    "files": "public",
+    "embargo": {
+      "reason": null,
+      "active": false
+    }
+  },
   "created": "2020-11-27 10:52:23.945755",
-  "revision_id": 2,
   "expires_at": "2020-11-27 10:52:23.945868",
+  "id": "{id}",
+  "is_published": false,
+  "links": {
+    "latest": "{scheme+hostname}/api/records/{id}/versions/latest",
+    "versions": "{scheme+hostname}/api/records/{id}/versions",
+    "self_html": "{scheme+hostname}/uploads/{id}",
+    "publish": "{scheme+hostname}/api/records/{id}/draft/actions/publish",
+    "latest_html": "{scheme+hostname}/records/{id}/latest",
+    "self": "{scheme+hostname}/api/records/{id}/draft",
+    "files": "{scheme+hostname}/api/records/{id}/draft/files",
+    "access_links": "{scheme+hostname}/api/records/{id}/access/links",
+  },
   "metadata": {
     "resource_type": { "subtype": "image-photo", "type": "image" },
     "title": "A Romans story",
@@ -476,22 +278,28 @@ Content-Type: application/json
       }
     ],
   },
-  "access": {
-    "owned_by": [ {"user": 1} ],
-    "access_right": "open",
-    "metadata": false,
-    "files": false
+  "parent": {
+    "id": "{parent-id}",
+    "access": {
+      "owned_by": [
+        {
+            "user": {user-id}
+        }
+      ],
+      "links": []
+    }
   },
-  "links": {
-    "publish": "/api/records/{id}/draft/actions/publish",
-    "self": "/api/records/{id}/draft",
-    "self_html": "/uploads/{id}",
-    "files": "/api/records/{id}/draft/files"
-  },
+  "revision_id": 3,
+  "updated": "2020-11-27 10:52:23.969244",
+  "versions": {
+    "index": 1,
+    "is_latest": false,
+    "is_latest_draft": true
+  }
 }
 ```
 
-### Update metadata of the draft
+### Update a draft record
 
 `PUT /api/records/{id}/draft`
 
@@ -500,8 +308,8 @@ Content-Type: application/json
 | Name       | Type   | Location | Description                                                  |
 | ---------- | ------ | -------- | ------------------------------------------------------------ |
 | `id`       | string | path     | Identifier of the record, e.g.  `4d0ns-ntd89`                |
-| `metadata` | object | body     | Metadata of the record (see metadata reference for examples). |
-| `access`   | object | body     | Access options for the record (TBD).                         |
+| `access`   | object | body     | [Access options](metadata.md#access-information) for the record. |
+| `metadata` | object | body     | [Metadata](metadata.md#metadata) of the record. |
 
 **Request**
 
@@ -510,9 +318,13 @@ PUT /api/records/{id}/draft HTTP/1.1
 Content-Type: application/json
 
 {
+  "access": {
+    "record": "restricted",
+    "files": "restricted"
+  },
   "metadata": {
     "resource_type": { "type": "image", "subtype": "image-photo" },
-    "title": "A new Romans story",
+    "title": "An Updated Romans story",
     "publication_date": "2020-06-01",
     "creators": [
       "person_or_org": {
@@ -540,12 +352,6 @@ Content-Type: application/json
         ]
       }
     ]
-  },
-  "access": {
-    "metadata": false,
-    "files": false,
-    "owned_by": [{"user": 1}],
-    "access_right": "open"
   }
 }
 ```
@@ -556,18 +362,40 @@ Content-Type: application/json
 HTTP/1.1 200 OK
 Content-Type: application/json
 
+
 {
-  "id": "{id}",
-  "conceptid": "{conceptid}",
-  "updated": "2020-11-27 10:52:23.969244",
+  "access": {
+    "record": "restricted",
+    "files": "restricted",
+    "embargo": {
+      "reason": null,
+      "active": false
+    }
+  },
   "created": "2020-11-27 10:52:23.945755",
-  "revision_id": 2,
   "expires_at": "2020-11-27 10:52:23.945868",
+  "id": "{id}",
+  "is_published": false,
+  "links": {
+    "latest": "{scheme+hostname}/api/records/{id}/versions/latest",
+    "versions": "{scheme+hostname}/api/records/{id}/versions",
+    "self_html": "{scheme+hostname}/uploads/{id}",
+    "publish": "{scheme+hostname}/api/records/{id}/draft/actions/publish",
+    "latest_html": "{scheme+hostname}/records/{id}/latest",
+    "self": "{scheme+hostname}/api/records/{id}/draft",
+    "files": "{scheme+hostname}/api/records/{id}/draft/files",
+    "access_links": "{scheme+hostname}/api/records/{id}/access/links",
+  },
   "metadata": {
     "resource_type": { "subtype": "image-photo", "type": "image" },
-    "title": "A new Romans story",
+    "title": "An Updated Romans story",
     "publication_date": "2020-06-01",
     "creators": [
+      "person_or_org": {
+        "family_name": "Brown",
+        "given_name": "Troy",
+        "type": "personal"
+      },
       {
         "person_or_org": {
           "family_name": "Collins",
@@ -589,22 +417,28 @@ Content-Type: application/json
       }
     ],
   },
-  "access": {
-    "owned_by": [{"user": 1}],
-    "access_right": "open",
-    "metadata": false,
-    "files": false
+  "parent": {
+    "id": "{parent-id}",
+    "access": {
+      "owned_by": [
+        {
+            "user": {user-id}
+        }
+      ],
+      "links": []
+    }
   },
-  "links": {
-    "publish": "/api/records/{id}/draft/actions/publish",
-    "self": "/api/records/{id}/draft",
-    "self_html": "/uploads/{id}",
-    "files": "/api/records/{id}/draft/files"
-  },
+  "revision_id": 3,
+  "updated": "2020-11-27 10:52:23.969244",
+  "versions": {
+    "index": 1,
+    "is_latest": false,
+    "is_latest_draft": true
+  }
 }
 ```
 
-### Publish a draft
+### Publish a draft record
 
 `POST /api/records/{id}/draft/actions/publish`
 
@@ -627,17 +461,37 @@ HTTP/1.1 202 ACCEPTED
 Content-Type: application/json
 
 {
-  "id": "{id}",
-  "conceptid": "{conceptid}",
-  "updated": "2020-11-27 10:52:23.969244",
+  "access": {
+    "record": "restricted",
+    "files": "restricted",
+    "embargo": {
+      "reason": null,
+      "active": false
+    }
+  },
   "created": "2020-11-27 10:52:23.945755",
-  "revision_id": 2,
   "expires_at": "2020-11-27 10:52:23.945868",
+  "id": "{id}",
+  "is_published": true,
+  "links": {
+    "latest": "{scheme+hostname}/api/records/{id}/versions/latest",
+    "versions": "{scheme+hostname}/api/records/{id}/versions",
+    "self_html": "{scheme+hostname}/records/{id}",
+    "latest_html": "{scheme+hostname}/records/{id}/latest",
+    "self": "{scheme+hostname}/api/records/{id}",
+    "files": "{scheme+hostname}/api/records/{id}/files",
+    "access_links": "{scheme+hostname}/api/records/{id}/access/links",
+  },
   "metadata": {
     "resource_type": { "subtype": "image-photo", "type": "image" },
-    "title": "A new Romans story",
+    "title": "An Updated Romans story",
     "publication_date": "2020-06-01",
     "creators": [
+      "person_or_org": {
+        "family_name": "Brown",
+        "given_name": "Troy",
+        "type": "personal"
+      },
       {
         "person_or_org": {
           "family_name": "Collins",
@@ -659,23 +513,28 @@ Content-Type: application/json
       }
     ],
   },
-  "access": {
-    "owned_by": [{"user": 1}],
-    "access_right": "open",
-    "metadata": false,
-    "files": false
+  "parent": {
+    "id": "{parent-id}",
+    "access": {
+      "owned_by": [
+        {
+            "user": {user-id}
+        }
+      ],
+      "links": []
+    }
   },
-  "links": {
-    "self": "/api/records/{id}",
-    "self_html": "/records/{id}",
-    "files": "/api/records/{id}/files",
-  },
-
-  },
+  "revision_id": 3,
+  "updated": "2020-11-27 10:52:23.969244",
+  "versions": {
+    "index": 1,
+    "is_latest": true,
+    "is_latest_draft": true
+  }
 }
 ```
 
-### Edit a record draft
+### Edit a published record (Create a draft record from a published record)
 
 `POST /api/records/{id}/draft`
 
@@ -697,18 +556,40 @@ POST /api/records/{id}/draft HTTP/1.1
 HTTP/1.1 200 OK
 Content-Type: application/json
 
+
 {
-  "id": "{id}",
-  "conceptid": "{conceptid}",
-  "updated": "2020-11-27 10:52:23.969244",
+  "access": {
+    "record": "restricted",
+    "files": "restricted",
+    "embargo": {
+      "reason": null,
+      "active": false
+    }
+  },
   "created": "2020-11-27 10:52:23.945755",
-  "revision_id": 2,
   "expires_at": "2020-11-27 10:52:23.945868",
+  "id": "{id}",
+  "is_published": false,
+  "links": {
+    "latest": "{scheme+hostname}/api/records/{id}/versions/latest",
+    "versions": "{scheme+hostname}/api/records/{id}/versions",
+    "self_html": "{scheme+hostname}/uploads/{id}",
+    "publish": "{scheme+hostname}/api/records/{id}/draft/actions/publish",
+    "latest_html": "{scheme+hostname}/records/{id}/latest",
+    "self": "{scheme+hostname}/api/records/{id}/draft",
+    "files": "{scheme+hostname}/api/records/{id}/draft/files",
+    "access_links": "{scheme+hostname}/api/records/{id}/access/links",
+  },
   "metadata": {
     "resource_type": { "subtype": "image-photo", "type": "image" },
-    "title": "A new Romans story"
+    "title": "An Updated Romans story",
     "publication_date": "2020-06-01",
     "creators": [
+      "person_or_org": {
+        "family_name": "Brown",
+        "given_name": "Troy",
+        "type": "personal"
+      },
       {
         "person_or_org": {
           "family_name": "Collins",
@@ -730,18 +611,24 @@ Content-Type: application/json
       }
     ],
   },
-  "access": {
-    "owned_by": [{"user": 1}],
-    "access_right": "open",
-    "metadata": false,
-    "files": false
+  "parent": {
+    "id": "{parent-id}",
+    "access": {
+      "owned_by": [
+        {
+            "user": {user-id}
+        }
+      ],
+      "links": []
+    }
   },
-  "links": {
-    "publish": "/api/records/{id}/draft/actions/publish",
-    "self": "/api/records/{id}/draft",
-    "self_html": "/uploads/{id}",
-    "files": "/api/records/{id}/draft/files"
-  },
+  "revision_id": 3,
+  "updated": "2020-11-27 10:52:23.969244",
+  "versions": {
+    "index": 1,
+    "is_latest": true,
+    "is_latest_draft": true
+  }
 }
 ```
 
@@ -1143,6 +1030,834 @@ Content-Type: application/json
   "links": {
     "self": "/api/records/{id}/draft/files"
   },
+}
+```
+
+
+## Records
+
+Used for interacting with published records.
+
+### Get a record
+
+`GET /api/records/{id}`
+
+**Parameters**
+
+| Name     | Type   | Location | Description                                                  |
+| -------- | ------ | -------- | ------------------------------------------------------------ |
+| `id`     | string | path     | Identifier of the record, e.g. `cbc2k-q9x58`                 |
+| `accept` | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
+
+**Request**
+
+```http
+GET /api/records/{id} HTTP/1.1
+```
+
+**Response**
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "access": {
+    "record": "restricted",
+    "files": "restricted",
+    "embargo": {
+      "reason": null,
+      "active": false
+    }
+  },
+  "created": "2020-11-27 10:52:23.945755",
+  "expires_at": "2020-11-27 10:52:23.945868",
+  "id": "{id}",
+  "is_published": true,
+  "links": {
+    "latest": "{scheme+hostname}/api/records/{id}/versions/latest",
+    "versions": "{scheme+hostname}/api/records/{id}/versions",
+    "self_html": "{scheme+hostname}/records/{id}",
+    "latest_html": "{scheme+hostname}/records/{id}/latest",
+    "self": "{scheme+hostname}/api/records/{id}",
+    "files": "{scheme+hostname}/api/records/{id}/files",
+    "access_links": "{scheme+hostname}/api/records/{id}/access/links",
+  },
+  "metadata": {
+    "resource_type": { "subtype": "image-photo", "type": "image" },
+    "title": "An Updated Romans story",
+    "publication_date": "2020-06-01",
+    "creators": [
+      "person_or_org": {
+        "family_name": "Brown",
+        "given_name": "Troy",
+        "type": "personal"
+      },
+      {
+        "person_or_org": {
+          "family_name": "Collins",
+          "given_name": "Thomas",
+          "identifiers": [
+            {"scheme": "orcid", "identifier": "0000-0002-1825-0097"}
+          ],
+          "name": "Collins, Thomas",
+          "type": "personal"
+        },
+        "affiliations": [
+          {
+            "identifiers": [
+              {"scheme": "ror", "identifier": "03yrm5c26"}
+            ],
+            "name": "Entity One"
+          }
+        ]
+      }
+    ],
+  },
+  "parent": {
+    "id": "{parent-id}",
+    "access": {
+      "owned_by": [
+        {
+            "user": {user-id}
+        }
+      ],
+      "links": []
+    }
+  },
+  "revision_id": 3,
+  "updated": "2020-11-27 10:52:23.969244",
+  "versions": {
+    "index": 1,
+    "is_latest": true,
+    "is_latest_draft": true
+  }
+}
+```
+
+### Search records
+
+**Parameters**
+
+| Name           | Type    | Location | Description                                                  |
+| -------------- | ------- | -------- | ------------------------------------------------------------ |
+| `q`            | string  | query    | Search query used to filter results based on [ElasticSearch's query string syntax](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax). |
+| `sort`         | string  | query    | Sort search results.                                         |
+| `size`         | integer | query    | Specify number of items in the results page (default: 10).   |
+| `page`         | integer | query    | Specify the page of results.                                 |
+| `allversions`  | boolean | query    | Specify if all versions should be included.                  |
+| `accept`       | string  | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
+
+**Request**
+
+```http
+GET /api/records HTTP/1.1
+```
+
+**Response**
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "aggregations": {...},
+  "hits": {...},
+  "links": {...},
+  "sortBy": ...,
+}
+```
+
+Each hit looks like a record above.
+
+## Record files
+
+### List a record's files
+
+`GET /api/records/{id}/files`
+
+**Parameters**
+
+| Name     | Type   | Location | Description                                  |
+| -------- | ------ | -------- | -------------------------------------------- |
+| `id`     | string | path     | Identifier of the record, e.g. `cbc2k-q9x58` |
+| `accept` | string | header   | - `application/json` (default)               |
+
+**Request**
+
+```http
+GET /api/records/{id}/files HTTP/1.1
+```
+
+**Response**
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "enabled": true,
+  "default_preview": "article.pdf",
+  "order": [],
+  "entries": [
+  	{
+      "key": "article.pdf",
+      "created": "2020-11-26 14:30:53.911912",
+			"updated": "2020-11-26 14:30:53.920544",
+      "checksum": "md5:71449104d017a6056ac1a5fb58754975",
+      "mimetype": "application/pdf",
+      "size": 76122,
+      "status": "completed",
+      "metadata": {...},
+      "file_id": "...",
+      "version_id": "...",
+      "bucket_id": "...",
+      "storage_class": "S",
+      "links": {
+        "content": "/api/records/{id}/files/article.pdf/content",
+        "self": "/api/records/{id}/files/article.pdf"
+      }
+    }
+  ]
+  "links": {...},
+}
+```
+
+### Get a record file's metadata
+
+`GET /api/records/{id}/files/{filename}`
+
+**Parameters**
+
+| Name       | Type   | Location | Description                                  |
+| ---------- | ------ | -------- | -------------------------------------------- |
+| `id`       | string | path     | Identifier of the record, e.g. `cbc2k-q9x58` |
+| `filename` | string | path     | Name of a file                               |
+| `accept`   | string | header   | - `application/json` (default)               |
+
+**Request**
+
+```http
+GET /api/records/{id}/files/{filename} HTTP/1.1
+```
+
+**Response**
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "key": "{filename}",
+  "created": "2020-11-26 14:30:53.911912",
+  "updated": "2020-11-26 14:30:53.920544",
+  "checksum": "md5:71449104d017a6056ac1a5fb58754975",
+  "mimetype": "application/pdf",
+  "size": 76122,
+  "status": "completed",
+  "metadata": {...},
+  "file_id": "...",
+  "version_id": "...",
+  "bucket_id": "...",
+  "storage_class": "S",
+  "links": {
+    "content": "/api/records/{id}/files/{filename}/content",
+    "self": "/api/records/{id}/files/{filename}"
+  }
+}
+```
+
+### Download a record file
+
+`GET /api/records/{id}/files/{filename}/content`
+
+**Parameters**
+
+| Name       | Type   | Location | Description                                  |
+| ---------- | ------ | -------- | -------------------------------------------- |
+| `id`       | string | path     | Identifier of the record, e.g. `cbc2k-q9x58` |
+| `filename` | string | path     | Name of a file                               |
+
+**Request**
+
+```http
+GET /api/records/{id}/files/{filename}/content HTTP/1.1
+```
+
+**Response**
+
+```http
+HTTP/1.1 200 OK
+Content-Disposition: inline
+Content-Length: 76122
+Content-MD5: 71449104d017a6056ac1a5fb58754975
+Content-Type: image/pdf
+Date: Thu, 26 Nov 2020 18:35:33 GMT
+ETag: "md5:71449104d017a6056ac1a5fb58754975"
+Last-Modified: Thu, 26 Nov 2020 14:30:06 GMT
+
+<...file binary data...>
+```
+
+## Versions
+
+### Create a new version
+
+`POST /api/records/{id}/versions`
+
+**Parameters**
+
+| Name | Type   | Location | Description                                   |
+| ---- | ------ | -------- | --------------------------------------------- |
+| `id` | string | path     | Identifier of the record, e.g.  `4d0ns-ntd89` |
+
+**Request**
+
+```http
+POST /api/records/{id}/versions HTTP/1.1
+```
+
+**Response**
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+
+{
+  "access": {
+    "record": "restricted",
+    "files": "restricted",
+    "embargo": {
+      "reason": null,
+      "active": false
+    }
+  },
+  "created": "2020-11-27 10:52:23.945755",
+  "expires_at": "2020-11-27 10:52:23.945868",
+  "id": "{new-id}",
+  "is_published": false,
+  "links": {
+    "latest": "{scheme+hostname}/api/records/{id}/versions/latest",
+    "versions": "{scheme+hostname}/api/records/{id}/versions",
+    "self_html": "{scheme+hostname}/uploads/{id}",
+    "publish": "{scheme+hostname}/api/records/{id}/draft/actions/publish",
+    "latest_html": "{scheme+hostname}/records/{id}/latest",
+    "self": "{scheme+hostname}/api/records/{id}/draft",
+    "files": "{scheme+hostname}/api/records/{id}/draft/files",
+    "access_links": "{scheme+hostname}/api/records/{id}/access/links",
+  },
+  "metadata": {
+    "resource_type": { "subtype": "image-photo", "type": "image" },
+    "title": "An Updated Romans story",
+    "creators": [
+      "person_or_org": {
+        "family_name": "Brown",
+        "given_name": "Troy",
+        "type": "personal"
+      },
+      {
+        "person_or_org": {
+          "family_name": "Collins",
+          "given_name": "Thomas",
+          "identifiers": [
+            {"scheme": "orcid", "identifier": "0000-0002-1825-0097"}
+          ],
+          "name": "Collins, Thomas",
+          "type": "personal"
+        },
+        "affiliations": [
+          {
+            "identifiers": [
+              {"scheme": "ror", "identifier": "03yrm5c26"}
+            ],
+            "name": "Entity One"
+          }
+        ]
+      }
+    ],
+  },
+  "parent": {
+    "id": "{parent-id}",
+    "access": {
+      "owned_by": [
+        {
+            "user": {user-id}
+        }
+      ],
+      "links": []
+    }
+  },
+  "revision_id": 3,
+  "updated": "2020-11-27 10:52:23.969244",
+  "versions": {
+    "index": 2,
+    "is_latest": false,
+    "is_latest_draft": true
+  }
+}
+```
+
+Notice that a new draft is returned with `publication_date` and `version` removed (as those are typically replaced in a new version).
+The `versions.index` is also incremented. The `{parent-id}` connects the different versions together.
+
+Use (Publish a draft record)[#publish-a-draft-record] to publish it.
+
+`POST /api/records`
+
+**Parameters**
+
+| Name       | Type   | Location | Description                                                  |
+| ---------- | ------ | -------- | ------------------------------------------------------------ |
+| `access`   | object | body     | [Access options](metadata.md#access-information) for the record. |
+| `metadata` | object | body     | [Metadata](metadata.md#metadata) of the record. |
+
+
+**Request**
+
+```http
+POST /api/records HTTP/1.1
+Content-Type: application/json
+
+{
+  "access": {
+    "record": "public",
+    "files": "public"
+  },
+  "metadata": {
+    "resource_type": { "type": "image", "subtype": "image-photo" },
+    "title": "A Romans story",
+    "publication_date": "2020-06-01",
+    "creators": [
+      "person_or_org": {
+        "family_name": "Brown",
+        "given_name": "Troy",
+        "type": "personal"
+      },
+      {
+        "person_or_org": {
+          "family_name": "Collins",
+          "given_name": "Thomas",
+          "identifiers": [
+            {"scheme": "orcid", "identifier": "0000-0002-1825-0097"}
+          ],
+          "name": "Collins, Thomas",
+          "type": "personal"
+        },
+        "affiliations": [
+          {
+            "identifiers": [
+              {"scheme": "ror", "identifier": "03yrm5c26"}
+            ],
+            "name": "Entity One"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+**Response**
+
+```http
+HTTP/1.1 201 CREATED
+Content-Type: application/json
+
+{
+  "access": {
+    "record": "public",
+    "files": "public",
+    "embargo": {
+      "reason": null,
+      "active": false
+    }
+  },
+  "created": "2020-11-27 10:52:23.945755",
+  "expires_at": "2020-11-27 10:52:23.945868",
+  "id": "{id}",
+  "is_published": false,
+  "links": {
+    "latest": "{scheme+hostname}/api/records/{id}/versions/latest",
+    "versions": "{scheme+hostname}/api/records/{id}/versions",
+    "self_html": "{scheme+hostname}/uploads/{id}",
+    "publish": "{scheme+hostname}/api/records/{id}/draft/actions/publish",
+    "latest_html": "{scheme+hostname}/records/{id}/latest",
+    "self": "{scheme+hostname}/api/records/{id}/draft",
+    "files": "{scheme+hostname}/api/records/{id}/draft/files",
+    "access_links": "{scheme+hostname}/api/records/{id}/access/links",
+  },
+  "metadata": {
+    "resource_type": { "subtype": "image-photo", "type": "image" },
+    "title": "A Romans story",
+    "publication_date": "2020-06-01",
+    "creators": [
+      "person_or_org": {
+        "family_name": "Brown",
+        "given_name": "Troy",
+        "type": "personal"
+      },
+      {
+        "person_or_org": {
+          "family_name": "Collins",
+          "given_name": "Thomas",
+          "identifiers": [
+            {"scheme": "orcid", "identifier": "0000-0002-1825-0097"}
+          ],
+          "name": "Collins, Thomas",
+          "type": "personal"
+        },
+        "affiliations": [
+          {
+            "identifiers": [
+              {"scheme": "ror", "identifier": "03yrm5c26"}
+            ],
+            "name": "Entity One"
+          }
+        ]
+      }
+    ],
+  },
+  "parent": {
+    "id": "{parent-id}",
+    "access": {
+      "owned_by": [
+        {
+            "user": {user-id}
+        }
+      ],
+      "links": []
+    }
+  },
+  "revision_id": 3,
+  "updated": "2020-11-27 10:52:23.969244",
+  "versions": {
+    "index": 1,
+    "is_latest": false,
+    "is_latest_draft": true
+  }
+}
+```
+
+### Get latest version
+
+Given a record, it returns its latest version.
+
+`GET /api/records/{id}/versions/latest`
+
+**Parameters**
+
+| Name     | Type   | Location | Description                                                  |
+| -------- | ------ | -------- | ------------------------------------------------------------ |
+| `id`     | string | path     | Identifier of a record, e.g. `cbc2k-q9x58`                 |
+| `accept` | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
+
+**Request**
+
+```http
+GET /api/records/{id}/versions/latest HTTP/1.1
+```
+
+**Response**
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "access": {
+    "record": "restricted",
+    "files": "restricted",
+    "embargo": {
+      "reason": null,
+      "active": false
+    }
+  },
+  "created": "2020-11-27 10:52:23.945755",
+  "expires_at": "2020-11-27 10:52:23.945868",
+  "id": "{latest-version-id}",
+  "is_published": true,
+  "links": {
+    "latest": "{scheme+hostname}/api/records/{id}/versions/latest",
+    "versions": "{scheme+hostname}/api/records/{id}/versions",
+    "self_html": "{scheme+hostname}/records/{id}",
+    "latest_html": "{scheme+hostname}/records/{id}/latest",
+    "self": "{scheme+hostname}/api/records/{id}",
+    "files": "{scheme+hostname}/api/records/{id}/files",
+    "access_links": "{scheme+hostname}/api/records/{id}/access/links",
+  },
+  "metadata": {
+    "resource_type": { "subtype": "image-photo", "type": "image" },
+    "title": "An Updated Romans story",
+    "publication_date": "2020-06-01",
+    "creators": [
+      "person_or_org": {
+        "family_name": "Brown",
+        "given_name": "Troy",
+        "type": "personal"
+      },
+      {
+        "person_or_org": {
+          "family_name": "Collins",
+          "given_name": "Thomas",
+          "identifiers": [
+            {"scheme": "orcid", "identifier": "0000-0002-1825-0097"}
+          ],
+          "name": "Collins, Thomas",
+          "type": "personal"
+        },
+        "affiliations": [
+          {
+            "identifiers": [
+              {"scheme": "ror", "identifier": "03yrm5c26"}
+            ],
+            "name": "Entity One"
+          }
+        ]
+      }
+    ],
+  },
+  "parent": {
+    "id": "{parent-id}",
+    "access": {
+      "owned_by": [
+        {
+            "user": {user-id}
+        }
+      ],
+      "links": []
+    }
+  },
+  "revision_id": 3,
+  "updated": "2020-11-27 10:52:23.969244",
+  "versions": {
+    "index": 2,
+    "is_latest": true,
+    "is_latest_draft": true
+  }
+}
+```
+
+
+## Access links
+
+Access links are URLs that can be shared with others to give them access and permissions to a record/draft.
+
+### Create an access link
+
+`POST /api/records/{id}/access/links`
+
+**Parameters**
+
+| Name     | Type   | Location | Description                                                  |
+| -------- | ------ | -------- | ------------------------------------------------------------ |
+| `id`     | string | path     | Identifier of the record, e.g. `cbc2k-q9x58`                 |
+| `accept` | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
+| `expires_at`     | string | body     | Date time string. When the link expires.                 |
+| `permission`     | string | body     | Required. Action that can be undertaken with the link.             |
+
+
+**Request**
+
+```http
+POST /api/records/{id}/access/links HTTP/1.1
+Content-Type: application/json
+
+{
+  "permission": "read"
+}
+```
+
+**Response**
+
+```http
+HTTP/1.1 201 CREATED
+Content-Type: application/json
+
+{
+  "permission": "read",
+  "created_at": "2021-03-25T21:06:29.563235",
+  "token": "eyJhbGciOiJIUzUxMiJ9.eyJpZCI6IjNkMzMyMGVhLTA3NTUtNGQ5My1hNzZlLWUyZjJmYzY1NWQyYSIsImRhdGEiOnt9LCJyYW5kb20iOiI2NzZhYTk3OTczMzgwMjkyNTJiM2MwZDBjNjliMTVkYSJ9.dBqk7YzIZ7kwG4oijNgH1VU-cjQmBiQlMQKMoB2y-YjVWmgnZetFAESsqRP6VpGTtaKdftrtob1PVZJF4YGpfg",
+  "id": "3d3320ea-0755-4d93-a76e-e2f2fc655d2a",
+  "expires_at": null
+}
+```
+
+### Get an access link
+
+`GET /api/records/{id}/access/links/{link-id}`
+
+**Parameters**
+
+| Name     | Type   | Location | Description                                                  |
+| -------- | ------ | -------- | ------------------------------------------------------------ |
+| `id`     | string | path     | Identifier of the record, e.g. `cbc2k-q9x58`                 |
+| `link-id`     | string | path     | Identifier of the link, e.g. `3d3320ea-0755-4d93-a76e-e2f2fc655d2a` |
+| `accept` | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
+
+**Request**
+
+```http
+GET /api/records/{id}/access/links/{link-id} HTTP/1.1
+Content-Type: application/json
+```
+
+**Response**
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "permission": "read",
+  "created_at": "2021-03-25T21:06:29.563235",
+  "token": "eyJhbGciOiJIUzUxMiJ9.eyJpZCI6IjNkMzMyMGVhLTA3NTUtNGQ5My1hNzZlLWUyZjJmYzY1NWQyYSIsImRhdGEiOnt9LCJyYW5kb20iOiI2NzZhYTk3OTczMzgwMjkyNTJiM2MwZDBjNjliMTVkYSJ9.dBqk7YzIZ7kwG4oijNgH1VU-cjQmBiQlMQKMoB2y-YjVWmgnZetFAESsqRP6VpGTtaKdftrtob1PVZJF4YGpfg",
+  "id": "3d3320ea-0755-4d93-a76e-e2f2fc655d2a",
+  "expires_at": null
+}
+```
+
+### Update an access link
+
+`PATCH /api/records/{id}/access/links/{link-id}`
+
+**Parameters**
+
+| Name     | Type   | Location | Description                                                  |
+| -------- | ------ | -------- | ------------------------------------------------------------ |
+| `id`     | string | path     | Identifier of the record, e.g. `cbc2k-q9x58`                 |
+| `link-id`     | string | path     | Identifier of the link, e.g. `3d3320ea-0755-4d93-a76e-e2f2fc655d2a` |
+| `accept` | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
+| `expires_at`     | string | body     | Date time string. When the link expires.                 |
+| `permission`     | string | body     | Required. Action that can be undertaken with the link.             |
+
+**Request**
+
+```http
+PATCH /api/records/{id}/access/links/{link-id} HTTP/1.1
+Content-Type: application/json
+
+{
+  "permission": "manage",
+  "expires_at": "2121-03-25T21:06:29.563235"
+}
+```
+
+**Response**
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "permission": "manage",
+  "created_at": "2021-03-25T21:06:29.563235",
+  "token": "eyJhbGciOiJIUzUxMiJ9.eyJpZCI6IjNkMzMyMGVhLTA3NTUtNGQ5My1hNzZlLWUyZjJmYzY1NWQyYSIsImRhdGEiOnt9LCJyYW5kb20iOiI2NzZhYTk3OTczMzgwMjkyNTJiM2MwZDBjNjliMTVkYSJ9.dBqk7YzIZ7kwG4oijNgH1VU-cjQmBiQlMQKMoB2y-YjVWmgnZetFAESsqRP6VpGTtaKdftrtob1PVZJF4YGpfg",
+  "id": "3d3320ea-0755-4d93-a76e-e2f2fc655d2a",
+  "expires_at": "2121-03-25T21:06:29.563235"
+}
+```
+
+### Delete an access link
+
+`DELETE /api/records/{id}/access/links/{link-id}`
+
+**Parameters**
+
+| Name     | Type   | Location | Description                                                  |
+| -------- | ------ | -------- | ------------------------------------------------------------ |
+| `id`     | string | path     | Identifier of the record, e.g. `cbc2k-q9x58`                 |
+| `link-id`     | string | path     | Identifier of the link, e.g. `3d3320ea-0755-4d93-a76e-e2f2fc655d2a` |
+| `accept` | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
+
+**Request**
+
+```http
+DELETE /api/records/{id}/access/links/{link-id} HTTP/1.1
+Content-Type: application/json
+```
+
+**Response**
+
+```http
+HTTP/1.1 204 NO CONTENT
+Content-Type: application/json
+```
+
+### List access links
+
+`GET /api/records/{id}/access/links`
+
+**Parameters**
+
+| Name     | Type   | Location | Description                                                  |
+| -------- | ------ | -------- | ------------------------------------------------------------ |
+| `id`     | string | path     | Identifier of the record, e.g. `cbc2k-q9x58`                 |
+| `accept` | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
+
+**Request**
+
+```http
+GET /api/records/{id}/access/links HTTP/1.1
+Content-Type: application/json
+```
+
+**Response**
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "hits": {
+    "hits": [
+      {
+        "permission": "read",
+        "id": "140f69c9-a8a5-41d4-8ae2-3dfbfe0e2796",
+        "created_at": "2021-03-25T21:48:03.289198",
+        "expires_at": null,
+        "token": "eyJhbGciOiJIUzUxMiJ9.eyJpZCI6IjE0MGY2OWM5LWE4YTUtNDFkNC04YWUyLTNkZmJmZTBlMjc5NiIsImRhdGEiOnt9LCJyYW5kb20iOiI2NzE3MmY4MTNkYzhkNGJjZDAwOWFlOTlhOWM3NjU1MSJ9.1O9MwTmt_nfvsCm4qvlkUH0Rpe5bK3hT422A879DJSblOCONsNxPe_feNHrgTV3s6ZA6t6vLziXjhAwgKjHhIQ"
+      }
+    ],
+    "total": 1
+  }
+}
+```
+
+## User Records
+
+### List your draft or published records
+
+`GET /api/user/records`
+
+**Parameters**
+
+| Name     | Type    | Location | Description                                                  |
+| -------- | ------- | -------- | ------------------------------------------------------------ |
+| `q`      | string  | query    | Search query used to filter results based on [ElasticSearch's query string syntax](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax). |
+| `sort`   | string  | query    | Sort search results.                                         |
+| `size`   | integer | query    | Specify number of items in the results page (default: 10).   |
+| `page`   | integer | query    | Specify the page of results.                                 |
+| `allversions`  | boolean | query    | Specify if all versions should be included.                  |
+| `accept` | string  | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
+
+**Request**
+
+```http
+GET /api/user/records HTTP/1.1
+```
+
+**Response**
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "aggregations": {...},
+  "hits": {...},
+  "links": {...},
+  "sortBy": ...,
 }
 ```
 

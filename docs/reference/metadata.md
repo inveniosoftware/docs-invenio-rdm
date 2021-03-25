@@ -872,13 +872,6 @@ Example:
 }
 ```
 
-## Access information
-
-!!! warning "Work in progress"
-
-    The access control fields are subject to change during November-December
-    2020 when the access control mechanisms to records are finalized.
-
 ### Owners (1-n)
 
 The owners of the record. All records must be owned by an agent in the system.
@@ -894,41 +887,34 @@ Records
 }
 ```
 
-### Embargo (0-1)
+## Access information
 
-Embargo date time in UTC of the resource on which the resource should be made
-publicly available automatically by the system.
+The `access` field denotes record-specific read (visibility) options.
 
-```json
-{
-  "access": {
-    "embargo_date": "2021-01-01T00:00:00Z"
-  }
-}
-```
+The `access` field has this structure:
 
-### Access condition (0-1)
+| Field | Cardinality |   Description   |
+|:-----:|:-----------:|:----------------|
+|`record` | (1) | `"public"` or `"restricted"`. Read access to the record. |
+| `files` | (1) |  `"public"` or `"restricted"`. Read access to the record's files. |
+| `embargo` | (0-1) | Embargo options for the record. |
 
-Conditions under which access is granted to the record. Used for providing
-per access to a resource on a per request basis.
+`"public"` means anyone can see the record/files. `"restricted"` means only the owner(s) or
+specific users can see the record/files. Only in the cases of `"record": "restricted"` or
+`"files": "restricted"` can an embargo be provided as input. However, once an embargo is
+lifted, the `embargo` section is kept for transparency.
 
-Subfields:
+### Embargo
 
-- ``condition`` - free text, specifying the condition under which access is granted.
-- ``default_link_validity`` - the number of seconds that a secret link is valid if access is granted.
+The `embargo` field denotes when an embargo must be lifted, at which point the record
+is made publicly accessible. The `embargo` field has this structure:
 
-Example:
+| Field | Cardinality |   Description   |
+|:-----:|:-----------:|:----------------|
+|`active` | (1) | boolean. Is the record under embargo or not. |
+| `until` | (1) | ISO date string. When to lift the embargo. e.g., `"2100-10-01"` |
+| `reason` | (0-1) | string. Explanation behing embargo. |
 
-```json
-{
-  "access": {
-    "access_condition": {
-      "condition": "Access is granted to all medical doctors only.",
-      "default_link_validity": 432000
-    }
-  }
-}
-```
 
 ## Files
 
