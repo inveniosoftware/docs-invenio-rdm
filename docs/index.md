@@ -20,14 +20,6 @@ allows you to easily install an instance and manage it.
 
 [> Installation Guide](install/index.md)
 
-## Preview
-
-To quickly get a sense for what InvenioRDM is and what it can do, you can preview
-the default instance after installing `invenio-cli`. Just follow the one-page
-guide below.
-
-[> Quickly Preview an Instance](preview/index.md)
-
 ## Develop
 
 Once you are ready to dive in and work on your own instance - that is,
