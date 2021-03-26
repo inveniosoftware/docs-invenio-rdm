@@ -1,12 +1,21 @@
 # Upgrading from v1.0 to v2.0
 
+
+## Prerequisites
+
+The steps listed in this article require an existing local installation of InvenioRDM 1.0, please make sure that this is given!  
+If unsure, run `invenio-cli install` from inside the instance directory before executing the listed steps.
+
 **Note**: Do *not* delete the old Python virtual environment, or the database migration may complain about missing packages.
+
+
+## Upgrade Steps
 
 First, the current state of the database has to be determined (for the database migration to work).
 Then, the new release must be installed and the database has to be migrated.
 At last, the records need to be migrated the Elasticsearch indices have to be rebuilt.
 
-This can be achieved by the following commands:
+This can be achieved by the following shell commands:
 
 ~~~bash
 # NOTE: make sure you're in the instance directory
