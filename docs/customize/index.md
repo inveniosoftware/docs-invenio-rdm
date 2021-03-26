@@ -11,6 +11,3 @@ InvenioRDM instance so that it integrates into their organizational environment.
 - [Authentication](authentication.md) - integrate with your institutional authentication system.
 - [Metadata](metadata.md) -
 - [Permissions](metadata.md) -
-
-
-

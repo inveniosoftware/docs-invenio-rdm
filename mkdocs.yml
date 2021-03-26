@@ -63,6 +63,13 @@ nav:
     - Configuration: reference/configuration.md
     - REST API: reference/rest_api.md
     - Metadata: reference/metadata.md
+  - Releases:
+    - Overview: releases/index.md
+    - Maintenance policy: releases/maintenance-policy.md
+    - Upgrade contract: releases/upgrading/index.md
+    - Version v2.0.0: releases/versions/version-v2.0.0.md
+    - Version v1.0.0: releases/versions/version-v1.0.0.md
+    - Upgrade v1 to v2: releases/upgrading/upgrade-v2.0.md
   - Maintainers:
     - Overview: maintenance/index.md
     - Newcomers: maintenance/newcomers.md
