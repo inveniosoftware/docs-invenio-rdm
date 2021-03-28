@@ -86,6 +86,47 @@ eval "$(docker-services-cli up --db ${DB:-postgresql} --search ${ES:-elasticsear
 pytest tests/test_somemodule.py::test_sometestfunc -s
 ```
 
+### Repositories survival guide
+
+The InvenioRDM codebase is split over a number of different repositories. Below you'll find a short overview over the most
+
+- CLI tool
+    - [invenio-cli](https://github.com/inveniosoftware/)
+        - Standalone CLI tool used to install and manage InvenioRDM.
+- Instance template
+    - [cookiecutter-invenio-instance](https://github.com/inveniosoftware/)
+        - Template for the project folder created by ``invenio-cli``.
+- Application repositories
+    - [invenio-app-rdm](https://github.com/inveniosoftware/invenio-app-rdm)
+        - The core application (e.g. the site configuration)
+        - Jinja and JSX templates
+        - Views for landing page and deposit form
+        - Frontend: deposit form, search page
+    - [invenio-rdm-records](https://github.com/inveniosoftware/invenio-rdm-records)
+        - Concrete implementation of the REST API by using most of the modules below.
+        - Defines the metadata model (JSONSchemas, Elasticsearch mappings, schemas etc)
+        - Defines the concrete permission policy.
+    - [invenio-drafts-resources](https://github.com/inveniosoftware/invenio-drafts-resources)
+        - General purpose library used to build REST APIs for deposit interfaces.
+        - Drafts API and versioning support
+        - Used by invenio-rdm-records
+    - [invenio-records-resources](https://github.com/inveniosoftware/invenio-records-resources)
+        - General purpose library used to build REST APIs for records backed by services and data access layer.
+        - Core APIs for the service and data access layers.
+        - Used by invenio-vocabularies, invenio-drafts-resources.
+    - [flask-resources](https://github.com/inveniosoftware/flask-resources)
+        - General purpose library used to build Flask views for REST APIs.
+        - Core APIs for the presentation layer.
+        - Used by invenio-records-resources
+- Others:
+    - [invenio-vocabularies](https://github.com/inveniosoftware/invenio-vocabularies)
+        - Concrete REST APIs for creating or loading smaller vocabularies.
+        - Used by invenio-rdm-records
+    - [invenio-records-permissions](https://github.com/inveniosoftware/invenio-records-permissions)
+        - General purpose library for building permission policies for records.
+    - [invenio-records](https://github.com/inveniosoftware/invenio-records)
+        - General purpose library for building programmatic APIs for JSON documents with validation.
+
 ### Debugging tricks
 
 **Python debugger**
