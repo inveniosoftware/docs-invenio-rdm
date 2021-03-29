@@ -172,7 +172,7 @@ The local install is good for developers or if you like to customize InvenioRDM 
 The local build steps involve installing all the Python dependencies into local Python virtual environment. This is done with the command (the virtualenv is managed by ``pipenv``):
 
 ```bash
-invenio-cli install --pre
+invenio-cli install
 ```
 ```console
 Installing python dependencies... Please be patient, this operation might take some time...
@@ -185,9 +185,6 @@ Built webpack project.
 Assets and statics updated.
 Dependencies installed successfully.
 ```
-
-!!! info
-    The ``--pre`` option is needed until we reach the final LTS release in July 2021.
 
 The command will similar to the ``containers`` command do the following:
 

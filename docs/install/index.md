@@ -58,7 +58,7 @@ invenio-cli containers start --lock --build --setup
 
 ```console
 cd my-site/
-invenio-cli install --pre
+invenio-cli install
 invenio-cli services setup
 invenio-cli run
 ```
