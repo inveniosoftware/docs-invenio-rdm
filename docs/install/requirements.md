@@ -4,11 +4,12 @@
 
 InvenioRDM depends on the following requirements to be installed on your local system:
 
-- macOS or Linux-based systems (Windows systems is not supported).
+- MacOS or Linux-based systems (Windows systems is not supported).
 - [Python](https://www.python.org/) 3.6, 3.7, or 3.8
     - Python development headers:
-    - On Ubuntu: `sudo apt install python3-dev`.
-    - On RHEL/Fedora: `yum install -y python3-devel.x86_64`.
+        - On Ubuntu: `sudo apt install python3-dev`.
+        - On RHEL/Fedora: `yum install -y python3-devel.x86_64`.
+    - MacOS 11 Big Sur introduces some changes that might break the installation of some packages (for example `PostgreSQL` binaries). If this happens, make sure that you prepend the installation command with `SYSTEM_VERSION_COMPAT=1`. See [here](https://github.com/psycopg/psycopg2/issues/1200) for more information.
 - [Docker](https://docs.docker.com/) 1.13.0+
 - [Docker-Compose](https://docs.docker.com/compose/) 1.17.0+
 
