@@ -1969,3 +1969,318 @@ Content-Type: application/json
   "links": { ... }
 }
 ```
+
+    
+## Communities (Preview)
+    
+### Create a Community
+
+`POST /api/communities`
+    
+**Parameters**
+
+| Name       | Type   | Location | Description                                                  |
+| ---------- | ------ | -------- | ------------------------------------------------------------ |
+| `accept`   | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
+
+**Request**
+
+```http
+POST /api/communities HTTP/1.1
+Accept: application/json
+    
+{
+  "access": {
+    "visibility": "public",
+    "member_policy": "open",
+    "record_policy": "open",
+  },
+  "id": "my_community_id",
+  "metadata": {
+    "title": "My Community",
+    "description": "This is an example Community.",
+    "type": "event",
+    "alternate_identifiers": [{"scheme": "ror", "identifier": "03yrm5c26"}],
+    "curation_policy": "This is the kind of records we accept.",
+    "page": "Information for my community.",
+    "website": "https://www.my_community.org",
+    "domains": ["biology", "chemistry"],
+    "funding": [{
+      "funder": {
+        "name": "European Commission",
+        "identifier": "00k4n6c32",
+        "scheme": "ror"
+      },
+      "award": {
+        "title": "OpenAIRE",
+        "number": "246686",
+        "identifier": ".../246686",
+        "scheme": "openaire"
+      }
+    }]
+  }
+}
+```
+
+**Response**
+
+```http
+HTTP/1.1 201 CREATED
+Content-Type: application/json
+
+{
+  "access": {
+    "visibility": "public",
+    "member_policy": "open",
+    "record_policy": "open",
+  },
+  "created": "2020-11-27 10:52:23.945755",
+  "updated": "2020-11-27 10:52:23.945755",
+  "id": "my_community_id",
+  "links": {
+    "self": "{scheme+hostname}/communities/my_community_id"
+  },
+  "metadata": {
+    "title": "My Community",
+    "description": "This is an example Community.",
+    "type": "event",
+    "alternate_identifiers": [{"scheme": "ror", "identifier": "03yrm5c26"}],
+    "curation_policy": "This is the kind of records we accept.",
+    "page": "Information for my community.",
+    "website": "https://www.my_community.org",
+    "domains": ["biology", "chemistry"],
+    "funding": [{
+      "funder": {
+        "name": "European Commission",
+        "identifier": "00k4n6c32",
+        "scheme": "ror"
+      },
+      "award": {
+        "title": "OpenAIRE",
+        "number": "246686",
+        "identifier": ".../246686",
+        "scheme": "openaire"
+      }
+    }]
+  }
+}
+```
+
+### Update a Community
+
+`PUT /api/communities/<comid>`
+    
+**Parameters**
+
+| Name       | Type   | Location | Description                                                  |
+| ---------- | ------ | -------- | ------------------------------------------------------------ |
+| `comid`       | string | path     | Identifier of the community, e.g.  `my_community`                |
+| `accept`   | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
+
+**Request**
+
+```http
+PUT /api/communities/<comid> HTTP/1.1
+Accept: application/json
+    
+{
+  "access": {
+    "visibility": "public",
+    "member_policy": "open",
+    "record_policy": "open",
+  },
+  "id": "my_community_id",
+  "metadata": {
+    "title": "My Updated Community",
+    "description": "This is an example Community.",
+    "type": "event",
+    "alternate_identifiers": [{"scheme": "ror", "identifier": "03yrm5c26"}],
+    "curation_policy": "This is the kind of records we accept.",
+    "page": "Information for my community.",
+    "website": "https://www.my_community.org",
+    "domains": ["biology", "chemistry"],
+    "funding": [{
+      "funder": {
+        "name": "European Commission",
+        "identifier": "00k4n6c32",
+        "scheme": "ror"
+      },
+      "award": {
+        "title": "OpenAIRE",
+        "number": "246686",
+        "identifier": ".../246686",
+        "scheme": "openaire"
+      }
+    }],
+  }
+}
+```
+
+**Response**
+    
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "access": {
+    "visibility": "public",
+    "member_policy": "open",
+    "record_policy": "open",
+  },
+  "created": "2020-11-27 10:52:23.945755",
+  "updated": "2020-11-27 10:55:23.945868",
+  "id": "my_community_id",
+  "links": {
+    "self": "{scheme+hostname}/communities/my_community_id"
+  },
+  "metadata": {
+    "title": "My Updated Community",
+    "description": "This is an example Community.",
+    "type": "event",
+    "alternate_identifiers": [{"scheme": "ror", "identifier": "03yrm5c26"}],
+    "curation_policy": "This is the kind of records we accept.",
+    "page": "Information for my community.",
+    "website": "https://www.my_community.org",
+    "domains": ["biology", "chemistry"],
+    "funding": [{
+      "funder": {
+        "name": "European Commission",
+        "identifier": "00k4n6c32",
+        "scheme": "ror"
+      },
+      "award": {
+        "title": "OpenAIRE",
+        "number": "246686",
+        "identifier": ".../246686",
+        "scheme": "openaire"
+      }
+    }]
+  }
+}
+```
+
+### Delete a Community
+
+`DELETE /api/communities/<comid>`
+
+**Parameters**
+
+| Name       | Type   | Location | Description                                                  |
+| ---------- | ------ | -------- | ------------------------------------------------------------ |
+| `comid`       | string | path     | Identifier of the community, e.g.  `my_community`                |
+| `accept`   | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
+
+**Request**
+
+```http
+DELETE /api/communities/<comid> HTTP/1.1
+Accept: application/json
+
+```
+
+**Response**
+
+```http
+HTTP/1.1 204 No Content
+Content-Type: application/json
+    
+{}
+```
+
+### Get a Community
+
+`GET /api/communities/<comid>`
+    
+ **Parameters**
+
+| Name       | Type   | Location | Description                                                  |
+| ---------- | ------ | -------- | ------------------------------------------------------------ |
+| `comid`       | string | path     | Identifier of the community, e.g.  `my_community`                |
+| `accept`   | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
+ 
+**Request**
+
+```http
+GET /api/communities/<comid> HTTP/1.1
+Accept: application/json
+```
+    
+Response:
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+    
+{
+  "access": {
+    "visibility": "public",
+    "member_policy": "open",
+    "record_policy": "open",
+  },
+  "created": "2020-11-27 10:52:23.945755",
+  "updated": "2020-11-27 10:52:23.945868",
+  "id": "my_community_id",
+  "links": {
+    "self": "{scheme+hostname}/communities/my_community_id"
+  },
+  "metadata": {
+    "title": "My Community",
+    "description": "This is an example Community.",
+    "type": "event",
+    "alternate_identifiers": [{"scheme": "ror", "identifier": "03yrm5c26"}],
+    "curation_policy": "This is the kind of records we accept.",
+    "page": "Information for my community.",
+    "website": "https://www.my_community.org",
+    "domains": ["biology", "chemistry"],
+    "funding": [{
+      "funder": {
+        "name": "European Commission",
+        "identifier": "00k4n6c32",
+        "scheme": "ror"
+      },
+      "award": {
+        "title": "OpenAIRE",
+        "number": "246686",
+        "identifier": ".../246686",
+        "scheme": "openaire"
+      }
+    }]
+  }
+}
+```
+
+    
+### Search Communities
+    
+**Parameters**
+
+| Name           | Type    | Location | Description                                                  |
+| -------------- | ------- | -------- | ------------------------------------------------------------ |
+| `q`            | string  | query    | Search query used to filter results based on [ElasticSearch's query string syntax](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax). |
+| `sort`         | string  | query    | Sort search results.                                         |
+| `size`         | integer | query    | Specify number of items in the results page (default: 10).   |
+| `page`         | integer | query    | Specify the page of results.                                 |               |
+| `accept`       | string  | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
+
+
+**Request**
+
+```http
+GET /api/communities HTTP/1.1
+```
+
+**Response**
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "aggregations": {...},
+  "hits": {...},
+  "links": {...},
+  "sortBy": ...,
+}
+```
+    
+Each hit looks like a community above.
