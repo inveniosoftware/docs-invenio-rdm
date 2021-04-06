@@ -2,7 +2,7 @@
 
 **Intended audience**
 
-The guide is intended as a crash course fpr new core developers of InvenioRDM with prior experience in running and installing InvenioRDM.
+The guide is intended as a crash course for new core developers of InvenioRDM with prior experience in running and installing InvenioRDM.
 
 **Scope**
 
@@ -20,7 +20,7 @@ Following is a quick overview over what you need to know in order to participate
 
 ### Development iterations
 
-We run **iterations ranging from 3-5 weeks** which are usually aligned with calendar months. Each iteration produces are new release. We use a sprint board to keep track of the current iteration. The current board is linked from https://inveniosoftware.org/products/rdm/#status.
+We run **iterations ranging from 3-5 weeks** which are usually aligned with calendar months. Each iteration produces a new release. We use a sprint board to keep track of the current iteration. The current board is linked from the [product status page](https://inveniosoftware.org/products/rdm/#status).
 
 We use a [product roadmap](https://github.com/inveniosoftware/product-rdm/milestones?direction=asc&sort=due_date&state=open) in GitHub to keep track of high-level features.
 
@@ -189,8 +189,8 @@ In doubt if something is allowed or not? Just ask :-)
 
 Invenio has four principal architects. All architects have:
 
-1. previously designed and built at least one larger repository from scratch.
-2. large knowledge of the existing codebase and vision of the project.
+1. Previously designed and built at least one larger repository from scratch.
+2. Large knowledge of the existing codebase and vision of the project.
 
 Architects are there to help you succeed in contributing, but also have a final say on all design choices made in Invenio (this is to ensure a coherent product and coherent decisions).
 
@@ -198,8 +198,8 @@ Architects are there to help you succeed in contributing, but also have a final 
 
 All larger design work is subject to an RFC. [Invenio RFCs](https://github.com/inveniosoftware/rfcs) are a communication tool, to:
 
-- coordinate the design process
-- document design decisions
-- produce consensus among Invenio stakeholders
+- Coordinate the design process
+- Document design decisions
+- Produce consensus among Invenio stakeholders
 
 It's a collaborative process.
