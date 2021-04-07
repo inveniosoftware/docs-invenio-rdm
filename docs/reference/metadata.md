@@ -75,7 +75,7 @@ When querying for a record, they are shown as `created` and `updated` in the top
 ## System-managed persistent identifiers
 
 A key part of InvenioRDM is the management of persistent identifiers for records.
-A record always have an internal PID.
+A record always has an internal PID.
 
 ### Internal PIDs
 
@@ -125,7 +125,7 @@ Only one identifier can be registered per system defined scheme. Each identifier
 | Field | Cardinality |   Description   |
 |:-----:|:-----------:|:----------------|
 |``identifier`` | (1) | The identifier value. |
-| ``provider`` | (1) | the provider identifier used internally by the system. |
+| ``provider`` | (1) | The provider identifier used internally by the system. |
 | ``client`` | (0-1) | The client identifier used for connecting with an external registration service. |
 
 ```json
