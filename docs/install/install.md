@@ -234,6 +234,19 @@ Go and explore your InvenioRDM instance at [https://127.0.0.1:5000](https://127.
     By default, the host is `127.0.0.1` and the port is `5000`. Pass `--host` and `--port`
     to change them e.g., `invenio-cli run --host 127.0.0.2 --port 5001`.
 
+### Admin account
+
+To create a user, run:
+
+```
+pipenv run invenio users create admin@test.ch --password=123456 --active
+```
+
+Then, to assign them the admin role:
+
+```
+pipenv run invenio roles add admin@test.ch admin
+```
 
 ## Troubleshooting
 
