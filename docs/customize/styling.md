@@ -116,7 +116,7 @@ When you click on a search result, you navigate to the details page of a specifi
 
 For now, we support overriding the pre-existing templates by placing customized ones with same filepath in the `templates/` folder.
 
-To override the record landing page, add the following folders and file in your `templates/` folder: `invenio_app_rdm/records/detail.html`. Edit this file as you see fit:
+To override the record landing page, add the following folders and file in your `templates/` folder: `semantic-ui/invenio_app_rdm/records/detail.html`. Edit this file as you see fit:
 
 
 ```jinja
