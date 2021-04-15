@@ -29,8 +29,7 @@ things can go wrong, so the added time is worth it.
 In addition, if you want to modify CSS and see it when reloading the page you
 need to *watch* the assets. This will automatically rebuild the webpack bundles
 when you change the CSS (`.less`) files. In order to watch them, open another
-terminal (still in your instance path i.e. `development-instance/`)
-and activate the same virtual environment. Then run:
+terminal (still in your instance path i.e. `development-instance/`). Then run:
 
 ```
 invenio-cli assets watch
@@ -63,8 +62,7 @@ invenio-cli assets install /path/to/react-module
 ```
 
 Then you have to watch it. Open another terminal in your instance path
-(`development-instance/` as before) and activate the same
-virtual environment. Note that if you are already watching some python
+(`development-instance/` as before). Note that if you are already watching some python
 module, this action is independent (and per module):
 
 ```
