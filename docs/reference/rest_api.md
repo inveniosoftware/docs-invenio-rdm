@@ -1877,6 +1877,7 @@ are supported:
 | -------- | ------- | -------- | ------------------------------------------------------------ |
 | `type`   | string  | path     | Vocabulary (one of ``languages`` or ``licenses``)            |
 | `q`      | string  | query    | Search query used to filter results based on [ElasticSearch's query string syntax](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax). |
+| `suggest`| string  | query    | One or more words used to suggest records as the user types (i.e. auto-complete). |
 | `tags`   | string  | query    | Filter results to the tag                                    |
 | `sort`   | string  | query    | Sort search results.                                         |
 | `size`   | integer | query    | Specify number of items in the results page (default: 10).   |
