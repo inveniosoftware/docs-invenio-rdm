@@ -2039,7 +2039,7 @@ Content-Type: application/json
   "updated": "2020-11-27 10:52:23.945755",
   "id": "my_community_id",
   "links": {
-    "self": "{scheme+hostname}/communities/my_community_id"
+    "self": "{scheme+hostname}/api/communities/my_community_id"
   },
   "metadata": {
     "title": "My Community",
@@ -2133,7 +2133,7 @@ Content-Type: application/json
   "updated": "2020-11-27 10:55:23.945868",
   "id": "my_community_id",
   "links": {
-    "self": "{scheme+hostname}/communities/my_community_id"
+    "self": "{scheme+hostname}/api/communities/my_community_id"
   },
   "metadata": {
     "title": "My Updated Community",
@@ -2222,7 +2222,7 @@ Content-Type: application/json
   "updated": "2020-11-27 10:52:23.945868",
   "id": "my_community_id",
   "links": {
-    "self": "{scheme+hostname}/communities/my_community_id"
+    "self": "{scheme+hostname}/api/communities/my_community_id"
   },
   "metadata": {
     "title": "My Community",
