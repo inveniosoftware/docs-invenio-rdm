@@ -447,7 +447,7 @@ Example:
         "scheme": "orcid",
         "identifier": "0000-0001-8135-3489"
       }],
-      "role": "Editor"
+      "role": "editor"
     },
     "affiliations": [{
         "name": "CERN",
@@ -895,7 +895,7 @@ The `access` field has this structure:
 
 | Field | Cardinality |   Description   |
 |:-----:|:-----------:|:----------------|
-|`record` | (1) | `"public"` or `"restricted"`. Read access to the record. |
+| `record` | (1) | `"public"` or `"restricted"`. Read access to the record. |
 | `files` | (1) |  `"public"` or `"restricted"`. Read access to the record's files. |
 | `embargo` | (0-1) | Embargo options for the record. |
 
@@ -918,14 +918,9 @@ is made publicly accessible. The `embargo` field has this structure:
 
 ## Files
 
-!!! warning "Work in progress"
-
-    The files fields are subject to change during November-December
-    2020 when the files integration is finalized.
-
 Records may have associated digital files. A record is not meant to be associated
 with a high number of files, as the files are stored inside the record and thus
-increases the overall size of the JSON document.
+increase the overall size of the JSON document.
 
 ### Enabled (1)
 
