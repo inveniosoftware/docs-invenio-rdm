@@ -70,6 +70,8 @@ Used for interacting with unpublished or edited draft records.
 | Name       | Type   | Location | Description                                                  |
 | ---------- | ------ | -------- | ------------------------------------------------------------ |
 | `access`   | object | body     | [Access options](metadata.md#access-information) for the record. |
+| `files`    | object | body     | Files options for the record. |
+| `files.enabled` | boolean | body     | *Required*. Should files be attached to this record or not. |
 | `metadata` | object | body     | [Metadata](metadata.md#metadata) of the record. |
 
 
@@ -84,15 +86,20 @@ Content-Type: application/json
     "record": "public",
     "files": "public"
   },
+  "files": {
+    "enabled": true
+  },
   "metadata": {
     "resource_type": { "type": "image", "subtype": "image-photo" },
     "title": "A Romans story",
     "publication_date": "2020-06-01",
     "creators": [
-      "person_or_org": {
-        "family_name": "Brown",
-        "given_name": "Troy",
-        "type": "personal"
+      {
+        "person_or_org": {
+          "family_name": "Brown",
+          "given_name": "Troy",
+          "type": "personal"
+        }
       },
       {
         "person_or_org": {
@@ -135,6 +142,9 @@ Content-Type: application/json
   },
   "created": "2020-11-27 10:52:23.945755",
   "expires_at": "2020-11-27 10:52:23.945868",
+  "files": {
+    "enabled": true
+  },
   "id": "{id}",
   "is_published": false,
   "links": {
@@ -152,10 +162,12 @@ Content-Type: application/json
     "title": "A Romans story",
     "publication_date": "2020-06-01",
     "creators": [
-      "person_or_org": {
-        "family_name": "Brown",
-        "given_name": "Troy",
-        "type": "personal"
+      {
+        "person_or_org": {
+          "family_name": "Brown",
+          "given_name": "Troy",
+          "type": "personal"
+        }
       },
       {
         "person_or_org": {
@@ -183,7 +195,7 @@ Content-Type: application/json
     "access": {
       "owned_by": [
         {
-            "user": {user-id}
+          "user": {user-id}
         }
       ],
       "links": []
@@ -235,6 +247,9 @@ Content-Type: application/json
   },
   "created": "2020-11-27 10:52:23.945755",
   "expires_at": "2020-11-27 10:52:23.945868",
+  "files": {
+    "enabled": true
+  },
   "id": "{id}",
   "is_published": false,
   "links": {
@@ -309,6 +324,8 @@ Content-Type: application/json
 | ---------- | ------ | -------- | ------------------------------------------------------------ |
 | `id`       | string | path     | Identifier of the record, e.g.  `4d0ns-ntd89`                |
 | `access`   | object | body     | [Access options](metadata.md#access-information) for the record. |
+| `files`    | object | body     | Files options for the record. |
+| `files.enabled` | boolean | body     | *Required*. Should files be attached to this record or not. |
 | `metadata` | object | body     | [Metadata](metadata.md#metadata) of the record. |
 
 **Request**
@@ -322,15 +339,20 @@ Content-Type: application/json
     "record": "restricted",
     "files": "restricted"
   },
+  "files": {
+    "enabled": false,
+  },
   "metadata": {
     "resource_type": { "type": "image", "subtype": "image-photo" },
     "title": "An Updated Romans story",
     "publication_date": "2020-06-01",
     "creators": [
-      "person_or_org": {
-        "family_name": "Brown",
-        "given_name": "Troy",
-        "type": "personal"
+      {
+        "person_or_org": {
+          "family_name": "Brown",
+          "given_name": "Troy",
+          "type": "personal"
+        }
       },
       {
         "person_or_org": {
@@ -374,6 +396,9 @@ Content-Type: application/json
   },
   "created": "2020-11-27 10:52:23.945755",
   "expires_at": "2020-11-27 10:52:23.945868",
+  "files": {
+    "enabled": true
+  },
   "id": "{id}",
   "is_published": false,
   "links": {
@@ -471,6 +496,9 @@ Content-Type: application/json
   },
   "created": "2020-11-27 10:52:23.945755",
   "expires_at": "2020-11-27 10:52:23.945868",
+  "files": {
+    "enabled": true
+  },
   "id": "{id}",
   "is_published": true,
   "links": {
@@ -568,6 +596,9 @@ Content-Type: application/json
   },
   "created": "2020-11-27 10:52:23.945755",
   "expires_at": "2020-11-27 10:52:23.945868",
+  "files": {
+    "enabled": true
+  },
   "id": "{id}",
   "is_published": false,
   "links": {
@@ -659,12 +690,12 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
+  "default_preview": null,
   "enabled": true,
+  "entries": [],
   "links": {
     "self": "/api/records/{id}/draft/files"
   },
-  "entries": [],
-  "default_preview": null,
   "order": []
 }
 ```
@@ -998,9 +1029,8 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-  "enabled": true,
   "default_preview": "article.pdf",
-  "order": [],
+  "enabled": true,
   "entries": [
     {
       "key": "figure.png",
@@ -1014,7 +1044,7 @@ Content-Type: application/json
         "commit": "/api/records/{id}/draft/files/figure.png/commit"
       },
     },
-        {
+    {
       "key": "article.pdf",
       "updated": "2020-11-27 11:17:11.002624",
       "created": "2020-11-27 11:17:10.998919",
@@ -1030,6 +1060,7 @@ Content-Type: application/json
   "links": {
     "self": "/api/records/{id}/draft/files"
   },
+  "order": []
 }
 ```
 
@@ -1072,6 +1103,9 @@ Content-Type: application/json
   },
   "created": "2020-11-27 10:52:23.945755",
   "expires_at": "2020-11-27 10:52:23.945868",
+  "files": {
+    "enabled": true
+  },
   "id": "{id}",
   "is_published": true,
   "links": {
@@ -1335,6 +1369,9 @@ Content-Type: application/json
   },
   "created": "2020-11-27 10:52:23.945755",
   "expires_at": "2020-11-27 10:52:23.945868",
+  "files": {
+    "enabled": true
+  },
   "id": "{new-id}",
   "is_published": false,
   "links": {
@@ -1575,6 +1612,9 @@ Content-Type: application/json
   },
   "created": "2020-11-27 10:52:23.945755",
   "expires_at": "2020-11-27 10:52:23.945868",
+  "files": {
+    "enabled": true
+  },
   "id": "{latest-version-id}",
   "is_published": true,
   "links": {
@@ -1971,13 +2011,13 @@ Content-Type: application/json
 }
 ```
 
-    
+
 ## Communities (Preview)
-    
+
 ### Create a Community
 
 `POST /api/communities`
-    
+
 **Parameters**
 
 | Name       | Type   | Location | Description                                                  |
@@ -1989,7 +2029,7 @@ Content-Type: application/json
 ```http
 POST /api/communities HTTP/1.1
 Accept: application/json
-    
+
 {
   "access": {
     "visibility": "public",
@@ -2070,7 +2110,7 @@ Content-Type: application/json
 ### Update a Community
 
 `PUT /api/communities/<comid>`
-    
+
 **Parameters**
 
 | Name       | Type   | Location | Description                                                  |
@@ -2083,7 +2123,7 @@ Content-Type: application/json
 ```http
 PUT /api/communities/<comid> HTTP/1.1
 Accept: application/json
-    
+
 {
   "access": {
     "visibility": "public",
@@ -2118,7 +2158,7 @@ Accept: application/json
 ```
 
 **Response**
-    
+
 ```http
 HTTP/1.1 200 OK
 Content-Type: application/json
@@ -2185,33 +2225,33 @@ Accept: application/json
 ```http
 HTTP/1.1 204 No Content
 Content-Type: application/json
-    
+
 {}
 ```
 
 ### Get a Community
 
 `GET /api/communities/<comid>`
-    
+
  **Parameters**
 
 | Name       | Type   | Location | Description                                                  |
 | ---------- | ------ | -------- | ------------------------------------------------------------ |
 | `comid`       | string | path     | Identifier of the community, e.g.  `my_community`                |
 | `accept`   | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
- 
+
 **Request**
 
 ```http
 GET /api/communities/<comid> HTTP/1.1
 Accept: application/json
 ```
-    
+
 Response:
 ```http
 HTTP/1.1 200 OK
 Content-Type: application/json
-    
+
 {
   "access": {
     "visibility": "public",
@@ -2250,9 +2290,9 @@ Content-Type: application/json
 }
 ```
 
-    
+
 ### Search Communities
-    
+
 **Parameters**
 
 | Name           | Type    | Location | Description                                                  |
@@ -2283,5 +2323,5 @@ Content-Type: application/json
   "sortBy": ...,
 }
 ```
-    
+
 Each hit looks like a community above.
