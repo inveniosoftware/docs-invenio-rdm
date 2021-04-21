@@ -113,8 +113,6 @@ Example:
 }
 ```
 
-Comment: Why again did we split the internal identiier into `id` and `pid` and not just `pid` with subentries `id`, `pk`, `status`.
-
 ### External PIDs
 
 External PIDs are persistent identifiers managed via Invenio-PIDStore and that may require integration
@@ -534,7 +532,7 @@ Subfields:
 
 Supported identifier schemes:
 
-- ISBN10, ISBN13, ISSN, ISTC, DOI, Handle, EAN8, EAN13, ISNI ORCID, ARK, PURL, LSID, URN, Bibcode, arXiv, PubMed ID, PubMed Central ID, GND, SRA, BioProject, BioSample, Ensembl, UniProt, RefSeq, Genome Assembly.
+- ISBN10, ISBN13, ISSN, ISTC, DOI, Handle, EAN8, EAN13, ISNI, ORCID, ARK, PURL, LSID, URN, Bibcode, arXiv, PubMed ID, PubMed Central ID, GND, SRA, BioProject, BioSample, Ensembl, UniProt, RefSeq, Genome Assembly.
 
 Example:
 
