@@ -1694,7 +1694,7 @@ Access links are URLs that can be shared with others to give them access and per
 | `id`     | string | path     | Identifier of the record, e.g. `cbc2k-q9x58`                 |
 | `accept` | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
 | `expires_at`     | string | body     | Date time string. When the link expires.                 |
-| `permission`     | string | body     | Required. Action that can be undertaken with the link.             |
+| `permission`     | string | body     | Required. Action that can be undertaken with the link (``view``, ``preview`` or ``edit``). |
 
 
 **Request**
@@ -1704,7 +1704,7 @@ POST /api/records/{id}/access/links HTTP/1.1
 Content-Type: application/json
 
 {
-  "permission": "read"
+  "permission": "view"
 }
 ```
 
@@ -1715,7 +1715,7 @@ HTTP/1.1 201 CREATED
 Content-Type: application/json
 
 {
-  "permission": "read",
+  "permission": "view",
   "created_at": "2021-03-25T21:06:29.563235",
   "token": "eyJhbGciOiJIUzUxMiJ9.eyJpZCI6IjNkMzMyMGVhLTA3NTUtNGQ5My1hNzZlLWUyZjJmYzY1NWQyYSIsImRhdGEiOnt9LCJyYW5kb20iOiI2NzZhYTk3OTczMzgwMjkyNTJiM2MwZDBjNjliMTVkYSJ9.dBqk7YzIZ7kwG4oijNgH1VU-cjQmBiQlMQKMoB2y-YjVWmgnZetFAESsqRP6VpGTtaKdftrtob1PVZJF4YGpfg",
   "id": "3d3320ea-0755-4d93-a76e-e2f2fc655d2a",
@@ -1749,7 +1749,7 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-  "permission": "read",
+  "permission": "view",
   "created_at": "2021-03-25T21:06:29.563235",
   "token": "eyJhbGciOiJIUzUxMiJ9.eyJpZCI6IjNkMzMyMGVhLTA3NTUtNGQ5My1hNzZlLWUyZjJmYzY1NWQyYSIsImRhdGEiOnt9LCJyYW5kb20iOiI2NzZhYTk3OTczMzgwMjkyNTJiM2MwZDBjNjliMTVkYSJ9.dBqk7YzIZ7kwG4oijNgH1VU-cjQmBiQlMQKMoB2y-YjVWmgnZetFAESsqRP6VpGTtaKdftrtob1PVZJF4YGpfg",
   "id": "3d3320ea-0755-4d93-a76e-e2f2fc655d2a",
@@ -1778,7 +1778,7 @@ PATCH /api/records/{id}/access/links/{link-id} HTTP/1.1
 Content-Type: application/json
 
 {
-  "permission": "manage",
+  "permission": "edit",
   "expires_at": "2121-03-25T21:06:29.563235"
 }
 ```
@@ -1790,7 +1790,7 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-  "permission": "manage",
+  "permission": "edit",
   "created_at": "2021-03-25T21:06:29.563235",
   "token": "eyJhbGciOiJIUzUxMiJ9.eyJpZCI6IjNkMzMyMGVhLTA3NTUtNGQ5My1hNzZlLWUyZjJmYzY1NWQyYSIsImRhdGEiOnt9LCJyYW5kb20iOiI2NzZhYTk3OTczMzgwMjkyNTJiM2MwZDBjNjliMTVkYSJ9.dBqk7YzIZ7kwG4oijNgH1VU-cjQmBiQlMQKMoB2y-YjVWmgnZetFAESsqRP6VpGTtaKdftrtob1PVZJF4YGpfg",
   "id": "3d3320ea-0755-4d93-a76e-e2f2fc655d2a",
@@ -1852,7 +1852,7 @@ Content-Type: application/json
   "hits": {
     "hits": [
       {
-        "permission": "read",
+        "permission": "view",
         "id": "140f69c9-a8a5-41d4-8ae2-3dfbfe0e2796",
         "created_at": "2021-03-25T21:48:03.289198",
         "expires_at": null,
@@ -2358,8 +2358,8 @@ Content-Type: application/json
 | `q`            | string  | query    | Search query used to filter results based on [ElasticSearch's query string syntax](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax). |
 | `sort`         | string  | query    | Sort search results (default: newest).                                         |
 | `size`         | integer | query    | Specify number of items in the results page (default: 10).   |
-| `page`         | integer | query    | Specify the page of results.                                 |     
-| `type`         | string  | query    | Specify community type as one of organization, event, topic or project. |     
+| `page`         | integer | query    | Specify the page of results.                                 |
+| `type`         | string  | query    | Specify community type as one of organization, event, topic or project. |
 | `accept`       | string  | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
 
 
@@ -2381,7 +2381,7 @@ Content-Type: application/json
     "type": {
       "buckets": [
       {
-        "doc_count": 4, 
+        "doc_count": 4,
         "key": "event"
       },
       {
@@ -2441,8 +2441,8 @@ Same as `GET /api/communities` but with the authenticated user's communities in 
 | `q`            | string  | query    | Search query used to filter results based on [ElasticSearch's query string syntax](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax). |
 | `sort`         | string  | query    | Sort search results (default: newest).                                         |
 | `size`         | integer | query    | Specify number of items in the results page (default: 10).   |
-| `page`         | integer | query    | Specify the page of results.                                 |     
-| `type`         | string  | query    | Specify community type as one of organization, event, topic or project. |     
+| `page`         | integer | query    | Specify the page of results.                                 |
+| `type`         | string  | query    | Specify community type as one of organization, event, topic or project. |
 | `accept`       | string  | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
 
 
@@ -2718,7 +2718,7 @@ Content-Type: application/json
         "Missing data for required field."
       ]
     },
-    { 
+    {
       "field": "access",
       "messages": [
         "Missing data for required field."
