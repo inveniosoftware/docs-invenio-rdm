@@ -23,9 +23,9 @@ The ``invenio.cfg`` file is included in the Docker image, which means that if yo
 
 ## Environment variables
 
-InvenioRDM can also be configured via environment variables. The environment variables are good for deployment specific options that changes for each for every running version. Examples include the database host and credentials and the application's secret key.
+InvenioRDM can also be configured via environment variables. The environment variables are good for deployment specific options. Examples include the database host and credentials and the application's secret key.
 
-To set a environment variable configuration, you should prefix the configuration variable with ``INVENIO_``. Below is an example of setting the ``SQLALCHEMY_DATABASE_URI`` variable:
+To set an environment variable configuration, you should prefix the configuration variable with ``INVENIO_``. Below is an example of setting the ``SQLALCHEMY_DATABASE_URI`` variable:
 
 ```bash
 export INVENIO_SQLALCHEMY_DATABASE_URI="postgresql+psycopg2://my-site:my-site@localhost/my-site"

@@ -22,7 +22,7 @@ This field is fully system-managed.
 
 ```json
 {
-    "$schema": "https://localhost/schemas/records/record-v1.0.0.json",
+    "$schema": "local://records/record-v2.0.0.json",
     ...
 }
 ```
@@ -34,7 +34,7 @@ Following is an overview of the top-level fields in a record:
 | Field |   Description   |
 |:-----:|:----------------|
 |  ``id``/``pid``  | The internal persistent identifier for a specific version.  |
-|  ``conceptid``/``conceptpid``  | The internal persistent identifier for all versions.  |
+|  ``parent``  | The internal persistent identifier for all versions.  |
 |  ``pids`` | System-managed external persistent identifiers (DOIs, Handles, OAI-PMH identifiers).  |
 |  ``metadata`` | Descriptive metadata for the resource.  |
 |  ``ext`` | Instance specific descriptive metadata for the resource.  |
@@ -48,11 +48,10 @@ top-level fields in a record look like:
 
 ```json
 {
-    "$schema": "https://localhost/schemas/records/record-v1.0.0.json",
+    "$schema": "local://records/record-v1.0.0.json",
     "id": "q5jr8-hny72",
     "pid": { ... },
-    "conceptid": "adf7e-kop86",
-    "conceptpid": { ... },
+    "parent": { ... },
     "pids" : { ... },
     "metadata" : { ... },
     "ext" : { ... },
@@ -93,22 +92,19 @@ Concept version PID:
 
 | Field |   Description   |
 |:-----:|:----------------|
-| ``conceptid`` | The value of the internal record identifier. |
-| ``conceptpid`` | Object level information about the identifier needed for operational reasons. |
+| ``parent.id`` | The value of the internal record identifier. |
 
 Example:
 
 ```json
 {
   "id": "abcde-12345",
-  "conceptid": "12345-abcde",
   "pid": {
     "pk": 1,
     "status": "R"
   },
-  "conceptpid": {
-    "pk": 2,
-    "status": "R"
+  "parent": {
+    "id": "hg5de-2dw08"
   },
 }
 ```
@@ -194,13 +190,13 @@ Subfields:
 
 A `person_or_org` is described with the following subfields:
 
-| Field | Cardinality |   Description   |
-|:-----:|:-----------:|:----------------|
-| ``name`` | (0 if `type` is `personal` / 1 if `type` is `organisational`) | The full name of the organisation. For a person this field is generated from `given_name` and `family_name` |
+| Field            | Cardinality |   Description   |
+|:---------------------:|:-----------:|:----------------|
+| ``name``              | (0 if `type` is `personal` / 1 if `type` is `organisational`) | The full name of the organisation. For a person this field is generated from `given_name` and `family_name` |
 | ``type`` | (0-1, CV) | The type of name. Either ``personal`` or ``organisational``. |
 | ``role`` | (0-1, CV) | The role of the person or organisation selected from a customizable controlled vocabulary. |
-| ``given_name``  | (1 if `type` is `personal` / 0 if `type` is `organisational`) | Given name(s) if the type is a personal name. |
-| ``family_name`` | (1 if `type` is `personal` / 0 if `type` is `organisational`) | Family name if type is a personal name. |
+| ``given_name`` | (1 if `type` is `personal` / 0 if `type` is `organisational`) | Given name(s) if the type is a personal name. |
+| ``family_name`` &nbsp; | (1 if `type` is `personal` / 0 if `type` is `organisational`) | Family name if type is a personal name. |
 | ``identifiers``  | (0-n) | Person or organisation identifiers. |
 
 Affiliations are described with the following subfields:
@@ -327,7 +323,7 @@ Subfields:
 
 | Field | Cardinality |   Description   |
 |:-----:|:-----------:|:----------------|
-| ``description`` | (1) | Free text. |
+| ``description`` &nbsp; | (1) | Free text. |
 | ``type`` | (1, CV) | The type of the description. One of ``abstract``, ``method``, ``seriesinformation``, ``tableofcontents``, ``technicalinfo``, ``other``. |
 | ``lang`` | (0-1) |  The language of the description. ISO 639-3 language code. |
 
@@ -483,7 +479,7 @@ Subfields:
 |:-----:|:-----------:|:----------------|
 | ``date`` | (1) | A date or time interval according to Extended Date Time Format level 0.
 | ``type`` | (1, CV) | The type of date. A value from a customizable controlled vocabulary (defaults to DataCite's date type vocabulary).
-| ``description`` | (0-1) | free text, specific information about the date.
+| ``description`` &nbsp; | (0-1) | free text, specific information about the date.
 
 Example:
 
@@ -559,7 +555,7 @@ Subfields:
 | ``identifier`` | (1, CV) | A global unique persistent identifier for a related resource.
 | ``scheme`` | (1, CV) | The scheme of the identifier.
 | ``relation`` | (1, CV) | The relation of the record to this related resource.
-| ``resource_type`` | (0-1, CV) | The resource type of the related resource. Uses the same customizable vocabulary as the Resource Type field.
+| ``resource_type`` &nbsp;&nbsp; | (0-1, CV) | The resource type of the related resource. Uses the same customizable vocabulary as the Resource Type field.
 
 Supported identifier schemes:
 
@@ -684,7 +680,7 @@ Subfields of items in ``features``:
 | Field | Cardinality |   Description   |
 |:-----:|:-----------:|:----------------|
 | ``geometry`` | (0-1) | A GeoJSON [Geometry Object](https://tools.ietf.org/html/rfc7946#section-3.1) according to RFC 7946. Note, GeoJSON's coordinate reference system is [WGS84](https://tools.ietf.org/html/rfc7946#section-4). |
-| ``identifiers`` | (0-1) | Identifiers for the geographic locations. This could for instance be from [GeoNames](https://www.geonames.org) or [Getty Thesaurus of Geographic Names](http://www.getty.edu/research/tools/vocabularies/tgn/) (TGN) which would allow linking to historic places. |
+| ``identifiers`` &nbsp;&nbsp; | (0-1) | Identifiers for the geographic locations. This could for instance be from [GeoNames](https://www.geonames.org) or [Getty Thesaurus of Geographic Names](http://www.getty.edu/research/tools/vocabularies/tgn/) (TGN) which would allow linking to historic places. |
 | ``place`` | (0-1) | Free text, used to describe a geographical location. |
 | ``description`` | (0-1) | Free text, used for any extra information related to the location. |
 
@@ -969,7 +965,7 @@ increase the overall size of the JSON document.
 
 ### Enabled (1)
 
-The enabled field determines if the record is a metadata-only record or if
+The ``enabled`` field determines if the record is a metadata-only record or if
 files are associated.
 
 Example:
@@ -982,7 +978,7 @@ Example:
 }
 ```
 
-In this case, the record has no associated files.
+In this case, the record has (and can have) no associated files. It is a metadata-only record.
 
 ### Entries (0-n)
 
@@ -1000,7 +996,7 @@ Subfields:
 | ``bucket_id`` | (1) | The bucket identifier. |
 | ``version_id`` | (1) | The logical object identifier. |
 | ``file_id`` | (1) |  The digital file instance identifier (references a file on storage). |
-| ``backend:`` | (1) | The backend for the file. |
+| ``backend`` | (1) | The backend for the file. |
 | ``key`` | (1) | The filepath of the file. |
 | ``mimetype`` | (1) | The mimetype of the file. |
 | ``size`` | (1) | The size in bytes of the file. |
@@ -1046,7 +1042,7 @@ Example:
 ### Order (0-n)
 
 The order field defines a list of filenames which is the default display order
-of files. If the order field is not specified, then all alphanumeric ordering
+of files. If the order field is not specified, then alphanumeric ordering
 of filenames is used.
 
 Example:

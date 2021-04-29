@@ -1,6 +1,6 @@
 # How can I deploy InvenioRDM?
 
-In previous sections, you could see how to install InvenioRDM in your [local computer](../develop/index.md) for development, and how to run [containerized environment](../preview/index.md) that demonstrates the setup of all components running in docker containers. In this section we cover how to deploy InvenioRDM in a closer-to-production manner.
+In previous sections, you saw how to run a [containerized environment](../install/build-setup-run.md#option-1-container-install) that demonstrates the setup of all components running in docker containers and how to install InvenioRDM in your [local computer](../install/build-setup-run.md#option-2-local-install) for development. In this section we cover how to deploy InvenioRDM in a closer-to-production manner.
 
 !!! warning "Do not deploy as-is in production"
     Please note the "closer-to-production" statement, this is because even if the designed architecture can scale and withstand the load of a production service (It has been tested to stand peaks of up to 180 requests/s), you need to review the security configurations and customize resources to fit your use case. In addition, Elasticsearch and PostgreSQL can be deployed along with the application, however they are not configured with redundancy and persistance in mind.

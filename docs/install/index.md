@@ -40,7 +40,7 @@ Scaffold your InvenioRDM instance. You will be asked several questions. If in do
 invenio-cli init rdm
 ```
 
-#### 4. [Build, setup and run](install.md)
+#### 4. [Build, setup and run](build-setup-run.md)
 
 You can run the main InvenioRDM application in two modes (choose one):
 
