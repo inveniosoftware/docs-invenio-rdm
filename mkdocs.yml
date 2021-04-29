@@ -39,6 +39,7 @@ nav:
   - Customize:
     - Overview: 'customize/index.md'
     - Styling: 'customize/styling.md'
+    - DOI registration: 'customize/dois.md'
     - Authentication: 'customize/authentication.md'
     - Metadata: 'customize/metadata.md'
     - Permissions: 'customize/permissions.md'
