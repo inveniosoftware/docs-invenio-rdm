@@ -26,7 +26,6 @@ curl -k -XGET https://127.0.0.1:5000/api/records | python3 -m json.tool
             ]
         }
     },
-    ...
     "hits": {
         "hits": [
             {
@@ -447,6 +446,308 @@ curl -k -XPOST https://127.0.0.1:5000/api/records/jnmmp-51n47/draft/actions/publ
 
 This file can then be previewed on the record page and even downloaded.
 
+
+
+
+### List communities
+
+Similar to listing the records, let's list communities in the instance by querying the API. In a separate terminal:
+
+``` bash
+curl -k -XGET https://127.0.0.1:5000/api/communities | jq
+```
+``` json
+{ 
+  "hits": {
+    "hits": [
+        {
+        "revision_id": 3,
+        "id": "new_community_id",
+        "metadata": {
+            "page": "Information for my community.",
+            "funding": [
+            {
+                "funder": {
+                "name": "European Commission",
+                "identifier": "00k4n6c32",
+                "scheme": "ror"
+                },
+                "award": {
+                "identifier": ".../246686",
+                "number": "246686",
+                "scheme": "openaire",
+                "title": "OpenAIRE"
+                }
+            }
+            ],
+            "type": "event",
+            "title": "My Community",
+            "organizations": [
+            {
+                "name": "CERN",
+                "identifiers": [
+                {
+                    "identifier": "01ggx4157",
+                    "scheme": "ror"
+                }
+                ]
+            }
+            ],
+            "description": "This is an example Community.",
+            "curation_policy": "This is the kind of records we accept.",
+            "website": "https://inveniosoftware.org/"
+        },
+        "links": {
+            "self": "https://127.0.0.1:5000/api/communities/new_community_id",
+            "self_html": "https://127.0.0.1:5000/communities/new_community_id",
+            "settings_html": "https://127.0.0.1:5000/communities/new_community_id/settings",
+            "logo": "https://127.0.0.1:5000/api/communities/new_community_id/logo",
+            "rename": "https://127.0.0.1:5000/api/communities/new_community_id/rename"
+        },
+        "created": "2021-04-29T15:02:07.838322+00:00",
+        "access": {
+            "member_policy": "open",
+            "owned_by": [
+            {
+                "user": 2
+            }
+            ],
+            "visibility": "public",
+            "record_policy": "open"
+        },
+        "updated": "2021-04-29T15:02:24.532559+00:00"
+        },
+        {
+        "revision_id": 2,
+        "id": "commnew",
+        "metadata": {
+            "title": "New Comm"
+        },
+        "links": {
+            "self": "https://127.0.0.1:5000/api/communities/commnew",
+            "self_html": "https://127.0.0.1:5000/communities/commnew",
+            "settings_html": "https://127.0.0.1:5000/communities/commnew/settings",
+            "logo": "https://127.0.0.1:5000/api/communities/commnew/logo",
+            "rename": "https://127.0.0.1:5000/api/communities/commnew/rename"
+        },
+        "created": "2021-04-29T14:18:56.552252+00:00",
+        "access": {
+            "member_policy": "open",
+            "owned_by": [
+            {
+                "user": 2
+            }
+            ],
+            "visibility": "public",
+            "record_policy": "open"
+        },
+        "updated": "2021-04-29T14:18:56.577770+00:00"
+        },
+        {
+        "revision_id": 2,
+        "id": "comm_id",
+        "metadata": {
+            "type": "topic",
+            "title": "Title"
+        },
+        "links": {
+            "self": "https://127.0.0.1:5000/api/communities/comm_id",
+            "self_html": "https://127.0.0.1:5000/communities/comm_id",
+            "settings_html": "https://127.0.0.1:5000/communities/comm_id/settings",
+            "logo": "https://127.0.0.1:5000/api/communities/comm_id/logo",
+            "rename": "https://127.0.0.1:5000/api/communities/comm_id/rename"
+        },
+        "created": "2021-04-29T14:06:30.830609+00:00",
+        "access": {
+            "member_policy": "open",
+            "owned_by": [
+            {
+                "user": 2
+            }
+            ],
+            "visibility": "public",
+            "record_policy": "open"
+        },
+        "updated": "2021-04-29T14:06:30.853746+00:00"
+        },
+        {
+        "revision_id": 2,
+        "id": "foster-anderson",
+        "metadata": {
+            "page": "Star whom top enter measure real interview. Style company prevent detail federal cultural generation. Carry southern travel.\nBring any job prove. Agreement create whatever often house deal month kitchen.\nNatural rate why near three both particular.\nYourself low force prevent have story push. Open woman relate standard receive.\nShould themselves free that save which. Successful threat write opportunity. Boy culture find situation day chance president.\nArm knowledge form whom. Hot similar individual up arm. Mean trip world life them.\nEvent notice return subject method actually. Until executive benefit eye.\nAbove night another ready live tell.\nSafe ball less process which prevent fight. Everyone rest sure more together.\nCamera leave national number season consider. Trip cover history person while. Bad they trouble hear.\nNever dark sign change recognize. Heart leave ready accept. Law save page.\nScore consumer before skin four. Structure lawyer scientist despite anything figure. Peace within first series sing.\nCandidate program environment thousand statement most option enough. Increase teacher citizen lead.\nRace return black describe. Even happy realize probably. House rock edge green pass woman since. Customer history music ground task north.\nNecessary able either strong. War save change challenge new soon camera.\nLine easy my interview source.\nDeep admit audience democratic decide in popular. Big great health quite her common own.\nParticipant threat machine far last bar. System smile other last.\nSingle national or peace attack half. Risk talk while son find.\nWho mention quality hotel. Financial type help director early. Imagine huge marriage peace.\nFine difference front hotel system three cause. Program owner carry explain attention. Reality cultural against.\nHome prepare seven mission main both.\nOffice whatever experience. Particular particularly fill father right. Late though break dream hand station environment.",
+            "funding": [
+            {
+                "funder": {
+                "name": "European Commission",
+                "identifier": "03yrm5c26",
+                "scheme": "ror"
+                },
+                "award": {
+                "identifier": "0000-0002-1825-0097",
+                "number": "246686",
+                "scheme": "orcid",
+                "title": "OpenAIRE"
+                }
+            }
+            ],
+            "type": "topic",
+            "title": "Year say region.",
+            "organizations": [
+            {
+                "name": "CERN",
+                "identifiers": [
+                {
+                    "identifier": "01ggx4157",
+                    "scheme": "ror"
+                }
+                ]
+            }
+            ],
+            "description": "Fact decision director set former follow. Method study traditional. Would lawyer hundred.\nOwn board team ahead eight. Cause enough blood produce send impact enter security. Go piece market allow region.\nOut imagine think.\nLay environment prepare star.\nDuring drop eye eat prepare loss. Service you phone chair teach government peace your. Leader low room serve for.\nFood cup report stop edge scientist use lot. But image here hard. Result strategy window available read kitchen interesting.\nLong paper look avoid know seem political.\nNorth control exactly seat five couple specific you. Discuss claim campaign not green should order. Ground enough exist against send show.\nNatural talk morning board. Teach early still management series according teacher cup. Arm international message prepare. At two hear clear.\nItem about politics able. Smile economy million moment mouth blue statement operation.\nCurrent politics down product eat page. Speak when always nor.\nParty resource everything read main force. Point pay road any difference could class hot. Late action fine window style. Customer full room thank baby white certainly.\nProduction west dinner point might. Door hour pattern point at a however truth. Situation particular item live section personal. Ten late opportunity car.\nWithout body couple help. Middle my or decision join though range those. Task partner drug indicate.\nAuthor field become part entire left force. Contain dark too image beautiful total.\nVoice four shoulder spend whom prove. Accept country free produce worry. Court official style positive imagine.\nWe memory stop second hit student spend. Professional summer something read research.\nFamily always machine task station seem. Yourself contain effect professor compare.\nWar family small summer would reduce rest. These everybody point nor.\nColor other race five appear edge bag. Local car life town player PM.\nMake behavior involve. Author glass race design find.",
+            "curation_policy": "Exactly executive well he. Put your best open education find.\nNot international animal rich full race. Choose spring success daughter. Enter five describe it knowledge fund seat.\nOperation open garden agency. Professor story happy area serve discussion position director.\nPretty can event any carry across. Civil sit again better expect according product. Upon environment car hear only. Phone probably wife toward along.\nBlue blue go site. Mission glass nation dinner play PM image. For girl speak husband rate someone.\nAdd short learn tough enter cause. Human in enter character heavy computer answer.\nEveryone challenge stand ever toward. Four necessary medical amount friend. Response your business listen show.\nStop red office instead traditional especially. Task brother war get believe part. Black toward news wind drive dark this.\nFine each police so fight main yet. New group individual speech even each. Common state until.\nJob nation debate relate politics decade. Design director live it collection doctor. Quality Republican approach film personal.\nWhy record affect whether hold. Short admit all business they. Building six whatever far city check attorney.\nBefore green painting listen themselves step exactly. Gas outside up with debate base. Yard hand environmental follow themselves.\nWell school effect face ago buy. Forward newspaper somebody remain easy huge. Walk because wrong scientist put work political. Himself wife cause.\nMay court PM decade account southern against. Shake more physical event those tonight manage.\nMust report bad owner shake. Anyone today rise. Not shoulder parent although explain would middle charge.\nOnce body ever heavy alone model. Total true home forward little. Team director station purpose learn effect clear.\nEmployee process recent act. Area cold term whole prepare which term.\nYourself including movie matter. Join thank safe.",
+            "website": "https://shea.org"
+        },
+        "links": {
+            "self": "https://127.0.0.1:5000/api/communities/foster-anderson",
+            "self_html": "https://127.0.0.1:5000/communities/foster-anderson",
+            "settings_html": "https://127.0.0.1:5000/communities/foster-anderson/settings",
+            "logo": "https://127.0.0.1:5000/api/communities/foster-anderson/logo",
+            "rename": "https://127.0.0.1:5000/api/communities/foster-anderson/rename"
+        },
+        "created": "2021-04-29T13:07:06.996160+00:00",
+        "access": {
+            "member_policy": "closed",
+            "owned_by": [],
+            "visibility": "public",
+            "record_policy": "open"
+        },
+        "updated": "2021-04-29T13:07:07.014840+00:00"
+        }
+    ],
+    "total": 65
+    },
+    "sortBy": "newest",
+    "aggregations": {
+    "domain": {
+        "doc_count_error_upper_bound": 0,
+        "sum_other_doc_count": 0,
+        "buckets": []
+    },
+    "type": {
+        "doc_count_error_upper_bound": 0,
+        "sum_other_doc_count": 0,
+        "buckets": [
+        {
+            "key": "organization",
+            "doc_count": 21
+        },
+        {
+            "key": "event",
+            "doc_count": 20
+        },
+        {
+            "key": "topic",
+            "doc_count": 13
+        },
+        {
+            "key": "project",
+            "doc_count": 10
+        }
+        ]
+      }
+    },
+    "links": {
+    "self": "https://127.0.0.1:5000/api/communities?page=1&size=25&sort=newest",
+    "next": "https://127.0.0.1:5000/api/communities?page=2&size=25&sort=newest"
+    }
+  }
+}
+```
+
+#### Notes
+- Results are abbreviated for ease of reading.
+- [jq](https://github.com/stedolan/jq) is for pretty formating and coloring.
+
+
+### Create communities
+
+!!! info "Authentication required"
+
+    All requests to the create-related REST API endpoints require authentication.
+#### Create a community
+
+You can create a new community using the API:
+
+```bash
+curl -k -XPOST -H "Content-Type: application/json" https://127.0.0.1:5000/api/communities?access_token=<token> -d '{
+  "access": {
+    "visibility": "public",
+    "member_policy": "open",
+    "record_policy": "open"
+  },
+  "id": "yet_another_community",
+  "metadata": {
+    "title": "Brand New Community",
+    "description": "This is an example Community.",
+    "type": "event",
+    "curation_policy": "This is the kind of records we accept.",
+    "page": "Information for my community.",
+    "website": "https://inveniosoftware.org/"
+  }
+}'
+```
+
+#### Update a community
+
+You can renamed a community using the API. 
+
+```bash
+curl -k -XPUT -H "Content-Type: application/json" https://127.0.0.1:5000/api/communities/yet_another_community?access_token=<token> -d '{
+  "access": {
+    "visibility": "restricted",
+    "member_policy": "open",
+    "record_policy": "open"
+  },
+  "id": "yet_another_community",
+  "metadata": {
+    "title": "Updated Comm Name"
+  }
+}'
+```
+
+### Rename a community
+
+You can update the community, access and metadata fields using the API:
+
+```bash
+curl -k -XPOST -H "Content-Type: application/json" https://127.0.0.1:5000/api/communities/yet_another_community/rename?access_token=<token> -d '{
+  "access": {
+    "visibility": "restricted",
+  },
+  "id": "Updated_ID",
+  "metadata": {
+    "title": "Updated Comm Name"
+  }
+}'
+```
+
+### Get a community
+
+You can get a community using the API as long as `id` is known. 
+
+```bash
+curl -k -XGET -H "Content-Type: application/json" https://127.0.0.1:5000/api/comm_id?access_token=<token>
+```
+
+### Update community logo
+
+You can update a community logo using the API.
+
+```bash
+curl -k -XPUT -H "Content-Type: application/octet-stream" https://127.0.0.1:5000/api/communities/new_community_id/logo?access_token=<token> -d logo.jpg
+
+```
+
 ## Explore the API
 
 To see what other API calls exist, go to the [API reference section](../reference/rest_api.md).
@@ -462,3 +763,6 @@ invenio-cli services stop
 
 Check the [Cleanup section](./cleanup.md) if you wish to remove every
 reference to InvenioRDM from Docker (containers, images, networks, etc.).
+
+
+
