@@ -43,27 +43,21 @@ The DOI is registered with a URL to the landing page where the DOI should resolv
 
 The backend works not only for DOIs but for any other external or internal persistent identifier you might have as long as a special PID provider plugin is written for your persistent identifier provider. This opens the possibility to support other DOI agencies than DataCite, support Handles, EPICs, ARKs, internal report numbers, etc. Right now, InvenioRDM is only shipped with a standard DataCite provider.
 
-**Deduplication (TODO working or not?)**
-
-The DOI minting feature serves another purpose as well: deduplication. InvenioRDM will not allow the same DOI to be deposited twice. This ensures that the same upload, with the same DOI, is not deposited multiple times inside the system.
-
 **Using the new feature**
 
-Check the [documentation TODO]() to see how to enable and configure the feature. Note that you'll need a testing account with DataCite to complete this. If you don't have that, you can check the demo site, where we have the DOI feature enabled.
+Check the [documentation](/customize/dois/) to see how to enable and configure the feature. Note that you'll need a testing account with DataCite to complete this. If you don't have that, you can check the demo site, where we have the DOI feature enabled.
 
-**Known issues and future developments (TODO)**
+**Known issues and future developments**
 
-- Restricted/embargoed records: DOIs are currently registered fro all records meaning if you create a DOI for a restricted record the metadata is sent to DataCite.
-- DOI for the parent record
-- Re-registering failed DOIs (e.g. due to remote REST API being down)
-- Sign-posting; including the DOI in the landing page
-- Upgrading JSON metadata format
-- Dashboard for checking registration status
-- DataCite XML serialization
-- DataCite JSON export in the landing page
-- Pressing the `GET DOI` button will reset the deposit form, loosing all non-already-saved content
+- Restricted/embargoed records: DOIs are currently registered for all records meaning if you create a DOI for a restricted record the metadata is sent to DataCite and thus publicly accessible.
+- Pressing the `Get DOI` button in the deposit form will reset the form, loosing all non-already-saved content.
 - Sending an incorrect value for the DOI will not highlight the *Identifiers* field, but will not save the invalid value
 - After sending and invalid DOI value, the form does not update the state. Thus to be able to save the draft again you need to reload the page or click the "GET DOI" button
+- Concept DOI: We are not yet registering the Concept DOI which represent all versions of a record. Only individual versions have DOIs registered.
+- Failed DOI registrations (e.g. due to the DataCite API being down) is not retried.
+- No sign posting: The DOI is not included in the HTTP Link headers.
+- DOIs are registered with the DataCite JSON format, so we have not yet a DataCite XML serialization format.
+- DataCite JSON export is not show on as an option on the landing page nor available via the REST API.
 
 ### Alternate identifiers
 
@@ -81,6 +75,10 @@ All identifiers are validated using the [IDUtils](https://idutils.readthedocs.io
 - ``https://doi.org/10.1234/foo.bar``
 
 However, the value we store internally in the system is the normalized value ``10.1234/foo.bar``. This is important for e.g. when you have to search for a specific identifier.
+
+**Known issues**
+
+- Deposit form: Errors in identifiers are not properly reported in the deposit form.
 
 ### Preview feature
 
@@ -116,7 +114,7 @@ We plan on heavily expanding the share button to support sharing with specific u
 
 **Known issues**
 
-- Only a single link can be managed
+- Only a single link can be managed via the UI, while the REST API allows many links.
 
 ### Access status indicators
 
@@ -267,6 +265,8 @@ We have done a larger cleanup of the codebase in preparation for getting a much 
 ## Backward incompatible changes
 
 - Removed the ``PUT /api/records/:id/draft/files`` endpoint to enable/disable files and  select default file preview/order. Instead, it's now part of the ``PUT /api/records/:id/draft`` endpoint.
+
+- Access links permission levels now only accept ``view``, ``preview`` and ``edit`` permission levels. Previously it also accepted ``read`` and ``read_files`` which now are both covered by ``view``.
 
 - We are deprecating the usage of ``SITE_HOSTNAME`` in favour of ``SITE_API_URL`` and ``SITE_UI_URL``.
 
