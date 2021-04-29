@@ -164,17 +164,18 @@ The basics include:
 
 We've tried to simplify the community setup as much as possible, by only requiring very minimal information in the setup form (name, identifier and visibility).
 
-TODO: screenshot creating a community
+![](v3.0/create-community.png)
+
 
 Afterwards, users are taken directly to the profile page, where further changes can be made and logos uploaded.
 
-TODO: Screenshot
+![](v3.0/community-settings.png)
 
 **Browsing communities**
 
 You can search and browse communities from the top community headline. By default, we display first any communities that you're a member of (right now that equals all communities that you own), and we display featured communities (right now this is just the top-5 newest communities).
 
-TODO: Screenshot of community frontpage.
+![](v3.0/communities-frontpage.png)
 
 ### Files from previous version
 
