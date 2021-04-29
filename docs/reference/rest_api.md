@@ -2034,7 +2034,7 @@ Content-Type: application/json
   "access": {
     "visibility": "public",
     "member_policy": "open",
-    "record_policy": "open",
+    "record_policy": "open"
   },
   "id": "my_community_id",
   "metadata": {
@@ -2043,29 +2043,33 @@ Content-Type: application/json
     "type": "event",
     "curation_policy": "This is the kind of records we accept.",
     "page": "Information for my community.",
-    "website": "https://www.my_community.org",
-    "funding": [{
-      "funder": {
-        "name": "European Commission",
-        "identifier": "00k4n6c32",
-        "scheme": "ror"
-      },
-      "award": {
-        "title": "OpenAIRE",
-        "number": "246686",
-        "identifier": ".../246686",
-        "scheme": "openaire"
-      }
-    }],
-    "affiliations": [{
-      "name": "CERN",
-      "identifiers": [
-        {
-          "identifier": "01ggx4157",
+    "website": "https://inveniosoftware.org/",
+    "funding": [
+      {
+        "funder": {
+          "name": "European Commission",
+          "identifier": "00k4n6c32",
           "scheme": "ror"
+        },
+        "award": {
+          "title": "OpenAIRE",
+          "number": "246686",
+          "identifier": ".../246686",
+          "scheme": "openaire"
         }
-      ]
-    }]
+      }
+    ],
+    "organizations": [
+      {
+        "name": "CERN",
+        "identifiers": [
+          {
+            "identifier": "01ggx4157", 
+            "scheme": "ror"
+          }
+        ]
+      }
+    ]
   }
 }
 ```
@@ -2076,54 +2080,61 @@ Content-Type: application/json
 HTTP/1.1 201 CREATED
 Content-Type: application/json
 
-{
+{   
   "access": {
-    "visibility": "public",
-    "member_policy": "open",
-    "record_policy": "open",
     "owned_by": [
       {
-          "user": {user-id}
+        "user": <user_id>
       }
     ],
-  },
-  "created": "2020-11-27 10:52:23.945755",
-  "updated": "2020-11-27 10:52:23.945755",
+    "record_policy": "open",
+    "member_policy": "open",
+    "visibility": "public"
+  }
   "id": "my_community_id",
+  "updated": "2021-04-29T14:24:02.830457+00:00",
   "revision_id": 1,
+  "created": "2021-04-29T14:24:02.806782+00:00",
   "links": {
     "self": "{scheme+hostname}/api/communities/my_community_id",
-    "self_html": "{scheme+hostname}/communities/my_community_id"
+    "self_html": "{scheme+hostname}/communities/my_community_id",
+    "settings_html": "{scheme+hostname}/communities/my_community_id/settings",
+    "logo": "{scheme+hostname}/api/communities/my_community_id/logo",
+    "rename": "{scheme+hostname}/api/communities/my_community_id/rename"
   },
   "metadata": {
     "title": "My Community",
-    "description": "This is an example Community.",
     "type": "event",
     "curation_policy": "This is the kind of records we accept.",
+    "description": "This is an example Community.",
     "page": "Information for my community.",
-    "website": "https://www.my_community.org",
-    "funding": [{
-      "funder": {
-        "name": "European Commission",
-        "identifier": "00k4n6c32",
-        "scheme": "ror"
-      },
-      "award": {
-        "title": "OpenAIRE",
-        "number": "246686",
-        "identifier": ".../246686",
-        "scheme": "openaire"
-      }
-    }],
-    "affiliations": [{
-      "name": "CERN",
-      "identifiers": [
-        {
-          "identifier": "01ggx4157",
-          "scheme": "ror"
+    "website": "https://inveniosoftware.org/",
+    "funding": [
+      {
+        "award": {
+          "number": "246686",
+          "title": "OpenAIRE",
+          "identifier": ".../246686",
+          "scheme": "openaire"
+        },
+        "funder": {
+          "identifier": "00k4n6c32",
+          "scheme": "ror",
+          "name": "European Commission"
         }
-      ]
-    }]
+      }
+    ],
+    "organizations": [
+      {
+        "name": "CERN",
+        "identifiers": [
+          {
+            "identifier": "01ggx4157",
+            "scheme": "ror"
+          }
+        ]
+      }
+    ]
   }
 }
 ```
@@ -2149,7 +2160,7 @@ Content-Type: application/json
   "access": {
     "visibility": "public",
     "member_policy": "open",
-    "record_policy": "open",
+    "record_policy": "open"
   },
   "id": "my_community_id",
   "metadata": {
@@ -2158,29 +2169,238 @@ Content-Type: application/json
     "type": "event",
     "curation_policy": "This is the kind of records we accept.",
     "page": "Information for my community.",
-    "website": "https://www.my_community.org",
-    "funding": [{
-      "funder": {
-        "name": "European Commission",
-        "identifier": "00k4n6c32",
-        "scheme": "ror"
-      },
-      "award": {
-        "title": "OpenAIRE",
-        "number": "246686",
-        "identifier": ".../246686",
-        "scheme": "openaire"
-      }
-    }],
-    "affiliations": [{
-      "name": "CERN",
-      "identifiers": [
-        {
-          "identifier": "01ggx4157",
+    "funding": [
+      {
+        "funder": {
+          "name": "European Commission",
+          "identifier": "00k4n6c32",
           "scheme": "ror"
+        },
+        "award": {
+          "title": "OpenAIRE",
+          "number": "246686",
+          "identifier": ".../246686",
+          "scheme": "openaire"
         }
-      ]
-    }]
+      }
+    ],
+    "organizations": [
+      {
+        "name": "CERN",
+        "identifiers": [
+          {
+            "identifier": "01ggx4157", 
+            "scheme": "ror"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+**Response**
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{   
+  "access": {
+    "owned_by": [
+      {
+        "user": <user_id>
+      }
+    ],
+    "record_policy": "open",
+    "member_policy": "open",
+    "visibility": "public"
+  }
+  "id": "my_community_id",
+  "updated": "2021-04-29T14:35:53.365430+00:00",
+  "revision_id": 2,
+  "created": "2021-04-29T14:24:02.806782+00:00",
+  "links": {
+    "self": "{scheme+hostname}/api/communities/my_community_id",
+    "self_html": "{scheme+hostname}/communities/my_community_id",
+    "settings_html": "{scheme+hostname}/communities/my_community_id/settings",
+    "logo": "{scheme+hostname}/api/communities/my_community_id/logo",
+    "rename": "{scheme+hostname}/api/communities/my_community_id/rename"
+  },
+  "metadata": {
+    "title": "My Updated Community",
+    "type": "event",
+    "curation_policy": "This is the kind of records we accept.",
+    "description": "This is an example Community.",
+    "page": "Information for my community.",
+    "website": "https://inveniosoftware.org/",
+    "funding": [
+      {
+        "award": {
+          "number": "246686",
+          "title": "OpenAIRE",
+          "identifier": ".../246686",
+          "scheme": "openaire"
+        },
+        "funder": {
+          "identifier": "00k4n6c32",
+          "scheme": "ror",
+          "name": "European Commission"
+        }
+      }
+    ],
+    "organizations": [
+      {
+        "name": "CERN",
+        "identifiers": [
+          {
+            "identifier": "01ggx4157",
+            "scheme": "ror"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### Get a Community
+
+`GET /api/communities/<comid>`
+
+ **Parameters**
+
+| Name       | Type   | Location | Description                                                  |
+| ---------- | ------ | -------- | ------------------------------------------------------------ |
+| `comid`       | string | path     | Identifier of the community, e.g.  `my_community`                |
+| `accept`   | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
+
+**Request**
+
+```http
+GET /api/communities/<comid> HTTP/1.1
+Accept: application/json
+```
+
+**Response:**
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{   
+  "access": {
+    "owned_by": [
+      {
+        "user": <user_id>
+      }
+    ],
+    "record_policy": "open",
+    "member_policy": "open",
+    "visibility": "public"
+  }
+  "id": "my_community_id",
+  "updated": "2021-04-29T14:24:02.830457+00:00",
+  "revision_id": 1,
+  "created": "2021-04-29T14:24:02.806782+00:00",
+  "links": {
+    "self": "{scheme+hostname}/api/communities/my_community_id",
+    "self_html": "{scheme+hostname}/communities/my_community_id",
+    "settings_html": "{scheme+hostname}/communities/my_community_id/settings",
+    "logo": "{scheme+hostname}/api/communities/my_community_id/logo",
+    "rename": "{scheme+hostname}/api/communities/my_community_id/rename"
+  },
+  "metadata": {
+    "title": "My Community",
+    "type": "event",
+    "curation_policy": "This is the kind of records we accept.",
+    "description": "This is an example Community.",
+    "page": "Information for my community.",
+    "website": "https://inveniosoftware.org/",
+    "funding": [
+      {
+        "award": {
+          "number": "246686",
+          "title": "OpenAIRE",
+          "identifier": ".../246686",
+          "scheme": "openaire"
+        },
+        "funder": {
+          "identifier": "00k4n6c32",
+          "scheme": "ror",
+          "name": "European Commission"
+        }
+      }
+    ],
+    "organizations": [
+      {
+        "name": "CERN",
+        "identifiers": [
+          {
+            "identifier": "01ggx4157",
+            "scheme": "ror"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+### Rename a Community
+
+`POST /api/communities/<comid>/rename`
+
+**Parameters**
+
+| Name       | Type   | Location | Description                                                  |
+| ---------- | ------ | -------- | ------------------------------------------------------------ |
+| `accept`   | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
+
+**Request**
+
+```http
+POST /api/communities/<comid>/rename HTTP/1.1
+Content-Type: application/json
+
+{
+  "access": {
+    "visibility": "public",
+    "member_policy": "open",
+    "record_policy": "open"
+  },
+  "id": "new_community_id",
+  "metadata": {
+    "title": "My Updated Community",
+    "description": "This is an example Community.",
+    "type": "event",
+    "curation_policy": "This is the kind of records we accept.",
+    "page": "Information for my community.",
+    "funding": [
+      {
+        "funder": {
+          "name": "European Commission",
+          "identifier": "00k4n6c32",
+          "scheme": "ror"
+        },
+        "award": {
+          "title": "OpenAIRE",
+          "number": "246686",
+          "identifier": ".../246686",
+          "scheme": "openaire"
+        }
+      }
+    ],
+    "organizations": [
+      {
+        "name": "CERN",
+        "identifiers": [
+          {
+            "identifier": "01ggx4157", 
+            "scheme": "ror"
+          }
+        ]
+      }
+    ]
   }
 }
 ```
@@ -2193,52 +2413,59 @@ Content-Type: application/json
 
 {
   "access": {
-    "visibility": "public",
-    "member_policy": "open",
-    "record_policy": "open",
     "owned_by": [
       {
-          "user": {user-id}
+        "user": <user_id>
       }
     ],
-  },
-  "created": "2020-11-27 10:52:23.945755",
-  "updated": "2020-11-27 10:55:23.945868",
-  "id": "my_community_id",
-  "revision_id": 2,
+    "record_policy": "open",
+    "member_policy": "open",
+    "visibility": "public"
+  }
+  "id": "new_community_id",
+  "updated": "2021-04-29T14:24:02.830457+00:00",
+  "revision_id": 1,
+  "created": "2021-04-29T14:24:02.806782+00:00",
   "links": {
     "self": "{scheme+hostname}/api/communities/my_community_id",
-    "self_html": "{scheme+hostname}/communities/my_community_id"
+    "self_html": "{scheme+hostname}/communities/my_community_id",
+    "settings_html": "{scheme+hostname}/communities/my_community_id/settings",
+    "logo": "{scheme+hostname}/api/communities/my_community_id/logo",
+    "rename": "{scheme+hostname}/api/communities/my_community_id/rename"
   },
   "metadata": {
-    "title": "My Updated Community",
-    "description": "This is an example Community.",
+    "title": "My Community",
     "type": "event",
     "curation_policy": "This is the kind of records we accept.",
+    "description": "This is an example Community.",
     "page": "Information for my community.",
-    "website": "https://www.my_community.org",
-    "funding": [{
-      "funder": {
-        "name": "European Commission",
-        "identifier": "00k4n6c32",
-        "scheme": "ror"
-      },
-      "award": {
-        "title": "OpenAIRE",
-        "number": "246686",
-        "identifier": ".../246686",
-        "scheme": "openaire"
-      }
-    }],
-    "affiliations": [{
-      "name": "CERN",
-      "identifiers": [
-        {
-          "identifier": "01ggx4157",
-          "scheme": "ror"
+    "website": "https://inveniosoftware.org/",
+    "funding": [
+      {
+        "award": {
+          "number": "246686",
+          "title": "OpenAIRE",
+          "identifier": ".../246686",
+          "scheme": "openaire"
+        },
+        "funder": {
+          "identifier": "00k4n6c32",
+          "scheme": "ror",
+          "name": "European Commission"
         }
-      ]
-    }]
+      }
+    ],
+    "organizations": [
+      {
+        "name": "CERN",
+        "identifiers": [
+          {
+            "identifier": "01ggx4157",
+            "scheme": "ror"
+          }
+        ]
+      }
+    ]
   }
 }
 ```
@@ -2265,87 +2492,11 @@ Accept: application/json
 **Response**
 
 ```http
-HTTP/1.1 204 No Content
+HTTP/1.1 204 NO CONTENT
 Content-Type: application/json
 
 {}
 ```
-
-### Get a Community
-
-`GET /api/communities/<comid>`
-
- **Parameters**
-
-| Name       | Type   | Location | Description                                                  |
-| ---------- | ------ | -------- | ------------------------------------------------------------ |
-| `comid`       | string | path     | Identifier of the community, e.g.  `my_community`                |
-| `accept`   | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
-
-**Request**
-
-```http
-GET /api/communities/<comid> HTTP/1.1
-Accept: application/json
-```
-
-**Response:**
-```http
-HTTP/1.1 200 OK
-Content-Type: application/json
-
-{
-  "access": {
-    "visibility": "public",
-    "member_policy": "open",
-    "record_policy": "open",
-    "owned_by": [
-      {
-          "user": {user-id}
-      }
-    ],
-  },
-  "created": "2020-11-27 10:52:23.945755",
-  "updated": "2020-11-27 10:52:23.945868",
-  "id": "my_community_id",
-  "revision_id": 1,
-  "links": {
-    "self": "{scheme+hostname}/api/communities/my_community_id",
-    "self_html": "{scheme+hostname}/communities/my_community_id"
-  },
-  "metadata": {
-    "title": "My Community",
-    "description": "This is an example Community.",
-    "type": "event",
-    "curation_policy": "This is the kind of records we accept.",
-    "page": "Information for my community.",
-    "website": "https://www.my_community.org",
-    "funding": [{
-      "funder": {
-        "name": "European Commission",
-        "identifier": "00k4n6c32",
-        "scheme": "ror"
-      },
-      "award": {
-        "title": "OpenAIRE",
-        "number": "246686",
-        "identifier": ".../246686",
-        "scheme": "openaire"
-      }
-    }],
-    "affiliations": [{
-      "name": "CERN",
-      "identifiers": [
-        {
-          "identifier": "01ggx4157",
-          "scheme": "ror"
-        }
-      ]
-    }]
-  }
-}
-```
-
 
 ### Search Communities
 
@@ -2376,53 +2527,109 @@ Accept: application/json
 HTTP/1.1 200 OK
 Content-Type: application/json
 
-{
+{ 
+  "sortBy": "newest"
+  "links": {
+    "self": "{scheme+hostname}/api/communities?{params}",
+    "next": "{scheme+hostname}/api/communities?{params}"
+  },
   "aggregations": {
+    "domain": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": []
+    },
     "type": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
       "buckets": [
-      {
-        "doc_count": 4,
-        "key": "event"
-      },
-      {
-        ...
-      }],
-    "doc_count_error_upper_bound": 0,
-    "sum_other_doc_count": 0
+        {
+          "key": "organization",
+          "doc_count": 21
+        },
+        {
+          "key": "event",
+          "doc_count": 19
+        },
+        {
+          "key": "topic",
+          "doc_count": 13
+        },
+        {
+          "key": "project",
+          "doc_count": 10
+        }
+      ]
     }
   },
   "hits": {
-    "hits": [{
-      "access": {
-        "owned_by": [
-          {
-            "user": {user-id}
-          }
-        ],
-        "visibility": "public"
+    "hits": [
+      {
+        "access": {
+          "owned_by": [
+            {
+              "user": <user_id>
+            }
+          ],
+          "record_policy": "open",
+          "member_policy": "open",
+          "visibility": "public"
+        }
+        "id": "my_community_id",
+        "updated": "2021-04-29T14:24:02.830457+00:00",
+        "revision_id": 1,
+        "created": "2021-04-29T14:24:02.806782+00:00",
+        "links": {
+          "self": "{scheme+hostname}/api/communities/my_community_id",
+          "self_html": "{scheme+hostname}/communities/my_community_id",
+          "settings_html": "{scheme+hostname}/communities/my_community_id/settings",
+          "logo": "{scheme+hostname}/api/communities/my_community_id/logo",
+          "rename": "{scheme+hostname}/api/communities/my_community_id/rename"
+        },
+        "metadata": {
+          "title": "My Community",
+          "type": "event",
+          "curation_policy": "This is the kind of records we accept.",
+          "description": "This is an example Community.",
+          "page": "Information for my community.",
+          "website": "https://inveniosoftware.org/",
+          "funding": [
+            {
+              "award": {
+                "number": "246686",
+                "title": "OpenAIRE",
+                "identifier": ".../246686",
+                "scheme": "openaire"
+              },
+              "funder": {
+                "identifier": "00k4n6c32",
+                "scheme": "ror",
+                "name": "European Commission"
+              }
+            }
+          ],
+          "organizations": [
+            {
+              "name": "CERN",
+              "identifiers": [
+                {
+                  "identifier": "01ggx4157",
+                  "scheme": "ror"
+                }
+              ]
+            }
+          ]
+        }
       },
-      "created": "2021-04-23T14:02:53.385481+00:00",
-      "id": "my_comm_id",
-      "links": {
-        "self": "{scheme+hostname}/api/communities/my_comm_id",
-        "self_html": "{scheme+hostname}/communities/my_comm_id"
+      {
+        ...
       },
-      "metadata": {"title": "Title", "type": "project"},
-      "revision_id": 1,
-      "updated": "2021-04-23T14:02:53.398976+00:00"
-    },
-    {
-      ...
-    },
-    {
-      ...
-    }]
-  "total": 16
-  },
-  "links": {
-    "self": "{scheme+hostname}/api/communities?{params}"
-  },
-  "sortBy": "newest"
+      {
+        ...
+      }
+    ]
+    "total": 64
+  }
 }
 ```
 
@@ -2459,128 +2666,101 @@ Accept: application/json
 HTTP/1.1 200 OK
 Content-Type: application/json
 
-{
-  "aggregations": {...},
-  "hits": {...},
-  "links": {...},
+{ 
   "sortBy": "newest"
-}
-```
-
-
-### Rename a Community
-
-`POST /api/communities/<comid>/rename`
-
-**Parameters**
-
-| Name       | Type   | Location | Description                                                  |
-| ---------- | ------ | -------- | ------------------------------------------------------------ |
-| `accept`   | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
-
-**Request**
-
-```http
-POST /api/communities/<comid>/rename HTTP/1.1
-Content-Type: application/json
-
-{
-  "access": {
-    "visibility": "public",
-    "member_policy": "open",
-    "record_policy": "open",
-  },
-  "id": "my_new_community_id",
-  "metadata": {
-    "title": "My Community",
-    "description": "This is an example Community.",
-    "type": "event",
-    "curation_policy": "This is the kind of records we accept.",
-    "page": "Information for my community.",
-    "website": "https://www.my_community.org",
-    "funding": [{
-      "funder": {
-        "name": "European Commission",
-        "identifier": "00k4n6c32",
-        "scheme": "ror"
-      },
-      "award": {
-        "title": "OpenAIRE",
-        "number": "246686",
-        "identifier": ".../246686",
-        "scheme": "openaire"
-      }
-    }],
-    "affiliations": [{
-      "name": "CERN",
-      "identifiers": [
-        {
-          "identifier": "01ggx4157",
-          "scheme": "ror"
-        }
-      ]
-    }]
-  }
-}
-```
-
-**Response**
-
-```http
-HTTP/1.1 200 OK
-Content-Type: application/json
-
-{
-  "access": {
-    "visibility": "public",
-    "member_policy": "open",
-    "record_policy": "open",
-    "owned_by": [
-      {
-          "user": {user-id}
-      }
-    ],
-  },
-  "created": "2020-11-27 10:52:23.945755",
-  "updated": "2020-11-27 10:52:23.945755",
-  "id": "my_new_community_id",
-  "revision_id": 2,
   "links": {
-    "self": "{scheme+hostname}/api/communities/my_new_community_id",
-    "self_html": "{scheme+hostname}/communities/my_new_community_id"
+    "self": "{scheme+hostname}/api/communities?{params}",
+    "next": "{scheme+hostname}/api/communities?{params}"
   },
-  "metadata": {
-    "title": "My Community",
-    "description": "This is an example Community.",
-    "type": "event",
-    "curation_policy": "This is the kind of records we accept.",
-    "page": "Information for my community.",
-    "website": "https://www.my_community.org",
-    "funding": [{
-      "funder": {
-        "name": "European Commission",
-        "identifier": "00k4n6c32",
-        "scheme": "ror"
-      },
-      "award": {
-        "title": "OpenAIRE",
-        "number": "246686",
-        "identifier": ".../246686",
-        "scheme": "openaire"
-      }
-    }],
-    "affiliations": [{
-      "name": "CERN",
-      "identifiers": [
+  "aggregations": {
+    "domain": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": []
+    },
+    "type": {
+      "doc_count_error_upper_bound": 0,
+      "sum_other_doc_count": 0,
+      "buckets": [
         {
-          "identifier": "01ggx4157",
-          "scheme": "ror"
+          "key": "organization",
+          "doc_count": 3
         }
       ]
-    }]
+    }
+  },
+  "hits": {
+    "hits": [
+      {
+        "access": {
+          "owned_by": [
+            {
+              "user": <user_id>
+            }
+          ],
+          "record_policy": "open",
+          "member_policy": "open",
+          "visibility": "public"
+        }
+        "id": "my_community_id",
+        "updated": "2021-04-29T14:24:02.830457+00:00",
+        "revision_id": 1,
+        "created": "2021-04-29T14:24:02.806782+00:00",
+        "links": {
+          "self": "{scheme+hostname}/api/communities/my_community_id",
+          "self_html": "{scheme+hostname}/communities/my_community_id",
+          "settings_html": "{scheme+hostname}/communities/my_community_id/settings",
+          "logo": "{scheme+hostname}/api/communities/my_community_id/logo",
+          "rename": "{scheme+hostname}/api/communities/my_community_id/rename"
+        },
+        "metadata": {
+          "title": "My Community",
+          "type": "event",
+          "curation_policy": "This is the kind of records we accept.",
+          "description": "This is an example Community.",
+          "page": "Information for my community.",
+          "website": "https://inveniosoftware.org/",
+          "funding": [
+            {
+              "award": {
+                "number": "246686",
+                "title": "OpenAIRE",
+                "identifier": ".../246686",
+                "scheme": "openaire"
+              },
+              "funder": {
+                "identifier": "00k4n6c32",
+                "scheme": "ror",
+                "name": "European Commission"
+              }
+            }
+          ],
+          "organizations": [
+            {
+              "name": "CERN",
+              "identifiers": [
+                {
+                  "identifier": "01ggx4157",
+                  "scheme": "ror"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        ...
+      },
+      {
+        ...
+      }
+    ]
+    "total": 3
   }
 }
 ```
+
+Each hit looks like a community above, belongs to the authenticated user.
 
 ### Update Community Logo
 
@@ -2615,14 +2795,16 @@ Content-Type: application/json
   "created": "2021-04-26 10:52:23.945755",
   "file_id": "d2a7adb5",
   "key": "logo",
-  "links": {"self": "{scheme+hostname}/api/communities/<comid>/logo"},
   "metadata": None,
   "mimetype": "application/octet-stream",
   "size": file_size,
   "status": "completed",
   "storage_class": "S",
   "updated": "2021-04-26 10:52:24.562652",
-  "version_id": "b95ead95"
+  "version_id": "b95ead95",
+  "links": {
+    "self": "{scheme+hostname}/api/communities/<comid>/logo"
+  }
  }
 ```
 
@@ -2647,11 +2829,9 @@ GET api/communities/<comid>/logo HTTP/1.1
 
 ```http
 HTTP/1.1 200 OK
-Content-Type: application/json
+Content-Type: application/octet-stream
 
-{
-  "data": <...file binary data...>
-}
+<...file binary data...>
 ```
 
 ### Delete Community Logo
@@ -2674,10 +2854,9 @@ DELETE api/communities/<comid>/logo HTTP/1.1
 **Response**
 
 ```http
-HTTP/1.1 204 No Content
-Content-Type: application/json
+HTTP/1.1 204 NO CONTENT
+Content-Type: application/octet-stream
 
-{}
 ```
 
 
@@ -2698,9 +2877,7 @@ POST /api/communities HTTP/1.1
 Content-Type: application/json
 
 {
-  "access": { },
   "id": "comm_id",
-  "metadata": { }
 }
 ```
 
