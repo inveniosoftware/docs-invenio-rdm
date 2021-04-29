@@ -70,9 +70,16 @@ Used for interacting with unpublished or edited draft records.
 | Name       | Type   | Location | Description                                                  |
 | ---------- | ------ | -------- | ------------------------------------------------------------ |
 | `access`   | object | body     | [Access options](metadata.md#access-information) for the record. |
-| `files`    | object | body     | Files options for the record. |
-| `files.enabled` | boolean | body     | *Required*. Should files be attached to this record or not. |
+| `files`    | object | body     | Files options (see below) for the record. |
 | `metadata` | object | body     | [Metadata](metadata.md#metadata) of the record. |
+
+#### Files Options
+
+| Name       | Type   | Location | Description                                                  |
+| ---------- | ------ | -------- | ------------------------------------------------------------ |
+| `enabled`  | boolean | body     | *Required*. Should (and can) files be attached to this record or not. |
+| `default_preview` &nbsp;  | string | body     | Filename of file to be previewed by default. |
+| `order`    | array | body     | Array of filename strings in display order. |
 
 
 **Request**
@@ -324,8 +331,7 @@ Content-Type: application/json
 | ---------- | ------ | -------- | ------------------------------------------------------------ |
 | `id`       | string | path     | Identifier of the record, e.g.  `4d0ns-ntd89`                |
 | `access`   | object | body     | [Access options](metadata.md#access-information) for the record. |
-| `files`    | object | body     | Files options for the record. |
-| `files.enabled` | boolean | body     | *Required*. Should files be attached to this record or not. |
+| `files`    | object | body     | [Files options](#files-options) for the record. |
 | `metadata` | object | body     | [Metadata](metadata.md#metadata) of the record. |
 
 **Request**
@@ -996,75 +1002,6 @@ Content-Type: application/json
 }
 ```
 
-### Modify a draft's files options
-
-Used for enabling/disabling files for drafts, setting the default previewed file, ordering files, etc.
-
-`PUT /api/records/{id}/draft/files`
-
-**Parameters**
-
-| Name              | Type    | Location | Description                                                  |
-| ----------------- | ------- | -------- | ------------------------------------------------------------ |
-| `id`              | string  | path     | Identifier of the record, e.g.  `4d0ns-ntd89`                |
-| `enabled`         | boolean | body     | Set to `false` to disable files for the record.              |
-| `default_preview` | string  | body     | Filename of the file to be previewed by default on the published record. |
-
-**Request**
-
-```http
-PUT /api/records/{id}/draft/files HTTP/1.1
-Content-Type: application/json
-
-{
-  "enabled": true,
-  "default_preview": "article.pdf",
-}
-```
-
-**Response**
-
-```http
-HTTP/1.1 200 OK
-Content-Type: application/json
-
-{
-  "default_preview": "article.pdf",
-  "enabled": true,
-  "entries": [
-    {
-      "key": "figure.png",
-      "updated": "2020-11-27 11:17:11.002624",
-      "created": "2020-11-27 11:17:10.998919",
-      "metadata": null,
-      "status": "pending",
-      "links": {
-        "content": "/api/records/{id}/draft/files/figure.png/content",
-        "self": "/api/records/{id}/draft/files/figure.png",
-        "commit": "/api/records/{id}/draft/files/figure.png/commit"
-      },
-    },
-    {
-      "key": "article.pdf",
-      "updated": "2020-11-27 11:17:11.002624",
-      "created": "2020-11-27 11:17:10.998919",
-      "metadata": null,
-      "status": "pending",
-      "links": {
-        "content": "/api/records/{id}/draft/files/article.pdf/content",
-        "self": "/api/records/{id}/draft/files/article.pdf",
-        "commit": "/api/records/{id}/draft/files/article.pdf/commit"
-      },
-    }
-  ],
-  "links": {
-    "self": "/api/records/{id}/draft/files"
-  },
-  "order": []
-}
-```
-
-
 ## Records
 
 Used for interacting with published records.
@@ -1179,7 +1116,7 @@ Content-Type: application/json
 | `sort`         | string  | query    | Sort search results.                                         |
 | `size`         | integer | query    | Specify number of items in the results page (default: 10).   |
 | `page`         | integer | query    | Specify the page of results.                                 |
-| `allversions`  | boolean | query    | Specify if all versions should be included.                  |
+| `allversions` &nbsp; | boolean | query    | Specify if all versions should be included.                  |
 | `accept`       | string  | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
 
 **Request**
@@ -1878,7 +1815,7 @@ Content-Type: application/json
 | `sort`   | string  | query    | Sort search results.                                         |
 | `size`   | integer | query    | Specify number of items in the results page (default: 10).   |
 | `page`   | integer | query    | Specify the page of results.                                 |
-| `allversions`  | boolean | query    | Specify if all versions should be included.                  |
+| `allversions` &nbsp; | boolean | query    | Specify if all versions should be included.      |
 | `accept` | string  | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
 
 **Request**
@@ -2729,4 +2666,3 @@ Content-Type: application/json
  "status": 400
 }
 ```
-

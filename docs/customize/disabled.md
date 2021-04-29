@@ -207,7 +207,7 @@ That's it configuration-wise.
 
 Did the changes work? We are going to try to create a new draft.
 
-Simply do as seen in [the previous section](./run.md#create-a-draft).
+Simply do as seen in the previous section.
 You can customize the metadata if you would like. For instance, we use
 a different title.
 
@@ -273,5 +273,5 @@ we were.
 ## Add functionality
 
 Need further customizations or additional features? If you are developing
-features in an existing module, check the [Develop or edit a module section](./edit_a_module.md).
+features in an existing module, check the [Develop or edit a module section](../develop/index.md).
 If you are creating your own extensions, check the [Extensions section](../extensions/custom.md).

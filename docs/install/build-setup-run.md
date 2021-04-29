@@ -9,24 +9,26 @@ The application can be built and installed in two different ways:
 
 ## For the impatient
 
-For the impatient, here's the commands that you can run to build, setup and run InvenioRDM. For clarity we have decomposed below commands into individual steps in the guide below:
+For the impatient, here are the commands to build, setup and run InvenioRDM. For clarity, we have decomposed them into individual steps in the guide below. Follow the guide below for step-by-step details:
 
 Container:
 
 ```bash
+export INVENIO_SITE_UI_URL=https://https://127.0.0.1
+export INVENIO_SITE_API_URL=https://https://127.0.0.1/api
 invenio-cli containers start --lock --build --setup
 ```
 
 Local:
 
 ```bash
-invenio-cli install --pre
+invenio-cli install
 invenio-cli services setup
 invenio-cli run
 ```
 
 !!! info
-    If you run above commands, you're all set for this section. If you like to learn more about the build process,
+    If you run the above commands, you're all set for this section. If you like to learn more about the build process,
     then follow the steps below instead.
 
 
@@ -34,7 +36,7 @@ invenio-cli run
 
 First, we start by locking the Python dependencies, which ensures that you will always have the same versions of dependencies if you reinstall in the future. Locked dependencies are important for having reproducible installs.
 
-This steps will normally be executed automatically by both the local and container installation options, but here we run it explicitly.
+This step will normally be executed automatically by both the local and container installation options, but here we run it explicitly.
 
 Let's try it:
 
@@ -70,13 +72,25 @@ Dependencies locked successfully.
 
 A new file ``Pipfile.lock`` has now been created with the locked dependencies.
 
-Next, choose one of option 1 or 2 for you preferred installation method.
+Next, choose option 1 or option 2 for your preferred installation method.
 
 ## Option 1: Container install
 
 The container install is good for a quick preview, or if you don't want all dependencies locally. It is not good for development or for customizing your instance, as it requires you to rebuild the Docker image for every change which can be time consuming.
 
 ### Build
+
+By default ``invenio.cfg`` is configured for the development installation which means we need to change it. We could also pass the required changes as environment variable when running the containers. Here we show how to change the invenio.cfg files and later we show how to pass the same changes as environment variables instead.
+
+Change ``invenio.cfg`` as follows:
+
+```diff
+-SITE_UI_URL = f"https://{SITE_HOSTNAME}:5000"
++SITE_UI_URL = "https://127.0.0.1"
+
+-SITE_API_URL = f"https://{SITE_HOSTNAME}:5000/api"
++SITE_API_URL = "https://127.0.0.1/api"
+```
 
 For the container build, you first build the Docker application image using
 the following command:
@@ -136,11 +150,11 @@ The command will:
 
 - Create the database and Elasticsearch indexes.
 - Load fixtures data into InvenioRDM
-- Create demo records (can be skipped with the ``-N`` option).
+- Create demo records.
 
 !!! tip
 
-    You can skip the creation of random demo records by using the ``--no-demo-data`` option:
+    You can skip the creation of demo records by using the ``--no-demo-data`` option (``-N`` for short):
 
     ``` console
     invenio-cli containers setup --no-demo-data
@@ -151,17 +165,24 @@ The command will:
 You can now run the application container and related services:
 
 ```bash
-export INVENIO_SITE_NAME=https://127.0.0.1
 invenio-cli containers start
 ```
 
-Go and explore your InvenioRDM instance at [https://127.0.0.1:5000](https://127.0.0.1:5000).
+If you didn't change the ``invenio.cfg`` file above. You will need to pass the equivalent environment variables:
 
-!!! warning "Use 127.0.0.1, not localhost"
-    Due to Content Security Policy (CSP) headers it is important that you use ``127.0.0.1``, and not ``localhost``. Unless you set the `SITE_HOSTNAME` to localhost.
+```bash
+export INVENIO_SITE_UI_URL=https://127.0.0.1
+export INVENIO_SITE_API_URL=https://127.0.0.1/api
+invenio-cli containers start
+```
+
+Go and explore your InvenioRDM instance at [https://127.0.0.1](https://127.0.0.1).
+
+!!! warning "Visit 127.0.0.1, not localhost"
+    Due to Content Security Policy (CSP) headers it is important that you visit ``127.0.0.1``, and not ``localhost`` unless you set ``INVENIO_SITE_UI_URL`` and ``INVENIO_SITE_API_URL`` to ``https://localhost`` and ``https://localhos/apit`` respectively.
 
 !!! tip
-    You can provide configuration variables by setting them as environment variables with the ``INVENIO_`` prefix (see the ``INVENIO_SITE_NAME`` example above).
+    You can provide other configuration variables by setting them as environment variables with the ``INVENIO_`` prefix just like we did for the ``INVENIO_SITE_NAME`` example above.
 
 ## Option 2: Local install
 
@@ -186,7 +207,7 @@ Assets and statics updated.
 Dependencies installed successfully.
 ```
 
-The command will similar to the ``containers`` command do the following:
+Similar to the ``containers`` command, the command does the following:
 
 - Install Python dependencies (according the ``Pipfile.lock``)
 - Install JavaScript dependencies
@@ -217,6 +238,15 @@ Creating indexes...
 Putting templates...
 ```
 
+!!! tip
+
+    You can skip the creation of demo records by using the ``--no-demo-data`` option (``-N`` for short):
+
+    ``` console
+    invenio-cli services setup --no-demo-data
+    ```
+
+
 ### Run
 
 You can now run the application locally:
@@ -225,10 +255,10 @@ You can now run the application locally:
 invenio-cli run
 ```
 
-Go and explore your InvenioRDM instance at [https://127.0.0.1:5000](https://127.0.0.1:5000).
+Go and explore your InvenioRDM instance at [https://127.0.0.1:5000](https://127.0.0.1:5000). This is the default host and port configured in ``invenio.cfg``.
 
-!!! warning "Use 127.0.0.1, not localhost"
-    Due to Content Security Policy (CSP) headers it is important that you use ``127.0.0.1``, and not ``localhost``. Unless you set the `SITE_HOSTNAME` to localhost.
+!!! warning "Visit 127.0.0.1, not localhost"
+    Due to Content Security Policy (CSP) headers it is important that you use ``127.0.0.1``, and not ``localhost``.
 
 !!! tip "Change the host and port"
     By default, the host is `127.0.0.1` and the port is `5000`. Pass `--host` and `--port`
@@ -255,4 +285,3 @@ pipenv run invenio roles add admin@test.ch admin
 - You may see `SystemError: Parent module 'setuptools' not loaded, cannot perform relative import`
   at the dependency locking step when running `invenio-cli containers start`. This depends on your version of `setuptools` (bleeding edge causes this)
   and can be solved by setting an environment variable: `SETUPTOOLS_USE_DISTUTILS=stdlib`. [See more details](https://github.com/pypa/setuptools/blob/17cb9d6bf249cefe653d3bdb712582409035a7db/CHANGES.rst#v5000). This sudden upstream change will be addressed more systematically in future releases.
-

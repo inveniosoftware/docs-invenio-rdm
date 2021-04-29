@@ -1,11 +1,19 @@
 # Use InvenioRDM
 
-### List records
-
 !!! warning "Use the specified host and port"
     Due to CSP, it is important that you use the host and port specified when
     running the API calls. This means `localhost` and `127.0.0.1` are not
-    interchangable as they usually are. The default is `127.0.0.1:5000`.
+    interchangable as they usually are. The default is `127.0.0.1:5000` for the
+    development installation and `127.0.0.1` for the containerized installation. Here we
+    show examples with the development installation.
+
+### Use your browser
+
+Navigate to [https://127.0.0.1:5000](https://127.0.0.1:5000) . Note that you might need to accept the SSL exception since it's using a test certificate.
+You can explore all the features there. Below, we list a small subset of the common API calls. For more, see the [API reference section](../reference/rest_api.md).
+
+### List records
+
 
 Let's see what is in the instance by querying the API. Using another terminal:
 
@@ -332,6 +340,9 @@ curl -k -XPOST -H "Content-Type: application/json" https://127.0.0.1:5000/api/re
     "record": "public",
     "files": "public"
 },
+"files": {
+    "enabled": true
+},
 "metadata": {
     "publication_date": "2020-06-01",
     "resource_type": {
@@ -391,16 +402,9 @@ or access it directly using the id from the publish response (e.g. `90xv7-xwd20`
 curl -k -XGET https://127.0.0.1:5000/api/records/90xv7-xwd20 | python3 -m json.tool
 ```
 
-### Use your browser
-
-Alternatively, you can use the web UI.
-
-Navigate to [https://127.0.0.1:5000](https://127.0.0.1:5000) . Note that you might need to accept the SSL exception since it's using a test certificate.
-And visit the record page for the newly created record (`self_html` above or just search for it). You will see it has no files associated with it. Let's change that!
-
 ### Upload a file to a record
 
-For demonstration purposes, we will attach this scientific photo to our record:
+For demonstration purposes, we will attach this scientific photo to a record:
 
 ![Very scientific picture of a shiba in autumn](img/jaycee-xie-unsplash-shiba.png)
 
@@ -408,16 +412,18 @@ Photo by <a href="https://unsplash.com/@jayceexie?utm_source=unsplash&amp;utm_me
 
 Save it as `leaf_shiba.png` in your current directory.
 
-**First**, we need to work with a draft, so we create one from our published record:
-
-!!! warning "Change the `recid`"
-    Change `jnmmp-51n47` in the URLs below for the recid of your record.
+**First**, we need to work with a draft, so we create one as per above:
 
 ```bash
-curl -k -XPOST https://127.0.0.1:5000/api/records/jnmmp-51n47/draft
+curl -k -XPOST -H "Content-Type: application/json" https://127.0.0.1:5000/api/records -d '{
+    ...
+}'
 ```
 
 **Second**, we start the upload process by initializing the file key:
+
+!!! warning "Change the `recid`"
+    Change `jnmmp-51n47` in the URLs below for the recid of your record.
 
 ```bash
 curl -k -XPOST https://127.0.0.1:5000/api/records/jnmmp-51n47/draft/files -H "Content-Type: application/json" -d '[
@@ -460,5 +466,5 @@ was generated you can use the `stop` command:
 invenio-cli services stop
 ```
 
-Check the [Cleanup section](./cleanup.md) if you wish to remove every
+Check the [Cleanup section](./destroy.md) if you wish to remove every
 reference to InvenioRDM from Docker (containers, images, networks, etc.).

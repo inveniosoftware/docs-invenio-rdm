@@ -31,7 +31,7 @@ nav:
     - System requirements: 'install/requirements.md'
     - Install CLI: 'install/cli.md'
     - Scaffold: 'install/scaffold.md'
-    - Build, setup & run: 'install/install.md'
+    - Build, setup & run: 'install/build-setup-run.md'
     - Configure: 'install/configuration.md'
     - Use: 'install/run.md'
     - Destroy: 'install/destroy.md'

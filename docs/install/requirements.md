@@ -13,7 +13,7 @@ InvenioRDM depends on the following requirements to be installed on your local s
 - [Docker](https://docs.docker.com/) 1.13.0+
 - [Docker-Compose](https://docs.docker.com/compose/) 1.17.0+
 
-For running and building the application locally your also need:
+For running and building the application locally you will also need:
 
 - [Node.js](https://nodejs.org) 14.0.0+ (needed for local installation). We recommend that you install node through [nvm](https://github.com/nvm-sh/nvm).
 - [npm](https://www.npmjs.com/get-npm) < 7.
