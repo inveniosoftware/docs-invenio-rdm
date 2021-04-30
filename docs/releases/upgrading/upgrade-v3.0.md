@@ -30,7 +30,7 @@ This can be achieved by the following Bash shell commands:
 # Upgrade packages
 rm Pipfile.lock
 sed -i -E 's/2.0.[0-9]+/3.0.0/' Pipfile
-invenio-cli install --pre
+invenio-cli install
 
 # Do the migration
 pipenv run invenio alembic upgrade
