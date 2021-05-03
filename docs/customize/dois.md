@@ -3,10 +3,10 @@
 InvenioRDM support minting of DOIs provided by DataCite. You can enable this feature in the `invenio.cfg` file:
 
 ```cfg
-RDM_RECORDS_DOI_DATACITE_ENABLED = False
+RDM_RECORDS_DOI_DATACITE_ENABLED = True
 ```
 
-Doing this will generate DOIs but only create/register them in the local instance (DB), they will not be registed in DataCite.
+Doing this will generate DOIs but only create/register them in the local instance (DB), they will not be registered in DataCite.
 For that, you will need to set credentials for DataCite. You can set them in the same way:
 
 ```cfg
@@ -21,4 +21,4 @@ And finally you can choose if you want to register in DataCite test or productio
 RDM_RECORDS_DOI_DATACITE_TEST_MODE = True
 ```
 
-These variables are already available at the bottom of the `invenio.cfg` file, you simply need to change its values.
+These variables are already available at the bottom of the `invenio.cfg` file, you simply need to change their values.
