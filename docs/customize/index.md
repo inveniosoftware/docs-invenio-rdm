@@ -9,6 +9,6 @@ InvenioRDM instance so that it integrates into their organizational environment.
 
 - [Styling](styling.md) - change the look and feel of InvenioRDM to match your institution.
 - [Authentication](authentication.md) - integrate with your institutional authentication system.
-- [DOI registration](dois.md) -
+- [DOI registration](dois.md) - mint DOIs with your institution's prefix
 - [Metadata](metadata.md) -
 - [Permissions](metadata.md) -
