@@ -574,7 +574,7 @@ curl -k -XGET https://127.0.0.1:5000/api/communities | jq
         "revision_id": 2,
         "id": "foster-anderson",
         "metadata": {
-            "page": "Star whom top enter measure real interview. Style company prevent detail federal cultural generation. Carry southern travel.\nBring any job prove. Agreement create whatever often house deal month kitchen.\nNatural rate why near three both particular.\nYourself low force prevent have story push. Open woman relate standard receive.\nShould themselves free that save which. Successful threat write opportunity. Boy culture find situation day chance president.\nArm knowledge form whom. Hot similar individual up arm. Mean trip world life them.\nEvent notice return subject method actually. Until executive benefit eye.\nAbove night another ready live tell.\nSafe ball less process which prevent fight. Everyone rest sure more together.\nCamera leave national number season consider. Trip cover history person while. Bad they trouble hear.\nNever dark sign change recognize. Heart leave ready accept. Law save page.\nScore consumer before skin four. Structure lawyer scientist despite anything figure. Peace within first series sing.\nCandidate program environment thousand statement most option enough. Increase teacher citizen lead.\nRace return black describe. Even happy realize probably. House rock edge green pass woman since. Customer history music ground task north.\nNecessary able either strong. War save change challenge new soon camera.\nLine easy my interview source.\nDeep admit audience democratic decide in popular. Big great health quite her common own.\nParticipant threat machine far last bar. System smile other last.\nSingle national or peace attack half. Risk talk while son find.\nWho mention quality hotel. Financial type help director early. Imagine huge marriage peace.\nFine difference front hotel system three cause. Program owner carry explain attention. Reality cultural against.\nHome prepare seven mission main both.\nOffice whatever experience. Particular particularly fill father right. Late though break dream hand station environment.",
+            "page": "Star whom top enter measure real interview. Style company prevent detail federal cultural generation. Carry southern travel.\nBring any job prove. Agreement create whatever often house deal month kitchen.\nNatural rate why near three both particular.\nYourself low force prevent have story push. Open woman relate standard receive.",
             "funding": [
             {
                 "funder": {
@@ -603,8 +603,8 @@ curl -k -XGET https://127.0.0.1:5000/api/communities | jq
                 ]
             }
             ],
-            "description": "Fact decision director set former follow. Method study traditional. Would lawyer hundred.\nOwn board team ahead eight. Cause enough blood produce send impact enter security. Go piece market allow region.\nOut imagine think.\nLay environment prepare star.\nDuring drop eye eat prepare loss. Service you phone chair teach government peace your. Leader low room serve for.\nFood cup report stop edge scientist use lot. But image here hard. Result strategy window available read kitchen interesting.\nLong paper look avoid know seem political.\nNorth control exactly seat five couple specific you. Discuss claim campaign not green should order. Ground enough exist against send show.\nNatural talk morning board. Teach early still management series according teacher cup. Arm international message prepare. At two hear clear.\nItem about politics able. Smile economy million moment mouth blue statement operation.\nCurrent politics down product eat page. Speak when always nor.\nParty resource everything read main force. Point pay road any difference could class hot. Late action fine window style. Customer full room thank baby white certainly.\nProduction west dinner point might. Door hour pattern point at a however truth. Situation particular item live section personal. Ten late opportunity car.\nWithout body couple help. Middle my or decision join though range those. Task partner drug indicate.\nAuthor field become part entire left force. Contain dark too image beautiful total.\nVoice four shoulder spend whom prove. Accept country free produce worry. Court official style positive imagine.\nWe memory stop second hit student spend. Professional summer something read research.\nFamily always machine task station seem. Yourself contain effect professor compare.\nWar family small summer would reduce rest. These everybody point nor.\nColor other race five appear edge bag. Local car life town player PM.\nMake behavior involve. Author glass race design find.",
-            "curation_policy": "Exactly executive well he. Put your best open education find.\nNot international animal rich full race. Choose spring success daughter. Enter five describe it knowledge fund seat.\nOperation open garden agency. Professor story happy area serve discussion position director.\nPretty can event any carry across. Civil sit again better expect according product. Upon environment car hear only. Phone probably wife toward along.\nBlue blue go site. Mission glass nation dinner play PM image. For girl speak husband rate someone.\nAdd short learn tough enter cause. Human in enter character heavy computer answer.\nEveryone challenge stand ever toward. Four necessary medical amount friend. Response your business listen show.\nStop red office instead traditional especially. Task brother war get believe part. Black toward news wind drive dark this.\nFine each police so fight main yet. New group individual speech even each. Common state until.\nJob nation debate relate politics decade. Design director live it collection doctor. Quality Republican approach film personal.\nWhy record affect whether hold. Short admit all business they. Building six whatever far city check attorney.\nBefore green painting listen themselves step exactly. Gas outside up with debate base. Yard hand environmental follow themselves.\nWell school effect face ago buy. Forward newspaper somebody remain easy huge. Walk because wrong scientist put work political. Himself wife cause.\nMay court PM decade account southern against. Shake more physical event those tonight manage.\nMust report bad owner shake. Anyone today rise. Not shoulder parent although explain would middle charge.\nOnce body ever heavy alone model. Total true home forward little. Team director station purpose learn effect clear.\nEmployee process recent act. Area cold term whole prepare which term.\nYourself including movie matter. Join thank safe.",
+            "description": "Fact decision director set former follow. Method study traditional. Would lawyer hundred.\nOwn board team ahead eight. Cause enough blood produce send impact enter security. Go piece market allow region.\nOut imagine think.\nLay environment prepare star.\nDuring drop eye eat prepare loss. Service you phone chair teach government peace your. Leader low room serve for.\nFood cup report stop edge scientist use lot. But image here hard. Result strategy window available read kitchen interesting.\nLong paper look avoid know seem political.\nNorth control exactly seat five couple specific you. Discuss claim campaign not green should order. Ground enough exist against send show.\nNatural talk morning board. Teach early still management series according teacher cup. Arm international message prepare. At two hear clear.",
+            "curation_policy": "Exactly executive well he. Put your best open education find.\nNot international animal rich full race. Choose spring success daughter. Enter five describe it knowledge fund seat.\nOperation open garden agency. Professor story happy area serve discussion position director.\nPretty can event any carry across. Civil sit again better expect according product. Upon environment car hear only. Phone probably wife toward along.",
             "website": "https://shea.org"
         },
         "links": {
@@ -674,6 +674,7 @@ curl -k -XGET https://127.0.0.1:5000/api/communities | jq
 !!! info "Authentication required"
 
     All requests to the create-related REST API endpoints require authentication.
+
 #### Create a community
 
 You can create a new community using the API:
@@ -687,10 +688,10 @@ curl -k -XPOST -H "Content-Type: application/json" https://127.0.0.1:5000/api/co
   },
   "id": "yet_another_community",
   "metadata": {
-    "title": "Brand New Community",
-    "description": "This is an example Community.",
+    "title": "Awesome Repositories Conf 2021",
+    "description": "Awesome Repositories Confereans is organized by those who desire to give researchers insigth in how to build up their research repositories, how to keep it tidy and organized aiming maximum reusablitiy and reproducibilty of their research.",
     "type": "event",
-    "curation_policy": "This is the kind of records we accept.",
+    "curation_policy": "We accept Zenodo, GitHub, GitLab, Elsevier and Arvix kind of records with a source repository along with a detailed explanition of each file/directory in it. If exists, datasets should be referenced and their schema should be explained in detail. In addition, there should be one main report explainind the entire workflow.",
     "page": "Information for my community.",
     "website": "https://inveniosoftware.org/"
   }
@@ -699,7 +700,7 @@ curl -k -XPOST -H "Content-Type: application/json" https://127.0.0.1:5000/api/co
 
 #### Update a community
 
-You can renamed a community using the API. 
+You can update a community's profile and access settings using the API:
 
 ```bash
 curl -k -XPUT -H "Content-Type: application/json" https://127.0.0.1:5000/api/communities/yet_another_community?access_token=<token> -d '{
@@ -710,23 +711,23 @@ curl -k -XPUT -H "Content-Type: application/json" https://127.0.0.1:5000/api/com
   },
   "id": "yet_another_community",
   "metadata": {
-    "title": "Updated Comm Name"
+    "title": "Awesome Repositories Conference 2021"
   }
 }'
 ```
 
 ### Rename a community
 
-You can update the community, access and metadata fields using the API:
+You can rename a community using the API: 
 
 ```bash
 curl -k -XPOST -H "Content-Type: application/json" https://127.0.0.1:5000/api/communities/yet_another_community/rename?access_token=<token> -d '{
   "access": {
     "visibility": "restricted",
   },
-  "id": "Updated_ID",
+  "id": "AwesomeRepo21",
   "metadata": {
-    "title": "Updated Comm Name"
+    "title": "Awesome Repositories Conference 2021"
   }
 }'
 ```
@@ -763,6 +764,3 @@ invenio-cli services stop
 
 Check the [Cleanup section](./cleanup.md) if you wish to remove every
 reference to InvenioRDM from Docker (containers, images, networks, etc.).
-
-
-

@@ -2084,7 +2084,7 @@ Content-Type: application/json
   "access": {
     "owned_by": [
       {
-        "user": <user_id>
+        "user": {user-id}
       }
     ],
     "record_policy": "open",
@@ -2209,7 +2209,7 @@ Content-Type: application/json
   "access": {
     "owned_by": [
       {
-        "user": <user_id>
+        "user": {user-id}
       }
     ],
     "record_policy": "open",
@@ -2291,7 +2291,7 @@ Content-Type: application/json
   "access": {
     "owned_by": [
       {
-        "user": <user_id>
+        "user": {user-id}
       }
     ],
     "record_policy": "open",
@@ -2363,45 +2363,7 @@ POST /api/communities/<comid>/rename HTTP/1.1
 Content-Type: application/json
 
 {
-  "access": {
-    "visibility": "public",
-    "member_policy": "open",
-    "record_policy": "open"
-  },
-  "id": "new_community_id",
-  "metadata": {
-    "title": "My Updated Community",
-    "description": "This is an example Community.",
-    "type": "event",
-    "curation_policy": "This is the kind of records we accept.",
-    "page": "Information for my community.",
-    "funding": [
-      {
-        "funder": {
-          "name": "European Commission",
-          "identifier": "00k4n6c32",
-          "scheme": "ror"
-        },
-        "award": {
-          "title": "OpenAIRE",
-          "number": "246686",
-          "identifier": ".../246686",
-          "scheme": "openaire"
-        }
-      }
-    ],
-    "organizations": [
-      {
-        "name": "CERN",
-        "identifiers": [
-          {
-            "identifier": "01ggx4157", 
-            "scheme": "ror"
-          }
-        ]
-      }
-    ]
-  }
+  "id": "new_community_id"
 }
 ```
 
@@ -2415,7 +2377,7 @@ Content-Type: application/json
   "access": {
     "owned_by": [
       {
-        "user": <user_id>
+        "user": {user-id}
       }
     ],
     "record_policy": "open",
@@ -2568,7 +2530,7 @@ Content-Type: application/json
         "access": {
           "owned_by": [
             {
-              "user": <user_id>
+              "user": {user-id}
             }
           ],
           "record_policy": "open",
@@ -2695,7 +2657,7 @@ Content-Type: application/json
         "access": {
           "owned_by": [
             {
-              "user": <user_id>
+              "user": {user-id}
             }
           ],
           "record_policy": "open",
