@@ -20,6 +20,8 @@ What you need to know:
     * The client secret
     * The target audience of Keycloak's JWTs (probably the same as the client ID)
 
+*Note:* The client in Keycloak must have its access type set to *confidential*, and
+use the client authenticator mechanism *client ID and secret*.
 
 This information can be included in your `invenio.cfg` like so:
 
@@ -88,4 +90,30 @@ Here is what the concrete configuration dictionaries generated as above look lik
 
 >>> helper.user_info_url
 "https://localhost:4430/auth/realms/invenio-realm/protocol/openid-connect/userinfo"
+```
+
+*Note:* The value `remote_app["params"]["app_key"]` stores the name of the configuration
+variable holding the Keycloak client credentials.
+In case that multiple Keycloak remote apps should be registered, this variable has to be
+renamed for each of the remote apps.
+To rename the configuration variable (e.g. from `KEYCLOAK_APP_CREDENTIALS` to
+`OAUTHCLIENT_KEYCLOAK_APP_CREDENTIALS`), this value has to be updated as well.
+
+Since `invenio.cfg` is a Python module, the values can be manipulated programmatically:
+
+```python
+keycloak_remote_app = helper.remote_app()
+
+# change the title of the remote app
+keycloak_remote_app["title"] = "Our Awesome Keycloak!"
+
+# change the name of the variable holding the credentials
+remote_app["params"]["app_key"] = "OAUTHCLIENT_KEYCLOAK_APP_CREDENTIALS"
+OAUTHCLIENT_KEYCLOAK_APP_CREDENTIALS = {
+    "consumer_key": "<YOUR.CLIENT.ID>",
+    "consumer_secret": "<YOUR.CLIENT.CREDENTIALS.SECRET>",
+}
+
+# update the remote apps configuration
+OAUTHCLIENT_REMOTE_APPS["keycloak"] = keycloak_remote_app
 ```
