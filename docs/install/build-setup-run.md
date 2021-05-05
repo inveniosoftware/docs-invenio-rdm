@@ -179,7 +179,7 @@ invenio-cli containers start
 Go and explore your InvenioRDM instance at [https://127.0.0.1](https://127.0.0.1).
 
 !!! warning "Visit 127.0.0.1, not localhost"
-    Due to Content Security Policy (CSP) headers it is important that you visit ``127.0.0.1``, and not ``localhost`` unless you set ``INVENIO_SITE_UI_URL`` and ``INVENIO_SITE_API_URL`` to ``https://localhost`` and ``https://localhos/apit`` respectively.
+    Due to Content Security Policy (CSP) headers it is important that you visit ``127.0.0.1``, and not ``localhost`` unless you set ``INVENIO_SITE_UI_URL`` and ``INVENIO_SITE_API_URL`` to ``https://localhost`` and ``https://localhost/api`` respectively.
 
 !!! tip
     You can provide other configuration variables by setting them as environment variables with the ``INVENIO_`` prefix just like we did for the ``INVENIO_SITE_NAME`` example above.
