@@ -3,7 +3,8 @@
 InvenioRDM supports local authentication only, integration with your institutional authentication
 system only or both at the same time.
 
-## Local authentication
+
+## Local Authentication
 
 By default, it is only the only authentication system enabled. Users can create a new account using the
 registration form and activate their account after the email confirmation.
@@ -11,26 +12,45 @@ registration form and activate their account after the email confirmation.
 You can disable local authentication by setting in `invenio.cfg`:
 
 ```python
-ACCOUNTS_LOCAL_LOGIN_ENABLED = False
+ACCOUNTS_LOCAL_LOGIN_ENABLED = False  # allow/deny users to login with a local account
 ```
 
-!!! warning "Work in progress"
-    This section has not yet been written.
+In case that local logins are disabled, it also makes sense to disable the possibilities to register
+new local accounts and change/recover passwords for local accounts:
+
+```python
+# login-related configuration items from Flask-Security
+SECURITY_REGISTERABLE = False  # allow/deny new users to register locally
+SECURITY_RECOVERABLE = False  # allow/deny resetting the local account's password
+SECURITY_CHANGEABLE = False  # allow/deny changing passwords for local accounts
+```
+
+*Note:* Please make sure that your configuration is consistent!
+While *some* clearly inconsistent configurations (e.g. having `SECURITY_RECOVERABLE=True`
+and at the same time `ACCOUNTS_LOCAL_LOGIN_ENABLED=False`) trigger a warning at the time of
+initialization, other inconsistent combinations may be accepted silently and ultimately
+result in unexpected behavior and weird user experience.
 
 
 ## OAuth
 
-!!! warning "Work in progress"
-    This section has not yet been written.
+In addition to local accounts, Invenio RDM offers the possibilty to integrate external
+[OAuth 2](https://oauth.net/2/) / [OpenID Connect](https://openid.net/connect/)
+authentication services via the
+[Invenio-OAuthClient](https://invenio-oauthclient.readthedocs.io/en/latest/) module.
 
-## Keycloak
+
+### Keycloak
 
 [Keycloak](https://www.keycloak.org/) is an open-source solution for identity management
 that can be used for single sign-on endpoints.
+It can be integrated in Invenio RDM as follows:
 
-### Configuration of Keycloak in InvenioRDM
+
+#### Configuration of Keycloak in InvenioRDM
 
 What you need to know:
+
 * The base URL (including port) of the Keycloak instance
 * Information about the client, as configured in Keycloak:
     * Its realm
@@ -70,7 +90,8 @@ KEYCLOAK_APP_CREDENTIALS = {
 }
 ```
 
-### Tweaking Keycloak configuration
+
+#### Tweaking Keycloak Configuration
 
 The `KeycloakSettingsHelper` is only there to make the configuration easier,
 since the base URL and realm are used several times in the `remote_app` dictionary.
@@ -92,6 +113,7 @@ Here is what the concrete configuration dictionaries generated as above look lik
         "setup": "invenio_oauthclient.contrib.keycloak.handlers:setup_handler",
         "view": "invenio_oauthclient.handlers:signup_handler"
     },
+    "precedence_mask": {"email": True, "profile": {"username": False, "full_name": False}},
     "params": {
         "base_url": "https://localhost:4430",
         "request_token_params": {"scope": "openid"},
@@ -109,6 +131,12 @@ Here is what the concrete configuration dictionaries generated as above look lik
 >>> helper.user_info_url
 "https://localhost:4430/auth/realms/invenio-realm/protocol/openid-connect/userinfo"
 ```
+
+*Note:* The `precedence_mask` dictates for which fields of newly registered accounts
+the `user_info` provided by the external authentication service should take precedence
+over any user input.
+This can be relevant for security considerations - for more information, see
+[later sections](#on-the-precedence-mask).
 
 *Note:* The value `remote_app["params"]["app_key"]` stores the name of the configuration
 variable holding the Keycloak client credentials.
@@ -136,7 +164,8 @@ OAUTHCLIENT_KEYCLOAK_APP_CREDENTIALS = {
 OAUTHCLIENT_REMOTE_APPS["keycloak"] = keycloak_remote_app
 ```
 
-### Multiple Keycloak authentication providers
+
+#### Multiple Keycloak Authentication Providers
 
 You might have the need to integrate multiple Keycloak authentication providers at the same time, to allow
 users to login with one or the other.
@@ -194,3 +223,112 @@ BAR_KEYCLOAK_APP_CREDENTIALS = {
     Notice how the `app_key` param must match with the name of the config `<APP_KEY>_APP_CREDENTIALS`, uppercase,
     and the name of the apps in the config `OAUTHCLIENT_REMOTE_APPS` (`foo_keycloak`, `bar_keycloak`) must match
     with the related config vars `OAUTHCLIENT_FOO_KEYCLOAK_*` and `OAUTHCLIENT_BAR_KEYCLOAK_*`, uppercase.
+
+
+### General OAuth Configuration
+
+In case that local login is disabled and there is exactly one OAuthClient remote app defined, the login screen
+from InvenioRDM may seem a bit redundant.  
+*Good news:* It can be skipped, having the login button redirect directly to the external login service:
+
+```python
+OAUTHCLIENT_AUTO_REDIRECT_TO_EXTERNAL_LOGIN = True
+```
+
+Also, it may be desirable to have the external authentication services act as the source
+of truth for the users' profiles.
+If so, the users can be prevented from updating their own user profiles by making them read-only:
+
+```python
+USERPROFILES_READ_ONLY = True
+```
+
+
+#### Customizing the Registration Form
+
+Whenever a new users logs in to Invenio RDM via an external account for the first time,
+a local account has to be created and linked to the external account.
+Sometimes it is desirable to have this happen automatically behind the scenes, and
+just populate the new account with the `user_info` provided by the external authentication
+service.
+At other times, it may be desirable to let users have the final say about their account's
+details during sign-up.
+Invenio RDM provides a mechanism to customize registration forms for external accounts
+via the `OAUTHCLIENT_SIGNUP_FORM` configuration variable.
+
+The following example configuration creates different registration forms for different
+external services.
+All of them have an extra checkbox for accepting the system's terms and conditions
+which is mandatory to complete the registration:
+
+```python
+from invenio_userprofiles.forms import ProfileForm
+from wtforms import BooleanField, validators, FormField
+from werkzeug.local import LocalProxy
+from flask import current_app, url_for
+
+_security = LocalProxy(lambda: current_app.extensions['security'])
+
+terms_of_use_url=url_for("static", filename=("documents/terms-of-use.pdf"))
+terms_of_use_text = f"Accept the <a href='{terms_of_use_url}' target='_blank'>terms and conditions</a>"
+
+def my_registration_form(*args, **kwargs):
+    current_remote_app = kwargs.get("oauth_remote_app", "").lower()
+    if current_remote_app != "orcid":
+        class DefaultRegistrationForm(_security.confirm_register_form):
+            email = None  # remove the email field
+            password = None  # also remove the password field
+            profile = FormField(ProfileForm, separator=".")
+            recaptcha = None
+            submit = None  # defined in the template
+            terms_of_use = BooleanField(terms_of_use_text, [validators.required()])
+        return DefaultRegistrationForm(*args, **kwargs)
+    else:
+        # orcid doesn't provide an email address, so we have to ask the user for that
+        class OrcidRegistrationForm(_security.confirm_register_form):
+            password = None  # remove the password field
+            profile = FormField(ProfileForm, separator=".")
+            recaptcha = None
+            submit = None  # defined in the template
+            terms_of_use = BooleanField(terms_of_use_text, [validators.required()])
+        return OrcidRegistrationForm(*args, **kwargs)
+
+OAUTHCLIENT_SIGNUP_FORM = my_registration_form
+```
+
+
+##### On the Precedence Mask
+
+The details for the new account can be either taken from user input (as provided via
+the registration form), or the `user_info` information provided by the external service.
+In some cases it is preferrable to use the service's suggested values (if available)
+rather than the user's arbitrary input (e.g. the email address, since this is used
+in the internal mechanism for matching up previously unknown external accounts with
+local accounts).
+The set of fields for which the external service's `user_info` should be preferred
+over user input (or vice versa) can be specified in each remote app's `precedence_mask`
+configuration property.
+Properties marked with `True` (or omitted from) in the precedence mask will be taken
+from the `user_info` if available, while properties marked with `False` will be taken
+from the user input.
+
+
+## Further Remarks
+
+Additional relevant configuration items from `Flask-Security` include salt values for the calculation of various
+hash values, the requirement for e-mail verification and collection of login statistics:
+
+```python
+SECURITY_CONFIRMABLE = False  # whether or not the e-mail address for local accounts should be verified
+SECURITY_TRACKABLE = False  # activate/deactivate tracking of login statistics
+
+SECURITY_PASSWORD_SALT = "<SOME.GENERATED.SALT>"
+SECURITY_CONFIRM_SALT = "<SOME.GENERATED.SALT>"
+SECURITY_RESET_SALT = "<SOME.GENERATED.SALT>"
+SECURITY_LOGIN_SALT = "<SOME.GENERATED.SALT>"
+SECURITY_CHANGE_SALT = "<SOME.GENERATED.SALT>"
+SECURITY_REMEMBER_SALT = "<SOME.GENERATED.SALT>"
+```
+
+Additional security-related configuration items can be found in the
+[documentation for Flask-Security](https://flask-security.readthedocs.io/en/latest/configuration.html).
