@@ -54,8 +54,10 @@ In the beginning of each iteration we start by releasing new development version
 - invenio-rdm-records
     - bump invenio-drafts-resources
     - bump invenio-vocabularies
+- invenio-communities
 - invenio-app-rdm
     - bump invenio-rdm-records
+    - bump invenio-communities
     - bump react-invenio-deposit
 
 
