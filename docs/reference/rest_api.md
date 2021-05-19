@@ -979,27 +979,6 @@ DELETE /api/records/{id}/draft/files/{filename} HTTP/1.1
 
 ```http
 HTTP/1.1 204 No Content
-Content-Type: application/json
-
-{
-  "key": "{filename}",
-  "updated": "2020-11-27 11:26:04.607831",
-  "created": "2020-11-27 11:17:10.998919",
-  "checksum": "md5:6ef4267f0e710357c895627e931f16cd",
-  "mimetype": "image/png",
-  "size": 89364.0,
-  "status": "completed",
-  "metadata": null,
-  "file_id": "2151fa94-6dc3-4965-8df9-ec73ceb9175c",
-  "version_id": "57ad8c66-b934-49c9-a46f-38bf5aa0374f",
-  "bucket_id": "90b5b318-114a-4b87-bc9d-0d018b9363d3",
-  "storage_class": "S",
-  "links": {
-    "content": "/api/records/{id}/draft/files/{filename}/content",
-    "self": "/api/records/{id}/draft/files/{filename}",
-    "commit": "/api/records/{id}/draft/files/{filename}/commit"
-  },
-}
 ```
 
 ## Records
