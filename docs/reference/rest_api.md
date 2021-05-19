@@ -669,6 +669,34 @@ Content-Type: application/json
 }
 ```
 
+### Delete/discard a draft record
+
+`DELETE /api/records/{id}/draft`
+
+Deleting a draft for an unpublished record will remove the draft and associated
+files from the system.
+
+Deleting a draft for a published record will remove the draft but not the
+published record.
+
+**Parameters**
+
+| Name       | Type   | Location | Description                                                  |
+| ---------- | ------ | -------- | ------------------------------------------------------------ |
+| `id`       | string | path     | Identifier of the record, e.g.  `4d0ns-ntd89`                |
+
+**Request**
+
+```http
+DELETE /api/records/{id}/draft HTTP/1.1
+```
+
+**Response**
+
+```http
+HTTP/1.1 204 No Content
+```
+
 ## Draft files
 
 Used to manage a draft's files.
@@ -1736,8 +1764,7 @@ Content-Type: application/json
 **Response**
 
 ```http
-HTTP/1.1 204 NO CONTENT
-Content-Type: application/json
+HTTP/1.1 204 No Content
 ```
 
 ### List access links
@@ -2182,9 +2209,6 @@ Accept: application/json
 
 ```http
 HTTP/1.1 204 No Content
-Content-Type: application/json
-
-{}
 ```
 
 ### Get a Community
@@ -2591,9 +2615,6 @@ DELETE api/communities/<comid>/logo HTTP/1.1
 
 ```http
 HTTP/1.1 204 No Content
-Content-Type: application/json
-
-{}
 ```
 
 
