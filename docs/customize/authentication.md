@@ -332,3 +332,249 @@ SECURITY_REMEMBER_SALT = "<SOME.GENERATED.SALT>"
 
 Additional security-related configuration items can be found in the
 [documentation for Flask-Security](https://flask-security.readthedocs.io/en/latest/configuration.html).
+## SAML
+
+SAML stands for Security Assertion Markup Language. It is an XML-based open-standard for transferring identity data between two parties: an identity provider (IdP) and a service provider (SP).
+
+**Identity Provider (IDP)** - Performs authentication and passes the user's identity and authorization level to the service provider.
+
+**Service Provider (SP)** - Trusts the identity provider and authorizes the given user to access the requested resource.
+
+### Configuration of SAML in InvenioRDM
+
+#### Prerequisites
+
+* Make sure you have installed in your system:
+
+    `libxml2-dev libxmlsec1-dev`
+
+* Make sure you have installed required module:
+
+    `pip install invenio-saml`
+
+#### What you need to know/have: 
+
+* SAML requires a x.509 cert to sign and encrypt elements like `NameID`, `Message`, `Assertion`, `Metadata`.
+
+    * **sp.crt** The public cert of the SP
+    * **sp.key** The private key of the SP
+
+* **EntityID** Identifier of the IdP entity  (must be a URI)
+
+* **SSO(singleSignOnService)** URL Target of the IdP where the Authentication Request Message will be sent.
+
+* **SLO(singleLogoutService)** URL Location where the <LogoutRequest> from the IdP will be sent (IdP-initiated logout)
+
+* **x509cert** Public X.509 certificate of the IdP
+
+* **Attributes mapping** IDP in Assertion of the SAML Response provides a dict with all the user data. 
+
+    * i.e. of SAML reponse with attributes:
+
+    ```
+    {
+        "cn": ["Jhon"],
+        "sn": ["Doe"],
+        "mail": ["john.doe@example.com"],
+        "external_id": ["24546786764d"]
+    }
+    ```
+
+    Each attribute name can be used as a key to obtain the value. Every attribute is a list of values. A single-valued attribute is a listy of a single element.
+
+    * we need to map these in our configuration such:
+
+    ```
+            "mappings": {
+            "email": "mail",
+            "name": "cn",
+            "surname": "sn",
+            "external_id": "external_id",
+            },
+    ```
+
+These information can be included in your `invenio.cfg` like so:
+
+```python
+from invenio_saml.handlers import acs_handler_factory
+
+SSO_SAML_DEFAULT_BLUEPRINT_PREFIX = '/saml'
+"""Base URL for the extensions endpoint."""
+
+SSO_SAML_DEFAULT_METADATA_ROUTE = '/metadata/<idp>'
+"""URL route for the metadata request."""
+
+SSO_SAML_DEFAULT_SSO_ROUTE = '/login/<idp>'
+"""URL route for the SP login."""
+
+SSO_SAML_DEFAULT_ACS_ROUTE = '/authorized/<idp>'
+"""URL route to handle the IdP login request."""
+
+SSO_SAML_DEFAULT_SLO_ROUTE = '/slo/<idp>'
+"""URL route for the SP logout."""
+
+SSO_SAML_DEFAULT_SLS_ROUTE = '/sls/<idp>'
+"""URL route to handle the IdP logout request."""
+
+SSO_SAML_IDPS = {
+
+    # name your authentication provider
+    'remote_app': {
+
+        # Basic info
+        "title": "SAML",
+        "description": "SAML Authentication Service",
+        "icon": "",
+
+        # path to the file i.e. "./saml/sp.crt"
+		'sp_cert_file': '<./SP_CERT_FILE>',
+
+        # path to the file i.e. "./saml/sp.key"
+		'sp_key_file': '<./SP_KEY_FILE>',
+
+        'settings':{
+            # If strict is True, then the Python Toolkit will reject unsigned
+            # or unencrypted messages if it expects them to be signed or encrypted.
+            # Also it will reject the messages if the SAML standard is not strictly
+            # followed. Destination, NameId, Conditions ... are validated too.
+            'strict': True,
+
+            # Enable debug mode (outputs errors).
+            'debug': True,
+
+            # Service Provider Data that we are deploying.
+            'sp': {
+
+                # Specifies the constraints on the name identifier to be used to
+                # represent the requested subject.
+                # Take a look on https://github.com/onelogin/python-saml/blob/master/src/onelogin/saml2/constants.py
+                # to see the NameIdFormat that are supported.
+                'NameIDFormat': 'urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified',
+            },
+
+            # Identity Provider Data that we want connected with our SP.
+            'idp': {
+
+                # Identifier of the IdP entity  (must be a URI)
+                'entityId': '<IdP_Entity>',
+
+                # SSO endpoint info of the IdP. (Authentication Request protocol)
+                'singleSignOnService': {
+
+                    # URL Target of the IdP where the Authentication Request Message
+                    # will be sent.
+                    'url': '<SSO_URL>',
+
+                    # SAML protocol binding to be used when returning the <Response>
+                    # message. OneLogin Toolkit supports the HTTP-Redirect binding
+                    # only for this endpoint.
+                    'binding':
+                    'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect'
+                },
+
+                # SLO endpoint info of the IdP.
+                'singleLogoutService': {
+
+                    # URL Location where the <LogoutRequest> from the IdP will be sent (IdP-initiated logout)
+                    'url': '<SLS_URL>',
+
+                    # SAML protocol binding to be used when returning the <Response>
+                    # message. OneLogin Toolkit supports the HTTP-Redirect binding
+                    # only for this endpoint.
+                    'binding':
+                    'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect'
+                },
+                    # Public X.509 certificate of the IdP
+                    'x509cert': '<X.509_oneliner>'
+            },
+            
+            # Security settings
+            # more on https://github.com/onelogin/python-saml
+            'security': {
+                'authnRequestsSigned': False,
+                'failOnAuthnContextMismatch': False,
+                'logoutRequestSigned': False,
+                'logoutResponseSigned': False,
+                'metadataCacheDuration': None,
+                'metadataValidUntil': None,
+                'nameIdEncrypted': False,
+                'requestedAuthnContext': False,
+                'requestedAuthnContextComparison': 'exact',
+                'signMetadata': False,
+                'signatureAlgorithm':
+                    'http://www.w3.org/2001/04/xmldsig-more#rsa-sha256',
+                'wantAssertionsEncrypted': False,
+                'wantAssertionsSigned': False,
+                'wantAttributeStatement': False,
+                'wantMessagesSigned': False,
+                'wantNameId': True,
+                'wantNameIdEncrypted': False,
+                'digestAlgorithm':
+                    'http://www.w3.org/2001/04/xmlenc#sha256'
+            },
+        },
+        
+        # Account Mapping
+        "mappings": {
+           "email": "<attribute_email>",
+           "name": "<attribute_name>",
+           "surname": "<attribute_surname>",
+           "external_id": "<attribute_external_id>",
+          },
+        
+        # Inject your remote_app to handler
+        # Note: keep in mind the string should match
+        # given name for authentication provider
+        'acs_handler': acs_handler_factory('remote_app'),
+    }
+}
+"""SSO SAML Identity provider configuration.
+
+This configuration variable can be used to describe the endpoints used for the
+different IdPs and their settings.
+"""
+```
+
+### Multiple SAML authentication providers
+
+You might have the need to integrate multiple SAML authentication providers at the same time, to allow users to login with one or the other.
+
+You can define multiple SAML apps in your `invenio.cfg`, by extending: `SSO_SAML_IDPS`
+
+```python
+SSO_SAML_IDPS = {
+
+    # First authentication provider
+    "remote_app": {
+                 ....
+     'settings': {
+                 ....
+                   },
+                 ....
+       'acs_handler': acs_handler_factory('remote_app'),
+    },
+    
+    # Second authentication provider
+    "remote_app2": {
+                 ....
+     'settings': {
+                 ....
+                   },
+                 ....
+       'acs_handler': acs_handler_factory('remote_app2'),
+    },
+
+}
+```
+
+### Override the login page
+You may want to have SAML appearing in the list of possible login methods in
+the login webpage.
+
+`invenio-saml` provides login page template with configured endpoints based on your configuration.
+In order to activate reading this template.
+Open `invenio.cfg` in your favorite text editor and add the following to the file:
+
+```python
+OAUTHCLIENT_LOGIN_USER_TEMPLATE = "invenio_saml/login_user.html"
+```
