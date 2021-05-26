@@ -71,6 +71,7 @@ nav:
     - Version v3.0.0: releases/versions/version-v3.0.0.md
     - Version v2.0.0: releases/versions/version-v2.0.0.md
     - Version v1.0.0: releases/versions/version-v1.0.0.md
+    - Upgrade v3 to v4: releases/upgrading/upgrade-v4.0.md
     - Upgrade v2 to v3: releases/upgrading/upgrade-v3.0.md
     - Upgrade v1 to v2: releases/upgrading/upgrade-v2.0.md
   - Maintainers:
