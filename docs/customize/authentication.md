@@ -1,8 +1,7 @@
 # Authentication
 
 InvenioRDM supports local authentication only, integration with your institutional authentication
-system only or both at the same time.
-
+system only (e.g. OAuth, SAML, Single Sign-on) or both at the same time.
 
 ## Local Authentication
 
@@ -15,53 +14,78 @@ You can disable local authentication by setting in `invenio.cfg`:
 ACCOUNTS_LOCAL_LOGIN_ENABLED = False  # allow/deny users to login with a local account
 ```
 
-In case that local logins are disabled, it also makes sense to disable the possibilities to register
-new local accounts and change/recover passwords for local accounts:
+In case that local login is disabled, **it is recommended** to disable the possibility to register
+new local account and change/recover passwords:
 
 ```python
-# login-related configuration items from Flask-Security
 SECURITY_REGISTERABLE = False  # allow/deny new users to register locally
 SECURITY_RECOVERABLE = False  # allow/deny resetting the local account's password
 SECURITY_CHANGEABLE = False  # allow/deny changing passwords for local accounts
 ```
 
-*Note:* Please make sure that your configuration is consistent!
-While *some* clearly inconsistent configurations (e.g. having `SECURITY_RECOVERABLE=True`
-and at the same time `ACCOUNTS_LOCAL_LOGIN_ENABLED=False`) trigger a warning at the time of
-initialization, other inconsistent combinations may be accepted silently and ultimately
-result in unexpected behavior and weird user experience.
+!!! warning "Make sure that your configuration is consistent!"
+    While *some* clearly inconsistent configurations (e.g. having `SECURITY_REGISTERABLE=True`
+    and at the same time `ACCOUNTS_LOCAL_LOGIN_ENABLED=False`) will trigger a console **warning**
+    when running the Invenio webserver, other inconsistent combinations may be silently
+    accepted and ultimately result in unexpected behaviors.
 
+## External authentication
 
-## OAuth
+InvenioRDM supports external authentication out-of-the-box, such as OAuth. SAML authentication
+can also be experimentally enabled.
 
-In addition to local accounts, Invenio RDM offers the possibilty to integrate external
+### OAuth
+
+In addition to local accounts, InvenioRDM offers the possibilty to integrate external
 [OAuth 2](https://oauth.net/2/) / [OpenID Connect](https://openid.net/connect/)
 authentication services via the
 [Invenio-OAuthClient](https://invenio-oauthclient.readthedocs.io/en/latest/) module.
 
+#### ORCID
 
-### Keycloak
+After having registered a new client application in the ORCID website and having set as `authorized` URL
+`https://<CFG_SITE_URL>/oauth/authorized/orcid/`, you can enable ORCID login in InvenioRDM by enabling
+the plugin and configuring key and secret. In your `invenio.cfg`:
+
+```python
+from invenio_oauthclient.contrib import orcid
+
+OAUTHCLIENT_REMOTE_APPS = dict(
+    orcid=orcid.REMOTE_APP,
+)
+
+ORCID_APP_CREDENTIALS = dict(
+    consumer_key="<my-key>",
+    consumer_secret="<my-secret>",
+)
+```
+
+You can also test ORCID login using the ORCID sandbox environment.
+See the plugin [documentation](fhttps://invenio-oauthclient.readthedocs.io/en/latest/usage.html#module-invenio_oauthclient.contrib.orcid)
+for more information.
+
+#### Keycloak
 
 [Keycloak](https://www.keycloak.org/) is an open-source solution for identity management
 that can be used for single sign-on endpoints.
-It can be integrated in Invenio RDM as follows:
 
+##### Configuration
 
-#### Configuration of Keycloak in InvenioRDM
+Information required to configure the InvenioRDM instance:
 
-What you need to know:
-
-* The base URL (including port) of the Keycloak instance
+* The base URL (including port) of the Keycloak server.
 * Information about the client, as configured in Keycloak:
     * Its realm
     * The client ID
     * The client secret
     * The target audience of Keycloak's JWTs (probably the same as the client ID)
 
-*Note:* The client in Keycloak must have its access type set to *confidential*, and
-use the client authenticator mechanism *client ID and secret*.
 
-This information can be included in your `invenio.cfg` like so:
+!!! note
+    The client configuration in Keycloak server must have its access type set
+    to *confidential* and use the client authenticator mechanism *client ID and secret*.
+
+In your `invenio.cfg`:
 
 ```python
 from invenio_oauthclient.contrib.keycloak import KeycloakSettingsHelper
@@ -69,8 +93,8 @@ from invenio_oauthclient.contrib.keycloak import KeycloakSettingsHelper
 helper = KeycloakSettingsHelper(
     title="Keycloak",
     description="Keycloak Authentication Service",
-    base_url="https://localhost:4430",
-    realm="invenio-realm"
+    base_url="https://myserver.com:4430",
+    realm="my-realm"
 )
 
 OAUTHCLIENT_KEYCLOAK_REALM_URL = helper.realm_url
@@ -80,8 +104,7 @@ OAUTHCLIENT_KEYCLOAK_VERIFY_AUD = True  # whether to verify the audience tag for
 OAUTHCLIENT_KEYCLOAK_AUD = "<YOUR.AUDIENCE>"  # probably the same as the client ID
 
 OAUTHCLIENT_REMOTE_APPS = {
-    "keycloak": OAUTHCLIENT_KEYCLOAK_REMOTE_APP,
-    # additional remote apps, if desired...
+    "keycloak": helper.remote_app,
 }
 
 KEYCLOAK_APP_CREDENTIALS = {
@@ -90,15 +113,14 @@ KEYCLOAK_APP_CREDENTIALS = {
 }
 ```
 
-
-#### Tweaking Keycloak Configuration
+##### Tweaking configuration
 
 The `KeycloakSettingsHelper` is only there to make the configuration easier,
 since the base URL and realm are used several times in the `remote_app` dictionary.
-In case you need more fine-grained control over some of the values in the configuration,
-you can of course change them.
+You can change many other settings of the Keycloak configuration in case you need
+more fine-grained control.
 
-Here is what the concrete configuration dictionaries generated as above look like:
+Here is what the full configuration looks like:
 
 ```python
 >>> helper.remote_app
@@ -115,47 +137,39 @@ Here is what the concrete configuration dictionaries generated as above look lik
     },
     "precedence_mask": {"email": True, "profile": {"username": False, "full_name": False}},
     "params": {
-        "base_url": "https://localhost:4430",
+        "base_url": "https://myserver.com:4430",
         "request_token_params": {"scope": "openid"},
         "request_token_url": None,
-        "access_token_url": "https://localhost:4430/auth/realms/invenio-realm/protocol/openid-connect/token",
+        "access_token_url": "https://myserver.com:4430/auth/realms/my-realm/protocol/openid-connect/token",
         "access_token_method": "POST",
-        "authorize_url": "https://localhost:4430/auth/realms/invenio-realm/protocol/openid-connect/auth",
+        "authorize_url": "https://myserver.com:4430/auth/realms/my-realm/protocol/openid-connect/auth",
         "app_key": "KEYCLOAK_APP_CREDENTIALS"
     }
 }
 
 >>> helper.realm_url
-"https://localhost:4430/auth/realms/invenio-realm"
+"https://myserver.com:4430/auth/realms/my-realm"
 
 >>> helper.user_info_url
-"https://localhost:4430/auth/realms/invenio-realm/protocol/openid-connect/userinfo"
+"https://myserver.com:4430/auth/realms/my-realm/protocol/openid-connect/userinfo"
 ```
 
-*Note:* The `precedence_mask` dictates for which fields of newly registered accounts
-the `user_info` provided by the external authentication service should take precedence
-over any user input.
-This can be relevant for security considerations - for more information, see
-[later sections](#on-the-precedence-mask).
+!!! note
+    The `precedence_mask` dictates which information about the user (name, email, etc.)
+    provided by authentication server should take precedence over any user input.
+    For more information, see [the related section](#on-the-precedence-mask).
 
-*Note:* The value `remote_app["params"]["app_key"]` stores the name of the configuration
-variable holding the Keycloak client credentials.
-In case that multiple Keycloak remote apps should be registered, this variable has to be
-renamed for each of the remote apps.
-To rename the configuration variable (e.g. from `KEYCLOAK_APP_CREDENTIALS` to
-`OAUTHCLIENT_KEYCLOAK_APP_CREDENTIALS`), this value has to be updated as well.
-
-Since `invenio.cfg` is a Python module, the values can be manipulated programmatically:
+You can modify default configuration directly in your `invenio.cfg`:
 
 ```python
 keycloak_remote_app = helper.remote_app
 
-# change the title of the remote app
-keycloak_remote_app["title"] = "Our Awesome Keycloak!"
+# change the title that will be shown in the login button "Login with My institute"
+keycloak_remote_app["title"] = "My institute"
 
 # change the name of the variable holding the credentials
-remote_app["params"]["app_key"] = "OAUTHCLIENT_KEYCLOAK_APP_CREDENTIALS"
-OAUTHCLIENT_KEYCLOAK_APP_CREDENTIALS = {
+remote_app["params"]["app_key"] = "OAUTHCLIENT_ANOTHER_NAME_APP_CREDENTIALS"
+OAUTHCLIENT_ANOTHER_NAME_APP_CREDENTIALS = {
     "consumer_key": "<YOUR.CLIENT.ID>",
     "consumer_secret": "<YOUR.CLIENT.CREDENTIALS.SECRET>",
 }
@@ -164,13 +178,11 @@ OAUTHCLIENT_KEYCLOAK_APP_CREDENTIALS = {
 OAUTHCLIENT_REMOTE_APPS["keycloak"] = keycloak_remote_app
 ```
 
-
-#### Multiple Keycloak Authentication Providers
+##### Multiple Keycloak authentication providers
 
 You might have the need to integrate multiple Keycloak authentication providers at the same time, to allow
-users to login with one or the other.
-
-You can define multiple Keycloak apps in your `invenio.cfg`, by namespacing:
+users to login with one or the other. You can "namespace" each remote application using a different
+value for the parameter `app_key`. In your `invenio.cfg`:
 
 ```python
 from invenio_oauthclient.contrib.keycloak import KeycloakSettingsHelper
@@ -224,44 +236,112 @@ BAR_KEYCLOAK_APP_CREDENTIALS = {
     and the name of the apps in the config `OAUTHCLIENT_REMOTE_APPS` (`foo_keycloak`, `bar_keycloak`) must match
     with the related config vars `OAUTHCLIENT_FOO_KEYCLOAK_*` and `OAUTHCLIENT_BAR_KEYCLOAK_*`, uppercase.
 
+### Login automatic redirection
 
-### General OAuth Configuration
-
-In case that local login is disabled and there is exactly one OAuthClient remote app defined, the login screen
-from InvenioRDM may seem a bit redundant.  
-*Good news:* It can be skipped, having the login button redirect directly to the external login service:
+When local login is disabled and there is exactly one OAuthClient remote app defined, the login page
+can be skipped and the user can be redirected directly to the external authentication provider.
+In your `invenio.cfg`:
 
 ```python
+from invenio_oauthclient.views.client import auto_redirect_login
+ACCOUNTS_LOGIN_VIEW_FUNCTION = auto_redirect_login
 OAUTHCLIENT_AUTO_REDIRECT_TO_EXTERNAL_LOGIN = True
 ```
 
-Also, it may be desirable to have the external authentication services act as the source
-of truth for the users' profiles.
-If so, the users can be prevented from updating their own user profiles by making them read-only:
+This automatic redirection will not work, even if configured as above, if local login is enabled or you
+have configured multiple remote applications.
+
+### User profile update
+
+You might want to disable the update of the user profile (email, full name, etc.) when only external
+authentication is enabled.
+You can set the user profile form as read-only by changing in your `invenio.cfg`:
 
 ```python
 USERPROFILES_READ_ONLY = True
 ```
 
+### On the precedence mask
 
-#### Customizing the Registration Form
+On first user login after external authentication flow, the user information are fetched
+from the authentication provider or they might be input by the user via a
+[custom registration form](#custom-user-registration-form).
 
-Whenever a new users logs in to Invenio RDM via an external account for the first time,
-a local account has to be created and linked to the external account.
-Sometimes it is desirable to have this happen automatically behind the scenes, and
-just populate the new account with the `user_info` provided by the external authentication
-service.
-At other times, it may be desirable to let users have the final say about their account's
-details during sign-up.
-Invenio RDM provides a mechanism to customize registration forms for external accounts
-via the `OAUTHCLIENT_SIGNUP_FORM` configuration variable.
+You can enforce what user information should be taken from the server and cannot be overridden
+by the user during registration, so that you are sure what information to trust.
+In your OAuth application, you can fine tune the `precedence_mask`:
+
+```python
+remote_app["precedence_mask"] = {"email": True, "profile": {"username": False, "full_name": False}}
+```
+
+Properties marked with `True` (or omitted) in the precedence mask will be taken
+from the authentication server user information payload if available, while properties marked
+with `False` will be taken from the user input in the registration from.
+
+## Security
+
+For increased security, you should define the following in your `invenio.cfg`:
+
+```python
+SECURITY_CONFIRMABLE = True  # enable e-mail address confirmation for local login
+SECURITY_TRACKABLE = True  # enable tracking of basic user login statistics
+
+SECURITY_PASSWORD_SALT = "..put a long random value here.."
+SECURITY_CONFIRM_SALT = "..put a long random value here.."
+SECURITY_RESET_SALT = "..put a long random value here.."
+SECURITY_LOGIN_SALT = "..put a long random value here.."
+SECURITY_CHANGE_SALT = "..put a long random value here.."
+SECURITY_REMEMBER_SALT = "..put a long random value here.."
+```
+
+Additional security-related configuration items can be found in the
+[documentation for Flask-Security](https://flask-security.readthedocs.io/en/latest/configuration.html).
+
+You can change the default duration (31 days) of the logged in user session (the session cookie expiration).
+This is particularly useful when configuring InvenioRDM with external authentication only and you want to
+have the InvenioRDM session duration as the external authentication provider session duration.
+
+In your `invenio.cfg`:
+
+```python
+PERMANENT_SESSION_LIFETIME = timedelta(days=1)
+```
+
+## Advanced integrations
+
+### Custom login page
+
+You can customize the login page template to display different information or
+change its look and feel.
+
+To start with, copy the default login page template from
+`invenio-accounts` module if local login only or from `invenio-oauthclient` if
+external authentication enabled.
+
+Then, follow the guide [style other pages](/customize/styling/#change-other-pages).
+
+### Custom user registration form
+
+Whenever a new user logs in to InvenioRDM with external authentication for the first time,
+Invenio will create a local account associated with the external account.
+
+The local account user information, such as e-mail, username and full name are normally
+fetched when authenticating and automatically filled in. In case of ORCID login, the
+user e-mail cannot be retrieved when authenticating and a registration form will be
+prompted to the user asking to fill in the e-mail.
+
+You can customize such behavior and allow users to modify the information coming from
+the authentication server or require extra user input (e.g. require the user to accept
+website terms and conditions).
 
 The following example configuration creates different registration forms for different
-external services.
-All of them have an extra checkbox for accepting the system's terms and conditions
+external authentication providers.
+All of them have an extra checkbox for accepting the website's terms and conditions,
 which is mandatory to complete the registration:
 
 ```python
+from invenio_oauthclient.utils import create_registrationform
 from invenio_userprofiles.forms import ProfileForm
 from wtforms import BooleanField, validators, FormField
 from werkzeug.local import LocalProxy
@@ -269,78 +349,127 @@ from flask import current_app, url_for
 
 _security = LocalProxy(lambda: current_app.extensions['security'])
 
+# create a link to a PDF file containing the terms and conditions
+# the PDF file is located in the `static/documents` folder.
 terms_of_use_url=url_for("static", filename=("documents/terms-of-use.pdf"))
 terms_of_use_text = f"Accept the <a href='{terms_of_use_url}' target='_blank'>terms and conditions</a>"
 
 def my_registration_form(*args, **kwargs):
-    current_remote_app = kwargs.get("oauth_remote_app", "").lower()
-    if current_remote_app != "orcid":
+    # optionally, have different registration forms depending on the authentication
+    # provider used by the user to login
+    current_remote_app = kwargs.get("oauth_remote_app")
+    if not current_remote_app:
+        # return default just in case something is wrong
+        return create_registrationform(*args, **kwargs)
+    elif current_remote_app.name.lower() != "orcid":
+        # show this form in case the user logged in with any method but ORCID
         class DefaultRegistrationForm(_security.confirm_register_form):
             email = None  # remove the email field
-            password = None  # also remove the password field
+            password = None  # remove the password field
             profile = FormField(ProfileForm, separator=".")
-            recaptcha = None
-            submit = None  # defined in the template
-            terms_of_use = BooleanField(terms_of_use_text, [validators.required()])
+            recaptcha = None  # remove the captcha
+            submit = None  # remove submit btn, already defined in the template
+            terms_of_use = BooleanField(terms_of_use_text, [validators.required()])  # add the new field
         return DefaultRegistrationForm(*args, **kwargs)
     else:
-        # orcid doesn't provide an email address, so we have to ask the user for that
+        # ORCID does not provide the user e-mail address, it must be input by the user.
+        # the email field comes from `confirm_register_form` upper class.
         class OrcidRegistrationForm(_security.confirm_register_form):
             password = None  # remove the password field
             profile = FormField(ProfileForm, separator=".")
-            recaptcha = None
-            submit = None  # defined in the template
-            terms_of_use = BooleanField(terms_of_use_text, [validators.required()])
+            recaptcha = None  # remove the captcha
+            submit = None  # remove submit btn, already defined in the template
+            terms_of_use = BooleanField(terms_of_use_text, [validators.required()])  # add the new field
         return OrcidRegistrationForm(*args, **kwargs)
 
+# use the custom form function
 OAUTHCLIENT_SIGNUP_FORM = my_registration_form
 ```
 
+### New OAuth plugins
 
-##### On the Precedence Mask
+If you need to implement your own OAuth plugin to enable integration with your OAuth provider,
+you can take advantage of the available OAuth helper class. You will need anyway to implement some
+authentication handlers depending on your server authentication workflow. You can take a look
+to existing implementations in [Invenio-OAuthClient](https://invenio-oauthclient.readthedocs.org).
 
-The details for the new account can be either taken from user input (as provided via
-the registration form), or the `user_info` information provided by the external service.
-In some cases it is preferrable to use the service's suggested values (if available)
-rather than the user's arbitrary input (e.g. the email address, since this is used
-in the internal mechanism for matching up previously unknown external accounts with
-local accounts).
-The set of fields for which the external service's `user_info` should be preferred
-over user input (or vice versa) can be specified in each remote app's `precedence_mask`
-configuration property.
-Properties marked with `True` (or omitted from) in the precedence mask will be taken
-from the `user_info` if available, while properties marked with `False` will be taken
-from the user input.
-
-
-## Further Remarks
-
-Additional relevant configuration items from `Flask-Security` include salt values for the calculation of various
-hash values, the requirement for e-mail verification and collection of login statistics:
+In your `invenio.cfg`:
 
 ```python
-SECURITY_CONFIRMABLE = False  # whether or not the e-mail address for local accounts should be verified
-SECURITY_TRACKABLE = False  # activate/deactivate tracking of login statistics
+class MyOAuthSettingsHelper(OAuthSettingsHelper):
+    def __init__():
+        super().__init__(
+            title="my plugin",
+            description="a description",
+            base_url="https://myserver.com/,
+            app_key="MY_APP_CREDENTIALS",
+            access_token_url="https://myserver.com/oauth/token",
+            authorize_url="https://myserver.com/oauth/authorize",
+        )
 
-SECURITY_PASSWORD_SALT = "<SOME.GENERATED.SALT>"
-SECURITY_CONFIRM_SALT = "<SOME.GENERATED.SALT>"
-SECURITY_RESET_SALT = "<SOME.GENERATED.SALT>"
-SECURITY_LOGIN_SALT = "<SOME.GENERATED.SALT>"
-SECURITY_CHANGE_SALT = "<SOME.GENERATED.SALT>"
-SECURITY_REMEMBER_SALT = "<SOME.GENERATED.SALT>"
+    def get_handlers(self):
+        return dict(
+            authorized_handler='invenio_oauthclient.handlers'
+                               ':authorized_signup_handler',
+            disconnect_handler=my_disconnect_handler,
+            signup_handler=dict(
+                info=my_account_info,
+                setup=my_account_setup,
+                view='invenio_oauthclient.handlers:signup_handler',
+            )
+        )
+
+    def get_rest_handlers(self):
+        return dict(
+            authorized_handler='invenio_oauthclient.handlers.rest'
+                               ':authorized_signup_handler',
+            disconnect_handler=my_disconnect_handler,
+            signup_handler=dict(
+                info=my_account_info,
+                setup=my_account_setup,
+                view='invenio_oauthclient.handlers.rest:signup_handler',
+            ),
+            response_handler='invenio_oauthclient.handlers.rest'
+                             ':default_remote_response_handler',
+            authorized_redirect_url='/',
+            disconnect_redirect_url='/',
+            signup_redirect_url='/',
+            error_redirect_url='/'
+        )
+)
+
+def my_disconnect_handler(...):
+    ...
+
+def my_account_info(...):
+    ...
+
+def my_account_setup(...):
+    ...
+
+myOAuthHelper = MyOAuthSettingsHelper()
+
+OAUTHCLIENT_REMOTE_APPS = dict(
+    myoauth=myOAuthHelper.REMOTE_APP,
+)
+
+MY_APP_CREDENTIALS = dict(
+    consumer_key="<my-key>",
+    consumer_secret="<my-secret>",
+)
 ```
 
-Additional security-related configuration items can be found in the
-[documentation for Flask-Security](https://flask-security.readthedocs.io/en/latest/configuration.html).
-## SAML
+### SAML integration
 
-SAML stands for Security Assertion Markup Language. It is an XML-based open-standard for transferring identity data between two parties: an identity provider (IdP) and a service provider (SP).
+!!! warning
+    While the SAML integration has been tested and should be working following the guide below, it might still need
+    some further updates, in particular to make its configuration easier.
 
-**Identity Provider (IDP)** - Performs authentication and passes the user's identity and authorization level to the service provider.
+SAML stands for Security Assertion Markup Language. It is an XML-based open-standard for transferring identity
+data between two parties: an identity provider (IdP) and a service provider (SP).
 
-**Service Provider (SP)** - Trusts the identity provider and authorizes the given user to access the requested resource.
-
-### Configuration of SAML in InvenioRDM
+* **Identity Provider (IDP)**: performs authentication and passes the user's identity and authorization level to the service provider.
+* **Service Provider (SP)**: trusts the identity provider and authorizes the given user to access the requested resource.
 
 #### Prerequisites
 
@@ -348,30 +477,31 @@ SAML stands for Security Assertion Markup Language. It is an XML-based open-stan
 
     `libxml2-dev libxmlsec1-dev`
 
-* Make sure you have installed required module:
+* Make sure you have installed the required Invenio Python module:
 
-    `pip install invenio-saml`
+    ```console
+    cd my-site
+    pipenv run pip install invenio-saml
+    ```
 
-#### What you need to know/have: 
+#### Server information
+
+List of information required to configure the InvenioRDM instance.
 
 * SAML requires a x.509 cert to sign and encrypt elements like `NameID`, `Message`, `Assertion`, `Metadata`.
 
-    * **sp.crt** The public cert of the SP
-    * **sp.key** The private key of the SP
+    * **sp.crt**: the public cert of the SP
+    * **sp.key**: the private key of the SP
 
-* **EntityID** Identifier of the IdP entity  (must be a URI)
+* **EntityID**: Identifier of the IdP entity  (must be a URI)
+* **SSO(singleSignOnService)**: URL Target of the IdP where the Authentication Request Message will be sent.
+* **SLO(singleLogoutService)**: URL Location where the <LogoutRequest> from the IdP will be sent (IdP-initiated logout)
+* **x509cert**: Public X.509 certificate of the IdP
+* **Attributes mapping**: IDP in Assertion of the SAML Response provides a dict with all the user data:
 
-* **SSO(singleSignOnService)** URL Target of the IdP where the Authentication Request Message will be sent.
+    For example, given the following SAML response:
 
-* **SLO(singleLogoutService)** URL Location where the <LogoutRequest> from the IdP will be sent (IdP-initiated logout)
-
-* **x509cert** Public X.509 certificate of the IdP
-
-* **Attributes mapping** IDP in Assertion of the SAML Response provides a dict with all the user data. 
-
-    * i.e. of SAML reponse with attributes:
-
-    ```
+    ```json
     {
         "cn": ["Jhon"],
         "sn": ["Doe"],
@@ -380,20 +510,20 @@ SAML stands for Security Assertion Markup Language. It is an XML-based open-stan
     }
     ```
 
-    Each attribute name can be used as a key to obtain the value. Every attribute is a list of values. A single-valued attribute is a listy of a single element.
+    You can create a mapping to the user account fields required by Invenio as the following:
 
-    * we need to map these in our configuration such:
-
-    ```
-            "mappings": {
+    ```json
+        "mappings": {
             "email": "mail",
             "name": "cn",
             "surname": "sn",
             "external_id": "external_id",
-            },
+        },
     ```
 
-These information can be included in your `invenio.cfg` like so:
+#### Configuration
+
+In your `invenio.cfg`:
 
 ```python
 from invenio_saml.handlers import acs_handler_factory
@@ -487,7 +617,7 @@ SSO_SAML_IDPS = {
                     # Public X.509 certificate of the IdP
                     'x509cert': '<X.509_oneliner>'
             },
-            
+
             # Security settings
             # more on https://github.com/onelogin/python-saml
             'security': {
@@ -513,7 +643,7 @@ SSO_SAML_IDPS = {
                     'http://www.w3.org/2001/04/xmlenc#sha256'
             },
         },
-        
+
         # Account Mapping
         "mappings": {
            "email": "<attribute_email>",
@@ -521,29 +651,32 @@ SSO_SAML_IDPS = {
            "surname": "<attribute_surname>",
            "external_id": "<attribute_external_id>",
           },
-        
+
         # Inject your remote_app to handler
         # Note: keep in mind the string should match
         # given name for authentication provider
         'acs_handler': acs_handler_factory('remote_app'),
     }
 }
-"""SSO SAML Identity provider configuration.
-
-This configuration variable can be used to describe the endpoints used for the
-different IdPs and their settings.
-"""
 ```
 
-### Multiple SAML authentication providers
+#### Show the login button
+
+The last step is to enable the login template, provided by the SAML module, to display the new button
+`Login with SAML`.
+In your `invenio.cfg`:
+
+```python
+OAUTHCLIENT_LOGIN_USER_TEMPLATE = "invenio_saml/login_user.html"
+```
+
+#### Multiple SAML authentication providers
 
 You might have the need to integrate multiple SAML authentication providers at the same time, to allow users to login with one or the other.
-
-You can define multiple SAML apps in your `invenio.cfg`, by extending: `SSO_SAML_IDPS`
+You can define multiple SAML apps in your `invenio.cfg`:
 
 ```python
 SSO_SAML_IDPS = {
-
     # First authentication provider
     "remote_app": {
                  ....
@@ -553,7 +686,6 @@ SSO_SAML_IDPS = {
                  ....
        'acs_handler': acs_handler_factory('remote_app'),
     },
-    
     # Second authentication provider
     "remote_app2": {
                  ....
@@ -563,18 +695,5 @@ SSO_SAML_IDPS = {
                  ....
        'acs_handler': acs_handler_factory('remote_app2'),
     },
-
 }
-```
-
-### Override the login page
-You may want to have SAML appearing in the list of possible login methods in
-the login webpage.
-
-`invenio-saml` provides login page template with configured endpoints based on your configuration.
-In order to activate reading this template.
-Open `invenio.cfg` in your favorite text editor and add the following to the file:
-
-```python
-OAUTHCLIENT_LOGIN_USER_TEMPLATE = "invenio_saml/login_user.html"
 ```
