@@ -34,6 +34,7 @@ nav:
     - Build, setup & run: 'install/build-setup-run.md'
     - Configure: 'install/configuration.md'
     - Use: 'install/run.md'
+    - Migrate: 'install/migrate.md'
     - Destroy: 'install/destroy.md'
     - Troubleshooting: 'install/troubleshoot.md'
   - Customize:
@@ -41,6 +42,7 @@ nav:
     - Styling: 'customize/styling.md'
     - DOI registration: 'customize/dois.md'
     - Authentication: 'customize/authentication.md'
+    - Application Data: 'customize/application_data.md'
     - Metadata: 'customize/metadata.md'
     - Permissions: 'customize/permissions.md'
   - Deploy:

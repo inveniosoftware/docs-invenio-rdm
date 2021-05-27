@@ -197,7 +197,7 @@ curl -k -XGET https://127.0.0.1:5000/api/records | python3 -m json.tool
                         }
                     ],
                     "resource_type": {
-                        "type": "publication"
+                        "id": "publication"
                     },
                     "publication_date": "1971-12/1973-06-22",
                     "publisher": "InvenioRDM",
@@ -346,8 +346,7 @@ curl -k -XPOST -H "Content-Type: application/json" https://127.0.0.1:5000/api/re
 "metadata": {
     "publication_date": "2020-06-01",
     "resource_type": {
-        "type": "image",
-        "subtype": "image-photo"
+        "id": "image-photo"
     },
     "creators": [
         {

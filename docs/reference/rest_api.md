@@ -15,14 +15,18 @@ The only authentication method supported at the moment for REST API calls is by 
 **Authorization HTTP header (recommended)**
 
 ```shell
-curl -H "Authorization: Bearer API-TOKEN" https://127.0.0.1:5000/api/records
+curl -k -H "Authorization: Bearer API-TOKEN" https://127.0.0.1:5000/api/records
 ```
 
 **`access_token` HTTP query string parameter**
 
 ```shell
-curl https://127.0.0.1:5000/api/records?access_token=API-TOKEN
+curl -k https://127.0.0.1:5000/api/records?access_token=API-TOKEN
 ```
+
+!!! info "Insecure connection"
+    The `-k` or `--insecure` option here is simply because a certificate is typically not setup locally. In production,
+    your `curl` calls shouldn't need this option because you will be using a valid certificate.
 
 ### Scopes
 
@@ -97,7 +101,7 @@ Content-Type: application/json
     "enabled": true
   },
   "metadata": {
-    "resource_type": { "type": "image", "subtype": "image-photo" },
+    "resource_type": { "id": "image-photo" },
     "title": "A Romans story",
     "publication_date": "2020-06-01",
     "creators": [
@@ -165,7 +169,7 @@ Content-Type: application/json
     "access_links": "{scheme+hostname}/api/records/{id}/access/links",
   },
   "metadata": {
-    "resource_type": { "subtype": "image-photo", "type": "image" },
+    "resource_type": { "id": "image-photo" },
     "title": "A Romans story",
     "publication_date": "2020-06-01",
     "creators": [
@@ -270,7 +274,7 @@ Content-Type: application/json
     "access_links": "{scheme+hostname}/api/records/{id}/access/links",
   },
   "metadata": {
-    "resource_type": { "subtype": "image-photo", "type": "image" },
+    "resource_type": { "id": "image-photo" },
     "title": "A Romans story",
     "publication_date": "2020-06-01",
     "creators": [
@@ -349,7 +353,7 @@ Content-Type: application/json
     "enabled": false,
   },
   "metadata": {
-    "resource_type": { "type": "image", "subtype": "image-photo" },
+    "resource_type": { "id": "image-photo" },
     "title": "An Updated Romans story",
     "publication_date": "2020-06-01",
     "creators": [
@@ -418,7 +422,7 @@ Content-Type: application/json
     "access_links": "{scheme+hostname}/api/records/{id}/access/links",
   },
   "metadata": {
-    "resource_type": { "subtype": "image-photo", "type": "image" },
+    "resource_type": { "id": "image-photo" },
     "title": "An Updated Romans story",
     "publication_date": "2020-06-01",
     "creators": [
@@ -517,7 +521,7 @@ Content-Type: application/json
     "access_links": "{scheme+hostname}/api/records/{id}/access/links",
   },
   "metadata": {
-    "resource_type": { "subtype": "image-photo", "type": "image" },
+    "resource_type": { "id": "image-photo" },
     "title": "An Updated Romans story",
     "publication_date": "2020-06-01",
     "creators": [
@@ -618,7 +622,7 @@ Content-Type: application/json
     "access_links": "{scheme+hostname}/api/records/{id}/access/links",
   },
   "metadata": {
-    "resource_type": { "subtype": "image-photo", "type": "image" },
+    "resource_type": { "id": "image-photo" },
     "title": "An Updated Romans story",
     "publication_date": "2020-06-01",
     "creators": [
@@ -1062,7 +1066,7 @@ Content-Type: application/json
     "access_links": "{scheme+hostname}/api/records/{id}/access/links",
   },
   "metadata": {
-    "resource_type": { "subtype": "image-photo", "type": "image" },
+    "resource_type": { "id": "image-photo" },
     "title": "An Updated Romans story",
     "publication_date": "2020-06-01",
     "creators": [
@@ -1329,7 +1333,7 @@ Content-Type: application/json
     "access_links": "{scheme+hostname}/api/records/{id}/access/links",
   },
   "metadata": {
-    "resource_type": { "subtype": "image-photo", "type": "image" },
+    "resource_type": { "id": "image-photo" },
     "title": "An Updated Romans story",
     "creators": [
       "person_or_org": {
@@ -1406,7 +1410,7 @@ Content-Type: application/json
     "files": "public"
   },
   "metadata": {
-    "resource_type": { "type": "image", "subtype": "image-photo" },
+    "resource_type": { "id": "image-photo" },
     "title": "A Romans story",
     "publication_date": "2020-06-01",
     "creators": [
@@ -1469,7 +1473,7 @@ Content-Type: application/json
     "access_links": "{scheme+hostname}/api/records/{id}/access/links",
   },
   "metadata": {
-    "resource_type": { "subtype": "image-photo", "type": "image" },
+    "resource_type": { "id": "image-photo" },
     "title": "A Romans story",
     "publication_date": "2020-06-01",
     "creators": [
@@ -1571,7 +1575,7 @@ Content-Type: application/json
     "access_links": "{scheme+hostname}/api/records/{id}/access/links",
   },
   "metadata": {
-    "resource_type": { "subtype": "image-photo", "type": "image" },
+    "resource_type": { "id": "image-photo" },
     "title": "An Updated Romans story",
     "publication_date": "2020-06-01",
     "creators": [
