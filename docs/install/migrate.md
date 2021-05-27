@@ -13,7 +13,19 @@ The Flask-Limiter library is used to control this via its [configuration options
 
 For our purposes, a couple of simple options are available:
 
-### Option 1: RATELIMIT_PER_ENDPOINT
+### Option 1: RATELIMIT_ENABLED
+
+Simply disable rate limiting completely:
+
+In `invenio.cfg`:
+
+```python
+RATELIMIT_ENABLED = False
+```
+
+This disables ALL rate limiting. It's probably good to take your application unreachable from the outside during that time.
+
+### Option 2: RATELIMIT_PER_ENDPOINT
 
 Change the rate limit on the relevant endpoints for record (with files) creation / publication via `RATELIMIT_PER_ENDPOINT`:
 
@@ -31,13 +43,12 @@ RATELIMIT_PER_ENDPOINT = {
 
 Naturally, choose a rate that makes sense for you!
 
-
 !!!info "Rate limit strings"
     Flask-Limiter outlines the [rate limit format](https://flask-limiter.readthedocs.io/en/stable/#rate-limit-string-notation) that you can use to tailor your throughput as you see fit.
 
 Restart your instance so it picks up the changed configuration.
 
-### Option 2: RATELIMIT_AUTHENTICATED_USER
+### Option 3: RATELIMIT_AUTHENTICATED_USER
 
 Change the rate limit for authenticated users via `RATELIMIT_AUTHENTICATED_USER`. Its default is `"5000 per hour;100 per minute"`:
 

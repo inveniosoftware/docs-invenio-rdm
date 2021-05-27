@@ -23,17 +23,11 @@ allows you to easily install an instance and manage it.
 ## Develop
 
 Once you are ready to dive in and work on your own instance - that is,
-configure, customize, debug, and iterate -, you will want to setup your project
+configure, customize, debug, and extend it -, you will want to setup your project
 for development. Various commands are at your disposal and we walk you through
-the workflow for how to be effective with them.
+the workflow for how to be effective with them. We also cover extensions.
 
 [> Getting Started on your Instance](develop/index.md)
-
-## Extend
-
-InvenioRDM supports a great variety of extensions that can adapt it to your infrastructure. It also supports the addition of custom ones.
-
-[> Extensions setup](extensions/index.md)
 
 ## Deploy
 
