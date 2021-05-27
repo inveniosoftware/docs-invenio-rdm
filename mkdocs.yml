@@ -54,12 +54,11 @@ nav:
     - Building your image: 'deployment/image.md'
     - Image registries: 'deployment/registries.md'
     - Benchmarking: 'deployment/benchmark.md'
-  - Extensions:
-    - What can be added?: 'extensions/index.md'
-    - Add your extensions: 'extensions/custom.md'
-    - S3 Storage: 'extensions/s3.md'
   - Develop:
-    - Overview: 'develop/index.md'
+    - Develop: 'develop/index.md'
+    - Develop or edit a module: 'develop/develop.md'
+    - S3 Storage: 'develop/s3.md'
+    - Extensions: 'develop/custom.md'
   - Reference:
     - Overview: reference/index.md
     - CLI: reference/cli.md
