@@ -315,11 +315,16 @@ PERMANENT_SESSION_LIFETIME = timedelta(days=1)
 You can customize the login page template to display different information or
 change its look and feel.
 
-To start with, copy the default login page template from
-`invenio-accounts` module if local login only or from `invenio-oauthclient` if
-external authentication enabled.
+Start from an existing template:
+* if you have local login only, copy the folder [templates/semantic-ui](https://github.com/inveniosoftware/invenio-accounts/tree/master/invenio_accounts/templates/semantic-ui) from `invenio-accounts`.
+* if you have external authentication, copy the folder [templates/semantic-ui](https://github.com/inveniosoftware/invenio-oauthclient/tree/master/invenio_oauthclient/templates/semantic-ui) from `invenio-oauthclient`.
 
-Then, follow the guide [style other pages](/customize/styling/#change-other-pages).
+Then, open the `templates` folder in `my-site` (your instance) and paste it there. Inside the
+`invenio-accounts`/`invenio-oauthclient` folder, keep only the template file that you want to customize.
+
+Edit the Jinja template as you need.
+
+For more information, see the guide [style other pages](/customize/styling/#change-other-pages).
 
 ### Custom user registration form
 
@@ -457,6 +462,31 @@ MY_APP_CREDENTIALS = dict(
     consumer_key="<my-key>",
     consumer_secret="<my-secret>",
 )
+```
+
+### Allow/deny user login
+
+When using external authentication, you might want to allow or deny user login base on some conditions.
+For example, you might want to allow only users with e-mails from a specific domain `@mydomain.com`.
+
+To implement such functionality, you will have to change the implementation of the `signup_handler.info` handler.
+First, see how to implement a [new custom plugin](#new-oauth-plugins). You can also copy/paste an existing one.
+
+Then, implement the `signup_handler.info` handler as the following (example taken from Keycloak plugin):
+
+```python
+from flask import flash
+
+def account_info(remote, resp):
+    user_info = get_user_info(remote, resp)
+    email = user_info["email"].lower()
+    if not email.endswith("@mydomain.com"):
+        flash(_('You are not allowed to login on this website.'), category='danger')
+        abort(401)
+    else:
+        # default implementation
+        ...
+
 ```
 
 ### SAML integration
