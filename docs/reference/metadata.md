@@ -151,7 +151,7 @@ The cardinality of each field is expressed in between parenthesis on the title o
 
 The type of the resource described by the record. The resource type must be selected from a controlled vocabulary which can be customized by each InvenioRDM instance.
 
-This field is compatible with *10. Resource Type`* in DataCite. DataCite allows free text for the specific subtype, however InvenioRDM requires this to come from a customizable controlled vocabulary.
+When interfacing with Datacite, this field is converted to a format compatible with *10. Resource Type`*  (i.e. ``type`` and ``subtype``). DataCite allows free text for the specific subtype, however InvenioRDM requires this to come from a customizable controlled vocabulary.
 
 The resource type vocabulary also defines mappings to other vocabularies such as Schema.org, Citation Style Language, BibTeX, DataCite and OpenAIRE. These mappings are very important for the correct generation of citations due to how different types are being interpreted by reference management systems.
 
@@ -159,16 +159,14 @@ Subfields:
 
 | Field | Cardinality |   Description   |
 |:-----:|:-----------:|:----------------|
-| ``type`` | (1, CV) | The general resource type from the controlled vocabulary. |
-| ``subtype`` | (0-1, CV) | The specific resource type from the controlled vocabulary. |
+| ``id`` | (1, CV) | The resource type id from the controlled vocabulary. |
 
 Example:
 
 ```json
 {
     "resource_type": {
-      "type": "text",
-      "subtype": "article"
+      "id": "image-photo",
     }
 }
 ```
@@ -185,8 +183,9 @@ Subfields:
 
 | Field | Cardinality |   Description   |
 |:-----:|:-----------:|:----------------|
-| ``person_or_org`` | (1) | The person or organization. |
+| ``person_or_org`` &nbsp; | (1) | The person or organization. |
 | ``affiliations`` | (0-n) | Affilations if type is a personal name. |
+| ``role`` | (0-1, CV) | The role of the person or organisation selected from a customizable controlled vocabulary. |
 
 A `person_or_org` is described with the following subfields:
 
@@ -194,7 +193,6 @@ A `person_or_org` is described with the following subfields:
 |:---------------------:|:-----------:|:----------------|
 | ``name``              | (0 if `type` is `personal` / 1 if `type` is `organisational`) | The full name of the organisation. For a person this field is generated from `given_name` and `family_name` |
 | ``type`` | (0-1, CV) | The type of name. Either ``personal`` or ``organisational``. |
-| ``role`` | (0-1, CV) | The role of the person or organisation selected from a customizable controlled vocabulary. |
 | ``given_name`` | (1 if `type` is `personal` / 0 if `type` is `organisational`) | Given name(s) if the type is a personal name. |
 | ``family_name`` &nbsp; | (1 if `type` is `personal` / 0 if `type` is `organisational`) | Family name if type is a personal name. |
 | ``identifiers``  | (0-n) | Person or organisation identifiers. |
@@ -451,8 +449,8 @@ Example:
         "scheme": "orcid",
         "identifier": "0000-0001-8135-3489"
       }],
-      "role": "editor"
     },
+    "role": "editor",
     "affiliations": [{
         "name": "CERN",
         "identifiers": [{
@@ -569,7 +567,7 @@ Example:
       "identifier": "10.1234/foo.bar",
       "scheme": "doi",
       "relation": "cites",
-      "resource_type": {"type": "dataset"}
+      "resource_type": {"id": "dataset"}
   }],
 }
 ```
@@ -624,7 +622,7 @@ Example:
 
 Rights management statement for the resource.
 
-This field is compatible with *16. Rights* in DataCite.
+When interfacing with Datacite, this field is converted to be compatible with *16. Rights*.
 
 The rights field is intended to primarily be linked to a customizable vocabulary
 of licenses (defaults [SPDX](https://spdx.org/licenses/)). It should however also be possible to provide
@@ -637,10 +635,8 @@ Subfields:
 | Field | Cardinality |   Description   |
 |:-----:|:-----------:|:----------------|
 | ``description`` | (0-1) | Human readable license text |
-| ``id`` | (0-1) | Identifier value |
-| ``identifier`` | (0-1) | Identifier value for scheme |
+| ``id`` | (1) | Identifier value |
 | ``link`` | (0-1) | Link to full license |
-| ``scheme`` | (0-1) | Provenance / scheme / namespace for identifier of rights |
 | ``title`` | (0-1) | Human readable license text |
 
 Example:
@@ -648,10 +644,10 @@ Example:
 ```json
 {
   "rights": [{
-      "title": "Creative Commons Attribution 4.0 International",
-      "scheme": "spdx",
-      "identifier": "cc-by-4.0",
-      "url": "https://creativecommons.org/licenses/by/4.0/"
+      "description": "The Creative Commons Attribution license allows re-distribution and re-use of a licensed work on the condition that the creator is appropriately credited.",
+      "id": "cc-by-4.0",
+      "link": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "Creative Commons Attribution 4.0 International"
   }],
 }
 ```
@@ -1158,8 +1154,7 @@ Following is a full example of a record:
   },
   "metadata": {
     "resource_type": {
-      "type": "publication",
-      "subtype": "article"
+      "id": "publication-article"
     },
     "creators": [{
       "person_or_org": {
@@ -1203,8 +1198,8 @@ Following is a full example of a record:
           "scheme": "orcid",
           "identifier": "0000-0001-8135-3489"
         }],
-        "role": "editor"
       },
+      "role": "editor",
       "affiliations": [{
         "name": "CERN",
         "identifiers": [{
@@ -1231,7 +1226,7 @@ Following is a full example of a record:
       "scheme": "doi",
       "relation": "cites",
       "resource_type": {
-        "type": "dataset"
+        "id": "dataset"
       }
     }],
     "sizes": [
@@ -1242,10 +1237,10 @@ Following is a full example of a record:
     ],
     "version": "v1.0",
     "rights": [{
-      "title": "Creative Commons Attribution 4.0 International",
-      "scheme": "spdx",
-      "identifier": "cc-by-4.0",
-      "url": "https://creativecommons.org/licenses/by/4.0/"
+      "description": "The Creative Commons Attribution license allows re-distribution and re-use of a licensed work on the condition that the creator is appropriately credited.",
+      "id": "cc-by-4.0",
+      "link": "https://creativecommons.org/licenses/by/4.0/",
+      "title": "Creative Commons Attribution 4.0 International"
     }],
     "description": "Test",
     "additional_descriptions": [{
