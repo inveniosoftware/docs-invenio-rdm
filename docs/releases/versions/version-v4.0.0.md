@@ -24,15 +24,15 @@ Read the [Authentication](/customize/authentication/) documentation section to g
 
 SAML integration is also supported but it requires a more advanced setup.
 
-#### Disable local login
-
 InvenioRDM v4.0 comes with various new features around authentication.
+
+#### Disable local login
 
 You can now e.g. disable local authentication (login and registration) via a configuration variable.
 
 ![](v4.0/no-local.png)
 
-Changes to the user profile (change full name or e-mail address) can be blocked, which is particularly useful when use only external authentication in a is setup.
+Changes to the user profile (change full name or e-mail address) can be blocked, which is particularly useful when using only external authentication in your setup.
 
 ![](v4.0/profile.png)
 
@@ -59,26 +59,26 @@ We've made it a lot easier to define new facets as well as provide human-readabl
 
 #### Performance improvements
 
-As part of a overall review of the vocabularies integration, we've made several performance optimizations to ensure that searching and landing page rendering is as fast as possible
+As part of a overall review of the vocabularies integration, we've made several performance optimizations to ensure that searching and landing page rendering is as fast as possible.
 
 ### IIIF and file processing
 
-During this month, we've done initial work in integrating the Mirardor v3 IIIF image preview (Google Maps style viewing of large images). Most of the changes will only be visible in the coming v5.0 release. However, backend users will now see that for images (JPEG, PNG and TIFF) we are  automatically extracting the width and height of the image in an async process.
+During this month, we've done initial work in integrating the Mirardor v3 IIIF image preview (Google Maps style viewing of large images). Most of the changes will only be visible in the coming v5.0 release. However, backend users will now see that for images (JPEG, PNG and TIFF) we are automatically extracting the width and height of the image in an async process.
 
 ### Minor features
 
 - Landing page: We now also show the DataCite JSON serialization as export option.
 - Landing page: Minor styling fixes in the deposit form and landing page.
-- Docs: Add documentation on how to instal DejaVu font for rendering DOI badges.
+- Docs: Add documentation on how to install DejaVu font for rendering DOI badges.
 - Deposit form: The given name is no longer required.
-- Internals: Refactored the record service into smaller subservices.
-- Search page: Added a german translation of the page.
+- Internals: Refactored the record service into smaller sub-services.
+- Search page: Added a German translation of the page.
 
 ### Backward incompatible changes
 
 - Resource types - the metadata when creating a record has now changed from having two keys ``{"type": ..., "subtype": ...}`` to having a single key ``{"id": ... }``.
 
-- Image width/height extraction requires having ImageMagick installed (the docker images have been updated to support this).
+- Image width/height extraction requires having `ImageMagick` installed (the Docker images have been updated to support this).
 
 - REMINDER: We are deprecating the usage of ``SITE_HOSTNAME`` in favour of ``SITE_API_URL`` and ``SITE_UI_URL``.
 

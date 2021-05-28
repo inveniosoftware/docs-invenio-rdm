@@ -486,7 +486,6 @@ def account_info(remote, resp):
     else:
         # default implementation
         ...
-
 ```
 
 ### SAML integration
