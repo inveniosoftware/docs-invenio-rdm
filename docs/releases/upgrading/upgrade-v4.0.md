@@ -15,21 +15,37 @@ If unsure, run `invenio-cli install` from inside the instance directory before e
 
 ## Upgrade Steps
 
-First, the Elasticsearch indices are deleted and the packages are upgraded. Then, the upgrade command will be executed, this will migrate the database, run the custom migration script and rebuild the Elasticsearch indices .
+First, latest `invenio-cli` must be installed. After, the Elasticsearch indices are deleted and the packages are upgraded. Then, the upgrade command will be executed, this will migrate the database, run the custom migration script and rebuild the Elasticsearch indices .
 
 This can be achieved by the following Bash shell commands:
 
 ~~~bash
 # NOTE: make sure you're in the instance directory
 
+# Upgrade invenio-cli
+pip install invenio-cli --upgrade
+
 # Delete ES indices
 pipenv run invenio index destroy --yes-i-know
 
-# Upgrade packages
-invenio-cli packages update 4.0
+# Upgraded packages
+sed -i -E '/invenio = "~=3.4.0"/d' Pipfile
+invenio-cli packages update 4.0.0
+invenio-cli assets build -d
+~~~
 
-# We need the server running in another terminal for the next steps
+We need the server running in another terminal for the next steps, in a new console run:
+
+~~~bash
+# NOTE: make sure you're in the instance directory
+
 invenio-cli run
+~~~
+
+Now, when the server started, in the previous console run:
+
+~~~bash
+# NOTE: make sure you're in the instance directory
 
 # Do the migration
 pipenv run invenio rdm-records fixtures
