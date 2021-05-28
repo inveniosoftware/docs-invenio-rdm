@@ -69,6 +69,7 @@ nav:
     - Overview: releases/index.md
     - Maintenance policy: releases/maintenance-policy.md
     - Upgrade contract: releases/upgrading/index.md
+    - Version v4.0.0: releases/versions/version-v4.0.0.md
     - Version v3.0.0: releases/versions/version-v3.0.0.md
     - Version v2.0.0: releases/versions/version-v2.0.0.md
     - Version v1.0.0: releases/versions/version-v1.0.0.md
