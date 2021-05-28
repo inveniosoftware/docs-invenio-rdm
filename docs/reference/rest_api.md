@@ -1855,6 +1855,7 @@ are supported:
 
 - Languages (ISO 639-3 language codes)
 - Licenses (SPDX licenses)
+- Resource types (custom)
 
 ### Search vocabularies
 
@@ -1862,7 +1863,7 @@ are supported:
 
 | Name     | Type    | Location | Description                                                  |
 | -------- | ------- | -------- | ------------------------------------------------------------ |
-| `type`   | string  | path     | Vocabulary (one of ``languages`` or ``licenses``)            |
+| `type`   | string  | path     | Vocabulary (one of `languages`, `licenses` or `resource_types`)            |
 | `q`      | string  | query    | Search query used to filter results based on [ElasticSearch's query string syntax](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax). |
 | `suggest`| string  | query    | One or more words used to suggest records as the user types (i.e. auto-complete). |
 | `tags`   | string  | query    | Filter results to the tag                                    |
@@ -1878,7 +1879,7 @@ Specifically for the `application/vnd.inveniordm.v1+json` format:
 | `ln`     | string | query     | Locale used to localize the title and description (e.g. `en` or `en_US`) |
 | `accept-language` | string | header   | Locale used to localize the title and description (e.g. `en` or `en_US`) |
 
-The API uses a locale matching algorithm, that will do it's best effort to translate the vocabulary record's title and description.
+The API uses a locale matching algorithm, that will do its best effort to translate the vocabulary record's title and description.
 
 **Request**
 
@@ -1912,10 +1913,9 @@ Each hit looks like a vocabulary record below.
 
 | Name     | Type   | Location | Description                                                  |
 | -------- | ------ | -------- | ------------------------------------------------------------ |
-| `type`   | string | path     | Vocabulary (one of `languages` or `licenses`)            |
-| `id`     | string | path     | Identifier of the record, e.g. `eng`                        |
+| `type`   | string | path     | Vocabulary (one of `languages`, `licenses` or `resource_types`)            |
+| `id`     | string | path     | Identifier of the record, e.g. `eng` for `type` `languages`                       |
 | `accept` | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
-| `accept-language` | string | header   | For- `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
 
 Specifically for the `application/vnd.inveniordm.v1+json` format:
 
