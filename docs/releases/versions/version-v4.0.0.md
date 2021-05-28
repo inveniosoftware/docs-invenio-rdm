@@ -22,7 +22,7 @@ InvenioRDM can now easily integrate with external authentication providers. You 
 
 Read the [Authentication](/customize/authentication/) documentation section to get to know how to set it up.
 
-SAML integration is also supported but it requires a more advanced setup.
+SAML integration is also supported, but it requires a more advanced setup.
 
 InvenioRDM v4.0 comes with various new features around authentication.
 
@@ -42,9 +42,9 @@ After the first login with an external authentication provider, InvenioRDM can n
 
 ![](v4.0/accept.png)
 
-When only one external authentication provided is configured, InvenioRDM can be configured to skip the login page and automatically redirect to the external login page.
+When only one external authentication provider is configured, InvenioRDM can be configured to skip the login page and automatically redirect to the external login page.
 
-More detailed documentation describes how a new OAuth plugin integration can be implemented.
+The [detailed documentation](/customize/authentication/) describes how a new OAuth plugin integration can be implemented.
 
 
 ### Vocabularies
@@ -63,11 +63,11 @@ As part of a overall review of the vocabularies integration, we've made several 
 
 ### IIIF and file processing
 
-During this month, we've done initial work in integrating the Mirardor v3 IIIF image preview (Google Maps style viewing of large images). Most of the changes will only be visible in the coming v5.0 release. However, backend users will now see that for images (JPEG, PNG and TIFF) we are automatically extracting the width and height of the image in an async process.
+During this month, we've done initial work in integrating the Mirador v3 IIIF image previewer (Google Maps style viewing of large images). Most of the changes will only be visible in the coming v5.0 release. However, backend users will now see that for images (JPEG, PNG and TIFF) we are automatically extracting the width and height of the image in an async process.
 
 ### Minor features
 
-- Landing page: We now also show the DataCite JSON serialization as export option.
+- Landing page: We now also show the DataCite JSON serialization as an export option.
 - Landing page: Minor styling fixes in the deposit form and landing page.
 - Docs: Add documentation on how to install DejaVu font for rendering DOI badges.
 - Deposit form: The given name is no longer required.
@@ -90,5 +90,5 @@ The development work in this release was done by:
 - CERN (Alex, Ezgi, George, Ines, Javier, Lars, Nico, Pablo, Pablo, Zach)
 - Data Futures (Dan Granville)
 - Northwestern University (Guillaume)
-- TU Wien (Max)
 - TU Graz (Mojib)
+- TU Wien (Max)
