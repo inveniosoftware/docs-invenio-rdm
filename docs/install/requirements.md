@@ -19,6 +19,7 @@ For running and building the application locally you will also need:
 - [npm](https://www.npmjs.com/get-npm) < 7.
 - [Cairo](https://invenio-formatter.readthedocs.io/en/latest/installation.html) needed for badges to be properly displayed.
 - [DejaVu Fonts](https://dejavu-fonts.github.io/Download.html) needed for badges rendering.
+- [ImageMagick](https://imagemagick.org/script/download.php) needed for IIIF file rendering.
 
 !!! warning "Other Python distributions"
     InvenioRDM targets CPython 3.6, 3.7 and 3.8 (lowest 3.6.2). Anaconda Python in particular is not currently supported and other Python distributions are not tested.
