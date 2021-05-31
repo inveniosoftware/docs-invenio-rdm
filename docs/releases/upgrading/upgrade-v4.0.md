@@ -15,6 +15,14 @@ If unsure, run `invenio-cli install` from inside the instance directory before e
 
 ## Upgrade Steps
 
+This release includes some changes in IIIF packages, which require the [ImageMagick](https://imagemagick.org/script/download.php) binaries. These binaries have been added the the base image of inveniosoftware. Therefore, make sure you use the latest base image or you install those binaries. To use the latest base image you just need to pull from dockerhub:
+
+```
+docker pull inveniosoftware/centos7-python:3.6
+docker pull inveniosoftware/centos8-python:3.7
+docker pull inveniosoftware/centos8-python:3.8
+```
+
 First, latest `invenio-cli` must be installed. After, the Elasticsearch indices are deleted and the packages are upgraded. Following this step, you can optionally prepare your custom fixtures. Then, the upgrade command will be executed. This will migrate the database, run the custom migration script and rebuild the Elasticsearch indices.
 
 This can be achieved by the following Bash shell commands:
