@@ -61,7 +61,7 @@ ORCID_APP_CREDENTIALS = dict(
 ```
 
 You can also test ORCID login using the ORCID sandbox environment.
-See the plugin [documentation](fhttps://invenio-oauthclient.readthedocs.io/en/latest/usage.html#module-invenio_oauthclient.contrib.orcid)
+See the plugin [documentation](https://invenio-oauthclient.readthedocs.io/en/latest/usage.html#module-invenio_oauthclient.contrib.orcid)
 for more information.
 
 #### Keycloak
