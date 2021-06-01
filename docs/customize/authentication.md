@@ -277,7 +277,7 @@ remote_app["precedence_mask"] = {"email": True, "profile": {"username": False, "
 
 Properties marked with `True` (or omitted) in the precedence mask will be taken
 from the authentication server user information payload if available, while properties marked
-with `False` will be taken from the user input in the registration from.
+with `False` will be taken from the user input in the registration form.
 
 ## Security
 
