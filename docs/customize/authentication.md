@@ -5,7 +5,7 @@ system only (e.g. OAuth, SAML, Single Sign-on) or both at the same time.
 
 ## Local Authentication
 
-By default, it is only the only authentication system enabled. Users can create a new account using the
+By default, it is only the local authentication system enabled. Users can create a new account using the
 registration form and activate their account after the email confirmation.
 
 You can disable local authentication by setting in `invenio.cfg`:
