@@ -316,6 +316,7 @@ You can customize the login page template to display different information or
 change its look and feel.
 
 Start from an existing template:
+
 * if you have local login only, copy the folder [templates/semantic-ui](https://github.com/inveniosoftware/invenio-accounts/tree/master/invenio_accounts/templates/semantic-ui) from `invenio-accounts`.
 * if you have external authentication, copy the folder [templates/semantic-ui](https://github.com/inveniosoftware/invenio-oauthclient/tree/master/invenio_oauthclient/templates/semantic-ui) from `invenio-oauthclient`.
 
