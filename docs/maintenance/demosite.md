@@ -70,7 +70,7 @@ Create a new release commit and tag for the latest version in the
     deploying `invenio-app-rdm==0.25.9`, then the new release tag of the demo site will be `v0.25.9`.
 
 ```console
-git commit -m "release: v0.25.9"
+git commit --allow-empty -m "release: v0.25.9"
 git tag v0.25.9
 git push origin v0.25.9
 ```
