@@ -57,6 +57,10 @@ Read more about this [here](/customize/application_data/).
 
 We've made it a lot easier to define new facets as well as provide human-readable labels for them. End-users won't notice any changes this month, but the update was important for the coming vocabularies we have to migrate.
 
+However, we had to temporarily disable nested faceting, which was available for the resource type facet. We are working on bringing this feature back in the next release.
+
+![](v4.0/facets.png)
+
 #### Performance improvements
 
 As part of a overall review of the vocabularies integration, we've made several performance optimizations to ensure that searching and landing page rendering is as fast as possible.
