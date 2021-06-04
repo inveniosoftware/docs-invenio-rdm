@@ -38,7 +38,7 @@ pipenv run invenio index destroy --yes-i-know
 
 # Upgraded packages
 sed -i -E '/invenio = "~=3.4.0"/d' Pipfile
-invenio-cli packages update 4.0.0
+invenio-cli packages update 4.0.1
 invenio-cli assets build -d
 ~~~
 
