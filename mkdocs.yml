@@ -43,6 +43,7 @@ nav:
     - DOI registration: 'customize/dois.md'
     - Authentication: 'customize/authentication.md'
     - Application Data: 'customize/application_data.md'
+    - Record landing page: 'customize/record_landing_page.md'
     - Metadata: 'customize/metadata.md'
     - Permissions: 'customize/permissions.md'
   - Deploy:
