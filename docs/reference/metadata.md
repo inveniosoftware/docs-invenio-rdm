@@ -383,11 +383,6 @@ Example:
 
 ### Subjects (0-n)
 
-!!! warning "Work in progress"
-    This field may change after work done on controlled vocabulary management is
-    completed during December 2020.
-
-
 Subject, keyword, classification code, or key phrase describing the resource.
 
 This field is compatible with *6. Subject* in DataCite.
@@ -396,30 +391,20 @@ Subfields:
 
 | Field | Cardinality |   Description   |
 |:-----:|:-----------:|:----------------|
-| ``subject`` | (1) | free text, the subject term.
-| ``identifier`` | (0-1) | the identifier of the term (``scheme`` also be specified).
-| ``scheme`` | (0-1, CV) | the subject scheme or classification code or authority.
-
-Supported subject schemes:
-
-- URL
-- URN
+| ``id`` | (1, CV) | the identifier of the subject.
 
 Example:
 
 ```json
 {
     "subjects": [{
-        "subject": "Brain",
-        "identifier": "D001921",
-        "scheme": "mesh"
-      },
-      {
-        "subject": "Invenio"
+        "id": "D001921",
       }
     ],
 }
 ```
+
+*Upcoming: Non-id bound subjects will be supported.*
 
 ### Contributors (0-n)
 
