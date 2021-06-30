@@ -60,6 +60,7 @@ nav:
     - Develop or edit a module: 'develop/develop.md'
     - S3 Storage: 'develop/s3.md'
     - Extensions: 'develop/custom.md'
+    - Example Subjects Extension: 'develop/example_subjects_extension.md'
   - Reference:
     - Overview: reference/index.md
     - CLI: reference/cli.md
