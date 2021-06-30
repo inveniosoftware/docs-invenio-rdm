@@ -47,3 +47,9 @@ invenio-cli run
 
 !!! note "UI related extensions"
     If your extension adds scss and/or javascript, you will need to update your final static files before running your instance! You can do so with the CLI: `invenio-cli assets update --development --force`
+
+
+## Examples
+
+On the next page, we walk through an example of a subjects extension. You can also look in https://github.com/inveniosoftware/
+for other examples of extensions.
