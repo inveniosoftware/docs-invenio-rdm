@@ -5,7 +5,7 @@ system only (e.g. OAuth, SAML, Single Sign-on) or both at the same time.
 
 ## Local Authentication
 
-By default, it is only the only authentication system enabled. Users can create a new account using the
+By default, only the local authentication system is enabled. Users can create a new account using the
 registration form and activate their account after the email confirmation.
 
 You can disable local authentication by setting in `invenio.cfg`:
@@ -61,7 +61,7 @@ ORCID_APP_CREDENTIALS = dict(
 ```
 
 You can also test ORCID login using the ORCID sandbox environment.
-See the plugin [documentation](fhttps://invenio-oauthclient.readthedocs.io/en/latest/usage.html#module-invenio_oauthclient.contrib.orcid)
+See the plugin [documentation](https://invenio-oauthclient.readthedocs.io/en/latest/usage.html#module-invenio_oauthclient.contrib.orcid)
 for more information.
 
 #### Keycloak
@@ -277,7 +277,7 @@ remote_app["precedence_mask"] = {"email": True, "profile": {"username": False, "
 
 Properties marked with `True` (or omitted) in the precedence mask will be taken
 from the authentication server user information payload if available, while properties marked
-with `False` will be taken from the user input in the registration from.
+with `False` will be taken from the user input in the registration form.
 
 ## Security
 
@@ -316,6 +316,7 @@ You can customize the login page template to display different information or
 change its look and feel.
 
 Start from an existing template:
+
 * if you have local login only, copy the folder [templates/semantic-ui](https://github.com/inveniosoftware/invenio-accounts/tree/master/invenio_accounts/templates/semantic-ui) from `invenio-accounts`.
 * if you have external authentication, copy the folder [templates/semantic-ui](https://github.com/inveniosoftware/invenio-oauthclient/tree/master/invenio_oauthclient/templates/semantic-ui) from `invenio-oauthclient`.
 
