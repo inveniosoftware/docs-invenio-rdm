@@ -51,5 +51,4 @@ invenio-cli run
 
 ## Examples
 
-On the next page, we walk through an example of a subjects extension. You can also look in https://github.com/inveniosoftware/
-for other examples of extensions.
+On the next page, we walk through an example of a subjects extension. You can also look in [https://github.com/inveniosoftware/](https://github.com/inveniosoftware/) for other examples of extensions.

@@ -121,23 +121,24 @@ Only one identifier can be registered per system defined scheme. Each identifier
 
 | Field | Cardinality |   Description   |
 |:-----:|:-----------:|:----------------|
-|``identifier`` | (1) | The identifier value. |
+| ``identifier`` | (1) | The identifier value. |
 | ``provider`` | (1) | The provider identifier used internally by the system. |
 | ``client`` | (0-1) | The client identifier used for connecting with an external registration service. |
 
 ```json
 {
-    "pids": {
-        "doi": {
-            "identifier": "10.5281/zenodo.1234",
-            "provider": "datacite",
-            "client": "zenodo"
-        },
-        "concept-doi": {
-            "identifier": "10.5281/zenodo.1234",
-            "provider": "datacite",
-            "client": "zenodo"
-        }
+  "pids": {
+    "doi": {
+      "identifier": "10.5281/zenodo.1234",
+      "provider": "datacite",
+      "client": "zenodo"
+    },
+    "concept-doi": {
+      "identifier": "10.5281/zenodo.1234",
+      "provider": "datacite",
+      "client": "zenodo"
+    }
+  }
 }
 ```
 
@@ -151,7 +152,7 @@ The cardinality of each field is expressed in between parenthesis on the title o
 
 The type of the resource described by the record. The resource type must be selected from a controlled vocabulary which can be customized by each InvenioRDM instance.
 
-When interfacing with Datacite, this field is converted to a format compatible with *10. Resource Type`*  (i.e. ``type`` and ``subtype``). DataCite allows free text for the specific subtype, however InvenioRDM requires this to come from a customizable controlled vocabulary.
+When interfacing with Datacite, this field is converted to a format compatible with *10. Resource Type*  (i.e. ``type`` and ``subtype``). DataCite allows free text for the specific subtype, however InvenioRDM requires this to come from a customizable controlled vocabulary.
 
 The resource type vocabulary also defines mappings to other vocabularies such as Schema.org, Citation Style Language, BibTeX, DataCite and OpenAIRE. These mappings are very important for the correct generation of citations due to how different types are being interpreted by reference management systems.
 

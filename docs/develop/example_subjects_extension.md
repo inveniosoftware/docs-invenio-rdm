@@ -1,7 +1,7 @@
-# Example Subjects Extensions
+# Example Subjects Extension
 
 A common type of extension is one that adds a controlled vocabulary to your instance. By following the instructions here,
-you can create an extension that InvenioRDM will automatically recognize.
+you can create just such a type of extension that InvenioRDM will automatically recognize.
 
 
 ## Create your module
@@ -14,7 +14,7 @@ cookiecutter https://github.com/inveniosoftware/cookiecutter-invenio-module
 After filling out the prompts, you should see:
 
 ```
-my-subjects-extensions/
+my-subjects-extension/
 ├── AUTHORS.rst
 ├── babel.ini
 ├── CHANGES.rst
@@ -70,7 +70,7 @@ We save that list of subjects in `my_subjects_extension/vocabularies/subjects.ya
     en: Term 4
 ```
 
-Then, we need to refer to this file and provide any additional metadata in `vocabularies.yaml`, a file InvenioRDM looks for when loading controlled vocabularies. The location of `vocabularies.yaml` is arbitrary but the name is important. InvenioRDM looks for `vocabularies.yaml` - beware of typos! For our part, we simply place it in the same directory as `subjects.yaml`.
+Then, we need to tell InvenioRDM where this file is and what are the metadata related to this subject. When loading controlled vocabularies, InvenioRDM looks for a file called `vocabularies.yaml` that holds this information. In it, we refer to the file holding our subjects and provide the following additional metadata: `label` (the human readable name of the subject) and `prefix_url` (the URL prefix that combines with the id to point to the online definiton of the term). The location of `vocabularies.yaml` is arbitrary, but the name is important: InvenioRDM looks for `vocabularies.yaml` - beware of typos! For our part, we simply place it in the same directory as `subjects.yaml`.
 
 ```yaml
 # Example my_subjects_extension/vocabularies/vocabularies.yaml
@@ -92,8 +92,7 @@ resource_types:
   data-file: subjects.yaml
 ```
 
-**2**: `id: myterms` uniquely identifies this subject subtype. It must match the `tags` entry in `subjects.yaml`. The `data-file` points to the subjects file path relative to `vocabularies.yaml`. `label` is what shows up on the UI and `prefix_url` is the URL prefix
-used to construct the full URL to a given subject's landing page online if any. If none, keep the `prefix_url` key, but pass it an empty string.
+**2**: `id: myterms` uniquely identifies this subject subtype. It must match the `tags` entry in `subjects.yaml`. The `data-file` points to the subjects file path relative to the directory of `vocabularies.yaml`. `label` is what shows up on the UI and `prefix_url` is the URL prefix used to construct the full URL to a given subject's landing page online if any. If none, keep the `prefix_url` key, but pass it an empty string.
 
 Before we leave this directory, we will add an `__init__.py` file for good measure. It will allow us to refer to this directory
 with Python's dot module notation in `setup.py`. Our final directory looks like:
@@ -105,10 +104,11 @@ my_subjects_extension/vocabularies/
 └── subjects.yaml
 ```
 
-To round things off, we add an `'invenio_rdm_records.fixtures'` entrypoint to the `setup.py` and point to `my_subjects_extension/vocabularies/`. `'invenio_rdm_records.fixtures'` is how InvenioRDM knows to look in the pointed directory for the `vocabularies.yaml`
+To round things off, we add an `'invenio_rdm_records.fixtures'` entrypoint to the `setup.py` and point to our `vocabularies` directory. `'invenio_rdm_records.fixtures'` is how InvenioRDM knows to look in the pointed directory for the `vocabularies.yaml`
 that is then used to retrieve any controlled vocabularies provided by this extension.
 
 ``` python
+# setup.py
 # Other code ignored for clarity
 setup(
     entry_points={
@@ -121,16 +121,16 @@ setup(
 
 ## Integrate it in your InvenioRDM instance
 
-Once you've taken care to address the auto-generated TODOs and made sure your extension is all good, it can be added to your instance:
+Once you've taken care to address the auto-generated TODOs and made sure your extension is all good, it can be tested with your instance:
 
 ``` bash
 cd path/to/your/instance
 invenio-cli packages install path/to/your/extension
 ```
 
-Make sure it is in your Pipfile when you are ready to go in production.
+When you are ready to go in production, add the extension to your Pipfile e.g. `pipenv install my-subjects-extension` if you've open-sourced it. The command `invenio-cli packages install path/to/your/extension` doesn't add it to your Pipfile as of writing.
 
-For controlled vocabulary extensions, you also need to load the terms in your database and Elasticsearch. Run within your instance directory:
+For controlled vocabulary extensions like ours, we also need to load the terms in the database and Elasticsearch. Run at the top-level of your instance directory:
 
 ```
 pipenv run invenio rdm-records fixtures
