@@ -80,7 +80,7 @@ You might also be wondering: *How do I change the colors so I can make my instan
 
 The theme comprises the header, footer and main color(s). We are going to modify them. It's a good example of the workflow for when `assets/` files change.
 
-Open the `assets/less/site/globals/site.variables` file and edit it as below:
+Open the `assets/less/site/globals/site.overrides` file and edit it as below:
 
 ``` less
 @brandColor: /* your brand color here */ ;
@@ -90,7 +90,7 @@ Open the `assets/less/site/globals/site.variables` file and edit it as below:
 @footerLightColor: @brandColor;
 @footerDarkColor: /* a shade of your brandColor */;
 ```
-
+These variables are originally defined [here](https://github.com/inveniosoftware/invenio-app-rdm/blob/master/invenio_app_rdm/theme/assets/semantic-ui/less/invenio_app_rdm/variables.less).
 !!! info "Less configuration in the future"
 
     We plan on requiring even less variable overrides in the future to change the theme.
@@ -100,7 +100,9 @@ Then, run the `invenio-cli assets build -d` command as above and refresh the pag
 
 You can override any styling variables in your `variables.less` file. The available styling variables are found in the `variables.less` or `.variables` files of the various invenio modules installed. The ones above are originally defined [here](https://github.com/inveniosoftware/invenio-app-rdm/blob/master/invenio_app_rdm/theme/assets/semantic-ui/less/invenio_app_rdm/variables.less). The `invenio-theme` module defines a large number of them [here](https://github.com/inveniosoftware/invenio-theme/tree/master/invenio_theme/assets/semantic-ui/less/invenio_theme/theme).
 
-However, you may notice further changes to the `variables.less` file are not picked up unless `invenio-cli assets build` is run again each time even though we symlinked these files! That's because `.less` files (and javascript files below) always need to be transformed into their final form first. `invenio-cli assets build` does that. There is a way to get the same workflow as `static/` files, without having to re-run that command over and over: run `invenio-cli assets watch`. It watches for changes to assets and rebuilds them automatically.
+However, you may notice further changes to the `variables.less` file are not picked up unless `invenio-cli assets build` is run again each time even though we symlinked these files! That's because `.less` files (and javascript files below) always need to be transformed into their final form first. `invenio-cli assets build` does that. 
+
+There is a way to get the same workflow as `static/` files, without having to re-run that command over and over: run `invenio-cli assets watch`. It watches for changes to assets and rebuilds them automatically.
 
 The workflow for `assets/` files is then:
 
