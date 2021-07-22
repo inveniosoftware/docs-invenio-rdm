@@ -101,9 +101,6 @@ Content-Type: application/json
     "enabled": true
   },
   "metadata": {
-    "resource_type": { "id": "image-photo" },
-    "title": "A Romans story",
-    "publication_date": "2020-06-01",
     "creators": [
       {
         "person_or_org": {
@@ -124,14 +121,15 @@ Content-Type: application/json
         },
         "affiliations": [
           {
-            "identifiers": [
-              {"scheme": "ror", "identifier": "03yrm5c26"}
-            ],
+            "id": "01ggx4157",
             "name": "Entity One"
           }
         ]
       }
-    ]
+    ],
+    "publication_date": "2020-06-01",
+    "resource_type": { "id": "image-photo" },
+    "title": "A Romans story",
   }
 }
 ```
@@ -166,10 +164,15 @@ Content-Type: application/json
     "latest_html": "{scheme+hostname}/records/{id}/latest",
     "self": "{scheme+hostname}/api/records/{id}/draft",
     "files": "{scheme+hostname}/api/records/{id}/draft/files",
-    "access_links": "{scheme+hostname}/api/records/{id}/access/links",
+    "access_links": "{scheme+hostname}/api/records/{id}/access/links"
   },
   "metadata": {
-    "resource_type": { "id": "image-photo" },
+    "resource_type": {
+      "id": "image-photo",
+      "title": {
+        "en": "Photo"
+      }
+    },
     "title": "A Romans story",
     "publication_date": "2020-06-01",
     "creators": [
@@ -192,10 +195,8 @@ Content-Type: application/json
         },
         "affiliations": [
           {
-            "identifiers": [
-              {"scheme": "ror", "identifier": "03yrm5c26"}
-            ],
-            "name": "Entity One"
+            "id": "01ggx4157",
+            "name": "European Organization for Nuclear Research"
           }
         ]
       }
@@ -212,6 +213,7 @@ Content-Type: application/json
       "links": []
     }
   },
+  "pids": {},
   "revision_id": 3,
   "updated": "2020-11-27 10:52:23.969244",
   "versions": {
@@ -222,6 +224,7 @@ Content-Type: application/json
 }
 ```
 
+Note how if a name and id are given for an affiliation identifiers. The instance's name it has for the given id is used e.g. "Entity One" is replaced by "European Organization for Nuclear Research" above.
 
 ### Get a draft record
 
@@ -271,10 +274,15 @@ Content-Type: application/json
     "latest_html": "{scheme+hostname}/records/{id}/latest",
     "self": "{scheme+hostname}/api/records/{id}/draft",
     "files": "{scheme+hostname}/api/records/{id}/draft/files",
-    "access_links": "{scheme+hostname}/api/records/{id}/access/links",
+    "access_links": "{scheme+hostname}/api/records/{id}/access/links"
   },
   "metadata": {
-    "resource_type": { "id": "image-photo" },
+    "resource_type": {
+      "id": "image-photo",
+      "title": {
+        "en": "Photo"
+      }
+    },
     "title": "A Romans story",
     "publication_date": "2020-06-01",
     "creators": [
@@ -295,10 +303,8 @@ Content-Type: application/json
         },
         "affiliations": [
           {
-            "identifiers": [
-              {"scheme": "ror", "identifier": "03yrm5c26"}
-            ],
-            "name": "Entity One"
+            "id": "01ggx4157",
+            "name": "European Organization for Nuclear Research"
           }
         ]
       }
@@ -315,6 +321,7 @@ Content-Type: application/json
       "links": []
     }
   },
+  "pids": {},
   "revision_id": 3,
   "updated": "2020-11-27 10:52:23.969244",
   "versions": {
@@ -350,12 +357,9 @@ Content-Type: application/json
     "files": "restricted"
   },
   "files": {
-    "enabled": false,
+    "enabled": false
   },
   "metadata": {
-    "resource_type": { "id": "image-photo" },
-    "title": "An Updated Romans story",
-    "publication_date": "2020-06-01",
     "creators": [
       {
         "person_or_org": {
@@ -376,14 +380,15 @@ Content-Type: application/json
         },
         "affiliations": [
           {
-            "identifiers": [
-              {"scheme": "ror", "identifier": "03yrm5c26"}
-            ],
+            "id": "01ggx4157",
             "name": "Entity One"
           }
         ]
       }
-    ]
+    ],
+    "publication_date": "2020-06-01",
+    "resource_type": { "id": "image-photo" },
+    "title": "An Updated Romans story"
   }
 }
 ```
@@ -419,10 +424,15 @@ Content-Type: application/json
     "latest_html": "{scheme+hostname}/records/{id}/latest",
     "self": "{scheme+hostname}/api/records/{id}/draft",
     "files": "{scheme+hostname}/api/records/{id}/draft/files",
-    "access_links": "{scheme+hostname}/api/records/{id}/access/links",
+    "access_links": "{scheme+hostname}/api/records/{id}/access/links"
   },
   "metadata": {
-    "resource_type": { "id": "image-photo" },
+    "resource_type": {
+      "id": "image-photo",
+      "title": {
+        "en": "Photo"
+      }
+    },
     "title": "An Updated Romans story",
     "publication_date": "2020-06-01",
     "creators": [
@@ -443,10 +453,8 @@ Content-Type: application/json
         },
         "affiliations": [
           {
-            "identifiers": [
-              {"scheme": "ror", "identifier": "03yrm5c26"}
-            ],
-            "name": "Entity One"
+            "id": "01ggx4157",
+            "name": "European Organization for Nuclear Research"
           }
         ]
       }
@@ -463,6 +471,7 @@ Content-Type: application/json
       "links": []
     }
   },
+  "pids": {},
   "revision_id": 3,
   "updated": "2020-11-27 10:52:23.969244",
   "versions": {
@@ -518,10 +527,15 @@ Content-Type: application/json
     "latest_html": "{scheme+hostname}/records/{id}/latest",
     "self": "{scheme+hostname}/api/records/{id}",
     "files": "{scheme+hostname}/api/records/{id}/files",
-    "access_links": "{scheme+hostname}/api/records/{id}/access/links",
+    "access_links": "{scheme+hostname}/api/records/{id}/access/links"
   },
   "metadata": {
-    "resource_type": { "id": "image-photo" },
+    "resource_type": {
+      "id": "image-photo",
+      "title": {
+        "en": "Photo"
+      }
+    },
     "title": "An Updated Romans story",
     "publication_date": "2020-06-01",
     "creators": [
@@ -542,10 +556,8 @@ Content-Type: application/json
         },
         "affiliations": [
           {
-            "identifiers": [
-              {"scheme": "ror", "identifier": "03yrm5c26"}
-            ],
-            "name": "Entity One"
+            "id": "01ggx4157",
+            "name": "European Organization for Nuclear Research"
           }
         ]
       }
@@ -562,6 +574,7 @@ Content-Type: application/json
       "links": []
     }
   },
+  "pids": {},
   "revision_id": 3,
   "updated": "2020-11-27 10:52:23.969244",
   "versions": {
@@ -619,10 +632,15 @@ Content-Type: application/json
     "latest_html": "{scheme+hostname}/records/{id}/latest",
     "self": "{scheme+hostname}/api/records/{id}/draft",
     "files": "{scheme+hostname}/api/records/{id}/draft/files",
-    "access_links": "{scheme+hostname}/api/records/{id}/access/links",
+    "access_links": "{scheme+hostname}/api/records/{id}/access/links"
   },
   "metadata": {
-    "resource_type": { "id": "image-photo" },
+    "resource_type": {
+      "id": "image-photo",
+      "title": {
+        "en": "Photo"
+      }
+    },
     "title": "An Updated Romans story",
     "publication_date": "2020-06-01",
     "creators": [
@@ -643,10 +661,8 @@ Content-Type: application/json
         },
         "affiliations": [
           {
-            "identifiers": [
-              {"scheme": "ror", "identifier": "03yrm5c26"}
-            ],
-            "name": "Entity One"
+            "id": "01ggx4157",
+            "name": "European Organization for Nuclear Research"
           }
         ]
       }
@@ -663,6 +679,7 @@ Content-Type: application/json
       "links": []
     }
   },
+  "pids": {},
   "revision_id": 3,
   "updated": "2020-11-27 10:52:23.969244",
   "versions": {
@@ -945,7 +962,10 @@ Content-Type: application/json
   "mimetype": "image/png",
   "size": 89364.0,
   "status": "completed",
-  "metadata": null,
+  "metadata": {
+    "width": 960,
+    "height": 640
+  },
   "file_id": "2151fa94-6dc3-4965-8df9-ec73ceb9175c",
   "version_id": "57ad8c66-b934-49c9-a46f-38bf5aa0374f",
   "bucket_id": "90b5b318-114a-4b87-bc9d-0d018b9363d3",
@@ -1063,17 +1083,25 @@ Content-Type: application/json
     "latest_html": "{scheme+hostname}/records/{id}/latest",
     "self": "{scheme+hostname}/api/records/{id}",
     "files": "{scheme+hostname}/api/records/{id}/files",
-    "access_links": "{scheme+hostname}/api/records/{id}/access/links",
+    "access_links": "{scheme+hostname}/api/records/{id}/access/links"
   },
   "metadata": {
-    "resource_type": { "id": "image-photo" },
+    "resource_type": {
+      "id": "image-photo",
+      "title": {
+        "en": "Photo"
+      }
+    },
     "title": "An Updated Romans story",
     "publication_date": "2020-06-01",
     "creators": [
-      "person_or_org": {
-        "family_name": "Brown",
-        "given_name": "Troy",
-        "type": "personal"
+      {
+        "person_or_org": {
+          "given_name": "Troy",
+          "type": "personal",
+          "name": "Brown, Troy",
+          "family_name": "Brown"
+        }
       },
       {
         "person_or_org": {
@@ -1087,10 +1115,8 @@ Content-Type: application/json
         },
         "affiliations": [
           {
-            "identifiers": [
-              {"scheme": "ror", "identifier": "03yrm5c26"}
-            ],
-            "name": "Entity One"
+            "id": "01ggx4157",
+            "name": "European Organization for Nuclear Research"
           }
         ]
       }
@@ -1107,6 +1133,7 @@ Content-Type: application/json
       "links": []
     }
   },
+  "pids": {},
   "revision_id": 3,
   "updated": "2020-11-27 10:52:23.969244",
   "versions": {
@@ -1330,15 +1357,21 @@ Content-Type: application/json
     "latest_html": "{scheme+hostname}/records/{id}/latest",
     "self": "{scheme+hostname}/api/records/{id}/draft",
     "files": "{scheme+hostname}/api/records/{id}/draft/files",
-    "access_links": "{scheme+hostname}/api/records/{id}/access/links",
+    "access_links": "{scheme+hostname}/api/records/{id}/access/links"
   },
   "metadata": {
-    "resource_type": { "id": "image-photo" },
+    "resource_type": {
+      "id": "image-photo",
+      "title": {
+        "en": "Photo"
+      }
+    },
     "title": "An Updated Romans story",
     "creators": [
       "person_or_org": {
         "family_name": "Brown",
         "given_name": "Troy",
+        "name": "Brown, Troy",
         "type": "personal"
       },
       {
@@ -1353,10 +1386,8 @@ Content-Type: application/json
         },
         "affiliations": [
           {
-            "identifiers": [
-              {"scheme": "ror", "identifier": "03yrm5c26"}
-            ],
-            "name": "Entity One"
+            "id": "01ggx4157",
+            "name": "European Organization for Nuclear Research"
           }
         ]
       }
@@ -1373,6 +1404,7 @@ Content-Type: application/json
       "links": []
     }
   },
+  "pids": {},
   "revision_id": 3,
   "updated": "2020-11-27 10:52:23.969244",
   "versions": {
@@ -1386,141 +1418,34 @@ Content-Type: application/json
 Notice that a new draft is returned with `publication_date` and `version` removed (as those are typically replaced in a new version).
 The `versions.index` is also incremented. The `{parent-id}` connects the different versions together.
 
-Use (Publish a draft record)[#publish-a-draft-record] to publish it.
+Use [Publish a draft record](#publish-a-draft-record) to publish it.
 
-`POST /api/records`
+### Get all versions
+
+`GET /api/records/{id}/versions`
 
 **Parameters**
 
-| Name       | Type   | Location | Description                                                  |
-| ---------- | ------ | -------- | ------------------------------------------------------------ |
-| `access`   | object | body     | [Access options](metadata.md#access-information) for the record. |
-| `metadata` | object | body     | [Metadata](metadata.md#metadata) of the record. |
-
+| Name | Type   | Location | Description                                   |
+| ---- | ------ | -------- | --------------------------------------------- |
+| `id` | string | path     | Identifier of the record, e.g.  `4d0ns-ntd89` |
 
 **Request**
 
 ```http
-POST /api/records HTTP/1.1
-Content-Type: application/json
-
-{
-  "access": {
-    "record": "public",
-    "files": "public"
-  },
-  "metadata": {
-    "resource_type": { "id": "image-photo" },
-    "title": "A Romans story",
-    "publication_date": "2020-06-01",
-    "creators": [
-      "person_or_org": {
-        "family_name": "Brown",
-        "given_name": "Troy",
-        "type": "personal"
-      },
-      {
-        "person_or_org": {
-          "family_name": "Collins",
-          "given_name": "Thomas",
-          "identifiers": [
-            {"scheme": "orcid", "identifier": "0000-0002-1825-0097"}
-          ],
-          "name": "Collins, Thomas",
-          "type": "personal"
-        },
-        "affiliations": [
-          {
-            "identifiers": [
-              {"scheme": "ror", "identifier": "03yrm5c26"}
-            ],
-            "name": "Entity One"
-          }
-        ]
-      }
-    ]
-  }
-}
+GET /api/records/{id}/versions HTTP/1.1
 ```
 
 **Response**
 
 ```http
-HTTP/1.1 201 CREATED
+HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-  "access": {
-    "record": "public",
-    "files": "public",
-    "embargo": {
-      "reason": null,
-      "active": false
-    }
-  },
-  "created": "2020-11-27 10:52:23.945755",
-  "expires_at": "2020-11-27 10:52:23.945868",
-  "id": "{id}",
-  "is_published": false,
-  "links": {
-    "latest": "{scheme+hostname}/api/records/{id}/versions/latest",
-    "versions": "{scheme+hostname}/api/records/{id}/versions",
-    "self_html": "{scheme+hostname}/uploads/{id}",
-    "publish": "{scheme+hostname}/api/records/{id}/draft/actions/publish",
-    "latest_html": "{scheme+hostname}/records/{id}/latest",
-    "self": "{scheme+hostname}/api/records/{id}/draft",
-    "files": "{scheme+hostname}/api/records/{id}/draft/files",
-    "access_links": "{scheme+hostname}/api/records/{id}/access/links",
-  },
-  "metadata": {
-    "resource_type": { "id": "image-photo" },
-    "title": "A Romans story",
-    "publication_date": "2020-06-01",
-    "creators": [
-      "person_or_org": {
-        "family_name": "Brown",
-        "given_name": "Troy",
-        "type": "personal"
-      },
-      {
-        "person_or_org": {
-          "family_name": "Collins",
-          "given_name": "Thomas",
-          "identifiers": [
-            {"scheme": "orcid", "identifier": "0000-0002-1825-0097"}
-          ],
-          "name": "Collins, Thomas",
-          "type": "personal"
-        },
-        "affiliations": [
-          {
-            "identifiers": [
-              {"scheme": "ror", "identifier": "03yrm5c26"}
-            ],
-            "name": "Entity One"
-          }
-        ]
-      }
-    ],
-  },
-  "parent": {
-    "id": "{parent-id}",
-    "access": {
-      "owned_by": [
-        {
-            "user": {user-id}
-        }
-      ],
-      "links": []
-    }
-  },
-  "revision_id": 3,
-  "updated": "2020-11-27 10:52:23.969244",
-  "versions": {
-    "index": 1,
-    "is_latest": false,
-    "is_latest_draft": true
-  }
+  "hits": {...},
+  "sortBy": "version",
+  "links": {...}
 }
 ```
 
@@ -1556,12 +1481,14 @@ Content-Type: application/json
     "embargo": {
       "reason": null,
       "active": false
-    }
+    },
+    "status": "restricted"
   },
   "created": "2020-11-27 10:52:23.945755",
   "expires_at": "2020-11-27 10:52:23.945868",
   "files": {
-    "enabled": true
+    "enabled": true,
+    "order": []
   },
   "id": "{latest-version-id}",
   "is_published": true,
@@ -1572,10 +1499,15 @@ Content-Type: application/json
     "latest_html": "{scheme+hostname}/records/{id}/latest",
     "self": "{scheme+hostname}/api/records/{id}",
     "files": "{scheme+hostname}/api/records/{id}/files",
-    "access_links": "{scheme+hostname}/api/records/{id}/access/links",
+    "access_links": "{scheme+hostname}/api/records/{id}/access/links"
   },
   "metadata": {
-    "resource_type": { "id": "image-photo" },
+    "resource_type": {
+      "id": "image-photo",
+      "title": {
+        "en": "Photo"
+      }
+    },
     "title": "An Updated Romans story",
     "publication_date": "2020-06-01",
     "creators": [
@@ -1596,10 +1528,8 @@ Content-Type: application/json
         },
         "affiliations": [
           {
-            "identifiers": [
-              {"scheme": "ror", "identifier": "03yrm5c26"}
-            ],
-            "name": "Entity One"
+            "id": "01ggx4157",
+            "name": "European Organization for Nuclear Research"
           }
         ]
       }
@@ -1616,6 +1546,7 @@ Content-Type: application/json
       "links": []
     }
   },
+  "pids": {},
   "revision_id": 3,
   "updated": "2020-11-27 10:52:23.969244",
   "versions": {
@@ -1859,11 +1790,13 @@ are supported:
 
 ### Search vocabularies
 
+`GET /api/vocabularies/{type}`
+
 **Parameters**
 
 | Name     | Type    | Location | Description                                                  |
 | -------- | ------- | -------- | ------------------------------------------------------------ |
-| `type`   | string  | path     | Vocabulary (one of `languages`, `licenses` or `resource_types`)            |
+| `type`   | string  | path     | Vocabulary (one of `languages`, `licenses` or `resourcetypes`)            |
 | `q`      | string  | query    | Search query used to filter results based on [ElasticSearch's query string syntax](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax). |
 | `suggest`| string  | query    | One or more words used to suggest records as the user types (i.e. auto-complete). |
 | `tags`   | string  | query    | Filter results to the tag                                    |
@@ -1896,7 +1829,6 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-  "aggregations": {...},
   "hits": {...},
   "links": {...},
   "sortBy": ...,
@@ -1904,6 +1836,7 @@ Content-Type: application/json
 ```
 
 Each hit looks like a vocabulary record below.
+
 
 ### Get a vocabulary record
 
@@ -1958,6 +1891,25 @@ Content-Type: application/json
 }
 ```
 
+### Specific vocabularies
+
+Some vocabularies have their own endpoints because their size and structure is different from the vocabularies above.
+We refer to these vocabularies as "specific vocabularies".
+
+Their search and get endpoints have the following shape:
+
+**Search**
+
+`GET /api/{type}`
+
+**Get**
+
+`GET /api/{type}/{id}`
+
+Their **Parameters** are the same. Their responses are similar but have fields dependent on the specific vocabulary.
+
+Supported `type`s so far are: `affiliations` and `subjects`.
+
 
 ## Communities (Preview)
 
@@ -1981,7 +1933,7 @@ Content-Type: application/json
   "access": {
     "visibility": "public",
     "member_policy": "open",
-    "record_policy": "open",
+    "record_policy": "open"
   },
   "id": "my_community_id",
   "metadata": {
@@ -2096,7 +2048,7 @@ Content-Type: application/json
   "access": {
     "visibility": "public",
     "member_policy": "open",
-    "record_policy": "open",
+    "record_policy": "open"
   },
   "id": "my_community_id",
   "metadata": {
@@ -2147,7 +2099,7 @@ Content-Type: application/json
       {
           "user": {user-id}
       }
-    ],
+    ]
   },
   "created": "2020-11-27 10:52:23.945755",
   "updated": "2020-11-27 10:55:23.945868",
@@ -2247,7 +2199,7 @@ Content-Type: application/json
       {
           "user": {user-id}
       }
-    ],
+    ]
   },
   "created": "2020-11-27 10:52:23.945755",
   "updated": "2020-11-27 10:52:23.945868",
@@ -2432,7 +2384,7 @@ Content-Type: application/json
   "access": {
     "visibility": "public",
     "member_policy": "open",
-    "record_policy": "open",
+    "record_policy": "open"
   },
   "id": "my_new_community_id",
   "metadata": {
