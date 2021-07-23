@@ -8,7 +8,7 @@ repo_name: 'docs-invenio-rdm'
 repo_url: 'https://github.com/inveniosoftware/docs-invenio-rdm'
 
 # Copyright
-copyright: 'Copyright &copy; 2019-2020 CERN and Northwestern University.'
+copyright: 'Copyright &copy; 2019-2021 CERN, Northwestern University and contributors. This work is licensed under a Creative Commons Attribution 4.0 International License.'
 
 # Configuration
 theme:
@@ -71,6 +71,7 @@ nav:
     - Overview: releases/index.md
     - Maintenance policy: releases/maintenance-policy.md
     - Upgrade contract: releases/upgrading/index.md
+    - Version v5.0.0: releases/versions/version-v5.0.0.md
     - Version v4.0.0: releases/versions/version-v4.0.0.md
     - Version v3.0.0: releases/versions/version-v3.0.0.md
     - Version v2.0.0: releases/versions/version-v2.0.0.md
@@ -90,7 +91,6 @@ nav:
     - RFCs: maintenance/rfcs.md
   - Contribute:
     - Contribute to InvenioRDM: contribute/index.md
-
 
 # Customization
 extra:
