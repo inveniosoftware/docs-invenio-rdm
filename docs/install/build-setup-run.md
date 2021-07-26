@@ -80,18 +80,6 @@ The container install is good for a quick preview, or if you don't want all depe
 
 ### Build
 
-By default ``invenio.cfg`` is configured for the development installation which means we need to change it. We could also pass the required changes as environment variable when running the containers. Here we show how to change the invenio.cfg files and later we show how to pass the same changes as environment variables instead.
-
-Change ``invenio.cfg`` as follows:
-
-```diff
--SITE_UI_URL = f"https://{SITE_HOSTNAME}:5000"
-+SITE_UI_URL = "https://127.0.0.1"
-
--SITE_API_URL = f"https://{SITE_HOSTNAME}:5000/api"
-+SITE_API_URL = "https://127.0.0.1/api"
-```
-
 For the container build, you first build the Docker application image using
 the following command:
 
@@ -165,14 +153,6 @@ The command will:
 You can now run the application container and related services:
 
 ```bash
-invenio-cli containers start
-```
-
-If you didn't change the ``invenio.cfg`` file above. You will need to pass the equivalent environment variables:
-
-```bash
-export INVENIO_SITE_UI_URL=https://127.0.0.1
-export INVENIO_SITE_API_URL=https://127.0.0.1/api
 invenio-cli containers start
 ```
 
