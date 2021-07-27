@@ -1,5 +1,7 @@
 # InvenioRDM v5.0
 
+*2021-07-23*
+
 !!! Warning
 
     InvenioRDM v5.0 is **NOT** yet suitable for production services.
