@@ -54,7 +54,8 @@ nav:
     - Building your image: 'deployment/image.md'
     - Image registries: 'deployment/registries.md'
     - Benchmarking: 'deployment/benchmark.md'
-  - Develop: 'develop/index.md'
+  - Develop:
+    - Overview: 'develop/index.md'
     - Getting started: 'develop/getting-started.md'
     - Develop or edit a module: 'develop/develop.md'
     - S3 Storage: 'develop/s3.md'
