@@ -54,8 +54,8 @@ nav:
     - Building your image: 'deployment/image.md'
     - Image registries: 'deployment/registries.md'
     - Benchmarking: 'deployment/benchmark.md'
-  - Develop:
-    - Develop: 'develop/index.md'
+  - Develop: 'develop/index.md'
+    - Getting started: 'develop/getting-started.md'
     - Develop or edit a module: 'develop/develop.md'
     - S3 Storage: 'develop/s3.md'
     - Extensions: 'develop/custom.md'
@@ -70,14 +70,17 @@ nav:
     - Overview: releases/index.md
     - Maintenance policy: releases/maintenance-policy.md
     - Upgrade contract: releases/upgrading/index.md
-    - Version v5.0.0: releases/versions/version-v5.0.0.md
-    - Version v4.0.0: releases/versions/version-v4.0.0.md
-    - Version v3.0.0: releases/versions/version-v3.0.0.md
-    - Version v2.0.0: releases/versions/version-v2.0.0.md
-    - Version v1.0.0: releases/versions/version-v1.0.0.md
-    - Upgrade v3 to v4: releases/upgrading/upgrade-v4.0.md
-    - Upgrade v2 to v3: releases/upgrading/upgrade-v3.0.md
-    - Upgrade v1 to v2: releases/upgrading/upgrade-v2.0.md
+    - Versions:
+      - Version v6.0.0: releases/versions/version-v6.0.0.md
+      - Version v5.0.0: releases/versions/version-v5.0.0.md
+      - Version v4.0.0: releases/versions/version-v4.0.0.md
+      - Version v3.0.0: releases/versions/version-v3.0.0.md
+      - Version v2.0.0: releases/versions/version-v2.0.0.md
+      - Version v1.0.0: releases/versions/version-v1.0.0.md
+    - Upgrade guide:
+      - Upgrade from v3 to v4: releases/upgrading/upgrade-v4.0.md
+      - Upgrade from v2 to v3: releases/upgrading/upgrade-v3.0.md
+      - Upgrade from v1 to v2: releases/upgrading/upgrade-v2.0.md
   - Maintainers:
     - Overview: maintenance/index.md
     - Newcomers: maintenance/newcomers.md
