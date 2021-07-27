@@ -1,14 +1,13 @@
 # Project information
-site_name: 'Documentation'
-site_description: 'InvenioRDM documentation site'
+site_name: 'Turn-key research data management repository'
 site_url: 'https://inveniordm.docs.cern.ch'
 
 # Repository
-repo_name: 'docs-invenio-rdm'
 repo_url: 'https://github.com/inveniosoftware/docs-invenio-rdm'
 
 # Copyright
-copyright: 'Copyright &copy; 2019-2021 CERN, Northwestern University and contributors. This work is licensed under a Creative Commons Attribution 4.0 International License.'
+copyright: 'Copyright &copy; 2019-2021 CERN, Northwestern University and contributors.'
+license: This work is licensed under a Creative Commons Attribution 4.0 International License.
 
 # Configuration
 theme:
@@ -16,13 +15,13 @@ theme:
   custom_dir: 'theme'
   palette:
     primary: 'white'
+    accent: 'white'
   font:
-    text: 'Open Sans'
     code: 'Roboto Mono'
   logo: 'images/logo-rdm.png'
   favicon: 'images/favicon.svg'
-  feature:
-    tabs: true
+  features:
+    - navigation.tabs
 
 nav:
   - Home: 'index.md'
@@ -95,20 +94,15 @@ nav:
 # Customization
 extra:
   social:
-  - type: 'github'
+  - icon: 'fontawesome/brands/github'
     link: 'https://github.com/inveniosoftware'
-  - type: 'twitter'
-    link: 'https://twitter.com/inveniosoftware'
-  - type: 'comments'
-    link: 'https://invenio-talk.web.cern.ch/c/projects/invenio-rdm'
-  - type: 'globe'
-    link: 'https://inveniosoftware.org/products/rdm/'
 extra_css:
   - stylesheets/extra.css
 
 # Extensions
 markdown_extensions:
   - admonition
+  - attr_list
   - codehilite:
       guess_lang: false
   - toc:
