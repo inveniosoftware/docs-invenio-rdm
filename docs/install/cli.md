@@ -27,18 +27,13 @@ To make sure you've installed successfully:
 ```bash
 invenio-cli --version
 ```
-```console
-invenio-cli, version 0.x.0
-```
 
-!!! note "CLI version"
-     The CLI is in pre 1.0 release. The latest released version is listed on [GitHub](https://github.com/inveniosoftware/invenio-cli/releases) and available via [PyPi](https://pypi.org/project/invenio-cli/)
-
+You'll find the latest released version number on [PyPi](https://pypi.org/project/invenio-cli/).
 
 ### Commands reference
 
 For a full reference of available commands, see the [CLI reference](/reference/cli/)
 
 
-!!! tip
+!!! tip "Shell tab completion"
      Invenio-CLI has support for Shell tab completion of commands. See [Shell completion](/reference/cli/#shell-completion).

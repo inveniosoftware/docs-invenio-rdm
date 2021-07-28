@@ -1,9 +1,5 @@
 # Maintenance policy
 
-!!! warning
-
-    InvenioRDM is NOT production ready yet!
-
 Our goal is to ensure that InvenioRDM **long-term support releases** are supported with bug and security fixes for minimum one year after the release date and possibly longer.  We aim at having new major releases every 3-months, especially in the early life of InvenioRDM. We strive our best to ensure that upgrades between major versions are fairly straight-forward to ensure users follow our latest releases.
 
 The maintenance policy is striving to strike a balance between maintaining a rock solid secure product while ensuring that users migrate to latest releases and ensuring that we have enough resources to actually support the maintenance policy.
@@ -26,6 +22,7 @@ Following is an overview of future end of life (EOL) dates for currently maintai
 
 | Release | Earliest EOL Date | Maintained until |
 | ------- | ------------------|----------------- |
+| v5.0.0  | 2022-07-30        | v7.0.0           |
 | v5.0.0  | 2021-07-29        | v6.0.0           |
 | v4.0.0  | 2021-06-30        | v5.0.0           |
 | v3.0.0  | 2021-05-28        | v4.0.0           |
@@ -38,6 +35,7 @@ The following releases have reached end of life:
 
 | Release | EOL Date    |
 | ------- | ----------- |
+| v4.0.0  | 2021-07-30  |
 | v4.0.0  | 2021-07-23  |
 | v3.0.0  | 2021-05-28  |
 | v2.0.0  | 2021-04-28  |

@@ -144,7 +144,7 @@ The command will:
 
     You can skip the creation of demo records by using the ``--no-demo-data`` option (``-N`` for short):
 
-    ``` console
+    ```
     invenio-cli containers setup --no-demo-data
     ```
 
@@ -162,7 +162,7 @@ Go and explore your InvenioRDM instance at [https://127.0.0.1](https://127.0.0.1
     Due to Content Security Policy (CSP) headers it is important that you visit ``127.0.0.1``, and not ``localhost`` unless you set ``INVENIO_SITE_UI_URL`` and ``INVENIO_SITE_API_URL`` to ``https://localhost`` and ``https://localhost/api`` respectively.
 
 !!! tip
-    You can provide other configuration variables by setting them as environment variables with the ``INVENIO_`` prefix just like we did for the ``INVENIO_SITE_NAME`` example above.
+    You can provide other configuration variables by setting them as environment variables with the ``INVENIO_`` prefix just like we did for the ``INVENIO_SITE_UI_URL`` example above.
 
 ## Option 2: Local install
 
@@ -222,7 +222,7 @@ Putting templates...
 
     You can skip the creation of demo records by using the ``--no-demo-data`` option (``-N`` for short):
 
-    ``` console
+    ```
     invenio-cli services setup --no-demo-data
     ```
 
@@ -243,20 +243,6 @@ Go and explore your InvenioRDM instance at [https://127.0.0.1:5000](https://127.
 !!! tip "Change the host and port"
     By default, the host is `127.0.0.1` and the port is `5000`. Pass `--host` and `--port`
     to change them e.g., `invenio-cli run --host 127.0.0.2 --port 5001`.
-
-### Admin account
-
-To create a user, run:
-
-```
-pipenv run invenio users create admin@test.ch --password=123456 --active
-```
-
-Then, to assign them the admin role:
-
-```
-pipenv run invenio roles add admin@test.ch admin
-```
 
 ## Troubleshooting
 

@@ -34,6 +34,13 @@ export INVENIO_SQLALCHEMY_DATABASE_URI="postgresql+psycopg2://my-site:my-site@lo
 !!! info
     Environment variables takes precedence over values in the ``invenio.cfg`` configuration file.
 
+## Setting secrets and credentials
+
+You should ALWAYS set secrets or credentials (e.g. database password etc) in the configuration via environment variables.
+
+In particular, you should NEVER set secrets or credentials in the configuration file, and you should NEVER commit that file to e.g a Git source code repository.
+
+The credentials you do find in the ``invenio.cfg`` file are for the default development server.
 
 ## Options
 
