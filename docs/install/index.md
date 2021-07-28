@@ -10,10 +10,6 @@ This guide covers how to install InvenioRDM locally on your machine, how to setu
 
 Checkout the [Deploy Guide](../deployment/index.md) if you are looking for a guide on how to deploy InvenioRDM to a server infrastructure.
 
-!!! info "Project status"
-    **InvenioRDM is NOT suitable for production use yet.** We expect to release the first Long-Term Support (LTS) release of InvenioRDM in July 2021. Until then, we are making a new major-version release every month with breaking changes.
-    For more information, see our [project roadmap](https://inveniosoftware.org/products/rdm/roadmap/).
-
 ## Quick start
 
 #### [1. Install CLI tool](cli.md)

@@ -16,12 +16,12 @@ The CLI will require the following data:
 - **Author name**: Your name or that of your organization
 - **Author email**: Email for communication
 - **Year**: The current year
-- **Python version**: 3.8 (default), 3.6, 3.7, or 3.9 (beta).
-- **Database**: PostgreSQL (default), MySQL or SQLite (only for local testing)
+- **Python version**: 3.8 (default), 3.6, 3.7, or 3.9.
+- **Database**: PostgreSQL (default) - we hope to support MySQL in the future.
 - **Elasticsearch version**: 7 (default) or 6
 - **Storage backend**: Local file system (default) or in a S3-like backend. If S3 is chosen a MinIO container is provided, however, you can set it up to use your own. See more in [S3 extension](../develop/s3.md)
 
-It will also generate a test private key.
+It will also generate a test private key which is needed for SSL support in the development server.
 
 Let's do it! Pressing `[Enter]` selects the option in brackets `[]`.
 
@@ -44,11 +44,10 @@ Select python_version:
 1 - 3.8
 2 - 3.7
 3 - 3.6
-4 - 3.9 (alpha)
+4 - 3.9
 Choose from 1, 2, 3, 4 [1]:
 Select database:
 1 - postgresql
-2 - mysql
 Choose from 1, 2 [1]:
 Select elasticsearch:
 1 - 7
