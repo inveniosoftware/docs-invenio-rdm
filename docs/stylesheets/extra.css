@@ -10,8 +10,7 @@
 }
 
 [data-md-color-primary="white"] .md-header {
-
-    background-image: linear-gradient(
+    background: linear-gradient(
         90deg,
         rgba(3, 119, 205, 1),
         rgba(3, 119, 205, 1) 52.52%,
@@ -20,12 +19,11 @@
     color: #ffffff;
 }
 [data-md-color-primary="white"] .md-tabs  {
-    background-image: linear-gradient(
-        90deg,
+    background: linear-gradient(
+        12deg,
         rgba(3, 119, 205, 1),
         rgba(3, 119, 205, 1) 52.52%,
-        rgba(251, 130, 115, 0.69)
-        );
+        rgba(251, 130, 115, 0.69));
     color: #ffffff;
 }
 
@@ -152,13 +150,63 @@ html .md-footer-meta .md-footer-meta__inner a {
     font-size: small;
 }
 
-.rdm-hero {
-    background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1123 258'><path d='M1124,2c0,0 0,256 0,256l-1125,0l0,-48c0,0 16,5 55,5c116,0 197,-92 325,-92c121,0 114,46 254,46c140,0 214,-167 572,-166Z' style='fill: hsla(0, 0%, 100%, 1)' /></svg>") no-repeat bottom, linear-gradient(
-        90deg,
+.rdm-hero-bg {
+    display: block;
+    width: 100%;
+    height: 673px;
+    background: linear-gradient(
+        12deg,
         rgba(3, 119, 205, 1),
         rgba(3, 119, 205, 1) 52.52%,
-        rgba(251, 130, 115, 0.69)
-    );
+        rgba(251, 130, 115, 0.69));
+    position: absolute;
+    top: 0;
+    z-index: -1;
+}
+
+.rdm-hero-bg .wave-svg {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+@media screen and (min-width: 1920px) {
+    .rdm-hero-bg {
+        height: 700px;
+    }
+}
+
+@media screen and (min-width: 2000px) {
+    .rdm-hero-bg {
+        height: 749px;
+    }
+}
+
+@media screen and (min-width: 3000px) {
+    .rdm-hero-bg {
+        height: 850px;
+    }
+}
+
+@media screen and (min-width: 3500px) {
+    .rdm-hero-bg {
+        height: 900px;
+    }
+}
+
+@media screen and (min-width: 4000px) {
+    .rdm-hero-bg {
+        height: 950px;
+    }
+}
+
+@media screen and (min-width: 4500px) {
+    .rdm-hero-bg .wave-svg {
+        display: none;
+    }
+}
+
+.rdm-hero {
     height: 557px;
     text-align: center;
     margin-bottom: -2px;
@@ -174,6 +222,7 @@ html .md-footer-meta .md-footer-meta__inner a {
     font-weight: 300;
     font-family: Oswald, "Open Sans", sans-serif;
     color: rgba(255, 255, 255, 0.6);
+    margin: 15px 0px 20px 0px;
 }
 
 .rdm-hero > a {
@@ -197,8 +246,13 @@ html .md-footer-meta .md-footer-meta__inner a {
     padding-top: 0;
 }
 
+.frontpage .md-header {
+    background: transparent;
+    position: static;
+}
 .frontpage .md-tabs {
     border-bottom: none;
+    background: transparent;
 }
 
 .frontpage .md-main {
