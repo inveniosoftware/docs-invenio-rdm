@@ -25,6 +25,7 @@ theme:
 
 nav:
   - Home: 'index.md'
+  - Features: features/index.md
   - Install:
     - Quick start: 'install/index.md'
     - System requirements: 'install/requirements.md'
@@ -70,7 +71,7 @@ nav:
   - Releases:
     - Overview: releases/index.md
     - Maintenance policy: releases/maintenance-policy.md
-    - Upgrade contract: releases/upgrading/index.md
+    - Security policy: releases/security-policy.md
     - Versions:
       - Version v6.0.0: releases/versions/version-v6.0.0.md
       - Version v5.0.0: releases/versions/version-v5.0.0.md
@@ -79,6 +80,8 @@ nav:
       - Version v2.0.0: releases/versions/version-v2.0.0.md
       - Version v1.0.0: releases/versions/version-v1.0.0.md
     - Upgrade guide:
+      - Upgrade policy: releases/upgrading/index.md
+      - Upgrade from v4 to v6: releases/upgrading/upgrade-v6.0.md
       - Upgrade from v3 to v4: releases/upgrading/upgrade-v4.0.md
       - Upgrade from v2 to v3: releases/upgrading/upgrade-v3.0.md
       - Upgrade from v1 to v2: releases/upgrading/upgrade-v2.0.md
