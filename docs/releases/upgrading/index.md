@@ -1,13 +1,23 @@
-# Upgrading
+# Upgrade Policy
 
-Following are guides for how to upgrade an Invenio instance from version to version.
-By default we only support upgrading from the previous latest version. Thus, if you'd like
-to upgrade from v1.0 to v3.0, you first have to upgrade to v2.0 and then from v2.0 to v3.0
+Following document is meant to align expectations on the upgrade process
+between major versions.
 
-## Upgrade contract
+## Supported features
 
-The following "contract" is meant to align expectations on how and what you'll be able to upgrade from v2.0 to v3.0.
+We only support features and APIs which have been **documented** in this
+present documentation. Any other feature/API change will not be considered a
+breaking change.
 
-You **MUST** expect **breaking changes** to anything on subsequent releases until the LTS release! REST APIs, programmatic APIs, features, Jinja/React templates, data model, vocabularies, etc.
+## Breaking changes
 
-We will **ONLY** guarantee that you will be able to upgrade a database created with v2.0 to v3.0. With that, we mean that **through a manual, labour intensive and offline process** you'll be able to upgrade your database. Basically this boils down to, that we will document the steps you need to apply in order to move your data from v1.0 to v2.0 code. In no way do we promise it will be easy! You **MAY** need to apply manual changes to records. We of course plan to make this an easy and smooth process for the LTS release, but for now it's not.
+We use semantic versioning, and thus you **MUST** expect breaking changes
+between major versions (REST API, programmatic APIs, templates, data models etc).
+We will document these breaking changes in the release notes, and do our best to
+provide automatic upgrades if possible.
+
+## Offline upgrade
+
+You MUST expect the upgrade process to be an offline process that requires the
+production system to be offline during the entire upgrade process. We strive
+allow online rolling upgrades in the future, but we are not there yet.
