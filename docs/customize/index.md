@@ -11,6 +11,7 @@ InvenioRDM instance so that it integrates into their organizational environment.
 - [Authentication](authentication.md) - integrate with your institutional authentication system.
 - [DOI registration](dois.md) - mint DOIs with your institution's prefix.
 - [Application data](application_data.md) - use custom controlled vocabularies, default users and other institution specific data.
+- [ROR Affiliations](ror_affiliations.md) - import the affiliations vocabulary from [ROR data](https://ror.org/).
 - [Record landing page](record_landing_page.md) - customize some of the sections of record's landing page.
 - [Metadata](metadata.md) -
 - [Permissions](metadata.md) -
