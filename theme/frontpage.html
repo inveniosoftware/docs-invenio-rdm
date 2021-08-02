@@ -23,9 +23,11 @@
     </li>
   {% else %}
     <li class="rdm-toc-item level{{level}}">
-      <a href="{{link}}">
-        {{ nav_item.title }}
-      </a>
+      <div>
+        <a href="{{link}}">
+          {{ nav_item.title }}
+        </a>
+      </div>
     </li>
   {% endif %}
 {% endmacro %}
