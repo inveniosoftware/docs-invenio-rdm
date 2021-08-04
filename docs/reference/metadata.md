@@ -36,10 +36,8 @@ Following is an overview of the top-level fields in a record:
 |  ``id``/``pid``  | The internal persistent identifier for a specific version.  |
 |  ``parent``  | The internal persistent identifier for all versions.  |
 |  ``pids`` | System-managed external persistent identifiers (DOIs, Handles, OAI-PMH identifiers).  |
-|  ``metadata`` | Descriptive metadata for the resource.  |
-|  ``ext`` | Instance specific descriptive metadata for the resource.  |
-|  ``provenance`` | System-managed provenance information.  |
 |  ``access`` | Access control information.  |
+|  ``metadata`` | Descriptive metadata for the resource.  |
 |  ``files`` | Associated files information.  |
 |  ``tombstone`` | Tombstone information.  |
 
@@ -51,12 +49,10 @@ top-level fields in a record look like:
     "$schema": "local://records/record-v1.0.0.json",
     "id": "q5jr8-hny72",
     "pid": { ... },
-    "parent": { ... },
     "pids" : { ... },
-    "metadata" : { ... },
-    "ext" : { ... },
-    "provenance" : { ... },
+    "parent": { ... },
     "access" : { ... },
+    "metadata" : { ... },
     "files" : { ... },
     "tombstone" : { ... },
 }
@@ -92,7 +88,7 @@ Concept version PID:
 
 | Field |   Description   |
 |:-----:|:----------------|
-| ``parent.id`` | The value of the internal record identifier. |
+| ``parent.id`` | The value of the concept record identifier. |
 
 Example:
 
@@ -109,15 +105,17 @@ Example:
 }
 ```
 
+See [Parent](#parent) for details on the `parent` field.
+
 ### External PIDs
 
-External PIDs are persistent identifiers managed via Invenio-PIDStore and that may require integration
+External PIDs are persistent identifiers managed via [Invenio-PIDStore](https://invenio-pidstore.readthedocs.io) that may require integration
 with external registration services.
 
 Persistent identifiers are globally unique in the system, thus you cannot have two records
 with the same system-managed persistent identifer (see also [Metadata > Identifiers](#identifiers-0-n)).
 
-Only one identifier can be registered per system defined scheme. Each identifier has the following subfields:
+Only one identifier can be registered per system-defined scheme. Each identifier has the following subfields:
 
 | Field | Cardinality |   Description   |
 |:-----:|:-----------:|:----------------|
@@ -142,19 +140,109 @@ Only one identifier can be registered per system defined scheme. Each identifier
 }
 ```
 
-Other system managed identifiers will also be be recorded here such as the OAI id.
+Other system-managed identifiers will also be be recorded here such as the OAI id.
+
+## Parent
+
+Information related to the record as a concept is recorded under the top-level ``parent`` key. Every record has a ``parent`` and that parent connects all versions of a record together. The goal here is to connect these records and store shared information - ownership for now.
+
+Subfields:
+
+| Field | Cardinality |   Description   |
+|:-----:|:-----------:|:----------------|
+| ``id`` | (1) | The identifier of the parent record. |
+| ``access`` | (1) | Access details for the record as a whole. |
+
+The ``access`` is described with the following subfields:
+
+| Field | Cardinality |   Description   |
+|:-----:|:-----------:|:----------------|
+| ``owned_by`` | (1-n) | An array of owners. |
+
+Owners are defined as:
+
+| Field | Cardinality |   Description   |
+|:-----:|:-----------:|:----------------|
+| ``user`` | (1) | The id of the user owning the record as a whole. |
+
+
+Example:
+
+```json
+{
+  "parent": {
+    "id": "fghij-12345",
+    "access": {
+      "owned_by": [
+        {
+          "user": 2
+        }
+      ],
+    }
+  },
+}
+```
+
+## Access
+
+The `access` field denotes record-specific read (visibility) options.
+
+The `access` field has this structure:
+
+| Field | Cardinality |   Description   |
+|:-----:|:-----------:|:----------------|
+| `record` | (1) | `"public"` or `"restricted"`. Read access to the record. |
+| `files` | (1) |  `"public"` or `"restricted"`. Read access to the record's files. |
+| `embargo` | (0-1) | Embargo options for the record. |
+
+`"public"` means anyone can see the record/files. `"restricted"` means only the owner(s) or
+specific users can see the record/files. Only in the cases of `"record": "restricted"` or
+`"files": "restricted"` can an embargo be provided as input. However, once an embargo is
+lifted, the `embargo` section is kept for transparency.
+
+### Embargo
+
+The `embargo` field denotes when an embargo must be lifted, at which point the record
+is made publicly accessible. The `embargo` field has this structure:
+
+| Field | Cardinality |   Description   |
+|:-----:|:-----------:|:----------------|
+| `active` | (1) | boolean. Is the record under embargo or not. |
+| `until` | (0-1) | Required if `active` true. ISO date string. When to lift the embargo. e.g., `"2100-10-01"` |
+| `reason` | (0-1) | string. Explanation for the embargo. |
+
+Example:
+
+```json
+{
+  "access": {
+    "record": "public",
+    "files": "public",
+    "embargo": {
+      "active": false
+    }
+  },
+}
+```
+
+The `access` field is required by the REST API.
 
 ## Metadata
 
-The cardinality of each field is expressed in between parenthesis on the title of each field's section.
+The fields are listed below in the combined order of "required" and "appearance on the deposit page". So required fields are listed first and then other fields are listed in the order of their appearance on the deposit page.
 
-### Resource Type (1)
+The cardinality of each field is expressed in between parenthesis on the title of each field's section.
+Cardinality here indicates if the field is required by the REST API.
+
+The abbreviation `CV` stands for *Controlled Vocabulary*.
+
+### Resource type (1)
 
 The type of the resource described by the record. The resource type must be selected from a controlled vocabulary which can be customized by each InvenioRDM instance.
 
-When interfacing with Datacite, this field is converted to a format compatible with *10. Resource Type*  (i.e. ``type`` and ``subtype``). DataCite allows free text for the specific subtype, however InvenioRDM requires this to come from a customizable controlled vocabulary.
+When interfacing with Datacite, this field is converted to a format compatible with *10. Resource Type*  (i.e. ``type`` and ``subtype``). DataCite allows free text for the subtype, however InvenioRDM requires this to come from a customizable controlled vocabulary.
 
-The resource type vocabulary also defines mappings to other vocabularies such as Schema.org, Citation Style Language, BibTeX, DataCite and OpenAIRE. These mappings are very important for the correct generation of citations due to how different types are being interpreted by reference management systems.
+The resource type vocabulary also defines mappings to other vocabularies than Datacite such as Schema.org, Citation Style Language, BibTeX, and OpenAIRE. These mappings are very important for the correct generation of citations due to how different types are being interpreted by reference management systems.
 
 Subfields:
 
@@ -166,9 +254,9 @@ Example:
 
 ```json
 {
-    "resource_type": {
-      "id": "image-photo",
-    }
+  "resource_type": {
+    "id": "image-photo"
+  },
 }
 ```
 
@@ -176,7 +264,7 @@ Note that only the subtype (which is more specific) is displayed if it exists.
 
 ### Creators (1-n)
 
-The creators field registers those persons or organisations that should be credited for the resource described in by the record. The list of person or organisations in the creators field is used for e.g. generating citations, while persons or organisations listed in the contributors field are not included the generated citations.
+The creators field registers those persons or organisations that should be credited for the resource described by the record. The list of persons or organisations in the creators field is used for generating citations, while the persons or organisations listed in the contributors field are not included in the generated citations.
 
 The field is compatible with *2. Creator* in DataCite. In addition we are adding the possiblity of associating a role (like for contributors). This is specifically for cases where e.g. an editor needs to be credited for the work, while authors of individual articles will be listed under contributors.
 
@@ -185,25 +273,18 @@ Subfields:
 | Field | Cardinality |   Description   |
 |:-----:|:-----------:|:----------------|
 | ``person_or_org`` &nbsp; | (1) | The person or organization. |
-| ``affiliations`` | (0-n) | Affilations if type is a personal name. |
 | ``role`` | (0-1, CV) | The role of the person or organisation selected from a customizable controlled vocabulary. |
+| ``affiliations`` | (0-n) | Affilations if ``person_or_org.type`` is ``personal``. |
 
 A `person_or_org` is described with the following subfields:
 
 | Field            | Cardinality |   Description   |
 |:---------------------:|:-----------:|:----------------|
-| ``name``              | (0 if `type` is `personal` / 1 if `type` is `organisational`) | The full name of the organisation. For a person this field is generated from `given_name` and `family_name` |
-| ``type`` | (0-1, CV) | The type of name. Either ``personal`` or ``organisational``. |
-| ``given_name`` | (1 if `type` is `personal` / 0 if `type` is `organisational`) | Given name(s) if the type is a personal name. |
-| ``family_name`` &nbsp; | (1 if `type` is `personal` / 0 if `type` is `organisational`) | Family name if type is a personal name. |
+| ``type`` | (1) | The type of name. Either ``personal`` or ``organisational``. |
+| ``given_name`` | (1 if `type` is `personal` / 0 if `type` is `organisational`) | Given name(s). |
+| ``family_name`` &nbsp;&nbsp;&nbsp; | (1 if `type` is `personal` / 0 if `type` is `organisational`) | Family name. |
+| ``name``              | (0 if `type` is `personal` / 1 if `type` is `organisational`) | The full name of the organisation. For a person, this field is generated from `given_name` and `family_name` |
 | ``identifiers``  | (0-n) | Person or organisation identifiers. |
-
-Affiliations are described with the following subfields:
-
-| Field | Cardinality |   Description   |
-|:-----:|:-----------:|:----------------|
-| ``name`` | (1) | The organizational or institutional affiliation of the creator. |
-| ``identifiers`` | (0-n) | Organisation identifiers. |
 
 Identifiers are described with the following subfields (note, we only support one identifier per scheme):
 
@@ -224,48 +305,81 @@ Supported affiliation identifier schemes:
 - ISNI
 - ROR
 
+Note that the identifiers' schemes are passed lowercased e.g. ORCID is ``orcid``.
+
+
+The ``affiliations`` field consists of objects with the following subfields:
+
+| Field | Cardinality |   Description   |
+|:-----:|:-----------:|:----------------|
+| ``id`` | (0-1, CV) | The organisational or institutional id from the controlled vocabulary. |
+| ``name`` | (0-1) | The name of the organisation or institution. |
+
+One of ``id`` or ``name`` must be given. It's recommended to use ``name`` if there is no matching ``id`` in the controlled vocabulary.
+
 Example:
 
 ```json
 {
-    "creators": [{
-      "person_or_org": {
-        "name": "Nielsen, Lars Holm",
-        "type": "personal",
-        "given_name": "Lars Holm",
-        "family_name": "Nielsen",
-        "identifiers": [{
-          "scheme": "orcid",
-          "identifier": "0000-0001-8135-3489"
-        }],
-      },
-      "affiliations": [{
-          "name": "CERN",
-          "identifiers": [{
-              "scheme": "ror",
-              "identifier": "01ggx4157",
-          }, {
-              "scheme": "isni",
-              "identifier": "000000012156142X",
-          }]
-      }]
-    }],
+  "creators": [{
+    "person_or_org": {
+      "name": "Nielsen, Lars Holm",
+      "type": "personal",
+      "given_name": "Lars Holm",
+      "family_name": "Nielsen",
+      "identifiers": [{
+        "scheme": "orcid",
+        "identifier": "0000-0001-8135-3489"
+      }],
+    },
+    "affiliations": [{
+      "id": "01ggx4157",
+      "name": "CERN",
+    }]
+  }],
 }
 ```
-
-Note that the identifier's schemes are lowercased.
 
 ### Title (1)
 
 A primary name or primary title by which a resource is known. May be the title of a dataset or the name of a piece of software. The primary title is used for display purposes throughout InvenioRDM.
 
-The fields is compatible with *3. Title* in DataCite. Compared to DataCite the field does not support specifying the language of the title.
+The fields is compatible with *3. Title* in DataCite. Compared to DataCite, the field does not support specifying the language of the title.
 
 Example:
 
 ```json
 {
-    "title": "InvenioRDM"
+  "title": "InvenioRDM",
+}
+```
+
+### Publication date (1)
+
+The date when the resource was or will be made publicly available.
+
+The field is compatible *5. PublicationYear* in DataCite. In case of time intervals, the earliest date is used for DataCite.
+
+Format:
+
+The string must be be formatted according to [Extended Date Time Format (EDTF)](http://loc.gov/standards/datetime/) Level 0. Only *"Date"* and *"Date Interval"* are supported. *"Date and Time"* is not supported. The following are examples of valid values:
+
+- Date:
+    - ``2020-11-10`` - a complete ISO8601 date.
+    - ``2020-11`` - a date with month precision
+    - ``2020`` - a date with year precision
+- Date Interval:
+    - ``1939/1945`` a date interval with year precision, beginning sometime in 1939 and ending sometime in 1945.
+    - ``1939-09-01/1945-09`` a date interval with day and month precision, beginning September 1st, 1939 and ending sometime in September 1945.
+
+The localization (L10N) of EDTF dates is based on the [skeletons](http://cldr.unicode.org/translation/date-time-1/date-time-patterns) defined by the [Unicode Common Locale Data Repository (CLDR)](http://cldr.unicode.org).
+
+
+Example:
+
+```json
+{
+  "publication_date": "2018/2020-09",
 }
 ```
 
@@ -279,19 +393,34 @@ Subfields:
 
 | Field | Cardinality |   Description   |
 |:-----:|:-----------:|:----------------|
-| ``title`` | (1) | The addtional title.  |
-| ``type`` | (1, CV) | The type of the title. One of: ``alternative_title``, ``subtitle`` ``translated_title`` or ``other``. Other |
+| ``title`` | (1) | The additional title.  |
+| ``type`` | (1) | The type of the title. |
 | ``lang`` | (0-1, CV) | The language of the title. ISO 639-3 language code. |
+
+The ``type`` field is as follows:
+
+| Field | Cardinality |   Description   |
+|:-----:|:-----------:|:----------------|
+| ``id`` | (1, CV) | Title type id from the controlled vocabulary. By default one of: ``alternative-title``, ``subtitle`` ``translated-title`` or ``other``. |
+| ``title`` | (1) | The corresponding localized human readable label. e.g. ``{"en": "Alternative title"}`` |
+
+Note that multiple localized titles are supported e.g. ``{"en": "Alternative title", "fr": "Titre alternatif"}``. Use ISO 639-1 codes (2 letter locales) as keys.
+Only ``id`` needs to be passed on the REST API.
 
 Example:
 
 ```json
 {
-    "additional_titles": [{
-      "title": "a research data management platform",
-      "type": "subtitle",
-      "lang": "eng"
-    }]
+  "additional_titles": [{
+    "title": "A research data management platform",
+    "type": {
+      "id": "alternative-title",
+      "title": {
+        "en": "Alternative Title"
+      }
+    },
+    "lang": "eng"
+  }]
 }
 ```
 
@@ -323,93 +452,75 @@ Subfields:
 | Field | Cardinality |   Description   |
 |:-----:|:-----------:|:----------------|
 | ``description`` &nbsp; | (1) | Free text. |
-| ``type`` | (1, CV) | The type of the description. One of ``abstract``, ``method``, ``seriesinformation``, ``tableofcontents``, ``technicalinfo``, ``other``. |
+| ``type`` | (1) | The type of the description. |
 | ``lang`` | (0-1) |  The language of the description. ISO 639-3 language code. |
 
-Example:
+The ``type`` field is as follows:
 
-```json
-{
-    "additional_descriptions": [{
-      "description": "a research data management platform",
-      "type": "methods",
-      "lang": "eng"
-    }]
-}
-```
+| Field | Cardinality |   Description   |
+|:-----:|:-----------:|:----------------|
+| ``id`` | (1, CV) | Description type id from the controlled vocabulary. By default one of: ``abstract``, ``methods``, ``series-information``, ``table-of-contents``, ``technical-info``, ``other``. |
+| ``title`` | (1) | The corresponding localized human readable label. e.g. ``{"en": "Abstract"}`` |
 
-### Publisher (0-1)
-
-The name of the entity that holds, archives, publishes, prints, distributes, releases, issues, or produces the resource. This property will be used to formulate the citation, so consider the prominence of the role. For software, use Publisher for the code repository. If there is an entity other than a code repository, that "holds, archives, publishes, prints, distributes, releases, issues, or produces" the code, use the property Contributor/contributorType/ hostingInstitution for the code repository.
-
-Defaults to the name of the repository.
+Note that multiple localized titles are supported e.g. ``{"en": "Table of contents", "fr": "Table des matières"}``. Use ISO 639-1 codes (2 letter locales) as keys.
+Only ``id`` needs to be passed on the REST API.
 
 Example:
 
 ```json
 {
-    "publisher": "InvenioRDM"
+  "additional_descriptions": [{
+    "description": "The description of a research data management platform.",
+    "type": {
+      "id": "methods",
+      "title": {
+        "en": "Methods"
+      }
+    },
+    "lang": "eng"
+  }]
 }
 ```
 
-### Publication date (1)
+### Rights (Licenses) (0-n)
 
-The date when the resource was or will be made publicly available.
+Rights management statement for the resource.
 
-The field is compatible *5. PublicationYear* in DataCite. In case of time intervals, the earliest date is used for DataCite.
+When interfacing with Datacite, this field is converted to be compatible with *16. Rights*.
 
-Format:
+The rights field is intended to primarily be linked to a customizable vocabulary
+of licenses (defaults [SPDX](https://spdx.org/licenses/)). It should however also be possible to provide
+custom rights statements.
 
-The string must be be formatted according to [Extended Date Time Format (EDTF)](http://loc.gov/standards/datetime/) Level. Only a *"Date"* or a *"Date Interval"* is supported. A *"Date and Time"* is not supported. Following are examples of valid values:
-
-- Date:
-    - ``2020-11-10`` - a complete ISO8601 date.
-    - ``2020-11`` - a date with month precision
-    - ``2020`` - a date with year precision
-- Date Interval:
-    - ``1939/1945`` a date interval with year precision, beginning sometime in 1939 and ending sometime in 1945.
-    - ``1939-09-01/1945-09`` a date interval with day and month precision, beginning September 1st, 1939 and ending sometime in September 1945.
-
-
-The localization (L10N) of EDTF dates is based on the [skeletons](http://cldr.unicode.org/translation/date-time-1/date-time-patterns) defined by the [Unicode Common Locale Data Repository (CLDR)](http://cldr.unicode.org).
-
-
-Example:
-
-```json
-{
-    "publication_date": "2018/2020-09",
-}
-```
-
-### Subjects (0-n)
-
-Subject, keyword, classification code, or key phrase describing the resource.
-
-This field is compatible with *6. Subject* in DataCite.
+The rights statements does not have any impact on access control to the resource.
 
 Subfields:
 
 | Field | Cardinality |   Description   |
 |:-----:|:-----------:|:----------------|
-| ``id`` | (1, CV) | the identifier of the subject.
+| ``id`` | (0-1) | Identifier value |
+| ``title`` | (0-1) | Localized human readable title e.g., ``{"en": "The ACME Corporation License."}``. |
+| ``description`` | (0-1) | Localized license description text e.g., ``{"en": "This license..."}``. |
+| ``link`` | (0-1) | Link to full license. |
+
+Either ``id`` or ``title`` must be passed.
 
 Example:
 
 ```json
 {
-    "subjects": [{
-        "id": "D001921",
-      }
-    ],
+  "rights": [{
+    "id": "cc-by-4.0",
+    "title": {"en": "Creative Commons Attribution 4.0 International"},
+    "description": {"en": "The Creative Commons Attribution license allows re-distribution and re-use of a licensed work on the condition that the creator is appropriately credited."},
+    "link": "https://creativecommons.org/licenses/by/4.0/"
+  }],
 }
 ```
 
-*Upcoming: Non-id bound subjects will be supported.*
-
 ### Contributors (0-n)
 
-The organisation or person responsible for collecting, managing, distributing, or otherwise contributing to the development of the resource.
+The organisations or persons responsible for collecting, managing, distributing, or otherwise contributing to the development of the resource.
 
 This field is compatible with *7. Contributor* in DataCite.
 
@@ -417,9 +528,9 @@ The structure is identical to the Creators field. The "creators" field records t
 
 Subfields:
 
-- *See [Creators field](#creators-1-n).*
+- *See [Creators field](#creators-1-n), but ``role`` is required.*
 
-Note that Creators and Contributors may use different controlled vocabularies for the role field.
+Note that Creators and Contributors may use different controlled vocabularies for the ``role`` field.
 
 Example:
 
@@ -438,41 +549,34 @@ Example:
     },
     "role": "editor",
     "affiliations": [{
-        "name": "CERN",
-        "identifiers": [{
-            "scheme": "ror",
-            "identifier": "01ggx4157",
-        }, {
-            "scheme": "isni",
-            "identifier": "000000012156142X",
-        }]
+      "id": "01ggx4157",
+      "name": "CERN",
     }]
   }],
 }
 ```
 
-### Dates (0-n)
+### Subjects (0-n)
 
-Different dates relevant to the resource.
+Subject, keyword, classification code, or key phrase describing the resource.
 
-The field is compatible with *8. Date* in DataCite.
+This field is compatible with *6. Subject* in DataCite.
 
 Subfields:
 
 | Field | Cardinality |   Description   |
 |:-----:|:-----------:|:----------------|
-| ``date`` | (1) | A date or time interval according to Extended Date Time Format level 0.
-| ``type`` | (1, CV) | The type of date. A value from a customizable controlled vocabulary (defaults to DataCite's date type vocabulary).
-| ``description`` &nbsp; | (0-1) | free text, specific information about the date.
+| ``id`` | (0-1, CV) | The identifier of the subject from the controlled vocabulary. |
+| ``subject`` | (0-1) | A custom keyword. |
+
+Either ``id`` or ``subject`` must be passed.
 
 Example:
 
 ```json
 {
-  "dates": [{
-      "date": "1939/1945",
-      "type": "other",
-      "description": "A date"
+  "subjects": [{
+    "id": "https://id.nlm.nih.gov/mesh/D000001",
   }],
 }
 ```
@@ -495,7 +599,76 @@ Example:
 }
 ```
 
-### Identifiers (0-n)
+### Dates (0-n)
+
+Different dates relevant to the resource.
+
+The field is compatible with *8. Date* in DataCite.
+
+Subfields:
+
+| Field | Cardinality |   Description   |
+|:-----:|:-----------:|:----------------|
+| ``date`` | (1) | A date or time interval according to Extended Date Time Format Level 0. |
+| ``type`` | (1) | The type of date. |
+| ``description`` &nbsp; | (0-1) | free text, specific information about the date. |
+
+The ``type`` field is as follows:
+
+| Field | Cardinality |   Description   |
+|:-----:|:-----------:|:----------------|
+| ``id`` | (1, CV) | Date type id from the controlled vocabulary. By default one of: ``accepted``, ``available``, ``collected``, ``copyrighted``, ``created``, ``issued``, ``other``, ``submitted``, ``updated``, ``valid``, ``withdrawn``. |
+| ``title`` | (1) | The corresponding localized human readable label. e.g. ``{"en": "Accepted"}`` |
+
+Note that multiple localized titles are supported e.g. ``{"en": "Available", "fr": "Disponible"}``. Use ISO 639-1 codes (2 letter locales) as keys.
+Only ``id`` needs to be passed on the REST API.
+
+Example:
+
+```json
+{
+  "dates": [{
+    "date": "1939/1945",
+    "type": {
+      "id": "other",
+      "title": {
+        "en": "Other"
+      }
+    },
+    "description": "A date"
+  }],
+}
+```
+
+### Version (0-1)
+
+The version number of the resource. Suggested practice is to use [semantic versioning](https://semver.org). If the version number is provided, it's used for display purposes on search results and landing pages.
+
+This field is compatible with *15. Version* in DataCite.
+
+Example:
+
+```json
+{
+  "version": "v1.0.0",
+}
+```
+
+### Publisher (0-1)
+
+The name of the entity that holds, archives, publishes, prints, distributes, releases, issues, or produces the resource. This property will be used to formulate the citation, so consider the prominence of the role. For software, use Publisher for the code repository. If there is an entity other than a code repository, that "holds, archives, publishes, prints, distributes, releases, issues, or produces" the code, use the property Contributor field for the code repository.
+
+Defaults to the name of the repository.
+
+Example:
+
+```json
+{
+  "publisher": "InvenioRDM"
+}
+```
+
+### Alternate identifiers (0-n)
 
 Persistent identifiers for the resource other than the ones registered as system-managed internal or external persistent identifers.
 
@@ -514,18 +687,20 @@ Supported identifier schemes:
 
 - ISBN10, ISBN13, ISSN, ISTC, DOI, Handle, EAN8, EAN13, ISNI, ORCID, ARK, PURL, LSID, URN, Bibcode, arXiv, PubMed ID, PubMed Central ID, GND, SRA, BioProject, BioSample, Ensembl, UniProt, RefSeq, Genome Assembly.
 
+Note that those are passed lowercased e.g., arXiv is ``arxiv``.
+
 Example:
 
 ```json
 {
   "identifiers": [{
-      "identifier": "1924MNRAS..84..308E",
-      "scheme": "bibcode"
+    "identifier": "1924MNRAS..84..308E",
+    "scheme": "bibcode"
   }],
 }
 ```
 
-### Related identifiers (0-n)
+### Related identifiers/works (0-n)
 
 Identifiers of related resources.
 
@@ -536,29 +711,58 @@ Subfields:
 
 | Field | Cardinality |   Description   |
 |:-----:|:-----------:|:----------------|
-| ``identifier`` | (1, CV) | A global unique persistent identifier for a related resource.
-| ``scheme`` | (1, CV) | The scheme of the identifier.
-| ``relation`` | (1, CV) | The relation of the record to this related resource.
-| ``resource_type`` &nbsp;&nbsp; | (0-1, CV) | The resource type of the related resource. Uses the same customizable vocabulary as the Resource Type field.
+| ``identifier`` | (1, CV) | A global unique persistent identifier for a related resource. |
+| ``scheme`` | (1, CV) | The scheme of the identifier. |
+| ``relation_type`` &nbsp;&nbsp;&nbsp; | (1) | The relation of the record to this related resource. |
+| ``resource_type`` &nbsp;&nbsp; | (0-1) | The resource type of the related resource. Can be different from the [Resource type](#resource-type-1) field. |
 
 Supported identifier schemes:
 
 - ISBN10, ISBN13, ISSN, ISTC, DOI, Handle, EAN8, EAN13, ISNI ORCID, ARK, PURL, LSID, URN, Bibcode, arXiv, PubMed ID, PubMed Central ID, GND, SRA, BioProject, BioSample, Ensembl, UniProt, RefSeq, Genome Assembly.
+
+The field ``relation_type`` is of this shape:
+
+| Field | Cardinality |   Description   |
+|:-----:|:-----------:|:----------------|
+| ``id`` | (1, CV) | Relation type id from the controlled vocabulary. The default list is [here](https://github.com/inveniosoftware/invenio-rdm-records/blob/master/invenio_rdm_records/fixtures/data/vocabularies/relation_types.yaml). |
+| ``title`` | (1) | The corresponding localized human readable label. e.g. ``{"en": "Is cited by"}`` |
+
+The field ``resource_type`` is of this shape:
+
+| Field | Cardinality |   Description   |
+|:-----:|:-----------:|:----------------|
+| ``id`` | (1, CV) | Date type id from the controlled vocabulary. The default list is [here](https://github.com/inveniosoftware/invenio-rdm-records/blob/master/invenio_rdm_records/fixtures/data/vocabularies/resource_types.yaml). |
+| ``title`` | (1) | The corresponding localized human readable label. e.g. ``{"en": "Annotation collection"}`` |
+
+For both ``relation_type.title`` and ``resource_type.title`` multiple localized titles are supported e.g. ``{"en": "Cites", "fr": "Cite"}``. Use ISO 639-1 codes (2 letter locales) as keys. In both cases, only ``id`` needs to be passed on the REST API.
 
 Example:
 
 ```json
 {
   "related_identifiers": [{
-      "identifier": "10.1234/foo.bar",
-      "scheme": "doi",
-      "relation": "cites",
-      "resource_type": {"id": "dataset"}
+    "identifier": "10.1234/foo.bar",
+    "scheme": "doi",
+    "relation_type": {
+      "id": "cites",
+      "title": {
+        "en": "Cites"
+      }
+    },
+    "resource_type": {
+      "id": "dataset",
+      "title": {
+        "en": "Dataset"
+      }
+    }
   }],
 }
 ```
 
 ### Sizes (0-n)
+
+!!! warning "Not part of the deposit page yet."
+    Although available via the API, this field may see changes when added to the deposit page.
 
 Size (e.g. bytes, pages, inches, etc.) or duration (extent), e.g. hours, minutes, days, etc., of a resource.
 
@@ -569,12 +773,15 @@ Example:
 ```json
 {
   "sizes": [
-      "11 pages"
+    "11 pages"
   ],
 }
 ```
 
 ### Formats (0-n)
+
+!!! warning "Not part of the deposit page yet."
+    Although available via the API, this field may see changes when added to the deposit page.
 
 Technical format of the resource.
 
@@ -585,60 +792,15 @@ Example:
 ```json
 {
   "formats": [
-      "application/pdf"
+    "application/pdf"
   ],
 }
 ```
 
-### Version (0-1)
-
-The version number of the resource. Suggested practice is to use [semantic versioning](https://semver.org). If the version number is provided, it's used for display purposes on search results and landing pages.
-
-This field is compatible with *15. Version* in DataCite.
-
-Example:
-
-```json
-{
-  "version": "v1.0.0",
-}
-```
-
-### Rights (0-n)
-
-Rights management statement for the resource.
-
-When interfacing with Datacite, this field is converted to be compatible with *16. Rights*.
-
-The rights field is intended to primarily be linked to a customizable vocabulary
-of licenses (defaults [SPDX](https://spdx.org/licenses/)). It should however also be possible to provide
-custom rights statements.
-
-The rights statements does not have any impact on access control to the resource.
-
-Subfields:
-
-| Field | Cardinality |   Description   |
-|:-----:|:-----------:|:----------------|
-| ``description`` | (0-1) | Human readable license text |
-| ``id`` | (1) | Identifier value |
-| ``link`` | (0-1) | Link to full license |
-| ``title`` | (0-1) | Human readable license text |
-
-Example:
-
-```json
-{
-  "rights": [{
-      "description": "The Creative Commons Attribution license allows re-distribution and re-use of a licensed work on the condition that the creator is appropriately credited.",
-      "id": "cc-by-4.0",
-      "link": "https://creativecommons.org/licenses/by/4.0/",
-      "title": "Creative Commons Attribution 4.0 International"
-  }],
-}
-```
-
 ### Locations (0-n)
+
+!!! warning "Not part of the deposit page yet."
+    Although available via the API, this field may see changes when added to the deposit page.
 
 Spatial region or named place where the data was gathered or about which the data is focused.
 
@@ -696,9 +858,8 @@ Example:
 
 ### Funding references (0-n)
 
-!!! warning "Work in progress"
-    This field may change after work done on controlled vocabulary management is
-    completed during December 2020.
+!!! warning "Not part of the deposit page yet."
+    Although available via the API, this field may see changes when added to the deposit page.
 
 Information about financial support (funding) for the resource being registered.
 
@@ -710,16 +871,18 @@ Subfields:
 
 | Field | Cardinality |   Description   |
 |:-----:|:-----------:|:----------------|
-| ``funder`` | (1) | The organisation of the funding provider. |
+| ``funder`` | (0-1) | The organisation of the funding provider. |
 | ``award`` | (0-1) | The award (grant) sponsored by the funder. |
 
-Funder subfields:
+At least one of ``funder`` or ``award`` must be provided.
+
+The ``funder`` subfields:
 
 | Field | Cardinality |   Description   |
 |:-----:|:-----------:|:----------------|
 | ``name`` | (1) | The name of the funder. |
-| ``identifer`` | (0-1) | An unique identifier for the funder. |
 | ``scheme`` | (0-1, CV) | The scheme of the identifier. |
+| ``identifer`` | (0-1) | A unique identifier for the funder. |
 
 Supported schemes:
 
@@ -729,14 +892,16 @@ Supported schemes:
 - ROR
 - Wikidata
 
-Award subfields:
+Note that those are passed lowercased e.g., GRID is ``grid``.
+
+The ``award`` subfields:
 
 | Field | Cardinality |   Description   |
 |:-----:|:-----------:|:----------------|
 | ``title`` | (1) | The title of the award |
 | ``number`` | (1) | The code assigned by the funder to a sponsored award (grant). |
-| ``identifer`` | (0-1) | A unique identifier for the funder. |
 | ``scheme`` | (0-1) | The scheme of the identifier. |
+| ``identifer`` | (0-1) | A unique identifier for the funder. |
 
 Example:
 
@@ -760,8 +925,8 @@ Example:
 
 ### References (0-n)
 
-!!! warning "Work in progress"
-    This field may be removed prior to the first stable release.
+!!! warning "Not part of the deposit page yet."
+    Although available via the API, this field may see changes when added to the deposit page.
 
 A list of reference strings
 
@@ -770,8 +935,17 @@ Subfields:
 | Field | Cardinality |   Description   |
 |:-----:|:-----------:|:----------------|
 | ``reference`` | (1) | free text, the full reference string |
-| ``identifier`` | (0-1) | the identifer if known. |
 | ``scheme`` | (0-1) | the scheme of the identifier. |
+| ``identifier`` | (0-1) | the identifer if known. |
+
+Supported schemes:
+
+- CrossRef Funder ID
+- GRID
+- ISNI
+- Other
+
+Note that those are passed lowercased with spaces removed e.g., CrossRef Funder ID is ``crossreffunderid``.
 
 Example:
 
@@ -785,165 +959,13 @@ Example:
 }
 ```
 
-## Extensions
-
-!!! warning "Work in progress"
-    The access control fields are subject to change during December-January
-    2020 when the custom fields feature is being finalized.
-
-InvenioRDM supports extending records with custom metadata per instance. The
-instance must configure all the fields. Here, we only describe how the
-metadata extensions are integrated into the record.
-
-### Namespace
-
-All custom metadata fields are stored separately from the core metadata fields
-in the top-level ``ext`` key. Each subfield is a namespace using an acronym.
-For instance in the example below:
-
-- ``dwc`` is an acronym for ``http://rs.tdwg.org/dwc/terms/``
-- ``z`` is an acronym for ``https://zenodo.org/terms``
-
-Example:
-
-```json
-{
-  "ext": {
-      "dwc": { ... },
-      "z": { ... }
-    },
-  }
-}
-```
-
-### Field identifiers
-
-Under each namespace multiple fields can be defined. The namespace and the field
-name generates a unique identifier for the field:
-
-For instance ``dwc:collectionCode`` is expanded to ``http://rs.tdwg.org/dwc/terms/collectionCode``.
-
-### Field data types
-
-Each field must define a type. The current JSONSchema allows for the following
-primitive types:
-
-- strings
-- numbers (integers and floats)
-- booleans
-- dates (encoded as strings)
-- array of any of above primitive types
-
-Extra validation on top of these fields is provided when configuring the
-fields.
-
-Example:
-
-```json
-{
-  "ext": {
-    "dwc": {
-      "collectionCode": "abc",
-      "collectionCode2": 1.1,
-      "collectionCode3": true,
-      "test": ["abc", 1, true]
-    }
-  },
-}
-```
-
-## Provenance
-
-Basic provenance information is recorded under the top-level ``provenance`` key. The goal here is not to record complete provenance information, but only to record the minimal provenance information needed to effectively run the repository.
-
-Subfields:
-
-| Field | Cardinality |   Description   |
-|:-----:|:-----------:|:----------------|
-| ``created_by`` | (1) | The agent who originally created the record (currently only users are supported) |
-| ``on_behalf_of`` | (0-1) | For mediated deposits (currently only users are supported). |
-
-Example:
-
-```json
-{
-  "provenance": {
-    "created_by": {
-      "user": 1
-    },
-    "on_behalf_of": {
-      "user": 2
-    }
-  },
-}
-```
-
-### Owners (1-n)
-
-The owners of the record. All records must be owned by an agent in the system.
-
-The field's name  is `owned_by`.
-
-Example:
-
-```json
-{
-  "access": {
-    "owned_by": [{
-      "user": 1
-    }],
-  }
-}
-```
-
-## Access information
-
-The `access` field denotes record-specific read (visibility) options.
-
-The `access` field has this structure:
-
-| Field | Cardinality |   Description   |
-|:-----:|:-----------:|:----------------|
-| `record` | (1) | `"public"` or `"restricted"`. Read access to the record. |
-| `files` | (1) |  `"public"` or `"restricted"`. Read access to the record's files. |
-| `embargo` | (0-1) | Embargo options for the record. |
-
-`"public"` means anyone can see the record/files. `"restricted"` means only the owner(s) or
-specific users can see the record/files. Only in the cases of `"record": "restricted"` or
-`"files": "restricted"` can an embargo be provided as input. However, once an embargo is
-lifted, the `embargo` section is kept for transparency.
-
-### Embargo
-
-The `embargo` field denotes when an embargo must be lifted, at which point the record
-is made publicly accessible. The `embargo` field has this structure:
-
-| Field | Cardinality |   Description   |
-|:-----:|:-----------:|:----------------|
-| `active` | (1) | boolean. Is the record under embargo or not. |
-| `until` | (0-1) | Required if `active` true. ISO date string. When to lift the embargo. e.g., `"2100-10-01"` |
-| `reason` | (0-1) | string. Explanation behing embargo. |
-
-Example:
-
-```json
-{
-  "access": {
-    "record": "public",
-    "files": "public",
-    "embargo": {
-      "active": false
-    }
-  },
-}
-```
-
-
 ## Files
 
 Records may have associated digital files. A record is not meant to be associated
 with a high number of files, as the files are stored inside the record and thus
 increase the overall size of the JSON document.
+
+All of the fields below are under the ``"files"`` key.
 
 ### Enabled (1)
 
@@ -954,9 +976,7 @@ Example:
 
 ```json
 {
-    "files": {
-        "enabled": false
-    }
+  "enabled": false
 }
 ```
 
@@ -988,21 +1008,19 @@ Example:
 
 ```json
 {
-    "files": {
-        "entries": {
-            "paper.pdf": {
-                "version_id": "<object-version-id>",
-                "bucket_id": "<bucket-id>",
-                "file_id": "<file-id>",
-                "backend": "...",
-                "storage_class": "A",
-                "key": "paper.pdf",
-                "mimetype": "application/pdf",
-                "size": 12345,
-                "checksum": "md5:abcdef...",
-            },
-        }
-    }
+  "entries": {
+    "paper.pdf": {
+      "version_id": "<object-version-id>",
+      "bucket_id": "<bucket-id>",
+      "file_id": "<file-id>",
+      "backend": "...",
+      "storage_class": "A",
+      "key": "paper.pdf",
+      "mimetype": "application/pdf",
+      "size": 12345,
+      "checksum": "md5:abcdef...",
+    },
+  }
 }
 ```
 
@@ -1015,49 +1033,7 @@ Example:
 
 ```json
 {
-    "files": {
-        "default_preview": "paper.pdf"
-    }
-}
-```
-
-### Order (0-n)
-
-The order field defines a list of filenames which is the default display order
-of files. If the order field is not specified, then alphanumeric ordering
-of filenames is used.
-
-Example:
-
-```json
-{
-    "files": {
-        "order": [
-            "paper.pdf",
-            "...",
-        ],
-    }
-}
-```
-
-### File metadata (0-n)
-
-Additional metadata per file can be provided or automatically added by extensions.
-Currently, we're planning to add the file extension, image width/height (needed for IIIF)
-and a description.
-
-```json
-{
-    "files": {
-        "meta": {
-            "paper.pdf": {
-                "description": "sdfsdfsdf",
-                "ext": "pdf",
-                "width": 1024,
-                "height": 1280,
-            }
-        },
-    }
+  "default_preview": "paper.pdf"
 }
 ```
 
@@ -1091,236 +1067,11 @@ Example:
 
 ## Future directions
 
-The record metadata model will evolve over the coming half year, during which
+The record metadata model will evolve over time, during which
 some of the following information will be added:
 
 - Usage statistics
-- Versioning relationships
 - Communities
 - Extra metadata formats
 - Primary contact (contact email)
-
-## Annex: Full example
-
-Following is a full example of a record:
-
-```json
-{
-  "$schema": "https://localhost/schemas/records/record-v1.0.0.json",
-  "id": "abcde-12345",
-  "conceptid": "12345-abcde",
-  "pid": {
-    "pk": 1,
-    "status": "R"
-  },
-  "conceptpid": {
-    "pk": 2,
-    "status": "R"
-  },
-  "pids": {
-    "doi": {
-      "identifier": "10.5281/zenodo.1234",
-      "provider": "datacite",
-      "client": "zenodo"
-    },
-    "concept-doi": {
-      "identifier": "10.5281/zenodo.1234",
-      "provider": "datacite",
-      "client": "zenodo"
-    },
-    "handle": {
-      "identifier": "9.12314",
-      "provider": "cern-handle",
-      "client": "zenodo"
-    },
-    "oai": {
-      "identifier": "oai:zenodo.org:12345",
-      "provider": "zenodo"
-    }
-  },
-  "metadata": {
-    "resource_type": {
-      "id": "publication-article"
-    },
-    "creators": [{
-      "person_or_org": {
-        "family_name": "Collins",
-        "given_name": "Thomas",
-        "identifiers": [{
-          "identifier": "0000-0002-1825-0097",
-          "scheme": "orcid"
-        }],
-        "name": "Collins, Thomas",
-        "type": "personal"
-      },
-      "affiliations": [{
-        "identifiers": [{
-          "identifier": "03yrm5c26",
-          "scheme": "ror"
-        }],
-        "name": "Entity One"
-      }]
-    }],
-    "title": "InvenioRDM",
-    "additional_titles": [{
-      "title": "a research data management platform",
-      "type": "subtitle",
-      "lang": "eng"
-    }],
-    "publisher": "InvenioRDM",
-    "publication_date": "2018/2020-09",
-    "subjects": [{
-      "subject": "test",
-      "identifier": "test",
-      "scheme": "dewey"
-    }],
-    "contributors": [{
-      "person_or_org": {
-        "name": "Nielsen, Lars Holm",
-        "type": "personal",
-        "given_name": "Lars Holm",
-        "family_name": "Nielsen",
-        "identifiers": [{
-          "scheme": "orcid",
-          "identifier": "0000-0001-8135-3489"
-        }],
-      },
-      "role": "editor",
-      "affiliations": [{
-        "name": "CERN",
-        "identifiers": [{
-          "scheme": "ror",
-          "identifier": "01ggx4157",
-        }, {
-          "scheme": "isni",
-          "identifier": "000000012156142X",
-        }]
-      }]
-    }],
-    "dates": [{
-      "date": "1939/1945",
-      "type": "other",
-      "description": "A date"
-    }],
-    "languages": ["dan", "eng"],
-    "identifiers": [{
-      "identifier": "1924MNRAS..84..308E",
-      "scheme": "bibcode"
-    }],
-    "related_identifiers": [{
-      "identifier": "10.1234/foo.bar",
-      "scheme": "doi",
-      "relation": "cites",
-      "resource_type": {
-        "id": "dataset"
-      }
-    }],
-    "sizes": [
-      "11 pages"
-    ],
-    "formats": [
-      "application/pdf"
-    ],
-    "version": "v1.0",
-    "rights": [{
-      "description": "The Creative Commons Attribution license allows re-distribution and re-use of a licensed work on the condition that the creator is appropriately credited.",
-      "id": "cc-by-4.0",
-      "link": "https://creativecommons.org/licenses/by/4.0/",
-      "title": "Creative Commons Attribution 4.0 International"
-    }],
-    "description": "Test",
-    "additional_descriptions": [{
-      "description": "Bla bla bla",
-      "type": "methods",
-      "lang": "eng"
-    }],
-    "locations": {
-      "features": [{
-        "geometry": {
-          "type": "Point",
-          "coordinates": [6.05, 46.23333]
-        },
-        "identifiers": {
-          "geonames": "2661235",
-          "tgn": "http://vocab.getty.edu/tgn/8703679"
-        },
-        "place": "CERN",
-        "description": "Invenio birth place."
-      }],
-    },
-    "funding": [{
-      "funder": {
-        "name": "European Commission",
-        "identifier": "1234",
-        "scheme": "ror"
-      },
-      "award": {
-        "title": "OpenAIRE",
-        "number": "246686",
-        "identifier": ".../246686",
-        "scheme": "openaire"
-      }
-    }],
-    "references": [{
-      "reference": "Nielsen et al,..",
-      "identifier": "101.234",
-      "scheme": "doi"
-    }]
-  },
-  "ext": {
-    "dwc": {
-      "collectionCode": "abc",
-      "collectionCode2": 1.1,
-      "collectionCode3": true,
-      "test": ["abc", 1, true]
-    }
-  },
-  "provenance": {
-    "created_by": {
-      "user": 1
-    },
-    "on_behalf_of": {
-      "user": 2
-    }
-  },
-  "access": {
-    "record": "public",
-    "files": "public",
-    "embargo": {
-      "active": false
-    }
-  },
-  "files": {
-    "enabled": true,
-    "default_preview": "paper.pdf",
-    "order": [
-      "paper.pdf",
-      "..."
-    ],
-    "meta": {
-      "paper.pdf": {
-        "description": "An important file.",
-        "ext": "pdf",
-        "width": 1024,
-        "height": 1280
-      }
-    },
-    "entries": {
-      "paper.pdf": {
-        "version_id": "<object-version-id>",
-        "bucket_id": "<bucket-id>",
-        "file_id": "<file-id>",
-        "backend": "...",
-        "storage_class": "A",
-        "key": "paper.pdf",
-        "mimetype": "application/pdf",
-        "size": 1114324524355,
-        "checksum": "md5:abcdef..."
-      }
-    }
-  },
-  "notes": [
-    "Under investigation for copyright infringement."
-  ]
-}
-```
+- Vocabulary extensions
