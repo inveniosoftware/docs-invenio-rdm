@@ -42,15 +42,18 @@ nav:
     - Styling: 'customize/styling.md'
     - DOI registration: 'customize/dois.md'
     - Authentication: 'customize/authentication.md'
-    - Application Data: 'customize/application_data.md'
+    - Vocabularies: 
+      - Overview: 'customize/vocabularies/index.md'
+      - Affiliations: 'customize/vocabularies/affiliations.md'
+      - Subjects: 'customize/vocabularies/subjects.md'
+      - Users: 'customize/vocabularies/users.md'
     - Record landing page: 'customize/record_landing_page.md'
     - Storage: 'customize/s3.md'
   - Develop:
     - Overview: 'develop/index.md'
     - Getting started: 'develop/getting-started.md'
     - Develop or edit a module: 'develop/develop.md'
-    - Extensions: 'develop/custom.md'
-    - Example Subjects Extension: 'develop/example_subjects_extension.md'
+    - Extensions: 'develop/extensions.md'
   - Reference:
     - Overview: reference/index.md
     - CLI: reference/cli.md
