@@ -75,10 +75,10 @@ Information required to configure the InvenioRDM instance:
 
 * The base URL (including port) of the Keycloak server.
 * Information about the client, as configured in Keycloak:
-    * Its realm
-    * The client ID
-    * The client secret
-    * The target audience of Keycloak's JWTs (probably the same as the client ID)
+    * Its realm.
+    * The client ID.
+    * The client secret.
+    * The target audience of Keycloak's JWTs (probably the same as the client ID).
 
 
 !!! note
@@ -317,8 +317,8 @@ change its look and feel.
 
 Start from an existing template:
 
-* if you have local login only, copy the folder [templates/semantic-ui](https://github.com/inveniosoftware/invenio-accounts/tree/master/invenio_accounts/templates/semantic-ui) from `invenio-accounts`.
-* if you have external authentication, copy the folder [templates/semantic-ui](https://github.com/inveniosoftware/invenio-oauthclient/tree/master/invenio_oauthclient/templates/semantic-ui) from `invenio-oauthclient`.
+* If you have local login only, copy the folder [templates/semantic-ui](https://github.com/inveniosoftware/invenio-accounts/tree/master/invenio_accounts/templates/semantic-ui) from `invenio-accounts`.
+* If you have external authentication, copy the folder [templates/semantic-ui](https://github.com/inveniosoftware/invenio-oauthclient/tree/master/invenio_oauthclient/templates/semantic-ui) from `invenio-oauthclient`.
 
 Then, open the `templates` folder in `my-site` (your instance) and paste it there. Inside the
 `invenio-accounts`/`invenio-oauthclient` folder, keep only the template file that you want to customize.
@@ -498,8 +498,8 @@ def account_info(remote, resp):
 SAML stands for Security Assertion Markup Language. It is an XML-based open-standard for transferring identity
 data between two parties: an identity provider (IdP) and a service provider (SP).
 
-* **Identity Provider (IDP)**: performs authentication and passes the user's identity and authorization level to the service provider.
-* **Service Provider (SP)**: trusts the identity provider and authorizes the given user to access the requested resource.
+* **Identity Provider (IDP)**: Performs authentication and passes the user's identity and authorization level to the service provider.
+* **Service Provider (SP)**: Trusts the identity provider and authorizes the given user to access the requested resource.
 
 #### Prerequisites
 
@@ -520,13 +520,13 @@ List of information required to configure the InvenioRDM instance.
 
 * SAML requires a x.509 cert to sign and encrypt elements like `NameID`, `Message`, `Assertion`, `Metadata`.
 
-    * **sp.crt**: the public cert of the SP
-    * **sp.key**: the private key of the SP
+    * **sp.crt**: The public cert of the SP.
+    * **sp.key**: The private key of the SP.
 
-* **EntityID**: Identifier of the IdP entity  (must be a URI)
+* **EntityID**: Identifier of the IdP entity  (must be a URI).
 * **SSO(singleSignOnService)**: URL Target of the IdP where the Authentication Request Message will be sent.
-* **SLO(singleLogoutService)**: URL Location where the <LogoutRequest> from the IdP will be sent (IdP-initiated logout)
-* **x509cert**: Public X.509 certificate of the IdP
+* **SLO(singleLogoutService)**: URL Location where the <LogoutRequest> from the IdP will be sent (IdP-initiated logout).
+* **x509cert**: Public X.509 certificate of the IdP.
 * **Attributes mapping**: IDP in Assertion of the SAML Response provides a dict with all the user data:
 
     For example, given the following SAML response:

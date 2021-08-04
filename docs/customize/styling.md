@@ -16,10 +16,10 @@ Having your instance represent your institution starts with using your
 institution's logo. We are going to change InvenioRDM's default logo to your logo.
 
 Take an *svg* file and copy it to your **local** static files.
-We'll use the [invenio color logo](https://github.com/inveniosoftware/invenio-theme/raw/master/invenio_theme/static/images/invenio-color.svg) as an example:
+We'll use the [invenio white logo](https://github.com/inveniosoftware/cookiecutter-invenio-rdm/blob/master/%7B%7Bcookiecutter.project_shortname%7D%7D/static/images/logo-invenio-white.svg) as an example:
 
 ``` bash
-cp ./path/to/new/color/logo.svg static/images/invenio-rdm.svg
+cp static/images/logo-invenio-white.svg static/images/invenio-rdm.svg
 ```
 
 Then, use the `assets build` command:
@@ -69,9 +69,9 @@ invenio-cli run
 
 This workflow stands for all `static/` files:
 
-- if you add a new file, run `invenio-cli assets build -d`
-- if you modify `invenio.cfg`, re-run `invenio-cli run` (because `invenio.cfg` has been symlinked above, you don't need to run `assets build`)
-- if you modify a previously symlinked file, you don't need to do anything
+- If you add a new file, run `invenio-cli assets build -d`.
+- If you modify `invenio.cfg`, re-run `invenio-cli run` (because `invenio.cfg` has been symlinked above, you don't need to run `assets build`).
+- If you modify a previously symlinked file, you don't need to do anything.
 
 
 ## Change the theme
@@ -80,7 +80,7 @@ You might also be wondering: *How do I change the colors so I can make my instan
 
 The theme comprises the header, footer and main color(s). We are going to modify them. It's a good example of the workflow for when `assets/` files change.
 
-Open the `assets/less/site/globals/site.variables` file and edit it as below:
+Open the `assets/less/site/globals/site.overrides` file and edit it as below:
 
 ``` less
 @brandColor: /* your brand color here */ ;
@@ -98,16 +98,16 @@ Open the `assets/less/site/globals/site.variables` file and edit it as below:
 
 Then, run the `invenio-cli assets build -d` command as above and refresh the page! You should be able to see your theme color(s)!
 
-You can override any styling variables in your `variables.less` file. The available styling variables are found in the `variables.less` or `.variables` files of the various invenio modules installed. The ones above are originally defined [here](https://github.com/inveniosoftware/invenio-app-rdm/blob/master/invenio_app_rdm/theme/assets/semantic-ui/less/invenio_app_rdm/variables.less). The `invenio-theme` module defines a large number of them [here](https://github.com/inveniosoftware/invenio-theme/tree/master/invenio_theme/assets/semantic-ui/less/invenio_theme/theme).
+You can override any styling variables in your `site.overrides` file. The available styling variables are found in the `variables.less` or `.variables` files of the various invenio modules installed. The ones above are originally defined [here](https://github.com/inveniosoftware/invenio-app-rdm/blob/master/invenio_app_rdm/theme/assets/semantic-ui/less/invenio_app_rdm/variables.less). The `invenio-theme` module defines a large number of them [here](https://github.com/inveniosoftware/invenio-theme/tree/master/invenio_theme/assets/semantic-ui/less/invenio_theme/theme).
 
-However, you may notice further changes to the `variables.less` file are not picked up unless `invenio-cli assets build` is run again each time even though we symlinked these files! That's because `.less` files (and javascript files below) always need to be transformed into their final form first. `invenio-cli assets build` does that. There is a way to get the same workflow as `static/` files, without having to re-run that command over and over: run `invenio-cli assets watch`. It watches for changes to assets and rebuilds them automatically.
+However, you may notice further changes to the `site.overrides` file are not picked up unless `invenio-cli assets build` is run again each time even though we symlinked these files! That's because `.less` files (and javascript files below) always need to be transformed into their final form first. `invenio-cli assets build` does that. There is a way to get the same workflow as `static/` files, without having to re-run that command over and over: run `invenio-cli assets watch`. It watches for changes to assets and rebuilds them automatically.
 
 The workflow for `assets/` files is then:
 
-- start `invenio-cli assets watch` in a terminal (you will need a different terminal for the other commands)
-- if you add a new file, run `invenio-cli assets build -d`
-- if you modify `invenio.cfg`, re-run `invenio-cli run`
-- if you modify a previously symlinked file, you now don't need to do anything
+- Start `invenio-cli assets watch` in a terminal (you will need a different terminal for the other commands).
+- If you add a new file, run `invenio-cli assets build -d`.
+- If you modify `invenio.cfg`, re-run `invenio-cli run`.
+- If you modify a previously symlinked file, you now don't need to do anything.
 
 
 ## Change the record landing page

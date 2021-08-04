@@ -44,8 +44,7 @@ nav:
     - Authentication: 'customize/authentication.md'
     - Application Data: 'customize/application_data.md'
     - Record landing page: 'customize/record_landing_page.md'
-    - Metadata: 'customize/metadata.md'
-    - Permissions: 'customize/permissions.md'
+    - S3 Storage: 'customize/s3.md'
   - Deploy:
     - How can I deploy it?: 'deployment/index.md'
     - OpenShift: 'deployment/openshift.md'
@@ -59,7 +58,6 @@ nav:
     - Overview: 'develop/index.md'
     - Getting started: 'develop/getting-started.md'
     - Develop or edit a module: 'develop/develop.md'
-    - S3 Storage: 'develop/s3.md'
     - Extensions: 'develop/custom.md'
     - Example Subjects Extension: 'develop/example_subjects_extension.md'
   - Reference:
