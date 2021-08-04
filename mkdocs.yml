@@ -44,16 +44,7 @@ nav:
     - Authentication: 'customize/authentication.md'
     - Application Data: 'customize/application_data.md'
     - Record landing page: 'customize/record_landing_page.md'
-    - S3 Storage: 'customize/s3.md'
-  - Deploy:
-    - How can I deploy it?: 'deployment/index.md'
-    - OpenShift: 'deployment/openshift.md'
-    - Kubernetes: 'deployment/kubernetes.md'
-    - System components: 'deployment/services.md'
-    - Configuration:  'deployment/configuration.md'
-    - Building your image: 'deployment/image.md'
-    - Image registries: 'deployment/registries.md'
-    - Benchmarking: 'deployment/benchmark.md'
+    - Storage: 'customize/s3.md'
   - Develop:
     - Overview: 'develop/index.md'
     - Getting started: 'develop/getting-started.md'
