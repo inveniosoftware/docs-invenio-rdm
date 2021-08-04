@@ -32,25 +32,27 @@ The content of the file is as follows:
   allow: <array of strings>
 ```
 
-`<email>` : email of the user
-`active` : is the user active or not
-`password` : their password. If empty, a random one is generated
-`roles` : array of roles the user has. The roles must already be present in the DB
-`allow` : array of action needs the user has
+- `<email>` : Email of the user.
+- `active` : Is the user active or not.
+- `password` : Their password. If empty, a random one is generated.
+- `roles` : Array of roles the user has. The roles must already be present in the DB.
+- `allow` : Array of action needs the user has.
 
 ## Vocabularies
 
 ```
 app_data/
 ├── vocabularies
-│   └── <vocabulary_identifier>.yaml
+│   ├── <vocabulary_identifier_0>.yaml
+|   ├── <vocabulary_identifier_1>.yaml
+|   └── ...
 └── vocabularies.yaml
 ```
 
 To load vocabularies, the typical file structure is the one depicted above:
 
-- a `vocabularies.yaml` files that contains the specific vocabularies that you want to override
-- a `vocabularies/<vocabulary_identifier>.yaml` file that contains an entry for each vocabulary record
+- A `vocabularies.yaml` file that contains the specific vocabularies that you want to override.
+- A `vocabularies/<vocabulary_identifier>.yaml` files that contains entries for each vocabulary or vocabulary scheme.
 
 For the specifics of a vocabulary, refer to [the default vocabularies](https://github.com/inveniosoftware/invenio-rdm-records/blob/master/invenio_rdm_records/fixtures/data).
 
@@ -62,9 +64,9 @@ The `vocabularies.yml` always has the same structure:
   data-file: <string>
 ```
 
-`<vocabulary type identifier>` : the vocabulary identifier referenced in `vocabularies.yaml`
-`pid-type` : the persistend identifier type id (refer to the defaults for values)
-`data-file` : the file path (relative to this file) where the matching data file resides
+- `<vocabulary type identifier>` : The vocabulary identifier referenced in `vocabularies.yaml`.
+- `pid-type` : The persistend identifier type id (refer to the defaults for values).
+- `data-file` : The file path (relative to this file) where the matching data file resides.
 
 The `vocabularies/<vocabulary_identifier>.yaml` may have different `props`, but it is otherwise the same across different vocabularies:
 
@@ -74,9 +76,9 @@ The `vocabularies/<vocabulary_identifier>.yaml` may have different `props`, but 
   title: <object>
 ```
 
-`id` : the id of the vocabulary record
-`props` : a vocabulary specific object (refer to the defaults for exact keys)
-`title` : an object of locales as keys and human readable titles in that locale as values (only include the locales you support)
+- `id` : The id of the vocabulary record.
+- `props` : A vocabulary specific object (refer to the defaults for exact keys).
+- `title` : An object of locales as keys and human readable titles in that locale as values (only include the locales you support).
 
 
 ### Example

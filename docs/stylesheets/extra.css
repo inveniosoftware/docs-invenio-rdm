@@ -20,7 +20,7 @@
 }
 [data-md-color-primary="white"] .md-tabs  {
     background: linear-gradient(
-        12deg,
+        90deg,
         rgba(3, 119, 205, 1),
         rgba(3, 119, 205, 1) 52.52%,
         rgba(251, 130, 115, 0.69));
