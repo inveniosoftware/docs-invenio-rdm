@@ -1,42 +1,19 @@
-# Application Data
+# Customize a vocabulary
 
-Your instance can rely on custom data to support your needs. For instance, a medical repository might want to use a different set of subjects than a high-energy physics repository. InvenioRDM creates a default admin user with an inveniosoftware.org email; you probably want to change that too. In this section, we outline how to customize the data your instance uses.
+## Application Data
+
+Your instance can rely on custom data to support your needs. For instance, a medical repository might want to use a different set of subjects than a high-energy physics repository.
 
 This custom data is typically called "fixtures". It's data that is ingested when your instance is initially setup and then depended upon for day-to-day operations.
 
-Because fixtures are loaded when `invenio-cli services setup` is run (in May release, see warning below), you will want to setup your fixtures before running this command, so that your custom data is used and not the defaults. Locally, you can run `invenio-cli services setup --force` to wipe your database + indices and reload them with your fixtures (DON'T DO THIS IN PRODUCTION!).
+Because fixtures are loaded when `invenio-cli services setup` is run, you will want to setup your fixtures before running this command, so that your custom data is used and not the defaults. Locally, you can run `invenio-cli services setup --force` to wipe your database + indices and reload them with your fixtures (**DON'T DO THIS IN PRODUCTION!**).
 
 !!! warning "Loading fixtures"
-    As of writing (May release), these fixtures are only loaded when `invenio-cli services setup` is run. This is problematic if you would want to create a role and assign it to a user in your fixtures: there is no moment you can create that role in the database between the database creation and fixture loading! Loading specific fixtures independent from each other and separate from `invenio-cli services setup` will be possible in the future.
+    These fixtures are only loaded when `invenio-cli services setup` is run. This is problematic if you would want to create a role and assign it to a user in your fixtures: there is no moment when you can create that role in the database between the database creation and fixture loading! Loading specific fixtures independent from each other and separate from `invenio-cli services setup` will be possible in the future.
 
 ## The app_data/ folder
 
-When initialized, your instance came with an `app_data/` folder. This folder is used to place custom data. InvenioRDM will look there first to use these fixtures. If a particular fixture is not provided in `app_data/`, InvenioRDM loads a default. Placing fixtures in `app_data/` allows you to override the default data. Different fixtures can have different expected structures. We outline here the kind of data that can be customized. More will be added over time.
-
-## Users
-
-```
-app_data/
-└── users.yaml
-```
-
-This file contains a list of users to create. If the file is provided but it is empty, no default user is created. If the file is not provided, InvenioRDM creates an admin user with email `admin@inveniosoftware.org` (and a random password).
-
-The content of the file is as follows:
-
-```yaml
-<email>:
-  active: <bool>
-  password: <string>
-  roles: <array of strings>
-  allow: <array of strings>
-```
-
-- `<email>` : Email of the user.
-- `active` : Is the user active or not.
-- `password` : Their password. If empty, a random one is generated.
-- `roles` : Array of roles the user has. The roles must already be present in the DB.
-- `allow` : Array of action needs the user has.
+When initialized, your instance came with an `app_data/` folder. This folder is used to place custom data. InvenioRDM will look there first to use these fixtures. If a particular fixture is not provided in `app_data/`, InvenioRDM loads a default. Placing fixtures in `app_data/` allows you to override the default data. Different fixtures can have different expected structures. We outline here the kind of data that can be customized.
 
 ## Vocabularies
 
@@ -67,6 +44,23 @@ The `vocabularies.yml` always has the same structure:
 - `<vocabulary type identifier>` : The vocabulary identifier referenced in `vocabularies.yaml`.
 - `pid-type` : The persistend identifier type id (refer to the defaults for values).
 - `data-file` : The file path (relative to this file) where the matching data file resides.
+
+A vocabulary can have multiple schemes, for example *subjects* might come from OECD FOS, MeSH, and many more. Meaning, that
+they have to be loaded from different files. However, they are all *subjects*. For example:
+
+```yaml
+subjects:
+  pid-type: sub
+  schemes:
+    - id: MeSH
+      name: ...
+      uri: ...
+      data-file: vocabularies/subjects_mesh.yaml
+    - id: FOS
+      name: ...
+      uri: ...
+      data-file: vocabularies/subjects_oecd_fos.yaml
+```
 
 The `vocabularies/<vocabulary_identifier>.yaml` may have different `props`, but it is otherwise the same across different vocabularies:
 
