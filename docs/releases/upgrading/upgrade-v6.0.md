@@ -16,6 +16,10 @@ migration may complain about missing packages.
 
 ## Upgrade steps
 
+!!! warning upgrade your invenio-cli
+
+    Make sure you have the latest invenio-cli, for InvenioRDM v6 release is v1.0.0
+    
 ### Upgrade your instance dependencies
 
 Bump the RDM version and rebuild the assets:
