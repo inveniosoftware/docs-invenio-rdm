@@ -53,7 +53,7 @@ Do please let us know which facets and sort options you'd like to see in the nex
 
 ### Subjects: OECD Fields of Science
 
-By default, a new instance now includes the [OECD Fields of Science](https://www.oecd.org/science/inno/38235147.pdf) subjects vocabulary. The vocabulary is with only 48 terms sufficiently broad and is currently also used by DataCite. We do not expect this vocabulary to be suitable for all instances, and it's therefore also easy to disable by simply editing ``app_data/vocabularies.yaml``.
+By default, a new instance now includes the [OECD Fields of Science](https://www.oecd.org/science/inno/38235147.pdf) subjects vocabulary. The vocabulary is  sufficiently broad with only 48 terms and is currently also used by DataCite. We do not expect this vocabulary to be suitable for all instances, and it's therefore also easy to disable by simply editing ``app_data/vocabularies.yaml``.
 
 ### Resource types
 
@@ -67,9 +67,9 @@ Affiliations that is linked to a ROR affiliation record now have a small ROR ico
 
 ![](v6.0/ror.png)
 
-**Preview for .txt files**
+**Preview for .txt files and .ipynb**
 
-The previewer will now also work for ``.txt`` files.
+The previewer will now also work for ``.txt`` and ``.ipynb`` files.
 
 **Citation style**
 
@@ -83,17 +83,17 @@ The registered DOI landing page was set to ``/api/records/<id>`` instead of ``/r
 
 **Content Security Policy (CSP)**
 
-We have removed all external domains from the CSP as well as the ``unsafe-eval`` to ensure we have as strict a policy as possible. If you use external JavaScript (e.g. loading fonts from Google) this will affect you and you will need to edit the ``APP_DEFAULT_SECURE_HEADERS`` configuration variables in ``invenio.cfg``.
+We have removed all external domains from the CSP as well as the ``unsafe-eval`` to ensure we are as strict a policy as possible. If you use external JavaScript (e.g. loading fonts from Google) this will affect you and you will need to edit the ``APP_DEFAULT_SECURE_HEADERS`` configuration variables in ``invenio.cfg``. You may also need to add back ``unsafe-eval`` when running the demo containers.
 
 **CSRF protection for REST API**
 
-The REST API now requires the HTTP header ``X-CSRFToken: <value>`` to be sent with all PUT, POST, PATCH and DELETE requests. The ``<value>`` to use in the request, a JavaScript client can obtain from the Cookie ``csrftoken``.
+The REST API now requires the HTTP header ``X-CSRFToken: <value>`` to be sent with all PUT, POST, PATCH and DELETE requests. A JavaScript client can obtain the ``<value>`` to use in the request from the Cookie ``csrftoken``.
 
 **Development server and Celery**
 
 The Celery background worker that is started during ``invenio-cli run`` will not log a lot more information to the console as we have changed the log-level from ERROR to INFO. This means developers can more easily follow which tasks are being executed.
 
-In addition an issue has been fixed so that cron tasks are executed, because the Celery beat scheuduler is now started correctly.
+In addition an issue has been fixed so that cron tasks are executed, because the Celery beat scheduler is now started correctly.
 
 **Removed SITE_HOSTNAME**
 
@@ -101,14 +101,15 @@ The config variable ``SITE_HOSTNAME`` has now been completely removed, and repla
 
 **MinIO S3 development server**
 
-The included MinIO S3 development server (if choose S3 as storage during the ``invenio-cli init rdm`` step) have had fixes applied to the docker compose, so that now data is stored inside your instance directory under ``/data``.
+Fixes were applied to the docker-compose file for the MinIO S3 development server (if S3 was chosen as storage during the ``invenio-cli init rdm`` step), so that now data is stored inside your instance directory under ``/data``.
 
 **Deposit form error messages**
 
 We have continued work on improving the error messages. In particular, we have improved the error messages for lists of items like e.g. related works.
 
 **Admin interface disabled**
-Invenio Framework comes with an admin interface under ``/admin``. This admin interface however mainly resembles a database inspection tool, and at best is not useful, but at worst you make destrucive operations to your database. We have therefore completely disabled the admin interface.
+
+The Invenio Framework comes with an admin interface under ``/admin``. This admin interface however mainly resembles a database inspection tool, and at best is not useful, but at worst allows destrucive operations to be conducted on your database. We have therefore completely disabled the admin interface.
 
 **Licenses classification**
 
@@ -122,7 +123,7 @@ We have removed all partner logos from the main InvenioRDM distribution to avoid
 
 **DOI registration**
 
-The largest known issue relates to the DOI registration and means that at this point we have to label the DOI registration as feature preview, and thus **the DOI registration feature not yet suitable for production services**.
+The largest known issue relates to DOI registration and means that, at this point, we have to label it as a feature preview, and thus **the DOI registration feature is not yet suitable for production services**.
 
 ## Upgrading to v6.0
 
@@ -132,19 +133,19 @@ We support upgrading from v4.0 to v6.0. Please see the [upgrade notice](../upgra
 
 If you plan to deploy InvenioRDM as a production service, please read this notice carefully to understand the maturity of InvenioRDM.
 
-InvenioRDM v6.0 is the first release reaching maturity for production services. We expect issues to be discovered as more systems gets deployed. Please report any problems you discover on [GitHub](https://github.com/inveniosoftware/invenio-app-rdm/issues/new/choose), so that we can quickly provide bug fixes.
+InvenioRDM v6.0 is the first release reaching maturity for production services. We expect issues to be discovered as more systems get deployed. Please report any problems you discover on [GitHub](https://github.com/inveniosoftware/invenio-app-rdm/issues/new/choose), so that we can quickly provide bug fixes.
 
 InvenioRDM has been running in several test systems over the past 6-months and has been subjected to both a security audit and penetration test. InvenioRDM is based on the Invenio Framework which has been used in large-scale production services since 2016.
 
-InvenioRDM v6.0 has not yet been put under heavy production workloads, nor been exposed to a large number users. We are working towards having the Zenodo.org service running on InvenioRDM. Until this milestone has been reached, we cannot guarantee how suitable InvenioRDM will be for very heavy production loads.
+InvenioRDM v6.0 has not yet been put under heavy production workloads, nor been exposed to a large number of users. We are working towards having the Zenodo.org service running on InvenioRDM. Until this milestone has been reached, we cannot guarantee how suitable InvenioRDM will be for very heavy production loads.
 
 ## What's next?
 
-The InvenioRDM partners have been working hard for past many months to ship the first Long-Term Support release, and many developers will be taking a well-deserved vacation during August (we will have developers on watch for bug/security fixes 😉).
+The InvenioRDM partners have been working hard for the past many months to ship the first Long-Term Support release, and many developers will be taking a well-deserved vacation during August (we will have developers on watch for bug/security fixes 😉).
 
-The InvenioRDM project partners will hold a virtual project meeting end of September where the road map for the coming 6-12 months will be discussed and agreed upon.
+The InvenioRDM project partners will hold a virtual project meeting at the end of September where the road map for the coming 6-12 months will be discussed and agreed upon.
 
-We are currently planning the scope of the next release, and expect the release date to be around early/mid October. A lot of work has already completed on an OAI-PMH server, I18N support and DOI registration improvements so these are likely candidates to be shipped in the next release.
+We are currently planning the scope of the next release, and expect the release date to be around early/mid October. A lot of work has already been completed on an OAI-PMH server, I18N support and DOI registration improvements so these are likely candidates to be shipped in the next release.
 
 ## Credit
 
@@ -153,5 +154,3 @@ The development work in this release was done by:
 - CERN (Javier, Lars, Pablo, Zach, Jenny)
 - Northwestern University (Guillaume)
 - TU Graz (Mojib, David)
-
-

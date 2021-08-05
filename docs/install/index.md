@@ -8,8 +8,6 @@ The guide is intended for system administrators and developers who want to try, 
 
 This guide covers how to install InvenioRDM locally on your machine, how to setup and configure your system for InvenioRDM.
 
-Checkout the [Deploy Guide](../deployment/index.md) if you are looking for a guide on how to deploy InvenioRDM to a server infrastructure.
-
 ## Quick start
 
 #### [1. Install CLI tool](cli.md)

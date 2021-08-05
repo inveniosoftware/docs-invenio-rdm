@@ -50,7 +50,7 @@ We need the server running in another terminal for the next steps, in a new cons
 invenio-cli run
 ~~~
 
-Now, when the server is started, in the previous console you can optionally [prepare your fixtures](../../customize/application_data.md):
+Now, when the server is started, in the previous console you can optionally [prepare your fixtures](../../customize/vocabularies/index.md):
 
 ~~~bash
 # NOTE: make sure you're in the instance directory
