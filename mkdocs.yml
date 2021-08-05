@@ -39,15 +39,21 @@ nav:
     - Troubleshooting: 'install/troubleshoot.md'
   - Customize:
     - Overview: 'customize/index.md'
-    - Styling: 'customize/styling.md'
-    - DOI registration: 'customize/dois.md'
+    - Styling:
+      - Overview: 'customize/styling.md'
+      - Change logo: 'customize/styling-logo.md'
+      - Change theme: 'customize/styling-theme.md'
+      - Change templates: 'customize/styling-templates.md'
     - Authentication: 'customize/authentication.md'
+    - Search:
+      - Change facets/sorting: 'customize/search.md'
     - Vocabularies:
       - Overview: 'customize/vocabularies/index.md'
       - Affiliations: 'customize/vocabularies/affiliations.md'
       - Subjects: 'customize/vocabularies/subjects.md'
       - Users: 'customize/vocabularies/users.md'
     - Record landing page: 'customize/record_landing_page.md'
+    - DOI registration: 'customize/dois.md'
     - Storage: 'customize/s3.md'
   - Develop:
     - Overview: 'develop/index.md'
