@@ -280,10 +280,10 @@ A `person_or_org` is described with the following subfields:
 
 | Field            | Cardinality |   Description   |
 |:---------------------:|:-----------:|:----------------|
-| ``type`` | (1) | The type of name. Either ``personal`` or ``organisational``. |
-| ``given_name`` | (1 if `type` is `personal` / 0 if `type` is `organisational`) | Given name(s). |
-| ``family_name`` &nbsp;&nbsp;&nbsp; | (1 if `type` is `personal` / 0 if `type` is `organisational`) | Family name. |
-| ``name``              | (0 if `type` is `personal` / 1 if `type` is `organisational`) | The full name of the organisation. For a person, this field is generated from `given_name` and `family_name` |
+| ``type`` | (1) | The type of name. Either ``personal`` or ``organizational``. |
+| ``given_name`` | (1 if `type` is `personal` / 0 if `type` is `organizational`) | Given name(s). |
+| ``family_name`` &nbsp;&nbsp;&nbsp; | (1 if `type` is `personal` / 0 if `type` is `organizational`) | Family name. |
+| ``name``              | (0 if `type` is `personal` / 1 if `type` is `organizational`) | The full name of the organisation. For a person, this field is generated from `given_name` and `family_name` |
 | ``identifiers``  | (0-n) | Person or organisation identifiers. |
 
 Identifiers are described with the following subfields (note, we only support one identifier per scheme):
@@ -312,7 +312,7 @@ The ``affiliations`` field consists of objects with the following subfields:
 
 | Field | Cardinality |   Description   |
 |:-----:|:-----------:|:----------------|
-| ``id`` | (0-1, CV) | The organisational or institutional id from the controlled vocabulary. |
+| ``id`` | (0-1, CV) | The organizational or institutional id from the controlled vocabulary. |
 | ``name`` | (0-1) | The name of the organisation or institution. |
 
 One of ``id`` or ``name`` must be given. It's recommended to use ``name`` if there is no matching ``id`` in the controlled vocabulary.
