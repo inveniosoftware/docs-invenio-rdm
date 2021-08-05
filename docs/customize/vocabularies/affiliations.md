@@ -18,6 +18,7 @@ affiliations:
       data-file: vocabularies/affiliations_ror.yaml
 ```
 
+
 The `affiliations_ror.yaml` file can be downloaded from [here](https://github.com/inveniosoftware/cookiecutter-invenio-rdm/raw/master/%7B%7Bcookiecutter.project_shortname%7D%7D/app_data/vocabularies/affiliations_ror.yaml).
 
 Afterwards you will need to import the affiliations. To do so, run the following command
@@ -26,6 +27,16 @@ from your instance's folder:
 ```bash
 invenio rdm-records fixtures
 ```
+
+!!! info Loading time
+
+    The ROR vocabulary consists of about 100.000 records and with an ingestion
+    speed around 100-200 records/s it usually takes between around 8-15 minutes
+    to load the records.
+
+    You can follow the progress via the RabbitMQ management interface
+    on [http://127.0.0.1:15672/](http://127.0.0.1:15672/) (guest/guest).
+
 
 !!! info Fixtures currently do not support updates
 
