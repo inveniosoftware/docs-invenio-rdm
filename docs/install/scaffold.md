@@ -19,7 +19,7 @@ The CLI will require the following data:
 - **Python version**: 3.8 (default), 3.6, 3.7, or 3.9.
 - **Database**: PostgreSQL (default) - we hope to support MySQL in the future.
 - **Elasticsearch version**: 7 (default) or 6
-- **Storage backend**: Local file system (default) or in a S3-like backend. If S3 is chosen a MinIO container is provided, however, you can set it up to use your own. See more in [S3 extension](../develop/s3.md)
+- **Storage backend**: Local file system (default) or in a S3-like backend. If S3 is chosen a MinIO container is provided.
 
 It will also generate a test private key which is needed for SSL support in the development server.
 
