@@ -14,8 +14,6 @@ For the impatient, here are the commands to build, setup and run InvenioRDM. For
 Container:
 
 ```bash
-export INVENIO_SITE_UI_URL=https://https://127.0.0.1
-export INVENIO_SITE_API_URL=https://https://127.0.0.1/api
 invenio-cli containers start --lock --build --setup
 ```
 
