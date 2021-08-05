@@ -4,7 +4,7 @@
 
 InvenioRDM has a configuration option called ``RDM_CITATION_STYLES`` which controls which citation styles will show up on the landing page:
 
-```
+``` python
 RDM_CITATION_STYLES = [
      ('chicago-annotated-bibliography', _('Chicago')),
      ('ieee', _('IEEE')),

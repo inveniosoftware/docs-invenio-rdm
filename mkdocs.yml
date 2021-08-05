@@ -107,7 +107,7 @@ extra_css:
 markdown_extensions:
   - admonition
   - attr_list
-  - codehilite:
-      guess_lang: false
+  - pymdownx.highlight
+  - pymdownx.superfences
   - toc:
       permalink: true
