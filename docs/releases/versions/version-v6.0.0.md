@@ -51,7 +51,7 @@ RDM_SEARCH = {
 
 Do please let us know which facets and sort options you'd like to see in the next release.
 
-### Subjects: OCED Fields of Science
+### Subjects: OECD Fields of Science
 
 By default, a new instance now includes the [OECD Fields of Science](https://www.oecd.org/science/inno/38235147.pdf) subjects vocabulary. The vocabulary is with only 48 terms sufficiently broad and is currently also used by DataCite. We do not expect this vocabulary to be suitable for all instances, and it's therefore also easy to disable by simply editing ``app_data/vocabularies.yaml``.
 
@@ -83,7 +83,7 @@ The registered DOI landing page was set to ``/api/records/<id>`` instead of ``/r
 
 **Content Security Policy (CSP)**
 
-We have removed all external domains from the CSP as well as the ``unsafe-eval`` to ensure we as strict a policy as possible. If you use external JavaScript (e.g. loading fonts from Google) this will affect you and you will need to edit the ``APP_DEFAULT_SECURE_HEADERS`` configuration variables in ``invenio.cfg``.
+We have removed all external domains from the CSP as well as the ``unsafe-eval`` to ensure we have as strict a policy as possible. If you use external JavaScript (e.g. loading fonts from Google) this will affect you and you will need to edit the ``APP_DEFAULT_SECURE_HEADERS`` configuration variables in ``invenio.cfg``.
 
 **CSRF protection for REST API**
 
@@ -97,7 +97,7 @@ In addition an issue has been fixed so that cron tasks are executed, because the
 
 **Removed SITE_HOSTNAME**
 
-The config variable ``SITE_HOSTNAME`` has now been completely removed, and replace with ``SITE_API_URL`` and ``SITE_UI_URL`` instead.
+The config variable ``SITE_HOSTNAME`` has now been completely removed, and replaced with ``SITE_API_URL`` and ``SITE_UI_URL`` instead.
 
 **MinIO S3 development server**
 
@@ -105,14 +105,14 @@ The included MinIO S3 development server (if choose S3 as storage during the ``i
 
 **Deposit form error messages**
 
-We have continued work on improving the error messages. In particular, we have improved the error messages for list of items like e.g. related works.
+We have continued work on improving the error messages. In particular, we have improved the error messages for lists of items like e.g. related works.
 
 **Admin interface disabled**
 Invenio Framework comes with an admin interface under ``/admin``. This admin interface however mainly resembles a database inspection tool, and at best is not useful, but at worst you make destrucive operations to your database. We have therefore completely disabled the admin interface.
 
 **Licenses classification**
 
-The licenses in the license vocabulary have now been classfied as data or software licenses to ensure that our license selection form works properly.
+The licenses in the license vocabulary have now been classified as data or software licenses to ensure that our license selection form works properly.
 
 **Partner logos removed**
 
@@ -134,17 +134,17 @@ If you plan to deploy InvenioRDM as a production service, please read this notic
 
 InvenioRDM v6.0 is the first release reaching maturity for production services. We expect issues to be discovered as more systems gets deployed. Please report any problems you discover on [GitHub](https://github.com/inveniosoftware/invenio-app-rdm/issues/new/choose), so that we can quickly provide bug fixes.
 
-InvenioRDM has been running in several test systems over the past 6-months and have been subjected to both a security audit and penetration test. InvenioRDM is based on the Invenio Framework which has been used in large-scale production services since 2016.
+InvenioRDM has been running in several test systems over the past 6-months and has been subjected to both a security audit and penetration test. InvenioRDM is based on the Invenio Framework which has been used in large-scale production services since 2016.
 
-InvenioRDM v6.0 has not yet been put under heavy production workloads, nor been exposed to large number users. We are working towards having the Zenodo.org service running on InvenioRDM. Until this milestone has been reached, we cannot guarantee how suitable InvenioRDM will be for very heavy production loads.
+InvenioRDM v6.0 has not yet been put under heavy production workloads, nor been exposed to a large number users. We are working towards having the Zenodo.org service running on InvenioRDM. Until this milestone has been reached, we cannot guarantee how suitable InvenioRDM will be for very heavy production loads.
 
 ## What's next?
 
-The InvenioRDM partners have been working hard for past many months to ship the first Long-Term Support release, and with many developers will be taking a well-deserved vacation during August (we will have developers on watch for bug/security fixes 😉).
+The InvenioRDM partners have been working hard for past many months to ship the first Long-Term Support release, and many developers will be taking a well-deserved vacation during August (we will have developers on watch for bug/security fixes 😉).
 
 The InvenioRDM project partners will hold a virtual project meeting end of September where the road map for the coming 6-12 months will be discussed and agreed upon.
 
-We are currently planning the scope of the next release, and expect the release date to be around early/mid October. A lot of work as already completed on an OAI-PMH server, I18N support and DOI registration improvements so these a likely candidates to be shipped in the next release.
+We are currently planning the scope of the next release, and expect the release date to be around early/mid October. A lot of work has already completed on an OAI-PMH server, I18N support and DOI registration improvements so these are likely candidates to be shipped in the next release.
 
 ## Credit
 
