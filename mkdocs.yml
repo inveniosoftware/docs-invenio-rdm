@@ -91,6 +91,7 @@ nav:
     - Architecture: maintenance/architecture.md
     - Use cases: maintenance/use-cases.md
     - RFCs: maintenance/rfcs.md
+    - Extension Development: maintenance/subject_extension_example.md
   - Contribute:
     - Contribute to InvenioRDM: contribute/index.md
 
