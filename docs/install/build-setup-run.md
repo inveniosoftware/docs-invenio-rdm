@@ -242,7 +242,11 @@ Go and explore your InvenioRDM instance at [https://127.0.0.1:5000](https://127.
 
 !!! tip "Change the host and port"
     By default, the host is `127.0.0.1` and the port is `5000`. Pass `--host` and `--port`
-    to change them e.g., `invenio-cli run --host 127.0.0.2 --port 5001`.
+    to change them e.g.:
+
+      `invenio-cli run --host 0.0.0.0 --port 443`
+
+    It's a development server, so don't use it for production.
 
 ## Troubleshooting
 

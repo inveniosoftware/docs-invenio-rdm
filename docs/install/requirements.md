@@ -9,7 +9,13 @@ InvenioRDM depends on the following requirements to be installed on your local s
     - Python development headers:
         - On Ubuntu: `sudo apt install python3-dev`.
         - On RHEL/Fedora: `yum install -y python3-devel.x86_64`.
-    - MacOS 11 Big Sur introduces some changes that might break the installation of some packages (for example `PostgreSQL` binaries). If this happens, make sure that you prepend the installation command with `SYSTEM_VERSION_COMPAT=1`. See [here](https://github.com/psycopg/psycopg2/issues/1200) for more information.
+    - MacOS 11 Big Sur introduces some changes that might break the installation of some packages (for example `PostgreSQL` binaries). If this happens, make sure that you prepend the installation command with `SYSTEM_VERSION_COMPAT=1` ([more information](https://github.com/psycopg/psycopg2/issues/1200)):
+
+        ```
+        SYSTEM_VERSION_COMPAT=1 invenio-cli install
+        ```
+
+
 - [Docker](https://docs.docker.com/) 1.13.0+
 - [Docker-Compose](https://docs.docker.com/compose/) 1.17.0+
 
