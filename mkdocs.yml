@@ -42,7 +42,7 @@ nav:
     - Styling: 'customize/styling.md'
     - DOI registration: 'customize/dois.md'
     - Authentication: 'customize/authentication.md'
-    - Vocabularies: 
+    - Vocabularies:
       - Overview: 'customize/vocabularies/index.md'
       - Affiliations: 'customize/vocabularies/affiliations.md'
       - Subjects: 'customize/vocabularies/subjects.md'
@@ -52,8 +52,6 @@ nav:
   - Develop:
     - Overview: 'develop/index.md'
     - Getting started: 'develop/getting-started.md'
-    - Develop or edit a module: 'develop/develop.md'
-    - Extensions: 'develop/extensions.md'
   - Reference:
     - Overview: reference/index.md
     - CLI: reference/cli.md
