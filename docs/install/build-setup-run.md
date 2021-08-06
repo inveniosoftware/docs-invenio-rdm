@@ -135,7 +135,7 @@ Putting templates...
 The command will:
 
 - Create the database and Elasticsearch indexes.
-- Load fixtures data into InvenioRDM
+- Load fixtures data into InvenioRDM.
 - Create demo records.
 
 !!! tip
@@ -160,7 +160,7 @@ Go and explore your InvenioRDM instance at [https://127.0.0.1](https://127.0.0.1
     Due to Content Security Policy (CSP) headers it is important that you visit ``127.0.0.1``, and not ``localhost`` unless you set ``INVENIO_SITE_UI_URL`` and ``INVENIO_SITE_API_URL`` to ``https://localhost`` and ``https://localhost/api`` respectively.
 
 !!! tip
-    You can provide other configuration variables by setting them as environment variables with the ``INVENIO_`` prefix just like we did for the ``INVENIO_SITE_UI_URL`` example above.
+    You can provide other configuration variables by setting them as environment variables with the ``INVENIO_`` prefix.
 
 ## Option 2: Local install
 
@@ -168,7 +168,7 @@ The local install is good for developers or if you like to customize InvenioRDM 
 
 ### Build
 
-The local build steps involve installing all the Python dependencies into local Python virtual environment. This is done with the command (the virtualenv is managed by ``pipenv``):
+The local build steps involve installing all the Python dependencies into a local Python virtual environment. This is done with the command (the virtualenv is managed by ``pipenv``):
 
 ```bash
 invenio-cli install
