@@ -9,8 +9,8 @@
 
 ### Use your browser
 
-Navigate to [https://127.0.0.1:5000](https://127.0.0.1:5000) . Note that you might need to accept the SSL exception since it's using a test certificate.
-You can explore all the features there. Below, we list a small subset of the common API calls. For more, see the [API reference section](../reference/rest_api.md).
+Navigate to [https://127.0.0.1:5000](https://127.0.0.1:5000). Note that you might need to accept the SSL exception since it's using a test certificate.
+Below, we list a small subset of the common API calls. For more, see the [API reference section](../reference/rest_api.md).
 
 ### List records
 
