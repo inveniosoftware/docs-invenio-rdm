@@ -32,48 +32,48 @@ Following is a high-level overview of features currently supported by InvenioRDM
 - **Previewers** InvenioRDM comes with previewers for common files formats such
   as PDFs, images, CSV, Markdown, XML and JSON.
 
-- **Citation formatting**. InvenioRDM can generate citations strings for your
+- **Citation formatting** InvenioRDM can generate citations strings for your
   records using the Citation Style Language with support for more than 800+
   journal citation styles.
 
-- **Record preview**. Before you publish your record, you can see a preview of
+- **Record preview** Before you publish your record, you can see a preview of
   how it looks like.
 
 - **Metadata-only records** Both records with or without associated files are
   supported.
 
-- **Identifier detection and validation**. InvenioRDM comes with support for
+- **Identifier detection and validation** InvenioRDM comes with support for
   automatic detection and validation for a large number of persistent identifier
   schemes (i.e. less typing and clicking for end-users).
 
 ### Search
 
-- **Faceted search**. InvenioRDM supports fully customizable faceted search.
+- **Faceted search** InvenioRDM supports fully customizable faceted search.
 
-- **Advanced query syntax**. InvenioRDM has support for advanced querying via
+- **Advanced query syntax** InvenioRDM has support for advanced querying via
   simple term search, phrase search, range search, regular expressions and
-  custom ranking/sorting/
+  custom ranking/sorting.
 
-- **Auto-complete as you type**. InvenioRDM exposed advanced APIs for
+- **Auto-complete as you type** InvenioRDM exposed advanced APIs for
   search-as-you-type scenarios.
 
 ### Auth, permissions and security
 
-- **Login via institutional account**. InvenioRDM makes it easy to integrate your
+- **Login via institutional account** InvenioRDM makes it easy to integrate your
   institutional authentication provider such as e.g. Keycloak, OAuth or alternative
   use e.g. ORCID for login.
 
-- **Restricted records**. InvenioRDM supports restricting access to files only
+- **Restricted records** InvenioRDM supports restricting access to files only
   or to the entire record.
 
-- **Share by link**. Restricted records can be shared with peer-reviewers or
+- **Share by link** Restricted records can be shared with peer-reviewers or
   your colleagues via secret links.
 
 - **Embargo support** Restricted records can be embargoed so that they are
   automatically made publicly on a specific date so that you can comply with
   e.g. funders' Open Access mandates.
 
-- **Logged in devices**. InvenioRDM allows users to see a list of currently
+- **Logged in devices** InvenioRDM allows users to see a list of currently
   logged in devices on their account.
 
 ### Customizations
