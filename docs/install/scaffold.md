@@ -57,6 +57,10 @@ Select file_storage:
 1 - local
 2 - S3
 Choose from 1, 2 [1]:
+Select development_tools:
+1 - yes
+2 - no
+Choose from 1, 2 [1]:
 -------------------------------------------------------------------------------
 
 Generating SSL certificate and private key for testing....
