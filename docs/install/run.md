@@ -335,36 +335,36 @@ curl -k -XGET https://127.0.0.1:5000/api/records | jq .
 You can create a new record **draft** using the API:
 
 ```bash
-curl -k -XPOST -H "Content-Type: application/json" https://127.0.0.1:5000/api/records -d '{
-"access": {
+curl -k -XPOST -H "Content-Type: application/json" -H "Authorization: Bearer <TOKEN>" https://127.0.0.1:5000/api/records -d '{
+  "access": {
     "record": "public",
     "files": "public"
-},
-"files": {
+  },
+  "files": {
     "enabled": true
-},
-"metadata": {
+  },
+  "metadata": {
+    "creators": [
+      {
+        "person_or_org": {
+          "family_name": "Brown",
+          "given_name": "Troy",
+          "type": "personal"
+        }
+      },
+      {
+        "person_or_org": {
+          "name": "Troy Inc.",
+          "type": "organizational"
+        }
+      }
+    ],
     "publication_date": "2020-06-01",
     "resource_type": {
-        "id": "image-photo"
+      "id": "image-photo"
     },
-    "creators": [
-        {
-            "person_or_org": {
-                "family_name": "Brown",
-                "given_name": "Troy",
-                "type": "personal"
-            }
-        },
-        {
-            "person_or_org": {
-                "name": "Troy Inc.",
-                "type": "organizational"
-            }
-        }
-    ],
     "title": "A Romans story"
-}
+  }
 }'
 ```
 
@@ -374,17 +374,24 @@ To publish it, you can take the `"publish"` link from the response:
 
 ```json
 "links": {
-    "files": "https://127.0.0.1:5000/api/records/jnmmp-51n47/draft/files",
-    "publish": "https://127.0.0.1:5000/api/records/jnmmp-51n47/draft/actions/publish",
-    "self": "https://127.0.0.1:5000/api/records/jnmmp-51n47/draft",
-    "self_html": "https://127.0.0.1:5000/uploads/jnmmp-51n47"
+  "self": "https://127.0.0.1:5000/api/records/jnmmp-51n47/draft",
+  "self_html": "https://127.0.0.1:5000/uploads/jnmmp-51n47",
+  "files": "https://127.0.0.1:5000/api/records/jnmmp-51n47/draft/files",
+  "latest": "https://127.0.0.1:5000/api/records/jnmmp-51n47/versions/latest",
+  "latest_html": "https://127.0.0.1:5000/records/jnmmp-51n47/latest",
+  "record": "https://127.0.0.1:5000/api/records/jnmmp-51n47",
+  "record_html": "https://127.0.0.1:5000/records/jnmmp-51n47",
+  "publish": "https://127.0.0.1:5000/api/records/jnmmp-51n47/draft/actions/publish",
+  "versions": "https://127.0.0.1:5000/api/records/jnmmp-51n47/versions",
+  "access_links": "https://127.0.0.1:5000/api/records/jnmmp-51n47/access/links",
+  "reserve_doi": "https://127.0.0.1:5000/api/records/jnmmp-51n47/draft/pids/doi"
 }
 ```
 
 and `POST` to it:
 
 ```bash
-curl -k -XPOST https://127.0.0.1:5000/api/records/jnmmp-51n47/draft/actions/publish
+curl -k -XPOST -H "Authorization: Bearer <TOKEN>" https://127.0.0.1:5000/api/records/jnmmp-51n47/draft/actions/publish
 ```
 
 ### Get a record
@@ -414,7 +421,7 @@ Save it as `leaf_shiba.png` in your current directory.
 **First**, we need to work with a draft, so we create one as per above:
 
 ```bash
-curl -k -XPOST -H "Content-Type: application/json" https://127.0.0.1:5000/api/records -d '{
+curl -k -XPOST -H "Content-Type: application/json" -H "Authorization: Bearer <TOKEN>" https://127.0.0.1:5000/api/records -d '{
     ...
 }'
 ```
@@ -425,7 +432,7 @@ curl -k -XPOST -H "Content-Type: application/json" https://127.0.0.1:5000/api/re
     Change `jnmmp-51n47` in the URLs below for the recid of your record.
 
 ```bash
-curl -k -XPOST https://127.0.0.1:5000/api/records/jnmmp-51n47/draft/files -H "Content-Type: application/json" -d '[
+curl -k -XPOST https://127.0.0.1:5000/api/records/jnmmp-51n47/draft/files -H "Content-Type: application/json" -H "Authorization: Bearer <TOKEN>" -d '[
   {"key": "leaf_shiba.png"}
 ]'
 ```
@@ -435,19 +442,19 @@ This "pre-flight" API call will allow us to support third-party source/storage i
 **Third**, we now upload the insightful picture by using the `"content"` link returned:
 
 ```bash
-curl -k -XPUT https://127.0.0.1:5000/api/records/jnmmp-51n47/draft/files/leaf_shiba.png/content -H "Content-Type: application/octet-stream" --data-binary @leaf_shiba.png
+curl -k -XPUT https://127.0.0.1:5000/api/records/jnmmp-51n47/draft/files/leaf_shiba.png/content -H "Content-Type: application/octet-stream" -H "Authorization: Bearer <TOKEN>" --data-binary @leaf_shiba.png
 ```
 
 **Fourth**, we complete the upload process by using the `"commit"` link returned:
 
 ```bash
-curl -k -XPOST https://127.0.0.1:5000/api/records/jnmmp-51n47/draft/files/leaf_shiba.png/commit
+curl -k -XPOST -H "Authorization: Bearer <TOKEN>" https://127.0.0.1:5000/api/records/jnmmp-51n47/draft/files/leaf_shiba.png/commit
 ```
 
 **Finally**, we publish our updated record:
 
 ```bash
-curl -k -XPOST https://127.0.0.1:5000/api/records/jnmmp-51n47/draft/actions/publish
+curl -k -XPOST -H "Authorization: Bearer <TOKEN>" https://127.0.0.1:5000/api/records/jnmmp-51n47/draft/actions/publish
 ```
 
 This file can then be previewed on the record page and even downloaded.

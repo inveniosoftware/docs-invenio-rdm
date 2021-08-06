@@ -49,20 +49,20 @@ RDM_SEARCH = {
 Each variable has two keys:
 
 - ``facets``: The list of facets in the order they are displayed. The name must
-  have been defined in ``RDM_FACETS`` (defined in Invenio-App-RDM).
+  have been defined in ``RDM_FACETS`` (defined in [invenio-rdm-records](https://github.com/inveniosoftware/invenio-rdm-records/blob/master/invenio_rdm_records/config.py)).
 - ``sort``: The list of sort fields. The first element in the list is the
   default sort option used with a query. The second element is the default sort
   option used with an empty query. The sort fields must have been defined in
-  ``RDM_SORT_OPTIONS`` (defined in Invenio-App-RDM).
+  ``RDM_SORT_OPTIONS`` (defined in [invenio-rdm-records](https://github.com/inveniosoftware/invenio-rdm-records/blob/master/invenio_rdm_records/config.py)).
 
 
 **Defining a new sort option**
 
-You can define new sort options yourself that can use in your search interface.
+You can define new sort options yourself for your search interface.
 
 To do this, add the ``RDM_SORT_OPTIONS`` to your ``invenio.cfg``.
 
-If you'd like to complete replace the existing ones, simply override the
+If you'd like to completely replace the existing sort options, simply override the
 variable like this:
 
 ```python
@@ -82,7 +82,7 @@ If you'd like to instead just add new options, you'll need to update the
 existing list like this:
 
 ```python
-from invenio_app_rdm.config import RDM_SORT_OPTIONS
+from invenio_rdm_records.config import RDM_SORT_OPTIONS
 RDM_SORT_OPTIONS.update({
     "title": dict(
         title=_('Title'),
