@@ -38,8 +38,8 @@ invenio-cli init rdm
 
 You can run the main InvenioRDM application in two modes (choose one):
 
-- Containerized application and services (good for a quick preview)
-- Local application with containerized services (good for developers or if want to customize InvenioRDM).
+- Containerized application and services (good for a quick preview).
+- Local application with containerized services (good for developers or if you want to customize InvenioRDM).
 
 **Containerized application**
 
@@ -59,7 +59,7 @@ invenio-cli run
 
 #### 5. Explore InvenioRDM
 
-Go and explore your InvenioRDM instance at on:
+Go and explore your InvenioRDM instance on:
 
 - Local: [https://127.0.0.1:5000](https://127.0.0.1:5000)
 - Container: [https://127.0.0.1](https://127.0.0.1)
