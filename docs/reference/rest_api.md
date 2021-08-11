@@ -1846,7 +1846,7 @@ Each hit looks like a vocabulary record below.
 
 | Name     | Type   | Location | Description                                                  |
 | -------- | ------ | -------- | ------------------------------------------------------------ |
-| `type`   | string | path     | Vocabulary (one of `languages`, `licenses` or `resource_types`)            |
+| `type`   | string | path     | Vocabulary (one of `languages`, `licenses` or `resourcetypes`)            |
 | `id`     | string | path     | Identifier of the record, e.g. `eng` for `type` `languages`                       |
 | `accept` | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
 
