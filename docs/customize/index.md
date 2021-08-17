@@ -7,7 +7,7 @@ InvenioRDM instance so that it integrates into their organizational environment.
 
 ## Overview
 
-- [Styling](styling.md) - change the look and feel of InvenioRDM to match your institution.
+- [General look-and-feel](look-and-feel.md) - change the look and feel of InvenioRDM to match your institution.
 - [DOI registration](dois.md) - mint DOIs with your institution's prefix.
 - [Authentication](authentication.md) - integrate with your institutional authentication system.
 - [Record landing page](record_landing_page.md) - customize some of the sections of record's landing page.

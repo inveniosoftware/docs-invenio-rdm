@@ -1,4 +1,4 @@
-# Change the theme
+# Change the theme/styling
 
 You might also be wondering: *How do I change the colors so I can make my instance adopt my institution's theme?*
 
@@ -20,7 +20,7 @@ Open the `assets/less/site/globals/site.overrides` file and edit it as below:
     We plan on requiring even less variable overrides in the future to change the theme.
     `@navbar_background_color` could be preset to the brand color and so on for example.
 
-Then, run the `invenio-cli assets build -d` command as above and refresh the page! You should be able to see your theme color(s)!
+Then, run the `invenio-cli assets build -d` command as above and refresh the page. You should be able to see your theme color(s)!
 
 You can override any styling variables in your `site.overrides` file. The available styling variables are found in the `variables.less` or `.variables` files of the various invenio modules installed. The ones above are originally defined [here](https://github.com/inveniosoftware/invenio-app-rdm/blob/master/invenio_app_rdm/theme/assets/semantic-ui/less/invenio_app_rdm/variables.less). The `invenio-theme` module defines a large number of them [here](https://github.com/inveniosoftware/invenio-theme/tree/master/invenio_theme/assets/semantic-ui/less/invenio_theme/theme).
 
