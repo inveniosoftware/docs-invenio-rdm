@@ -91,7 +91,7 @@ The REST API now requires the HTTP header ``X-CSRFToken: <value>`` to be sent wi
 
 **Development server and Celery**
 
-The Celery background worker that is started during ``invenio-cli run`` will not log a lot more information to the console as we have changed the log-level from ERROR to INFO. This means developers can more easily follow which tasks are being executed.
+The Celery background worker that is started during ``invenio-cli run`` will now log a lot more information to the console as we have changed the log-level from ERROR to INFO. This means developers can more easily follow which tasks are being executed.
 
 In addition an issue has been fixed so that cron tasks are executed, because the Celery beat scheduler is now started correctly.
 
