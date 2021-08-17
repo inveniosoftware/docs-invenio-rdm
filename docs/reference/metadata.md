@@ -503,7 +503,9 @@ Subfields:
 | ``description`` | (0-1) | Localized license description text e.g., ``{"en": "This license..."}``. |
 | ``link`` | (0-1) | Link to full license. |
 
-Either ``id`` or ``title`` must be passed.
+REST API:
+
+Either ``id`` or ``title`` must be passed, but not both.
 
 Example:
 
