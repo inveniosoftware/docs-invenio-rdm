@@ -589,15 +589,17 @@ The languages of the resource.
 
 This field is compatible with *9. Language* in DataCite. DataCite however only supports one primary language, while this field supports multiple languages.
 
-Format:
+Subfields:
 
-ISO-639-3 language code
+| Field | Cardinality |   Description   |
+|:-----:|:-----------:|:----------------|
+| ``id`` | (1, CV) | The ISO-639-3 language code. |
 
 Example:
 
 ```json
 {
-  "languages": ["dan", "eng"]
+  "languages": [{"id": "dan"}, {"id": "eng"}]
 }
 ```
 
