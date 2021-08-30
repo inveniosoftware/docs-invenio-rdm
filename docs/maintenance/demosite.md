@@ -10,6 +10,7 @@ Both QA and production infrastructure project (OpenShift) are located at
 
 * [inveniordm-qa](https://openshift.cern.ch/console/project/inveniordm-qa/)
 * [inveniordm](https://openshift.cern.ch/console/project/inveniordm/)
+* [Sentry Error tracking](https://inveniordm-sentry.web.cern.ch/sentry/demo-inveniordm). The QA environment tracks the errors of inveniordm-qa and the Prod environment those of the inveniordm site.
 
 The steps to upgrade any of the two instances to a newer version or release are the same.
 
