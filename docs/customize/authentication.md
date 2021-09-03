@@ -6,22 +6,37 @@ system only (e.g. OAuth, SAML, Single Sign-on) or both at the same time.
 ## Local Authentication
 
 By default, only the local authentication system is enabled. Users can create a new account using the
-registration form and activate their account after the email confirmation.
-
-You can disable local authentication by setting in `invenio.cfg`:
-
-```python
-ACCOUNTS_LOCAL_LOGIN_ENABLED = False  # allow/deny users to login with a local account
-```
-
-In case that local login is disabled, **it is recommended** to disable the possibility to register
-new local account and change/recover passwords:
+registration form and activate their account after the email confirmation. These defaults are set
+in ``invenio.cfg``:
 
 ```python
-SECURITY_REGISTERABLE = False  # allow/deny new users to register locally
-SECURITY_RECOVERABLE = False  # allow/deny resetting the local account's password
-SECURITY_CHANGEABLE = False  # allow/deny changing passwords for local accounts
+ACCOUNTS_LOCAL_LOGIN_ENABLED = True  # enable local login
+SECURITY_REGISTERABLE = True  # local login: allow users to register
+SECURITY_RECOVERABLE = True  # local login: allow users to reset the password
+SECURITY_CHANGEABLE = True  # local login: allow users to change password
+SECURITY_CONFIRMABLE = True  # require users to confirm their e-mail address
 ```
+
+### Disabling local authentication
+
+You can disable local authentication by modifying the setting in `invenio.cfg`:
+
+```python
+ACCOUNTS_LOCAL_LOGIN_ENABLED = False  # disable local login
+```
+
+You typically disable local authentication when you want authentication to be handled by an external provider.
+As such, when local login is disabled, **it is recommended** to disable local account registration and password
+change/recovery:
+
+```python
+SECURITY_REGISTERABLE = False  # deny local registration of new users
+SECURITY_RECOVERABLE = False  # deny resetting the local account's password
+SECURITY_CHANGEABLE = False  # deny changing passwords for local accounts
+```
+
+This way the external provider handles account management. `SECURITY_CONFIRMABLE` is kept `True` to check
+that the user can be reached via a valid email.
 
 !!! warning "Make sure that your configuration is consistent!"
     While *some* clearly inconsistent configurations (e.g. having `SECURITY_REGISTERABLE=True`
@@ -300,7 +315,7 @@ Additional security-related configuration items can be found in the
 
 You can change the default duration (31 days) of the logged in user session (the session cookie expiration).
 This is particularly useful when configuring InvenioRDM with external authentication only and you want to
-have the InvenioRDM session duration as the external authentication provider session duration.
+have the same session duration as the external authentication provider.
 
 In your `invenio.cfg`:
 
@@ -346,6 +361,8 @@ external authentication providers.
 All of them have an extra checkbox for accepting the website's terms and conditions,
 which is mandatory to complete the registration:
 
+``my_package/registration_form.py``:
+
 ```python
 from invenio_oauthclient.utils import create_registrationform
 from invenio_userprofiles.forms import ProfileForm
@@ -355,18 +372,18 @@ from flask import current_app, url_for
 
 _security = LocalProxy(lambda: current_app.extensions['security'])
 
-# create a link to a PDF file containing the terms and conditions
-# the PDF file is located in the `static/documents` folder.
-terms_of_use_url=url_for("static", filename=("documents/terms-of-use.pdf"))
-terms_of_use_text = f"Accept the <a href='{terms_of_use_url}' target='_blank'>terms and conditions</a>"
 
 def my_registration_form(*args, **kwargs):
-    # optionally, have different registration forms depending on the authentication
-    # provider used by the user to login
+    # create a link to a PDF file containing the terms and conditions
+    # the PDF file is located in the `static/documents` folder.
+    terms_of_use_url = url_for("static", filename=("documents/terms-of-use.pdf"))
+    terms_of_use_text = f"Accept the <a href='{terms_of_use_url}' target='_blank'>terms and conditions</a>"
     current_remote_app = kwargs.get("oauth_remote_app")
     if not current_remote_app:
         # return default just in case something is wrong
         return create_registrationform(*args, **kwargs)
+    # optionally, have different registration forms depending on the authentication
+    # provider used by the user to login
     elif current_remote_app.name.lower() != "orcid":
         # show this form in case the user logged in with any method but ORCID
         class DefaultRegistrationForm(_security.confirm_register_form):
@@ -387,6 +404,12 @@ def my_registration_form(*args, **kwargs):
             submit = None  # remove submit btn, already defined in the template
             terms_of_use = BooleanField(terms_of_use_text, [validators.required()])  # add the new field
         return OrcidRegistrationForm(*args, **kwargs)
+```
+
+``invenio.cfg``:
+
+```python
+from my_package.registration_form import my_registration_form
 
 # use the custom form function
 OAUTHCLIENT_SIGNUP_FORM = my_registration_form
@@ -402,6 +425,8 @@ to existing implementations in [Invenio-OAuthClient](https://invenio-oauthclient
 In your `invenio.cfg`:
 
 ```python
+from invenio_oauthclient.contrib.settings import OauthSettingsHelper
+
 class MyOAuthSettingsHelper(OAuthSettingsHelper):
     def __init__():
         super().__init__(
@@ -456,7 +481,7 @@ def my_account_setup(...):
 myOAuthHelper = MyOAuthSettingsHelper()
 
 OAUTHCLIENT_REMOTE_APPS = dict(
-    myoauth=myOAuthHelper.REMOTE_APP,
+    myoauth=myOAuthHelper.remote_app,
 )
 
 MY_APP_CREDENTIALS = dict(
