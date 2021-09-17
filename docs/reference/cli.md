@@ -236,7 +236,7 @@ This command:
 
 !!! warning "Error (psycopg2.OperationalError) FATAL: role "xxx" does not exist"
 
-    To avoid misleading errors like this, make sure Postgres is not installed locally (and using port 5432) when setting up the database container.
+    To avoid misleading error messages like this, make sure Postgres is not installed locally (and using port 5432) when setting up the database container.
 
 **Options**
 
