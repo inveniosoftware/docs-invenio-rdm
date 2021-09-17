@@ -140,19 +140,17 @@ Build the current application's static/assets files.
 The default behavior of the command is to:
 
 - Remove any existing
-  1. Static files
-  2. Webpack project
-  3. Installed Node modules
-  - Collect
+    1. Static files
+    2. Webpack project
+    3. Installed Node modules
+- Collect
     1. Static files
     2. Assets for the Webpack project
     3. InvenioRDM's instance statics and assets.
 - Install all Node modules specified by the Webpack project's `package.json`.
 - Build the Webpack project.
 
-The command by default symlinks the static files and assets. This enables you to
-run the `watch`. If you build with `--production`, no symlinks are created,
-and the `watch` will not detect changes to your local development files.
+The command by default symlinks the static files and assets. This enables you to run the `watch` sub-command. If you build with `--production`, no symlinks are created, and the `watch` sub-command will not detect changes to your local development files.
 
 **Options**
 
