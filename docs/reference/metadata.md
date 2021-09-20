@@ -391,11 +391,11 @@ The field is compatible with *3. Title* in DataCite. Compared to DataCite, Inven
 
 Subfields:
 
-| Field | Cardinality |   Description   |
-|:-----:|:-----------:|:----------------|
-| ``title`` | (1) | The additional title.  |
-| ``type`` | (1) | The type of the title. |
-| ``lang`` | (0-1, CV) | The language of the title. ISO 639-3 language code. |
+| Field     | Cardinality |   Description              |
+|:---------:|:-----------:|:---------------------------|
+| ``title`` | (1)         | The additional title.      |
+| ``type``  | (1)         | The type of the title.     |
+| ``lang``  | (0-1, CV)   | The language of the title. |
 
 The ``type`` field is as follows:
 
@@ -406,6 +406,12 @@ The ``type`` field is as follows:
 
 Note that multiple localized titles are supported e.g. ``{"en": "Alternative title", "fr": "Titre alternatif"}``. Use ISO 639-1 codes (2 letter locales) as keys.
 Only ``id`` needs to be passed on the REST API.
+
+The `lang` field is as follows:
+
+| Field  | Cardinality |   Description                |
+|:------:|:-----------:|:-----------------------------|
+| ``id`` | (1, CV)     | The ISO-639-3 language code. |
 
 Example:
 
@@ -419,7 +425,7 @@ Example:
         "en": "Alternative Title"
       }
     },
-    "lang": "eng"
+    "lang": {"id": "eng"}
   }]
 }
 ```
@@ -449,11 +455,11 @@ The field is compatible with *17. Description* in DataCite.
 
 Subfields:
 
-| Field | Cardinality |   Description   |
-|:-----:|:-----------:|:----------------|
-| ``description`` &nbsp; | (1) | Free text. |
-| ``type`` | (1) | The type of the description. |
-| ``lang`` | (0-1) |  The language of the description. ISO 639-3 language code. |
+| Field                  | Cardinality |   Description                    |
+|:----------------------:|:-----------:|:---------------------------------|
+| ``description`` &nbsp; | (1)         | Free text.                       |
+| ``type``               | (1)         | The type of the description.     |
+| ``lang``               | (0-1)       | The language of the description. |
 
 The ``type`` field is as follows:
 
@@ -464,6 +470,12 @@ The ``type`` field is as follows:
 
 Note that multiple localized titles are supported e.g. ``{"en": "Table of contents", "fr": "Table des matières"}``. Use ISO 639-1 codes (2 letter locales) as keys.
 Only ``id`` needs to be passed on the REST API.
+
+The `lang` field is as follows:
+
+| Field  | Cardinality |   Description                |
+|:------:|:-----------:|:-----------------------------|
+| ``id`` | (1, CV)     | The ISO-639-3 language code. |
 
 Example:
 
@@ -477,7 +489,7 @@ Example:
         "en": "Methods"
       }
     },
-    "lang": "eng"
+    "lang": {"id": "eng"}
   }]
 }
 ```
@@ -682,14 +694,14 @@ The main difference between the system-managed identifiers and this field, is th
 
 Subfields:
 
-| Field | Cardinality |   Description   |
-|:-----:|:-----------:|:----------------|
-| ``identifier`` | (1) | identifier value |
-| ``scheme`` | (1, CV) | The scheme of the identifier. |
+| Field          | Cardinality | Description                   |
+|:--------------:|:-----------:|:------------------------------|
+| ``identifier`` | (1)         | identifier value              |
+| ``scheme``     | (1, CV)     | The scheme of the identifier  |
 
 Supported identifier schemes:
 
-- ISBN10, ISBN13, ISSN, ISTC, DOI, Handle, EAN8, EAN13, ISNI, ORCID, ARK, PURL, LSID, URN, Bibcode, arXiv, PubMed ID, PubMed Central ID, GND, SRA, BioProject, BioSample, Ensembl, UniProt, RefSeq, Genome Assembly.
+ARK, arXiv, Bibcode, DOI, EAN13, EISSN, Handle, IGSN, ISBN, ISSN, ISTC, LISSN, LSID, PubMed ID, PURL, UPC, URL, URN, W3ID. See `RDM_RECORDS_IDENTIFIERS_SCHEMES` in [invenio-rdm-records](https://github.com/inveniosoftware/invenio-rdm-records/blob/master/invenio_rdm_records/config.py).
 
 Note that those are passed lowercased e.g., arXiv is ``arxiv``.
 
