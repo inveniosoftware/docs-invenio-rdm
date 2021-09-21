@@ -26,7 +26,7 @@ Following is an overview of the root-level commands in Invenio-CLI:
 | `run`                | Starts the local development server.                                                          |  v0.19.0  |
 | `services`           | Commands for services management.                                                             |  v0.19.0  |
 | `shell`              | Shell command.                                                                                |  v0.19.0  |
-| `upgrade`            | Upgrades the current application to the specified specified InvenioRDM version                |     -     |
+| `upgrade`            | Upgrades the current application to the specified InvenioRDM version                          |     -     |
 
 ### Shell completion
 
@@ -222,13 +222,13 @@ Destroy the containerized services and application.
 
 Setup containerized services.
 
-By default this command will build and boot all the containerized services, and will not stop them afterwards unless `--stop-services` are used. If, `--no-services` is specified, not services are booted up.
+By default this command will build and boot all the containerized services (see `--stop-services` and `--no-services` options below to control this behaviour).
 
 This command:
 
 - Initialize and create the database, Elasticsearch indexes, cache and message queue.
 - Create an admin role.
-- Create a the default location for files.
+- Create a default location for files.
 
 !!! warning "Error (psycopg2.OperationalError) FATAL: role "xxx" does not exist"
 
@@ -352,7 +352,7 @@ Destroy development services and any data in them.
 
 Setup containerized services.
 
-By default this command will build and boot all the containerized services, and will not stop them afterwards unless `--stop-services` are used. If, `--no-services` is specified, no services are booted up.
+By default this command will build and boot all the containerized services (see `--stop-services` and `--no-services` options below to control this behaviour).
 
 **Options**
 
