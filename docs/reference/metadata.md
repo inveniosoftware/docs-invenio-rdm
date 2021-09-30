@@ -295,15 +295,21 @@ Identifiers are described with the following subfields (note, we only support on
 
 Supported creator identifier schemes:
 
-- ORCID
-- GND
-- ISNI
-- ROR
+- [ORCID][]
+- [GND][]
+- [ISNI][]
+- [ROR][]
 
 Supported affiliation identifier schemes:
 
-- ISNI
-- ROR
+- [ISNI][]
+- [ROR][]
+
+
+[ORCID]: https://orcid.org/
+[GND]: https://www.dnb.de/EN/gnd
+[ISNI]: https://isni.org/
+[ROR]: https://ror.org/
 
 Note that the identifiers' schemes are passed lowercased e.g. ORCID is ``orcid``.
 
