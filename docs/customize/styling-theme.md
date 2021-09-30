@@ -4,9 +4,11 @@ You might also be wondering: *How do I change the colors so I can make my instan
 
 The theme comprises the header, footer and main color(s). We are going to modify them. It's a good example of the workflow for when `assets/` files change.
 
-Open the `assets/less/site/globals/site.overrides` file and edit it as below:
+Open the `assets/less/site/globals/site.overrides` file and edit it to have the following:
 
 ``` less
+@import "@less/invenio_app_rdm/theme";
+
 @brandColor: /* your brand color here */ ;
 
 @navbar_background_image: unset;
