@@ -14,6 +14,12 @@ InvenioRDM's bibliographic records are stored as JSON documents in a structure
 that is aligned with DataCite's Metadata Schema v4.x with minor additions
 and modifications.
 
+> Throughout this document, Datacite schema properties are referred to 
+> for the reader's convenience (*e.g.*, "*2. Creator in DataCite*"), 
+> the corresponding (*Datacite*) document can be found under <https://schema.datacite.org/>.
+> More specifically, for the latest v4 schema version (currently, v4.4):
+> <https://schema.datacite.org/meta/kernel-4.4/>.
+
 **Schema version**
 
 All records contain a schema definition in the top-level key ``$schema``. The value
