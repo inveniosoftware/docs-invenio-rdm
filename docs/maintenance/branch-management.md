@@ -28,7 +28,7 @@ branch.
 #### Separate logical commits
 
 If you are fixing a bug, please ensure that the bug is fixed in a separate
-logical commit, to ensure that it easy to backport the the fix to previous
+logical commit, to ensure that it is easy to backport the fix to previous
 maintained releases.
 
 #### Security fixes is done in hidden branches
