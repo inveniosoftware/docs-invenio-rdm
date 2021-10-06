@@ -121,7 +121,7 @@ git push upstream master vX.Y.Z
 
 ## Maintenance releases
 
-Maintenance releases follows the same workflow as a new version release. You
+Maintenance releases follow the same workflow as a new version release. You
 only need to replace ``master`` with ``maint-x.y`` branches.
 
 !!! warning PyPI releases are immediately picked up

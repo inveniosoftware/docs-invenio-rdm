@@ -31,15 +31,15 @@ If you are fixing a bug, please ensure that the bug is fixed in a separate
 logical commit, to ensure that it is easy to backport the fix to previous
 maintained releases.
 
-#### Security fixes is done in hidden branches
+#### Security fixes are done in hidden branches
 
-Note that security fixes is normally done in a coordinated way using hidden
+Note that security fixes are normally done in a coordinated way using hidden
 branches until PyPI releases have been issued. Please get in touch with a
 maintainer.
 
 ### Merging pull requests
 
-A PR is merged as usual once the continues integration tests passes and the
+A PR is merged as usual once the continuous integration tests pass and the
 code has been through a code review.
 
 #### Maintainer is responsible for backporting
@@ -51,7 +51,7 @@ for ensuring that the fix is backported.
 
 #### Supported maintenance branches
 
-Following is an overview which versions/branch(es) are currently supported for
+Following is an overview of which versions/branch(es) are currently supported for
 InvenioRDM modules (see the currently supported InvenioRDM versions and their
 end of life dates on the
 [maintenance policy](../releases/maintenance-policy.md)).
@@ -74,9 +74,9 @@ end of life dates on the
 
 !!! info "Didn't find the module?"
 
-    If a module is not listed below it is because the version is either
+    If a module is not listed above, it is because the version is either
     unconstrained or part of Invenio Framework and constrained by the Invenio
-    Framework setup. For unconstrained modules you should take create care that
+    Framework setup. For unconstrained modules you should take great care that
     the change/fix is backward compatible. If not, we have to constrain the
     module version in one of the InvenioRDM modules.
 
