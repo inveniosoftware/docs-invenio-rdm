@@ -1,4 +1,4 @@
-# Release Management
+# Release management
 
 **Intended audience**
 
@@ -72,8 +72,9 @@ For modules in ``vX.Y.Z``, the new version is ``v(X+1).0.0.dev0``.
 - Ensure all dependent modules have been released.
 - Release Invenio-App-RDM (removing the pre-release suffix - e.g. ``dev0``).
 - Cookiecutter-Invenio-RDM:
-    - Merge everything to master.
-    - Create new version branch from master using the pattern ``vX.Y`` (e.g if Invenio-App-RDM is v1.0.0, the branch should be named ``v1.0``).
+    - Merge everything to ``master``.
+    - Create new version branch from ``master`` using the pattern ``vX.Y`` (e.g if Invenio-App-RDM is v1.0.0, the branch should be named ``v1.0``).
+- Write release notes (merge to [master@docs-invenio-rdm](https://github.com/inveniosoftware/docs-invenio-rdm) and check the [QA site](https://inveniordm-qa.docs.cern.ch).
 
 ### Release
 
@@ -82,6 +83,7 @@ The final step to release the new modules and source code is to release Invenio-
 - Invenio-CLI:
     - Update Cookiecutter-Invenio-RDM branch version in the source code.
     - Bump version of Invenio-CLI and release.
+- Merge ``master`` into ``maint`` on [docs-invenio-rdm](https://github.com/inveniosoftware/docs-invenio-rdm) repository).
 
 ### Post-release
 
@@ -92,7 +94,8 @@ The final step to release the new modules and source code is to release Invenio-
     - Review project information
 - Project tracking:
     - GitHub: Update [internal product roadmap](https://github.com/inveniosoftware/product-rdm/milestones?direction=asc&sort=due_date&state=open)
-
+- Create maintenance branches of supported modules (LTS releases only). See
+  [branch management](branch-management.md).
 
 ## Release a Python or JavaScript package
 
@@ -115,3 +118,14 @@ git commit -m "release: vX.Y.Z"
 git tag vX.Y.Z
 git push upstream master vX.Y.Z
 ```
+
+## Maintenance releases
+
+Maintenance releases follow the same workflow as a new version release. You
+only need to replace ``master`` with ``maint-x.y`` branches.
+
+!!! warning PyPI releases are immediately picked up
+
+    Be aware that when the independent modules are released, they will be
+    picked up immediately by new InvenioRDM installations. This should not be
+    an issues since the releases MUST be backward compatible.
