@@ -19,11 +19,11 @@ v6.1).
 
 ### Opening pull requests
 
-#### PR against ``master``
+#### PR against ``master``/``main``
 
-You should normally always open pull requests against the ``master`` branch.
-One exception is when a bug/security fix is only reproducible on a maintenance
-branch.
+You should normally always open pull requests against the ``master``/``main``
+branch. One exception is when a bug/security fix is only reproducible on a
+maintenance branch.
 
 #### Separate logical commits
 
@@ -84,7 +84,7 @@ end of life dates on the
 
 Following is a small recipe for how to backport a fix:
 
-1. Identify the **commit** on ``master`` that you want to backport.
+1. Identify the **commit** on ``master``/``main`` that you want to backport.
    ```
    git log master
    ```
@@ -114,7 +114,8 @@ The table over supported maintenance releases/branches must be updated when:
 #### Create maintenance branches on LTS releases
 
 When a new LTS version is released, the release manager should go through all
-above repositories and create ``maint-x.y`` branches from the master branch.
+above repositories and create ``maint-x.y`` branches from the master/main
+branch.
 
 The newly created maintenance branches must be added to [repositories.yml](https://github.com/inveniosoftware/opensource/blob/master/repositories.yml) to configure branch protection in GitHub so only maintainers
 can merge to the branch.
