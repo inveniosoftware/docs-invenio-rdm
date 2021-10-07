@@ -41,9 +41,9 @@ Each module (e.g. Invenio-RDM-Records, Invenio, ...) is versioned independently.
 
 In the beginning of each iteration we start by releasing new development versions of the below modules in the order they specified:
 
-- flask-resources
-- marshmallow-utils
-- invenio-records-permissions
+- flask-resources (if needed)
+- marshmallow-utils (if needed)
+- invenio-records-permissions (if needed)
 - invenio-records-resources
     - bump flask-resources
     - bump marshmallow-utils
