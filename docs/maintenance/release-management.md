@@ -42,11 +42,12 @@ Each module (e.g. Invenio-RDM-Records, Invenio, ...) is versioned independently.
 In the beginning of each iteration we start by releasing new development versions of the below modules in the order they specified:
 
 - flask-resources
-- react-invenio-forms
+- marshmallow-utils
+- invenio-records-permissions
 - invenio-records-resources
     - bump flask-resources
-- react-invenio-deposit
-    - bump react-invenio-forms
+    - bump marshmallow-utils
+    - bump invenio-records-permissions
 - invenio-drafts-resources
     - bump invenio-records-resources
 - invenio-vocabularies
@@ -56,6 +57,9 @@ In the beginning of each iteration we start by releasing new development version
     - bump invenio-vocabularies
 - invenio-communities
     - bump invenio-rdm-records
+- react-invenio-forms
+- react-invenio-deposit
+    - bump react-invenio-forms
 - invenio-app-rdm
     - bump invenio-rdm-records
     - bump invenio-communities
