@@ -65,7 +65,8 @@ In the beginning of each iteration we start by releasing new development version
     - bump invenio-communities
     - bump react-invenio-deposit
     - bump react-invenio-forms
-
+- cookiecutter-invenio-rdm
+    - bump invenio-app-rdm 
 
 For modules in ``v0.X.Y``, the new version is ``v0.(X+1).0``.
 
