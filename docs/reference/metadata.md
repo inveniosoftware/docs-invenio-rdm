@@ -113,7 +113,7 @@ External PIDs are persistent identifiers managed via [Invenio-PIDStore](https://
 with external registration services.
 
 Persistent identifiers are globally unique in the system, thus you cannot have two records
-with the same system-managed persistent identifer (see also [Metadata > Identifiers](#identifiers-0-n)).
+with the same system-managed persistent identifier (see also [Metadata > Identifiers](#identifiers-0-n)).
 
 Only one identifier can be registered per system-defined scheme. Each identifier has the following subfields:
 
@@ -686,7 +686,7 @@ Example:
 
 ### Alternate identifiers (0-n)
 
-Persistent identifiers for the resource other than the ones registered as system-managed internal or external persistent identifers.
+Persistent identifiers for the resource other than the ones registered as system-managed internal or external persistent identifiers.
 
 This field is compatible with *11. Alternate Identifiers* in DataCite.
 
@@ -898,7 +898,7 @@ The ``funder`` subfields:
 |:-----:|:-----------:|:----------------|
 | ``name`` | (1) | The name of the funder. |
 | ``scheme`` | (0-1, CV) | The scheme of the identifier. |
-| ``identifer`` | (0-1) | A unique identifier for the funder. |
+| ``identifier`` | (0-1) | A unique identifier for the funder. |
 
 Supported schemes:
 
@@ -917,7 +917,7 @@ The ``award`` subfields:
 | ``title`` | (1) | The title of the award |
 | ``number`` | (1) | The code assigned by the funder to a sponsored award (grant). |
 | ``scheme`` | (0-1) | The scheme of the identifier. |
-| ``identifer`` | (0-1) | A unique identifier for the funder. |
+| ``identifier`` | (0-1) | A unique identifier for the funder. |
 
 Example:
 
@@ -952,7 +952,7 @@ Subfields:
 |:-----:|:-----------:|:----------------|
 | ``reference`` | (1) | free text, the full reference string |
 | ``scheme`` | (0-1) | the scheme of the identifier. |
-| ``identifier`` | (0-1) | the identifer if known. |
+| ``identifier`` | (0-1) | the identifier if known. |
 
 Supported schemes:
 
