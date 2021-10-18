@@ -14,6 +14,10 @@ InvenioRDM's bibliographic records are stored as JSON documents in a structure
 that is aligned with DataCite's Metadata Schema v4.x with minor additions
 and modifications.
 
+!!! info Datacite references
+
+    This document refers to Datacite schema properties for the reader's convenience (e.g., "*2. Creator* in DataCite"). The corresponding Datacite document can be found under <https://schema.datacite.org/>. The currently supported version is [v4.3](https://schema.datacite.org/meta/kernel-4.3).
+
 **Schema version**
 
 All records contain a schema definition in the top-level key ``$schema``. The value
@@ -295,15 +299,21 @@ Identifiers are described with the following subfields (note, we only support on
 
 Supported creator identifier schemes:
 
-- ORCID
-- GND
-- ISNI
-- ROR
+- [ORCID][]
+- [GND][]
+- [ISNI][]
+- [ROR][]
 
 Supported affiliation identifier schemes:
 
-- ISNI
-- ROR
+- [ISNI][]
+- [ROR][]
+
+
+[ORCID]: https://orcid.org/
+[GND]: https://www.dnb.de/EN/gnd
+[ISNI]: https://isni.org/
+[ROR]: https://ror.org/
 
 Note that the identifiers' schemes are passed lowercased e.g. ORCID is ``orcid``.
 
