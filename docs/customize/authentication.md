@@ -251,6 +251,33 @@ BAR_KEYCLOAK_APP_CREDENTIALS = {
     and the name of the apps in the config `OAUTHCLIENT_REMOTE_APPS` (`foo_keycloak`, `bar_keycloak`) must match
     with the related config vars `OAUTHCLIENT_FOO_KEYCLOAK_*` and `OAUTHCLIENT_BAR_KEYCLOAK_*`, uppercase.
 
+#### OpenAIRE AAI
+
+Register a new application with OpenAIRE, by sending an email to <aai@openaire.eu>, with the following information:
+
+* Client ID for your application (e.g. ``my-app``).
+* One or more *Redirect URI*s pointing to ``https://<host>/oauth/authorized/openaire_aai/`` (e.g. ``https://localhost:5000/oauth/authorized/openaire_aai/``).
+* User claim scopes ``openid profile email orcid``.
+* One or more of the OpenID Connect/OAuth2 grant types: Authorization Code, Token Exchange, Device Code.
+* Optionally, you can request to also register an application for the OpenAIRE AAI sandbox instance for testing.
+
+After registering your application, you can enable OpenAIRE login in InvenioRDM by enabling the plugin and configuring the key and secret. In your `invenio.cfg`:
+
+```python
+from invenio_oauthclient.contrib import openaire_aai
+
+OAUTHCLIENT_REMOTE_APPS = dict(
+    openaire_aai=openaire_aai.REMOTE_APP,
+)
+
+OPENAIRE_APP_CREDENTIALS = dict(
+    consumer_key="changeme",
+    consumer_secret="changeme",
+)
+```
+
+In case you want use the sandbox environment, use ``openaire_aai.REMOTE_SANDBOX_APP`` instead of ``openaire_aai.REMOTE_APP``.
+
 ### Login automatic redirection
 
 When local login is disabled and there is exactly one OAuthClient remote app defined, the login page
