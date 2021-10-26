@@ -4,7 +4,7 @@
 
 The installation of the latest development version of InvenioRDM is very
 similar to the normal installation guide. The primary difference is you should
-that use another instance template (by adding ``-c master`` to the scaffolding
+use another instance template (by adding ``-c master`` to the scaffolding
 command):
 
 ```
