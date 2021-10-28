@@ -8,6 +8,10 @@ The guide is intended for system administrators and developers who want to try, 
 
 This guide covers how to install InvenioRDM locally on your machine, how to setup and configure your system for InvenioRDM.
 
+**Requirements**
+
+The software necessary to run InverionRDM is presented in ['System requirements'](requirements.md).
+
 ## Quick start
 
 #### [1. Install CLI tool](cli.md)
