@@ -66,6 +66,7 @@ nav:
     - Metadata: reference/metadata.md
   - Releases:
     - Overview: releases/index.md
+    - Roadmap: releases/roadmap.md
     - Maintenance policy: releases/maintenance-policy.md
     - Security policy: releases/security-policy.md
     - Versions:
