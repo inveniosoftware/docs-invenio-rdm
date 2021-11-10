@@ -11,10 +11,6 @@ app_data/
 └── users.yaml
 ```
 
-If the file is not provided, InvenioRDM creates an admin user with the email
-`admin@inveniosoftware.org` (and a random password). If the file is provided
-but it is empty, no default user is created.
-
 The content of the file is as follows:
 
 ```yaml
@@ -30,3 +26,7 @@ The content of the file is as follows:
 - `password` : Their password. If empty, a random one is generated.
 - `roles` : Array of roles the user has. The roles must already be present in the DB.
 - `allow` : Array of action needs the user has.
+
+If the file is not provided, InvenioRDM creates an admin user with the email
+`admin@inveniosoftware.org` (and a random password). If the file is provided
+but is empty, no default user is created.
