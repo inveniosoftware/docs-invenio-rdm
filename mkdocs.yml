@@ -45,6 +45,7 @@ nav:
       - Change theme: 'customize/styling-theme.md'
       - Change templates: 'customize/styling-templates.md'
     - Authentication: 'customize/authentication.md'
+    - Sending Emails: 'customize/emails.md'
     - Search:
       - Change facets/sorting: 'customize/search.md'
     - Vocabularies:
