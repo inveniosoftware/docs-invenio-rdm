@@ -1,6 +1,9 @@
-# Getting started
+# Instance development
 
-### Development instance
+This guide will show you have to install the latest development version of
+InvenioRDM and how to install modules in InvenioRDM.
+
+### Development install
 
 The installation of the latest development version of InvenioRDM is very
 similar to the normal installation guide. The primary difference is that you should
@@ -21,37 +24,24 @@ invenio-cli services setup
 invenio-cli run
 ```
 
+!!! info
+
+    For development we highly recommend you use the **local** installation
+    method rather the containerized installation. See the
+    [installation guide](../../install/index.md) for full details.
+
+    In the future we aim to move to a fully containerized development
+    environment.
+
 The commands above will install the latest **development releases** from PyPI
 and NPM. In addition, each module may have further changes on their latest
 *master* branch that has not yet been released (see below).
 
-### Python development modules
+### Integrating Python development modules
 
-**Source code checkout**
-
-If you want to install the latest master branch of a dependent module, first
-you have to checkout the source code repository:
-
-The easiest is to use the [GitHub CLI tool](https://cli.github.com):
-
-```
-gh repo fork inveniosoftware/invenio-app-rdm
-cd invenio-app-rdm
-```
-
-With the previous command, we made a checkout of [Invenio-App-RDM](https://github.com/inveniosoftware/invenio-app-rdm)
-module. You'll have to adapt the command to checkout the module you want to work on.
-
-Without the GitHub CLI tool, you'll first have to [fork the repository](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
-on GitHub. Then, once you have a fork you can clone the repository and add the
-upstream repository remote:
-
-```
-# without GitHub CLI:
-git clone https://github.com/<your username>/invenio-app-rdm
-cd invenio-app-rdm
-git remote add upstream https://github.com/inveniosoftware/invenio-app-rdm
-```
+First, checkout the [package development guide](package-development.md) to learn
+how to develop on a single Python package. To integrate your Python package into
+a development install of an InvenioRDM instance see below:
 
 **Install a module in an instance**
 
@@ -105,7 +95,7 @@ invenio-cli assets watch
     changes. In addition, **be aware of the cache**, it might be a good idea
     to disable your cache or use an incognito window when developing web UI.
 
-### React development modules
+### Integrating React development modules
 
 InvenioRDM depends on a number of React modules published on NPM, namely
 React-SearchKit, React-Invenio-Deposit and React-Invenio-Forms. If you need

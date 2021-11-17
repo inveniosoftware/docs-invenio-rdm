@@ -58,7 +58,35 @@ nav:
     - Storage: 'customize/s3.md'
   - Develop:
     - Overview: 'develop/index.md'
-    - Getting started: 'develop/getting-started.md'
+    - Getting started:
+      - Source code: 'develop/getting-started/source-code.md'
+      - Package development: 'develop/getting-started/package-development.md'
+      - Instance development: 'develop/getting-started/instance-development.md'
+      - Debugging: 'develop/getting-started/debugging.md'
+      - Coding style: 'develop/getting-started/code-style.md'
+      - Virtual environments: 'develop/getting-started/virtualenvs.md'
+      - Getting help: 'develop/getting-started/help.md'
+      - Development process: develop/process.md
+    - Topic guides:
+      # - Building REST APIs: develop/topics/rest.md
+      - Building resources: develop/topics/resource.md
+      - Building services: develop/topics/service.md
+      # - Building records: develop/topics/record.md
+      # - Building system fields: develop/topics/systemfield.md
+      # - Building serializers: develop/topics/serializer.md
+      - Grouping atomic operations: develop/topics/uow.md
+      - Sanitize input data: develop/topics/validation.md
+    - How-to guides:
+      - Create a database migration: develop/howtos/alembic.md
+      - Fix a vulnerability: develop/howtos/security-fix.md
+    - Architecture:
+      - Introduction: develop/architecture/index.md
+      - Infrastructure: develop/architecture/infrastructure.md
+      - Software: develop/architecture/software.md
+      - Runtime: develop/architecture/runtime.md
+    - Concepts:
+      - Optimistic concurrency control: develop/concepts/concurrency-control.md
+      - Database transaction management: develop/concepts/transactions.md
   - Reference:
     - Overview: reference/index.md
     - CLI: reference/cli.md
@@ -101,12 +129,9 @@ nav:
     - Branch management: maintenance/branch-management.md
     - Style guide: maintenance/styleguide.md
     - Demo site & docs: maintenance/demosite.md
-    - Architecture: maintenance/architecture.md
     - Use cases: maintenance/use-cases.md
     - RFCs: maintenance/rfcs.md
     - Extension Development: maintenance/subject_extension_example.md
-    - How-to guides:
-      - Create a database migration: maintenance/howtos/alembic.md
   - Contribute:
     - Contribute to InvenioRDM: contribute/index.md
 
