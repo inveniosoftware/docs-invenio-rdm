@@ -52,11 +52,14 @@ In the beginning of each iteration we start by releasing new development version
     - bump invenio-records-resources
 - invenio-vocabularies
     - bump invenio-records-resources
+- invenio-requests
+    - bump invenio-records-resources
+- invenio-communities
+    - bump invenio-requests
 - invenio-rdm-records
     - bump invenio-drafts-resources
     - bump invenio-vocabularies
-- invenio-communities
-    - bump invenio-rdm-records
+    - bump invenio-communities
 - react-invenio-forms
 - react-invenio-deposit
     - bump react-invenio-forms
@@ -66,7 +69,7 @@ In the beginning of each iteration we start by releasing new development version
     - bump react-invenio-deposit
     - bump react-invenio-forms
 - cookiecutter-invenio-rdm
-    - bump invenio-app-rdm 
+    - bump invenio-app-rdm
 
 For modules in ``v0.X.Y``, the new version is ``v0.(X+1).0``.
 

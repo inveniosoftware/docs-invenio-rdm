@@ -111,3 +111,13 @@ While upgrading your database or trying to auto-generate migrations you may
 encounter exceptions from alembic. Often, this can be due to an older broken
 migration or failed SQL statement execution. In these cases, you can try to
 identify the failing migration and disable the failing parts.
+
+### Can I edit an existing Alembic migration?
+
+You are allowed to edit an existing (i.e. already committed) Alembic migration
+if and only if the migration has not been released as part of Invenio Framework
+InvenioRDM or InvenioILS.
+
+If you edit a migration that may already be in use in a production system, you
+risk to put the that production system in an inconsistent state once the
+following migrations are applied.

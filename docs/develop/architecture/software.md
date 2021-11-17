@@ -1,4 +1,4 @@
-# Architecture
+# Software architecture
 
 **Intended audience**
 
@@ -6,11 +6,7 @@ This guide is intended for maintainers and developers of InvenioRDM itself.
 
 **Scope**
 
-The guide provides a high-level architecture overview of the core part of InvenioRDM.
-
-!!! warning "Work in progress"
-
-    This section is under development.
+The guide provides a high-level overview of the core software architecture of InvenioRDM.
 
 ## Layers
 
@@ -18,7 +14,7 @@ InvenioRDM has a layered architecture that consistent of three layers:
 
 - Presentation layer
 - Service layer
-- Data access layer
+- Data layer
 
 There is a strict data flow between the layers, and each layer has very specific responsibilities. It's highly important that you as a developer know the basic principles for the  data flow and  each layer's responsibilities. Failure to understand the basic data flow, leads to using the wrong objects for the wrong things, which eventually turns into messy unmaintainable code.
 
@@ -26,7 +22,7 @@ There is a strict data flow between the layers, and each layer has very specific
 
 The diagram below shows a simplified view of the data flow in the architecture.
 
-![Architecture layers](img/architecture.svg)
+![Architecture layers](../img/architecture.svg)
 
 *The presentation layer* parses incoming requests and routes them to service layer. This involves sending and receiving data in multiple different formats and translating these into an internal representation, as well as e.g. parsing arguments from an HTTP request (e.g parsing the query string parameters).
 
@@ -50,8 +46,8 @@ The data flow between the layers is strictly limited to some few well-defined ob
 
 The data access layer is responsible for:
 
-- Fetching and storing data on primary (the database) and secondary storage (Elasticsearch, cache, files, ...).
-- Harmonizing data access to the same object on primary and secondary storages (e.g. a record in the database vs in the Elasticsearch index).
+- Fetching and storing data on primary (the database) and secondary storage (Elasticsearch/OpenSearch, cache, files, ...).
+- Harmonizing data access to the same object on primary and secondary storages (e.g. a record in the database vs in the search index).
 - Ensuring data integrity and managing relations among data objects.
 
 The data access layer usually lives inside an Invenio module in a package named ``records``. It may consist of
@@ -86,23 +82,23 @@ The data access layer serves two purposes:
 
 The data layer is built around the following guiding principles:
 
-- One data representation: The service layer should work with one an only one
+- **One data representation**: The service layer should work with one an only one
   data representation of an entity independent of if the entity was retrieved
   from primary or secondary storage.
 
-- One primary storage, many secondary storages: The primary version of a record
+- **One primary storage, many secondary storages**: The primary version of a record
   exists in one and only one copy on the primary storage (the database),
   however multiple secondary copies may exist in the search index.
 
-- Idempotence of dumping/loading: Dumping and loading to/from secondary storage
+- **Idempotence of dumping/loading**: Dumping and loading to/from secondary storage
   (such as the search index) must produce the same record.
 
-- Denormalization over normalization: If we have to choose, we usually prefer
+- **Denormalization over normalization**: If we have to choose, we usually prefer
   fast read speed over fast write speed.
 
-- Data versioning: We version data and rely heavily on optimistic
-  concurrency control for detecting conflicts and determining stale secondary
-  copies.
+- **Data versioning**: We version data and rely heavily on [optimistic
+  concurrency control](../concepts/concurrency-control.md) for detecting conflicts
+  and determining stale secondary copies.
 
 **Record API**
 
@@ -120,8 +116,8 @@ The record is in charge of:
 - data versioning
 - state management
 
-A record is usually defined using a declarative API named system fields based
-on Python data descriptors.
+A record is usually defined using a declarative API named **system fields** based
+on [Python data descriptors](https://docs.python.org/3/howto/descriptor.html).
 
 **JSONSchemas**
 
@@ -135,20 +131,20 @@ Modules:
 
 **Mappings**
 
-The Elasticsearch mappings define how records are indexed and made searchable. Records are denormalised when indexed to provide high performance for searches over the records. The mapping MAY therefore define additional fields compared to the JSONSchema.
+The search mappings define how records are indexed and made searchable. Records are denormalised when indexed to provide high performance for searches over the records. The mapping MAY therefore define additional fields compared to the JSONSchema.
 
 **Dumpers**
 
-Dumpers are responsible for dumping and loading prior to storing/fetching records on secondary storage (e.g. the Elasticsearch index), and play a key role for harmonizing data access to records from primary and secondary storages.
+Dumpers are responsible for dumping and loading prior to storing/fetching records on secondary storage (e.g. the search index), and play a key role for harmonizing data access to records from primary and secondary storages.
 
-Dumpers are specific to a secondary storage system (e.g. an Elasticsearch dumper, a file dumper, ...).
+Dumpers are specific to a secondary storage system (e.g. an search dumper, a file dumper, ...).
 
 The dump and load of a dumper MUST be idempotent - i.e. ``record == Record.load(record.dump())``. This ensures that independently of if a record was retrieved from primary or secondary storage, it has the same data and works in the same manner.
 
 For instance, the Extended Date Time Format dumper works in the following manner:
 
 - The dump adds a start and end date range so that the EDTF can be queried by Elasticsearch.
-- The load removes the two start and end date fields from the Elasticsearch document when loaded.
+- The load removes the two start and end date fields from the search document when loaded.
 
 **System fields**
 
@@ -193,139 +189,178 @@ These two distinct representations of a record may often be very similar, but it
 
 ### Service Layer
 
-The service layer contains the business logic of the application and is responsible for:
+The service layer contains the domain and business logic of the application and is responsible for:
 
 - Authorization (i.e. checking permissions)
 - Business-level validation
-- Control flow - e.g. transaction management,
+- Control flow
+
+The service layer usually lives inside an Invenio module in a package named ``service``. It may consist of:
+
+- Service components (``components/``)
+- Service config (``components/``)
+- Service schema (``components/``)
+- Service results (``results``)
+- Domain errors (``errors.py``)
+- Background tasks.py
+
+**Purpose**
+
+The main purpose of the service layer is to have an interface independent entry point into the application.
 
 **Guiding principles**
 
-TODO
+The service layer is built around the following guiding principles:
 
-- Mimick the end-user interface
+- **Mimick the end-user interface**: There is usually a one to one correspondence between say a button in the user interface and a method in a service.
 
-- Clean control flow
+- **Clean control flow**: The control flow of a service method should be reasonable easy to follow,
 
-- Interface independent
-
-- Independent of the Flask request context
-
-- Data flow
-
-- Components responsible for setting data on a record.
-
-- Who creates a service
+- **Interface independent**: The service must be independent of the interface it's being called from. This means among other things that a service knows nothing about the HTTP request.
 
 **Service**
 
-TODO
+A service itself is the high-level entry point into the application. A service
+provides methods that usually maps directly to some sort of user interface action like pressing a button, performing a search and similar.
+
+A service, similar often provides transactional boundaries within InvenioRDM.
+
+**Input**
 
 **Service config**
 
-TODO
+The service config is a container for
 
 Responsibility:
 - Inject dependencies via a single object.
 
-**Service schema**
+**Unit of work (UoW) **
 
-TODO
+We use a design pattern called
+[*unit of work*](https://martinfowler.com/eaaCatalog/unitOfWork.html) in order
+to ensure that we can group multiple state changing service methods into a
+single atomic operation. State changing service methods is essentially anything
+that commits a database transaction such as create/update/delete.
+
+In a single service method we for instance must always ensure that we commit
+the database transaction before indexing and sending off Celery tasks.
+Otherwise we risk the transaction commit fails, and we have documents out of
+sync between our database and search index.
+
+When we group multiple service method calls, we have to delay the database
+transaction commit until after all service methods have done their work, and
+thus we need to coordinate also the indexing and task operations from each
+service method that has to be done afterward the commit.
+
+The unit of work context manager takes care of this job for us. It coordinates
+transaction operations between multiple service calls.
+
+!!! tip "Do not use ``db.session.commit()`` in a service method"
+
+    You should use the unit of work instead of running an explicit
+    ``db.session.commit()`` or ``db.session.rollback()`` in the code. Example:
+
+    ```python
+    from invenio_records_resources.services.uow import \
+        RecordCommitOp, unit_of_work,
+
+    @unit_of_work()
+    def create(self, ..., uow=None):
+        record = ...
+        # No db.session.commit(), no self.indexer.index(...)
+        uow.register(RecordCommitOp(record, indexer=self.indexer))
+    ```
+
+The ``unit_of_work()`` decorator ensures that if a UoW is not provided,
+  it is automatically created and committed once the function returns.
+
+**Service schema**
 
 Responsibility:
 - data validation
 - field-level permission checking
 - dumping and loading record projections
 
-
 **Search**
 
-TODO
-
-Faceting, query parsing, etc.
+Responsibility:
+- Faceting, search query parsing, etc.
 
 **Permissions**
 
-TODO
-
-- Policy
-- Need generators
+Responsibility for defining a declarative permission model.
 
 **Components**
-
-TODO
 
 Responsible for providing a specific feature in the service, and make the service customizable.
 
 ### Presentation Layer
 
-The presentation layer
+**Purpose**
+
+The main purpose of the presentation layer is to parse user requests and call the different
+services.
 
 **Guiding principles**
 
-TODO
+- Explicit parse and validate all input parameters.
+
+- Serialize to/from a single internal representation.
+
+- Conflict detection through optimistic concurrency control.
+
+- Presentation must not contain business logic (e.g. permission checks).
 
 **Celery tasks**
 
-TODO
+Celery tasks are considered part of the presentation layer and thus normally
+simply call a service method. As a service may want to use background jobs to
+perform its task, we however often defined the celery tasks in the service.
 
 **Views**
 
-TODO
+UI Flask views are part of the presentation layer, and similarly always call
+services to perform their job. Often, the UI views are simply rendering
+a template that injects a JavaScript frontend application which queries the
+REST API.
 
 **Resources**
 
-TODO
-
-- RESTful routing
-- Dependency injection
+Resources defines the REST API and are responsible for RESTful routing,
+parameter parsing, content negotiation etc.
 
 **Resources request context**
 
-TODO
-
-- Contains only validated parsed data.
-- HTTP request parsing: body, headers, query string, path
-- Content negotiation
+The resource request context is a Flask context object on which only validated
+input data is stored. Thus, accessing data on ``requests_resourcectx`` instead of
+``request`` means that at least basic validation have been performed.
 
 **Resource configs**
 
-TODO
+The resource config are used for dependency injection to
 
-- Dependency injection
+## Performance considerations
 
-## How did we arrive here?
+Performance is of very high importance for InvenioRDM. There's however often
+trade-offs to be made.
 
-The overarching goal of the architecture is similar to any other software
-system. We want a software system that's easily maintainable, scalable,
-extendable, adaptable, resilient, and *...insert your favorite buzz words...*.
+**Query vs indexing speed**
 
-There's a lot of methodologies and patterns on how to build and architect
-software systems. However, in practice, while methodologies are useful
-it's often more about tradeoffs and finding the right balance rather than
-strict application of a specific methodology. Most of the time you have to deal
-with deadlines, requirements, design patterns, costs, legacy code, people,
-projects, prior history and practices.
+For InvenioRDM query speed is more important that fast indexing speeds. This means
+we'll sometimes denormalize data to have high enough query speed. Once we denormalize
+data we immediately must also deal with stale data and cache invalidation.
 
-InvenioRDM is no different. The architecture is largely a by product our past
-experiences and challenges we've faced. The architecture as described here, is
-not meant to be final answer, but rather an evolving architecture that adapts
-and improve over time.
+The version counter on on all records is instrumental in being able to manage
+the speed.
 
-TODO
+**Database vs search engine**
 
-Some of the challenges we faced:
+The database is the primary data storage for InvenioRDM, however the database
+is not performing well for searching large number of records. Thus in general
+we only perform primary key lookups in the database, and try to move all other
+queries to the search index.
 
-- **High developer turn-over and many juniors**: Onboarding, documentation,
-  boundaries, spaghetti code.
-- **Spaghetti code**: data massaging all over the place, type conversions.
-- **Bad design choices**: moving big files,
-- **Recovering from failures**: massive database crashes, file loss on big
-  distributed storage clusters, and eating our own dog food.
-
-## Why not?
-
-TODO
-
-- Microservices: Is not a substitute for an architecture. It's just another way of tieing a system together. Running becomes harder especially for small institutions.
-- NoSQL: SQL database have been around for the past 40 years, and are highly reliable systems. Most NoSQL systems have not been around for so long.
+As the search index can be slightly outdated from the primary copy, we focus on
+updating the index immediately in the cases where it's important for the
+user experience (e.g. a user deletes a draft and is immediately returned to a
+list of their drafts - this list should not include the just deleted draft).
