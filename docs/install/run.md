@@ -10,7 +10,7 @@
 ### Use your browser
 
 Navigate to [https://127.0.0.1:5000](https://127.0.0.1:5000). Note that you might need to accept the SSL exception since it's using a test certificate.
-Below, we list a small subset of the common API calls. For more, see the [API reference section](../reference/rest_api.md).
+Below, we list a small subset of the common API calls. For more, see the [API reference section](../reference/rest_api_index.md).
 
 ### List records
 
@@ -461,7 +461,7 @@ This file can then be previewed on the record page and even downloaded.
 
 ## Explore the API
 
-To see what other API calls exist, go to the [API reference section](../reference/rest_api.md).
+To see what other API calls exist, go to the [API reference section](../reference/rest_api_index.md).
 
 ## Stop it
 
