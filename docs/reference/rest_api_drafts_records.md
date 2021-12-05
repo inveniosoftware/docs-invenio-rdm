@@ -547,7 +547,7 @@ POST /api/records/{id}/draft HTTP/1.1
 **Response**
 
 ```http
-HTTP/1.1 200 OK
+HTTP/1.1 201 OK
 Content-Type: application/json
 
 
