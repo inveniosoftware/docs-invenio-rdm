@@ -5,6 +5,6 @@ hide:
 template: frontpage.html
 ---
 
-!!! tip "August 5th, 2021: InvenioRDM v6.0 LTS released"
+!!! tip "December 6th, 2021: InvenioRDM v7.0 released"
 
-    Read the full [release notes](releases/versions/version-v6.0.0.md). Version 6.0 is the first Long-Term Support (LTS) release of InvenioRDM and the first release to be suitable for production systems.
+    Read the full [release notes](releases/versions/version-v7.0.0.md). V7.0 is short-term support release, thus please use Version 6.0 LTS for production systems.

@@ -26,8 +26,13 @@ It will also generate a test private key which is needed for SSL support in the 
 Let's do it! Pressing `[Enter]` selects the option in brackets `[]`.
 
 ``` bash
-invenio-cli init rdm
+invenio-cli init rdm -v <version>
 ```
+
+Where ``<version>`` should be replaced with he version you want to install, e.g.:
+
+- LTS release (for production systems): ``v6.0``
+- STS release (for feature previews): ``v7.0``
 
 ``` console
 Initializing RDM application...

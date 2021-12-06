@@ -1,8 +1,4 @@
-# DOI registration (preview)
-
-!!! warning "Preview feature"
-
-    DOI registration is preview feature and **not suitable for production services** due to known issues.
+# DOI registration
 
 !!! info
 
@@ -15,7 +11,7 @@
 You enable the DOI minting feature in your ``invenio.cfg`` file:
 
 ```cfg
-RDM_RECORDS_DOI_DATACITE_ENABLED = True
+DATACITE_ENABLED = True
 ```
 
 #### Credentials and prefix
@@ -25,9 +21,9 @@ Before you continue, make sure you first have a [DataCite test account](https://
 You need to provide the account credentials and and the DOI prefix for the DataCite repository account in your  in ``invenio.cfg`` file:
 
 ```cfg
-RDM_RECORDS_DOI_DATACITE_USERNAME = "..." # Your username
-RDM_RECORDS_DOI_DATACITE_PASSWORD = "..."  # Your password
-RDM_RECORDS_DOI_DATACITE_PREFIX = "10.1234"  # Your prefix
+DATACITE_USERNAME = "..." # Your username
+DATACITE_PASSWORD = "..."  # Your password
+DATACITE_PREFIX = "10.1234"  # Your prefix
 ```
 
 !!! tip
@@ -45,7 +41,7 @@ registering DOIs during test. In test mode InvenioRDM will use the following Dat
 To enable production mode, set the following configuration variable in ``invenio.cfg``:
 
 ```cfg
-RDM_RECORDS_DOI_DATACITE_TEST_MODE = False
+DATACITE_TEST_MODE = False
 ```
 
 In production mode, InvenioRDM will use the following DataCite systems:
@@ -64,7 +60,7 @@ By default, InvenioRDM generates a DOI using the prefix and internal persistent
 identifier. You can change the generated DOI string by editing your ``invenio.cfg``.
 
 ```
-RDM_RECORDS_DOI_DATACITE_FORMAT = "{prefix}/datacite.{id}"
+DATACITE_FORMAT = "{prefix}/inveniordm.{id}"
 ```
 
 !!! tip
@@ -78,21 +74,5 @@ RDM_RECORDS_DOI_DATACITE_FORMAT = "{prefix}/datacite.{id}"
 
 - **Restricted records:** DOIs are registered for all records including restricted
   records, thus metadata like titles, authors, description and more is sent to
-  DataCite Metadata registry where it is public.
-
-- **Deposit form**: The widget in the deposit form have known issues when
-  switching between providing an existing DOI and getting a new DOI. In addition,
-  many errors are not reported properly, and will thus lead to user being confused.
-
-- **Metadata not updated**: When you update metadata of a record, the metadata
-  is not updated in the DataCite metadata registry.
-
-- **Synchronous registration**: DOIs are registered on the publish step and not
-  as an asynchronous task which can cause long delays of issues if DataCite
-  services are down.
-
-- **Registered landing page**: InvenioRDM currently registers the URL ``/records/<id>``
-  as the landing page for the DOI. Instead, it should register ``/doi/<id>`` as
-  the landing page which internally in InvenioRDM will perform a redirect. This
-  is to ensure that future URL updates does not require updating large number of
-  DOIs in DataCite.
+  DataCite Metadata registry where it is public. Provide an external DOI if
+  no DOI should be registered by InvenioRDM.

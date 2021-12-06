@@ -90,6 +90,9 @@ Following is a high-level overview of features currently supported by InvenioRDM
 - **Permission system** InvenioRDM supports advanced customizations to the
   permission system for e.g. IP-based access control.
 
+- **Persistent identifiers** Use the built-in support for DOIs, or add your
+  own persistent identifier providers for other schemes.
+
 ### APIs and interoperability
 
 - **REST API** InvenioRDM exposes a strong versioned REST API for all operations
@@ -99,6 +102,9 @@ Following is a high-level overview of features currently supported by InvenioRDM
 - **Export formats** InvenioRDM supports exporting records metadata in multiple
   formats such as JSON, Citation Style Language JSON, DataCite JSON/XML, Dublin
   Core.
+
+- **OAI-PMH server** InvenioRDM ships with a built OAI-PMH server to allow
+  metadata harvesting of records in your repository.
 
 ### Infrastructure
 

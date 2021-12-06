@@ -76,6 +76,7 @@ nav:
     - Maintenance policy: releases/maintenance-policy.md
     - Security policy: releases/security-policy.md
     - Versions:
+      - Version v7.0.0: releases/versions/version-v7.0.0.md
       - Version v6.0.5: releases/versions/version-v6.0.5.md
       - Version v6.0.0: releases/versions/version-v6.0.0.md
       - Version v5.0.0: releases/versions/version-v5.0.0.md
@@ -85,6 +86,7 @@ nav:
       - Version v1.0.0: releases/versions/version-v1.0.0.md
     - Upgrade guide:
       - Upgrade policy: releases/upgrading/index.md
+      - Upgrade from v6 to v7: releases/upgrading/upgrade-v7.0.md
       - Upgrade from v6.0.x to v6.0.5: releases/upgrading/upgrade-v6.0.5.md
       - Upgrade from v4 to v6: releases/upgrading/upgrade-v6.0.md
       - Upgrade from v3 to v4: releases/upgrading/upgrade-v4.0.md

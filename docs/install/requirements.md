@@ -5,7 +5,7 @@
 InvenioRDM depends on the following requirements to be installed on your local system:
 
 - MacOS or Linux-based systems (Windows systems is not supported).
-- [Python](https://www.python.org/) 3.6, 3.7, 3.8 or 3.9
+- [Python](https://www.python.org/) 3.7, 3.8 or 3.9
     - Python development headers:
         - On Ubuntu: `sudo apt install python3-dev`.
         - On RHEL/Fedora: `yum install -y python3-devel.x86_64`.
@@ -28,13 +28,13 @@ For running and building the application locally you will also need:
 - [ImageMagick](https://imagemagick.org/script/download.php) needed for IIIF file rendering.
 
 !!! warning "Supported Python distributions"
-    InvenioRDM targets CPython 3.6, 3.7, 3.8, and 3.9 (lowest 3.6.2). Anaconda Python in particular is not currently supported and other Python distributions are not tested.
+    InvenioRDM targets CPython 3.7, 3.8, and 3.9. Anaconda Python in particular is not currently supported and other Python distributions are not tested.
 
 ### Services
 
 InvenioRDM depends on the following services. During the installation we start these services in containers, but you could as well use externally hosted services for them:
 
-- Databases: PostgreSQL 9.6+
+- Databases: PostgreSQL 10+
 - Elasticsearch: v6.8 - v7.10 (due to the license change in v7.11, we are currently evaluating the situation).
 - Cache: Redis, memcached
 - Message broker: RabbitMQ, Redis

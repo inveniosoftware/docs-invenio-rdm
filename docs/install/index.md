@@ -28,11 +28,18 @@ invenio-cli check-requirements --development
 
 #### [3. Scaffold project](scaffold.md)
 
-Scaffold your InvenioRDM instance. You will be asked several questions. If in doubt, choose the default:
+Scaffold your InvenioRDM instance. Replace ``<version>`` with the version you want to install:
+
+- LTS release (for production systems): ``v6.0``
+- STS release (for feature previews): ``v7.0``
 
 ```
-invenio-cli init rdm
+invenio-cli init rdm -v <version>
+# e.g:
+invenio-cli init rdm -v v6.0
 ```
+
+You will be asked several questions. If in doubt, choose the default.
 
 #### 4. [Build, setup and run](build-setup-run.md)
 
