@@ -34,9 +34,9 @@ Scaffold your InvenioRDM instance. Replace ``<version>`` with the version you wa
 - STS release (for feature previews): ``v7.0``
 
 ```
-invenio-cli init rdm -v <version>
+invenio-cli init rdm -c <version>
 # e.g:
-invenio-cli init rdm -v v6.0
+invenio-cli init rdm -c v6.0
 ```
 
 You will be asked several questions. If in doubt, choose the default.
