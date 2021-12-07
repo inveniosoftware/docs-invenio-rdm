@@ -1,5 +1,10 @@
 # Upgrading from v6.0 to v7.0
 
+!!! danger "Attention"
+
+    Dec 7: We have detected a couple of issues in the migration script. We're working on fixing it right now, and will provide
+    an update as soon as they are fixed. Please until then don't migrate your data.
+
 ## Prerequisites
 
 The steps listed in this article require an existing local installation of
