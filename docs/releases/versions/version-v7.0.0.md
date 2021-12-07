@@ -124,7 +124,7 @@ The error happens because of the built-in concurrency protection in InvenioRDM t
 
 The work around is simply to read the record again, and publish it. Alternatively, your script can create all drafts first with associated files, and afterwards publish all the drafts.
 
-See https://github.com/inveniosoftware/invenio-rdm-records/issues/809 .
+See [https://github.com/inveniosoftware/invenio-rdm-records/issues/809](https://github.com/inveniosoftware/invenio-rdm-records/issues/809).
 
 ## Feature Preview
 
