@@ -1,9 +1,5 @@
 # Upgrading from v6.0 to v7.0
 
-!!! danger "Attention"
-
-    Dec 7: We have detected a couple of issues in the migration script. We're working on fixing it right now, and will provide
-    an update as soon as they are fixed. Please until then don't migrate your data.
 
 ## Prerequisites
 
@@ -53,7 +49,9 @@ Please adjust your configurations in `invenio.cfg` as per the following table:
 | `RDM_RECORDS_DOI_DATACITE_FORMAT`    | `DATACITE_FORMAT`    |
 
 
-Further, the `OAISERVER_ID_PREFIX` needs to be set to the site name (without the protocol, e.g. `inveniordm.web.cern.ch`)!
+Further, the `OAISERVER_ID_PREFIX` needs to be set to the site name (without the protocol, e.g. `inveniordm.web.cern.ch`),
+even if you don't intend to use the OAI-PMH feature.  
+During the migration, the OAI PIDs will be created for each record and this variable ensures that they have meaningful values.
 
 
 ## Upgrade Steps
@@ -63,14 +61,20 @@ Further, the `OAISERVER_ID_PREFIX` needs to be set to the site name (without the
     Make sure you have the latest invenio-cli, for InvenioRDM v7 release is v1.0.0
 
 
+### Installing the Latest Versions
+
 Bump the RDM version and rebuild the assets:
 
 ```bash
 invenio-cli packages update 7.0.0
-invenio-cli assets build -d
+invenio-cli assets build
 ```
 
 These commands should take of locking the dependencies for v7, installing them, and building the required assets.
+
+
+### Data Migration
+
 After these steps were completed successfully, the data migration can take place:
 
 ```bash
@@ -79,7 +83,7 @@ pipenv run invenio alembic upgrade
 pipenv run invenio shell $(find $(pipenv --venv)/lib/*/site-packages/invenio_app_rdm -name migrate_6_0_to_7_0.py)
 ```
 
-### Errors
+#### Errors
 
 If any errors occur during the execution of the migration script, the offending records should be printed by their ID, along with the error messages in question:
 
@@ -96,9 +100,26 @@ In this case, the migration is aborted and the database is left as is.
 The mentioned records must be fixed manually (usually a matter of manipulating the metadata and saving the records successfully), after which the migration can be retried.
 
 
-### Success
+#### Success
 
-If no errors were reported, congratulations on the successful migration! :partying_face:
+If no errors were reported, congratulations on the successful data migration! :partying_face:
 
-**Note**: This migration does not require any Elasticsearch index rebuilding.
-All records have been reindexed by the migration script.
+
+### Elasticsearch
+
+The last required step is the migration of Elasticsearch indices, because there have been smaller changes to the mappings of RDM-Records.
+
+```bash
+pipenv run invenio index destroy --yes-i-know
+pipenv run invenio index init
+pipenv run invenio rdm-records rebuild-index
+```
+
+This will create all required indices that were missing and bring the RDM-Records indices up to speed.
+
+As soon as the indices have been rebuilt, the entire migration is complete!
+
+
+## Edits
+
+*December 7th, 2021*: Added required last step (Elasticsearch) because we *did* find some changes in the mappings, and updated some wording and headings.
