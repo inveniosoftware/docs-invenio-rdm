@@ -63,13 +63,14 @@ nav:
     - Overview: reference/index.md
     - CLI: reference/cli.md
     - Configuration: reference/configuration.md
+    - Metadata: reference/metadata.md
+    - OAI-PMH: reference/oai_pmh.md
     - REST API:
       - Overview: 'reference/rest_api_index.md'
       - Drafts and Records API: 'reference/rest_api_drafts_records.md'
       - Requests API: 'reference/rest_api_requests.md'
       - Communities API: 'reference/rest_api_communities.md'
       - Vocabularies API: 'reference/rest_api_vocabularies.md'
-    - Metadata: reference/metadata.md
   - Releases:
     - Overview: releases/index.md
     - Roadmap: releases/roadmap.md
