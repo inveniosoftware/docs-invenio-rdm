@@ -72,7 +72,7 @@ Example text for `welcome.html`:
 You can change the subject of your email with:
 
 ``` python
-SECURITY_EMAIL_SUBJECT_REGISTER = "Welcome to My University Repository!")
+SECURITY_EMAIL_SUBJECT_REGISTER = "Welcome to My University Repository!"
 """Email subject for account registration emails."""
 ```
 
