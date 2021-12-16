@@ -16,6 +16,9 @@ The steps to upgrade any of the two instances to a newer version or release are 
 
 **1. Upgrade code**
 
+Overall, you need to perform an upgrade so follow the upgrade guide released.
+Example of [v6 to v7](https://inveniordm.docs.cern.ch/releases/upgrading/upgrade-v7.0/).
+
 Code is on GitHub: [demo-inveniordm](https://github.com/inveniosoftware/demo-inveniordm).
 
 !!! warning
@@ -23,13 +26,26 @@ Code is on GitHub: [demo-inveniordm](https://github.com/inveniosoftware/demo-inv
     This is because the base Docker image (at the moment of writing) is `centos8-python:3.7`.
     Other Python version might install some Python packages that are not compatible.
 
-1. Create a PR with the needed changes. If you change `Pipenv` dependencies, make sure that you also add the
+
+1. Clone and make a local install of the code
+   ```
+   cd ~/src
+   git clone https://github.com/inveniosoftware/demo-inveniordm.git
+   cd demo-inveniordm/demo-inveniordm
+   # Create .invenio.private
+   export cwd=`pwd`
+   echo "[cli]\nproject_dir = ${cwd}\ninstance_path = ${cwd}\nservices_setup = False" >> .invenio.private
+   invenio-cli install
+   invenio-cli packages update 7.0.0
+   ```
+
+2. Create a PR with the needed changes. If you change `Pipenv` dependencies, make sure that you also add the
    new `Pipfile.lock` file. To do so, locally in your machine, delete the previous .lock file and run
-   `pipenv lock`. Note: This PR should not be the release PR as this would create a tag, the release PR 
+   `pipenv lock`. Note: This PR should not be the release PR as this would create a tag, the release PR
    is only created when upgrading the production site.
-2. You can test such changes locally: the demo site is an InvenioRDM instance and thus can be used in your
+3. You can test such changes locally: the demo site is an InvenioRDM instance and thus can be used in your
    local machine with the usual *invenio-cli* commands.
-3. Merge the PR: this will trigger a new Docker build (on GitHub actions) and push the new
+4. Merge the PR: this will trigger a new Docker build (on GitHub actions) and push the new
    image to the GitHub Docker registry, tagged as `latest`. A notification will be sent to the **OpenShift QA** project
    which will trigger a new rolling deployment of the web and worker pods to deploy the new image. You can
    eventually deploy the new image by yourself by clicking on `Deploy` on OpenShift.
