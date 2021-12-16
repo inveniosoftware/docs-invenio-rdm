@@ -1,0 +1,11 @@
+
+.feature-details h2 {
+    font-size: 1.25em;
+    line-height: 1.5em;
+    font-weight: 400;
+    margin-bottom: 0.2em;
+}
+
+.feature-details p {
+    margin-top: 0.2em;
+}
