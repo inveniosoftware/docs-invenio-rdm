@@ -25,7 +25,14 @@ theme:
 
 nav:
   - Home: 'index.md'
-  - Features: features/index.md
+  - Features: 
+    - Overview: 'features/index.md'
+    - Apis & Interoperability: 'features/apis-interoperability.md'
+    - Auth, Permissions & Security: 'features/auth-permissions-security.md'
+    - Customization: 'features/customization.md'
+    - Infrastructure: 'features/infrastructure.md'
+    - Records: 'features/records.md'
+    - Search: 'features/search.md'
   - Install:
     - Quick start: 'install/index.md'
     - System requirements: 'install/requirements.md'

@@ -1,0 +1,49 @@
+{% extends "frontpage_base.html" %}
+
+{% block styles %}
+  {{ super() }}
+  <link rel="stylesheet" href="../stylesheets/features.css" />
+{% endblock %}
+
+
+{% block hero %}
+  <div class="rdm-hero-bg">
+    <svg class="wave-svg" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1123 258'>
+      <path d='M1124,2c0,0 0,256 0,256l-1125,0l0,-48c0,0 16,5 55,5c116,0 197,-92 325,-92c121,0 114,46 254,46c140,0 214,-167 572,-166Z' style='fill: hsla(0, 0%, 100%, 1)' />
+    </svg>
+  </div>
+  <div class="rdm-hero md-typeset header">
+    {{page.content}}
+  </div>
+{% endblock %}
+
+
+{% block content %}
+  {% for item in nav %}
+      {% if item.title == "Features" %}
+
+          {% for sub_page in item.children %}
+            {% if sub_page.title != "Overview" %}
+              {{ feature_box(sub_page.title, sub_page.url, sub_page.meta.summary, sub_page.meta.image) }}
+            {% endif %}
+          {% endfor %}
+
+      {% endif %}
+  {% endfor %}
+{% endblock %}
+
+
+{% macro feature_box(title, url, content, image) %}
+  <section class="feature">
+    <div class="content-wrapper">
+      <div class="image" style="background-image: url({{image}})">
+      </div>
+
+      <div class="text-wrapper">
+          <h2>{{ title }}</h2>
+          <p>{{ content }}</p>
+          <a href="/{{url}}" class="learn-more"> Learn more ❯</a>
+      </div>
+    </div>
+  </section>
+{% endmacro %}

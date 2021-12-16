@@ -14,8 +14,8 @@
         90deg,
         rgba(3, 119, 205, 1),
         rgba(3, 119, 205, 1) 52.52%,
-        rgba(251, 130, 115, 0.69)
-        );
+        rgba(251, 130, 115, 0.69)) 
+        no-repeat;
     color: #ffffff;
 }
 [data-md-color-primary="white"] .md-tabs  {
@@ -23,11 +23,42 @@
         90deg,
         rgba(3, 119, 205, 1),
         rgba(3, 119, 205, 1) 52.52%,
-        rgba(251, 130, 115, 0.69));
+        rgba(251, 130, 115, 0.69)) 
+        no-repeat;
     color: #ffffff;
 }
 
+.md-search form.md-search__form {
+    background-color: rgba(255,255,255, 0.1);
+    color: #fff;
+    transition: 0.3 ease-in;
+}
 
+.md-search form.md-search__form:hover {
+    background-color: rgba(255,255,255, 0.5);
+    color: rgba(0,0,0,0.54);
+}
+
+.md-search form.md-search__form:hover .md-search__input::placeholder {
+    color: rgba(0,0,0,0.54);
+}
+
+.md-search form.md-search__form:hover .md-search__icon.md-icon svg {
+    fill: rgba(0,0,0,0.54);
+}
+
+[data-md-toggle=search]:checked~.md-header .md-search__inner .md-search__icon.md-icon svg {
+    fill: rgba(0,0,0,0.54);
+}
+
+.md-search form.md-search__form .md-search__input::placeholder {
+    color: #fff;
+}
+
+.md-search form.md-search__form .md-search__icon.md-icon svg {
+    fill: #fff;
+    transition: 0.3s;
+}
 
 .md-header[data-md-state="shadow"] {
     box-shadow: none;
