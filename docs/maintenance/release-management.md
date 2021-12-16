@@ -52,17 +52,20 @@ In the beginning of each iteration we start by releasing new development version
     - bump invenio-records-resources
 - invenio-vocabularies
     - bump invenio-records-resources
+- invenio-requests
+    - bump invenio-records-resources
+- invenio-communities
+    - bump invenio-requests
+    - bump invenio-vocabularies
 - invenio-rdm-records
     - bump invenio-drafts-resources
+    - invenio-communities
     - bump invenio-vocabularies
-- invenio-communities
-    - bump invenio-rdm-records
 - react-invenio-forms
 - react-invenio-deposit
     - bump react-invenio-forms
 - invenio-app-rdm
     - bump invenio-rdm-records
-    - bump invenio-communities
     - bump react-invenio-deposit
     - bump react-invenio-forms
 - cookiecutter-invenio-rdm
