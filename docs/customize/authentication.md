@@ -49,6 +49,9 @@ that the user can be reached via a valid email.
 InvenioRDM supports external authentication out-of-the-box, such as OAuth. SAML authentication
 can also be experimentally enabled.
 
+Note that the redirect url (or _authorized_) has the format `https://<CFG_SITE_URL>/oauth/authorized/<contrib>/`,
+where contrib can be _orcid_, _cern_, _github_, etc.
+
 ### OAuth
 
 In addition to local accounts, InvenioRDM offers the possibilty to integrate external
