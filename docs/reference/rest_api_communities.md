@@ -30,27 +30,8 @@ Content-Type: application/json
     "curation_policy": "This is the kind of records we accept.",
     "page": "Information for my community.",
     "website": "https://www.my_community.org",
-    "funding": [{
-      "funder": {
-        "name": "European Commission",
-        "identifier": "00k4n6c32",
-        "scheme": "ror"
-      },
-      "award": {
-        "title": "OpenAIRE",
-        "number": "246686",
-        "identifier": ".../246686",
-        "scheme": "openaire"
-      }
-    }],
-    "affiliations": [{
+    "organizations": [{
       "name": "CERN",
-      "identifiers": [
-        {
-          "identifier": "01ggx4157",
-          "scheme": "ror"
-        }
-      ]
     }]
   }
 }
@@ -88,27 +69,8 @@ Content-Type: application/json
     "curation_policy": "This is the kind of records we accept.",
     "page": "Information for my community.",
     "website": "https://www.my_community.org",
-    "funding": [{
-      "funder": {
-        "name": "European Commission",
-        "identifier": "00k4n6c32",
-        "scheme": "ror"
-      },
-      "award": {
-        "title": "OpenAIRE",
-        "number": "246686",
-        "identifier": ".../246686",
-        "scheme": "openaire"
-      }
-    }],
-    "affiliations": [{
+    "organizations": [{
       "name": "CERN",
-      "identifiers": [
-        {
-          "identifier": "01ggx4157",
-          "scheme": "ror"
-        }
-      ]
     }]
   }
 }
@@ -145,27 +107,8 @@ Content-Type: application/json
     "curation_policy": "This is the kind of records we accept.",
     "page": "Information for my community.",
     "website": "https://www.my_community.org",
-    "funding": [{
-      "funder": {
-        "name": "European Commission",
-        "identifier": "00k4n6c32",
-        "scheme": "ror"
-      },
-      "award": {
-        "title": "OpenAIRE",
-        "number": "246686",
-        "identifier": ".../246686",
-        "scheme": "openaire"
-      }
-    }],
-    "affiliations": [{
+    "organizations": [{
       "name": "CERN",
-      "identifiers": [
-        {
-          "identifier": "01ggx4157",
-          "scheme": "ror"
-        }
-      ]
     }]
   }
 }
@@ -203,27 +146,8 @@ Content-Type: application/json
     "curation_policy": "This is the kind of records we accept.",
     "page": "Information for my community.",
     "website": "https://www.my_community.org",
-    "funding": [{
-      "funder": {
-        "name": "European Commission",
-        "identifier": "00k4n6c32",
-        "scheme": "ror"
-      },
-      "award": {
-        "title": "OpenAIRE",
-        "number": "246686",
-        "identifier": ".../246686",
-        "scheme": "openaire"
-      }
-    }],
-    "affiliations": [{
+    "organizations": [{
       "name": "CERN",
-      "identifiers": [
-        {
-          "identifier": "01ggx4157",
-          "scheme": "ror"
-        }
-      ]
     }]
   }
 }
@@ -262,7 +186,7 @@ HTTP/1.1 204 No Content
 
 | Name       | Type   | Location | Description                                                  |
 | ---------- | ------ | -------- | ------------------------------------------------------------ |
-| `comid`       | string | path     | Identifier of the community, e.g.  `my_community`                |
+| `comid`    | string | path     | Identifier of the community, e.g.  `my_community`                |
 | `accept`   | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
 
 **Request**
@@ -303,27 +227,8 @@ Content-Type: application/json
     "curation_policy": "This is the kind of records we accept.",
     "page": "Information for my community.",
     "website": "https://www.my_community.org",
-    "funding": [{
-      "funder": {
-        "name": "European Commission",
-        "identifier": "00k4n6c32",
-        "scheme": "ror"
-      },
-      "award": {
-        "title": "OpenAIRE",
-        "number": "246686",
-        "identifier": ".../246686",
-        "scheme": "openaire"
-      }
-    }],
-    "affiliations": [{
+    "organizations": [{
       "name": "CERN",
-      "identifiers": [
-        {
-          "identifier": "01ggx4157",
-          "scheme": "ror"
-        }
-      ]
     }]
   }
 }
@@ -481,27 +386,8 @@ Content-Type: application/json
     "curation_policy": "This is the kind of records we accept.",
     "page": "Information for my community.",
     "website": "https://www.my_community.org",
-    "funding": [{
-      "funder": {
-        "name": "European Commission",
-        "identifier": "00k4n6c32",
-        "scheme": "ror"
-      },
-      "award": {
-        "title": "OpenAIRE",
-        "number": "246686",
-        "identifier": ".../246686",
-        "scheme": "openaire"
-      }
-    }],
-    "affiliations": [{
+    "organizations": [{
       "name": "CERN",
-      "identifiers": [
-        {
-          "identifier": "01ggx4157",
-          "scheme": "ror"
-        }
-      ]
     }]
   }
 }
@@ -539,27 +425,8 @@ Content-Type: application/json
     "curation_policy": "This is the kind of records we accept.",
     "page": "Information for my community.",
     "website": "https://www.my_community.org",
-    "funding": [{
-      "funder": {
-        "name": "European Commission",
-        "identifier": "00k4n6c32",
-        "scheme": "ror"
-      },
-      "award": {
-        "title": "OpenAIRE",
-        "number": "246686",
-        "identifier": ".../246686",
-        "scheme": "openaire"
-      }
-    }],
-    "affiliations": [{
+    "organizations": [{
       "name": "CERN",
-      "identifiers": [
-        {
-          "identifier": "01ggx4157",
-          "scheme": "ror"
-        }
-      ]
     }]
   }
 }
