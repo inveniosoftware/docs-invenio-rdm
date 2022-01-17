@@ -128,6 +128,7 @@ nav:
     - Release management: maintenance/release-management.md
     - Branch management: maintenance/branch-management.md
     - Style guide: maintenance/styleguide.md
+    - Accessibility: maintenance/accessibility.md
     - Demo site & docs: maintenance/demosite.md
     - Use cases: maintenance/use-cases.md
     - RFCs: maintenance/rfcs.md
