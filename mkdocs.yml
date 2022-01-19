@@ -135,6 +135,7 @@ nav:
     - Extension Development: maintenance/subject_extension_example.md
   - Contribute:
     - Contribute to InvenioRDM: contribute/index.md
+    - Translators Guide: contribute/translators-guide.md
 
 # Customization
 extra:
@@ -150,6 +151,8 @@ markdown_extensions:
   - attr_list
   - pymdownx.highlight
   - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true
   - toc:
       permalink: true
   - pymdownx.emoji:
