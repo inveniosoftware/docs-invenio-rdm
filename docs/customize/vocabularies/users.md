@@ -14,14 +14,15 @@ app_data/
 The content of the file is as follows:
 
 ```yaml
-<email>:
-  active: <bool>
-  password: <string>
-  roles: <array of strings>
-  allow: <array of strings>
+#list of users:
+-  email: <string>
+   active: <bool>
+   password: <string>
+   roles: <array of strings>
+   allow: <array of strings>
 ```
 
-- `<email>` : Email of the user.
+- `email` : Email of the user.
 - `active` : Is the user active or not.
 - `password` : Their password. If empty, a random one is generated.
 - `roles` : Array of roles the user has. The roles must already be present in the DB.
