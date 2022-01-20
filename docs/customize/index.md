@@ -15,5 +15,6 @@ InvenioRDM instance so that it integrates into their organizational environment.
 - [S3 Storage](s3.md) - configure s3 as storage.
 - [Vocabularies](vocabularies/index.md) - use custom controlled vocabularies, default users and other institution specific data.
     - [Affiliations](vocabularies/affiliations.md)
+    - [Names](vocabularies/names.md)
     - [Subjects](vocabularies/subjects.md)
     - [Users](vocabularies/users.md)
