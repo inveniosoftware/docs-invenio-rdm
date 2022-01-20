@@ -51,6 +51,7 @@ nav:
     - Vocabularies:
       - Overview: 'customize/vocabularies/index.md'
       - Affiliations: 'customize/vocabularies/affiliations.md'
+      - Names: 'customize/vocabularies/names.md'
       - Subjects: 'customize/vocabularies/subjects.md'
       - Users: 'customize/vocabularies/users.md'
     - Record landing page: 'customize/record_landing_page.md'
