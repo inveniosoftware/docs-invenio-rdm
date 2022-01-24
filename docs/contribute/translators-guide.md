@@ -6,6 +6,7 @@ Translation is done with the help of [Transifex](https://www.transifex.com/). To
     - In case you stuck, check out the [Transifex Getting Started Guide](https://docs.transifex.com/getting-started-1/translators).
     - You still stuck? Reach out to the invenioRDM translation team via [Discord `#rdm-translations`](https://discord.gg/Ya7qSG43Br).
 - [ ] Ask to join the inveniosoftware team: [https://www.transifex.com/inveniosoftware/invenio/dashboard/](https://www.transifex.com/inveniosoftware/invenio/dashboard/)
+    - In case you stuck, check out the [Transifex Getting Started Guide](https://docs.transifex.com/getting-started-1/translators#joining-a-translation-team).
 - [ ] Get in contact with the invenioRDM translation team via [Discord `#rdm-translations`](https://discord.gg/Ya7qSG43Br) to be accepted in the inveniosoftware team.
 - [ ] Check the existing [languages](https://www.transifex.com/inveniosoftware/invenio/languages/).
     - If the language you want to translate to does not yet exist:
@@ -23,10 +24,10 @@ Translation is done with the help of [Transifex](https://www.transifex.com/). To
     - [reading about using Transifex](https://docs.transifex.com/translation/translating-with-the-web-editor).
     - [reading about helpful tools in Transifex](https://docs.transifex.com/translation/tools-in-the-editor).
     - [reading about html-context in Transifex](https://docs.transifex.com/translation/html-files).
+    - [reading about pluralized strings in Transifex](https://docs.transifex.com/localization-tips-workflows/plurals-and-genders#how-pluralized-strings-are-handled-by-transifex).
 - [ ] Workflows, advises, experiences:
     - Every change you make, should be reviewed by another member of your language team. You might need to press the `Unreview`-Button after changing a reviewed item.
     - For each item you translate/review you can add comments including mentioning other members using `@name`.
-    - Translate all of the packages listed here: [https://github.com/inveniosoftware/invenio-i18n/issues/99](https://github.com/inveniosoftware/invenio-i18n/issues/99). If not all packages are available, ask the maintainer of your translation team to include them  (e.g., via [Discord `#rdm-translations`](https://discord.gg/Ya7qSG43Br)).
     - Several words/sentences appear in different places and packages. To create consistency, try to use the same translations. You might find the [transifex-inveniosoftware-Search Strings](https://www.transifex.com/inveniosoftware/search/) and its Filters helpful.
     ![](transifex-search-strings.png)
     - Gender-neutral language: if the language you translate to uses different words for male, female, etc.
