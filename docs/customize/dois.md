@@ -33,7 +33,7 @@ DATACITE_PREFIX = "10.1234"  # Your prefix
 #### Mode: Test or production
 
 InvenioRDM by default uses the [DataCite Test Environment](https://support.datacite.org/docs/testing-guide) to avoid accidentally
-registering DOIs during test. In test mode InvenioRDM will use the following DatCite test systems:
+registering DOIs during test. In test mode InvenioRDM will use the following DataCite test systems:
 
 - DOI Fabrica (https://doi.test.datacite.org).
 - REST API (https://api.test.datacite.org).
