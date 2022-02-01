@@ -151,8 +151,6 @@ markdown_extensions:
   - attr_list
   - pymdownx.highlight
   - pymdownx.superfences
-  - pymdownx.tasklist:
-      custom_checkbox: true
   - toc:
       permalink: true
   - pymdownx.emoji:
