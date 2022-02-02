@@ -42,6 +42,12 @@ InvenioRDM could always use more documentation, whether as part of these
 official docs, in docstrings, or even on the web in blog posts,
 articles, and such.
 
+### Translations
+
+InvenioRDM is used all over the world, but not yet translated to all languages.
+You can make  invenioRDM even more accessible by joining the translation team
+and helping with translations. Follow the guide [here](translators-guide).
+
 ### Submit Feedback
 
 The best way to send feedback is to file an issue at
