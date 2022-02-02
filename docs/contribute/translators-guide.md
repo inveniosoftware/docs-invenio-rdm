@@ -1,31 +1,32 @@
 # Getting involved as a Translator
 
-Translation is done with the help of [Transifex](https://www.transifex.com/). To become an invenioRDM-translator follow these steps:
+The translation of texts that are visible in the UI of invenioRDM, is integrated with the [Transifex](https://www.transifex.com/) platform. 
+
+If you wish to contribute on translating your desired language. Please follow these steps:
+
 
 ## Step 1 - Get a Transifex account
 
 Sign up for a free Open Source Transifex account at [https://www.transifex.com/signup/open-source/](https://www.transifex.com/signup/open-source/) (any other Transifex account will do as well).
 
-In case you stuck, check out the [Transifex Getting Started Guide](https://docs.transifex.com/getting-started-1/translators).
+For more details, check out the [Transifex Getting Started Guide](https://docs.transifex.com/getting-started-1/translators).
 
 ## Step 2 - Join the inveniosoftware team
 
 Ask to join the inveniosoftware team: [https://www.transifex.com/inveniosoftware/invenio/dashboard/](https://www.transifex.com/inveniosoftware/invenio/dashboard/).
 Then get in contact with the invenioRDM translation team via [Discord `#rdm-translations`](https://discord.gg/Ya7qSG43Br). They will need to accept you in the inveniosoftware team.
 
-In case you stuck, check out the [Joining a translation team section of the Transifex Getting Started Guide](https://docs.transifex.com/getting-started-1/translators#joining-a-translation-team).
+For more details, check out the [Joining a translation team section of the Transifex Getting Started Guide](https://docs.transifex.com/getting-started-1/translators#joining-a-translation-team).
 
 ## Step 3 - Find your language
 
 Check for the existing [languages](https://www.transifex.com/inveniosoftware/invenio/languages/).
 
-- If the language you want to translate to does not yet exist:
-    - Click the `Request language` button and search there for the language you need.
-      ![](transifex-request-language.png)
+- If your desired language is not on the list, Click the **Request languag** button and search for the language you need.
+![](transifex-request-language.png)
     - Check with the invenioRDM translation team via [Discord `#rdm-translations`](https://discord.gg/Ya7qSG43Br). They will need to accept the request. When it is accepted you will be able to join the team as described in the next line.
-- If the language you want to translate to already exists:
-    - Click on that language and there click on the `Join team` button.
-      ![](transifex-join-team.png)
+- If your desired language already exists. Click on that language and there click on the **Join team** button.
+![](transifex-join-team.png)
 
 ## Step 4 - Learn about your translation team
 
@@ -57,4 +58,4 @@ There are some workflows to be aware of and we collected some advises and experi
 
 ## Troubleshooting
 
-You still stuck? Reach out to the invenioRDM translation team via [Discord `#rdm-translations`](https://discord.gg/Ya7qSG43Br).
+If you have any questions, suggestions. Reach out to the invenioRDM translation team via [Discord `#rdm-translations`](https://discord.gg/Ya7qSG43Br).
