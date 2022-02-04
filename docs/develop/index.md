@@ -6,6 +6,9 @@ This guide is intended both for developers that needs to develop new features fo
 
 ## Getting started
 
+Explains how to get development install up and running and some of the concepts
+required to
+
 - [Source code](getting-started/source-code.md)
 - [Package development](getting-started/package-development.md)
 - [Instance development](getting-started/instance-development.md)
@@ -13,20 +16,38 @@ This guide is intended both for developers that needs to develop new features fo
 - [Coding style](getting-started/code-style.md)
 - [Virtual environments](getting-started/virtualenvs.md)
 - [Getting help](getting-started/help.md)
+- [Development process](getting-started/process.md)
+
+## Topics
+
+- [Building resources](topics/resource.md)
+- [Building services](topics/service.md)
+- [Grouping atomic operations](topics/uow.md)
+- [Sanitize input data](topics/validation.md)
 
 ## How-to guides
 
-- [Sanitize input data](howtos/validation.md)
+Step-by-step guides on how to perform certain tasks.
+
 - [Create a database migration](howtos/alembic.md)
 - [Fix a vulnerability](howtos/security-fix.md)
-- [Building a service](patterns/service.md)
-- [Building a resource](patterns/resource.md)
-- [Building a data record](patterns/data.md)
-- [Building a system field](patterns/resource.md)
-- [Building a serializer](patterns/serializer.md)
 
 ## Architecture
 
+High-level conceptual overviews of the design and the thoughts behind those
+choices.
+
+- [Introduction](architecture/index.md)
 - [Infrastructure architecture](architecture/infrastructure.md)
 - [Software architecture](architecture/software.md)
-- [Runtime](architecture/runtime.md)
+- [Runtime architecture](architecture/runtime.md)
+- [Requests](architecture/requests.md)
+- [Recommended reading](architecture/reading.md)
+
+## Concepts
+
+Explanation of general methods and techniques used in InvenioRDM to solve
+particular issues.
+
+- [Optimistic concurrency control](architecture/concurrency-control.md)
+- [Database transactions](concepts/transactions.md)

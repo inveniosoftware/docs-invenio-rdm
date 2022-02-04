@@ -151,6 +151,11 @@ class ASchema(Schema):
     afield = SanitizedHTML()
 ```
 
+### Could find what you were looking for?
+
+If you didn't find the type of data you want to validate, please get in touch
+on the chat room and we'll add an example.
+
 ### What to do when you cannot validate (file upload example)?
 
 In some cases it is either not possible or even wanted to validate input data.

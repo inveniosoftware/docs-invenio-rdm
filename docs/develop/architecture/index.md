@@ -57,11 +57,3 @@ Microservices itself is not a substitute for an architecture, it's simply anothe
 **NoSQL**
 
 SQL database have been around for the past 40 years and are often highly reliable systems. Most NoSQL system on the other hand have been around for much shorter periods and does not provide the same reliability. On top of that, InvenioRDM uses a hybrid approach of performing mainly writes of the primary data the relation database, but keeping a secondary copy indexed in NoSQL system for faster reads.
-
-### Recommended reading
-
-The following books should by no means be seen as bibles, but are good sources of inspiration and helps to think about architecture:
-
-- [Architecture Patterns with Python](https://www.cosmicpython.com/book/preface.html) (free to read online)
-- [Patterns of Enterprise Application Architecture](https://martinfowler.com/eaaCatalog/)
-
