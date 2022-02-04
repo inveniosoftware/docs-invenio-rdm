@@ -17,6 +17,7 @@ Following is a quick overview over what you need to know in order to participate
 - Join Discord [``#rdm-internal``](https://discord.gg/8qatqBC)
 - Member of GitHub [inveniosoftware organisation](https://github.com/inveniosoftware/opensource/blob/master/repositories.yml) and the ``inveniordm`` and ``developers`` teams (ask`` @lnielsen``)
 - Mailing list project-inveniordm@cern.ch (ask ``@lnielsen``).
+- [ThisWeek](https://github.com/inveniosoftware/thisweek) digest is sent once a week on Discord #rdm-general channel.
 
 ### Development iterations
 
@@ -84,9 +85,6 @@ eval "$(docker-services-cli up --db ${DB:-postgresql} --search ${ES:-elasticsear
 # Run single test:
 pytest tests/test_somemodule.py::test_sometestfunc -s
 ```
-
-
-
 
 ## Design
 

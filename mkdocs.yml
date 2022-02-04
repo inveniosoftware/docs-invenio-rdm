@@ -84,6 +84,7 @@ nav:
       - Infrastructure: develop/architecture/infrastructure.md
       - Software: develop/architecture/software.md
       - Runtime: develop/architecture/runtime.md
+      - Requests: develop/architecture/requests.md
     - Concepts:
       - Optimistic concurrency control: develop/concepts/concurrency-control.md
       - Database transaction management: develop/concepts/transactions.md
