@@ -6,8 +6,7 @@ This guide is intended both for developers that needs to develop new features fo
 
 ## Getting started
 
-Explains how to get development install up and running and some of the concepts
-required to
+Explains how to get development install up and running:
 
 - [Source code](getting-started/source-code.md)
 - [Package development](getting-started/package-development.md)
@@ -16,9 +15,11 @@ required to
 - [Coding style](getting-started/code-style.md)
 - [Virtual environments](getting-started/virtualenvs.md)
 - [Getting help](getting-started/help.md)
-- [Development process](getting-started/process.md)
+- [Development process](process.md)
 
 ## Topics
+
+Developer introductions to specific parts of the InvenioRDM source code:
 
 - [Building resources](topics/resource.md)
 - [Building services](topics/service.md)
@@ -27,7 +28,7 @@ required to
 
 ## How-to guides
 
-Step-by-step guides on how to perform certain tasks.
+Step-by-step guides on how to perform certain tasks:
 
 - [Create a database migration](howtos/alembic.md)
 - [Fix a vulnerability](howtos/security-fix.md)
@@ -35,7 +36,7 @@ Step-by-step guides on how to perform certain tasks.
 ## Architecture
 
 High-level conceptual overviews of the design and the thoughts behind those
-choices.
+choices:
 
 - [Introduction](architecture/index.md)
 - [Infrastructure architecture](architecture/infrastructure.md)
@@ -47,7 +48,7 @@ choices.
 ## Concepts
 
 Explanation of general methods and techniques used in InvenioRDM to solve
-particular issues.
+particular problems:
 
-- [Optimistic concurrency control](architecture/concurrency-control.md)
+- [Optimistic concurrency control](concepts/concurrency-control.md)
 - [Database transactions](concepts/transactions.md)

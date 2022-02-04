@@ -36,7 +36,7 @@ to determine the CVE score and select
 ## Step 5 - Identify supported versions
 
 Next, identify all supported versions of the module using the
-[branch management](../branch-management.md) and take note of which branch(es)
+[branch management](../../maintenance/branch-management.md) and take note of which branch(es)
 you have to apply the fix to.
 
 ## Step 6 - Create a private temporary fork
