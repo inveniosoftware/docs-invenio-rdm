@@ -42,6 +42,11 @@ When you create your API token you can also specify **scopes** that control what
 
 ## General information
 
+### Example
+
+We provide an example of how to upload a record with files to an InvenioRDM
+instance in the following [repository](https://github.com/inveniosoftware/docs-invenio-rdm-restapi-example).
+
 ### Timestamps
 
 Timestamps are in UTC and formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601).
