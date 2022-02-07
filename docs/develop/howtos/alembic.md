@@ -121,3 +121,11 @@ InvenioRDM or InvenioILS.
 If you edit a migration that may already be in use in a production system, you
 risk to put the that production system in an inconsistent state once the
 following migrations are applied.
+
+### command not found: invenio
+
+If the "invenio" command cannot be found, then simply install Invenio-App:
+
+```
+pip install invenio-app
+```
