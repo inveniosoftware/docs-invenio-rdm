@@ -38,7 +38,7 @@ For instance:
 RDM_SEARCH = {
     # Supported values: access_status, is_published, language, resource_type,
     # subject, subject_nested
-    "facets": ["access_status", "resource_type", "subject"]
+    "facets": ["access_status", "resource_type", "subject"],
 
     # Supported values: bestmatch, newest, oldest, version, updated-desc,
     # updated-asc
