@@ -53,16 +53,20 @@ The InvenioRDM codebase is split over a number of different repositories. Below 
         - Frontend: deposit form, search page
     - [invenio-rdm-records](https://github.com/inveniosoftware/invenio-rdm-records)
         - Concrete implementation of the REST API by using most of the modules below.
-        - Defines the metadata model (JSONSchemas, Elasticsearch mappings, schemas etc)
+        - Defines the metadata model (JSONSchemas, Elasticsearch mappings, schemas etc.)
         - Defines the concrete permission policy.
         - Defines a record integration in a community and request.
     - [invenio-communities](https://github.com/inveniosoftware/invenio-communities)
         - Implementation of the Communities REST API.
-        - Defines the community metadata model (JSONSchemas, Elasticsearch mappings, schemas etc)
+        - Defines the community metadata model (JSONSchemas, Elasticsearch mappings, schemas etc.)
         - Provides features to Invenio-Requests specific to communities.
+        - Views for communities pages
+        - Assets for the communities views (Jinja/JSX templates, LESS files)
     - [invenio-requests](https://github.com/inveniosoftware/invenio-requests)
-        - Implementation of the generic request REST API. Allows other modules (like communites/rdm-records) to inject
+        - Implementation of the generic request REST API. Allows other modules (like communities/rdm-records) to inject
           new request types.
+        - Views for the requests pages
+        - Assets for the requests views (Jinja/JSX templates, LESS files)
     - [invenio-drafts-resources](https://github.com/inveniosoftware/invenio-drafts-resources)
         - General purpose library used to build REST APIs for deposit interfaces.
         - Drafts API and versioning support
