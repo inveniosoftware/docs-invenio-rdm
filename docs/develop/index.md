@@ -26,6 +26,8 @@ Developer introductions to specific parts of the InvenioRDM source code:
 - [Grouping atomic operations](topics/uow.md)
 - [Sanitize input data](topics/validation.md)
 - [Translation (i18n)](topics/i18n.md)
+- [CSS & JS best practices](topics/css-js-best-practices.md)
+- [React & best practices](topics/react-best-practices.md)
 
 ## How-to guides
 

@@ -49,7 +49,7 @@ Order buttons correctly:
 - ❌ Cancel (negative) | Save (positive)
 - ✅ Delete (negative) | ... (space) | Save (standard) | Publish (primary)
 
-### Captilization
+### Capitalization
 
 **Form labels**:
 
