@@ -19,10 +19,6 @@ This can be achieved by the following shell commands:
 
 ~~~bash
 # NOTE: make sure you're in the instance directory
-# determine current state of the database
-pipenv run invenio alembic stamp
-pipenv run invenio alembic upgrade
-
 # upgrade packages
 rm Pipfile.lock
 sed -e 's/1.0.0/2.0.0/' -i Pipfile
@@ -75,3 +71,8 @@ pipenv run invenio index destroy --yes-i-know
 pipenv run invenio index init
 pipenv run invenio rdm-records rebuild-index
 ~~~
+
+
+## Edits
+
+*March 3rd, 2022*: Removed the `invenio alembic stamp` command from the upgrade guide, because the command does not actually find out the current revisions for the database. 
