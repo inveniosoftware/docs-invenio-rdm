@@ -16,22 +16,21 @@ listed steps.
 ### Checking the Database Version
 
 Optionally, make sure that you have the latest database table defintions *before* performing the migration.
-This can be checked via the following commands:
+This can be ensured by trying to upgrade the database:
 
 ```bash
-pipenv run invenio alembic stamp
 pipenv run invenio alembic upgrade
 ```
 
-Both commands are expected to do nothing, but it doesn't hurt to check.
-The expected output in both cases is:
+The command is expected to do nothing, but it doesn't hurt to check.
+The expected output is:
 
 ```
 INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
 INFO  [alembic.runtime.migration] Will assume transactional DDL.
 ```
 
-If these commands give a different output, the database should be brought up to speed before the migration.
+If the command gives a different output, the database was likely on an older state and should have been brought up to speed by the command.
 
 
 ### Updating Configuration Variables
@@ -70,7 +69,7 @@ invenio-cli packages update 7.0.0
 invenio-cli assets build
 ```
 
-These commands should take of locking the dependencies for v7, installing them, and building the required assets.
+These commands should take care of locking the dependencies for v7, installing them, and building the required assets.
 
 
 ### Data Migration
@@ -123,3 +122,5 @@ As soon as the indices have been rebuilt, the entire migration is complete!
 ## Edits
 
 *December 7th, 2021*: Added required last step (Elasticsearch) because we *did* find some changes in the mappings, and updated some wording and headings.
+
+*March 3rd, 2022*: Removed the `invenio alembic stamp` command from the upgrade guide, because the command does not actually find out the current revisions for the database. 
