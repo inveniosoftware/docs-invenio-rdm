@@ -26,12 +26,6 @@ It is up to each instance of InvenioRDM to populate the names vocabulary themsel
 
 More about the names vocabulary [here](../../customize/vocabularies/names.md).
 
-The feature has to be enabled by adding the following in your ``invenio.cfg``:
-
-```python
-APP_RDM_DEPOSIT_FORM_AUTOCOMPLETE_NAMES = True
-```
-
 ### Record landing page
 
 The record landing page was redesigned to improve the overall readability of the record, as well as the web accessibility.
