@@ -160,6 +160,17 @@ InvenioRDM v8.0 is a **short-term support** (STS) release which is supported unt
 
 If you plan to deploy InvenioRDM as a production service, please use InvenioRDM v6.0 Long-Term Support (LTS) Release.
 
+## Requirements
+
+InvenioRDM v8.0 supports:
+
+- Python 3.7, 3.8 and 3.9
+- PostgreSQL 10+
+- Elasticsearch 7
+
+Note that Python 3.6, Elasticsearch 6 and PostgreSQL 9 have all reached end of
+life and are no longer supported by their respective organisations.
+
 ### Future breaking changes
 
 Following is an advance notification of larger upcoming changes.
