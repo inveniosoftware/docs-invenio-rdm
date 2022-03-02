@@ -198,6 +198,6 @@ The development and translation work in this release was done by:
 - EU Joint Research Centre: Camelia
 - Northwestern University: Guillaume
 - New York University: Laura
-- TU Graz: Alex, Christoph, David, Herrmann, Mojib
+- TU Graz: Alex, Christoph, David, Hermann, Mojib
 - TU Wien: Max
 - RERO: Peter
