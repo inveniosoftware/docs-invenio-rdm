@@ -6,13 +6,13 @@ The maintenance policy is striving to strike a balance between maintaining a roc
 
 ## Policy
 
-**Long-Term Support (LTS) releases:** A major version release may be designated as an LTS release. Only LTS releases should be used for production services. LTS releases is supported with bug and security fixes for minimum 1 year and possibly longer. An LTS release is supported for 6 months after the next LTS release has been released. Only the latest minor-level release for the major version is supported. Example, if v6.0 is designated an LTS release, then only the latest v6.X release is maintained, as minor and patch-level releases
+**Long-Term Support (LTS) releases:** A major version release may be designated as an LTS release. Only LTS releases should be used for production services. LTS releases are supported with bug and security fixes for a minimum of 1 year and possibly longer. An LTS release is supported for 6 months after the next LTS release. Only the latest minor-level release for the major version is supported. Example, if v6.0 is designated an LTS release, then only the latest v6.X release is maintained, as minor and patch-level releases
 
-**Major release:** Major versions such as v3 allows us to introduce new features and make backward incompatible changes and remove deprecated features in a progressive manner. Only the latest minor-level release is for each major version is supported. A major version release is supported until the next major version release (except for LTS designated releases).
+**Major release:** Major versions such as v3 allow us to introduce new features and make backward incompatible changes and remove deprecated features in a progressive manner. Only the latest minor-level release for each major version is supported. A major version release is supported until the next major version release (except for LTS designated releases).
 
-**Minor releases:** Minor versions such as v3.1 allows us to introduce backward compatible changes in a manner that allow users to easily upgrade.
+**Minor releases:** Minor versions such as v3.1 allow us to introduce backward compatible changes in a manner that allow users to easily upgrade.
 
-**Patch releases:** Patch versions such as v3.0.1 allows us fix bugs and security issues in a manner that allow users to upgrade immediately without breaking backward compatibility.
+**Patch releases:** Patch versions such as v3.0.1 allow us to fix bugs and security issues in a manner that allows users to upgrade immediately without breaking backward compatibility.
 
 We may make exceptions to this policy for serious security bugs.
 
