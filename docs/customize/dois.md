@@ -10,7 +10,7 @@
 
 You enable the DOI minting feature in your ``invenio.cfg`` file:
 
-```cfg
+```python
 DATACITE_ENABLED = True
 ```
 
@@ -20,7 +20,7 @@ Before you continue, make sure you first have a [DataCite test account](https://
 
 You need to provide the account credentials and and the DOI prefix for the DataCite repository account in your  in ``invenio.cfg`` file:
 
-```cfg
+```python
 DATACITE_USERNAME = "..." # Your username
 DATACITE_PASSWORD = "..."  # Your password
 DATACITE_PREFIX = "10.1234"  # Your prefix
@@ -40,7 +40,7 @@ registering DOIs during test. In test mode InvenioRDM will use the following Dat
 
 To enable production mode, set the following configuration variable in ``invenio.cfg``:
 
-```cfg
+```python
 DATACITE_TEST_MODE = False
 ```
 
@@ -59,7 +59,7 @@ In production mode, InvenioRDM will use the following DataCite systems:
 By default, InvenioRDM generates a DOI using the prefix and internal persistent
 identifier. You can change the generated DOI string by editing your ``invenio.cfg``.
 
-```
+```python
 DATACITE_FORMAT = "{prefix}/inveniordm.{id}"
 ```
 
@@ -69,6 +69,14 @@ DATACITE_FORMAT = "{prefix}/inveniordm.{id}"
     [Cool DOIs](https://doi.org/10.5438/55e5-t5c0) and why it might not be a
     good idea.
 
+
+#### OAI-PMH
+
+The OAI-PMH server's metadata format ``oai_datacite`` that allows you to harvest record from InvenioRDM in DataCite XML needs to be configured with your DataCite data center symbol. This is only required if you want your records to be harvestable in DataCite XML format.
+
+```python
+DATACITE_DATACENTER_SYMBOL = "CERN.INVENIORDM"
+```
 
 ## Known issues
 
