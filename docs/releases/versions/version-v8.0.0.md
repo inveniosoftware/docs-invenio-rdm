@@ -14,35 +14,37 @@ We're happy to announce the release of InvenioRDM v8.0. The release is a short-t
 
 ## What's new?
 
+In addition to the many bugs fixed, many features were added.
+
 ### Creators/contributors auto-completion
 
-InvenioRDM now supports auto-completion of creators and contributors in the upload from.
+InvenioRDM now supports auto-completion of creators and contributors in the upload form.
 
 ![Demo of creators/contributors auto-completion.](v8.0/creator-auto-completion.gif)
 
 The search box is powered by a new names vocabulary, exposed under the ``/api/names`` endpoint.
 
-It is up to each instance of InvenioRDM to populate the names vocabulary themselves with the persons they'd like to auto-complete. An InvenioRDM instance could, for example, choose to import names from an institutional directory service. Out-of-the-box, InvenioRDM supports importing the public data dump from ORCID so you can auto-complete from public ORCID profiles.
+It is up to each instance of InvenioRDM to populate the names vocabulary with the persons they'd like to auto-complete. An InvenioRDM instance could, for example, choose to import names from an institutional directory service. Out-of-the-box, InvenioRDM supports importing the public data dump from ORCID so you can auto-complete from public ORCID profiles.
 
 More about the names vocabulary [here](../../customize/vocabularies/names.md).
 
 ### Record landing page
 
-The record landing page was redesigned to improve the overall readability of the record, as well as the web accessibility.
+The record landing page was redesigned to improve the overall readability and web accessibility of records.
 
 ![Record landing page](v8.0/landing-page.png)
 
 The changes to the landing page include:
 
-- Responsive layout - the landing page now renders nicely on both desktop, tablets and mobiles.
+- Responsive layout - the landing page now renders nicely on desktop, tablets and mobiles.
 - Creators/contributors improvements - contributors are now rendered horizontally to reduce whitespace usage.
 - Keywords & subjects - moved from the main section to the sidebar to make this information easily accessible to the user.
-- Rights - the previous license section has been renamed to rights.
-- License icons - icons are now displayed for for Creative Common licenses.
+- Rights - the previous "License" section has been renamed to "Rights".
+- License icons - now displayed for Creative Common licenses.
 - Additional descriptions - extracted from the details section and moved to the right, below the main description.
-- Export - the export links are now displayed in a select menu with direct download, to avoid having to select and copy/paste from the previous page.
-- Administration buttons - the administration buttons have been moved to the right column in preparation for the communities feature, launching in v9.
-- Additional details  - the section has been converted from a horizontal table to a tabular menu with vertical listing of the details.
+- Export links - now displayed in a select menu with direct download, to avoid having to select and copy/paste from the previous page.
+- Administration buttons - moved to the right column in preparation for the communities feature, launching in v9.
+- Additional details - converted from a horizontal table to a tabular menu with vertical listing of the details.
 
 ### My dashboard
 
@@ -58,7 +60,7 @@ The OAI-PMH server, added in v7.0, has been improved so it's now a fully complia
 
 **Sets support**
 
-The OAI-PMH server now has sets support, which includes improvements to the underlying Invenio Framework. The improvements means that records are immediately available in the sets as soon as they have been indexed (within seconds) and that we can efficiently query which other sets a record is part if.
+The OAI-PMH server now has sets support, which includes improvements to the underlying Invenio Framework. Records are immediately available in the sets as soon as they have been indexed (within seconds). This means other sets a record is part of can efficiently be queried.
 
 The sets are defined as search queries over the set of records, and currently have to be programmatically added. However, InvenioRDM v9.0 will add a REST API for allowing administrators to manage sets.
 
@@ -68,21 +70,21 @@ We have added support to DataCite metadata formats in the OAI-PMH server via the
 
 **OpenAIRE compliance**
 
-In addition to the above features, we have now also validated the OAI-PMH server against the [OpenAIRE Guidelines](https://guidelines.openaire.eu/en/latest/) to ensure the OAI-PMH server is complaint with the guidelines.
+In addition to the above features, we have now also validated the OAI-PMH server against the [OpenAIRE Guidelines](https://guidelines.openaire.eu/en/latest/) to ensure it is compliant with the guidelines.
 
 See the [OAI-PMH server documentation](../../reference/oai_pmh.md).
 
 ### Translations (I18N)
 
-InvenioRDM v8.0 has seen a lot of improvements on the translation front as well. We are now almost add a stage where the system is fully translated with German being the first translated language.
+InvenioRDM v8.0 has seen a lot of improvements on the translation front as well. We are now almost at a stage where the system is fully translated with German being the first translated language.
 
-We aim at having finished the full translation of InvenioRDM v9 LTS. If you'd like to participate in the translation, please checkout our new guide for [getting involved as a translator](../../contribute/translators-guide.md).
+We aim at finishing the full translation of InvenioRDM by v9 LTS. If you'd like to participate in the translation, please checkout our new guide for [getting involved as a translator](../../contribute/translators-guide.md).
 
 ### Web accessibility (A11y)
 
-We continuing our work towards Web Content Accessibility Guidelines (WCAG) level AA conformance, and have made several improvements on multiple pages. The landing page was improved for screen readers by adding aria-attributes and organising the layout into sections. Where the elements have a different purpose than styling, semantic HTML or aria-roles were added. Each section was given a heading, and it was made sure each heading has the correct level. The interactive elements were given aria-attributes, and made accessible by keyboard.
+We are continuing our work towards Web Content Accessibility Guidelines (WCAG) level AA conformance, and have made progress on multiple pages. The landing page was improved for screen readers by adding aria-attributes and organising the layout into sections. Where the elements have a different purpose than styling, semantic HTML or aria-roles were added. Each section was given a heading with the appropriate level (`h1`, `h2`...). The interactive elements were given aria-attributes, and made accessible by keyboard.
 
-The accessibility was tested with Apple VoiceOver and Screen Reader Chrome Plugin on MacOS.
+Accessibility was tested with Apple VoiceOver and Screen Reader Chrome Plugin on MacOS.
 
 ### User experience improvements
 
@@ -98,10 +100,13 @@ We have also improved the page shown when no search results could be found. It n
 
 ![A view of an empty search result.](v8.0/no-results.png)
 
+**Deposit form arrays**
+
+Array components on the deposit form, now behave correctly when one of their items is deleted. Related, removing a license nows works correctly too.
+
 ### Developer documentation
 
-We have made a larger update to our developer documentation for multiple
-different skill levels whether you are a long-term contributor or a beginner.
+We have made a larger update to our developer documentation to make it accessible to developers of different skill levels from long-time contributors or to first-time beginners.
 
 See our new [developer documentation](../../develop/index.md).
 
@@ -109,19 +114,23 @@ See our new [developer documentation](../../develop/index.md).
 
 **Marshmallow deprecation warnings**
 
-A larger number of marshmallow deprecation warnings have been fixed.
+A number of marshmallow deprecation warnings have been fixed.
 
-**Declarative packages and entry points improvements**
+**Service argument order**
+
+Services (e.g. `RecordService`) now always take the acting identity as their methods' first argument.
+
+**Entry points improvements and declarative packages**
 
 Invenio Framework relies heavily on Python entry points as a mechanism for
-supporting plugins and an extendable architecture. Previously these entry
-points were being read by the ``pkg_resources`` package. We have started switching
-packages over to using Python's ``importlib`` instead for reasons of performance.
+supporting plugins and an extendable architecture. Previously, these entry
+points were read by the ``pkg_resources`` package. We have started switching
+packages over to using Python's ``importlib`` instead for performance reasons.
 
-We have also started moving packages to having a purely declarative definition
-by moving most of the what was previously in ``setup.py`` into ``setup.cfg``.
-This is the due to the long-term direction that Python packaging environment is
-going towards, and thus this allows to gradually transition to the new method.
+We have also begun moving packages to a purely declarative definition
+by moving most of what was previously in ``setup.py`` into ``setup.cfg``.
+This is in keeping with the long-term direction of the Python packaging environment,
+and thus allows to gradually transition to the new method.
 
 ## Feature preview
 
@@ -129,7 +138,7 @@ going towards, and thus this allows to gradually transition to the new method.
 
     **IMPORTANT**: Feature previews are not supported with upgrades or migrations, and should not be enabled in production systems.
 
-InvenioRDM 8.0 ships with a feature preview of the new communities feature. The full communities feature is planned to launch with InvenioRDM v9.0 LTS in mid-April.
+InvenioRDM v8.0 ships with a feature preview of the new communities feature. The full communities feature is planned to launch with InvenioRDM v9.0 LTS in mid-April.
 
 You can enable the feature preview by including the following line in your ``invenio.cfg``:
 
@@ -137,7 +146,7 @@ You can enable the feature preview by including the following line in your ``inv
 COMMUNITIES_ENABLED = True
 ```
 
-This will enable the communities and requests modules. You'll e.g. see the dashboard has been extended with two new tabs "Communities" and "Requests"
+This will enable the communities and requests modules. You'll e.g. see the dashboard has been extended with two new tabs "Communities" and "Requests".
 
 ![View of my dashboard with feature preview enabled](v8.0/requests.png)
 
@@ -171,14 +180,14 @@ life and are no longer supported by their respective organisations.
 
 Following is an advance notification of larger upcoming changes.
 
-InvenioRDM v9.0 will ship with larger changes to the underlying user management modules. This changes includes:
+InvenioRDM v9.0 will ship with larger changes to the underlying user management modules. These changes include:
 
 - Moving the ``UserIdentity`` database table from Invenio-OAuthClient to Invenio-Accounts.
-- Change from Flask-Security to Flask-Security-Invenio module.
+- Depending on the Flask-Security-Invenio module over Flask-Security.
 - Moving user profile information from Invenio-UserProfiles to Invenio-Accounts.
 - Separating login timestamps and IP addresses from the user database table.
 
-We are still assessing if it possible and feasible to change the current user identifier from a sequential integer to a random string (UUID). If this change is applied,
+We are still assessing if it is possible and feasible to change the current user identifier from a sequential integer to a random string (UUID). If this change is applied,
 InvenioRDM will be shipped with an upgrade guide and data migrations. However, if you have custom code, these changes may impact you.
 
 ## Questions?
