@@ -200,8 +200,10 @@ The development and translation work in this release was done by:
 
 - CERN: Alex, Dimitris, Javier, Jenny, Karolina, Lars, Nicola, Pablo, Pablo, Sergio, Zacharias
 - EU Joint Research Centre: Camelia
-- Northwestern University: Guillaume
 - New York University: Laura
+- Northwestern University: Guillaume
+- RERO: Peter
 - TU Graz: Alex, Christoph, David, Hermann, Mojib
 - TU Wien: Max
-- RERO: Peter
+- Uni Bamberg: Christina
+
