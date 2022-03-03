@@ -41,34 +41,34 @@ Each module (e.g. Invenio-RDM-Records, Invenio, ...) is versioned independently.
 
 In the beginning of each iteration we start by releasing new development versions of the below modules in the order they specified:
 
-- flask-resources (if needed)
-- marshmallow-utils (if needed)
-- invenio-records-permissions (if needed)
-- invenio-records-resources
+- flask-resources [GitHub](https://github.com/inveniosoftware/flask-resources) (if needed)
+- marshmallow-utils [GitHub](https://github.com/inveniosoftware/marshmallow-utils) (if needed)
+- invenio-records-permissions [GitHub](https://github.com/inveniosoftware/invenio-records-permissions) (if needed)
+- invenio-records-resources [GitHub](https://github.com/inveniosoftware/invenio-records-resources)
     - bump flask-resources
     - bump marshmallow-utils
     - bump invenio-records-permissions
-- invenio-drafts-resources
+- invenio-drafts-resources [GitHub](https://github.com/inveniosoftware/invenio-drafts-resources)
     - bump invenio-records-resources
-- invenio-vocabularies
+- invenio-vocabularies [GitHub](https://github.com/inveniosoftware/invenio-vocabularies)
     - bump invenio-records-resources
-- invenio-requests
+- invenio-requests [GitHub](https://github.com/inveniosoftware/invenio-requests)
     - bump invenio-records-resources
-- invenio-communities
+- invenio-communities [GitHub](https://github.com/inveniosoftware/invenio-communities)
     - bump invenio-requests
     - bump invenio-vocabularies
-- invenio-rdm-records
+- invenio-rdm-records [GitHub](https://github.com/inveniosoftware/invenio-rdm-records)
     - bump invenio-drafts-resources
     - bump invenio-vocabularies
     - bump invenio-communities
-- react-invenio-forms
-- react-invenio-deposit
+- react-invenio-forms [GitHub](https://github.com/inveniosoftware/react-invenio-forms)
+- react-invenio-deposit [GitHub](https://github.com/inveniosoftware/react-invenio-deposit)
     - bump react-invenio-forms
-- invenio-app-rdm
+- invenio-app-rdm [GitHub](https://github.com/inveniosoftware/invenio-app-rdm)
     - bump invenio-rdm-records
     - bump react-invenio-deposit
     - bump react-invenio-forms
-- cookiecutter-invenio-rdm
+- cookiecutter-invenio-rdm [GitHub](https://github.com/inveniosoftware/cookiecutter-invenio-rdm)
     - bump invenio-app-rdm
 
 For modules in ``v0.X.Y``, the new version is ``v0.(X+1).0``.
