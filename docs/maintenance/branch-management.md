@@ -59,16 +59,16 @@ end of life dates on the
 | Module                      | Supported versions     | Supported branches             |
 | --------------------------- | ---------------------- | ------------------------------ |
 | flask-resources             | ``0.7.x``, ``0.8.x``   | ``maint-0.7``, ``maint-0.8``   |
-| invenio                     | ``3.5.0a3``            | ``maint-3.5``                  |
-| invenio-app-rdm             | ``6.0.x``, ``7.0.x``   | ``maint-6.0``, ``maint-7.0``   |
-| invenio-communities         | ``2.5.x``, ``2.6.x``   | ``maint-2.5``, ``maint-2.6``   |
-| invenio-drafts-resources    | ``0.13.x``, ``0.14.x`` | ``maint-0.13``, ``maint-0.14`` |
-| invenio-rdm-records         | ``0.32.x``, ``0.33.x`` | ``maint-0.32``, ``maint-0.33`` |
+| invenio                     | ``3.5.0a4``            | ``maint-3.5``                  |
+| invenio-app-rdm             | ``6.0.x``, ``8.0.x``   | ``maint-6.0``, ``maint-8.0``   |
+| invenio-communities         | ``2.5.x``, ``2.7.x``   | ``maint-2.5``, ``maint-2.7``   |
+| invenio-drafts-resources    | ``0.13.x``, ``0.15.x`` | ``maint-0.13``, ``maint-0.15`` |
+| invenio-rdm-records         | ``0.32.x``, ``0.34.x`` | ``maint-0.32``, ``maint-0.34`` |
 | invenio-records-permissions | ``0.12.x``, ``0.13.x`` | ``maint-0.12``, ``maint-0.13`` |
-| invenio-records-resources   | ``0.16.x``, ``0.17.x`` | ``maint-0.16``, ``maint-0.17`` |
-| invenio-requests            | ``0.1.x``              | ``maint-0.1``                  |
+| invenio-records-resources   | ``0.16.x``, ``0.18.x`` | ``maint-0.16``, ``maint-0.18`` |
+| invenio-requests            | ``0.2.x``              | ``maint-0.2``                  |
 | invenio-s3                  | ``1.0.x``              | ``maint-1.0``                  |
-| invenio-vocabularies        | ``0.8.x``, ``0.9.x``   | ``maint-0.8``, ``maint-0.9``   |
+| invenio-vocabularies        | ``0.8.x``, ``0.10.x``  | ``maint-0.8``, ``maint-0.10``  |
 | marshmallow-utils           | ``0.5.x``              | ``maint-0.5``                  |
 | react-invenio-deposit       | ``0.16.x``, ``0.17.x`` | ``maint-0.16``, ``maint-0.17`` |
 | react-invenio-forms         | ``0.8.x``, ``0.9.x``   | ``maint-0.8``, ``maint-0.9``   |
@@ -104,13 +104,19 @@ Releasing a new maintenance release is covered under
 
 ### Branching
 
-
 #### Table must be kept updated
 
 The table over supported maintenance releases/branches must be updated when:
 
-- a new LTS version is released
-- a LTS version reaches end of life.
+- a new major version is released
+- a major version reaches end of life.
+
+First, make sure the end of life and support versions have been updated in
+the [maintenance policy](../releases/maintenance-policy.md).
+
+Once you have determined which major versions of InvenioRDM that are supported,
+you can start from ``invenio-app-rdm`` to figuoure out which module versions
+and branches that are supported and can update the table accordingly.
 
 #### Create maintenance branches on LTS releases
 
