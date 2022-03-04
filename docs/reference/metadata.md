@@ -927,7 +927,7 @@ The ``award`` subfields:
 | ``title`` | (1) | The title of the award |
 | ``number`` | (1) | The code assigned by the funder to a sponsored award (grant). |
 | ``scheme`` | (0-1) | The scheme of the identifier. |
-| ``identifier`` | (0-1) | A unique identifier for the funder. |
+| ``identifier`` | (0-1) | A unique identifier for the award. |
 
 Example:
 
