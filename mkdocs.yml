@@ -6,8 +6,8 @@ site_url: 'https://inveniordm.docs.cern.ch'
 repo_url: 'https://github.com/inveniosoftware/docs-invenio-rdm'
 
 # Copyright
-copyright: 'Copyright &copy; 2019-2021 CERN, Northwestern University and contributors.'
-# license: This work is licensed under a Creative Commons Attribution 4.0 International License.
+copyright: 'Copyright &copy; 2019-2022 CERN, Northwestern University and contributors.'
+license: This work is licensed under a Creative Commons Attribution 4.0 International License.
 
 # Configuration
 theme:
@@ -28,15 +28,11 @@ nav:
   - Features:
     - Overview: 'features/index.md'
     - Beautiful UX: 'features/ux.md'
-    - High scalability: 'features/scalable.md'
+    - Highly scalable: 'features/scalable.md'
     - Customizable: 'features/customization.md'
     - Interoperable: 'features/interoperable.md'
-    # - Institutional: 'features/institutional.md'
-    # - Extendable: 'features/extendable.md'
-    # - Auth, Permissions & Security: 'features/auth-permissions-security.md'
-    # - Infrastructure: 'features/infrastructure.md'
-    # - Records: 'features/records.md'
-    # - Search: 'features/search.md'
+    - Powerful: 'features/powerful.md'
+    - Secure: 'features/secure.md'
   - Install:
     - Quick start: 'install/index.md'
     - System requirements: 'install/requirements.md'
