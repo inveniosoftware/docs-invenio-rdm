@@ -3,25 +3,31 @@ hide:
   - toc
 template: features_sub.html
 image: ../images/safari.png
-summary: Lorem ipsum dolor sit amet, consectetur adipiscing elit. In interdum tellus vitae felis placerat cursus. Maecenas venenatis semper volutpat.
+summary: Style InvenioRDM to match your institution's visual identity, use your favorite vocabularies, integrate with your authentication system and use your preferred persistent identifiers.
 ---
 
 ## Styling and theming
-InvenioRDM can be styled and themed to fit into your
-  institutional visual identity.
+
+Change the look and feel of InvenioRDM to match your institution's visual identity. InvenioRDM makes it easy to add your logo, change colors and add your own custom templates for records, search results and basically any template in the system.
 
 ## Custom vocabularies
-All vocabularies such as types for resources, dates,
-  roles, relations, affiliations etc can be customized to your local instance.
+
+InvenioRDM comes out-of-the-box with vocabularies for resource types, dates, creator/contributor roles, languages, licenses, relations types, affiliations and names. All vocabularies can be changed according to your local needs or can be import from external sources. Our vocabularies in addition comes out of the box with multilingual support.
 
 ## Subjects
-InvenioRDM can load external subjects vocabularies used for
-  classifications such as Medial Subject Headings (MeSH) and many others.
 
-## Permission system
-InvenioRDM supports advanced customizations to the
-  permission system for e.g. IP-based access control.
+InvenioRDM can load external subjects vocabularies used for classifications such as Medial Subject Headings (MeSH) and many others. InvenioRDM comes out-of-the box with OECD Fields of Science and Technology subject classification loaded.
+
+## Multilingual support
+
+InvenioRDM is full internationalized and localized so that you can present the interface in the language of your choice. Vocabularies have full multilingual supports. We might not have your language available yet, but you can participate easily in the [translation](../contribute/translators-guide.md) and become part of the community.
+
+## Authentication
+
+InvenioRDM provides out-of-the-box a simple, intuitive and powerful access control system that allows for defining both access control on individual records as well as collection of records. If the current system
+is insufficient for your needs, you can customize each action
+supports advanced customizations to the permission system for e.g. IP-based access control.
 
 ## Persistent identifiers
-Use the built-in support for DOIs, or add your
-  own persistent identifier providers for other schemes.
+
+InvenioRDM comes with support for registering Digital Object Identifiers (DOIs) via DataCite. If you prefer another scheme or e.g. supporting multiple persistent identifiers, then InvenioRDM allows you to extend it with your own persistent identifier plugins.
