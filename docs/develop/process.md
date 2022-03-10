@@ -19,7 +19,7 @@ that you have read it! Overall, the code of conduct says that we're:
 - Respectful
 
 You're part of a global diverse community where people have a wide variety of
-backgrounds and a lot of our communication is text-based. This creates an a lot
+backgrounds and a lot of our communication is text-based. This creates a lot of
 room for misinterpretation for both senders and receivers of messages (the
 text/words used only account for about 10% of a message, the nonverbal and
 paraverbal part of message accounts for the remaining 90% of a message).
