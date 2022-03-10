@@ -74,7 +74,7 @@ nav:
       - Building services: develop/topics/service.md
       # - Building records: develop/topics/record.md
       # - Building system fields: develop/topics/systemfield.md
-      # - Building serializers: develop/topics/serializer.md
+      - Building serializers: develop/topics/serializers.md
       - Grouping atomic operations: develop/topics/uow.md
       - Sanitize input data: develop/topics/validation.md
       - Translation (i18n): develop/topics/i18n.md
