@@ -25,11 +25,15 @@ theme:
 
 nav:
   - Home: 'index.md'
-  - Features: 
+  - Features:
     - Overview: 'features/index.md'
-    - Apis & Interoperability: 'features/apis-interoperability.md'
+    - Beautiful UX: 'features/ux.md'
+    - High scalability: 'features/scalable.md'
+    - Customizable: 'features/customization.md'
+    - Interoperable: 'features/interoperable.md'
+    - Institutional: 'features/institutional.md'
+    - Extendable: 'features/extendable.md'
     - Auth, Permissions & Security: 'features/auth-permissions-security.md'
-    - Customization: 'features/customization.md'
     - Infrastructure: 'features/infrastructure.md'
     - Records: 'features/records.md'
     - Search: 'features/search.md'
