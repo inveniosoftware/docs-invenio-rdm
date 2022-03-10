@@ -6,8 +6,8 @@ This guide is intended for maintainers and developers of InvenioRDM itself.
 
 **Scope**
 
-The guide provides a high-level architectual overivew of the requests module InvenioRDM.
-Requests are considered part of the service layer in the software architecture.
+The guide provides a high-level architectural overview of the requests module InvenioRDM.
+Requests are considered part of the service layer in the [software architecture](software.md).
 
 ## Purpose
 
@@ -31,9 +31,10 @@ could include e.g.:
 - Invitations to join
 - Claiming of records
 
-From technical perspective, the goal is to enable faster development
-of automation tasks in InvenioRDM, by not having to design and invent a new
-user interface for every new type of automation.
+From technical perspective, the goal is to enable faster development of
+automation tasks with human involvement in InvenioRDM, by not having to design
+and invent a new user interface for every new type of automation. Also, it
+streamlines and centralizes the UX for how users deal with requests.
 
 ## Overview
 
@@ -41,7 +42,8 @@ With the above examples of request in mind we can think of requests as:
 
 - Requests are created by someone who can cancel the request.
 - Requests are received by someone who can accept or decline the request.
-- Requests may require clarifications (i.e. a conversation) between the one making a request and the one(s) accepting/declining it.
+- Requests may require clarifications (i.e. a conversation) between the one
+  creating the request and the one(s) accepting/declining it.
 - Requests may expire after a certain amount of time.
 
 ## Entities
@@ -89,6 +91,7 @@ removed from the database in this case.
 An action transitions a request from state to another state. Only the state transitions
 show above are allowed. A request defines the following actions:
 
+- Create
 - Submit
 - Cancel
 - Expire
@@ -98,7 +101,6 @@ show above are allowed. A request defines the following actions:
 
 In addition to above actions, the following implicit actions exists:
 
- - Create
  - Read ``<status>`` (e.g. read created).
  - Update created
  - Update submitted
@@ -125,10 +127,48 @@ action, but not if a given state transition is a legal.
 
 That means permission to perform a certain action depends on the creator,
 receiver and/or topic. E.g. only a creator can submit a request, and only the
-receiver can accept a request.
+receiver can accept/decline a request.
 
 Note that, it's fully possible that a creator and receiver may be the same
 user.
+
+### Entity grants
+
+Entity grants are used to serialize permission needs into a request record, so
+that requests index can be efficiently filtered to only records that a given
+user have access to.
+
+An entity grant is a combination of:
+
+- Prefix - The prefix qualifies the grant within the record (e.g. ``creator``,
+  ``receiver``, ``read``, ``write``).
+- Permission need - Entity reference as a permission need (e.g ``UserNeed(1)``).
+
+*Permission needs* are just tuples. Below you find examples of permission
+needs:
+
+- ``UserNeed(1)`` = ``('id', 1)``
+- ``RoleNeed('admin')`` = ``('role', 'admin)``
+- ``CommunityRoleNeed('123', 'owner)`` = ``('community', '123', 'owner')``
+
+*Entity grant tokens* serializes the prefix and the tuples permission needs
+into a token that we can use for querying:
+
+Examples for entity grant tokens:
+
+- ``creator.user.1`` - expresses that the creator.user.1 is granted access.
+- ``receiver.community.123.manager`` - expresses that the community 123
+  managers are granted access.
+
+Because grant tokens are generated from a prefix and a need, it means we can
+build grant tokens both from:
+
+- a required need: e.g. a request requiring needs to grant access.
+- a provided need: e.g. an identity providing needs.
+
+This provides an for efficient searches when you serialize the required grants
+into the indexed request, and when searching, you filter requests to the grants
+provided by the identity.
 
 ## Views
 
