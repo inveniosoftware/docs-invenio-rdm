@@ -82,7 +82,7 @@ Before starting development, make sure that you've collected feedback, that ther
 
 **Checklist**
 
-The a working feature is only half of the work, remember also:
+The working feature is only half of the work, remember also:
 
 - Tests: performance, quality assurance, integration testing.
 - Translations
