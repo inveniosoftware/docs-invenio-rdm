@@ -70,6 +70,7 @@ nav:
       - Development process: develop/process.md
     - Best practices:
       - Accessibility (a11y): develop/best-practices/accessibility.md
+      - Commits and PRs: develop/best-practices/commits.md
       - CSS/JS: develop/best-practices/css-js.md
       - React: develop/best-practices/react.md
       - Translation (i18n): develop/best-practices/i18n.md
@@ -110,7 +111,6 @@ nav:
       - Vocabularies API: 'reference/rest_api_vocabularies.md'
   - Releases:
     - Overview: releases/index.md
-    - Roadmap: releases/roadmap.md
     - Maintenance policy: releases/maintenance-policy.md
     - Security policy: releases/security-policy.md
     - Versions:
@@ -139,12 +139,13 @@ nav:
     - Release management: maintenance/release-management.md
     - Branch management: maintenance/branch-management.md
     - Demo site & docs: maintenance/demosite.md
-    - Use cases: maintenance/use-cases.md
     - RFCs: maintenance/rfcs.md
-    - Extension Development: maintenance/subject_extension_example.md
   - Contribute:
-    - Contribute to InvenioRDM: contribute/index.md
-    - Translators Guide: contribute/translators-guide.md
+    - Overview: contribute/index.md
+    - Code of conduct: contribute/code-of-conduct.md
+    - Copyright policy: contribute/copyright-policy.md
+    - Roadmap: contribute/roadmap.md
+    - Translators guide: contribute/translators-guide.md
 
 # Customization
 extra:

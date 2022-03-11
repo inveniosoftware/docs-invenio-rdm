@@ -10,7 +10,7 @@ a checklist and collection of prior experience.
 !!! warning "Don't skip!"
 
 We expect every community member to adhere to our
-[code of conduct](https://inveniosoftware.org/governance/), and we thus expect
+[code of conduct](../contribute/code-of-conduct.md), and we thus expect
 that you have read it! Overall, the code of conduct says that we're:
 
 - Open

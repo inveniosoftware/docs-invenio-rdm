@@ -21,9 +21,9 @@ Following is a quick overview over what you need to know in order to participate
 
 ### Development iterations
 
-We run **iterations of 6 weeks** and each iteration produces a new release. We use one sprint board per team to keep track of the current iteration.
+We run **iterations of 6-8 weeks** and each iteration produces a new release. We use one sprint board per team to keep track of the current iteration.
 
-We use a [product roadmap](https://github.com/inveniosoftware/product-rdm/milestones?direction=asc&sort=due_date&state=open) in GitHub to keep track of high-level features and plan the release.
+We use a [product roadmap](../contribute/roadmap.md) in GitHub to keep track of high-level features and plan the release.
 
 ### Board workflow
 
@@ -36,17 +36,14 @@ The high-level sprint schedule usually looks like this:
 - Week 1: Kick-off and design week.
 - Week 2-5: Development
 - Week 6: Integration, QA, testing
-    - Tuesday: Feature locking.
+    - Feature lock
     - Thursday: Release, deployment and announcement.
     - Friday: Review, retrospective & triaging of stale issues.
 
-### Daily tasks/meetings
+### Daily meetings
 
 You daily schedule looks like this:
 
-- *Sprint notes:* daily before the standup, please post your sprint notes into #rdm-sprint-notes channel.
-    - Focus on blockers, tasks completed.
-    - The sprint notes are very important for cross timezone collaborations.
 - *Standup:* daily at 14:15 CET on Discord #rdm-internal voice channel.
 
 ## Developing with InvenioRDM

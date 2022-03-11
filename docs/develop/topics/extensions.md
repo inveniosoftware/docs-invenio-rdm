@@ -1,3 +1,5 @@
+TODO: Adapt to new structure.
+
 # Example Subjects Extension
 
 A common type of extension is one that adds a controlled vocabulary to your instance. By following the instructions here,
