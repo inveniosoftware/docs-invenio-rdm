@@ -22,6 +22,7 @@ Explains how to get development install up and running:
 Development guidelines for specific areas of development.
 
 - [Accessibility (a11y)](best-practices/accessibility.md)
+- [Commits, pull requests and reviews](best-practices/commits.md)
 - [CSS/JS](best-practices/css-js.md)
 - [React](best-practices/react.md)
 - [Translation (i18n)](best-practices/i18n.md)

@@ -1,4 +1,4 @@
-# Commits and PRs
+# Commits, pull requests and reviews
 
 ## Commits
 

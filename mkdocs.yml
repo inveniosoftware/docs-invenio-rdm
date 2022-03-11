@@ -70,7 +70,7 @@ nav:
       - Development process: develop/process.md
     - Best practices:
       - Accessibility (a11y): develop/best-practices/accessibility.md
-      - Commits and PRs: develop/best-practices/commits.md
+      - Commits, PRs & reviews: develop/best-practices/commits.md
       - CSS/JS: develop/best-practices/css-js.md
       - React: develop/best-practices/react.md
       - Translation (i18n): develop/best-practices/i18n.md
