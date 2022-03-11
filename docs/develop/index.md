@@ -17,6 +17,16 @@ Explains how to get development install up and running:
 - [Getting help](getting-started/help.md)
 - [Development process](process.md)
 
+## Best practices
+
+Development guidelines for specific areas of development.
+
+- [Accessibility (a11y)](best-practices/accessibility.md)
+- [CSS/JS](best-practices/css-js.md)
+- [React](best-practices/react.md)
+- [Translation (i18n)](best-practices/i18n.md)
+- [User interface](best-practices/ui.md)
+
 ## Topics
 
 Developer introductions to specific parts of the InvenioRDM source code:
@@ -25,9 +35,6 @@ Developer introductions to specific parts of the InvenioRDM source code:
 - [Building services](topics/service.md)
 - [Grouping atomic operations](topics/uow.md)
 - [Sanitize input data](topics/validation.md)
-- [Translation (i18n)](topics/i18n.md)
-- [CSS & JS best practices](topics/css-js-best-practices.md)
-- [React & best practices](topics/react-best-practices.md)
 
 ## How-to guides
 

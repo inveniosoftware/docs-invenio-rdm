@@ -1,14 +1,14 @@
-# UX Guide for Developers
+# User interface
 
 ### Intended audience
 
-This guide is intended for developers of InvenioRDM itself.
+This guide is intended for developers of InvenioRDM.
 
 ### Scope
 
 The guide covers general style guidelines.
 
-## User Experience
+## User experience
 
 ### Colors
 
