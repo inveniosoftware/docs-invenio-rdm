@@ -18,9 +18,8 @@ The sole purpose is to translate between formats. A serializer should for instan
 - do business-level data validation
 
 In addition, while you'll most often use serializers to provide new formats
-on the REST API, it's important to understand that serializers can be used
-also purely at the backend to write e.g. a file down on disk (e.g. for archival
-packages).
+on the REST API, it's important to understand that serializers can also be used
+as part of the backend when e.g. writing archival packages to disk.
 
 You can thus think of serializer as translators from/to a stream of bytes:
 
