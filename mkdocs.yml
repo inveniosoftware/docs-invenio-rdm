@@ -168,6 +168,8 @@ markdown_extensions:
   - attr_list
   - pymdownx.highlight
   - pymdownx.superfences
+  - pymdownx.critic
+
   - toc:
       permalink: true
   - pymdownx.emoji:
