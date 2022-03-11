@@ -78,7 +78,7 @@ them early.
 
 ### Development
 
-Before starting development, make sure that you've collected feedback, that there's consensus on what and how to build it. The goal is to avoid large changes late on in the development.
+Before starting development, make sure that you've collected feedback, that there's consensus on what and how to build it. The goal is to avoid large changes later on in the development.
 
 **Checklist**
 
