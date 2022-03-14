@@ -2,7 +2,7 @@
 hide:
   - toc
 template: features_sub.html
-image: ../images/safari.png
+image: ../images/customize.png
 summary: Style InvenioRDM to match your institution's visual identity, use your favorite vocabularies, integrate with your authentication system and use your preferred persistent identifiers.
 ---
 
@@ -25,8 +25,7 @@ InvenioRDM is full internationalized and localized so that you can present the i
 ## Authentication
 
 InvenioRDM provides out-of-the-box a simple, intuitive and powerful access control system that allows for defining both access control on individual records as well as collection of records. If the current system
-is insufficient for your needs, you can customize each action
-supports advanced customizations to the permission system for e.g. IP-based access control.
+is insufficient for your needs, you can fully customize the permission system (e.g. for IP-based access control).
 
 ## Persistent identifiers
 

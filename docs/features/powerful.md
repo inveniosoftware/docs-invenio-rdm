@@ -2,7 +2,7 @@
 hide:
   - toc
 template: features_sub.html
-image: ../images/safari.png
+image: ../images/powerful.png
 summary: Faceted search, avanced query syntax and searc-as–you-type support is just some of the powerful features that InvenioRDM supports.
 ---
 
@@ -16,11 +16,11 @@ InvenioRDM has support for advanced querying via simple term search, phrase sear
 
 ## Auto-complete as you type
 
-InvenioRDM exposed advanced APIs for search-as-you-type scenarios.
+InvenioRDM exposes advanced APIs for search-as-you-type scenarios.
 
 ## Citation formatting
 
-InvenioRDM can generate citations strings for your records using the Citation Style Language with support for more than 800+ journal citation styles.
+InvenioRDM can generate citation strings for your records using the Citation Style Language with support for more than 800+ journal citation styles.
 
 ## Previewers
 

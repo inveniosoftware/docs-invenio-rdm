@@ -2,7 +2,7 @@
 hide:
   - toc
 template: features_sub.html
-image: ../images/safari.png
+image: ../images/responsive.png
 summary: "Finally a repository that your users will love! We have thought hard about user experience for everyone: end-users, curators, system administrators, and developers. Expect more of your repository!"
 ---
 

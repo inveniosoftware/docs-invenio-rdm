@@ -2,7 +2,7 @@
 hide:
   - toc
 template: features_sub.html
-image: ../images/safari.png
+image: ../images/secure.png
 summary: Integrate with your authentication provider, restrict access to records or share the by secrets link as just some of the secure features that InvenioRDM supports.
 
 ---
