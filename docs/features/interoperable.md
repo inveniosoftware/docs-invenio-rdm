@@ -2,7 +2,7 @@
 hide:
   - toc
 template: features_sub.html
-image: ../images/deposit-form.png
+image: ../images/interoperable.png
 summary: InvenioRDM is built with REST APIs first, harvestable via OAI-PMH according to the OpenAIRE guidelines and has a metadata model based on the DataCite Metadata Schema.
 
 ---
@@ -17,7 +17,7 @@ InvenioRDM exposes a strong versioned REST API for all operations on the reposit
 
 ## Export formats
 
-InvenioRDM supports exporting records metadata in multiple formats such as JSON, Citation Style Language JSON, DataCite JSON/XML, Dublin Core.
+InvenioRDM supports exporting a record's metadata in multiple formats such as JSON, Citation Style Language JSON, DataCite JSON/XML, Dublin Core.
 
 ## OAI-PMH server
 
