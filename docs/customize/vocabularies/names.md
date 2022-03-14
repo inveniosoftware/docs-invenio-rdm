@@ -5,7 +5,7 @@ or contributor. For example, the deposit form offers _search as you type_
 suggestions and auto-fills the corresponding information.
 
 You can find information behind the design and usage of the vocabulary in
-[RFC 0054](TODOhttps://github.com/inveniosoftware/rfcs/pull/54).
+[RFC 0054](https://github.com/inveniosoftware/rfcs/pull/54).
 
 ## Data model
 
