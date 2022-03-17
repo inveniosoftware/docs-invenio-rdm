@@ -3,7 +3,7 @@ hide:
   - toc
 template: features_sub.html
 image: ../images/scalable.png
-summary: InvenioRDM scales with you! Handle 1 or 100 million records, 1 byte or several petabytes. It runs on bare-metal, VMs and container platforms such as Kubernetes and OpenShift. InvenioRDM powers very large repositories such as Zenodo
+summary: InvenioRDM scales with you! Handle 1 or 100 million records, 1 byte or several petabytes. It runs on bare-metal, VMs and container platforms such as Kubernetes and OpenShift. InvenioRDM powers very large repositories such as Zenodo.
 ---
 
 ## Build on giants
