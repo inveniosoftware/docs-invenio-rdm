@@ -12,7 +12,7 @@ Change the look and feel of InvenioRDM to match your institution's visual identi
 
 ## Custom vocabularies
 
-InvenioRDM comes out-of-the-box with vocabularies for resource types, date types, creator/contributor roles, languages, licenses, relations types, affiliations and names. Our vocabularies come out of the box with multilingual support. All vocabularies can be changed according to your local needs or can be imported from external sources.
+InvenioRDM comes out-of-the-box with multilingual supported vocabularies for resource types, date types, creator/contributor roles, languages, licenses, relations types, affiliations and names. All vocabularies can be changed according to your local needs or can be imported from external sources.
 
 ## Subjects
 
