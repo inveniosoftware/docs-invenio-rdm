@@ -9,7 +9,7 @@ summary: Integrate with your authentication provider, restrict access to records
 
 ## Login via institutional account
 
-InvenioRDM makes it easy to integrate your institutional authentication provider such as e.g. Keycloak, OAuth or alternative
+InvenioRDM makes it easy to integrate your institutional authentication provider such as e.g. Keycloak, OAuth or can alternatively
 use e.g. ORCID for login.
 
 ## Restricted records
