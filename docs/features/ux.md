@@ -14,7 +14,7 @@ We work hard to make the user interface of InvenioRDM as self-explanatory as pos
 
 Everybody wants complete metadata, but nobody wants to enter it!
 
-Our upload form focuses on essentials and auto-completion to make it easy for users to enter metadata while ensuring with link to authority records for names, affiliations, licenses and more.
+Our upload form focuses on essentials and uses auto-completion to make it easy for users to enter metadata. We can link to authority records for names, affiliations, licenses and more.
 
 **Names and affiliations**
 
