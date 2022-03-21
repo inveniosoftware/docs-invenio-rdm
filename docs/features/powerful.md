@@ -24,7 +24,7 @@ InvenioRDM can generate citation strings for your records using the Citation Sty
 
 ## Previewers
 
-InvenioRDM comes with previewers for common files formats such as PDFs, images, CSV, Markdown, XML and JSON.
+InvenioRDM comes with previewers for common file formats such as PDFs, images, CSV, Markdown, XML and JSON.
 
 ## Record preview
 
