@@ -33,7 +33,7 @@ InvenioRDM can register DOIs with DataCite for all records, and allows you to wr
 
 ## Strong support for persistent identifiers
 
-Authors, affiliations, licenses, related papers/datasets etc can all be identified via persistent identifiers such as ORCID and RORs.
+Authors, affiliations, licenses, related papers/datasets etc can all be identified via persistent identifiers such as ORCIDs and RORs.
 
 ## Metadata-only records
 
