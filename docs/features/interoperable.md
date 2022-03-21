@@ -17,7 +17,7 @@ InvenioRDM exposes a strong versioned REST API for all operations on the reposit
 
 ## Export formats
 
-InvenioRDM supports exporting a record's metadata in multiple formats such as JSON, Citation Style Language JSON, DataCite JSON/XML, Dublin Core.
+InvenioRDM supports exporting a record's metadata in multiple formats such as JSON, Citation Style Language JSON, DataCite JSON/XML, and Dublin Core.
 
 ## OAI-PMH server
 
