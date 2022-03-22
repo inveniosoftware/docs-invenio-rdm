@@ -7,20 +7,19 @@ The theme comprises the header, footer and main color(s). We are going to modify
 Open the `assets/less/site/globals/site.variables` file and edit it to have the following:
 
 ``` less
-@import "@less/invenio_app_rdm/variables";
-
 @brandColor: /* your brand color here */ ;
-
 @navbar_background_image: unset;
 @navbar_background_color: @brandColor;
 @footerLightColor: @brandColor;
 @footerDarkColor: /* a shade of your brandColor */;
 ```
 
-!!! info "Less configuration in the future"
+!!! info Important:
 
-    We plan on requiring even less variable overrides in the future to change the theme.
-    `@navbar_background_color` could be preset to the brand color and so on for example.
+Full list of available Semantic UI [variables](https://github.com/Semantic-Org/Semantic-UI-LESS/blob/master/themes/default/globals/site.variables)
+
+Full list of Invenio App RDM [variables](https://github.com/inveniosoftware/invenio-app-rdm/blob/master/invenio_app_rdm/theme/assets/semantic-ui/less/invenio_app_rdm/theme/globals/site.variables)
+
 
 Then, run the `invenio-cli assets build -d` command as above and refresh the page! You should be able to see your theme color(s)!
 
