@@ -116,6 +116,7 @@ nav:
       - Requests API: 'reference/rest_api_requests.md'
       - Communities API: 'reference/rest_api_communities.md'
       - Vocabularies API: 'reference/rest_api_vocabularies.md'
+      - OAI-PMH Sets API: 'reference/rest_api_oaipmh_sets.md'
   - Releases:
     - Overview: releases/index.md
     - Maintenance policy: releases/maintenance-policy.md
