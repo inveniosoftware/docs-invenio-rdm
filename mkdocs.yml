@@ -100,6 +100,7 @@ nav:
       - Software: develop/architecture/software.md
       - Runtime: develop/architecture/runtime.md
       - Requests: develop/architecture/requests.md
+      - Communities: develop/architecture/communities.md
       - Recommended reading: develop/architecture/reading.md
     - Concepts:
       - Optimistic concurrency control: develop/concepts/concurrency-control.md

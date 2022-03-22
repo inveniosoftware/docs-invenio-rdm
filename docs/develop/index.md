@@ -54,6 +54,7 @@ choices:
 - [Software architecture](architecture/software.md)
 - [Runtime architecture](architecture/runtime.md)
 - [Requests](architecture/requests.md)
+- [Communities](architecture/communities.md)
 - [Recommended reading](architecture/reading.md)
 
 ## Concepts
