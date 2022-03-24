@@ -55,6 +55,7 @@ choices:
 - [Runtime architecture](architecture/runtime.md)
 - [Requests](architecture/requests.md)
 - [Communities](architecture/communities.md)
+- [Records](architecture/records.md)
 - [Recommended reading](architecture/reading.md)
 
 ## Concepts
