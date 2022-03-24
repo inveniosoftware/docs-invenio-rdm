@@ -8,3 +8,4 @@
 
 mkdocs>=1.0.4
 mkdocs-material>=7.2.1,<7.2.3
+jinja2<3.1
