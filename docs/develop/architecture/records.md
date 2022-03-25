@@ -196,12 +196,12 @@ decide or not to use during rendering of a landing page.
 
 ## Reviews
 
-An initial draft *can* have an associated review. Edit drafts and new version
-drafts *cannot* have an associated review.
+A new draft *can* have an associated review. Edit drafts and next drafts
+*cannot* have an associated review.
 
-A review is a relation to a request. Multiple request types can be support
+A review is a relation to a request. Multiple request types are supported
 (i.e. multiple types of reviews), but each request type must be explicitly
-allowed.
+allowed to be used as
 
 ### Record states
 
@@ -217,5 +217,6 @@ The initial draft can be one of the following states:
 - Draft: The draft is yet to be published.
 - Draft with review: The draft is yet to be submitted for review
 - In review: The draft is in review.
-- Declined: The review was either declined or cancelled.
+- Review declined: The review was declined.
+- Review expired: The review expired by the system.
 - Published: A record has been created for the draft.
