@@ -8,8 +8,8 @@ Open the `assets/less/site/globals/site.variables` file and edit it to have the 
 
 ``` less
 @brandColor: /* your brand color here */ ;
-@navbar_background_image: unset;
-@navbar_background_color: @brandColor;
+@navbarBackgroundImage: url("/static/images/your_image.png");
+@navbarBackgroundColor: @brandColor;
 @footerLightColor: @brandColor;
 @footerDarkColor: /* a shade of your brandColor */;
 ```
