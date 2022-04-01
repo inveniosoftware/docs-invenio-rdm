@@ -1,4 +1,4 @@
-## Communities (Preview)
+## Communities
 
 ### Create a Community
 
@@ -9,6 +9,30 @@
 | Name       | Type   | Location | Description                                                  |
 | ---------- | ------ | -------- | ------------------------------------------------------------ |
 | `accept`   | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
+| `access`   | object | body     | [Access](#community-access) of the community. |
+| `id`       | string | body     | Required, url-compatible, max 100 char. The id of the community that will be used in the community's URL. |                                                  |
+| `metadata` | object | body     | [Metadata](#community-metadata) of the community. |
+
+### Community access
+
+| Name              | Type   | Location | Description                                                   |
+| ----------        | ------ | -------- | ------------------------------------------------------------- |
+| `visibility`      | string | body     | Required, one of `"public"` or `"restricted"`. Visible by the public or restricted to those who have access. |
+| `member_policy`   | string | body     | Required, one of `"open"` or `"closed"`. Can people ask to be part of the community (open) or not (closed)? |
+| `record_policy`   | string | body     | Required, one of `"open"` or `"closed"` or `"restricted"`. Can records be submitted to the community (open) or not (closed)? |
+| `owned_by`        | array  | body     | Array of Objects of the form: `{"user": <user_id> }`. Community owners (admins). |
+
+### Community metadata
+
+| Name              | Type   | Location | Description                                                   |
+| ----------        | ------ | -------- | ------------------------------------------------------------- |
+| `title`           | string | body     | Required, max 250 char. Human readable title of the community. |
+| `description`     | string | body     | Max 2000 char. Short description of the community. |
+| `curation_policy` | string | body     | Max 2000 char, html allowed. Description of how records are curated for this community. |
+| `type`            | string | body     | One of `"organization"` or `"event"` or `"topic"` or `"project"`. What the community is centered around. |
+| `website`         | string | body     | URL. URL to external website. |
+| `organizations`   | array  | body     | Array of Objects of the form: `{"id": <ROR id>}` or `{"name": <string>}`. Organizations related to the community. |
+
 
 **Request**
 
