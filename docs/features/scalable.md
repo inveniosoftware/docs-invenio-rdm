@@ -20,7 +20,7 @@ InvenioRDM accepts files of any format and any size that your underlying storage
 
 ## Versioning support
 
-Records and files are all versioned and our versioning feature performs automatic deduplication: so when 10KB of files change in a 100TB dataset we only store the new 10KB.
+Records and files are all versioned and our versioning feature performs automatic de-duplication: when a 10KB file among a 100TB dataset changes, only the new 10KB file is stored.
 
 ## Multi-storage systems
 
