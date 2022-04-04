@@ -16,7 +16,7 @@ InvenioRDM supports uploading and handling TB-sized files and can manage from fe
 
 ## Any file format/size
 
-InvenioRDM accepts any file format in any size given that your underlying storage infrastructure can support it.
+InvenioRDM accepts files of any format and any size that your underlying storage infrastructure supports.
 
 ## Versioning support
 
