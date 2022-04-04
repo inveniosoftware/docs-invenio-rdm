@@ -26,7 +26,7 @@ If a creator is not in the names vocabulary, we can still auto-complete the affi
 
 ![Creator dialog.](imgs/affiliations.png)
 
-Our auto-completion serves not only to make it easier for users, but also to ensure we obtain high-quality metadata and it can link to authority records.
+Our auto-completion makes it easier for users to deposit, but also ensures we obtain high-quality metadata. It can even be linked to authority records.
 
 **Licenses**
 
