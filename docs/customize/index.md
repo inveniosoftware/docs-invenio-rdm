@@ -13,6 +13,7 @@ InvenioRDM instance so that it integrates into their organizational environment.
 - [Sending emails](emails.md) - integrate with your institutional email system.
 - [Record landing page](record_landing_page.md) - customize some of the sections of record's landing page.
 - [S3 Storage](s3.md) - configure s3 as storage.
+- [Upload Limits](upload_limits.md) - Set limits on file uploads for records.
 - [Vocabularies](vocabularies/index.md) - use custom controlled vocabularies, default users and other institution specific data.
     - [Affiliations](vocabularies/affiliations.md)
     - [Names](vocabularies/names.md)

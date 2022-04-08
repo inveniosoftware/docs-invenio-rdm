@@ -64,6 +64,7 @@ nav:
     - Record landing page: 'customize/record_landing_page.md'
     - DOI registration: 'customize/dois.md'
     - Storage: 'customize/s3.md'
+    - Upload Limits: 'customize/upload_limits.md'
   - Develop:
     - Overview: 'develop/index.md'
     - Getting started:
