@@ -319,38 +319,59 @@ Where elements have functionality that is non-standard, e.g. accordions, tab-men
 
 Follow the guidelines described by [w3.org](https://www.w3.org/TR/wai-aria-practices/#aria_ex).
 
+**Note:** Some interactive elements can be tricky to make accessible with the Semantic UI markup. In these cases, make sure to check out the React version. An example is the Dropdown component in Semantic UI React, which comes with good accessiblity out of the box. Note that this is not the case for all the Semantic UI React components, so pay attention, and make sure to test your component.
 
 ✅ __DO__
 ```html
 <!-- 
 Provide meaning and context to non-semantic interactive elements
 by adding aria-attributes.
+
+Make sure to update dynamic values such as 'aria-selected' with javascript.
 -->
 
-<div role="combobox"
-     aria-activedescendant="{{ activeElementId }}"
-     aria-controls="select-menu-id"
-     aria-haspopup="listbox"
-     aria-expanded="false"
-     aria-label="Describe the purpose of the select box"
-     class="ui selection dropdown"
-     id="select-box"
->
-  <input type="hidden" name="select-example">
-  <i class="dropdown icon"></i>
-  <div class="default text">Placeholder text</div>
-
-  <div role="listbox" id="select-menu-id" tabindex="0">
-    <div role="option"
-         class="item"
-         data-value="option-value"
-         id="option-1"
-         aria-selected="{{ selectedBoolValue }}"
-         tabindex="-1"
+<div role="tablist" class="ui top attached tabular menu">
+    <a class="active item"
+       data-tab="tab-1"
+       role="tab"
+       id="tab-1"
+       tabindex="0"
+       aria-controls="tab-panel-1"
+       aria-selected="true"
     >
-        Option text
-    </div>
-  </div>
+        Tab 1 title
+    </a>
+
+    <a class="active item"
+       data-tab="tab-2"
+       role="tab"
+       id="tab-2"
+       tabindex="0"
+       aria-controls="tab-panel-2"
+       aria-selected="false"
+    >
+        Tab 2 title
+    </a>
+</div>
+
+<div class="ui bottom attached active tab segment"
+     data-tab="tab-1"
+     role="tabpanel"
+     id="tab-panel-1"
+     aria-labelledby="tab-1"
+     hidden="false"
+>
+    Tab panel 1 content
+</div>
+
+<div class="ui bottom attached tab segment"
+     data-tab="tab-2"
+     role="tabpanel"
+     id="tab-panel-2"
+     aria-labelledby="tab-2"
+     hidden="true"
+>
+    Tab panel 2 content
 </div>
 ```
 
@@ -361,20 +382,17 @@ Don't use unsemantic elements without descriptive
 aria-attributes.
 -->
 
-<div class="ui selection dropdown">
-  <input type="hidden" name="select-example">
-  <i class="dropdown icon"></i>
-  <div class="default text">Placeholder text</div>
-
-  <div class="menu">
-    <div class="item" data-value="option-value">
-        Option text
-    </div>
-  </div>
+<div class="ui top attached tabular menu">
+    <a class="active item">Tab 1 title</a>
+    <a class="item">Tab 2 title</a>
+</div>
+<div class="ui bottom attached active tab segment">
+    Tab panel 1 content
+</div>
+<div class="ui bottom attached tab segment">
+    Tab panel 2 content
 </div>
 ``` 
-
-_**For Semantic UI React:** With Semantic UI React, some interactive components come with aria-attributes and keyboard accessiblity out of the box, but pay attention to this, as it is not the case for all the components! For instance, `<Dropdown/>` is a component that has all the recommended aria-attributes and keyboard accessibility, while the `<Tab />` component has neither aria-attributes nor keyboard accessibility._
 
 #### Interactive elements without descriptive text
 Every interactive element should have a related text that describes the element. In cases where no text is available (e.g. the text is replaced by an icon), the element should have an aria-label.
@@ -436,34 +454,46 @@ $('.ui.tabular.menu .item')
 ```html 
 <!-- Make sure to add tabindex and the recommended aria-attributes -->
 
-<div role="tablist" class="ui tabular menu">
-    <div role="tab" 
-         id="tab-1" 
-         class="active item" 
-         data-tab="tab-panel-1"
+<div role="tablist" class="ui top attached tabular menu">
+    <div class="active item"
+         data-tab="tab-1"
+         role="tab"
+         id="tab-1"
+         tabindex="0"
          aria-controls="tab-panel-1"
          aria-selected="true"
-         tabindex="0"
     >
         Tab 1 title
     </div>
-    <div role="tab" 
-         id="tab-2" 
-         class="item" 
-         data-tab="tab-panel-2"
+    <div class="item"
+         data-tab="tab-2"
+         role="tab"
+         id="tab-2"
+         tabindex="0"
          aria-controls="tab-panel-2"
          aria-selected="false"
-         tabindex="0"
     >
         Tab 2 title
     </div>
 </div>
 
-<div role="tabpanel" id="tab-panel-1" class="ui active tab">
+<div class="ui bottom attached active tab segment"
+     data-tab="tab-1"
+     role="tabpanel"
+     id="tab-panel-1"
+     aria-labelledby="tab-1"
+     hidden="false"
+>
     Tab 1 content
 </div>
 
-<div role="tabpanel" id="tab-panel-2" class="ui tab">
+<div class="ui bottom attached tab segment"
+     data-tab="tab-2"
+     role="tabpanel"
+     id="tab-panel-2"
+     aria-labelledby="tab-2"
+     hidden="true"
+>
     Tab 2 content
 </div>
 ```
