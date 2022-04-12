@@ -28,7 +28,7 @@ from your instance's folder:
 invenio rdm-records fixtures
 ```
 
-!!! info Loading time
+!!! info "Loading time"
 
     The ROR vocabulary consists of about 100.000 records and with an ingestion
     speed around 100-200 records/s it usually takes between around 8-15 minutes
@@ -38,7 +38,7 @@ invenio rdm-records fixtures
     on [http://127.0.0.1:15672/](http://127.0.0.1:15672/) (guest/guest).
 
 
-!!! info Fixtures currently do not support updates
+!!! info "Fixtures currently do not support updates"
 
     This means that once they are created, modifying the file and re-running the above
     command will have no effect. So make sure you have the correct configuration before
