@@ -14,11 +14,11 @@ Open the `assets/less/site/globals/site.variables` file and edit it to have the 
 @footerDarkColor: /* a shade of your brandColor */;
 ```
 
-!!! info Important:
+!!! info "Important"
 
-Full list of available Semantic UI [variables](https://github.com/Semantic-Org/Semantic-UI-LESS/blob/master/themes/default/globals/site.variables)
+    Full list of available Semantic UI [variables](https://github.com/Semantic-Org/Semantic-UI-LESS/blob/master/themes/default/globals/site.variables)
 
-Full list of Invenio App RDM [variables](https://github.com/inveniosoftware/invenio-app-rdm/blob/master/invenio_app_rdm/theme/assets/semantic-ui/less/invenio_app_rdm/theme/globals/site.variables)
+    Full list of Invenio App RDM [variables](https://github.com/inveniosoftware/invenio-app-rdm/blob/master/invenio_app_rdm/theme/assets/semantic-ui/less/invenio_app_rdm/theme/globals/site.variables)
 
 
 Then, run the `invenio-cli assets build -d` command as above and refresh the page! You should be able to see your theme color(s)!
