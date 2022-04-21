@@ -21,12 +21,12 @@ editable install of the Python package:
 ```
 cd ~/src/invenio-app-rdm
 mkvirtualenv app-rdm
-# postgresql,elasticsearch7 only needed for certain modules
-pip install -e ".[all,postgresql,elasticsearch7]"
+# elasticsearch7 only needed for certain modules
+pip install -e ".[tests,elasticsearch7]"
 ```
 
 For each module, you'll have to check what is the precise list of extras
-you need to add (the ``all,postgresql,elasticsearch7``). If you don't add them,
+you need to add (the ``tests,elasticsearch7``). If you don't add them,
 you won't have all the tools needed for testing.
 
 ### Run tests
@@ -61,8 +61,8 @@ editable installs of both:
 
 ```
 mkvirtualenv communities
-pip install -e "~/src/invenio-communities[all,postgresql,elasticsearch7]" \
-    -e "~/src/invenio-requests[all,postgresql,elasticsearch7]"
+pip install -e "~/src/invenio-communities[tests,elasticsearch7]" \
+    -e "~/src/invenio-requests[tests,elasticsearch7]"
 ```
 
 ### Application integration
