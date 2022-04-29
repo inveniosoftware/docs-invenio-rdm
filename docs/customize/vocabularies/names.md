@@ -22,18 +22,18 @@ A _Name_ record contains:
   belongs to the _Affiliations_ vocabulary, by its `id`.
 
 ```yaml
-- family_name: Doe
-  given_name: John
+- family_name: Carberry
+  given_name: Josiah
   identifiers:
-    - identifier: https://orcid.org/0000-0001-2345-6789
+    - identifier: https://orcid.org/0000-0002-1825-0097
       scheme: orcid
   affiliations:
-    - name: University of Somewhere
-- name: Doe, Jane
+    - name: Wesleyan University
+- name: Haak, Laurel L
   identifiers:
-    - identifier: https://orcid.org/0000-0001-2345-6788
+    - identifier: https://orcid.org/0000-0001-5109-3700
   affiliations:
-    - id: 01ggx4157
+    - id: 04fa4r544
 ```
 
 ### How to import and update your name records
