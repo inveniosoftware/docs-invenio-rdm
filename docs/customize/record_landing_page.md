@@ -23,5 +23,5 @@ By changing the list above, these styles will be visible in the record landing p
 You can change the default citation style used when loading the record landing page by setting:
 
 ```
-RDM_DEFAULT_CITATION_STYLE = 'chicago-annotated-bibliography'
+RDM_CITATION_STYLES_DEFAULT = 'chicago-annotated-bibliography'
 ```
