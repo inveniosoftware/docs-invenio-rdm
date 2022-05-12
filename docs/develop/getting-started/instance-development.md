@@ -1,6 +1,6 @@
 # Instance development
 
-This guide will show you have to install the latest development version of
+This guide will show you how to install the latest development version of
 InvenioRDM and how to install modules in InvenioRDM.
 
 ### Development install
