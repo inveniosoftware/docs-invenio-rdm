@@ -276,7 +276,7 @@ Subfields:
 
 | Field | Cardinality |   Description   |
 |:-----:|:-----------:|:----------------|
-| ``person_or_org`` &nbsp; | (1) | The person or organization. |
+| ``person_or_org`` | (1) | The person or organization. |
 | ``role`` | (0-1, CV) | The role of the person or organisation selected from a customizable controlled vocabulary. |
 | ``affiliations`` | (0-n) | Affilations if ``person_or_org.type`` is ``personal``. |
 
@@ -286,7 +286,7 @@ A `person_or_org` is described with the following subfields:
 |:---------------------:|:-----------:|:----------------|
 | ``type`` | (1) | The type of name. Either ``personal`` or ``organizational``. |
 | ``given_name`` | (1 if `type` is `personal` / 0 if `type` is `organizational`) | Given name(s). |
-| ``family_name`` &nbsp;&nbsp;&nbsp; | (1 if `type` is `personal` / 0 if `type` is `organizational`) | Family name. |
+| ``family_name`` | (1 if `type` is `personal` / 0 if `type` is `organizational`) | Family name. |
 | ``name``              | (0 if `type` is `personal` / 1 if `type` is `organizational`) | The full name of the organisation. For a person, this field is generated from `given_name` and `family_name` |
 | ``identifiers``  | (0-n) | Person or organisation identifiers. |
 
@@ -465,11 +465,11 @@ The field is compatible with *17. Description* in DataCite.
 
 Subfields:
 
-| Field                  | Cardinality |   Description                    |
-|:----------------------:|:-----------:|:---------------------------------|
-| ``description`` &nbsp; | (1)         | Free text.                       |
-| ``type``               | (1)         | The type of the description.     |
-| ``lang``               | (0-1)       | The language of the description. |
+| Field            | Cardinality |   Description                    |
+|:----------------:|:-----------:|:---------------------------------|
+| ``description``  | (1)         | Free text.                       |
+| ``type``         | (1)         | The type of the description.     |
+| ``lang``         | (0-1)       | The language of the description. |
 
 The ``type`` field is as follows:
 
@@ -637,7 +637,7 @@ Subfields:
 |:-----:|:-----------:|:----------------|
 | ``date`` | (1) | A date or time interval according to Extended Date Time Format Level 0. |
 | ``type`` | (1) | The type of date. |
-| ``description`` &nbsp; | (0-1) | free text, specific information about the date. |
+| ``description`` | (0-1) | free text, specific information about the date. |
 
 The ``type`` field is as follows:
 
@@ -739,8 +739,8 @@ Subfields:
 |:-----:|:-----------:|:----------------|
 | ``identifier`` | (1, CV) | A global unique persistent identifier for a related resource. |
 | ``scheme`` | (1, CV) | The scheme of the identifier. |
-| ``relation_type`` &nbsp;&nbsp;&nbsp; | (1) | The relation of the record to this related resource. |
-| ``resource_type`` &nbsp;&nbsp; | (0-1) | The resource type of the related resource. Can be different from the [Resource type](#resource-type-1) field. |
+| ``relation_type``  | (1) | The relation of the record to this related resource. |
+| ``resource_type``  | (0-1) | The resource type of the related resource. Can be different from the [Resource type](#resource-type-1) field. |
 
 Supported identifier schemes:
 
@@ -850,9 +850,16 @@ Subfields of items in ``features``:
 | Field | Cardinality |   Description   |
 |:-----:|:-----------:|:----------------|
 | ``geometry`` | (0-1) | A GeoJSON [Geometry Object](https://tools.ietf.org/html/rfc7946#section-3.1) according to RFC 7946. Note, GeoJSON's coordinate reference system is [WGS84](https://tools.ietf.org/html/rfc7946#section-4). |
-| ``identifiers`` &nbsp;&nbsp; | (0-1) | Identifiers for the geographic locations. This could for instance be from [GeoNames](https://www.geonames.org) or [Getty Thesaurus of Geographic Names](http://www.getty.edu/research/tools/vocabularies/tgn/) (TGN) which would allow linking to historic places. |
+| ``identifiers`` | (0-1) | A list of geographic location identifiers. This could for instance be from [GeoNames](https://www.geonames.org) or [Getty Thesaurus of Geographic Names](http://www.getty.edu/research/tools/vocabularies/tgn/) (TGN) which would allow linking to historic places. |
 | ``place`` | (0-1) | Free text, used to describe a geographical location. |
 | ``description`` | (0-1) | Free text, used for any extra information related to the location. |
+
+Identifier object in ``identifiers``:
+
+| Field | Cardinality |   Description   |
+|:-----:|:-----------:|:----------------|
+| ``identifier`` | (1, CV) | A globally unique identifier for the location. |
+| ``scheme`` | (1, CV) | The scheme of the identifier. |
 
 Notes:
 
@@ -871,10 +878,10 @@ Example:
         "type": "Point",
         "coordinates": [6.05, 46.23333]
       },
-      "identifiers": {
-        "geonames": "2661235",
-        "tgn": "http://vocab.getty.edu/tgn/8703679"
-      },
+      "identifiers": [{
+        "scheme": "geonames",
+        "identifier": "2661235"
+      }],
       "place": "CERN",
       "description": "Invenio birth place."
     }],
@@ -980,7 +987,7 @@ Example:
   "references": [{
       "reference": "Nielsen et al,..",
       "identifier": "10.1234/foo.bar",
-      "scheme": "doi"
+      "scheme": "other"
   }]
 }
 ```
