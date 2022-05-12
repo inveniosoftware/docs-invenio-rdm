@@ -9,12 +9,16 @@
     color: #000000;
 }
 
+.md-typeset table code {
+    word-break: normal;
+}
+
 [data-md-color-primary="white"] .md-header {
     background: linear-gradient(
         90deg,
         rgba(3, 119, 205, 1),
         rgba(3, 119, 205, 1) 52.52%,
-        rgba(251, 130, 115, 0.69)) 
+        rgba(251, 130, 115, 0.69))
         no-repeat;
     color: #ffffff;
 }
@@ -23,7 +27,7 @@
         90deg,
         rgba(3, 119, 205, 1),
         rgba(3, 119, 205, 1) 52.52%,
-        rgba(251, 130, 115, 0.69)) 
+        rgba(251, 130, 115, 0.69))
         no-repeat;
     color: #ffffff;
 }
@@ -289,4 +293,3 @@ html .md-footer-meta .md-footer-meta__inner a {
 .frontpage .md-main {
     background-color: white;
 }
-
