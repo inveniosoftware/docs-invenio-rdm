@@ -123,6 +123,7 @@ nav:
     - Maintenance policy: releases/maintenance-policy.md
     - Security policy: releases/security-policy.md
     - Versions:
+      - Version v8.0.0rc1: releases/versions/version-v9.0.0rc1.md
       - Version v8.0.0: releases/versions/version-v8.0.0.md
       - Version v7.0.0: releases/versions/version-v7.0.0.md
       - Version v6.0.5: releases/versions/version-v6.0.5.md
