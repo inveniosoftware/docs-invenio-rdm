@@ -14,7 +14,7 @@ We are happy to share with you our **release candidate 1** (RC1) for version 9.0
 
 #### Install
 
-To install the release candidate 1, follow [the installation guide](../../install/build-setup-run). In step 3 specify the release candidate 1 version, as follows
+To install the release candidate 1, follow [the installation guide](../../../install). In step 3 specify the release candidate 1 version, as follows
 `invenio-cli init rdm -c v9.0`
 
 ## Final release
