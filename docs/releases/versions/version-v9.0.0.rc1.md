@@ -9,6 +9,7 @@ We are happy to share with you our **release candidate 1** (RC1) for version 9.0
 ## Try it (development)
 
 [Demo site](https://inveniordm.web.cern.ch/)
+
 1. Create a local account (SSO not available at the moment)
 2. Make sure your user profile is visible by switching it on in your profile settings.
 
