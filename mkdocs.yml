@@ -46,11 +46,11 @@ nav:
     - Troubleshooting: 'install/troubleshoot.md'
   - Customize:
     - Overview: 'customize/index.md'
-    - Styling:
-      - Overview: 'customize/styling.md'
-      - Change logo: 'customize/styling-logo.md'
-      - Change theme: 'customize/styling-theme.md'
-      - Change templates: 'customize/styling-templates.md'
+    - Look-and-feel:
+      - Overview: 'customize/look-and-feel/index.md'
+      - Change logo: 'customize/look-and-feel/logo.md'
+      - Change templates: 'customize/look-and-feel/templates.md'
+      - Change theme: 'customize/look-and-feel/theme.md'
     - Authentication: 'customize/authentication.md'
     - Sending emails: 'customize/emails.md'
     - Search:

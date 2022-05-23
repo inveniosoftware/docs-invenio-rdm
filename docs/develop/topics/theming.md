@@ -1,4 +1,4 @@
-# Theming 
+# Theming
 
 This page will provide you with in-depth information about the InvenioRDM theme structure.
 
@@ -23,14 +23,13 @@ tells us more about what to expect from the final view, rather than
 <div class="metadata-label"></div>
 ```
 
-which has significant influence on the maintainability of the styling - and it is very important in large projects. It is easier for any developer to remember a few "behavioral" classes, rather than to remember that `metadata-label` will be always right floated.
+which has significant influence on the maintainability of the styling - and it is very important in large projects. It is easier for any developer to remember a few "behavioral" classes, rather than to remember that `metadata-label` will always be  right floated.
 
 ### Variety of available components and elements
 
 Semantic UI exists both in "clean" HTML/CSS as well as in React. To know more about best practices between the two, visit [Best practices](../../develop/best-practices/react.md) page.
 
-Semantic UI provides the developer with a plethora of ready to use React components and CSS classes. The important step in mastering the Semantic UI development is consulting the documentation and experimenting with the outcome of using the provided elements. Custom CSS rules should be the last resort of achieving the specific styling. 
-
+Semantic UI provides the developer with a plethora of ready to use React components and CSS classes. The important step in mastering Semantic UI development is consulting the documentation and experimenting with the outcome of using the provided elements. Custom CSS rules should be a last resort to achieve specific styling.
 
 ### Theme inheritance
 
@@ -52,7 +51,4 @@ If you would like to add another layer of **reusable** theme you can create your
 
 #### Your customizations to RDM theme
 
-If your instance is on the same "level" as `my-site` and is not extended further, everything is already configured in InvenioRDM, with no need for changes. To overwrite the InvenioRDM theme, use the [Customize theme section](../../customize/styling-theme.md).
-
-
-
+If your instance is on the same "level" as `my-site` and is not extended further, everything is already configured in InvenioRDM, with no need for changes. To overwrite the InvenioRDM theme, use the [Customize theme section](../../customize/look-and-feel/theme.md).
