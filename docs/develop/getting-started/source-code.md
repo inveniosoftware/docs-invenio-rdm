@@ -67,6 +67,8 @@ The InvenioRDM codebase is split over a number of different repositories. Below 
           new request types.
         - Views for the requests pages
         - Assets for the requests views (Jinja/JSX templates, LESS files)
+    - [invenio-users-resources](https://github.com/inveniosoftware/invenio-users-resources)
+        - Implementation of the users and groups REST API. Enables indexing and search for users.
     - [invenio-drafts-resources](https://github.com/inveniosoftware/invenio-drafts-resources)
         - General purpose library used to build REST APIs for deposit interfaces.
         - Drafts API and versioning support
