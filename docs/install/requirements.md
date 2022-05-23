@@ -5,7 +5,7 @@
 InvenioRDM depends on the following requirements to be installed on your local system:
 
 - MacOS or Linux-based systems (Windows systems is not supported).
-- [Python](https://www.python.org/) 3.7, 3.8 or 3.9
+- [Python](https://www.python.org/) 3.7, 3.8 or 3.9 and [pip](https://pip.pypa.io/en/stable/)
     - Python development headers:
         - On Ubuntu: `sudo apt install python3-dev`.
         - On RHEL/Fedora: `yum install -y python3-devel.x86_64`.
@@ -15,13 +15,14 @@ InvenioRDM depends on the following requirements to be installed on your local s
         SYSTEM_VERSION_COMPAT=1 invenio-cli install
         ```
 
+    - In case that `invenio-cli` (and other commands installed via `pip`) cannot be found after installing, you may have to update your `$PATH` to include the install directory (e.g. `PATH="$PATH:$HOME/.local/bin"` on Linux).
 
 - [Docker](https://docs.docker.com/) 1.13.0+
 - [Docker-Compose](https://docs.docker.com/compose/) 1.17.0+
 
 For running and building the application locally you will also need:
 
-- [Node.js](https://nodejs.org) 14.0.0+ (needed for local installation). We recommend that you install node through [nvm](https://github.com/nvm-sh/nvm).
+- [Node.js](https://nodejs.org) 14.0.0+ (needed for local installation). We recommend that you install node through [nvm](https://github.com/nvm-sh/nvm) (e.g. `nvm install --lts --default 14`).
 - [npm](https://www.npmjs.com/get-npm) < 7.
 - [Cairo](https://invenio-formatter.readthedocs.io/en/latest/installation.html) needed for badges to be properly displayed.
 - [DejaVu Fonts](https://dejavu-fonts.github.io/Download.html) needed for badges rendering.
@@ -46,8 +47,17 @@ InvenioRDM depends on the following services. During the installation we start t
 
 ### Hardware
 
-We usually run InvenioRDM on machines that have at least 8GB of RAM and at least
-4 cores.
+We usually run InvenioRDM on machines that have at least 8GB of RAM and at least 4 cores.
+
+### Python virtual environments
+
+Because we want to avoid cluttering the Python packages of the system or user with InvenioRDM dependencies, `invenio-cli` uses virtual environments.
+This is done by interacting with `pipenv` behind the scenes, which is listed as a requirement and can simply be installed via `pip`.
+To enable the use of a different Python version in the virtual environment than the one installed globally, a Python version manager such as `pyenv` (or `asdf` with `asdf-python`) is required.
+
+For simplicity, we recommend to go with `pyenv` here.
+In some cases, it can be installed via the system's package manager (e.g. `pacman -S pyenv`).
+Otherwise, you can find the installation instructions on the [project's GitHub page](https://github.com/pyenv/pyenv/#installation) or use their [automatic installer](https://github.com/pyenv/pyenv-installer) (note the required [dependencies for locally building Python](https://github.com/pyenv/pyenv/wiki#suggested-build-environment)).
 
 ### Docker
 
@@ -58,6 +68,17 @@ the `docker` command (i.e. it is not only available for the root user):
 
 ```bash
 sudo usermod --append --groups docker $USER
+```
+
+After logging out and back in (to refresh the user's group information), the `docker ps` command should work without errors.
+If it still displays a permission error on `docker.sock`, we strongly recommend *against* making it world-writable as it is sometimes suggested!
+Instead, you could change the group of the socket to `docker` and allow users in that group to read and write to it.
+
+```bash
+sudo chgrp docker /var/run/docker.sock
+
+# if the group doesn't have RW access yet
+sudo chmod g+rw /var/run/docker.sock
 ```
 
 #### Available memory for Docker (macOS)
