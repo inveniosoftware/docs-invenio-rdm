@@ -2,11 +2,11 @@
 
 ## jQuery
 
-The most common usage of jQuery is when we apply JS in Jinja templates.
+The most common usage of jQuery is for JS in Jinja templates.
 
 ### Selectors
 
-With the second approach you apply the function to all tab menu nodes on the page. What if there is a second menu? Or react element with the same class? None of your components/elements will behave as expected.
+Let's say you want to select the following top-level div:
 
 ```html
 <div id="my-tab-menu" class="ui tab menu">
@@ -22,9 +22,12 @@ $('#my-tab-menu').tab();
 ```
 
 ❌ DON'T
+
 ```javascript
 $('.menu.tab').tab();
 ```
+
+With the second approach, you apply the function to _all_ tab menu nodes on the page. What if there is a second menu? Or react element with the same class? None of your components/elements will behave as expected.
 
 ## Semantic UI
 
@@ -35,13 +38,14 @@ Save your time and frustration, read the documentation before you start with sem
 - [React Semantic UI](https://react.semantic-ui.com/)
 - [Semantic UI](https://semantic-ui.com/)
 
-Why this is important? You might rush into using available components without knowing their full power - you will find yourself "reinventing the wheel", instead of using features already available in semantic.
+Why is this important? You might rush into using available components without knowing their full power. Conversely, you might find yourself "reinventing the wheel", instead of using features already available in semantic.
 
 ### Components styling
 
 Semantic UI is quite complete as a theme, there is a high chance you can use one of many available props to style your component, instead of writing custom CSS (custom CSS is hard to maintain, especially for big projects, like ours).
 
 ✅ DO
+
 ```javascript
 render() {
   <Container>
@@ -77,7 +81,7 @@ render() {
 
 ### File structure
 
-Semantic UI has fixed file structure, therefore, for creating custom CSS, the best is to follow the structure of the theme, so that overwritten elements are easily found!
+Semantic UI has a fixed file structure; therefore, for creating custom CSS, the best is to follow the structure of the theme, so that overwritten elements are easily found!
 
 ✅ DO
 
@@ -124,4 +128,3 @@ Using `!important` makes overriding (think about the cookiecutter and my-site in
   color: red !important;
 }
 ```
-
