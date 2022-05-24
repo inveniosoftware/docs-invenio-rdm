@@ -1,8 +1,5 @@
-!!! warning
-    This API is only available from version 9 onwards!
-
-
 ## OAI PMH Sets
+
 Used for managing OAI-PMH sets for selective harvesting.
 
 !!! hint
@@ -17,7 +14,7 @@ Used for managing OAI-PMH sets for selective harvesting.
 | Name              | Type    | Location | Description                                                  |
 | --------          | ------- | -------- | ------------------------------------------------------------ |
 | `sort`            | string  | query    | Sort search results.<br />- `name` (default)<br />- `spec`<br />- `created`<br />- `updated`|                                         |
-| `sort_direction`  | string  | query    | Sort direction of search results.<br />- `asc` (default)<br />- `desc`|      
+| `sort_direction`  | string  | query    | Sort direction of search results.<br />- `asc` (default)<br />- `desc`|
 | `size`            | integer | query    | Specify number of items in the results page (default: 10).   |
 | `page`            | integer | query    | Specify the page of results.                                 |
 | `accept`          | string  | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
@@ -134,7 +131,7 @@ Content-Type: application/json
 **Request**
 
 ```http
-POST /api/oaipmh/sets 
+POST /api/oaipmh/sets
 ```
 
 **Response**
@@ -178,7 +175,7 @@ It is *not* allowed to update the spec of a set. The correct way of doing it is 
 **Request**
 
 ```http
-PUT /api/oaipmh/sets 
+PUT /api/oaipmh/sets
 ```
 
 **Response**
