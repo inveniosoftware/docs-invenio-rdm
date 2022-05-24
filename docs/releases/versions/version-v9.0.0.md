@@ -4,7 +4,7 @@
 
 *Long-term support (LTS) release*
 
-We're happy to announce the release of InvenioRDM v9.0. The release is a long-term support release which is maintained until the nex LTS release + 6 months (and minimum for 1 year).
+We're happy to announce the release of InvenioRDM v9.0. The release is a long-term support release which is maintained until the next LTS release + 6 months (and minimum for 1 year).
 
 ## Try it
 
@@ -12,14 +12,14 @@ We're happy to announce the release of InvenioRDM v9.0. The release is a long-te
 
 - [Installation instructions](https://inveniordm.docs.cern.ch/install/)
 
-## What's new ?
+## What's new?
 
-InvenioRDM v9.0 ships with the much anticipated communities feature 🎉
+InvenioRDM v9.0 ships with the much anticipated communities feature! 🎉
 
 ### Communities
 
 Communities is a new core feature of InvenioRDM that empower users to
-self-organise and manage content in InvenioRDM. The feature launching today
+self-organise and manage content in InvenioRDM. The feature launching
 has focused on two main use cases:
 
 - Submit a record for review in a community
@@ -55,7 +55,7 @@ as well:
 
 #### Members
 
-A community, by default, always has one or more owners, but you can invite
+A community by default always has one or more owners, but you can invite
 multiple members to a community. Members can be either people or groups:
 
 ![Community members](img/../v9.0/community-members.png)
@@ -74,7 +74,7 @@ a community. By default InvenioRDM comes with the following roles:
   records in a community.
 - **Manager**: A manager can in addition to curators also manage
   members of a community.
-- **Owner**: A owner has full administrative access to a community, and can
+- **Owner**: An owner has full administrative access to a community, and can
   change all settings as well as delete the community.
 
 The role definitions are configurable via the ``COMMUNITIES_ROLES`` configuration
@@ -88,11 +88,11 @@ added directly as a member of the community:
 ![Invitation dialog](v9.0/community-invitations-dialog.png)
 
 The invited user can accept/decline the invitation and in addition have a
-conversation with sender of the invitation:
+conversation with the sender of the invitation:
 
 ![Invitation request](v9.0/community-invitations.png)
 
-By default invitations automatically expire after 30 days and becomes invalid.
+By default invitations automatically expire after 30 days and become invalid.
 
 #### Reviews
 
@@ -109,7 +109,7 @@ At submission time, a message can also be provided to the community curators:
 Curators of the community will receive the review request under the new
 "Requests" tab, and can have a conversation with the submitter, as well as
 preview the submitted record. Both the submitter and curator can edit and update
-the record under review until it's published. Once, published the record is
+the record under review until it's published. Once published the record is
 owned by both the submitter and the community:
 
 ![Community review](v9.0/deposit-review1.png)
@@ -118,7 +118,7 @@ owned by both the submitter and the community:
 
 #### Backend
 
-You may have noticed that both invitations and reviews looks similar and enables
+You may have noticed that both invitations and reviews look similar and enable
 a conversation between a submitter and receiver of the request as well as
 allowing them to perform certain actions like accept/decline/cancel/expire.
 
@@ -135,7 +135,7 @@ the new request types we're expecting to see in the future includes:
 
 Overall, the new backend is a key enabler for automating as much as possible
 standard requests that requires some sort of human approval. We are also looking
-to expanding the requests module with assignees and status checks that could
+forward to expand the requests module with assignees and status checks that could
 be updated from externally running workflows.
 
 See documentation on the [requests architecture](../../develop/architecture/requests.md).
@@ -144,7 +144,7 @@ See documentation on the [requests architecture](../../develop/architecture/requ
 
 This is the very first release of the communities module, and thus also the
 current implementation have some key limitations that we're working to address
-as fast as possible. We've listed below here the most important limitations:
+as fast as possible. We've listed below the most important limitations:
 
 - **Email notifications**: There is no notification mechanism, and thus no
   emails or similar are sent for new requests. Users must go to
@@ -216,14 +216,14 @@ online avatar services.
 
 A user is now required to confirm their email address via a link
 sent to their email address in order to be able to login. The previous
-behavior of v8.0 and earlier can be reenable by setting the following
+behavior of v8.0 and earlier can be reenabled by setting the following
 configuration variable:
 
 ```
 SECURITY_LOGIN_WITHOUT_CONFIRMATION = True
 ```
 
-Note, that for a user to findable by other users, they must have a verified
+Note, that for a user to be findable by other users, they must have verified
 their email address and set their profile visibility to public.
 
 **Users and groups REST API**
@@ -247,7 +247,7 @@ cluster and thus we have separate profile information from e.g. login
 information and added features for tracking changes to users.
 
 Also, we've moved a database table from Invenio-OAuthclient tracking external
-user identities to Invenio-Accounts. All of these changes are handle
+user identities to Invenio-Accounts. All of these changes are handled
 automatically by the upgrade procedures.
 
 ### Funders and awards
@@ -272,7 +272,7 @@ grants database.
 
 ### User Experience (UX) improvements
 
-We have made number of smaller UX improvements.
+We have made a number of smaller UX improvements.
 
 **Light background on array fields**
 
@@ -285,7 +285,7 @@ easier to see which fields belongs together (especially in mobile/tablet views):
 **Responsive design and screen real estate**
 
 We've now managed to fix responsive design issues on most pages in InvenioRDM
-and thus pages works in both desktop, tablet and mobile browsers. This has also
+and thus pages work in both desktop, tablet and mobile browsers. This has also
 meant that e.g. the deposit form and record landing pages have more screen real
 estate to display their information on.
 
@@ -293,7 +293,7 @@ estate to display their information on.
 
 The InvenioRDM theme was refactored and cleaned up, providing better
 overridability for subthemes and instances. See [documentation](../../customize/styling.md) for further
-details
+details.
 
 ### OAI-PMH sets support
 
@@ -316,7 +316,7 @@ search query.
 **Management REST API**
 
 The custom OAI-PMH sets can currently be managed via the REST API. A future
-version will add an user interface to allow an administrator to manage the
+version will add a user interface to allow an administrator to manage the
 sets.
 
 See [OAI-PMH REST API documentation](../../reference/rest_api_oaipmh_sets.md).
@@ -330,7 +330,7 @@ decided to maintain a private fork named Flask-Security-Invenio of the module
 ourselves.
 
 We have released Flask-Security-Invenio v3.1.x based on Flask-Security 3.0
-as a stripped down version where we have removed features that was not used
+as a stripped down version where we have removed features that were not used
 by Invenio such as e.g. token and basic authentication methods. We decided
 not to migrate to the community fork named Flask-Security-Too due to a
 significantly feature scope such as two-factor authentication.
@@ -342,14 +342,14 @@ the lastest methods such as two-factor authentication.
 
 ### Backend: Bulk indexing and automatic propagation of updates
 
-InvenioRDM now ships with support for bulk indexing (i.e. indexing multiple records in a single indexing request to a search cluster). Bulk indexing is needed for performance reasons when we have to index many records at once. This happens for instance if we update an a vocabulary record (e.g. resource type, affiliation, etc.), and as a result have to propagate the changes to related records.
+InvenioRDM now ships with support for bulk indexing (i.e. indexing multiple records in a single indexing request to a search cluster). Bulk indexing is needed for performance reasons when we have to index many records at once. This happens for instance if we update a vocabulary record (e.g. resource type, affiliation, etc.), and as a result have to propagate the changes to related records.
 
-Bulk indexing works by having the application queue a request to index one or more records. A background worker then checks every 10 seconds (via the ``invenio_records_resources.tasks.manage_indexer_queues`` task) to see if there are any queued indexing requests, and if so, will kick-off the bulk indexing. The bulk indexing will index up to 500 records at a time. You may notice new task
+Bulk indexing works by having the application queue a request to index one or more records. A background worker then checks every 10 seconds (via the ``invenio_records_resources.tasks.manage_indexer_queues`` task) to see if there are any queued indexing requests, and if so, will kick-off the bulk indexing. The bulk indexing will index up to 500 records at a time.
 
 ### Backend: Search field transformer
 
 We have added basic backend support for parsing and transforming search
-queries. This allow us in the future to improve the fields that users can use
+queries. This allows us in the future to improve the fields that users can use
 in search queries. For instance today, a user will have to write
 ``metadata.title:...`` to search specifically on the title field. In the future,
 using the search field transformer, we're now able to parse the query from the
