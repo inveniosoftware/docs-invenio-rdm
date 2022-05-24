@@ -48,14 +48,14 @@ the records of the community:
 
 ![Community frontpage](img/../v9.0/community-records.png)
 
-Records that are owned by a community is by default branded with the community
+Records that are owned by a community are, by default, branded with the community
 as well:
 
 ![Landing page branding](img/../v9.0/community-branding.png)
 
 #### Members
 
-A community by default always have one or more owners, but you can invite
+A community, by default, always has one or more owners, but you can invite
 multiple members to a community. Members can be either people or groups:
 
 ![Community members](img/../v9.0/community-members.png)
@@ -146,9 +146,9 @@ This is the very first release of the communities module, and thus also the
 current implementation have some key limitations that we're working to address
 as fast as possible. We've listed below here the most important limitations:
 
-- **Email notifications**: There are no notification mechanism, and thus no
+- **Email notifications**: There is no notification mechanism, and thus no
   emails or similar are sent for new requests. Users must go to
-  their dashboard, or community requests to see if there's any new requests or
+  their dashboard, or community requests, to see if there's any new requests or
   new messages.
 
 - **Add to community after publish**: If you publish directly, and later want
@@ -300,7 +300,7 @@ details
 The OAI-PMH server in InvenioRDM has now been extended with sets support
 that was missing in earlier implementations.
 
-You can see an example of the set on [https://inveniordm.web.cern.ch/oai2d?verb=ListSets](https://inveniordm.web.cern.ch/oai2d?verb=ListSets).
+You can see an example of the set [here](https://inveniordm.web.cern.ch/oai2d?verb=ListSets).
 
 **Sets for communities**
 
@@ -319,7 +319,7 @@ The custom OAI-PMH sets can currently be managed via the REST API. A future
 version will add an user interface to allow an administrator to manage the
 sets.
 
-See [REST API documentation](../../reference/rest_api_oaipmh_sets.md).
+See [OAI-PMH REST API documentation](../../reference/rest_api_oaipmh_sets.md).
 
 ### Backend: Flask-Security to Flask-Security-Invenio
 
