@@ -1,4 +1,4 @@
-# Requests REST API
+# Requests
 
 ## Requests
 

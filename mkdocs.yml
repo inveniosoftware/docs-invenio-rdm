@@ -119,6 +119,7 @@ nav:
       - Communities: 'reference/rest_api_communities.md'
       - Drafts and Records: 'reference/rest_api_drafts_records.md'
       - Groups: 'reference/rest_api_groups.md'
+      - Members: 'reference/rest_api_members.md'
       - Requests: 'reference/rest_api_requests.md'
       - Users: 'reference/rest_api_users.md'
       - Vocabularies: 'reference/rest_api_vocabularies.md'

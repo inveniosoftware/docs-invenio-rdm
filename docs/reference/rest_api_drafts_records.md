@@ -1,4 +1,4 @@
-# Drafts and Records REST API
+# Drafts and Records
 
 ## Drafts
 

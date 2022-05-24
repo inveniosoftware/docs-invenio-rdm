@@ -1,20 +1,19 @@
-# Groups REST API
+# Groups
 
 ## Groups
 
 Query and manage groups.
 
+!!! info "Authentication required"
+
+    Requests to search REST API endpoints require authentication. Results sets
+    are limited to max 10 results per query (i.e. pagination is not supported).
+
 ### Search groups
 
-Search for users
+Search for groups
 
 `GET /api/groups`
-
-!!! warning
-
-    The search endpoint is only accessible to authenticated users. The API
-    endpoint is limited to only 10 results and pagination is not
-    allowed.
 
 **Parameters**
 
