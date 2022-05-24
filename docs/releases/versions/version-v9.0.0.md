@@ -237,7 +237,7 @@ to a community:
 The REST API is currently limited to search, but will be extended in the future
 to also support creation and management of users and groups.
 
-See [REST API documentation]() TODO.
+See [REST API documentation](../../reference/rest_api_users.md).
 
 **Backend changes**
 
