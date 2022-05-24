@@ -22,8 +22,8 @@ Following is an overview of future end of life (EOL) dates for currently maintai
 
 | Release    | Earliest EOL Date | Maintained until    |
 | ---------- | ----------------- | ------------------- |
-| v6.0.0 LTS | 2022-08-05        | next LTS + 6 months |
-| v8.0.0 STS | 2022-04-15        | v9.0.0              |
+| v6.0.0 LTS |                   | 2022-12-31          |
+| v9.0.0 LTS | 2023-05-24        | next LTS + 6 months |
 
 ### End of life releases
 
@@ -31,6 +31,7 @@ The following releases have reached end of life:
 
 | Release | EOL Date   |
 | ------- | ---------- |
+| v8.0.0  | 2022-06-01 |
 | v7.0.0  | 2022-03-03 |
 | v5.0.0  | 2021-08-05 |
 | v4.0.0  | 2021-07-23 |
