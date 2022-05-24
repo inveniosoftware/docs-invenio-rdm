@@ -15,14 +15,20 @@ The content of the file is as follows:
 
 ```yaml
 #list of users:
--  email: <string>
-   active: <bool>
-   password: <string>
-   roles: <array of strings>
-   allow: <array of strings>
+- email: <string>
+  username: <string>
+  full_name: <string>
+  affiliations: <string>
+  active: <bool>
+  password: <string>
+  roles: <array of strings>
+  allow: <array of strings>
 ```
 
 - `email` : Email of the user.
+- `username` : Username of the user (optional).
+- `full_name`: Name of the user (optional).
+- `affiliations` : Affiliations of the user (optional).
 - `active` : Is the user active or not.
 - `password` : Their password. If empty, a random one is generated.
 - `roles` : Array of roles the user has. The roles must already be present in the DB.
@@ -61,4 +67,22 @@ user = current_datastore.get_user("admin@inveniosoftware.org")
 user.password = hash_password("my new psw")
 current_datastore.activate_user(user)
 db.session.commit()
+```
+
+## Confirm user
+
+Only confirmed accounts can be logged in. To confirm an account programmatically, create a new shell using `pipenv run invenio shell` and
+run:
+
+```python
+from flask_security.confirmable import confirm_user
+from invenio_accounts.proxies import current_datastore
+from invenio_db import db
+from invenio_users_resources.services.users.tasks import reindex_user
+
+user = current_datastore.get_user("admin@inveniosoftware.org")
+confirm_user(user)
+db.session.commit()
+reindex_user(user.id)
+
 ```
