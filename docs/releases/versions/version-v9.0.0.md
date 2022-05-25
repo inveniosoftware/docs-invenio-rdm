@@ -61,7 +61,8 @@ multiple members to a community. Members can be either people or groups:
 ![Community members](img/../v9.0/community-members.png)
 
 It's possible to disable support for group members via the ``COMMUNITIES_GROUPS_ENABLED``
-feature flag.
+feature flag. See the [groups](https://inveniordm.docs.cern.ch/customize/authentication/#groups)
+section to know how to integrate groups in your instance.
 
 #### Roles
 
