@@ -116,6 +116,8 @@ owned by both the submitter and the community:
 
 ![Community review](v9.0/deposit-review2.png)
 
+See also the [Reviews REST API documentation](../../reference/rest_api_reviews.md).
+
 #### Backend
 
 You may have noticed that both invitations and reviews look similar and enable

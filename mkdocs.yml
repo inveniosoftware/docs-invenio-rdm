@@ -122,6 +122,7 @@ nav:
       - Members: 'reference/rest_api_members.md'
       - Requests: 'reference/rest_api_requests.md'
       - Users: 'reference/rest_api_users.md'
+      - Reviews: 'reference/rest_api_reviews.md'
       - Vocabularies: 'reference/rest_api_vocabularies.md'
       - OAI-PMH Sets: 'reference/rest_api_oaipmh_sets.md'
   - Releases:
