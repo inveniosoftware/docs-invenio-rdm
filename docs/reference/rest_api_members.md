@@ -8,7 +8,7 @@ The members API allows you to manage members of a community.
     changing requests (``POST``, ``PUT`` or ``DELETE``) does not return any
     results (i.e. 204 HTTP response code). You must issue a ``GET`` request to
     retrieve the updated object. Changes are applied asynchronously so you may
-    get outdated information if you query right after an update. Changes a
+    get outdated information if you query right after an update. Changes are
     normally applied within seconds.
 
 The following general restrictions apply to the member API:
