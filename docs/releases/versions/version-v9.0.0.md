@@ -273,6 +273,8 @@ You could for instance decide to load CrossRef Funder Registry or ROR into the
 funder vocabulary, and the awards vocabulary could be loaded from the OpenAIRE
 grants database.
 
+See the [Funder and Award vocabularies documentation](../../customize/vocabularies/funding.md) for further details.
+
 ### User Experience (UX) improvements
 
 We have made a number of smaller UX improvements.
