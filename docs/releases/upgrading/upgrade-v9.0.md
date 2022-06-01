@@ -2,13 +2,17 @@
 
 ## Prerequisites
 
-The steps listed in this article require an existing local installation of InvenioRDM 8.0, please make sure that this is given!
+The steps listed in this article require an existing local installation of InvenioRDM v8.0, please make sure that this is given!
 
 If unsure, run `invenio-cli install` from inside the instance directory before executing the listed steps.
 
 !!! warning "Backup"
 
     Always backup your database and files before you try to perform an upgrade.
+
+!!! info "Older versions"
+
+    In case you have an InvenioRDM installation older than v8.0, you can gradually upgrade using the existing instructions to v8.0 and afterwards continue from here.
 
 ## Upgrade Steps
 
@@ -18,14 +22,14 @@ If unsure, run `invenio-cli install` from inside the instance directory before e
 
 ### Installing the Latest Versions
 
-Clean-up some old packages and bump the InvenioRDM version:
+Clean-up previous versions' Python dependencies and bump the InvenioRDM version:
 
 ```bash
 # Uninstall modules that were forked/removed and might cause namespace issues
 pipenv run pip uninstall -y invenio-iiif flask-security-invenio flask-security flask-kvsession flask-kvsession-invenio
 
 # Upgrade to InvenioRDM v9
-invenio-cli packages update 9.0.1
+invenio-cli packages update 9.0.2
 ```
 
 These commands should take care of locking the dependencies for v9 and installing them.
@@ -42,7 +46,7 @@ SECURITY_PASSWORD_SINGLE_HASH = ['pbkdf2_sha512']
 
 ### Update styling
 
-Because of a refactoring to make styling and theming easier, you need to update the following files:
+Due to theme refactoring done in order to facilitate the theme customisation, you need to update the following files:
 
 `{{project_shortname}}/assets/less/site/globals/site.overrides`
 
@@ -78,6 +82,8 @@ Because of a refactoring to make styling and theming easier, you need to update 
 + @import (multiple) "themes/rdm/theme.less";
 ```
 
+Please take into account the changes made in the theming, including variable names and overall theme re-structurisation. If you had any customisations done based on the old structure, your styling might need to be updated.
+
 You can afterwards build the instance assets:
 
 ```bash
@@ -86,14 +92,15 @@ invenio-cli assets build
 
 ### Data Migration
 
-You first need to first fix an issue with the database versioning table:
+Due to an inconsistency in the database versioning table, you should start the data migration with:
 
 ```bash
 # Change entry in alembic versions table
 pipenv run invenio shell -c "from invenio_db import db; db.session.execute(\"UPDATE alembic_version SET version_num ='f701a32e6fbe' WHERE version_num='f261e5ee8743'\"); db.session.commit()"
 ```
 
-Now you can run the database schema upgrade, add new fixtures and perform the records data migration:
+Now you can run the database schema upgrade, add new fixtures, and perform the records data migration:
+
 ```bash
 # Perform the database migration
 pipenv run invenio alembic upgrade
@@ -107,11 +114,14 @@ pipenv run invenio shell $(find $(pipenv --venv)/lib/*/site-packages/invenio_app
 
 ### Elasticsearch
 
-The last required step is the migration of Elasticsearch indices, to add all the new communities features.
+The last required step is the migration of Elasticsearch indices:
 
 ```bash
-pipenv run invenio index delete "communitymembers-*" --yes-i-know
-pipenv run invenio index delete "request_events-*" --yes-i-know
+# If you're using an index prefix for your Elasticsearch cluster, you'll have to set it
+INDEX_PREFIX=""
+
+pipenv run invenio index delete "${INDEX_PREFIX}communitymembers-*" --yes-i-know
+pipenv run invenio index delete "${INDEX_PREFIX}request_events-*" --yes-i-know
 pipenv run invenio index destroy --yes-i-know
 pipenv run invenio index init
 pipenv run invenio rdm-records rebuild-index
