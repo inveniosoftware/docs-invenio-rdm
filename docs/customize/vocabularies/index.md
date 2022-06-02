@@ -62,7 +62,7 @@ OR
 - `<vocabulary type identifier>` : The vocabulary identifier of the vocabulary you want to override.
 - `pid-type` : The persistent identifier type id (refer to the defaults for values).
 - `data-file` : The file path (relative to `vocabularies.yaml`) where the matching data file resides.
-- `schemes.id` : The scheme unique identifier typically the official acronym (is displayed).
+- `schemes.id` : The scheme unique identifier; typically the official acronym (is displayed).
 - `schemes.name` : The full scheme name.
 - `schemes.uri` : The URI where the scheme is defined.
 - `schemes.data-file` : The file path (relative to `vocabularies.yaml`) where the matching scheme data file resides.
