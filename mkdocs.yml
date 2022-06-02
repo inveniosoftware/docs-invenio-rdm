@@ -57,6 +57,7 @@ nav:
       - Change facets/sorting: 'customize/search.md'
     - Vocabularies:
       - Overview: 'customize/vocabularies/index.md'
+      - Resource types: 'customize/vocabularies/resource_types.md'
       - Affiliations: 'customize/vocabularies/affiliations.md'
       - Names: 'customize/vocabularies/names.md'
       - Funding: 'customize/vocabularies/funding.md'
