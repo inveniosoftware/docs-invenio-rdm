@@ -6,31 +6,31 @@
 
 **Parameters**
 
-| Name       | Type   | Location | Description                                                  |
-| ---------- | ------ | -------- | ------------------------------------------------------------ |
-| `accept`   | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
-| `access`   | object | body     | [Access](#community-access) of the community. |
-| `id`       | string | body     | Required, url-compatible, max 100 char. The id of the community that will be used in the community's URL. |                                                  |
-| `metadata` | object | body     | [Metadata](#community-metadata) of the community. |
+| Name       | Type   | Location | Description                                                                                                       |
+|------------|--------|----------|-------------------------------------------------------------------------------------------------------------------|
+| `accept`   | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json`                                        |
+| `access`   | object | body     | [Access](#community-access) of the community.                                                                     |
+| `slug`     | string | body     | Required, url-compatible, max 100 char. The identifier of the community that will be used in the community's URL. |                                                  |
+| `metadata` | object | body     | [Metadata](#community-metadata) of the community.                                                                 |
 
 ### Community access
 
-| Name              | Type   | Location | Description                                                   |
-| ----------        | ------ | -------- | ------------------------------------------------------------- |
-| `visibility`      | string | body     | Required, one of `"public"` or `"restricted"`. Visible by the public or restricted to those who have access. |
-| `member_policy`   | string | body     | Required, one of `"open"` or `"closed"`. Can people ask to be part of the community (open) or not (closed)? |
-| `record_policy`   | string | body     | Required, one of `"open"` or `"closed"` or `"restricted"`. Can records be submitted to the community (open) or not (closed)? |
-| `owned_by`        | array  | body     | Array of Objects of the form: `{"user": <user_id> }`. Community owners (admins). |
+| Name            | Type   | Location | Description                                                                                                                  |
+|-----------------|--------|----------|------------------------------------------------------------------------------------------------------------------------------|
+| `visibility`    | string | body     | Required, one of `"public"` or `"restricted"`. Visible by the public or restricted to those who have access.                 |
+| `member_policy` | string | body     | Required, one of `"open"` or `"closed"`. Can people ask to be part of the community (open) or not (closed)?                  |
+| `record_policy` | string | body     | Required, one of `"open"` or `"closed"` or `"restricted"`. Can records be submitted to the community (open) or not (closed)? |
+| `owned_by`      | array  | body     | Array of Objects of the form: `{"user": <user_id> }`. Community owners (admins).                                             |
 
 ### Community metadata
 
-| Name              | Type   | Location | Description                                                   |
-| ----------        | ------ | -------- | ------------------------------------------------------------- |
-| `title`           | string | body     | Required, max 250 char. Human readable title of the community. |
-| `description`     | string | body     | Max 2000 char. Short description of the community. |
-| `curation_policy` | string | body     | Max 2000 char, html allowed. Description of how records are curated for this community. |
-| `type`            | string | body     | One of `"organization"` or `"event"` or `"topic"` or `"project"`. What the community is centered around. |
-| `website`         | string | body     | URL. URL to external website. |
+| Name              | Type   | Location | Description                                                                                                       |
+|-------------------|--------|----------|-------------------------------------------------------------------------------------------------------------------|
+| `title`           | string | body     | Required, max 250 char. Human readable title of the community.                                                    |
+| `description`     | string | body     | Max 2000 char. Short description of the community.                                                                |
+| `curation_policy` | string | body     | Max 2000 char, html allowed. Description of how records are curated for this community.                           |
+| `type`            | object | body     | Object with an id and optionally a title, in the form `{"id": "event", "title: { "en": "example_title"}}`         |
+| `website`         | string | body     | URL. URL to external website.                                                                                     |
 | `organizations`   | array  | body     | Array of Objects of the form: `{"id": <ROR id>}` or `{"name": <string>}`. Organizations related to the community. |
 
 
@@ -41,23 +41,25 @@ POST /api/communities HTTP/1.1
 Content-Type: application/json
 
 {
-  "access": {
-    "visibility": "public",
-    "member_policy": "open",
-    "record_policy": "open"
-  },
-  "id": "my_community_id",
-  "metadata": {
-    "title": "My Community",
-    "description": "This is an example Community.",
-    "type": "event",
-    "curation_policy": "This is the kind of records we accept.",
-    "page": "Information for my community.",
-    "website": "https://www.my_community.org",
-    "organizations": [{
-      "name": "CERN",
-    }]
-  }
+    "access": {
+            "visibility": "public",
+            "member_policy": "open",
+            "record_policy": "open"
+            },
+    "slug": "my_community_identifier",
+    "metadata": {
+            "title": "My Community",
+            "description": "This is an example Community.",
+            "type": {
+                "id": "event"
+            },
+            "curation_policy": "This is the kind of records we accept.",
+            "page": "Information for my community.",
+            "website": "https://inveniosoftware.org/",
+            "organizations": [{
+                    "name": "My Org"
+            }]
+    }
 }
 ```
 
@@ -80,19 +82,29 @@ Content-Type: application/json
   },
   "created": "2020-11-27 10:52:23.945755",
   "updated": "2020-11-27 10:52:23.945755",
-  "id": "my_community_id",
+  "slug": "my_community_identifier",
+  "id": "399a3cdc-d2ba-4f63-8b3a-9c2c977a5dd3",
   "revision_id": 1,
   "links": {
-    "self": "{scheme+hostname}/api/communities/my_community_id",
-    "self_html": "{scheme+hostname}/communities/my_community_id"
+    "self": "{scheme+hostname}/api/communities/{community_id}",
+    "self_html": "{scheme+hostname}/communities/{community_slug}",
+    "settings_html": "{scheme+hostname}/communities/{community_slug}/settings",
+    "logo": "{scheme+hostname}/communities/{community_id}/logo",
+    "rename": "{scheme+hostname}/communities/{community_id}",
+    "members": "{scheme+hostname}/communities/{community_id}/members",
+    "public_members": "{scheme+hostname}/communities/{community_id}/members/public",
+    "invitations": "{scheme+hostname}/communities/{community_id}/invitations",
+    "requests": "{scheme+hostname}/communities/{community_id}/requests"
   },
   "metadata": {
     "title": "My Community",
     "description": "This is an example Community.",
-    "type": "event",
+    "type": {
+        "id": "event"
+    },
     "curation_policy": "This is the kind of records we accept.",
     "page": "Information for my community.",
-    "website": "https://www.my_community.org",
+    "website": "https://inveniosoftware.org/",
     "organizations": [{
       "name": "CERN",
     }]
@@ -102,13 +114,13 @@ Content-Type: application/json
 
 ### Update a Community
 
-`PUT /api/communities/<comid>`
+`PUT /api/communities/<com_slug>`
 
 **Parameters**
 
-| Name       | Type   | Location | Description                                                  |
-| ---------- | ------ | -------- | ------------------------------------------------------------ |
-| `comid`       | string | path     | Identifier of the community, e.g.  `my_community`                |
+| Name       | Type   | Location | Description                                                                |
+|------------|--------|----------|----------------------------------------------------------------------------|
+| `com_slug` | string | path     | Identifier of the community, e.g.  `my_community`                          |
 | `accept`   | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
 
 **Request**
@@ -123,14 +135,16 @@ Content-Type: application/json
     "member_policy": "open",
     "record_policy": "open"
   },
-  "id": "my_community_id",
+  "slug": "my_community_identifier",
   "metadata": {
     "title": "My Updated Community",
     "description": "This is an example Community.",
-    "type": "event",
+    "type": {
+        "id": "event"
+    },
     "curation_policy": "This is the kind of records we accept.",
     "page": "Information for my community.",
-    "website": "https://www.my_community.org",
+    "website": "https://inveniosoftware.org/",
     "organizations": [{
       "name": "CERN",
     }]
@@ -148,30 +162,35 @@ Content-Type: application/json
   "access": {
     "visibility": "public",
     "member_policy": "open",
-    "record_policy": "open",
-    "owned_by": [
-      {
-          "user": {user-id}
-      }
-    ]
+    "record_policy": "open"
   },
   "created": "2020-11-27 10:52:23.945755",
   "updated": "2020-11-27 10:55:23.945868",
-  "id": "my_community_id",
+  "slug": "my_community_identifier",
+  "id": "399a3cdc-d2ba-4f63-8b3a-9c2c977a5dd3",
   "revision_id": 2,
   "links": {
-    "self": "{scheme+hostname}/api/communities/my_community_id",
-    "self_html": "{scheme+hostname}/communities/my_community_id"
+    "self": "{scheme+hostname}/api/communities/{community_id}",
+    "self_html": "{scheme+hostname}/communities/{community_slug}",
+    "settings_html": "{scheme+hostname}/communities/{community_slug}/settings",
+    "logo": "{scheme+hostname}/communities/{community_id}/logo",
+    "rename": "{scheme+hostname}/communities/{community_id}",
+    "members": "{scheme+hostname}/communities/{community_id}/members",
+    "public_members": "{scheme+hostname}/communities/{community_id}/members/public",
+    "invitations": "{scheme+hostname}/communities/{community_id}/invitations",
+    "requests": "{scheme+hostname}/communities/{community_id}/requests"
   },
   "metadata": {
     "title": "My Updated Community",
     "description": "This is an example Community.",
-    "type": "event",
+    "type": {
+        "id": "event"
+    },
     "curation_policy": "This is the kind of records we accept.",
     "page": "Information for my community.",
-    "website": "https://www.my_community.org",
+    "website": "https://inveniosoftware.org/",
     "organizations": [{
-      "name": "CERN",
+      "name": "CERN"
     }]
   }
 }
@@ -179,13 +198,13 @@ Content-Type: application/json
 
 ### Delete a Community
 
-`DELETE /api/communities/<comid>`
+`DELETE /api/communities/<com_slug>`
 
 **Parameters**
 
-| Name       | Type   | Location | Description                                                  |
-| ---------- | ------ | -------- | ------------------------------------------------------------ |
-| `comid`       | string | path     | Identifier of the community, e.g.  `my_community`                |
+| Name       | Type   | Location | Description                                                                |
+|------------|--------|----------|----------------------------------------------------------------------------|
+| `com_slug` | string | path     | Identifier of the community, e.g.  `my_community`                          |
 | `accept`   | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
 
 **Request**
@@ -204,19 +223,19 @@ HTTP/1.1 204 No Content
 
 ### Get a Community
 
-`GET /api/communities/<comid>`
+`GET /api/communities/<com_id>`
 
  **Parameters**
 
-| Name       | Type   | Location | Description                                                  |
-| ---------- | ------ | -------- | ------------------------------------------------------------ |
-| `comid`    | string | path     | Identifier of the community, e.g.  `my_community`                |
-| `accept`   | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
+| Name     | Type   | Location | Description                                                                |
+|----------|--------|----------|----------------------------------------------------------------------------|
+| `com_id` | string | path     | UUID of the community e.g.  `399a3cdc-d2ba-4f63-8b3a-9c2c977a5dd3`         |
+| `accept` | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
 
 **Request**
 
 ```http
-GET /api/communities/<comid> HTTP/1.1
+GET /api/communities/<com_id> HTTP/1.1
 Accept: application/json
 ```
 
@@ -229,30 +248,35 @@ Content-Type: application/json
   "access": {
     "visibility": "public",
     "member_policy": "open",
-    "record_policy": "open",
-    "owned_by": [
-      {
-          "user": {user-id}
-      }
-    ]
+    "record_policy": "open"
   },
   "created": "2020-11-27 10:52:23.945755",
-  "updated": "2020-11-27 10:52:23.945868",
-  "id": "my_community_id",
-  "revision_id": 1,
+  "updated": "2020-11-27 10:55:23.945868",
+  "slug": "my_community_identifier",
+  "id": "399a3cdc-d2ba-4f63-8b3a-9c2c977a5dd3",
+  "revision_id": 2,
   "links": {
-    "self": "{scheme+hostname}/api/communities/my_community_id",
-    "self_html": "{scheme+hostname}/communities/my_community_id"
+    "self": "{scheme+hostname}/api/communities/{community_id}",
+    "self_html": "{scheme+hostname}/communities/{community_slug}",
+    "settings_html": "{scheme+hostname}/communities/{community_slug}/settings",
+    "logo": "{scheme+hostname}/communities/{community_id}/logo",
+    "rename": "{scheme+hostname}/communities/{community_id}",
+    "members": "{scheme+hostname}/communities/{community_id}/members",
+    "public_members": "{scheme+hostname}/communities/{community_id}/members/public",
+    "invitations": "{scheme+hostname}/communities/{community_id}/invitations",
+    "requests": "{scheme+hostname}/communities/{community_id}/requests"
   },
   "metadata": {
-    "title": "My Community",
+    "title": "My Updated Community",
     "description": "This is an example Community.",
-    "type": "event",
+    "type": {
+        "id": "event"
+    },
     "curation_policy": "This is the kind of records we accept.",
     "page": "Information for my community.",
-    "website": "https://www.my_community.org",
+    "website": "https://inveniosoftware.org/",
     "organizations": [{
-      "name": "CERN",
+      "name": "CERN"
     }]
   }
 }
@@ -265,14 +289,14 @@ Content-Type: application/json
 
 **Parameters**
 
-| Name           | Type    | Location | Description                                                  |
-| -------------- | ------- | -------- | ------------------------------------------------------------ |
-| `q`            | string  | query    | Search query used to filter results based on [ElasticSearch's query string syntax](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax). |
-| `sort`         | string  | query    | Sort search results (default: newest).                                         |
-| `size`         | integer | query    | Specify number of items in the results page (default: 10).   |
-| `page`         | integer | query    | Specify the page of results.                                 |
-| `type`         | string  | query    | Specify community type as one of organization, event, topic or project. |
-| `accept`       | string  | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
+| Name     | Type    | Location | Description                                                                                                                                                                                                |
+|----------|---------|----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `q`      | string  | query    | Search query used to filter results based on [ElasticSearch's query string syntax](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax). |
+| `sort`   | string  | query    | Sort search results (default: newest).                                                                                                                                                                     |
+| `size`   | integer | query    | Specify number of items in the results page (default: 10).                                                                                                                                                 |
+| `page`   | integer | query    | Specify the page of results.                                                                                                                                                                               |
+| `type`   | string  | query    | Specify community type as one of organization, event, topic or project.                                                                                                                                    |
+| `accept` | string  | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json`                                                                                                                                 |
 
 
 **Request**
@@ -306,22 +330,39 @@ Content-Type: application/json
   "hits": {
     "hits": [{
       "access": {
-        "owned_by": [
-          {
-            "user": {user-id}
-          }
-        ],
-        "visibility": "public"
+        "visibility": "public",
+        "member_policy": "open",
+        "record_policy": "open"
       },
-      "created": "2021-04-23T14:02:53.385481+00:00",
-      "id": "my_comm_id",
+      "created": "2020-11-27 10:52:23.945755",
+      "updated": "2020-11-27 10:55:23.945868",
+      "slug": "my_community_identifier",
+      "id": "399a3cdc-d2ba-4f63-8b3a-9c2c977a5dd3",
+      "revision_id": 2,
       "links": {
-        "self": "{scheme+hostname}/api/communities/my_comm_id",
-        "self_html": "{scheme+hostname}/communities/my_comm_id"
+        "self": "{scheme+hostname}/api/communities/{community_id}",
+        "self_html": "{scheme+hostname}/communities/{community_slug}",
+        "settings_html": "{scheme+hostname}/communities/{community_slug}/settings",
+        "logo": "{scheme+hostname}/communities/{community_id}/logo",
+        "rename": "{scheme+hostname}/communities/{community_id}",
+        "members": "{scheme+hostname}/communities/{community_id}/members",
+        "public_members": "{scheme+hostname}/communities/{community_id}/members/public",
+        "invitations": "{scheme+hostname}/communities/{community_id}/invitations",
+        "requests": "{scheme+hostname}/communities/{community_id}/requests"
       },
-      "metadata": {"title": "Title", "type": "project"},
-      "revision_id": 1,
-      "updated": "2021-04-23T14:02:53.398976+00:00"
+      "metadata": {
+        "title": "My Updated Community",
+        "description": "This is an example Community.",
+        "type": {
+            "id": "event"
+        },
+        "curation_policy": "This is the kind of records we accept.",
+        "page": "Information for my community.",
+        "website": "https://inveniosoftware.org/",
+        "organizations": [{
+          "name": "CERN"
+        }]
+      }
     },
     {
       ...
@@ -348,14 +389,14 @@ Same as `GET /api/communities` but with the authenticated user's communities in 
 
 **Parameters**
 
-| Name           | Type    | Location | Description                                                  |
-| -------------- | ------- | -------- | ------------------------------------------------------------ |
-| `q`            | string  | query    | Search query used to filter results based on [ElasticSearch's query string syntax](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax). |
-| `sort`         | string  | query    | Sort search results (default: newest).                                         |
-| `size`         | integer | query    | Specify number of items in the results page (default: 10).   |
-| `page`         | integer | query    | Specify the page of results.                                 |
-| `type`         | string  | query    | Specify community type as one of organization, event, topic or project. |
-| `accept`       | string  | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
+| Name     | Type    | Location | Description                                                                                                                                                                                                |
+|----------|---------|----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `q`      | string  | query    | Search query used to filter results based on [ElasticSearch's query string syntax](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax). |
+| `sort`   | string  | query    | Sort search results (default: newest).                                                                                                                                                                     |
+| `size`   | integer | query    | Specify number of items in the results page (default: 10).                                                                                                                                                 |
+| `page`   | integer | query    | Specify the page of results.                                                                                                                                                                               |
+| `type`   | string  | query    | Specify community type as one of organization, event, topic or project.                                                                                                                                    |
+| `accept` | string  | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json`                                                                                                                                 |
 
 
 **Request**
@@ -382,13 +423,14 @@ Content-Type: application/json
 
 ### Rename a Community
 
-`POST /api/communities/<comid>/rename`
+`POST /api/communities/<com_id>/rename`
 
 **Parameters**
 
-| Name       | Type   | Location | Description                                                  |
-| ---------- | ------ | -------- | ------------------------------------------------------------ |
-| `accept`   | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
+| Name     | Type   | Location | Description                                                                |
+|----------|--------|----------|----------------------------------------------------------------------------|
+| `accept` | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
+ | `com_id` | string | path     | UUID of the community e.g.  `399a3cdc-d2ba-4f63-8b3a-9c2c977a5dd3`         |
 
 **Request**
 
@@ -402,14 +444,14 @@ Content-Type: application/json
     "member_policy": "open",
     "record_policy": "open"
   },
-  "id": "my_new_community_id",
+  "slug": "my_new_community_identifier",
   "metadata": {
     "title": "My Community",
     "description": "This is an example Community.",
     "type": "event",
     "curation_policy": "This is the kind of records we accept.",
     "page": "Information for my community.",
-    "website": "https://www.my_community.org",
+    "website": "https://inveniosoftware.org/",
     "organizations": [{
       "name": "CERN",
     }]
@@ -436,11 +478,19 @@ Content-Type: application/json
   },
   "created": "2020-11-27 10:52:23.945755",
   "updated": "2020-11-27 10:52:23.945755",
-  "id": "my_new_community_id",
+  "slug": "my_new_community_identifier",
+  "id": "399a3cdc-d2ba-4f63-8b3a-9c2c977a5dd3",
   "revision_id": 2,
   "links": {
-    "self": "{scheme+hostname}/api/communities/my_new_community_id",
-    "self_html": "{scheme+hostname}/communities/my_new_community_id"
+    "self": "{scheme+hostname}/api/communities/{community_id}",
+    "self_html": "{scheme+hostname}/communities/{community_slug}",
+    "settings_html": "{scheme+hostname}/communities/{community_slug}/settings",
+    "logo": "{scheme+hostname}/communities/{community_id}/logo",
+    "rename": "{scheme+hostname}/communities/{community_id}",
+    "members": "{scheme+hostname}/communities/{community_id}/members",
+    "public_members": "{scheme+hostname}/communities/{community_id}/members/public",
+    "invitations": "{scheme+hostname}/communities/{community_id}/invitations",
+    "requests": "{scheme+hostname}/communities/{community_id}/requests"
   },
   "metadata": {
     "title": "My Community",
@@ -448,7 +498,7 @@ Content-Type: application/json
     "type": "event",
     "curation_policy": "This is the kind of records we accept.",
     "page": "Information for my community.",
-    "website": "https://www.my_community.org",
+    "website": "https://inveniosoftware.org/",
     "organizations": [{
       "name": "CERN",
     }]
@@ -458,20 +508,20 @@ Content-Type: application/json
 
 ### Update Community Logo
 
-`PUT api/communities/<comid>/logo`
+`PUT api/communities/<com_id>/logo`
 
 **Parameters**
 
-| Name             | Type    | Location | Description                                       |
-| ---------------- | ------- | -------- | ------------------------------------------------- |
-| `comid`          | string  | path     | Community name                                    |
-| `content-type`   | string  | header   | Should always be `application/octet-stream`.      |
-| `accept`         | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
+| Name           | Type   | Location | Description                                                                |
+|----------------|--------|----------|----------------------------------------------------------------------------|
+| `com_id`       | string | path     | UUID of the community e.g.  `399a3cdc-d2ba-4f63-8b3a-9c2c977a5dd3`         |
+| `content-type` | string | header   | Should always be `application/octet-stream`.                               |
+| `accept`       | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
 
 **Request**
 
 ```http
-PUT api/communities/<comid>/logo HTTP/1.1
+PUT api/communities/<com_id>/logo HTTP/1.1
 Content-Type: application/octet-stream
 
 <...file binary data...>
@@ -502,18 +552,18 @@ Content-Type: application/json
 
 ### Get Community Logo
 {scheme+hostname}
-`GET api/communities/<comid>/logo`
+`GET api/communities/<com_id>/logo`
 
 **Parameters**
 
-| Name             | Type    | Location | Description                                       |
-| ---------------- | ------- | -------- | ------------------------------------------------- |
-| `comid`          | string  | path     | Community name                                    |
+| Name     | Type   | Location | Description                                                        |
+|----------|--------|----------|--------------------------------------------------------------------|
+| `com_id` | string | path     | UUID of the community e.g.  `399a3cdc-d2ba-4f63-8b3a-9c2c977a5dd3` |
 
 **Request**
 
 ```http
-GET api/communities/<comid>/logo HTTP/1.1
+GET api/communities/<com_id>/logo HTTP/1.1
 
 ```
 
@@ -530,18 +580,18 @@ Content-Type: application/json
 
 ### Delete Community Logo
 
-`DELETE api/communities/<comid>/logo`
+`DELETE api/communities/<com_id>/logo`
 
 **Parameters**
 
-| Name             | Type    | Location | Description                                       |
-| ---------------- | ------- | -------- | ------------------------------------------------- |
-| `comid`          | string  | path     | Community name                                    |
+| Name     | Type   | Location | Description                                                        |
+|----------|--------|----------|--------------------------------------------------------------------|
+| `com_id` | string | path     | UUID of the community e.g.  `399a3cdc-d2ba-4f63-8b3a-9c2c977a5dd3` |
 
 **Request**
 
 ```http
-DELETE api/communities/<comid>/logo HTTP/1.1
+DELETE api/communities/<com_id>/logo HTTP/1.1
 
 ```
 
@@ -558,9 +608,9 @@ HTTP/1.1 204 No Content
 
 **Parameters**
 
-| Name       | Type   | Location | Description                                                  |
-| ---------- | ------ | -------- | ------------------------------------------------------------ |
-| `accept`   | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
+| Name     | Type   | Location | Description                                                                |
+|----------|--------|----------|----------------------------------------------------------------------------|
+| `accept` | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
 
 **Request**
 
@@ -570,7 +620,7 @@ Content-Type: application/json
 
 {
   "access": { },
-  "id": "comm_id",
+  "slug": "my_community_identifier",
   "metadata": { }
 }
 ```
@@ -584,17 +634,11 @@ Content-Type: application/json
 {
   "errors": [
     {
-      "field": "metadata",
+      "field": "metadata.title",
       "messages": [
         "Missing data for required field."
       ]
     },
-    {
-      "field": "access",
-      "messages": [
-        "Missing data for required field."
-      ]
-    }
   ],
  "message": "A validation error occurred.",
  "status": 400
