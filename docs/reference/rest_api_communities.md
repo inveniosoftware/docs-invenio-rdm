@@ -600,3 +600,264 @@ Content-Type: application/json
  "status": 400
 }
 ```
+
+
+## Featured Communities
+The goal of featured communities is to increase the level of awareness for a community. This could be due to special research output, because a community is new or any other reason a community should be put in the spotlight.
+
+!!! hint
+    Only public communities may be featured, as they can be accessed by everyone.
+    
+    Only the search is available to any user. Other endpoints require the `system_process` permission need.
+
+### Search Featured Communities
+
+`GET /api/communities/featured`
+
+**Parameters**
+
+| Name           | Type    | Location | Description                                                  |
+| -------------- | ------- | -------- | ------------------------------------------------------------ |
+| `q`            | string  | query    | Search query used to filter results based on [ElasticSearch's query string syntax](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax). |
+| `size`         | integer | query    | Specify number of items in the results page (default: 10).   |
+| `page`         | integer | query    | Specify the page of results.                                 |
+| `type`         | string  | query    | Specify community type as one of organization, event, topic or project. |
+| `accept`       | string  | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
+
+Only communities with a featured timestamp before the current time are retrieved.
+They are sorted by the begin of their latest featured timestamp (e.g. A is featured starting with 2022-06-01, B is featured starting with 2022-06-03 then the order will be [B, A]).
+
+**Request**
+
+```http
+GET /api/communities HTTP/1.1
+Accept: application/json
+```
+
+**Response**
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "hits": {
+    "hits": [
+      {
+        "created": "2022-06-03T10:04:14.837956+00:00",
+        "links": {
+          "self": "{scheme+hostname}/api/communities/21c0c843-c3c1-40df-9bcd-225b9a4f9021",
+          "self_html": "{scheme+hostname}/communities/c2-id",
+          "settings_html": "{scheme+hostname}/communities/c2-id/settings",
+          "logo": "{scheme+hostname}/api/communities/21c0c843-c3c1-40df-9bcd-225b9a4f9021/logo",
+          "rename": "{scheme+hostname}/api/communities/21c0c843-c3c1-40df-9bcd-225b9a4f9021/rename",
+          "members": "{scheme+hostname}/api/communities/21c0c843-c3c1-40df-9bcd-225b9a4f9021/members",
+          "public_members": "{scheme+hostname}/api/communities/21c0c843-c3c1-40df-9bcd-225b9a4f9021/members/public",
+          "invitations": "{scheme+hostname}/api/communities/21c0c843-c3c1-40df-9bcd-225b9a4f9021/invitations",
+          "requests": "{scheme+hostname}/api/communities/21c0c843-c3c1-40df-9bcd-225b9a4f9021/requests"
+        },
+        "metadata": {
+          "title": "My Community"
+        },
+        "id": "21c0c843-c3c1-40df-9bcd-225b9a4f9021",
+        "updated": "2022-06-03T10:04:14.852380+00:00",
+        "access": {
+          "member_policy": "open",
+          "record_policy": "open",
+          "visibility": "public"
+        },
+        "revision_id": 2,
+        "slug": "c2-id"
+      },
+      {
+        "created": "2022-06-03T10:04:14.659785+00:00",
+        "links": {
+          "self": "{scheme+hostname}/api/communities/9b44aa91-de2b-4551-97ff-8a9cb25e5752",
+          "self_html": "{scheme+hostname}/communities/1654243454-614428",
+          "settings_html": "{scheme+hostname}/communities/1654243454-614428/settings",
+          "logo": "{scheme+hostname}/api/communities/9b44aa91-de2b-4551-97ff-8a9cb25e5752/logo",
+          "rename": "{scheme+hostname}/api/communities/9b44aa91-de2b-4551-97ff-8a9cb25e5752/rename",
+          "members": "{scheme+hostname}/api/communities/9b44aa91-de2b-4551-97ff-8a9cb25e5752/members",
+          "public_members": "{scheme+hostname}/api/communities/9b44aa91-de2b-4551-97ff-8a9cb25e5752/members/public",
+          "invitations": "{scheme+hostname}/api/communities/9b44aa91-de2b-4551-97ff-8a9cb25e5752/invitations",
+          "requests": "{scheme+hostname}/api/communities/9b44aa91-de2b-4551-97ff-8a9cb25e5752/requests"
+        },
+        "metadata": {
+          "title": "My Community"
+        },
+        "id": "9b44aa91-de2b-4551-97ff-8a9cb25e5752",
+        "updated": "2022-06-03T10:04:14.685074+00:00",
+        "access": {
+          "member_policy": "open",
+          "record_policy": "open",
+          "visibility": "public"
+        },
+        "revision_id": 2,
+        "slug": "1654243454-614428"
+      }
+    ],
+    "total": 2
+  },
+  "aggregations": {
+    "type": {
+      "buckets": [],
+      "label": "Type"
+    },
+    "visibility": {
+      "buckets": [
+        {
+          "key": "public",
+          "doc_count": 2,
+          "label": "Public",
+          "is_selected": false
+        }
+      ],
+      "label": "Visibility"
+    }
+  },
+  "sortBy": "featured",
+  "links": {
+    "self": "{scheme+hostname}/api/communities/featured?page=1&size=25&sort=featured"
+  }
+}
+
+```
+### Create a Featured Community Entry
+
+`POST /api/communities/<community_id>/featured`
+
+**Parameters**
+
+| Name          | Type   | Location | Description                                                  |
+| ----------    | ------ | -------- | ------------------------------------------------------------ |
+| `accept`      | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json`                    |
+| `community_id`| string | path     | ID of the community.                                                                          |
+| `start_date`  | string | body     | Required, datetime in iso format. Community will be featured from this point in time onwards. |
+
+
+**Request**
+
+```http
+POST /api/communities/<community_id>/featured HTTP/1.1
+Content-Type: application/json
+
+{
+  "start_date": "2022-06-03 10:52:23.945755"
+}
+```
+
+**Response**
+
+```http
+HTTP/1.1 201 CREATED
+Content-Type: application/json
+
+{
+  "start_date": "2022-06-03 10:52:23.945755"
+  "id": 1
+}
+```
+
+### Get Featured Community Entries
+
+`GET /api/communities/<community_id>/featured`
+
+**Parameters**
+
+| Name          | Type   | Location | Description                                                  |
+| ----------    | ------ | -------- | ------------------------------------------------------------ |
+| `accept`      | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json`                  |
+| `community_id`| string | path     | ID of the community.                                                                        |
+
+
+**Request**
+
+```http
+GET /api/communities/<community_id>/featured HTTP/1.1
+```
+
+**Response**
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "hits": {
+    "hits": [
+      {
+        "start_date": "2022-06-03T10:32:42.207652",
+        "id": 8
+      },
+      {
+        "start_date": "2022-06-04T10:32:42.207662",
+        "id": 9
+      }
+    ],
+    "total": 2
+  }
+}
+```
+
+
+### Update a Featured Community Entry
+
+`PUT /api/communities/<community_id>/featured/<featured_entry_id>`
+
+**Parameters**
+
+| Name                | Type   | Location | Description                                                  |
+| ----------          | ------ | -------- | ------------------------------------------------------------ |
+| `accept`            | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json`              |
+| `community_id`      | string | path     | ID of the community.                                                                    |
+| `featured_entry_id` | string | path     | ID of the featured entry.                                                               |
+| `start_date`  | string | body     | Required, datetime in iso format. Community will be featured from this point in time onwards. |
+
+
+**Request**
+
+```http
+PUT /api/communities/<community_id>/featured/<featured_entry_id> HTTP/1.1
+Content-Type: application/json
+
+{
+  "start_date": "2022-06-03 10:52:23.945755"
+}
+```
+
+**Response**
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "start_date": "2022-06-03 10:52:23.945755"
+  "id": <featured_entry_id>
+}
+```
+
+### Delete a Featured Community Entry
+
+`DELETE /api/communities/<community_id>/featured/<featured_entry_id>`
+
+**Parameters**
+
+| Name                | Type   | Location | Description                                                  |
+| ----------          | ------ | -------- | ------------------------------------------------------------ |
+| `accept`            | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json`                  |
+| `community_id`      | string | path     | ID of the community.                                                                        |
+| `featured_entry_id` | string | path     | ID of the featured entry.                                                                   |
+
+
+**Request**
+
+```http
+DELETE /api/communities/<community_id>/featured/<featured_entry_id> HTTP/1.1
+```
+
+**Response**
+
+```http
+HTTP/1.1 204 No Content
+```
