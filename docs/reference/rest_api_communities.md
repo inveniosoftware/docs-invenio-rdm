@@ -46,16 +46,18 @@ Content-Type: application/json
     "member_policy": "open",
     "record_policy": "open"
   },
-  "id": "my_community_id",
+  "slug": "my_community_id",
   "metadata": {
     "title": "My Community",
     "description": "This is an example Community.",
-    "type": "event",
+    "type": {
+      "id": "event"
+    },
     "curation_policy": "This is the kind of records we accept.",
     "page": "Information for my community.",
-    "website": "https://www.my_community.org",
+    "website": "https://inveniosoftware.org/",
     "organizations": [{
-      "name": "CERN",
+      "name": "CERN"
     }]
   }
 }
@@ -123,16 +125,18 @@ Content-Type: application/json
     "member_policy": "open",
     "record_policy": "open"
   },
-  "id": "my_community_id",
+  "slug": "my_community_id",
   "metadata": {
     "title": "My Updated Community",
     "description": "This is an example Community.",
-    "type": "event",
+    "type": {
+      "id": "event"
+    },
     "curation_policy": "This is the kind of records we accept.",
     "page": "Information for my community.",
-    "website": "https://www.my_community.org",
+    "website": "https://inveniosoftware.org/",
     "organizations": [{
-      "name": "CERN",
+      "name": "CERN"
     }]
   }
 }
@@ -402,16 +406,18 @@ Content-Type: application/json
     "member_policy": "open",
     "record_policy": "open"
   },
-  "id": "my_new_community_id",
+  "slug": "my_new_community_id",
   "metadata": {
     "title": "My Community",
     "description": "This is an example Community.",
-    "type": "event",
+    "type": {
+      "id": "event"
+    },
     "curation_policy": "This is the kind of records we accept.",
     "page": "Information for my community.",
-    "website": "https://www.my_community.org",
+    "website": "https://inveniosoftware.org/",
     "organizations": [{
-      "name": "CERN",
+      "name": "CERN"
     }]
   }
 }
@@ -607,7 +613,7 @@ The goal of featured communities is to increase the level of awareness for a com
 
 !!! hint
     Only public communities may be featured, as they can be accessed by everyone.
-    
+
     Only the search is available to any user. Other endpoints require the `system_process` permission need.
 
 ### Search Featured Communities
