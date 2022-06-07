@@ -31,8 +31,8 @@ invenio-cli init rdm -c <version>
 
 Where ``<version>`` should be replaced with he version you want to install, e.g.:
 
-- LTS release (for production systems): ``v6.0``
-- STS release (for feature previews): ``v7.0``
+- LTS release (for production systems): ``v9.0``
+- STS release (for feature previews): ``v9.0``
 
 ``` console
 Initializing RDM application...
