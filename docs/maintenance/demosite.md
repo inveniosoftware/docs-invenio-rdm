@@ -6,10 +6,10 @@ The QA demo site is accessible at [https://inveniordm-qa.web.cern.ch](https://in
 ## Upgrade the instance
 
 Both QA and production infrastructure project (OpenShift) are located at
-[https://openshift.cern.ch](https://openshift.cern.ch):
+[https://paas.cern.ch](https://paas.cern.ch):
 
-* [inveniordm-qa](https://openshift.cern.ch/console/project/inveniordm-qa/)
-* [inveniordm](https://openshift.cern.ch/console/project/inveniordm/)
+* [inveniordm-qa](https://paas.cern.ch/console/project/inveniordm-qa/)
+* [inveniordm](https://paas.cern.ch/console/project/inveniordm/)
 * [Sentry Error tracking](https://inveniordm-sentry.web.cern.ch/sentry/demo-inveniordm). The QA environment tracks the errors of inveniordm-qa and the Prod environment those of the inveniordm site.
 
 The steps to upgrade any of the two instances to a newer version or release are the same.
@@ -63,7 +63,7 @@ the same steps with the `Terminal` provided in the OpenShift web UI.
 
 - Login in OpenShift and select the project:
 ```console
-oc login https://openshift.cern.ch
+oc login https://paas.cern.ch
 oc project inveniordm-qa
 ```
 - Select one of the web pods to connect to, for example `web-18-wlbqs`:
@@ -98,7 +98,7 @@ This will trigger a new docker image build, that will be pushed to the GitHub Do
 Once the GitHub action succeeds and the Docker image is ready to be deployed, you need to update
 the references to the images' tags on the OpenShift project.
 The easiest way to do it is manually on the web UI. For that go to the
-[inveniordm](https://openshift.cern.ch/console/project/inveniordm/) project on OpenShift, then
+[inveniordm](https://paas.cern.ch/console/project/inveniordm/) project on OpenShift, then
 *Applications -> Deployment -> Web -> Edit YAML*.
 
 ![Access web pods on OpenShift web UI](img/change_tag_1.png)
