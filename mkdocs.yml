@@ -127,6 +127,7 @@ nav:
       - Reviews: 'reference/rest_api_reviews.md'
       - Vocabularies: 'reference/rest_api_vocabularies.md'
       - Names: 'reference/rest_api_names.md'
+      - Funders: 'reference/rest_api_funders.md'
       - OAI-PMH Sets: 'reference/rest_api_oaipmh_sets.md'
   - Releases:
     - Overview: releases/index.md
