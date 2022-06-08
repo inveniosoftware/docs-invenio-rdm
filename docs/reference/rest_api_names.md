@@ -11,6 +11,7 @@ Query and retrieve entries from the **names** vocabulary.
 | Name     | Type   | Location | Description                          |
 | -------- | ------ | -------- | ------------------------------------ |
 | `q`      | string | query    | Search query used to filter results. |
+| `suggest` | string | query   | "Search as you type" query.          |
 | `accept` | string | header   | - `application/json`                 |
 
 **Query string syntax**
