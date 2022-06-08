@@ -127,4 +127,4 @@ Their search and get endpoints have the following shape:
 
 Their **Parameters** are the same. Their responses are similar but have fields dependent on the specific vocabulary.
 
-Supported `type`s so far are: `affiliations` and `subjects`.
+Supported `type`s so far are: `affiliations`, `names`, `funders`, `awards`, and `subjects`.
