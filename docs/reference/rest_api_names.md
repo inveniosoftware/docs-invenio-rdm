@@ -1,6 +1,6 @@
 # Names
 
-Query and retrieve entries from the **names** vocabulary.
+Query and retrieve entries from the [**names** vocabulary](../customize/vocabularies/names.md).
 
 ### Search names
 
