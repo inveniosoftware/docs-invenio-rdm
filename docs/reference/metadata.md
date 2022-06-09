@@ -913,45 +913,47 @@ The ``funder`` subfields:
 
 | Field | Cardinality |   Description   |
 |:-----:|:-----------:|:----------------|
-| ``name`` | (1) | The name of the funder. |
-| ``scheme`` | (0-1, CV) | The scheme of the identifier. |
-| ``identifier`` | (0-1) | A unique identifier for the funder. |
+| ``id`` | (0-1, CV) | The funder id from the controlled vocabulary. |
+| ``name`` | (0-1) | The name of the funder. |
 
-Supported schemes:
-
-- CrossRef Funder ID
-- GRID
-- ISNI
-- ROR
-- Wikidata
-
-Note that those are passed lowercased e.g., GRID is ``grid``.
+One of ``id`` or ``name`` must be given. It's recommended to use ``name`` if there is no matching ``id`` in the controlled vocabulary.
 
 The ``award`` subfields:
 
 | Field | Cardinality |   Description   |
 |:-----:|:-----------:|:----------------|
+| ``id`` | (0-1, CV) | The award id from the controlled vocabulary. |
 | ``title`` | (1) | The title of the award |
 | ``number`` | (1) | The code assigned by the funder to a sponsored award (grant). |
-| ``scheme`` | (0-1) | The scheme of the identifier. |
-| ``identifier`` | (0-1) | A unique identifier for the award. |
+| ``identifiers`` | (0-N) | Identifiers for the award. |
+
+One of ``id``, or ``title`` and ``number`` must be given. It's recommended to use ``title`` and ``number`` if there is no matching ``id`` in the controlled vocabulary.
 
 Example:
 
 ```json
 {
   "funding": [{
-      "funder": {
-        "name": "European Commission",
-        "identifier": "00k4n6c32",
-        "scheme": "ror"
+    "funder": {
+      "id": "00k4n6c32"
+    },
+    "award": {
+      "id": "00k4n6c32::246686"
+    }
+  }, {
+    "funder": {
+      "id": "00k4n6c32"
+    },
+    "award": {
+      "title": {
+        "en": "Research on Experimental Physics"
       },
-      "award": {
-        "title": "OpenAIRE",
-        "number": "246686",
-        "identifier": ".../246686",
-        "scheme": "openaire"
-      }
+      "number": "EP-123456",
+      "identifiers": [{
+        "scheme": "url",
+        "identifier": "https://experimental-physics.eu"
+      }]
+    }
   }]
 }
 ```
