@@ -40,7 +40,7 @@ A _Name_ record contains:
 
 The Names vocabulary uses the new DataStreams API for processing vocabularies.
 You can find more information about this new API in
-[RFC 0053](TODOhttps://github.com/inveniosoftware/rfcs/pull/53).
+[RFC 0053](https://github.com/inveniosoftware/rfcs/pull/53).
 
 !!! warning "Use of the `vocabularies` command"
     Name records will not be managed by the usual
