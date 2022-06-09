@@ -59,14 +59,14 @@ file, lets call it `vocabularies-future.yaml`:
 
 ```yaml
 names:
-  reader:
-    type: yaml
-    args:
-      origin: "./app_data/names.yaml"
+  readers:
+    - type: yaml
+      args:
+        origin: "./app_data/names.yaml"
   writers:
     - type: service
       args:
-        service_or_name: rdm-names
+        service_or_name: names
         identity: system_identity
 ```
 

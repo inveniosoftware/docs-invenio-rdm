@@ -58,8 +58,8 @@ In case you want to import custom funder records, you can use a DataStream defin
 
 ```yaml
 names:
-  reader:
-    type: yaml
+  readers:
+    - type: yaml
   writers:
     - type: funders-service
       args:
@@ -145,8 +145,8 @@ In case you want to import custom award records, you can use a DataStream defini
 
 ```yaml
 names:
-  reader:
-    type: yaml
+  readers:
+    - type: yaml
   writers:
     - type: awards-service
       args:
