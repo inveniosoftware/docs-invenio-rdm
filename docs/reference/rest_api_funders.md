@@ -1,6 +1,6 @@
 # Funders
 
-Query and retrieve entries from the **funders** vocabulary.
+Query and retrieve entries from the [**funders** vocabulary](../customize/vocabularies/funding.md).
 
 ### Search funders
 
