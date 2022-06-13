@@ -133,10 +133,14 @@ You can fetch the latest `project.tar` [OepnAIRE Research Graph dump](https://do
     Note that the import process is done synchronously and the ROR dataset is
     relatively large. Therefore, this operation can take a long time.
 
+!!! info "Sample dataset"
+    If you need a smaller sample of the dataset to test things out during
+    development, you can find a subset of [~10k awards here](https://github.com/inveniosoftware/demo-inveniordm/blob/master/demo-inveniordm/app_data/vocabularies/awards_sample.tar).
+
 ```bash
 invenio vocabularies import \
   --vocabulary awards \
-  --origin "/path/to/ror-data-dump.json.zip"
+  --origin "/path/to/project.tar"
 ```
 
 #### Custom dataset import
