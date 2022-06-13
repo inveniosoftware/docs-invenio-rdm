@@ -46,7 +46,7 @@ invenio-cli init rdm -c v9.0
 
 You will be asked several questions. If in doubt, choose the default.
 
-#### 4. [Build, setup and run](build-setup-run.md)
+#### [4. Build, setup and run](build-setup-run.md)
 
 You can run the main InvenioRDM application in two modes (choose one):
 
@@ -69,7 +69,7 @@ invenio-cli services setup
 invenio-cli run
 ```
 
-#### 5. Explore InvenioRDM
+#### [5. Explore InvenioRDM](run.md)
 
 Go and explore your InvenioRDM instance on:
 
@@ -81,3 +81,32 @@ Go and explore your InvenioRDM instance on:
     Your browser will display a big warning about an invalid SSL certificate. This is because InvenioRDM generates a self-signed SSL certificate when you scaffold a new instance and because InvenioRDM requires that all traffic is over a secure HTTPS connection.
 
     All major browsers allow you to bypass the warning (not easily though). In Chrome/Edge you have to click in the browser window and type ``thisisunsafe``.
+
+#### [6. Stop it](destroy.md)
+
+When you are done, you can stop your instance and optionally destroy the containers:
+
+**Containerized application**
+
+To just stop the containers:
+
+```bash
+invenio-cli containers stop
+```
+
+To destroy them:
+
+```bash
+invenio-cli containers destroy
+```
+
+**Local application**
+
+```bash
+^C [CTRL+C]
+invenio-cli services stop
+```
+
+```bash
+invenio-cli services destroy
+```
