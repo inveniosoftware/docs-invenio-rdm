@@ -102,9 +102,6 @@ pipenv run invenio shell -c "from invenio_db import db; db.session.execute(\"UPD
 Now you can run the database schema upgrade, add new fixtures, and perform the records data migration:
 
 ```bash
-# Upgrade invenio_accounts branch first
-pipenv run invenio alembic upgrade invenio_accounts@head
-
 # Perform the database migration
 pipenv run invenio alembic upgrade
 
