@@ -186,7 +186,7 @@ keycloak_remote_app = helper.remote_app
 keycloak_remote_app["title"] = "My institute"
 
 # change the name of the variable holding the credentials
-remote_app["params"]["app_key"] = "OAUTHCLIENT_ANOTHER_NAME_APP_CREDENTIALS"
+keycloak_remote_app["params"]["app_key"] = "OAUTHCLIENT_ANOTHER_NAME_APP_CREDENTIALS"
 OAUTHCLIENT_ANOTHER_NAME_APP_CREDENTIALS = {
     "consumer_key": "<YOUR.CLIENT.ID>",
     "consumer_secret": "<YOUR.CLIENT.CREDENTIALS.SECRET>",
