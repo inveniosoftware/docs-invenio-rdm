@@ -22,6 +22,7 @@ InvenioRDM depends on the following requirements to be installed on your local s
 
 For running and building the application locally you will also need:
 
+- [Git](https://git-scm.com/).
 - [Node.js](https://nodejs.org) 14.0.0+ (needed for local installation). We recommend that you install node through [nvm](https://github.com/nvm-sh/nvm) (e.g. `nvm install --lts --default 14`).
 - [npm](https://www.npmjs.com/get-npm) < 7.
 - [Cairo](https://invenio-formatter.readthedocs.io/en/latest/installation.html) needed for badges to be properly displayed.
