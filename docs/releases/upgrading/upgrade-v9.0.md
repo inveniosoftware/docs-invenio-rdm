@@ -36,13 +36,9 @@ These commands should take care of locking the dependencies for v9 and installin
 
 ### Updating Configuration Variables
 
-To enable the new communities feature you have to remove from your config or set `COMMUNITIES_ENABLED` to `True`.
-
-If you are using password-based login you have to add this configuration variable for backwards compatibility:
-
-```python
-SECURITY_PASSWORD_SINGLE_HASH = ['pbkdf2_sha512']
-```
+Communities feature comes built-in InvenioRDM and cannot be disabled anymore. Therefore, the
+`COMMUNITIES_ENABLED` variable is not needed anymore. On the other hand, you can now enable/disable
+groups support in communities by setting `COMMUNITIES_GROUPS_ENABLED` to `True`/`False`.
 
 ### Update styling
 
