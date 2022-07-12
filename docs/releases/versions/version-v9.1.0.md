@@ -24,8 +24,9 @@ The options are configurable per instance by overriding the Jinja templates.
 
 ### IIIF
 
-InvenioRDM v9.1 includes the preview of image files in the record landing page using IIIF.
+InvenioRDM v9.1 includes the preview of image files in the record landing page using [IIIF](https://iiif.io/).
 The file preview now displays the thumbnail version of the image instead of the full size, decreasing data usage and speeding up the image's loading for better user experience.
+The use of IIIF enables preview of TIFF and JPEG2000 attachments (widely used archive formats with limited browser support) through conversion to JPEG.
 
 ![](img/../v9.1/iiif.png)
 
