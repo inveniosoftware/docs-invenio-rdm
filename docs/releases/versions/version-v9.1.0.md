@@ -2,7 +2,7 @@
 
 *2022-07-11*
 
-We're happy to announce the release of InvenioRDM v9.1. The release is a minor release which is maintained as a part of v9.0 LTS.
+We arere happy to announce the release of InvenioRDM v9.1. The is a minor release, which will be maintained as a part of v9.0 LTS.
 
 ## Try it
 
@@ -12,29 +12,33 @@ We're happy to announce the release of InvenioRDM v9.1. The release is a minor r
 
 ## What's new?
 
-InvenioRDM v9.1 adds many user experience improvements and includes many bug fixes.
+InvenioRDM v9.1 adds many user experience improvements as well as bug fixes.
 
 ### Multi-option search bar
 
-Version 9.1 of InvenioRDM adds a new feature: multi-option search bar in the navigation bar.
-The new search options in the searchbar's dropdown allows users to choose where to search, for example only in the current community's records or in the entire repository.
-The options are configurable per instance by overriding the Jinja templates.
+A new drop-down in the search bar allows users to control the scope of their search - for example the entire repository or the current community.
+The options are configurable via your instance's Jinja templates.
 
 ![](img/../v9.1/multioption-search.png)
 
 ### IIIF
 
-InvenioRDM v9.1 includes the preview of image files in the record landing page using IIIF.
-The file preview now displays the thumbnail version of the image instead of the full size, decreasing data usage and speeding up the image's loading for better user experience.
+Preview of images attached to a record is now powered by [IIIF](https://iiif.io/). Preview with IIIF has 2 main advantages:
+
+  * Improves user experience by delivering images optimised for the preview window, meaning less bandwidth and faster page loads.
+  * Preview of TIFF and JPEG2000 attachments is now possible. These widely used archive formats have limited browser support, which is overcome by conversion to JPEG when previewing.
+  
+For example, a 20MB TIFF file attached to a record is previewed as a JPEG under 250kB:
 
 ![](img/../v9.1/iiif.png)
 
-The IIIF files preview can be configured as in the example below:
+The IIIF previewer configuration options are shown below:
+
 
 ```python
 PREVIEWER_PREFERENCE = [
     "csv_dthreejs",
-    "iiif_simple",
+    "iiif_simple", # Enables IIIF preview.
     "simple_image",
     "json_prismjs",
     "xml_prismjs",
@@ -56,53 +60,51 @@ IIIF_SIMPLE_PREVIEWER_SIZE = "!800,800"
 
 ### Requests
 
-* Requests search views are redesigned in version 9.1 and display more information for each row, following the clean style of the records search page.
+* Request searching has been redesigned providing more information on the requests in a cleaner style, mirroring the style of the records search page.
 
 ![](img/../v9.1/requests.png)
 
 
-When a comment is deleted, the user can now see a specific timeline event replacing the comment message.
+When a comment is deleted, the user will see a specific timeline event replacing the comment message.
 
 ![](img/../v9.1/comment-deletion.png)
 
 
 ### Communities
 
-The community search view has been redesigned to improve the user experience: each result now displays more community's details.
+The community search view has been redesigned to improve the user experience with more detail shown when searching, helping users find the right community.
 
 ![](img/../v9.1/communities.png)
 
 ### Theme improvements
 
-Version 9.1 introduces "context" coded theme elements (Labels, Buttons and icons), improving the overridability of the InvenioRDM theme.
-It is now easier to replace default InvenioRDM colors (`.negative`, `.positive`, `.warning`, `.neutral`, `.danger`) with your custom color variants.
-Below, an example of buttons in the upload forms with specific colors per action button:
+Version 9.1 introduces "context" coded theme elements (labels, buttons and icons), simplifying theme customisation.
+It also is easier to replace the default InvenioRDM colors (`.negative`, `.positive`, `.warning`, `.neutral`, `.danger`) with custom color variants.
+Below is an example from the upload form with custom colours for each action button:
 
 ![](img/../v9.1/color-codes.png)
 
 
 #### Limitations
 
-While this release includes many improvements related to communities, it does not solve all known limitations:
+While this release includes many improvements related to communities, it does not resolve all known limitations:
 
-- **Email notifications**: There is no notification mechanism, and thus no
-  emails or similar are sent for new requests. Users must go to
-  their dashboard, or community requests, to see if there's any new requests or
-  new messages.
+- **E-mail notifications**: There is no notification mechanism for requests. No
+  e-mail or other notification is sent for new requests. Users will need to check for new 
+  requests and messages via their dashboard / community requests pages.
 
-- **Add to community after publish**: If you publish directly, and later want
-  to add a record to a community there's currently no way for the submitter or
-  community curators to submit or claim records.
+- **Add to community after publishing**: If you publish a record without adding it to a
+  community, it cannot currently be added to a community at a later time.
 
-- **Removal from community**: Once a record is accepted into a community, there
-  is no user interface for removing the record from the community again. It's
-  possible to programmatically remove records from a community.
+- **Removal from a community**: Once a record is accepted into a community, there
+  is no user interface for removing the record from the community. This can however be
+  achieved programatically by an administrator.
 
 - **Featured communities**: A REST API exists for managing featured communities
   however there is no user interface on top of it yet.
 
 - **Community logos and avatars**: The current implementation of community logos
-  requires extra work and design in order to better present a community.
+  requires additional work to improve the presentation of a the community.
 
 ## Upgrading to v9.1
 
