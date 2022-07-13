@@ -2,7 +2,7 @@
 
 *2022-07-11*
 
-We arere happy to announce the release of InvenioRDM v9.1. The is a minor release, which will be maintained as a part of v9.0 LTS.
+We are happy to announce the release of InvenioRDM v9.1. The is a minor release, which will be maintained as a part of v9.0 LTS.
 
 ## Try it
 
