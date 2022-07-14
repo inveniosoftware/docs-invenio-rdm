@@ -108,11 +108,26 @@ While this release includes many improvements related to communities, it does no
 
 ## Upgrading to v9.1
 
-To upgrade from version 9.0 to 9.1 you need to update your instance's dependencies and assets by running
-```shell
-invenio-cli packages upgrade
-invenio-cli assets build
+
+To upgrade from version 9.0 to 9.1 you need to update your instance's dependencies and assets:
+
+- In your Pipfile, change:
+
+``` diff
+- allow_prereleases = true
++ allow_prereleases = false
 ```
+
+- delete Pipfile.lock
+
+
+run:
+
+```shell
+invenio-cli install
+```
+
+
 
 ## Maintenance policy
 
