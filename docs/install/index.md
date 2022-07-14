@@ -41,7 +41,7 @@ Scaffold your InvenioRDM instance. Replace ``<version>`` with the version you wa
 ```
 invenio-cli init rdm -c <version>
 # e.g:
-invenio-cli init rdm -c v9.0
+invenio-cli init rdm -c v9.1
 ```
 
 You will be asked several questions. If in doubt, choose the default.
