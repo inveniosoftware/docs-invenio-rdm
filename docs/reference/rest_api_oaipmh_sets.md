@@ -42,7 +42,7 @@ Content-Type: application/json
       "id": "{id}",
       "name": "RDM Conference",
       "spec": "rdm-conference"
-      "query": "elasticsearch_query:to_match_records",
+      "search_pattern": "elasticsearch_query:to_match_records",
       "description": "Entries presented at RDM conference",
       "links": {
         "self": "https://127.0.0.1/api/oaipmh/sets/{id}",
@@ -100,7 +100,7 @@ Content-Type: application/json
   "id": "{id}",
   "name": "RDM Conference",
   "spec": "rdm-conference"
-  "query": "elasticsearch_query:to_match_records",
+  "search_pattern": "elasticsearch_query:to_match_records",
   "description": "Entries presented at RDM conference",
   "links": {
     "self": "https://127.0.0.1/api/oaipmh/sets/{id}",
@@ -123,7 +123,7 @@ Content-Type: application/json
 | --------      | ------ | -------- | ------------------------------------------------------------------------------|
 | `name`        | string | body     | name of the set, e.g. `RDM Conference`                                        |
 | `spec`        | string | body     | spec of the set, e.g. `rdm-conference`. Used for OAI-PMH selective harvesting |
-| `query`       | string | body     | elasticsearch query of the set, e.g. `elasticsearch_query:to_match_records`   |
+| `search_pattern`       | string | body     | elasticsearch query of the set, e.g. `elasticsearch_query:to_match_records`   |
 | `description` | string | body     | description of the set, e.g. `Entries presented at RDM conference`            |
 | `accept`      | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json`    |
 
@@ -144,7 +144,7 @@ Content-Type: application/json
   "id": "{id}",
   "name": "RDM Conference",
   "spec": "rdm-conference"
-  "query": "elasticsearch_query:to_match_records",
+  "search_pattern": "elasticsearch_query:to_match_records",
   "description": "Entries presented at RDM conference",
   "links": {
     "self": "https://127.0.0.1/api/oaipmh/sets/{id}",
@@ -166,7 +166,7 @@ Content-Type: application/json
 | --------------| ------ | -------- | ------------------------------------------------------------------------------|
 | `id`          | int    | path     | Identifier of the set, e.g. `1`                              |
 | `name`        | string | body     | name of the set, e.g. `RDM Conference`                                        |
-| `query`       | string | body     | elasticsearch query of the set, e.g. `elasticsearch_query:to_match_records`   |
+| `search_pattern`       | string | body     | elasticsearch query of the set, e.g. `elasticsearch_query:to_match_records`   |
 | `description` | string | body     | description of the set, e.g. `Entries presented at RDM conference`            |
 | `accept`      | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json`    |
 
@@ -188,7 +188,7 @@ Content-Type: application/json
   "id": "{id}",
   "name": "RDM Conference",
   "spec": "rdm-conference"
-  "query": "elasticsearch_query:to_match_records",
+  "search_pattern": "elasticsearch_query:to_match_records",
   "description": "Entries presented at RDM conference",
   "links": {
     "self": "https://127.0.0.1/api/oaipmh/sets/{id}",
