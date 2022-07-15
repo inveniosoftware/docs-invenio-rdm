@@ -64,12 +64,9 @@ funders:
   readers:
     - type: yaml
       args:
-          origin: "app_data/vocabularies/funders.yaml"
+        origin: "app_data/vocabularies/funders.yaml"
   writers:
     - type: funders-service
-      args:
-        service_or_name: funders
-        identity: system_identity
 ```
 
 To run the actual import using this `vocabularies-future.yaml` file you can call the `vocabularies import` command, if you don't pass origin arg in `vocabularies-future.yaml` you can pass your YAML file containing the funder records via the `--origin` parameter:
@@ -157,12 +154,9 @@ awards:
   readers:
     - type: yaml
       args:
-          origin: "app_data/vocabularies/awards.yaml"
+        origin: "app_data/vocabularies/awards.yaml"
   writers:
     - type: awards-service
-      args:
-        service_or_name: awards
-        identity: system_identity
 ```
 
 To run the actual import using this `vocabularies-future.yaml` file you can call the `vocabularies import` command , if you don't pass origin arg in `vocabularies-future.yaml` you can pass your YAML file containing the award records via the `--origin` parameter:

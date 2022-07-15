@@ -38,8 +38,8 @@ A _Name_ record contains:
 
 ### How to import and update your name records
 
-InvenioRDM ships with an example set of names and ORCID identifiers. 
-To disable these from being loaded, create a blank file called 
+InvenioRDM ships with an example set of names and ORCID identifiers.
+To disable these from being loaded, create a blank file called
 `app_data/vocabularies/names_orcid.yaml`.
 
 The Names vocabulary uses the new DataStreams API for processing vocabularies.
@@ -68,10 +68,7 @@ names:
       args:
         origin: "./app_data/names.yaml"
   writers:
-    - type: service
-      args:
-        service_or_name: names
-        identity: system_identity
+    - type: names-service
 ```
 
 Finally, to run an **import** using this `vocabularies-future.yaml` file you
