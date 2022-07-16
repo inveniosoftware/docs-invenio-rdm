@@ -57,9 +57,11 @@ invenio vocabularies import \
 In case you want to import custom funder records, you can use a DataStream definition file. For a simple import you can **read** entries from a YAML file with raw metadata objects (using the same format as the data model example above), and use a service API to **write** and persist the entries to the database. Here is an example of this definition file, lets call it `vocabularies-future.yaml`:
 
 ```yaml
-names:
+funders:
   readers:
     - type: yaml
+      args:
+        origin: "./vocabularies/funders.yaml"
   writers:
     - type: funders-service
       args:
@@ -75,6 +77,8 @@ invenio vocabularies import \
   --filepath "./vocabularies-future.yaml" \
   --origin "./my-funders.yaml"
 ```
+
+In the `vocabularies-future.yaml` defined above, the `origin` in `funders.args` is the default location of your funder records. The `--origin` option of `vocabularies import` defines the location of your custom funder records. If you just put your funder records in the default location of `./vocabularies/funders.yaml`, you do not need to specify the `--origin` option of `vocabularies import`.
 
 In addition, you can also update vocabulary records in case you updated the source data file using the `vocabularies update` command:
 
