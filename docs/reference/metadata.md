@@ -891,23 +891,18 @@ Example:
 
 ### Funding references (0-n)
 
-!!! warning "Not part of the deposit page yet."
-    Although available via the API, this field may see changes when added to the deposit page.
-
 Information about financial support (funding) for the resource being registered.
 
 This field is compatible with *19. Funding Reference* in DataCite.
 
-The funder subfield is intended to be linked to a customizable vocabulary from Open Funder Registry or ROR. The award subfields is intended to be either linked to a customizable vocabulary sourced from the OpenAIRE grant database, or be specified explicitly to allow linking to grants not provided by the grant database.
+The funder subfield is intended to be linked to a customizable vocabulary from Open Funder Registry or ROR. The award subfield is intended to be either linked to a customizable vocabulary sourced from the OpenAIRE grant database, or specified explicitly to allow linking to grants not provided by the grant database.
 
 Subfields:
 
 | Field | Cardinality |   Description   |
 |:-----:|:-----------:|:----------------|
-| ``funder`` | (0-1) | The organisation of the funding provider. |
+| ``funder`` | (1) | The organisation of the funding provider. |
 | ``award`` | (0-1) | The award (grant) sponsored by the funder. |
-
-At least one of ``funder`` or ``award`` must be provided.
 
 The ``funder`` subfields:
 
@@ -923,8 +918,8 @@ The ``award`` subfields:
 | Field | Cardinality |   Description   |
 |:-----:|:-----------:|:----------------|
 | ``id`` | (0-1, CV) | The award id from the controlled vocabulary. |
-| ``title`` | (1) | The title of the award |
-| ``number`` | (1) | The code assigned by the funder to a sponsored award (grant). |
+| ``title`` | (0-1) | The localized title of the award (e.g., `{"en": "Nobel Prize in Physics"}`) |
+| ``number`` | (0-1) | The code assigned by the funder to a sponsored award (grant). |
 | ``identifiers`` | (0-N) | Identifiers for the award. |
 
 One of ``id``, or ``title`` and ``number`` must be given. It's recommended to use ``title`` and ``number`` if there is no matching ``id`` in the controlled vocabulary.
@@ -934,27 +929,28 @@ Example:
 ```json
 {
   "funding": [{
-    "funder": {
-      "id": "00k4n6c32"
-    },
-    "award": {
-      "id": "00k4n6c32::246686"
-    }
-  }, {
-    "funder": {
-      "id": "00k4n6c32"
-    },
-    "award": {
-      "title": {
-        "en": "Research on Experimental Physics"
+      "funder": {
+        "id": "00k4n6c32"
       },
-      "number": "EP-123456",
-      "identifiers": [{
-        "scheme": "url",
-        "identifier": "https://experimental-physics.eu"
-      }]
+      "award": {
+        "id": "00k4n6c32::246686"
+      }
+    }, {
+      "funder": {
+        "id": "00k4n6c32"
+      },
+      "award": {
+        "title": {
+          "en": "Research on Experimental Physics"
+        },
+        "number": "EP-123456",
+        "identifiers": [{
+          "scheme": "url",
+          "identifier": "https://experimental-physics.eu"
+        }]
+      }
     }
-  }]
+  ]
 }
 ```
 
