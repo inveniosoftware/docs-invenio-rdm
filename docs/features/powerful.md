@@ -3,7 +3,7 @@ hide:
   - toc
 template: features_sub.html
 image: ../images/powerful.png
-summary: Faceted search, advanced query syntax and searc-as–you-type support is just some of the powerful features that InvenioRDM supports.
+summary: Faceted search, advanced query syntax and search-as–you-type support are just some of the powerful features that InvenioRDM supports.
 ---
 
 ## Faceted search
