@@ -115,6 +115,7 @@ helper = KeycloakSettingsHelper(
     realm="my-realm"
 )
 
+SECURITY_LOGIN_WITHOUT_CONFIRMATION = True  # don't require users to confirm email before being able to login
 OAUTHCLIENT_KEYCLOAK_REALM_URL = helper.realm_url
 OAUTHCLIENT_KEYCLOAK_USER_INFO_URL = helper.user_info_url
 OAUTHCLIENT_KEYCLOAK_VERIFY_EXP = True  # whether to verify the expiration date of tokens
