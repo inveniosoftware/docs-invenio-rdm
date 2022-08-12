@@ -108,6 +108,14 @@ pipenv run invenio rdm-records fixtures
 pipenv run invenio shell $(find $(pipenv --venv)/lib/*/site-packages/invenio_app_rdm -name migrate_8_0_to_9_0.py)
 ```
 
+Some older parent records might not have the communities field set. To be sure these are updated as well, run the following command:
+
+```bash
+# Run data migration script for older records parents
+pipenv run invenio shell $(find $(pipenv --venv)/lib/*/site-packages/invenio_app_rdm -name fix_migrated_records_from_8_0_to_9_0.py)
+```
+
+
 ### Elasticsearch
 
 The last required step is the migration of Elasticsearch indices:
