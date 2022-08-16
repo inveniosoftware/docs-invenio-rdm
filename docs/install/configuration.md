@@ -67,6 +67,8 @@ Simply set APP_ALLOWED_HOSTS to a list of allowed hosts/domain names:
 APP_ALLOWED_HOSTS = ['www.example.org']
 ```
 
+Failing to properly configure this variable will cause the error `Bad Request Host x.x.x.x is not trusted.` when starting the web app.
+
 ---
 ### ``SECRET_KEY``
 
