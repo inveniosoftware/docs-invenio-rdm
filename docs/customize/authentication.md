@@ -661,7 +661,7 @@ data between two parties: an identity provider (IdP) and a service provider (SP)
 
 * Make sure you have installed in your system:
 
-  `libxml2-dev libxmlsec1-dev`
+  `libxml2-dev libxmlsec1-dev pkg-config`
 
 * Make sure you have installed the required Invenio Python module:
 
