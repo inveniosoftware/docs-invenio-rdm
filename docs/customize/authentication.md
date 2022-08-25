@@ -880,6 +880,9 @@ Here's an example mapping eduPerson elements to `urn:oid`. If you're not sure of
 
 In setting up SAML integration you may run into several scenarios before you "get it right".
 
+What are the Invenio-RDM SP end points?
+: In the example above the `SSO_SAML_IDPS` is a dictionary, the attributes are the names that will be used by Invenio-RDM in the SAML interactions. In the example "remote_app" will be an end point, this is probably not ideal, if you have one IdP only you could just name that attribute "ipd", if you have several then a more descriptive attribute name might be warranted. 
+
 SSO redirects work but Invenio shows 404 on return
 : This can happen when the IdP is configured in Invenio-RDM, the IdP has authorized your SP (the running Invenio-RDM instance). If the user isn't actually "logged in" then you may also have trouble in your `mappings` element.
 
