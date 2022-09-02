@@ -911,7 +911,7 @@ The ``funder`` subfields:
 | ``id`` | (0-1, CV) | The funder id from the controlled vocabulary. |
 | ``name`` | (0-1) | The name of the funder. |
 
-One of ``id`` or ``name`` must be given. It's recommended to use ``name`` if there is no matching ``id`` in the controlled vocabulary.
+Either ``id`` or ``name`` must be given. It's recommended to use ``name`` if there is no matching ``id`` in the controlled vocabulary.
 
 The ``award`` subfields:
 
@@ -922,7 +922,7 @@ The ``award`` subfields:
 | ``number`` | (0-1) | The code assigned by the funder to a sponsored award (grant). |
 | ``identifiers`` | (0-N) | Identifiers for the award. |
 
-One of ``id``, or ``title`` and ``number`` must be given. It's recommended to use ``title`` and ``number`` if there is no matching ``id`` in the controlled vocabulary.
+Either ``id`` or ``title`` and ``number`` must be given. It's recommended to use ``title`` and ``number`` if there is no matching ``id`` in the controlled vocabulary.
 
 Example:
 
