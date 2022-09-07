@@ -30,8 +30,11 @@ Here is an example of two such records in YAML format:
     - identifier: 0000000122975165
       scheme: isni
   country: US
-- id: private-acme-funding
-  name: Private ACME Funding
+- id: 202100-0000
+  country: SE
+  name: Swedish Research Council
+  title:
+    en: Swedish Research Council
 ```
 
 ### How to import and update your funder records
@@ -57,9 +60,11 @@ invenio vocabularies import \
 In case you want to import custom funder records, you can use a DataStream definition file. For a simple import you can **read** entries from a YAML file with raw metadata objects (using the same format as the data model example above), and use a service API to **write** and persist the entries to the database. Here is an example of this definition file, lets call it `vocabularies-future.yaml`:
 
 ```yaml
-names:
+funders:
   readers:
     - type: yaml
+      args:
+          origin: "app_data/vocabularies/funders.yaml"
   writers:
     - type: funders-service
       args:
@@ -67,7 +72,7 @@ names:
         identity: system_identity
 ```
 
-To run the actual import using this `vocabularies-future.yaml` file you can call the `vocabularies import` command and pass your YAML file containing the funder records via the `--origin` parameter:
+To run the actual import using this `vocabularies-future.yaml` file you can call the `vocabularies import` command, if you don't pass origin arg in `vocabularies-future.yaml` you can pass your YAML file containing the funder records via the `--origin` parameter:
 
 ```shell
 invenio vocabularies import \
@@ -148,9 +153,11 @@ invenio vocabularies import \
 In case you want to import custom award records, you can use a DataStream definition file. For a simple import you can **read** entries from a YAML file with raw metadata objects (using the same format as the data model example above), and use a service API to **write** and persist the entries to the database. Here is an example of this definition file, lets call it `vocabularies-future.yaml`:
 
 ```yaml
-names:
+awards:
   readers:
     - type: yaml
+      args:
+          origin: "app_data/vocabularies/awards.yaml"
   writers:
     - type: awards-service
       args:
@@ -158,7 +165,7 @@ names:
         identity: system_identity
 ```
 
-To run the actual import using this `vocabularies-future.yaml` file you can call the `vocabularies import` command and pass your YAML file containing the award records via the `--origin` parameter:
+To run the actual import using this `vocabularies-future.yaml` file you can call the `vocabularies import` command , if you don't pass origin arg in `vocabularies-future.yaml` you can pass your YAML file containing the award records via the `--origin` parameter:
 
 ```shell
 invenio vocabularies import \
