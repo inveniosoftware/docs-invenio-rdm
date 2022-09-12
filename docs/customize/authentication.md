@@ -599,8 +599,7 @@ List of information required to configure the InvenioRDM instance.
 * **x509cert**: Public X.509 certificate of the IdP.
 * **Attributes mapping**: IDP in Assertion of the SAML Response provides a dict with all the user data:
 
-  For example, given the following SAML response:
-
+    *  For example, given the following SAML response:
     ```json
     {
         "cn": ["Jhon"],
@@ -609,9 +608,7 @@ List of information required to configure the InvenioRDM instance.
         "external_id": ["24546786764d"]
     }
     ```
-
-  You can create a mapping to the user account fields required by Invenio as the following:
-
+    * You can create a mapping to the user account fields required by Invenio as the following:
     ```json
         "mappings": {
             "email": "mail",
@@ -756,9 +753,18 @@ SSO_SAML_IDPS = {
         # Note: keep in mind the string should match
         # given name for authentication provider
         'acs_handler': acs_handler_factory('remote_app'),
+
+        # Automatically set `confirmed_at` for users upon
+        # registration, when using the default `acs_handler`
+        'auto_confirm': False,
     }
 }
 ```
+#### Automatically confirm users
+When using the default `acs_handler` for an authentication provider, users can be automatically confirmed upon registration by setting the `auto_confirm` attribute of a provider to `True` (default is `False`).
+This will set the `confirmed_at` attribute of the user to the current time.
+
+This can be done on a per provider basis, as not every provider may receive the same level of trust for a repository.
 
 #### Show the login button
 
@@ -781,21 +787,23 @@ SSO_SAML_IDPS = {
     # First authentication provider
     "remote_app": {
         ....
-    'settings': {
+        'settings': {
+            ....
+        },
         ....
-    },
-    ....
         'acs_handler': acs_handler_factory('remote_app'),
-},
-# Second authentication provider
-"remote_app2": {
-    ....
-'settings': {
-    ....
-},
-....
-'acs_handler': acs_handler_factory('remote_app2'),
-},
+        'auto_confirm': True,
+    },
+    # Second authentication provider
+    "remote_app2": {
+            ....
+        'settings': {
+            ....
+        },
+        ....
+        'acs_handler': acs_handler_factory('remote_app2'),
+        'auto_confirm': False,
+    },
 }
 ```
 
