@@ -4,7 +4,7 @@ InvenioRDM supports customization of some of the sections of the record's landin
 
 ### Citation styles
 
-InvenioRDM supports citations styles defined in the [CSL 1.0.1 specifications](https://docs.citationstyles.org/en/1.0.1/specification.html). You can find the list of all possible citation styles [here](https://github.com/citation-style-language/styles/blob/6152ccea8b7d7a472910d36524d1bf3557a83bfc/renamed-styles.json).
+InvenioRDM supports citations styles defined in the [CSL 1.0.1 specifications](https://docs.citationstyles.org/en/v1.0.1/specification.html). You can find the list of all possible citation styles [here](https://github.com/citation-style-language/styles/tree/v1.0.1).
 
 In the record landing page, you can display a subset of the available styles. In your `invenio.cfg` change:
 
