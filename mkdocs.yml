@@ -66,6 +66,7 @@ nav:
       - Custom fields:
           - Add fields to records: "customize/custom_fields/records.md"
           - Add fields to communities: "customize/custom_fields/communities.md"
+      - Administration: customize/administration_interface.md
       - Record landing page: "customize/record_landing_page.md"
       - DOI registration: "customize/dois.md"
       - Storage: "customize/s3.md"
@@ -136,6 +137,8 @@ nav:
           - OAI-PMH Sets: "reference/rest_api_oaipmh_sets.md"
       - Custom fields:
           - UI widgets: "reference/widgets.md"
+      - Administration:
+          - Reference: "reference/administration_reference.md"
   - Releases:
       - Overview: releases/index.md
       - Maintenance policy: releases/maintenance-policy.md

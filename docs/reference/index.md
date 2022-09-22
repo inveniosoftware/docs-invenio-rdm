@@ -11,3 +11,4 @@ These guides are intended for advanced users, administrators and developers that
 - **[Metadata Reference](metadata.md)**: A reference guide for the internal metadata schema of bibliographic records in InvenioRDM.
 - **[OAI-PMH](oai_pmh.md)**: A reference guide for the OAI-PMH functionality which InvenioRDM exposes.
 - **[REST API](rest_api_index.md)**: A reference guide for all the REST APIs that InvenioRDM exposes.
+- **[Administration](administration_interface.md)**: A reference guide for building InvenioRDM Administration views
