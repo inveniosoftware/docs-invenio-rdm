@@ -35,9 +35,7 @@ mkdir <my-site>/assets/templates/custom_fields
 invenio-cli assets build
 ```
 
-These commands should take care of locking the dependencies for v8, installing them, and building the required assets.
-
-These commands should take care of locking the dependencies for v10 and installing them.
+These commands should take care of locking the dependencies for v10, installing them, and building the required assets.
 
 
 ### Data Migration
