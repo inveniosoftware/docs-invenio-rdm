@@ -25,7 +25,7 @@ If unsure, run `invenio-cli install` from inside the instance directory before e
 Bump the RDM version, create a folder for your custom fields and rebuild the assets:
 
 ```bash
-# Upgrade to InvenioRDM v9
+# Upgrade to InvenioRDM v10
 invenio-cli packages update 10.0.0
 
 # Create custom fields folder
