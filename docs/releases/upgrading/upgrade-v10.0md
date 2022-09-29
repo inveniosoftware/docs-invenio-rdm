@@ -18,7 +18,7 @@ If unsure, run `invenio-cli install` from inside the instance directory before e
 
 !!! warning "Upgrade your invenio-cli"
 
-    Make sure you have the latest `invenio-cli`, for InvenioRDM v9 the release is v1.0.5
+    Make sure you have the latest `invenio-cli`, for InvenioRDM v10 the release is v1.0.5
 
 ### Installing the Latest Versions
 
