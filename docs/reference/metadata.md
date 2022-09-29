@@ -119,6 +119,10 @@ with external registration services.
 Persistent identifiers are globally unique in the system, thus you cannot have two records
 with the same system-managed persistent identifier (see also [Metadata > Identifiers](#identifiers-0-n)).
 
+You can add a DOI that is not managed by InvenioRDM by using the provider `external`. You are not able to add `external` DOIs that have a prefix that is configured as part of a different PID provider.
+
+If you utilize the default DataCite PID provider, both the provider and client will be `datacite`. 
+
 Only one identifier can be registered per system-defined scheme. Each identifier has the following subfields:
 
 | Field | Cardinality |   Description   |
@@ -133,7 +137,7 @@ Only one identifier can be registered per system-defined scheme. Each identifier
     "doi": {
       "identifier": "10.5281/zenodo.1234",
       "provider": "datacite",
-      "client": "zenodo"
+      "client": "datacite"
     },
     "concept-doi": {
       "identifier": "10.5281/zenodo.1234",
