@@ -12,7 +12,7 @@ If unsure, run `invenio-cli install` from inside the instance directory before e
 
 !!! info "Older versions"
 
-    In case you have an InvenioRDM installation older than v9.0, you can gradually upgrade using the existing instructions to v9.0 and afterwards continue from here.
+    In case you have an InvenioRDM installation older than v10.0, you can gradually upgrade using the existing instructions to v9.0 and afterwards continue from here.
 
 ## Upgrade Steps
 
