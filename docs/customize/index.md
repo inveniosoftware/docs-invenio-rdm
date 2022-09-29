@@ -7,7 +7,7 @@ InvenioRDM instance, so that it integrates into their organizational environment
 
 ## Customization hierarchy
 
-As an open-source project, InvenioRDM is quite customizable. This can be overwhelming for some or enough rope to hang oneself for others. To help you understand customization and use the appropriate methods, keep in mind the following hierarchy of customization. This hierarchy lists the customization approaches from "least involved, most well-supported, and least flexible" to "most involved, least supported, and most flexible" -from the shallow-end of the pool to the deep-end.
+To help you understand customization and use the appropriate methods, keep in mind the following hierarchy of customization. This hierarchy lists the customization approaches from "least involved, most well-supported, and least flexible" to "most involved, least supported, and most flexible" -from the shallow-end of the pool to the deep-end.
 
 1. Set configuration values -- _least effort, most limited_.
 2. Create and place files in expected locations.
