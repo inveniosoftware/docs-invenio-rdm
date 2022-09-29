@@ -1,17 +1,20 @@
-# Custom fields
+# Records custom fields
 
-While InvenioRDM's [metadata schema](../../reference/metadata.md) covers a wide range of information, there might still be cases where you need to include domain or system specific information in your records. In this chapter, the following example use case will be used to demonstrate the configuration. The full configuration of the above example is provided in the [full example](#full-example) section.
+While the InvenioRDM's [metadata schema](../../reference/metadata.md) includes a wide range of bibliographic fields, there might still be cases where you need to include domain or system specific information in your records. This can be achieved using custom fields.
+To demonstrate how to take advantage of custom fields, we will use the following examples:
 
-_At CERN, I want to choose the experiment to which the record belong to, assuming experiments come from a controlled vocabulary. In addition, I want to be able to filter the search results by experiment._
+_In my university repository, when uploading my work, I want to input the programming language that I have used._
+
+_At CERN, I want to input or select the experiment information of the research preprint that I am uploading. In addition, when searching for other preprints, I want to filter the search results by experiment name._
 
 !!! warning
 
-    Before jumping into adding custom fields, take a close look at the existing set of fields in the metadata schema, and especially the [metadata schema](/reference/metadata/#subjects-0-n), which can be extended with terms from external vocabularies that might already exist and facilitate your needs.
+    Before jumping into adding custom fields, take a close look at the existing set of fields in the metadata schema, and especially the [subjects field](../../reference/metadata.md#subjects-0-n), which can be extended with terms from external vocabularies that might already exist.
 
 ## Quickstart, how does it look?
 
-To add a _programming language_ field, you would need to configure the type of
-field and how it should be displayed. The configuration would look like:
+To add a _programming language_ field, you will need to configure the type of
+field and how it should be displayed. The configuration will look like:
 
 ```python
 from invenio_records_resources.services.custom_fields import TextCF
@@ -43,68 +46,64 @@ This will create a new section in the bottom of the record's upload page and wil
 
 ![Programmatic language field](../img/programmatic_language.png)
 
-## Configure a custom field
+## Configuration
 
-In order to add custom fields to your instance you have to configure in your `invenio.cfg` the following variables:
+In order to add custom fields to your instance, you can use the following configuration variables:
 
-- `RDM_NAMESPACES` - Used to add context to your fields and avoid name clashes.
+- `RDM_NAMESPACES` - Defines fields namespaces to avoid name clashes.
 - `RDM_CUSTOM_FIELDS` - Defines the name, type, and validation rules of your fields.
 - `RDM_CUSTOM_FIELDS_UI` - Defines how the fields are displayed in the uploads form UI.
 
-### Defining custom fields
-
-```python
-from invenio_vocabularies.services.custom_fields import VocabularyCF
-
-RDM_CUSTOM_FIELDS = [
-    VocabularyCF(
-        name="cern:experiment",  # name of the field
-        vocabulary_id="cernexperiments",  # as defined in the vocabularies.yaml file
-        dump_options=True,  # if values should be dumped or not, important for the UI
-        multiple=False, # if the field accepts a list of values (True) or single value (False)
-    ),
-]
-```
-
-#### Namespaces
+### Namespacing
 
 Because each defined field requires a unique name, you might end up in a situation where fields with different semantic meanings but similar naming might clash. To avoid this issue and in order to provide additional semantic context to a group of fields, there is an optional (but recommended) **namespacing** mechanism.
 
-The `RDM_NAMESPACES` config variable accepts key-value pairs of namespace prefixes and optional contextual information for the namespace (URL), for example:
+The `RDM_NAMESPACES` config variable accepts key-value pairs of namespace prefixes and optional contextual information for the namespace (URL). In your your `invenio.cfg`:
 
 ```python
 RDM_NAMESPACES = {
     # CodeMeta
     "code": "https://codemeta.github.io/terms/",
     # CERN
-    "cern": None,
+    "cern": "https://greybook.cern.ch/",
 }
 ```
 
-The keys of this config would be used to prefix field names. These prefixed names will be validated against the namespaces configuration, and raise an error in case the namespace doesn't exist. Here is an example of how it might look like:
+The keys of this config will be used to prefix field names. These prefixed names will be validated against the namespaces configuration, and raise an error in case the namespace doesn't exist.
+
+### Declaring custom fields
+
+You can configure custom field by listing them in the `invenio.cfg`:
 
 ```python
-from invenio_records_resources.services.custom_fields import KeywordCF, TextCF
+from invenio_vocabularies.services.custom_fields import TextCF, VocabularyCF
+from marshmallow_utils.fields import SanitizedHTML
 
 RDM_CUSTOM_FIELDS = [
-    # cern
-    TextCF(
+    VocabularyCF(  # the type of custom field, VocabularyCF is a controlled vocabulary
+        name="cern:experiment",  # name of the field, namespaced by `cern`
+        vocabulary_id="cernexperiments",  # controlled vocabulary id defined in the vocabularies.yaml file
+        dump_options=True,  # True when the list of all possible values will be visible in the dropdown UI component, typically for small vocabularies
+        multiple=False, # if the field accepts a list of values (True) or single value (False)
+    ),
+    TextCF(  # a simple text input field
+        name="programming_language"
+    ),
+    TextCF(  # a text input field that will allow HTML tags
         name="cern:experiment_description_html",
         field_cls=SanitizedHTML,
     ),
-    # CodeMeta
-    KeywordCF(name="code:programming_language", multiple=True),
 ]
 ```
 
-#### Customizing validation and error messages
+### Customizing validation and error messages
 
-In the [reference](#reference) section there is a full list of the available custom field types. Moreover, they can be customized to adapt them to your needs:
+In the [reference](#reference) section, you can find the complete list of available custom field types. You can also customize each field type:
 
-- The `field_cls` parameter allows you to change the Marshmallow field that will be used to validate the input data. For example, for a `TextCF` you could use `SanitizedUnicode` (default), or `SanitizedHTML`, or your own Marshmallow field implementation.
-- The `field_args` parameters allows you to customize the behaviour of the previous (`field_cls`, or default) Marshmallow field class.
+- The `field_cls` parameter allows you to change the Marshmallow field that will be used to validate the input data. For example, for a `TextCF` you could use `SanitizedUnicode` (default), or `SanitizedHTML` (to allow only safe HTML tags), or your own Marshmallow field implementation.
+- The `field_args` parameters allows you to customize the behavior of the previous (`field_cls`, or default) Marshmallow field class.
 
-For example, to make a field required, customize error messages, or pass a custom validation function the python config would look like:
+For example, to make a field required, customize error messages, or pass a custom validation function, you can customize the `TextCF` in your `invenio.cfg` as the following:
 
 ```python
 from invenio_records_resources.services.custom_fields import TextCF
@@ -125,23 +124,57 @@ RDM_CUSTOM_FIELDS = [
 ]
 ```
 
-Below you see how it looks like in the upload form:
-
-##### Custom error message when the field is required
+**Custom error message when the field is required**
 
 ![Custom error message](../img/custom_required_error.png)
 
-##### Custom validation function to validate the new field
+**Custom validation function to validate the new field**
 
 ![Custom validation function](../img/custom_validation_func.png)
 
-### Displaying fields
+### Initialize
 
-Now that you have defined your custom fields and configured their type and validation rules, you need to configure how you want them to be displayed on the upload form.
+When you have completed the configuration of the custom fields, you will need to run the CLI commands below to make the fields searchable.
+Failing to do so will result in an error when indexing record and you won't be able to search values for the custom fields.
+In a shell, run:
 
-#### Upload (deposit) form
+```bash
+cd my-site
 
-Custom fields are displayed at the end of the upload form and are organized into sections. Each section has a title, and an ordered list of the fields it includes.
+# initialize all custom fields to make them searchable
+pipenv run invenio rdm-records custom-fields init
+```
+
+When you want to make a new specific field searchable:
+
+```bash
+# initialize specific custom fields to make them searchable
+pipenv run invenio rdm-records custom-fields init -f <field_name> -f <field_name>
+```
+
+!!! tip
+
+    The CLI commands above are automatically executed when you setup a new instance with `invenio-cli services setup`.
+    If you have added the custom fields configuration **before running the setup**, you don't need to run the commands above.
+
+!!! info
+
+    If you have added the custom fields configuration, **with some `required` fields**, before running the first setup, it will fail.
+    This is because the demo data created during the setup do not contain the custom fields and the required value will be empty. As a workaround:
+
+    1. define custom fields, without required fields
+    2. run the setup command
+    3. put back the required parameter in the config
+
+    If, instead, you don't need to populate your instance with demo data, simply run `invenio-cli services setup --no-demo-records`.
+
+## Displaying fields
+
+Now that you have defined and initialized your custom fields and configured their type and validation rules, you need to configure how you want them to be displayed on the upload form.
+
+### Upload (deposit) form
+
+Custom fields are displayed at the bottom of the upload form and are organized into sections. Each section has a title and the ordered list of the fields that it includes.
 
 - `section` - Title of the section.
 - `fields` - Ordered list of fields to be included in the section.
@@ -149,8 +182,8 @@ Custom fields are displayed at the end of the upload form and are organized into
 Each field is an object that corresponds to an already defined field from the `RDM_CUSTOM_FIELDS` config.
 
 - `field` - The name of the field.
-- `ui_widget` - The React form compoment to be used for the field.
-- `props` - Parameters to be passed diectly to the React compoment.
+- `ui_widget` - The React form component to be used for the field.
+- `props` - Parameters to be injected in the React component.
 
 ```python
 # for the above configured fields `cern:experiment`, `cern:experiment_description_html`, `cern:experiment_url`
@@ -166,8 +199,8 @@ RDM_CUSTOM_FIELDS_UI = [
                     placeholder="ATLAS",
                     icon="lab",
                     description="You should fill this field with one of the experiments e.g LHC, ATLAS etc.",
-                    search=False,  # True for autocomplete dropdowns
-                    multiple=False,   # True for list of values
+                    search=False,  # True for autocomplete dropdowns with search functionality
+                    multiple=False,   # True for selecting multiple values
                     clearable=True,
                 )
             ),
@@ -201,17 +234,21 @@ The upload form will then look like below:
 
 ![Custom fields in upload form](../img/upload_form_custom_fields.png)
 
-#### Landing page
+### Landing page
 
-The custom fields will be displayed in the _additional details_ section. Each custom fields section will be one different tab, containing all the corresponding fields. However, every institution has their own UI design and it is already possible to override the default display by overriding the Jinja templates of these pages.
+In the record landing page, by default, the custom fields will be displayed in the _additional details_ section at the bottom of the page. Each custom fields section correspond to a tab item, containing the configured fields.
+
+The additional details section:
 
 ![Custom fields in additional details section](../img/landing_page_fields_display.png)
 
-It would be situated at the bottom of it:
+The landing page with the configured custom fields:
 
 ![Custom fields in landing page](../img/landing_page.png)
 
-In case you want to change how a specific field is displayed in the _additional details_ section, you can use the _template_ prop available in the `RDM_CUSTOM_FIELDS_UI` config.
+However, it is possible to change this default layout by overriding the Jinja templates of the landing page.
+
+You can change how a specific field is displayed in the _additional details_ section via the _template_ parameter:
 
 ```python
 RDM_CUSTOM_FIELDS_UI = [
@@ -234,38 +271,20 @@ RDM_CUSTOM_FIELDS_UI = [
 ]
 ```
 
-The template path should be relative to your `my-site/templates` folder. Inside your temmplate you will have available the following variables:
+You should add the `my_template.html` file in the `my-site/templates` folder in your instance. In your custom template, the following variables are injected and can be used:
 
-- `field_value`: the value of the field, as it is stored in the record after the UI serialization i.e what is returned from the `ui_field` method when you [define your custom field](#define-your-custom_field).
+- `field_value`: the value of the field, as it is stored in the record after the UI serialization i.e. what is returned from the `ui_field` method when you [define your custom field](../../develop/topics/custom_fields.md).
 - `field_cfg`: the UI configuration for that specific field as it is defined in the `RDM_CUSTOM_FIELDS_UI` config.
 
-For the example above that will look like:
-
-```python
-# my-site/templates/my_template.html
-{{field_value}}
-# e.g Python #
-
-{{field_cfg}}
-#  {
-#      field="programming_language",
-#      ui_widget="Input",
-#      template="/my_template.html"
-#      props=dict(
-#          label="Programming language",
-#          placeholder="Python...",
-#          icon="pencil",
-#          description="The programming language of your choice...",
-#      )
-#  }
-```
+See the example in the section [Adding a new custom field](../../develop/topics/custom_fields.md#define-the-template-for-the-record-landing-page).
 
 ### Search
 
-In order to make the custom field available in the record search as a facet/filter, you need to add it to the corresponding variables. The configuration order will be respected when displaying them in the search page.
+For custom fields that are keywords or vocabularies, you can add your custom field to the search page as a facet/filter:
 
 ```python
 from invenio_rdm_records.config import RDM_FACETS, RDM_SEARCH
+from invenio_records_resources.services.records.facets import CFTermsFacet
 
 RDM_FACETS = {
     **RDM_FACETS,
@@ -286,39 +305,19 @@ RDM_SEARCH = {
 }
 ```
 
-and in the record search page the new facet will be added in the bottom as below:
+In the search page, the new facet will be added in the bottom as below:
 
 ![Custom field as search facet](../img/search_facets.png)
 
-### Applying your config
-
-After configuring your custom fields, you have to update the corresponding search mappings. Otherwise those records will fail to be indexed, and facets/search will not work on them. This is easily done via the `invenio custom-fields ...` command in the following manner:
-
-```bash
-# for creating all custom field mappings for records
-invenio rdm-records custom-fields init
-
-# for creating any missing custom field mappings for records
-invenio rdm-records custom-fields init -f field_name -f field_name
-```
-
-!!! info
-
-    Note that if the custom fields are configured **before** the InvenioRDM instance has been setup, this is when the `invenio-cli services setup` command has never been run, the custom fields will be added by it and no command needs to be run.
-
-!!!info
-
-    Note that if any of the custom fields is configured as `required` in `RDM_CUSTOM_FIELDS` then you should run `invenio-cli services setup --no-demo-records` as otherwise the demo records will fail to be populated due to validation errors. For that reason, you can first define your custom fields, run the setup command and then mark which ones are required.
-
 ## Reference
 
-This section lists the field types and UI widgets that are available out of the box in InvenioRDM.
+This section lists the field types and UI widgets that are available in InvenioRDM.
 
 ### Field types
 
-- `KeywordCF` for strings that need to be searchable as "exact match" (e.g. search filters/facets).
-- `TextCF` for strings that need to be searchable, if you need to search as "exact match" (e.g. search filters/facets) pass `use_as_filter=True` as parameter.
-- `VocabularyCF` for controlled vocabularies. Note that there is only support for generic vocabularies (e.g. _names_, _awards_, etc. cannot be linked to a custom field).
+- `KeywordCF` for text that need to be searchable **only** as "exact match" (e.g. search filters/facets).
+- `TextCF` for normal text, if you need to search as "exact match" (e.g. search filters/facets) pass `use_as_filter=True` as parameter.
+- `VocabularyCF` for controlled vocabularies. Note that it supports only generic vocabularies (e.g. _names_, _awards_, etc. cannot be linked to a custom field).
 - `ISODateStringCF` date strings in ISO format (`YYYY-MM-DD`).
 - `EDTFDateStringCF` date string in extended date time format, i.e. _DATE_ or _DATE/DATE_ where _DATE_ is `YYYY` or `YYYY-MM` or `YYYY-MM-DD`.
 - `BooleanCF` for boolean values (True/False).
@@ -330,38 +329,35 @@ This section lists the field types and UI widgets that are available out of the 
 - `Input` for one line text input.
 - `MultiInput` for multi value text input, similar to the _subjects_ field.
 - `TextArea` for long text descriptions.
-- `RichInput` fot long text descriptions with HTML formatting.
-- `Dropdown` for a value (or list of) from a controlled vocabularies. It is important to configure the `dump_options=True` in the `VocabularyCF`.
-- `AutocompleteDropdown` for a value (or list of) from a controlled vocabularies. It is important to configure the `dump_options=False` in the `VocabularyCF`. This widget will provide suggestions to autocomplete the user input. Similar to _subjects_, _languages_, _names_, etc.
+- `RichInput` fot long text descriptions with WYSIWYG editor.
+- `Dropdown` for a value (or list of) from a controlled vocabularies. The corresponding `VocabularyCF` must have the parameter `dump_options=True`.
+- `AutocompleteDropdown` for a value (or list of) from a controlled vocabularies. The corresponding `VocabularyCF` must have the parameter `dump_options=False`. This widget will provide suggestions to autocomplete the user input. Similar to _subjects_, _languages_, _names_, etc.
 
 You can see a detailed view of all the available widgets at the [UI widgets](../../reference/widgets.md) reference section.
 
-## Full example
+## Complete example
 
-The full configuration of the above example is provided below.
+You can find below a complete example of the configuration to add to your `invenio.cfg`.
 
 ```python
-from invenio_records_resources.services.custom_fields import TextCF
 from invenio_rdm_records.config import RDM_FACETS, RDM_SEARCH
-from invenio_vocabularies.services.custom_fields import VocabularyCF
-from invenio_records_resources.services.records.facets import (
-    CFTermsFacet,
-)
+from invenio_records_resources.services.custom_fields import TextCF, VocabularyCF
+from invenio_records_resources.services.records.facets import CFTermsFacet
+from marshmallow import validate
 
 RDM_NAMESPACES = {
     # CodeMeta
     "code": "https://codemeta.github.io/terms/",
     # CERN
-    "cern": None,
+    "cern": "https://greybook.cern.ch/",
 }
 
 RDM_CUSTOM_FIELDS = [
-    # cern
     VocabularyCF(
-        name="cern:experiment",  # name of the field
-        vocabulary_id="cernexperiments",  # as defined in the vocabularies.yaml file
-        dump_options=True,  # if values should be dumped or not, important if for the UI
-        multiple=False, # list of values (True) or single value (False)
+        name="cern:experiment",
+        vocabulary_id="cernexperiments",
+        dump_options=True,
+        multiple=False,
     ),
     TextCF(
         name="cern:experiment_description_html",
@@ -370,7 +366,7 @@ RDM_CUSTOM_FIELDS = [
     TextCF(
         name="cern:experiment_url",
         field_args={
-            "validate": validate.URL(),  # must be an implementation of Marshmallow.validate.Validator
+            "validate": validate.URL(),
             "required": True,
             "error_messages": {
                 "required": "You must provide the experiment homepage URL. "

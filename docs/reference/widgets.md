@@ -1,8 +1,10 @@
 # UI widgets
 
+The following document is a reference guide for all the React UI widgets available for custom fields.
+
 ## Input
 
-An input field that accepts a single string value.
+An input field for a single string value.
 
 ### Usage
 
@@ -25,9 +27,9 @@ An input field that accepts a single string value.
 
 - **placeholder** `String` _required_: The placeholder for the element's display. You should fill this in with an example value.
 
-- **description** `String` _required_: The desciption for the element's display. You should provide useful information on how the users should fill this field in.
+- **description** `String` _required_: The description for the element's display. You should provide useful information on how the users should fill this field in.
 
-- **icon** `String` _optional_: The optional icon that your field might have. The value should be one of the [semantic ui icons](https://react.semantic-ui.com/elements/icon/).
+- **icon** `String` _optional_: The optional icon that your field might have. The value should be one of the [Semantic UI icons](https://react.semantic-ui.com/elements/icon/).
 
 - **required** `Boolean` _optional_: Define if the field should be required i.e display the `*` symbol.
 
@@ -35,7 +37,7 @@ An input field that accepts a single string value.
 
 ## MultiInput
 
-An input field that accepts multiple string values.
+An input field for multiple string values.
 
 ### Usage
 
@@ -59,9 +61,9 @@ An input field that accepts multiple string values.
 
 - **placeholder** `String` _required_: The placeholder for the element's display. You should fill this in with an example value.
 
-- **description** `String` _required_: The desciption for the element's display. You should provide useful information on how the users should fill this field in.
+- **description** `String` _required_: The description for the element's display. You should provide useful information on how the users should fill this field in.
 
-- **icon** `String` _optional_: The optional icon that your field might have. The value should be one of the [semantic ui icons](https://react.semantic-ui.com/elements/icon/).
+- **icon** `String` _optional_: The optional icon that your field might have. The value should be one of the [Semantic UI icons](https://react.semantic-ui.com/elements/icon/).
 
 - **required** `Boolean` _optional_: Define if the field should be required i.e display the `*` symbol.
 
@@ -69,7 +71,7 @@ An input field that accepts multiple string values.
 
 ## RichInput
 
-A rich input field that accepts HTML text.
+A rich input field for HTML text, with a WYSIWYG editor.
 
 ### Usage
 
@@ -90,17 +92,17 @@ A rich input field that accepts HTML text.
 
 - **label** `String` _required_: The label for the element's display. This is used whenever the field should be displayed e.g upload form, landing page etc.
 
-- **description** `String` _required_: The desciption for the element's display. You should provide useful information on how the users should fill this field in.
+- **description** `String` _required_: The description for the element's display. You should provide useful information on how the users should fill this field in.
 
-- **icon** `String` _optional_: The optional icon that your field might have. The value should be one of the [semantic ui icons](https://react.semantic-ui.com/elements/icon/).
+- **icon** `String` _optional_: The optional icon that your field might have. The value should be one of the [Semantic UI icons](https://react.semantic-ui.com/elements/icon/).
 
 - **required** `Boolean` _optional_: Define if the field should be required i.e display the `*` symbol.
 
-- **editorConfig** `Object` _optional_: The config to pass to the underlying HTML editor as described in the [CKEditor configuration](https://ckeditor.com/docs/ckeditor5/latest/api/module_core_editor_editorconfig-EditorConfig.html) page.
+- **editorConfig** `Object` _optional_: The config to pass to the underlying HTML WYSIWYG editor as described in the [CKEditor configuration](https://ckeditor.com/docs/ckeditor5/latest/api/module_core_editor_editorconfig-EditorConfig.html) page.
 
 ## TextArea
 
-An input field that accepts a multi line text.
+An input field for multi line text.
 
 ### Usage
 
@@ -120,15 +122,15 @@ An input field that accepts a multi line text.
 
 - **label** `String` _required_: The label for the element's display. This is used whenever the field should be displayed e.g upload form, landing page etc.
 
-- **description** `String` _required_: The desciption for the element's display. You should provide useful information on how the users should fill this field in.
+- **description** `String` _required_: The description for the element's display. You should provide useful information on how the users should fill this field in.
 
-- **icon** `String` _optional_: The optional icon that your field might have. The value should be one of the [semantic ui icons](https://react.semantic-ui.com/elements/icon/).
+- **icon** `String` _optional_: The optional icon that your field might have. The value should be one of the [Semantic UI icons](https://react.semantic-ui.com/elements/icon/).
 
 - **required** `Boolean` _optional_: Define if the field should be required i.e display the `*` symbol.
 
 ## Dropdown
 
-A dropdown field that accepts a list of options that the user can select one or multiple values from. It is meant to be used for fields that have values coming from vocabularies.
+A dropdown field that renders the complete list of possible options, where the user can select one or multiple values. It is meant to be used with small vocabularies.
 
 ### Usage
 
@@ -154,9 +156,9 @@ A dropdown field that accepts a list of options that the user can select one or 
 
 - **placeholder** `String` _required_: The placeholder for the element's display. You should fill this in with an example value.
 
-- **description** `String` _required_: The desciption for the element's display. You should provide useful information on how the users should fill this field in.
+- **description** `String` _required_: The description for the element's display. You should provide useful information on how the users should fill this field in.
 
-- **icon** `String` _optional_: The optional icon that your field might have. The value should be one of the [semantic ui icons](https://react.semantic-ui.com/elements/icon/).
+- **icon** `String` _optional_: The optional icon that your field might have. The value should be one of the [Semantic UI icons](https://react.semantic-ui.com/elements/icon/).
 
 - **required** `Boolean` _optional_: Define if the field should be required i.e display the `*` symbol.
 
@@ -168,7 +170,7 @@ A dropdown field that accepts a list of options that the user can select one or 
 
 ## AutocompleteDropdown
 
-A dropdown field that accepts a REST API endpoint that the user can select one or multiple values from. It is meant to be used for fields that have values coming from vocabularies.
+A dropdown field that allows the user to search for values, connected to the REST API endpoint. It is meant to be used with large vocabularies.
 
 ### Usage
 
@@ -194,11 +196,11 @@ A dropdown field that accepts a REST API endpoint that the user can select one o
 
 - **placeholder** `String` _required_: The placeholder for the element's display. You should fill this in with an example value.
 
-- **description** `String` _required_: The desciption for the element's display. You should provide useful information on how the users should fill this field in.
+- **description** `String` _required_: The description for the element's display. You should provide useful information on how the users should fill this field in.
 
 - **autocompleteFrom** `String` _required_: The endpoint from which the component should fetch options. This will point to your vocabulary endpoint e.g `/api/vocabularies/myvocabulary`.
 
-- **icon** `String` _optional_: The optional icon that your field might have. The value should be one of the [semantic ui icons](https://react.semantic-ui.com/elements/icon/).
+- **icon** `String` _optional_: The optional icon that your field might have. The value should be one of the [Semantic UI icons](https://react.semantic-ui.com/elements/icon/).
 
 - **required** `Boolean` _optional_: Define if the field should be required i.e display the `*` symbol.
 

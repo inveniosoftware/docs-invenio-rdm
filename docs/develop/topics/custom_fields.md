@@ -1,10 +1,11 @@
-# Custom Fields Types
+# Creating a new custom field
 
-In this chapter we will explain how to implement your own custom field. In order to have a use case scenario in mind, we will try to extend the scenario we described in the [Adding fields to the records' data model](../../../customize/custom_fields/records) section. Our example use case will be:
+This guide describes how to create your own custom field. If you have not done it yet, please read first about configuring [records custom fields](../../../customize/custom_fields/records).
+The new custom field in this example will extend the use case described in the records custom field documentation:
 
-_At CERN... For each experiment a record could belong to, I want to know the title and the research program of said experiment._
+_When uploading a research preprint at CERN, I want to record the title and the research program of the related CERN experiments._
 
-To satisfy the the above scenario we will implement a new field `experiments` which will be a list of objects the following structure:
+Let's implement a new field `experiments`, which will be a list of objects with the following structure:
 
 ```json
 {
@@ -21,18 +22,15 @@ To satisfy the the above scenario we will implement a new field `experiments` wh
 }
 ```
 
-This will give us the opportunity to add the experiments a record can belong to, and more information about them.
-
-## Implement a new custom field
-
-We will start by defining a new custom field type.
+Let's define a new custom field type. For convenience, we will define the new custom field type in the `my-site/invenio.cfg` where the application configuration resides. Therefore, no import will be needed to use it in the `RDM_CUSTOM_FIELDS` variable.
 
 ```python
 from invenio_records_resources.services.custom_fields import BaseListCF
+from marshmallow import fields
 from marshmallow_utils.fields import SanitizedUnicode
 
 class ExperimentsCF(BaseListCF):
-    """List of experiments with extra information."""
+    """Experiments with title and program."""
 
     def __init__(self, name, **kwargs):
         """Constructor."""
@@ -64,9 +62,9 @@ class ExperimentsCF(BaseListCF):
         }
 ```
 
-## Implement new UI widget
+## Implement the new UI widget
 
-We will create a new UI widget for our field under the `my-site/assets/custom-fields` folder called `Experiments.js`. This would look like the following:
+Let's now create the new UI widget in a file `Experiments.js` in `my-site/assets/custom-fields`:
 
 ```javascript
 import React, { Component } from "react";
@@ -142,9 +140,9 @@ export class Experiments extends Component {
 }
 ```
 
-## Define the template for the record landing page
+## Layout template
 
-We will add a new template so we can display the newly added field to the record's landing page. For that reason, we create a new file `experiments.html` under the `my-site/templates` folder.
+Let's now create the template that will be used to display the newly added field in the record landing page. We create a new file `experiments.html` in `my-site/templates`:
 
 ```html
 <dt class="ui tiny header">{{ _("Experiments")}}</dt>
@@ -154,9 +152,9 @@ _("Program") }}: {{value.get("program", "Unknown")}}) {{ ", " if not loop.last
 }} {% endfor %}
 ```
 
-## Applying configuration
+## Configuration
 
-We have defined our field, so now we need to add it to the `RDM_CUSTOM_FIELDS` and `RDM_CUSTOM_FIELDS_UI` configuration:
+Finally, we need to add the new field to the `RDM_CUSTOM_FIELDS` and `RDM_CUSTOM_FIELDS_UI` configuration:
 
 ```python
 RDM_CUSTOM_FIELDS = [
@@ -188,22 +186,24 @@ RDM_CUSTOM_FIELDS_UI = [{
 }]
 ```
 
-Now, we need to populate the new added field to ES by running the command:
+Custom field initialization, in a new shell run:
 
 ```bash
-invenio rdm-records custom-fields init -f experiments
+$ cd my-site
+
+$ pipenv run invenio rdm-records custom-fields init -f experiments
 ```
 
-## Display
+## See it in action
 
 ### Upload form
 
-The new field will be displayed at the bottom of the upload form like below:
+The new field will be displayed at the bottom of the upload form:
 
 ![Experiments field upload form](../img/new_custom_field_upload_form.png)
 
-### Landing page
+### Record landing page
 
-In similar fashion, the field will be displayed in the record's landing page according to the template we defined and it will look like below:
+The new field will be displayed in the record landing page:
 
 ![Experiments field record landing page](../img/new_custom_field_landing_page.png)
