@@ -50,5 +50,22 @@ pipenv run invenio alembic upgrade
 pipenv run invenio shell $(find $(pipenv --venv)/lib/*/site-packages/invenio_app_rdm -name migrate_9_0_to_10_0.py)
 ```
 
-As soon as the script execution has finished, the entire migration is complete! :partying_face:
+### Elasticsearch
+
+The last required step is the migration of Elasticsearch indices:
+
+```bash
+# If you're using an index prefix for your Elasticsearch cluster, you'll have to set it
+INDEX_PREFIX=""
+
+pipenv run invenio index delete "${INDEX_PREFIX}communitymembers-*" --yes-i-know
+pipenv run invenio index delete "${INDEX_PREFIX}request_events-*" --yes-i-know
+pipenv run invenio index destroy --yes-i-know
+pipenv run invenio index init
+pipenv run invenio rdm-records rebuild-index
+```
+
+This will ensure that all indices and their contents are based on the latest definitions and not out of date.
+
+As soon as the indices have been rebuilt, the entire migration is complete! :partying_face:
 
