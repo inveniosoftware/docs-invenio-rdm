@@ -63,6 +63,7 @@ pipenv run invenio index delete "${INDEX_PREFIX}request_events-*" --yes-i-know
 pipenv run invenio index destroy --yes-i-know
 pipenv run invenio index init
 pipenv run invenio rdm-records rebuild-index
+pipenv run invenio communities rebuild-index
 ```
 
 This will ensure that all indices and their contents are based on the latest definitions and not out of date.
