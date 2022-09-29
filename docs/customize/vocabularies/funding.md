@@ -89,7 +89,7 @@ invenio vocabularies update \
 
 ## Awards (OpenAIRE)
 
-Awards represent a detailed description of a sponsored funding/grant (e.g. the [OpenAIRE-Nexus project](https://cordis.europa.eu/project/id/101017452) by the European Commission). Out-of-the-box we provide support for importing awards from the [OepnAIRE Research Graph](https://doi.org/10.5281/zenodo.3516917) projects dataset.
+Awards represent a detailed description of a sponsored funding/grant (e.g. the [OpenAIRE-Nexus project](https://cordis.europa.eu/project/id/101017452) by the European Commission). Out-of-the-box we provide support for importing awards from the [OpenAIRE Research Graph](https://doi.org/10.5281/zenodo.3516917) projects dataset.
 
 ### Data model
 
@@ -129,7 +129,7 @@ The **Award** vocabulary uses the new DataStreams API for importing entries. You
 
 #### OpenAIRE projects dataset import
 
-You can fetch the latest `project.tar` [OepnAIRE Research Graph dump](https://doi.org/10.5281/zenodo.3516917) and then import it directly using the following command:
+You can fetch the latest `project.tar` [OpenAIRE Research Graph dump](https://doi.org/10.5281/zenodo.3516917) and then import it directly using the following command:
 
 !!! warning "Long and blocking operation"
     Note that the import process is done synchronously and the ROR dataset is
