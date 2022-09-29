@@ -64,8 +64,8 @@ nav:
           - Subjects: "customize/vocabularies/subjects.md"
           - Users: "customize/vocabularies/users.md"
       - Custom fields:
-          - Adding fields to the records' data model: "customize/custom_fields/records.md"
-          - Adding fields to the communities' data model: "customize/custom_fields/communities.md"
+          - Add fields to records: "customize/custom_fields/records.md"
+          - Add fields to communities: "customize/custom_fields/communities.md"
       - Record landing page: "customize/record_landing_page.md"
       - DOI registration: "customize/dois.md"
       - Storage: "customize/s3.md"
@@ -98,7 +98,7 @@ nav:
           - Grouping atomic operations: develop/topics/uow.md
           - Sanitize input data: develop/topics/validation.md
           - Theming: develop/topics/theming.md
-          - Adding a new custom field: develop/topics/custom_fields.md
+          - Creating a new custom field: develop/topics/custom_fields.md
       - How-to guides:
           - Create a database migration: develop/howtos/alembic.md
           - Fix a vulnerability: develop/howtos/security-fix.md

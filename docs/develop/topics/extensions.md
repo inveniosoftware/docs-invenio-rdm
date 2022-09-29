@@ -42,7 +42,7 @@ editing them and making your extension do more.
 
 In our case, we will be adding a custom pool of subjects that depositors will be able to choose from when they deposit.
 
-![Example subjects field on the deposit page](subjects_input_example.png)
+![Example subjects field on the deposit page](img/subjects_input_example.png)
 
 We save that list of subjects in `my_subjects_extension/vocabularies/subjects.yaml`. The location or name of this file is arbitrary. We will be explicitly referring to it; as long as you are consistent, you are good.
 
