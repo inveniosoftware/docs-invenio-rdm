@@ -38,7 +38,8 @@ class ExperimentsCF(BaseListCF):
         """Constructor."""
         super().__init__(
           name,
-          field_cls=fields.Nested(
+          field_cls=fields.Nested,
+          field_args=dict(
             nested= dict(
                 title=SanitizedUnicode(),
                 program=SanitizedUnicode()
