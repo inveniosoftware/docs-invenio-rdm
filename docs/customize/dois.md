@@ -18,7 +18,7 @@ DATACITE_ENABLED = True
 
 Before you continue, make sure you first have a [DataCite test account](https://support.datacite.org/docs/getting-a-test-account).
 
-You need to provide the account credentials and and the DOI prefix for the DataCite repository account in your  in ``invenio.cfg`` file:
+You need to provide the account credentials and the DOI prefix for the DataCite repository account in your  in ``invenio.cfg`` file:
 
 ```python
 DATACITE_USERNAME = "..." # Your username
