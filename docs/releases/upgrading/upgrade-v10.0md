@@ -29,7 +29,8 @@ Bump the RDM version, create a folder for your custom fields and rebuild the ass
 invenio-cli packages update 10.0.0
 
 # Create custom fields folder
-mkdir <my-site>/assets/templates/custom_fields
+cd <my-site>
+mkdir assets/templates/custom_fields
 
 # Build the instance assets
 invenio-cli assets build
@@ -55,11 +56,7 @@ pipenv run invenio shell $(find $(pipenv --venv)/lib/*/site-packages/invenio_app
 The last required step is the migration of Elasticsearch indices:
 
 ```bash
-# If you're using an index prefix for your Elasticsearch cluster, you'll have to set it
-INDEX_PREFIX=""
 
-pipenv run invenio index delete "${INDEX_PREFIX}communitymembers-*" --yes-i-know
-pipenv run invenio index delete "${INDEX_PREFIX}request_events-*" --yes-i-know
 pipenv run invenio index destroy --yes-i-know
 pipenv run invenio index init
 pipenv run invenio rdm-records rebuild-index
