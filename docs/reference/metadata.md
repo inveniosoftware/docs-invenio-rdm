@@ -121,8 +121,6 @@ with the same system-managed persistent identifier (see also [Metadata > Identif
 
 You can add a DOI that is not managed by InvenioRDM by using the provider `external`. You are not able to add `external` DOIs that have a prefix that is configured as part of a different PID provider.
 
-If you utilize the default DataCite PID provider, both the provider and client will be `datacite`. 
-
 Only one identifier can be registered per system-defined scheme. Each identifier has the following subfields:
 
 | Field | Cardinality |   Description   |
