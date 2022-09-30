@@ -35,6 +35,39 @@ An input field for a single string value.
 
 - **disabled** `Boolean` _optional_: Define if the field should be displayed as disabled thus no input can be filled.
 
+## NumberInput
+
+An input field for numbers e.g integers, float etc.
+
+### Usage
+
+```javascript
+<NumberInput
+  fieldPath="cern:experiment_id"
+  label="Experiment identifier"
+  placeholder="Experiment id..."
+  icon="calculator"
+  description="Unique integer id of the experiment."
+  required={true}
+/>
+```
+
+### Props
+
+- **fieldPath** `String` _required_: The path to the field e.g `cern:experiment`.
+
+- **label** `String` _required_: The label for the element's display. This is used whenever the field should be displayed e.g upload form, landing page etc.
+
+- **placeholder** `String` _required_: The placeholder for the element's display. You should fill this in with an example value.
+
+- **description** `String` _required_: The description for the element's display. You should provide useful information on how the users should fill this field in.
+
+- **icon** `String` _optional_: The optional icon that your field might have. The value should be one of the [Semantic UI icons](https://react.semantic-ui.com/elements/icon/).
+
+- **required** `Boolean` _optional_: Define if the field should be required i.e display the `*` symbol.
+
+- **disabled** `Boolean` _optional_: Define if the field should be displayed as disabled thus no input can be filled.
+
 ## MultiInput
 
 An input field for multiple string values.
@@ -207,3 +240,35 @@ A dropdown field that allows the user to search for values, connected to the RES
 - **clearable** `Boolean` _optional_: Define if the user can deselect all the selected values.
 
 - **multiple** `Boolean` _optional_ : Define if the field accepts multiple values.
+
+## BooleanCheckbox
+
+A field for boolean values. It displays 2 checkboxes for each corresponding value i.e true/false.
+
+### Usage
+
+```javascript
+<BooleanCheckbox
+  fieldPath="cern:experiment_active"
+  label="Active experiment"
+  icon="check"
+  description="Mark if the experiment is active."
+  required={true}
+/>
+```
+
+### Props
+
+- **fieldPath** `String` _required_: The path to the field e.g `cern:experiment`.
+
+- **label** `String` _required_: The label for the element's display. This is used whenever the field should be displayed e.g upload form, landing page etc.
+
+- **trueLabel** `String` _required_: The label for the element's display when the value is `true`. This is used whenever the `true` value should be displayed e.g upload form, landing page etc.
+
+- **falseLabel** `String` _required_: The label for the element's display when the value is `false`. This is used whenever the `false` value should be displayed e.g upload form, landing page etc.
+
+- **description** `String` _required_: The description for the element's display. You should provide useful information on how the users should fill this field in.
+
+- **icon** `String` _optional_: The optional icon that your field might have. The value should be one of the [Semantic UI icons](https://react.semantic-ui.com/elements/icon/).
+
+- **required** `Boolean` _optional_: Define if the field should be required i.e display the `*` symbol.
