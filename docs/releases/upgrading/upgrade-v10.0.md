@@ -66,3 +66,26 @@ pipenv run invenio communities rebuild-index
 This will ensure that all indices and their contents are based on the latest definitions and not out of date.
 
 As soon as the indices have been rebuilt, the entire migration is complete! :partying_face:
+
+
+### Accessing the Administration panel
+
+A new permission (`administration-access`) is needed to access the administration panel. There are 2 ways to grant this permission.
+
+1) Permission can be added using a role:
+```
+# Create a rol 
+pipenv run invenio roles create administration
+
+# Allow access to administration to the administration role
+pipenv run invenio access allow administration-access role administration
+
+# Add administration role to an user email
+pipenv run invenio roles add <user_email> administration
+```
+
+2) Permission can be added to a specific user:
+```
+# Add access to administration to an user email
+pipenv run invenio access allow administration-access user <user_email>
+```
