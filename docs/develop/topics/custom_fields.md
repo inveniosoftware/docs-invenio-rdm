@@ -169,6 +169,7 @@ RDM_CUSTOM_FIELDS_UI = [{
         "ui_widget": "Experiments",
         "template": "experiments.html",
         "props": {
+            "label": _("Experiments"),
             "title": {
                 "label": _("Experiment title"),
                 "placeholder": _("Add the title..."),
