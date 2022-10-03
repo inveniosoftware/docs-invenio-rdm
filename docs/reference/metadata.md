@@ -133,14 +133,14 @@ Only one identifier can be registered per system-defined scheme. Each identifier
 {
   "pids": {
     "doi": {
-      "identifier": "10.5281/zenodo.1234",
+      "identifier": "10.1234/rdm.5678",
       "provider": "datacite",
       "client": "datacite"
     },
     "concept-doi": {
-      "identifier": "10.5281/zenodo.1234",
+      "identifier": "10.1234/rdm.5678",
       "provider": "datacite",
-      "client": "zenodo"
+      "client": "datacite"
     }
   }
 }
