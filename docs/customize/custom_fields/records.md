@@ -162,7 +162,7 @@ pipenv run invenio rdm-records custom-fields init -f <field_name> -f <field_name
     If you have added the custom fields configuration, **with some `required` fields**, before running the first setup, it will fail.
     This is because the demo data created during the setup do not contain the custom fields and the required value will be empty. As a workaround:
 
-    1. define custom fields, without required fields
+    1. define all custom fields without using the required parameter
     2. run the setup command
     3. put back the required parameter in the config
 
