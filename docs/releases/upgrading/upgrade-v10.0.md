@@ -65,8 +65,27 @@ pipenv run invenio communities rebuild-index
 
 This will ensure that all indices and their contents are based on the latest definitions and not out of date.
 
-As soon as the indices have been rebuilt, the entire migration is complete! :partying_face:
+#### Strict mappings
 
+Previously record and community mappins were dynamic, which means that any unknwon value could be added to it. This would be the case for custom elasticsearch dumper extensions. This dumpers need to be modified to dump those fields in new _custom fields_. Then the records and communities need to be re-indexed.
+
+\`\`\`shell
+# destroy the current indices
+pipenv run invenio index destroy --yes-i-know
+pipenv run invenio index init
+
+# once you have configured your new custom fields
+invenio rdm-records custom-fields init -f <field name> -f <field name>
+invenio communities custom-fields init -f <field name> -f <field name>
+
+# reindex records
+pipenv run invenio rdm-records rebuild-index
+pipenv run invenio communities rebuild-index
+\`\`\`
+
+As soon as the records have been reindexed, the entire migration is complete! :partying_face:
+
+Additionally, the following section will contain an explanation on how to use the new administration panel.
 
 ### Accessing the Administration panel
 
