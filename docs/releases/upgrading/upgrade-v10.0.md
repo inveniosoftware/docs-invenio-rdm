@@ -1,8 +1,8 @@
-# Upgrading from v9.0 to v10.0
+# Upgrading from v9 to v10
 
 ## Prerequisites
 
-The steps listed in this article require an existing local installation of InvenioRDM v9.0, please make sure that this is given!
+The steps listed in this article require an existing local installation of InvenioRDM v9, please make sure that this is given!
 
 If unsure, run `invenio-cli install` from inside the instance directory before executing the listed steps.
 
@@ -12,13 +12,13 @@ If unsure, run `invenio-cli install` from inside the instance directory before e
 
 !!! info "Older versions"
 
-    In case you have an InvenioRDM installation older than v9.0, you can gradually upgrade using the existing instructions to v9.0 and afterwards continue from here.
+    In case you have an InvenioRDM installation older than v9, you can gradually upgrade using the existing instructions to v9 and afterwards continue from here.
 
 ## Upgrade Steps
 
 !!! warning "Upgrade your invenio-cli"
 
-    Make sure you have the latest `invenio-cli`, for InvenioRDM v10 the release is v1.0.5
+    Make sure you have the latest `invenio-cli`, for InvenioRDM v10 the release is ```TODO: Add last invenio-cli version```.
 
 ### Installing the Latest Versions
 
@@ -75,8 +75,8 @@ pipenv run invenio index destroy --yes-i-know
 pipenv run invenio index init
 
 # once you have configured your new custom fields
-invenio rdm-records custom-fields init -f <field name> -f <field name>
-invenio communities custom-fields init -f <field name> -f <field name>
+pipenv run invenio rdm-records custom-fields init -f <field name> -f <field name>
+pipenv run invenio communities custom-fields init -f <field name> -f <field name>
 
 # reindex records
 pipenv run invenio rdm-records rebuild-index
@@ -85,7 +85,7 @@ pipenv run invenio communities rebuild-index
 
 As soon as the records have been reindexed, the entire migration is complete! :partying_face:
 
-Additionally, the following section will contain an explanation on how to use the new administration panel.
+Additionally, the following section will contain an explanation on how to access the new administration panel.
 
 ### Accessing the Administration panel
 
@@ -93,7 +93,7 @@ A new permission (`administration-access`) is needed to access the administratio
 
 1) Permission can be added using a role:
 ```
-# Create a rol 
+# Create a role
 pipenv run invenio roles create administration
 
 # Allow access to administration to the administration role
