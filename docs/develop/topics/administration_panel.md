@@ -6,15 +6,15 @@ The following document is a developer guide to the invenio administration panel,
 
 ## Intended audience
 
-This guide is intended for system administrators and developers of InvenioRDM.
+This guide is intended for developers of InvenioRDM.
 
-Overview
+## Overview
 
 Invenio administration panel gives the administrator a set of tools to effectively manage an instance of InvenioRDM. 
 
 ## Domain dictionary
 
-The following terms are introduced to facilitate defining the problem
+The following terms are introduced to facilitate defining the domain:
 
 - `administration panel` - the interface panel enabling a `manager` to administrate the instance of InvenioRDM in a developer-independent way.
 - `administrator` - a person with domain knowledge, with a special set of permissions, able to manage an InvenioRDM instance, not necessarily having developer skills.
@@ -23,17 +23,17 @@ The following terms are introduced to facilitate defining the problem
 
 ## Administration panel
 
-![Administration Panel](./img/administration_wireframe.png)
+![Administration Panel](./img/administration/administration_wireframe.png)
 
-An instance developer can register new entries in the menu (see backend [RFC](https://codimd.web.cern.ch/9BXwD597Q_ufUwxvCGF4CQ)). A menu entry will display the associated views in the panel section. The navbar menu layouts are customizable to meet the needs of the InvenioRDM instance.
+An instance developer can register new entries in the menu (see backend [RFC](https://github.com/inveniosoftware/rfcs/pull/67)). A menu entry will display the associated views in the panel section. The navbar menu layouts are customizable to meet the needs of the InvenioRDM instance.
 
 ### Architecture
 
-![Architecture diagram](./img/administration_architecture.png)
+![Architecture diagram](./img/administration/administration_architecture.png)
 
 Administration views can be used "out of the box", meaning that some functionalities are provided as long as the installed views follow the architecture mentioned below. E.g. to implement a list page for a resource, its view must be of type `AdminResourceBaseView`.
 
-More information on views, e.g. how they can be customised and extended, is provided below.
+More information on views, e.g. how they can be customized and extended, is provided [below](#list-view).
 
 ### Views
 
@@ -66,7 +66,7 @@ Table view uses a search app, bootstrapped using [React Search Kit](https://inve
 
 Each row contains a set of actions that can be performed on a resource. These actions can be "default" ones, such as "Edit" or "Delete", but can also be extended to support custom actions that are only available for that specific resource, e.g. feature a community.
 
-![List view layout](./img/administration_list_view.png)
+![List view layout](./img/administration/administration_list_view.png)
 
 ##### Usage
 
@@ -108,9 +108,12 @@ class OaiPmhListView(AdminResourceListView):
     resource_name = "name"
 ```
 
+For the full attributes list and description visit [reference docs](../../reference/administration_reference.md)
+
+
 #### Create view
 
-![Create view layout](./img/administration_create_view.png)
+![Create view layout](./img/administration/administration_create_view.png)
 
 A Create view displays a page on which a resource can be created. By default, `invenio-administration` provides a core module that generates this view based on given `CreateView` configuation.
 
@@ -141,9 +144,12 @@ class OaiPmhCreateView(AdminResourceCreateView):
 
 ```
 
+For the full attributes list and description visit [reference docs](../../reference/administration_reference.md)
+
+
 #### Edit view
 
-![Edit view layout](./img/administration_edit_view.png)
+![Edit view layout](./img/administration/administration_edit_view.png)
 
 This view displays a form to edit a selected resource. Form fields are customizable to each resource and some are allowed to be `read only`.
 
@@ -173,9 +179,12 @@ class OaiPmhEditView(AdminResourceEditView):
     }
 ```
 
+For the full attributes list and description visit [reference docs](../../reference/administration_reference.md)
+
+
 #### Details view
 
-![Details view layout](./img/administration_details_view.png)
+![Details view layout](./img/administration/administration_details_view.png)
 By default, this view displays the details of a selected resource. It can be configured to display/hide a set of fields.
 
 It can be extended or completely overridden by a custom view.
@@ -213,8 +222,9 @@ class OaiPmhDetailView(AdminResourceDetailView):
         "created": {"text": "Created", "order": 4},
         "updated": {"text": "Updated", "order": 5},
     }
-
 ```
+
+For the full attributes list and description visit [reference docs](../../reference/administration_reference.md)
 
 #### Views registration
 
@@ -252,22 +262,27 @@ from invenio_administration.views.base import AdminView
 class MyCustomView(AdminView):
     """My custom view."""
 
-    extension_name = None
-    category = None
+    name = "customview"
+    category = "My category"
     template = "invenio_administration/index.html"
     url = None
-    menu_label = None
-    order = None
-    icon = None
+    menu_label = "Custom View"
+    icon = "user"
 ```
 
-- **extension_name** `String` optional: Flask extension of the view. Default is built with the name of the entry point
-- **category** `String` optional: Menu entry that contains the view. Default is None.
-- **template** `String` optional: Path to the custom template.
-- **url** `String`  optional: URL used to route the view. Default is built with the name of the custom view.
-- **menu_label** `String` optional: Label that will be displayed in the menu.
-- **order** `String` optional: Order of the menu entry.
-- **icon** `String` optional: The optional icon that the menu entry might have. The value should be one of the [Semantic UI icons](https://react.semantic-ui.com/elements/icon/).
+The class defined for the custom view must be registered as an entry point, as follows:
+
+```bash
+vim invenio-rdm-records/setup.cfg
+```
+
+```ini
+[options.entry_points]
+invenio_administration.views =
+    invenio_module_admin_custom_view = invenio_module.administration.views:MyCustomView
+```
+
+For the full attributes list and description visit [reference docs](../../reference/administration_reference.md)
 
 ### Customisation: dashboard view
 
@@ -279,7 +294,7 @@ ADMINISTRATION_DASHBOARD_VIEW = (
 )
 ```
 
-If there is no need to provide any additional template context, dashboard view can be also overridden by adding new jinja template in your local instance, as follows: `templates/invenio_administration/dashboard.html`. 
+If there is no need to provide any additional template context, dashboard view can be also overridden by adding new jinja template in your local instance, as follows: `templates/invenio_administration/index.html`. 
 
 ### Customisation: jinja templates
 
@@ -383,10 +398,29 @@ The `administration-access` permission is needed to access the administration pa
       # Add access to administration to an user email
       pipenv run invenio access allow administration-access user <user_email>
     ```
+   
+### Admin actions permissions
+
+Any request endpoint which is handled by administration panel (creating a resource, editing a resource, featuring a community, etc.), must have `Administration()` permission added, for example:
+
+```python
+from invenio_administration.generators import Administration
+from invenio_records_permissions import BasePermissionPolicy
+
+
+class OAIPMHServerPermissionPolicy(BasePermissionPolicy):
+    """OAI-PMH permission policy."""
+
+    can_read = [Administration()]
+    can_create = [Administration()]
+    can_delete = [Administration()]
+    can_update = [ Administration()]
+    can_read_format = [Administration()]
+```
 
 #### Custom permissions
 
-You can customise your individual permissions per view by overwriting `decorators` class attribute as shown below (see also [Flask class based views documentation](https://flask.palletsprojects.com/en/2.2.x/views/#view-decorators)).
+You can customize your individual permissions per view by overwriting `decorators` class attribute as shown below (see also [Flask class based views documentation](https://flask.palletsprojects.com/en/2.2.x/views/#view-decorators)).
 For more details on configuring administration views, follow the rest of this guide.
 
 ```python
