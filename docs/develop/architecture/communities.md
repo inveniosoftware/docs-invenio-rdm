@@ -6,7 +6,7 @@ This guide is intended for maintainers and developers of InvenioRDM itself.
 
 **Scope**
 
-The guide provides a high-level architectural overview of the communities
+The guide provides a high-level architectural overview of the communities 
 module for InvenioRDM.
 
 ## Community roles
@@ -65,7 +65,7 @@ properties:
 - Request
 
 The property "active" is meant to only be used solely for invitations. For
-instance, it's not meant to temporarily inactive an existing membership (the
+instance, it's not meant to temporarily deactivate an existing membership (the
 membership should simply be deleted instead).
 
 The property "request" links to the associated request sent to the user being
@@ -82,7 +82,7 @@ divided into permissions and pre-conditions.
 **A community must always have an owner**
 
 A community must always have an owner so that someone can manage the community.
-A community should be removed if an sole owner wants to leave it.
+A community should be removed if a sole owner wants to leave it.
 
 **No self role change**
 
@@ -116,13 +116,13 @@ their consent.
 ### Members Command and Query Responsibility Segregation (CQRS)
 
 All state changing commands such as add, invite, update and delete
-performs only the required changed, but does not return any results.
+performs only the required changes, but does not return any results.
 
-Instead to retrieve the list of members the caller must perform a query to one
+Instead, to retrieve the list of members, the caller must perform a query to one
 of the search endpoints.
 
-The reason for this design is because we denormalize data required for the
-views (such as the user's name/affiliation etc) into the search index that is
+The reason for this design is that we denormalize data required for the
+views (such as the user's name/affiliation etc.) into the search index that is
 not available if we immediately returned a result. Also, it ensures that all
 querying happens on the search index.
 

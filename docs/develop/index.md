@@ -37,6 +37,7 @@ Developer introductions to specific parts of the InvenioRDM source code:
 - [Grouping atomic operations](topics/uow.md)
 - [Sanitize input data](topics/validation.md)
 - [Theming](topics/theming.md)
+- [Administration pages](topics/administration_panel.md)
 
 ## How-to guides
 
