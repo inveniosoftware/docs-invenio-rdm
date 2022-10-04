@@ -69,7 +69,11 @@ InvenioRDM now support both OpenSearch 1 and 2, switching the default for new in
 
 Search mappings have been made strict, which means that no unknown fields will be accepted. Before, no errors were being thrown. If you had custom record dumpers you might need to add custom fields and rebuild the indices. See the [upgrade guide](../upgrading/upgrade-v10.0.md) for more information.
 
-**TODO** Something else?
+**Deposit form publish modal warning text customization**
+
+The warning text shown in the modal during the publish/submit-for-review action can now be extended via the `APP_RDM_DEPOSIT_FORM_PUBLISH_MODAL_EXTRA` config variable. You can pass text or html there and the result will look like the following:
+
+![Customize publish modal wanring text](./v10.0/publish_modal_text_customize.png)
 
 ### Known issues
 
