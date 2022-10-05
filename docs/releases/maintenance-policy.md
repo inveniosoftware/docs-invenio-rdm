@@ -20,10 +20,11 @@ We may make exceptions to this policy for serious security bugs.
 
 Following is an overview of future end of life (EOL) dates for currently maintained releases:
 
-| Release    | Earliest EOL Date | Maintained until    |
-| ---------- | ----------------- | ------------------- |
-| v6.0.0 LTS |                   | 2022-12-31          |
-| v9.0.0 LTS | 2023-05-24        | next LTS + 6 months |
+| Release     | Earliest EOL Date | Maintained until    |
+| ----------- | ----------------- | ------------------- |
+| v6.0.0 LTS  |                   | 2022-12-31          |
+| v9.0.0 LTS  | 2023-05-24        | next LTS + 6 months |
+| v10.0.0 STS |                   | next SLS            |
 
 ### End of life releases
 
