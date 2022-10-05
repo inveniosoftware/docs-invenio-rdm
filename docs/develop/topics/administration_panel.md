@@ -1,5 +1,7 @@
 # Administration panel views
 
+*Introduced in InvenioRDM v10*
+
 ## Summary
 
 The following document is a developer guide to the invenio administration panel, detailing its programmatic interface and usage.
