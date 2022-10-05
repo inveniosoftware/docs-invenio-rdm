@@ -1,5 +1,7 @@
 # Records custom fields
 
+_Introduced in InvenioRDM v10_
+
 While the InvenioRDM's [metadata schema](../../reference/metadata.md) includes a wide range of bibliographic fields, there might still be cases where you need to include domain or system specific information in your records. This can be achieved using custom fields.
 To demonstrate how to take advantage of custom fields, we will use the following examples:
 

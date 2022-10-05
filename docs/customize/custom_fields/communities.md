@@ -1,8 +1,11 @@
 # Communities custom fields
 
+_Introduced in InvenioRDM v10_
+
 Communities custom fields can be configured in a very similar manner than [records](./records.md).
 The only difference is the prefix of the configuration variables and the place where they are
 displayed.
+
 ## Quickstart, how does it look?
 
 To add a _community external URL_ field, you will need to configure the type of
