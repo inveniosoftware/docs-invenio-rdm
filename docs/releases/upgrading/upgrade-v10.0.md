@@ -53,7 +53,7 @@ pipenv run invenio shell $(find $(pipenv --venv)/lib/*/site-packages/invenio_app
 
 ### Elasticsearch
 
-The last required step is the migration of Elasticsearch indices:
+The last required step is the migration of Elasticsearch indices. This will ensure that all indices and their contents are based on the latest definitions and not out of date.
 
 ```bash
 
@@ -63,7 +63,41 @@ pipenv run invenio rdm-records rebuild-index
 pipenv run invenio communities rebuild-index
 ```
 
-This will ensure that all indices and their contents are based on the latest definitions and not out of date.
+Then in a python shell (`invenio-cli pyshell`), run:
+
+```python
+from invenio_access.permissions import system_identity
+from invenio_communities.proxies import current_communities
+from invenio_records_resources.proxies import current_service_registry
+from invenio_requests.proxies import current_events_service, current_requests_service
+
+# reindex users
+users_service = current_service_registry.get("users")
+users_service.rebuild_index(system_identity)
+
+# reindex groups
+groups_service = current_service_registry.get("groups")
+groups_service.rebuild_index(system_identity)
+
+# reindex members and archived invitations
+members_service = current_communities.service.members
+members_service.rebuild_index(system_identity)
+
+# reindex requests
+for req_meta in current_requests_service.record_cls.model_cls.query.all():
+    request = current_requests_service.record_cls(req_meta.data, model=req_meta)
+    if not request.is_deleted:
+        current_requests_service.indexer.index(request)
+
+# reindex requests events
+for event_meta in current_events_service.record_cls.model_cls.query.all():
+    event = current_events_service.record_cls(event_meta.data, model=event_meta)
+    current_events_service.indexer.index(event)
+```
+
+!!! info "This will be integrated in the cli in future releases"
+
+    This is needed to make sure all record types are re-indexed. However, in future releases these commands will be encapsulated in one.
 
 #### Strict mappings
 
