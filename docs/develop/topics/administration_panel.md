@@ -4,7 +4,7 @@
 
 ## Summary
 
-The following document is a developer guide to the invenio administration panel, detailing its programmatic interface and usage.
+The following document is a developer guide to the InvenioRDM administration panel, detailing its programmatic interface and usage.
 
 ## Intended audience
 
@@ -12,7 +12,7 @@ This guide is intended for developers of InvenioRDM.
 
 ## Overview
 
-Invenio administration panel gives the administrator a set of tools to effectively manage an instance of InvenioRDM. 
+Invenio administration panel gives the administrator an easy and simple web interface to effectively manage an instance of InvenioRDM. 
 
 ## Domain dictionary
 
@@ -21,33 +21,39 @@ The following terms are introduced to facilitate defining the domain:
 - `administration panel` - the interface panel enabling a `manager` to administrate the instance of InvenioRDM in a developer-independent way.
 - `administrator` - a person with domain knowledge, with a special set of permissions, able to manage an InvenioRDM instance, not necessarily having developer skills.
 - `frontsite`, `end user interface` - currently known InvenioRDM interface, accessible by anonymous and logged-in users, without administrator role.
-- `administration view` - subpages of the administration panel
+- `administration view` - content of the administration panel (pages)
 
 ## Administration panel
 
 ![Administration Panel](./img/administration/administration_wireframe.png)
 
-An instance developer can register new entries in the menu (see backend [RFC](https://github.com/inveniosoftware/rfcs/pull/67)). A menu entry will display the associated views in the panel section. The navbar menu layouts are customizable to meet the needs of the InvenioRDM instance.
+An instance developer can register new entries in the menu (see the administration [RFC](https://github.com/inveniosoftware/rfcs/pull/67)). A menu entry will display the associated views in the panel section. The navbar menu layouts are customizable to meet the needs of the InvenioRDM instance.
 
 ### Architecture
 
 ![Architecture diagram](./img/administration/administration_architecture.png)
 
-Administration views can be used "out of the box", meaning that some functionalities are provided as long as the installed views follow the architecture mentioned below. E.g. to implement a list page for a resource, its view must be of type `AdminResourceBaseView`.
+The views are implemented as shown on the diagram below. InvenioRDM developer can implement a new admin view by inheriting one of the following view classes: 
 
-More information on views, e.g. how they can be customized and extended, is provided [below](#list-view).
+| View                    | Description                                                                                                                                   |
+|-------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
+| AdminView               | Base view class, provides flask view blueprint registration and administration side menu registration                                         |
+| AdminResourceDetailView | Details view base - displays details of a single item of the resource                                                                         |
+| AdminResourceListView   | ListView base - displays a search page with all the resource items of a given type                                                            |
+| AdminResourceCreateView | View generating a form to add a new instance of a resource                                                                                    |
+| AdminResourceEditView   | View generating a form to edit an existing resource item                                                                                      |
 
 ### Views
 
-#### Create a resource based administration view
+#### Create a resource based view
 
-The CRUD views are provided out of the box for any existent RDM resource (e.g. community, record, OAISet - meaning they follow the REST API resource architecture pattern). Nevertheless, these views can be extended or completely replaced by custom ones.
+Administration resource based views are using existing REST API. The CRUD operations are provided for any existent InvenioRDM [resource](../../develop/topics/resource.md) (e.g. community, record, OAISet - meaning they follow the REST API resource architecture pattern).
 
-As an example, a step-by-step guide is provided to generate an administration panel for OAI-PMH Sets.
+As an example, a step-by-step guide is provided to generate an administration view for OAI-PMH Sets.
 
 ##### Folder structure
 
-To create an administration panel for a module, the following structure is proposed:
+To create an administration view for a module, the following structure is recommended:
 
 ```console
 invenio-rdm-records
@@ -58,17 +64,17 @@ invenio-rdm-records
         |-- oai.py
 ```
 
-Views are implemented in `invenio_rdm_records/administration/views/oai.py`. Instructions on how to create and register views will be detailed in the following sections.
+Views are implemented in `invenio_rdm_records/administration/views/<myview>.py`. We strongly recommend to follow this proposed folder structure as it promotes clear code organisation, however it is not technically required.  
 
 #### List view
 
-A List view displays a list of records that are retrieved from an InvenioRDM resource API endpoint. By default, `invenio-administration` provides a core module that generates this view, based on given `ListView` configuration.
+A ListView displays a list of records that are retrieved from an InvenioRDM [resource](../../develop/topics/resource.md) REST APIs endpoint. By default, `Invenio-Administration` provides a core module that generates this view, based on given `ListView` configuration.
 
-Table view uses a search app, bootstrapped using [React Search Kit](https://inveniosoftware.github.io/react-searchkit/). It provides a tabular view of the resources, as well as a set of features such as searching, sorting and even faceting.
-
-Each row contains a set of actions that can be performed on a resource. These actions can be "default" ones, such as "Edit" or "Delete", but can also be extended to support custom actions that are only available for that specific resource, e.g. feature a community.
+By default, the ListView is represented as a table. The view uses a search app, bootstrapped using [React-SearchKit](https://inveniosoftware.github.io/react-searchkit/). It provides a tabular view of the resources, as well as a set of features such as searching, sorting and even faceting.
 
 ![List view layout](./img/administration/administration_list_view.png)
+
+Each row contains a set of actions that can be performed on a resource. These actions can be the "default" ones, such as "Edit" or "Delete", but can also be extended to support custom actions that are only available for that specific resource, e.g. feature a community.
 
 ##### Usage
 
@@ -110,16 +116,16 @@ class OaiPmhListView(AdminResourceListView):
     resource_name = "name"
 ```
 
-For the full attributes list and description visit [reference docs](../../reference/administration_reference.md)
+For the full attributes list and description visit the [reference docs](../../reference/administration_reference.md).
 
 
 #### Create view
 
 ![Create view layout](./img/administration/administration_create_view.png)
 
-A Create view displays a page on which a resource can be created. By default, `invenio-administration` provides a core module that generates this view based on given `CreateView` configuation.
+A create view displays a page on which a resource can be created. By default, `Invenio-Administration` provides a core module that generates this view based on given `CreateView` configuration.
 
-Each field in the form is previously configured in the view.
+Form fields are configured as class attributes. If the `form_fields` attribute is not implemented, the view will display all the fields configured in the resource's [serializer](../topics/serializers.md#data-transformations).
 
 ##### Usage
 
@@ -146,14 +152,14 @@ class OaiPmhCreateView(AdminResourceCreateView):
 
 ```
 
-For the full attributes list and description visit [reference docs](../../reference/administration_reference.md)
+For the full attributes list and description visit the [reference docs](../../reference/administration_reference.md)
 
 
 #### Edit view
 
 ![Edit view layout](./img/administration/administration_edit_view.png)
 
-This view displays a form to edit a selected resource. Form fields are customizable to each resource and some are allowed to be `read only`.
+This view displays a form to edit a selected resource. Form fields are customizable to each resource by implementing marshmallow [schema](../topics/serializers.md#data-transformations)  
 
 ##### Usage
 
@@ -181,7 +187,7 @@ class OaiPmhEditView(AdminResourceEditView):
     }
 ```
 
-For the full attributes list and description visit [reference docs](../../reference/administration_reference.md)
+For the full attributes list and description visit the [reference docs](../../reference/administration_reference.md)
 
 
 #### Details view
@@ -191,9 +197,9 @@ By default, this view displays the details of a selected resource. It can be con
 
 It can be extended or completely overridden by a custom view.
 
-For OAI-PMH sets, as seen in the figure, this view uses a custom jinja template and `React` to render a second table that displays OAI-PMH Sets links.
+For OAI-PMH sets, as seen in the figure, this view uses a custom Jinja template and `React` to render a second table that displays OAI-PMH Sets links.
 
-More information on template override and custom react components will be detailed later in this guide.
+More information on template override and custom React components will be detailed later in this guide.
 
 ##### Usage
 
@@ -226,23 +232,21 @@ class OaiPmhDetailView(AdminResourceDetailView):
     }
 ```
 
-For the full attributes list and description visit [reference docs](../../reference/administration_reference.md)
+For the full attributes list and description visit the [reference docs](../../reference/administration_reference.md)
 
 #### Views registration
 
-In order to render views in `invenio-administration`, they must be registered from the module on which they are implemented.
+In order to render views in `Invenio-Administration`, they must be registered from the module on which they are implemented.
 
-A typical flow of actions to register views for a module is as follows:
+To register your new view, you will have to:
 
 1. Create views in the module.
 2. Configure views to match your needs.
-3. Register views in `invenio-administration` entry point group.
+3. Register views in `Invenio-Administration` entry point group.
 
-In OAI-PMH sets example, views are registered in `invenio-administration` as individual entry points from `invenio-rdm-records`.
+In OAI-PMH sets example, views are registered in `Invenio-Administration` as individual entry points from `invenio-rdm-records`.
 
-```bash
-vim invenio-rdm-records/setup.cfg
-```
+Edit the setup.cfg in the module and add:
 
 ```ini
 [options.entry_points]
@@ -256,7 +260,10 @@ invenio_administration.views =
 ### Create custom view
 
 A custom view can be created by inheriting directly from `AdminView`.
+
 #### Usage
+
+In your module, create a new folder (anchor link to the folder structure) and a following `<filename>.py` file:
 
 ```python
 from invenio_administration.views.base import AdminView
@@ -274,9 +281,7 @@ class MyCustomView(AdminView):
 
 The class defined for the custom view must be registered as an entry point, as follows:
 
-```bash
-vim invenio-rdm-records/setup.cfg
-```
+Edit the setup.cfg in the module and add:
 
 ```ini
 [options.entry_points]
@@ -284,11 +289,17 @@ invenio_administration.views =
     invenio_module_admin_custom_view = invenio_module.administration.views:MyCustomView
 ```
 
-For the full attributes list and description visit [reference docs](../../reference/administration_reference.md)
+For the full attributes list and description visit the [reference docs](../../reference/administration_reference.md)
 
 ### Customisation: dashboard view
 
-The dashboard view can be configured by creating a view that inherits from the `AdminView` and updating the config variable `ADMINISTRATION_DASHBOARD_VIEW` with the new declared view.
+The dashboard view (also known as index view) is a first page that administrator sees after loging into the administration panel.
+
+![](./img/administration/administration_dashboard.png)
+
+For simple customisations, dashboard view can be overridden by adding new Jinja template in your local instance, as follows: `templates/invenio_administration/index.html`.
+
+In case of more complex use cases, the dashboard view can be configured by creating a view that inherits from the `AdminView` and updating the config variable `ADMINISTRATION_DASHBOARD_VIEW` with the new declared view.
 
 ```python
 ADMINISTRATION_DASHBOARD_VIEW = (
@@ -296,38 +307,37 @@ ADMINISTRATION_DASHBOARD_VIEW = (
 )
 ```
 
-If there is no need to provide any additional template context, dashboard view can be also overridden by adding new jinja template in your local instance, as follows: `templates/invenio_administration/index.html`. 
 
-### Customisation: jinja templates
+### Customisation: Jinja templates
 
-The views are defined by jinja templates, and this can be easily extendable and overridable by redefining their blocks.
+The views are defined by Jinja templates, and this can be easily extendable and overridable by redefining their blocks.
 
-Depending on the desired view to overridden, the correct template should be extended:
+If you would like to customize any of the exising default administration views, you can do so by overriding their Jinja templates, for each type of the view can be overridden by using the Jinja's inheritance:
 
 ```html
-<!-- Details page -->
+<!-- Details view -->
 {% extends "invenio_administration/details.html" %}
-<!-- Edit page -->
+<!-- Edit view -->
 {% extends "invenio_administration/edit.html" %}
-<!-- Search page -->
+<!-- Search view -->
 {% extends "invenio_administration/search.html" %}
-<!-- Create page -->
+<!-- Create view -->
 {% extends "invenio_administration/create.html" %}
-<!-- Dashboard page -->
+<!-- Dashboard view -->
 {% extends "invenio_administration/index.html" %}
 ```
 
-In each page we can override or extend different blocks, mainly there are 2 blocks that can be overrided to display our custom content:
+In each view you can override or extend different blocks, mainly there are 2 blocks that can be overridden to display our custom content:
 
-- `admin_page_content`: Main content each page. It's present in all the views.
-- `javascript`: Main block to place any javascript content. It's important to always use {{ super() }} inside this block to inherit all the javascript needed to render the rest of the page.
+- `admin_page_content`: Content of each view. It's present in all the views.
+- `JavaScript`: Main block to place any JavaScript content. It's important to always use {{ super() }} inside this block to inherit all the JavaScript needed to render the rest of the view's content.
 
-More information about `blocks` is available in [Jinja documentation](https://jinja.palletsprojects.com/en/3.0.x/templates).
+More information about `blocks` is available in [Jinja documentation](https://Jinja.palletsprojects.com/en/3.0.x/templates).
 To find more about the different blocks that can be overridden in each of the views you can check the code of the views [here](https://github.com/inveniosoftware/invenio-administration/tree/main/invenio_administration/templates/semantic-ui/invenio_administration).
 
 ### Customisation: React components
 
-In addition to jinja, in each view there is the possibility to inject React components. In order to do this, the view must be extended with a custom jinja template as described above. In this template, the javascript code that will render the view should be declared in the `javascript` block and in this block, the file that will render the React components must be included in webpack. In `webpack.py` the following line must be added:
+In addition to Jinja, in each view there is the possibility to inject React components. In order to do this, the view must be extended with a custom Jinja template as described above. In this template, the JavaScript code that will render the view should be declared in the `JavaScript` block and in this block, the file that will render the React components must be included in webpack. In `webpack.py` the following line must be added:
 
 ```diff
 theme = WebpackThemeBundle(
@@ -355,11 +365,11 @@ Once the file was added to webpack we can add it to the template we are overridi
 {% endblock admin_page_content %}
 {% block javascript %}
   {{ super() }}  # don't forget the parent JS assets!
-  {{ webpack['invenio-administration-search.js'] }}  # it is crucial to remember about adding proper assets to your jinja 
+  {{ webpack['invenio-administration-search.js'] }}  # it is crucial to remember about adding proper assets to your Jinja 
 {% endblock %}
 ```
 
-When overriding the views, the block `admin_page_content` can be overridden, and a new `div` with a custom id can be set so that, in the new javascript file that was added to webpack the components can be injected in the view by looking for the correct id in the DOM and, like in the following example:
+When overriding the views, the block `admin_page_content` can be overridden, and a new `div` with a custom id can be set so that, in the new JavaScript file that was added to webpack the components can be injected in the view by looking for the correct id in the DOM and, like in the following example:
 
 ```javascript
 const domContainer = document.getElementById("invenio-details-config");
@@ -381,12 +391,17 @@ Here a list of known DOM elements ids, depending on the template that's being ex
 
 ### Permissions
 
-The `administration-access` permission is needed to access the administration panel. This permission is being introduced in version 10. There are two ways to grant this permission.
+Only users with action `administration-access` granted are allowed to access the Invenio Administration panel.
+This new permission's action has been introduced in InvenioRDM v10.0.0.
+
+There are two ways to grant this permission:
 
 1. Permission can be added using a role:
 
     ```bash
-      # Create a role
+      # make sure you are inside your instance's directory
+      cd my-site 
+      # Create a role named administration
       pipenv run invenio roles create administration
       # Allow access to administration to the administration role
       pipenv run invenio access allow administration-access role administration
@@ -397,7 +412,7 @@ The `administration-access` permission is needed to access the administration pa
 2. Permission can be added to a specific user:
 
     ```bash
-      # Add access to administration to an user email
+      # Grant access to a specific user to the action administration-access
       pipenv run invenio access allow administration-access user <user_email>
     ```
    
@@ -416,14 +431,13 @@ class OAIPMHServerPermissionPolicy(BasePermissionPolicy):
     can_read = [Administration()]
     can_create = [Administration()]
     can_delete = [Administration()]
-    can_update = [ Administration()]
+    can_update = [Administration()]
     can_read_format = [Administration()]
 ```
 
 #### Custom permissions
 
 You can customize your individual permissions per view by overwriting `decorators` class attribute as shown below (see also [Flask class based views documentation](https://flask.palletsprojects.com/en/2.2.x/views/#view-decorators)).
-For more details on configuring administration views, follow the rest of this guide.
 
 ```python
 from invenio_administration.permissions import administration_permission

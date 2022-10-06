@@ -125,7 +125,7 @@ class JSONDeserializer(SerializerMixin):
 The serializer doesn't require you to use any specific method for the
 implementing them as long as they adhere to the API interface. However, often
 you're faced with some sort of data transformations, and for this InvenioRDM
-normally uses the [Marshamllow](https://marshmallow.readthedocs.io/en/stable/)
+normally uses the [Marshmallow](https://marshmallow.readthedocs.io/en/stable/)
 library as a declarative way of specifying this transformation.
 
 First, you'll create a schema:
