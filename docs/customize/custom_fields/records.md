@@ -284,6 +284,8 @@ See the example in the section [Adding a new custom field](../../develop/topics/
 
 For custom fields that are keywords or vocabularies, you can add your custom field to the search page as a facet/filter:
 
+#### Vocabularies
+
 ```python
 from invenio_rdm_records.config import RDM_FACETS, RDM_SEARCH
 from invenio_records_resources.services.records.facets import CFTermsFacet
@@ -310,6 +312,81 @@ RDM_SEARCH = {
 In the search page, the new facet will be added in the bottom as below:
 
 ![Custom field as search facet](../img/search_facets.png)
+
+#### Text fields
+
+To showcase this configuration let's imagine the previous case instead of being a vocabulary of experiments, is a "free text input".
+
+**Keyword**
+
+If the custom field will contain text values that only need to be searched as "exact match" (e.g. names or other short text values).
+Then using a keyword is the correct option. On the hand, if the values are long (e.g. a description or abstract) or need to be searchable (e.g. finding _trees_ when searching for _tree_, i.e. not an "exact match") then using a `TextCF` is preferable.
+
+```python
+RDM_CUSTOM_FIELDS = [
+    KeywordCF(name="cern:experiment"),
+    ...
+]
+
+from invenio_rdm_records.config import RDM_FACETS, RDM_SEARCH
+from invenio_records_resources.services.records.facets import CFTermsFacet
+
+RDM_FACETS = {
+    **RDM_FACETS,
+    "experiment": {
+        "facet": CFTermsFacet(  # backend facet
+            field="cern:experiment",
+            label=_("CERN Experiment"),
+        ),
+        "ui": {  # ui display
+            "field": CFTermsFacet.field("cern:experiment"),
+        },
+    },
+}
+
+RDM_SEARCH = {
+    **RDM_SEARCH,
+    "facets": RDM_SEARCH["facets"] + ["experiment"]
+}
+```
+
+**Text**
+
+For a text field to work also as a facet/filter in the search, it needs to be defined as such via the `use_as_filter` flag.
+Note that is not recommended to have filter over very long text values (more than 250 characters) since it could noticeably affect the search engine's performance.
+
+```python
+RDM_CUSTOM_FIELDS = [
+    TextCF(name="cern:experiment", use_as_filter=True),
+    ...
+]
+```
+
+What will happen under the hood is that the text will be indexed both as text search, but also as exact match. The latter is required to support filtering by its values.
+In addition, when configuring the facet, the field needs to be suffixed by `keyword`:
+
+```python
+from invenio_rdm_records.config import RDM_FACETS, RDM_SEARCH
+from invenio_records_resources.services.records.facets import CFTermsFacet
+
+RDM_FACETS = {
+    **RDM_FACETS,
+    "experiment": {
+        "facet": CFTermsFacet(  # backend facet
+            field="cern:experiment.keyword",
+            label=_("CERN Experiment"),
+        ),
+        "ui": {  # ui display
+            "field": CFTermsFacet.field("cern:experiment"),
+        },
+    },
+}
+
+RDM_SEARCH = {
+    **RDM_SEARCH,
+    "facets": RDM_SEARCH["facets"] + ["experiment"]
+}
+```
 
 ## Reference
 
