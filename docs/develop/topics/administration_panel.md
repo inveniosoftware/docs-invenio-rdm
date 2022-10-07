@@ -1,4 +1,4 @@
-# Administration panel views
+# Administration panel
 
 *Introduced in InvenioRDM v10*
 
@@ -27,7 +27,7 @@ The following terms are introduced to facilitate defining the domain:
 
 ![Administration Panel](./img/administration/administration_wireframe.png)
 
-An instance developer can register new entries in the menu (see the administration [RFC](https://github.com/inveniosoftware/rfcs/pull/67)). A menu entry will display the associated views in the panel section. The navbar menu layouts are customizable to meet the needs of the InvenioRDM instance.
+An instance developer can register new entries in the menu (see the administration [RFC](https://github.com/inveniosoftware/rfcs/blob/master/rfcs/rdm-0067-administration-panel.md)). A menu entry will display the associated views in the panel section. The navbar menu layouts are customizable to meet the needs of the InvenioRDM instance.
 
 ### Architecture
 
@@ -66,7 +66,7 @@ invenio-rdm-records
 
 Views are implemented in `invenio_rdm_records/administration/views/<myview>.py`. We strongly recommend to follow this proposed folder structure as it promotes clear code organisation, however it is not technically required.  
 
-#### List view
+##### List view
 
 A ListView displays a list of records that are retrieved from an InvenioRDM [resource](../../develop/topics/resource.md) REST APIs endpoint. By default, `Invenio-Administration` provides a core module that generates this view, based on given `ListView` configuration.
 
@@ -76,7 +76,7 @@ By default, the ListView is represented as a table. The view uses a search app, 
 
 Each row contains a set of actions that can be performed on a resource. These actions can be the "default" ones, such as "Edit" or "Delete", but can also be extended to support custom actions that are only available for that specific resource, e.g. feature a community.
 
-##### Usage
+###### Usage
 
 This is an example of ListView configuration for OAI-PMH set resource.
 
@@ -119,7 +119,7 @@ class OaiPmhListView(AdminResourceListView):
 For the full attributes list and description visit the [reference docs](../../reference/administration_reference.md).
 
 
-#### Create view
+##### Create view
 
 ![Create view layout](./img/administration/administration_create_view.png)
 
@@ -127,7 +127,7 @@ A create view displays a page on which a resource can be created. By default, `I
 
 Form fields are configured as class attributes. If the `form_fields` attribute is not implemented, the view will display all the fields configured in the resource's [serializer](../topics/serializers.md#data-transformations).
 
-##### Usage
+###### Usage
 
 This is an example of CreateView configuration for OAI-PMH set resource.
 
@@ -155,13 +155,13 @@ class OaiPmhCreateView(AdminResourceCreateView):
 For the full attributes list and description visit the [reference docs](../../reference/administration_reference.md)
 
 
-#### Edit view
+##### Edit view
 
 ![Edit view layout](./img/administration/administration_edit_view.png)
 
 This view displays a form to edit a selected resource. Form fields are customizable to each resource by implementing marshmallow [schema](../topics/serializers.md#data-transformations)  
 
-##### Usage
+###### Usage
 
 This is an example of EditView configuration for OAI-PMH set resource.
 
@@ -190,7 +190,7 @@ class OaiPmhEditView(AdminResourceEditView):
 For the full attributes list and description visit the [reference docs](../../reference/administration_reference.md)
 
 
-#### Details view
+##### Details view
 
 ![Details view layout](./img/administration/administration_details_view.png)
 By default, this view displays the details of a selected resource. It can be configured to display/hide a set of fields.
@@ -201,7 +201,7 @@ For OAI-PMH sets, as seen in the figure, this view uses a custom Jinja template 
 
 More information on template override and custom React components will be detailed later in this guide.
 
-##### Usage
+###### Usage
 
 This is an example of DetailView configuration for OAI-PMH set resource.
 
@@ -234,7 +234,7 @@ class OaiPmhDetailView(AdminResourceDetailView):
 
 For the full attributes list and description visit the [reference docs](../../reference/administration_reference.md)
 
-#### Views registration
+##### Views registration
 
 In order to render views in `Invenio-Administration`, they must be registered from the module on which they are implemented.
 
@@ -257,11 +257,11 @@ invenio_administration.views =
     invenio_rdm_records_details = invenio_rdm_records.administration.views.oai:OaiPmhDetailView
 ```
 
-### Create custom view
+#### Create custom view
 
 A custom view can be created by inheriting directly from `AdminView`.
 
-#### Usage
+##### Usage
 
 In your module, create a new folder (anchor link to the folder structure) and a following `<filename>.py` file:
 
@@ -281,7 +281,7 @@ class MyCustomView(AdminView):
 
 The class defined for the custom view must be registered as an entry point, as follows:
 
-Edit the setup.cfg in the module and add:
+Edit the setup.cfg of your module and add:
 
 ```ini
 [options.entry_points]
@@ -330,14 +330,48 @@ If you would like to customize any of the exising default administration views, 
 In each view you can override or extend different blocks, mainly there are 2 blocks that can be overridden to display our custom content:
 
 - `admin_page_content`: Content of each view. It's present in all the views.
-- `JavaScript`: Main block to place any JavaScript content. It's important to always use {{ super() }} inside this block to inherit all the JavaScript needed to render the rest of the view's content.
+- `JavaScript`: Main block to place any JavaScript content.
+- 
+```html
+{% extends "invenio_administration/details.html" %}
 
-More information about `blocks` is available in [Jinja documentation](https://Jinja.palletsprojects.com/en/3.0.x/templates).
+{% block admin_page_content %}
+   {# MY custom content #}
+{% endblock admin_page_content %}
+{% block javascript %}
+  {{ super() }}  # don't forget the parent JS assets!
+  {{ webpack['invenio-administration-search.js'] }}  # it is crucial to remember about adding proper assets to your Jinja 
+{% endblock %}
+```
+
+
+More information about `blocks` and template inheritance is available in [Jinja documentation](https://Jinja.palletsprojects.com/en/3.0.x/templates).
 To find more about the different blocks that can be overridden in each of the views you can check the code of the views [here](https://github.com/inveniosoftware/invenio-administration/tree/main/invenio_administration/templates/semantic-ui/invenio_administration).
 
 ### Customisation: React components
 
-In addition to Jinja, in each view there is the possibility to inject React components. In order to do this, the view must be extended with a custom Jinja template as described above. In this template, the JavaScript code that will render the view should be declared in the `JavaScript` block and in this block, the file that will render the React components must be included in webpack. In `webpack.py` the following line must be added:
+In addition to Jinja, in each view there is the possibility to overwrite single building block of the UI - React components.
+If you would like to, for example, change layout of the default view, you can create your own React component to display the view. 
+
+Create a js file (`MyComponent.js`) containing your custom component, which you have to place in `/assets/js` folder of your module.
+
+```javascript
+ class MyComponent extends Component{
+    render(){
+        return "Hello World!"
+    }
+}
+
+
+const domContainer = document.getElementById("invenio-details-config");
+domContainer &&
+  ReactDOM.render(
+    <MyCustomComponent />,
+    domContainer
+  );
+```
+
+Add the `.js` file as webpack entry - inside `webpack.py` file of your module: 
 
 ```diff
 theme = WebpackThemeBundle(
@@ -347,12 +381,12 @@ theme = WebpackThemeBundle(
     themes={
         "semantic-ui": dict(
             entry={
-+               "invenio-administration-search":
-+                   "./js/invenio_app_rdm/src/search/search.js",
++               "my-component":
++                   "./js/path/to/my/new/file/MyComponent.js",
                 ...
 ```
 
-Once the file was added to webpack we can add it to the template we are overriding. The webpack configuration **must** be registered in the module entry point!
+Once the file was added as webpack entry, we can add it to the template we are overriding. Make sure webpack.py file is registered as entry point in your module.
 
 ```html
 {% extends "invenio_administration/details.html" %}
@@ -364,25 +398,14 @@ Once the file was added to webpack we can add it to the template we are overridi
   </div>
 {% endblock admin_page_content %}
 {% block javascript %}
-  {{ super() }}  # don't forget the parent JS assets!
-  {{ webpack['invenio-administration-search.js'] }}  # it is crucial to remember about adding proper assets to your Jinja 
+  {{ super() }}                     # don't forget the parent JS assets!
+  {{ webpack['my-component.js'] }}  # make sure name of the asset matches the name you registered in webpack entry
 {% endblock %}
 ```
 
-When overriding the views, the block `admin_page_content` can be overridden, and a new `div` with a custom id can be set so that, in the new JavaScript file that was added to webpack the components can be injected in the view by looking for the correct id in the DOM and, like in the following example:
+Make sure unique html tag ID in your `.js` file and Jinja template match.
 
-```javascript
-const domContainer = document.getElementById("invenio-details-config");
-domContainer &&
-  ReactDOM.render(
-    <MyCustomComponent />,
-    domContainer
-  );
-
-```
-
-For most of the views there is no need to override the `admin_page_content` block as the React component can be injected in the already existing view - by reusing existing DOM and React root element IDs 
-Here a list of known DOM elements ids, depending on the template that's being extended:
+If you need to overwrite only the React components in your view (without customising Jinja templates) - you can skip the step above, and use one of the existing DOM elements identifiers:
 
 - `invenio_administration/create.html` -> id="**invenio-administration-create-root**"
 - `invenio_administration/details.html` -> id="**invenio-details-config**"
