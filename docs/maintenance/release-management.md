@@ -91,7 +91,6 @@ The final step to release the new modules and source code is to release Invenio-
 - Invenio-CLI:
     - Update Cookiecutter-Invenio-RDM branch version in the source code.
     - Bump version of Invenio-CLI and release.
-- Merge ``master`` into ``maint`` on [docs-invenio-rdm](https://github.com/inveniosoftware/docs-invenio-rdm) repository).
 
 ### Post-release
 
