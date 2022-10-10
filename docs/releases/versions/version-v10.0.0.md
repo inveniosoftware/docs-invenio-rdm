@@ -89,6 +89,10 @@ The warning text shown in the modal during the publish/submit-for-review action 
 
 ![Customize publish modal warning text](./v10.0/publish_modal_text_customize.png)
 
+## Deprecations
+
+With InvenioRDM v10.0, support to Elasticsearch v7 is now deprecated and it will be removed in future releases.
+
 ## Limitations
 
 With this release, communities custom fields are not displayed in the community profile page, but they are searchable. This feature will be implemented in one of the following releases.

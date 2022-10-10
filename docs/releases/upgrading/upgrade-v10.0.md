@@ -25,6 +25,8 @@ If unsure, run `invenio-cli install` from inside the instance directory before e
     invenio-cli, version 1.0.6
     ```
 
+For local installations, make sure that you prefix each `invenio` command with `pipenv run`.
+
 ### Elasticsearch check
 
 InvenioRDM v10.0 removes support for Elasticsearch v6. If you are using it, you will need **first** to migrate to
@@ -100,7 +102,7 @@ Elasticsearch v7 and OpenSearch v1 are very similar and the migration is rather 
 6. Uninstall the Elasticsearch Python libraries:
     ```bash
     cd <my-site>
-    pipenv run pip uninstall -y elasticsearch elasticsearch-dsl
+    pip uninstall -y elasticsearch elasticsearch-dsl
     ```
 
 #### Upgrade InvenioRDM
@@ -121,12 +123,12 @@ Re-index data in the cluster:
 
 ```bash
 # recreate indices
-pipenv run invenio index destroy --yes-i-know
-pipenv run invenio index init
+invenio index destroy --yes-i-know
+invenio index init
 
 # reindex records
-pipenv run invenio rdm-records rebuild-index
-pipenv run invenio communities rebuild-index
+invenio rdm-records rebuild-index
+invenio communities rebuild-index
 ```
 
 ### Re-build assets
@@ -147,10 +149,10 @@ Finally, you can run the database schema upgrade, and perform the records data m
 
 ```bash
 # Perform the database migration
-pipenv run invenio alembic upgrade
+invenio alembic upgrade
 
 # Run data migration script
-pipenv run invenio shell $(find $(pipenv --venv)/lib/*/site-packages/invenio_app_rdm -name migrate_9_0_to_10_0.py)
+invenio shell $(find $(pipenv --venv)/lib/*/site-packages/invenio_app_rdm -name migrate_9_0_to_10_0.py)
 ```
 
 ### Complete re-indexing
@@ -199,18 +201,18 @@ The new permission action `administration-access` is needed to access the admini
 
 ```bash
 # Add access to administration to an user by its email
-pipenv run invenio access allow administration-access user <user_email>
+invenio access allow administration-access user <user_email>
 ```
 
 ##### Allow by role
 
 ```bash
 # Create a role
-pipenv run invenio roles create administrator
+invenio roles create administrator
 
 # Allow access to administration to the administrator role
-pipenv run invenio access allow administration-access role administrator
+invenio access allow administration-access role administrator
 
 # Add administrator role to an user, by its emails
-pipenv run invenio roles add <user_email> administrator
+invenio roles add <user_email> administrator
 ```
