@@ -59,7 +59,6 @@ end of life dates on the
 | Module                      | Supported versions     | Supported branches             |
 | --------------------------- | ---------------------- | ------------------------------ |
 | flask-resources             | ``0.7.x``, ``0.8.x``   | ``maint-0.7``, ``maint-0.8``   |
-| invenio                     | ``3.5.0a4``            | ``maint-3.5``                  |
 | invenio-app-rdm             | ``6.0.x``, ``8.0.x``   | ``maint-6.0``, ``maint-8.0``   |
 | invenio-communities         | ``2.5.x``, ``2.7.x``   | ``maint-2.5``, ``maint-2.7``   |
 | invenio-drafts-resources    | ``0.13.x``, ``0.15.x`` | ``maint-0.13``, ``maint-0.15`` |
