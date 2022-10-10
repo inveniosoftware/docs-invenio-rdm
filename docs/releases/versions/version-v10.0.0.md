@@ -56,9 +56,9 @@ The administration views are fully customisable, using Jinja templates and React
 
 ### OpenSearch
 
-With the [change of license of Elasticsearch](https://www.elastic.co/pricing/faq/licensing) announced by Elastic, its usage is deprecated. That's why, starting with this release, InvenioRDM now supports [OpenSearch](https://www.opensearch.org/) v1 and v2 and it is also the default for new instances of InvenioRDM.
+With the [change of license of Elasticsearch](https://www.elastic.co/pricing/faq/licensing) announced by Elastic, its usage in InvenioRDM is deprecated. That's why, starting with this release, InvenioRDM now supports [OpenSearch](https://www.opensearch.org/) v1 and v2 and it is also the default for new instances of InvenioRDM.
 
-While Elasticsearch v7 is still supported, Elasticsearch v6 support has been removed. However, Elasticsearch support will be removed in future version of InvenioRDM.
+While Elasticsearch v7 is still supported, Elasticsearch v6 support has been removed. However, Elasticsearch support will be removed in a future version of InvenioRDM.
 
 We recommend migrating directly to OpenSearch v2, OpenSearch v1 [end of life](https://endoflife.date/opensearch) is rapidly approaching. See the [upgrade guide](../upgrading/upgrade-v10.0.md) for more information.
 
@@ -68,7 +68,7 @@ You can read more on how to setup an OpenSearch cluster in the [official documen
 
 ### Breaking changes
 
-- Elasticsearch 6 support has been removed. If you are using InvenioRDM with Elasticsearch 6, you can upgrade to Elasticsearch 7 or directly to OpenSearch. See the [upgrade guide](../upgrading/upgrade-v10.0.md) for more information.
+- Elasticsearch 6 support has been removed. If you are using InvenioRDM with Elasticsearch 6, you can migrate to Elasticsearch 7 or directly to OpenSearch. See the [upgrade guide](../upgrading/upgrade-v10.0.md) for more information.
 - The configuration variable `INVENIO_SEARCH_ELASTIC_HOSTS` has been deprecated (but non-breaking) and it will be removed in the following releases. Please change its name to `INVENIO_SEARCH_HOSTS`. This variable is most probably also used in your deployment environments.
 - The following changes should not affect the majority of the users. We recommend to verify if any usage can be found in customisations or modules:
   - In [Invenio-Indexer](https://github.com/inveniosoftware/invenio-indexer), the param `es_bulk_kwargs` in the class `RecordIndexer` has been renamed to `search_bulk_kwargs`. The method `record_to_index` and `schema_to_index` now return only the index and not a tuple with index and doc type. The configuration variable `INDEXER_DEFAULT_DOC_TYPE` is now removed.
@@ -91,7 +91,7 @@ The warning text shown in the modal during the publish/submit-for-review action 
 
 ## Deprecations
 
-With InvenioRDM v10.0, support to Elasticsearch v7 is now deprecated and it will be removed in future releases.
+With InvenioRDM v10.0, support to Elasticsearch v7 is now deprecated and it will be removed in a future release.
 
 ## Limitations
 

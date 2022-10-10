@@ -41,7 +41,7 @@ Elasticsearch v7 or directly to OpenSearch, before upgrading.
 
 If you are planning to migrate from Elasticsearch v7 to OpenSearch, follow the step below. Otherwise, skip to the next section [Upgrade InvenioRDM](#upgrade-inveniordm).
 
-We strongly recommend migrating or planning to migrate to OpenSearch. Elasticsearch support will be removed in future versions of InvenioRDM.
+We strongly recommend migrating or planning to migrate to OpenSearch. Elasticsearch support will be removed in a future version of InvenioRDM.
 
 #### Migrate to OpenSearch
 
