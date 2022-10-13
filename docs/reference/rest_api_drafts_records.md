@@ -16,7 +16,7 @@ Used for interacting with unpublished or edited draft records.
 
 | Name       | Type   | Location | Description                                                  |
 | ---------- | ------ | -------- | ------------------------------------------------------------ |
-| `access`   | object | body     | [Access options](metadata.md#access-information) for the record. |
+| `access`   | object | body     | [Access options](metadata.md#access) for the record. |
 | `files`    | object | body     | Files options (see below) for the record. |
 | `metadata` | object | body     | [Metadata](metadata.md#metadata) of the record. |
 
