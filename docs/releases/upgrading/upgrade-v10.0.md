@@ -18,11 +18,11 @@ If unsure, run `invenio-cli install` from inside the instance directory before e
 
 !!! warning "Upgrade your invenio-cli"
 
-    Make sure you have the latest `invenio-cli`, for InvenioRDM v10 the release is v1.0.7.
+    Make sure you have the latest `invenio-cli`, for InvenioRDM v10 the release is v1.0.8.
 
     ```bash
     $ invenio-cli --version
-    invenio-cli, version 1.0.7
+    invenio-cli, version 1.0.8
     ```
 
 For local installations, make sure that you prefix each `invenio` command with `pipenv run`.
