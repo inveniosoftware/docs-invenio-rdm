@@ -1029,13 +1029,18 @@ Subfields:
 | Field | Cardinality |   Description   |
 |:-----:|:-----------:|:----------------|
 | ``bucket_id`` | (1) | The bucket identifier. |
-| ``version_id`` | (1) | The logical object identifier. |
+| ``checksum`` | (1) | The checksum of the file in the form ``<algorithm>:<value>``. |
+| ``created`` | (1) | Date of creation (init) of the file record. |
 | ``file_id`` | (1) |  The digital file instance identifier (references a file on storage). |
-| ``backend`` | (1) | The backend for the file. |
 | ``key`` | (1) | The filepath of the file. |
+| ``link`` | (1) | Links to the file (_self_, _content_, _iiif\_canvas_, _iiif\_base_, _iiif\_info_, _iiif\_api_)
+| ``metadata`` | (1) | Dictionary of free key-value pairs with meta information about the file (e.g. description). |
 | ``mimetype`` | (1) | The mimetype of the file. |
 | ``size`` | (1) | The size in bytes of the file. |
-| ``checksum`` | (1) | The checksum of the file in the form ``<algorithm>:<value>``. |
+| ``status`` | (1) | The current status of the file ingestion (_completed_ or _pending_). |
+| ``storage_class`` | (1) | The backend for the file (e.g. local or external storage). |
+| ``updated`` | (1) | Date of latest update of the file record metadata or file. |
+| ``version_id`` | (1) | The logical object identifier. |
 
 Example:
 
@@ -1043,15 +1048,29 @@ Example:
 {
   "entries": {
     "paper.pdf": {
-      "version_id": "<object-version-id>",
       "bucket_id": "<bucket-id>",
+      "checksum": "md5:abcdef...",
+      "created": "2022-10-12T11:08:56.953781+00:00",
       "file_id": "<file-id>",
-      "backend": "...",
-      "storage_class": "A",
       "key": "paper.pdf",
+      "links": {
+        "self": "{scheme+hostname}/api/records/12345-abcde/files/your_file.png",
+        "content": "{scheme+hostname}/api/records/12345-abcde/files/your_file.png/content",
+        "iiif_canvas": "{scheme+hostname}/api/iiif/record:8a4dq-z5237/canvas/your_file.png",
+        "iiif_base": "{scheme+hostname}/api/iiif/record:8a4dq-z5237:your_file.png",
+        "iiif_info": "{scheme+hostname}/api/iiif/record:8a4dq-z5237:your_file.png/info.json",
+        "iiif_api": "{scheme+hostname}/api/iiif/record:8a4dq-z5237:your_file.png/full/full/0/default.png"
+      },
+      "metadata": {
+        "width": 2302,
+        "height": 948
+      },
       "mimetype": "application/pdf",
       "size": 12345,
-      "checksum": "md5:abcdef...",
+      "status": "completed",
+      "storage_class": "A",
+      "updated": "2022-10-12T11:08:56.970805+00:00",
+      "version_id": "<object-version-id>",
     },
   }
 }
