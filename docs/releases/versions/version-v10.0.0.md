@@ -62,7 +62,7 @@ While Elasticsearch v7 is still supported, Elasticsearch v6 support has been rem
 
 We recommend migrating directly to OpenSearch v2, OpenSearch v1 [end of life](https://endoflife.date/opensearch) is rapidly approaching. See the [upgrade guide](../upgrading/upgrade-v10.0.md) for more information.
 
-You can read more on how to setup an OpenSearch cluster in the [official documentation](https://opensearch.org/docs/latest/opensearch/install/index/). [Invenio Helm Charts](https://github.com/inveniosoftware/helm-invenio/) have been updated adding support for OpenSearch, but the configuration will setup a demo cluster and it should **not be used in production**. OpenSearch provides [official Helm charts]((https://opensearch.org/docs/latest/opensearch/install/helm/)) suitable for production environments.
+You can read more on how to setup an OpenSearch cluster in the [official documentation](https://opensearch.org/docs/latest/opensearch/install/index/). [Invenio Helm Charts](https://github.com/inveniosoftware/helm-invenio/) have been updated adding support for OpenSearch, but the configuration will setup a demo cluster and it should **not be used in production**. OpenSearch provides [official Helm charts](https://opensearch.org/docs/latest/opensearch/install/helm/) suitable for production environments.
 
 ## Changes
 

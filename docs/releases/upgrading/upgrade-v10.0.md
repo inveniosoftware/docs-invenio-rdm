@@ -53,7 +53,7 @@ Elasticsearch v7 and OpenSearch v1 are very similar and the migration is rather 
 
 1. Prepare your new OpenSearch v2/v1 cluster.
 
-    You can read more on how to setup an OpenSearch cluster in the [official documentation](https://opensearch.org/docs/latest/opensearch/install/index/). [Invenio Helm Charts](https://github.com/inveniosoftware/helm-invenio/) have been updated adding support for OpenSearch, but the configuration will setup a demo cluster and it should **not be used in production**. OpenSearch provides [official Helm charts]((https://opensearch.org/docs/latest/opensearch/install/helm/)) suitable for production environments.
+    You can read more on how to setup an OpenSearch cluster in the [official documentation](https://opensearch.org/docs/latest/opensearch/install/index/). [Invenio Helm Charts](https://github.com/inveniosoftware/helm-invenio/) have been updated adding support for OpenSearch, but the configuration will setup a demo cluster and it should **not be used in production**. OpenSearch provides [official Helm charts](https://opensearch.org/docs/latest/opensearch/install/helm/) suitable for production environments.
 
     For local development, make sure that you have migrated to OpenSearch in your Docker files in your instance:
 
