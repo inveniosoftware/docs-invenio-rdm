@@ -47,6 +47,10 @@ We strongly recommend migrating or planning to migrate to OpenSearch. Elasticsea
 
 Elasticsearch v7 and OpenSearch v1 are very similar and the migration is rather simple (see the official OpenSearch documentation [here](https://opensearch.org/docs/2.0/upgrade-to/upgrade-to/)). For OpenSearch v2, the only breaking change affecting InvenioRDM, is the removal of `doc_type` (you can read more [here](https://github.com/opensearch-project/OpenSearch/issues/2480)). With this release, you can safely migrate to OpenSearch v2, skipping OpenSearch v1.
 
+!!! warning "OpenSearch v1 Log4Shell security vulnerability"
+
+    If you have decided to use OpenSearch v1, make sure you install a version greater or equal to `v1.2.1`: previous versions are affected by the [Log4Shell](https://opensearch.org/blog/releases/2021/12/update-to-1-2-1/) security vulnerability.
+
 1. Prepare your new OpenSearch v2/v1 cluster.
 
     You can read more on how to setup an OpenSearch cluster in the [official documentation](https://opensearch.org/docs/latest/opensearch/install/index/). [Invenio Helm Charts](https://github.com/inveniosoftware/helm-invenio/) have been updated adding support for OpenSearch, but the configuration will setup a demo cluster and it should **not be used in production**. OpenSearch provides [official Helm charts]((https://opensearch.org/docs/latest/opensearch/install/helm/)) suitable for production environments.

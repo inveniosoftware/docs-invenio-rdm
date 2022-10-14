@@ -56,7 +56,7 @@ The administration views are fully customisable, using Jinja templates and React
 
 ### OpenSearch
 
-With the [change of license of Elasticsearch](https://www.elastic.co/pricing/faq/licensing) announced by Elastic, its usage in InvenioRDM is deprecated. That's why, starting with this release, InvenioRDM now supports [OpenSearch](https://www.opensearch.org/) v1 and v2 and it is also the default for new instances of InvenioRDM.
+With the [change of license](https://www.elastic.co/pricing/faq/licensing) of Elasticsearch, announced by Elastic, its usage in InvenioRDM is deprecated. That's why, starting with this release, InvenioRDM now supports [OpenSearch](https://www.opensearch.org/) v1 and v2 and it is also the default for new instances of InvenioRDM.
 
 While Elasticsearch v7 is still supported, Elasticsearch v6 support has been removed. However, Elasticsearch support will be removed in a future version of InvenioRDM.
 
