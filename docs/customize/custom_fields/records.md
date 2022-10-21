@@ -421,8 +421,9 @@ You can find below a complete example of the configuration to add to your `inven
 
 ```python
 from invenio_rdm_records.config import RDM_FACETS, RDM_SEARCH
-from invenio_records_resources.services.custom_fields import TextCF, VocabularyCF
+from invenio_records_resources.services.custom_fields import TextCF
 from invenio_records_resources.services.records.facets import CFTermsFacet
+from invenio_vocabularies.services.custom_fields import VocabularyCF
 from marshmallow import validate
 from marshmallow_utils.fields import SanitizedHTML
 
