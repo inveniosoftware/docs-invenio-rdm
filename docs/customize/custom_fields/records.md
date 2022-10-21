@@ -78,7 +78,8 @@ The keys of this config will be used to prefix field names. These prefixed names
 You can configure custom field by listing them in the `invenio.cfg`:
 
 ```python
-from invenio_records_resources.services.custom_fields import TextCF, VocabularyCF
+from invenio_records_resources.services.custom_fields import TextCF
+from invenio_vocabularies.services.custom_fields import VocabularyCF
 from marshmallow_utils.fields import SanitizedHTML
 
 RDM_CUSTOM_FIELDS = [
