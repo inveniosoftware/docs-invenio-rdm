@@ -67,6 +67,7 @@ nav:
           - Add fields to records: "customize/custom_fields/records.md"
           - Add fields to communities: "customize/custom_fields/communities.md"
       - Record landing page: "customize/record_landing_page.md"
+      - Static pages: "customize/static_pages.md"
       - DOI registration: "customize/dois.md"
       - Storage: "customize/s3.md"
       - Upload Limits: "customize/upload_limits.md"
