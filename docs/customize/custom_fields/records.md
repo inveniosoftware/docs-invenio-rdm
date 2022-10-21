@@ -423,6 +423,7 @@ from invenio_rdm_records.config import RDM_FACETS, RDM_SEARCH
 from invenio_records_resources.services.custom_fields import TextCF, VocabularyCF
 from invenio_records_resources.services.records.facets import CFTermsFacet
 from marshmallow import validate
+from marshmallow_utils.fields import SanitizedHTML
 
 RDM_NAMESPACES = {
     # CodeMeta
