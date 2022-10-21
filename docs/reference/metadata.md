@@ -1033,7 +1033,7 @@ Subfields:
 | ``created`` | (1) | Date of creation (init) of the file record. |
 | ``file_id`` | (1) |  The digital file instance identifier (references a file on storage). |
 | ``key`` | (1) | The filepath of the file. |
-| ``link`` | (1) | Links to the file (_self_, _content_, _iiif\_canvas_, _iiif\_base_, _iiif\_info_, _iiif\_api_)
+| ``link`` | (1) | Links to the file (_self_, _content_, _iiif\_canvas_, _iiif\_base_, _iiif\_info_, _iiif\_api_, etc.)
 | ``metadata`` | (1) | Dictionary of free key-value pairs with meta information about the file (e.g. description). |
 | ``mimetype`` | (1) | The mimetype of the file. |
 | ``size`` | (1) | The size in bytes of the file. |
@@ -1076,6 +1076,11 @@ Example:
 }
 ```
 
+!!! info "IIIF links only on image formats"
+    IIIF links are only returned for files who are compatible with IIIF.
+    Those formats are defined by the `IIIF_FORMATS` configuration variable.
+    By default _gif_, _jp2_, _jpeg_, _jpg_, _png_, _tif_, and _tiff_.
+    
 ### Default preview (0-1)
 
 The default preview field names the filename of the file which should by default
