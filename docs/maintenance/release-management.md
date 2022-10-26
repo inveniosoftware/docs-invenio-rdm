@@ -99,6 +99,7 @@ The final step to release the new modules and source code is to release Invenio-
 - Website update
     - Update [public roadmap](https://inveniosoftware.org/products/rdm/roadmap/).
     - Review project information
+    - Subtitle under <https://inveniosoftware.org/products/rdm/> title.
 - Project tracking:
     - GitHub: Update [internal product roadmap](https://github.com/inveniosoftware/product-rdm/milestones?direction=asc&sort=due_date&state=open)
 - Create maintenance branches of supported modules (LTS releases only). See
