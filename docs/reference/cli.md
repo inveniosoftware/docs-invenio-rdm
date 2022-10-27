@@ -26,6 +26,7 @@ Following is an overview of the root-level commands in Invenio-CLI:
 | `run`                | Starts the local development server.                                                          |  v0.19.0  |
 | `services`           | Commands for services management.                                                             |  v0.19.0  |
 | `shell`              | Shell command.                                                                                |  v0.19.0  |
+| `translations`       | Extracts, initializes and compile message catalogs (i18n)                                     |  v1.0.12  |
 | `upgrade`            | Upgrades the current application to the specified InvenioRDM version                          |     -     |
 
 ### Shell completion
@@ -395,6 +396,46 @@ Starts an interactive Python interpreter with the InvenioRDM application loaded.
 **Options**
 
 `-d`, `--debug` / `--no-debug` Debug mode enables Flask development mode (default: disabled).
+
+## Translations commands
+
+Translations (i18n) message catalogs management.
+
+| Command        | Description                          | Supported |
+| :------------- | :----------------------------------- | :-------: |
+| `extract`      | Extract strings from code and config |  v1.0.12  |
+| `init`         | Initialize a specific locale catalog |  v1.0.12  |
+| `update`       | Update message catalogs              |  v1.0.12  |
+| `compile`      | Compile message catalogs             |  v1.0.12  |
+
+### **`translations extract`**
+
+Extract strings from code (generate `.pot` files).
+
+**Options**
+
+- `-b`, `--babel-ini` Relative path to babel.ini (including filename).
+
+
+### **`translations init`**
+
+Initialize a specific locale catalog (generate `.po` files).
+
+**Options**
+
+-  `-l`, `--locale` Locale to initialize.
+
+### **`translations update`**
+
+Update message catalogs.
+
+### **`translations compile`**
+
+Compile message catalogs (generate `.mo` files).
+
+**Options**
+
+-  `-f`, `--fuzzy` Allow fuzzy translations (not revised).
 
 ## Upgrade command
 
