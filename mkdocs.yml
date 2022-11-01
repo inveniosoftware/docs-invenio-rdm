@@ -182,6 +182,7 @@ nav:
       - Release management: maintenance/release-management.md
       - Branch management: maintenance/branch-management.md
       - Demo site & docs: maintenance/demosite.md
+      - Docker images: maintenance/docker-images.md
       - RFCs: maintenance/rfcs.md
   - Contribute:
       - Overview: contribute/index.md
