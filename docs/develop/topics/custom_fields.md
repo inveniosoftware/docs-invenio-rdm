@@ -67,7 +67,7 @@ class ExperimentsCF(BaseListCF):
 
 ## Implement the new UI widget
 
-Let's now create the new UI widget in a file `Experiments.js` in `my-site/assets/custom-fields`:
+Let's now create the new UI widget in a file `Experiments.js` in `my-site/assets/templates/custom_fields`:
 
 ```javascript
 import React, { Component } from "react";
