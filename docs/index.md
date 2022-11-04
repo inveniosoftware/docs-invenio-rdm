@@ -5,6 +5,6 @@ hide:
 template: frontpage.html
 ---
 
-!!! tip "May 24th, 2022: InvenioRDM v9.0 released"
+!!! tip "October 10th, 2022: InvenioRDM v10.0 released"
 
-    Now with communities support! 🚀 Read the full [release notes](releases/versions/version-v9.0.0.md).
+    Now with custom fields! 🚀 Read the full [release notes](releases/versions/version-v10.0.0.md).
