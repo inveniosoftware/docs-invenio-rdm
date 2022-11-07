@@ -2,7 +2,7 @@
 
 !!! info
 
-    The DOI registration feature requires that you have a contract with [DataCite](https://datacite.org/feemodel.html). In addition, you will also need a [DataCite test account](https://support.datacite.org/docs/getting-a-test-account) to test the feature.
+    The DOI registration feature requires that you have a contract with [DataCite](https://datacite.org/feemodel.html). In addition, you will also need a [DataCite test account](https://support.datacite.org/docs/getting-a-test-account) to test the feature. If instead you want to use external DOI for your record, go to section [External DOIs](#external-dois).
 
 ## Configure
 
@@ -84,3 +84,22 @@ DATACITE_DATACENTER_SYMBOL = "CERN.INVENIORDM"
   records, thus metadata like titles, authors, description and more is sent to
   DataCite Metadata registry where it is public. Provide an external DOI if
   no DOI should be registered by InvenioRDM.
+
+
+# External DOIs
+
+In some instances, the generation of DOIs is not necessary or even wanted.
+For example, if InvenioRDM is being used as an aggregator of other data resources
+that already provide a DOI for that resource (e.g, arXiv, Zenodo).
+In those cases, you may still want to use the original (external) DOI as 
+a primary identifier to compose the record's citation string.
+
+To allow for this behaviour you will _partially enable_ DOIs in your instance
+through the following settings (in `invenio.cfg`):
+
+```python
+DATACITE_ENABLED = True   # enable support, but use null values for datacite attributes 
+DATACITE_USERNAME = None  # empty username
+DATACITE_PASSWORD = None  # empty password
+DATACITE_PREFIX = None    # empty prefix
+```
