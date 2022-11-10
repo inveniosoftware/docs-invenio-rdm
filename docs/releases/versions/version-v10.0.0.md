@@ -38,7 +38,7 @@ When a community field is required, it will be also displayed in the form to [cr
 
 ### Administration panel
 
-The new administration panel provides a modern, clean and easy to use interface. It allows to manage the repository's settings from the web interface without requiring technical knowledge. It also allows customising existing views or add new ones.
+The new administration panel provides a modern, clean and easy to use interface. It allows to manage the repository's settings from the web interface without requiring technical knowledge. It also allows customising existing views or adding new ones.
 
 This release comes with the first new OAI-PMH administration view, which allows to manage or create OAI-PMH sets.
 
