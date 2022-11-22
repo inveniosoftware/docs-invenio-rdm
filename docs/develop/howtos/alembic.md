@@ -6,6 +6,11 @@ modify the tables.
 
 In the following example, we'll use Invenio-RDM-Records as an example module.
 
+!!! warning "No alembic folder?"
+    If the module you are working at does not have the alembic folder it means that there is no branch for it.
+    Therefore the first step is to create the branch with the following command:
+    `invenio alembic revision --empty --branch <module_name> "<message>"`
+
 ## Step 1 - Install development module
 
 First, install your Invenio module in a virtual environment
