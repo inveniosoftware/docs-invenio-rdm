@@ -29,11 +29,11 @@ The Invenio-CLI tool is intended to be able to work with many different applicat
 
 The instance template (Cookiecutter-Invenio-RDM) and the application (Invenio-App-RDM) is together considered the application and therefore versioned together.
 
-The application locks each dependent module to their minor-level versions so that patches can be distributed without breaking compatibility.
+The application locks each dependent module to their major-level versions so that patches can be distributed without breaking compatibility.
 
 ### Module versioning
 
-Each module (e.g. Invenio-RDM-Records, Invenio, ...) is versioned independently. Each module MUST follow semantic versioning, so that the application can lock the module version to the minor-level release.
+Each module (e.g. Invenio-RDM-Records, Invenio, ...) is versioned independently. Each module MUST follow semantic versioning, so that the application can lock the module version to the major-level release.
 
 ## Release checklist
 
@@ -54,10 +54,15 @@ In the beginning of each iteration we start by releasing new development version
     - bump invenio-records-resources
 - invenio-requests [GitHub](https://github.com/inveniosoftware/invenio-requests)
     - bump invenio-records-resources
+- invenio-administration [GitHub](https://github.com/inveniosoftware/invenio-administration)
+    - bump invenio-records-resources
+    - bump invenio-vocabularies
 - invenio-communities [GitHub](https://github.com/inveniosoftware/invenio-communities)
+    - bump invenio-administration
     - bump invenio-requests
     - bump invenio-vocabularies
 - invenio-rdm-records [GitHub](https://github.com/inveniosoftware/invenio-rdm-records)
+    - bump invenio-administration
     - bump invenio-drafts-resources
     - bump invenio-vocabularies
     - bump invenio-communities
