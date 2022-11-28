@@ -369,7 +369,7 @@ SECURITY_CHANGE_SALT = "..put a long random value here.."
 SECURITY_REMEMBER_SALT = "..put a long random value here.."
 ```
 
-Additional security-related configuration items can be found in the
+Additional configuration items for security, sending and customising account registration-related emails, etc. can be found in the
 [documentation for Flask-Security](https://flask-security.readthedocs.io/en/latest/configuration.html).
 
 You can change the default duration (31 days) of the logged in user session (the session cookie expiration).
