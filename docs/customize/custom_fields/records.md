@@ -60,7 +60,7 @@ In order to add custom fields to your instance, you can use the following config
 
 Because each defined field requires a unique name, you might end up in a situation where fields with different semantic meanings but similar naming might clash. To avoid this issue and in order to provide additional semantic context to a group of fields, there is an optional (but recommended) **namespacing** mechanism.
 
-The `RDM_NAMESPACES` config variable accepts key-value pairs of namespace prefixes and optional contextual information for the namespace (URL). In your your `invenio.cfg`:
+The `RDM_NAMESPACES` config variable accepts key-value pairs of namespace prefixes and optional contextual information for the namespace (URL). In your `invenio.cfg`:
 
 ```python
 RDM_NAMESPACES = {
