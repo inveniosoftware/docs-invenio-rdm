@@ -100,7 +100,8 @@ nav:
           - Sanitize input data: develop/topics/validation.md
           - Theming: develop/topics/theming.md
           - Creating a new custom field: develop/topics/custom_fields.md
-          - Administration pages: develop/topics/administration_panel.md
+          - Creating a custom view: develop/topics/custom_views.md
+          - Administration panel: develop/topics/administration_panel.md
       - How-to guides:
           - Create a database migration: develop/howtos/alembic.md
           - Fix a vulnerability: develop/howtos/security-fix.md
