@@ -34,9 +34,12 @@ Developer introductions to specific parts of the InvenioRDM source code:
 
 - [Building resources](topics/resource.md)
 - [Building services](topics/service.md)
+- [Building serializers](topics/serializers.md)
 - [Grouping atomic operations](topics/uow.md)
 - [Sanitize input data](topics/validation.md)
 - [Theming](topics/theming.md)
+- [Creating a new custom field](topics/custom_fields.md)
+- [Creating a custom view](topics/custom_views.md)
 - [Administration panel](topics/administration_panel.md)
 
 ## How-to guides
