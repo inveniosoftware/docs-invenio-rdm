@@ -320,8 +320,7 @@ To showcase this configuration let's imagine the previous case instead of being 
 
 **Keyword**
 
-If the custom field will contain text values that only need to be searched as "exact match" (e.g. names or other short text values).
-Then using a keyword is the correct option. On the hand, if the values are long (e.g. a description or abstract) or need to be searchable (e.g. finding _trees_ when searching for _tree_, i.e. not an "exact match") then using a `TextCF` is preferable.
+If the custom field will contain text values that only need to be searched as "exact match" (e.g. names or other short text values), then using a keyword is the correct option. On the other hand, if the values are long (e.g. a description or abstract) or need to be searchable (e.g. finding _trees_ when searching for _tree_, i.e. not an "exact match") then using a `TextCF` is preferable.
 
 ```python
 RDM_CUSTOM_FIELDS = [
