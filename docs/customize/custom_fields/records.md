@@ -138,7 +138,7 @@ RDM_CUSTOM_FIELDS = [
 ### Initialize
 
 When you have completed the configuration of the custom fields, you will need to run the CLI commands below to make the fields searchable.
-Failing to do so will result in an error when indexing record and you won't be able to search values for the custom fields.
+Failing to do so will result in an error when indexing records and you won't be able to search values for the custom fields.
 In a shell, run:
 
 ```bash
