@@ -29,7 +29,7 @@ Let's do it! Pressing `[Enter]` selects the option in brackets `[]`.
 invenio-cli init rdm -c <version>
 ```
 
-Where ``<version>`` should be replaced with he version you want to install, e.g.:
+Where ``<version>`` should be replaced with the version you want to install, e.g.:
 
 - LTS release (for production systems): ``v9.1``
 - STS release (for feature previews): ``v10.0``
