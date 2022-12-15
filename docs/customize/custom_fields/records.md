@@ -119,7 +119,7 @@ RDM_CUSTOM_FIELDS = [
             "validate": validate.URL(),  # must be an implementation of Marshmallow.validate.Validator
             "required": True,
             "error_messages": {
-                "required": "You must provide the experiment homepage URL. "
+                "required": "You must provide the experiment homepage URL."
             }
         },
         multiple=False,
