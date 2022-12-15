@@ -316,7 +316,7 @@ In the search page, the new facet will be added in the bottom as below:
 
 #### Text fields
 
-To showcase this configuration let's imagine the previous case instead of being a vocabulary of experiments, is a "free text input".
+To showcase this configuration let's take the experiment-example, but this time not as a vocabulary of experiments but a "free text input".
 
 **Keyword**
 
