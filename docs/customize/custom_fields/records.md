@@ -354,7 +354,7 @@ RDM_SEARCH = {
 **Text**
 
 For a text field to work also as a facet/filter in the search, it needs to be defined as such via the `use_as_filter` flag.
-Note that is not recommended to have filter over very long text values (more than 250 characters) since it could noticeably affect the search engine's performance.
+Note that it is not recommended to have filter over very long text values (more than 250 characters) since it could noticeably affect the search engine's performance.
 
 ```python
 RDM_CUSTOM_FIELDS = [
