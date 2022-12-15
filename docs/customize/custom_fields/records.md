@@ -394,9 +394,9 @@ This section lists the field types and UI widgets that are available in InvenioR
 
 ### Field types
 
-- `KeywordCF` for text that need to be searchable **only** as "exact match" (e.g. search filters/facets).
+- `KeywordCF` for text that needs to be searchable **only** as "exact match" (e.g. search filters/facets).
 - `TextCF` for normal text, if you need to search as "exact match" (e.g. search filters/facets) pass `use_as_filter=True` as parameter.
-- `VocabularyCF` for controlled vocabularies. Note that it supports only generic vocabularies (e.g. _names_, _awards_, etc. cannot be linked to a custom field).
+- `VocabularyCF` for controlled vocabularies. Note that it supports only generic vocabularies (e.g. _names_, _awards_, etc.). It cannot be linked to a custom field.
 - `ISODateStringCF` date strings in ISO format (`YYYY-MM-DD`).
 - `EDTFDateStringCF` date string in extended date time format, i.e. _DATE_ or _DATE/DATE_ where _DATE_ is `YYYY` or `YYYY-MM` or `YYYY-MM-DD`.
 - `BooleanCF` for boolean values (True/False).
