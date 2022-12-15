@@ -409,8 +409,8 @@ This section lists the field types and UI widgets that are available in InvenioR
 - `MultiInput` for multi value text input, similar to the _subjects_ field.
 - `TextArea` for long text descriptions.
 - `RichInput` fot long text descriptions with WYSIWYG editor.
-- `Dropdown` for a value (or list of) from a controlled vocabularies. The corresponding `VocabularyCF` must have the parameter `dump_options=True`.
-- `AutocompleteDropdown` for a value (or list of) from a controlled vocabularies. The corresponding `VocabularyCF` must have the parameter `dump_options=False`. This widget will provide suggestions to autocomplete the user input. Similar to _subjects_, _languages_, _names_, etc.
+- `Dropdown` for a value from a controlled vocabulary or a list of controlled vocabularies. The corresponding `VocabularyCF` must have the parameter `dump_options=True`.
+- `AutocompleteDropdown` for a value from a controlled vocabulary or a list of controlled vocabularies. The corresponding `VocabularyCF` must have the parameter `dump_options=False`. This widget will provide suggestions to autocomplete the user input. Similar to _subjects_, _languages_, _names_, etc.
 
 You can see a detailed view of all the available widgets at the [UI widgets](../../reference/widgets.md) reference section.
 
