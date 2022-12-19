@@ -878,6 +878,7 @@ Notes:
   In addition, for each geometry object, we calculate the centroid using the [Shapely](https://pypi.org/project/Shapely/) library and index it as a [``geo_point``](https://www.elastic.co/guide/en/elasticsearch/reference/current/geo-point.html) field type in Elasticsearch which supports more specialised queries for points.
 - Initially only [``Point``](https://tools.ietf.org/html/rfc7946#section-3.1.2) objects will be supported in the upload form and landing page.
   This is primarily due to need for a user-friendly field.
+- GeoJSON lists [```positions (coordinates)```](https://www.rfc-editor.org/rfc/rfc7946#section-3.1.1) in the order of (longitude, latitude), which is opposite from what is used in many other coordinate systems. It's easy to mess this up!
 
 Example:
 
@@ -887,7 +888,7 @@ Example:
     "features": [{
       "geometry": {
         "type": "Point",
-        "coordinates": [6.05, 46.23333]
+        "coordinates": [46.23333, 6.05]
       },
       "identifiers": [{
         "scheme": "geonames",
