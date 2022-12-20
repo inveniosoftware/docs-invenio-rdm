@@ -32,7 +32,7 @@ The templates contain the content that will be displayed in the static pages.
 Static pages are loaded during the setup (`invenio-cli services setup`). But can also be loaded any time by using the following command.
 
 ```bash
-pipenv run invenio rdm pages create
+pipenv run invenio rdm-records pages create
 ```
 
 A `force` option is avalaible to wipe out all previous static pages and load them again.
