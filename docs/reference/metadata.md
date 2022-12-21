@@ -746,7 +746,9 @@ Subfields:
 
 Supported identifier schemes:
 
-- ISBN10, ISBN13, ISSN, ISTC, DOI, Handle, EAN8, EAN13, ISNI ORCID, ARK, PURL, LSID, URN, Bibcode, arXiv, PubMed ID, PubMed Central ID, GND, SRA, BioProject, BioSample, Ensembl, UniProt, RefSeq, Genome Assembly.
+ARK, arXiv, Bibcode, DOI, EAN13, EISSN, Handle, IGSN, ISBN, ISSN, ISTC, LISSN, LSID, PubMed ID, PURL, UPC, URL, URN, W3ID. See `RDM_RECORDS_IDENTIFIERS_SCHEMES` in [invenio-rdm-records](https://github.com/inveniosoftware/invenio-rdm-records/blob/master/invenio_rdm_records/config.py).
+
+Note that those are passed lowercased e.g., arXiv is ``arxiv``.
 
 The field ``relation_type`` is of this shape:
 
