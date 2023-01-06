@@ -106,6 +106,7 @@ nav:
           - Fix a vulnerability: develop/howtos/security-fix.md
           - Test emails locally: develop/howtos/dev_email.md
           - Migrate legacy routes: develop/howtos/route_migration.md
+          - Create search terms mappings: develop/howtos/search_terms_migration.md
       - Architecture:
           - Introduction: develop/architecture/index.md
           - Infrastructure: develop/architecture/infrastructure.md
