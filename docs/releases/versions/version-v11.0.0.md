@@ -28,7 +28,7 @@ TODO
 
 TODO
 
-#### Deposit form template
+#### Override deposit form template
 
 The deposit form template can now be overriden by editing the configuration variable `APP_RDM_DEPOSIT_FORM_TEMPLATE`.
 
@@ -53,10 +53,13 @@ The celery task can be configured by editing the configuration `CELERY_BEAT_SCHE
 
 By default, everyday at 07:00 UTC a file integrity report is sent, by e-mail, in case a file is found to be corrupted.
 The celery task can be configured by editing the configuration `CELERY_BEAT_SCHEDULE['file-integrity-report']`.
-The e-mail sender and recipient can be modified by editing the following configurations:
+The e-mail fields can be modified by editing the following configurations:
 
-- sender: `MAIL_DEFAULT_SENDER`
-- recipient: `APP_RDM_ADMIN_EMAIL_RECIPIENT`
+- `MAIL_DEFAULT_SENDER`: modifies the e-mail sender (field `from`).
+- `APP_RDM_ADMIN_EMAIL_RECIPIENT`: modifies the e-mail recipient (field `to`).
+- `FILES_INTEGRITY_REPORT_SUBJECT`: modifies the  subject of the e-mail (field `subject`).
+
+The e-mail template can be overriden completely by a custom one. To do so, edit the variable `FILES_INTEGRITY_REPORT_TEMPLATE` and point it to an alternative template.
 
 > Note: `MAIL_DEFAULT_SENDER` is a configuration used by `Flask-Mail`. If set, you don’t need to set the message sender explicity, as it will use this configuration value by default.
 
