@@ -1,10 +1,10 @@
 # InvenioRDM v11.0
 
-_2023-01-05_
+_2023-01-05_ (TBD)
 
 _Short-term support (STS) release_
 
-We're happy to announce the release of InvenioRDM v11.0. The release is a short-term support release which is maintained until v11.0.
+We're happy to announce the release of InvenioRDM v11.0. The release is a short-term support release which is maintained until v12.0.
 
 ## Try it
 
@@ -56,7 +56,7 @@ The celery task can be configured by editing the configuration `CELERY_BEAT_SCHE
 The e-mail sender and recipient can be modified by editing the following configurations:
 
 - sender: `MAIL_DEFAULT_SENDER`
-- recipient: `ADMIN_EMAIL_RECIPIENT`
+- recipient: `APP_RDM_ADMIN_EMAIL_RECIPIENT`
 
 > Note: `MAIL_DEFAULT_SENDER` is a configuration used by `Flask-Mail`. If set, you don’t need to set the message sender explicity, as it will use this configuration value by default.
 

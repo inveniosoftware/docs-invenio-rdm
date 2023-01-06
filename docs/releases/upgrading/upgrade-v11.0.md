@@ -36,10 +36,12 @@ TODO can we use the new command `invenio rdm rebuild-all-indices`?
 # recreate indices
 invenio index destroy --yes-i-know
 invenio index init
+```
 
-# reindex records
-invenio rdm-records rebuild-index
-invenio communities rebuild-index
+Complete the re-indexing of the data in the search cluster. To do so, run the following command in a terminal:
+
+```terminal
+invenio rdm rebuild-all-indices
 ```
 
 ### Re-build assets
@@ -58,13 +60,3 @@ invenio-cli assets build
 # Perform the database migration
 invenio alembic upgrade
 ```
-
-### Complete re-indexing
-
-Complete the re-indexing of the data in the search cluster. To do so, run the following command in a terminal:
-
-```terminal
-invenio rdm rebuild-all-indices
-```
-
-TODO is this correct?
