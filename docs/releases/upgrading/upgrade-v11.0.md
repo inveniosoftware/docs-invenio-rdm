@@ -12,7 +12,7 @@ If unsure, run `invenio-cli install` from inside the instance directory before e
 
 !!! info "Older versions"
 
-    In case you have an InvenioRDM installation older than v10, you can gradually upgrade using the existing instructions to v9 and afterwards continue from here.
+    In case you have an InvenioRDM installation older than v10, you can gradually upgrade using the existing instructions to v10 and afterwards continue from here.
 
 ## Upgrade Steps
 
@@ -27,6 +27,33 @@ If unsure, run `invenio-cli install` from inside the instance directory before e
 
 !!! info "Virtual environments"
     In case you are not inside a virtual environment, make sure that you prefix each `invenio` command with `pipenv run`.
+
+### Python upgrade
+
+As of InvenioRDM v11.0 only Python 3.9 is supported. Therefore you will need to recreate your virtual environment.
+
+the first step is to edit the `<my-site>/Pipfile`:
+
+```diff
+[requires]
+---python_version = "3.x"
++++python_version = "3.9"
+```
+
+**Container images**
+
+Update the base docker image, and rebuild if necessary:
+
+```diff
+---FROM inveniosoftware/centos8-python:3.8
++++FROM registry.cern.ch/inveniosoftware/almalinux:1
+```
+
+**Local development**
+
+You need to upgrade the Python version to 3.9. However, this step highly
+depends on how you have setup your development environment, and there is no
+golden rule. One example would be to use PyEnv.
 
 ### Upgrade InvenioRDM
 
@@ -51,18 +78,8 @@ invenio alembic upgrade
 
 ### Data migration
 
-Execute the data migration:
-
-TODO
-```bash
-```
-
-### Re-index data
-
-Re-index data in the cluster:
+Execute the data migration, note that there is no need to re-index the data:
 
 ```bash
-# Recreate indices
-invenio index destroy --yes-i-know
-invenio index init
+pipenv run invenio shell $(find $(pipenv --venv)/lib/*/site-packages/invenio_app_rdm -name migrate_10_0_to_11_0.py)
 ```
