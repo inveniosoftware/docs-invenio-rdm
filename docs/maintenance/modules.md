@@ -6,8 +6,7 @@ This guide is intended for maintainers and developers of InvenioRDM.
 
 ### List of modules
 
-Below, the list of InvenioRDM modules available on GitHub. This can be useful when
-having to apply code changes to all modules installed with InvenioRDM at once.
+Below is the list of InvenioRDM modules available on GitHub. This list can be useful for InvenioRDM maintainers and contributors to have an ensemble view of the project or when having to apply code changes to all modules installed with InvenioRDM.
 
 #### Python
 
