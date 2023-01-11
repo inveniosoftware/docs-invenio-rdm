@@ -113,3 +113,8 @@ screen ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux
 # and in the shell
 sysctl -w vm.max_map_count=262144
 ```
+
+#### Use same contexts (macOS and Linux)
+
+Make sure to always use the same context when using both Docker from the terminal and Docker Desktop. For more information see
+[Docker Contexts](https://docs.docker.com/engine/context/working-with-contexts/).
