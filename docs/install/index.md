@@ -71,17 +71,7 @@ invenio-cli run
 
 !!! warning "Linux: Managing Docker as a non-root user & Context Errors"
 
-    If you encounter errors running
-    `invenio-cli services setup`
-    Make sure you are able to run containers as non-root user:
-    ```console
-    docker run hello-world
-    ```
-    If not please take a look at the following [documentation](https://docs.docker.com/engine/install/linux-postinstall/).
-
-    if the error persists, take a look at [Docker Contexts](https://docs.docker.com/engine/context/working-with-contexts/).
-    Please make sure to always use the same context when using both Docker from the Terminal and Docker Desktop.
-
+    If you encounter Docker errors running `invenio-cli services setup`, see our section on [Docker pre-requisites](./requirements.md#docker).
 
 #### [5. Explore InvenioRDM](run.md)
 
@@ -95,8 +85,6 @@ Go and explore your InvenioRDM instance on:
     Your browser will display a big warning about an invalid SSL certificate. This is because InvenioRDM generates a self-signed SSL certificate when you scaffold a new instance and because InvenioRDM requires that all traffic is over a secure HTTPS connection.
 
     All major browsers allow you to bypass the warning (not easily though). In Chrome/Edge you have to click in the browser window and type ``thisisunsafe``.
-
-
 
 To create a new administrator account:
 
