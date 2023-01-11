@@ -176,6 +176,7 @@ nav:
       - Newcomers: maintenance/newcomers.md
       - Sprintboard workflow: maintenance/board-workflow.md
       - Release management: maintenance/release-management.md
+      - Modules on GitHub: maintenance/modules.md
       - Branch management: maintenance/branch-management.md
       - Demo site & docs: maintenance/demosite.md
       - RFCs: maintenance/rfcs.md
