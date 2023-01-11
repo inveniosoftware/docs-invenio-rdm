@@ -69,6 +69,10 @@ invenio-cli services setup
 invenio-cli run
 ```
 
+!!! warning "Linux: Managing Docker as a non-root user & Context Errors"
+
+    If you encounter Docker errors running `invenio-cli services setup`, see our section on [Docker pre-requisites](./requirements.md#docker).
+
 #### [5. Explore InvenioRDM](run.md)
 
 Go and explore your InvenioRDM instance on:
