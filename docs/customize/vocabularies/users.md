@@ -86,3 +86,17 @@ db.session.commit()
 reindex_user(user.id)
 
 ```
+
+## Adding users and roles
+
+You may need to add users or make permission changes after the users vocabulary has been loaded. To create an account programmatically, run:
+
+```python
+pipenv run invenio users create email@domain.edu --active
+```
+
+To give an account admin permissions, run:
+
+```python
+pipenv run invenio roles add <email> admin
+```
