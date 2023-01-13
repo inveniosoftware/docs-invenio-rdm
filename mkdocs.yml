@@ -108,6 +108,7 @@ nav:
           - Test emails locally: develop/howtos/dev_email.md
           - Migrate legacy routes: develop/howtos/route_migration.md
           - Create search terms mappings: develop/howtos/search_terms_migration.md
+          - How to override a react component: develop/howtos/override_components.md
       - Architecture:
           - Introduction: develop/architecture/index.md
           - Infrastructure: develop/architecture/infrastructure.md
