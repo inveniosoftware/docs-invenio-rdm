@@ -2,8 +2,7 @@
 
 ## Components
 
-Use dedicated React Semantic UI components in React. The React versions of Semantic UI components have normally implemented some logic, which is crucial for the component to work correctly. The plain CSS semantic UI might not have all the features available when you use them in react.
-
+Use dedicated React Semantic UI components in React. The React versions of Semantic UI components have normally implemented some logic, which is crucial for the component to work correctly. The plain CSS semantic UI might not have all the features available when you use them in React.
 
 ✅ DO
 
@@ -17,7 +16,6 @@ class MyAccordion extends Component {}
   }
 ```
 
-
 ❌ DON'T
 
 ```javascript
@@ -28,4 +26,3 @@ class MyAccordion extends Component {}
     <div className="ui accordion" key={agg.title}></div>
   }
 ```
-
