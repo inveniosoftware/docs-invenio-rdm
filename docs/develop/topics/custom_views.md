@@ -95,7 +95,7 @@ In this template we can add the following:
 {% block page_body %}
     <div id="contact-page" class="ui container">
         <h1>Contact us</h1>
-        {% block root_section %}    
+        {% block root_section %}
             <div id="root-container" class="panel-body"></div>
         {% endblock %}
     </div>
@@ -184,19 +184,19 @@ Here you can see that we made an alias for our js-file: `my-site-support`, which
 The JavaScript file could be anything that should be executed when the page is rendered, as an example it can render a simple Semantic UI Form:
 
 ```javascript
-import React from 'react';
+import React from "react";
 import ReactDOM from "react-dom";
-import { Button, Form } from 'semantic-ui-react'
+import { Button, Form } from "semantic-ui-react";
 
 const rootContainer = document.getElementById("root-container");
 
 ReactDOM.render(
-    <Form>
-        <Form.Input label="Name"/>
-        <Form.TextArea label='Message' placeholder="Write your message here"/>
-        <Button type='submit'>Submit</Button>
-    </Form>,
-    rootContainer // Target container on where to render the react components.
+  <Form>
+    <Form.Input label="Name" />
+    <Form.TextArea label="Message" placeholder="Write your message here" />
+    <Button type="submit">Submit</Button>
+  </Form>,
+  rootContainer // Target container on where to render the React components.
 );
 ```
 
@@ -217,7 +217,7 @@ Now the full template will look like this:
 {% block page_body %}
     <div id="contact-page" class="ui container">
         <h1>Contact us</h1>
-        {% block root_section %}    
+        {% block root_section %}
             <div id="root-container" class="panel-body"></div>
         {% endblock %}
     </div>
@@ -243,7 +243,7 @@ and restart our instance
 invenio-cli run
 ```
 
-That's all! Now you should be all set to further develop your custom view as you like. 
+That's all! Now you should be all set to further develop your custom view as you like.
 
 See the final result for the example shown in this guide:
 
