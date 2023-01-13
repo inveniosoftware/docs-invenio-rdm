@@ -121,6 +121,7 @@ nav:
       - Concepts:
           - Optimistic concurrency control: develop/concepts/concurrency-control.md
           - Database transaction management: develop/concepts/transactions.md
+  - Deploy: deploy/index.md
   - Reference:
       - Overview: reference/index.md
       - CLI: reference/cli.md
