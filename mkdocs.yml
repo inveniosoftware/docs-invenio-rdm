@@ -180,6 +180,7 @@ nav:
       - Branch management: maintenance/branch-management.md
       - Demo site & docs: maintenance/demosite.md
       - RFCs: maintenance/rfcs.md
+      - Writing documentation: maintenance/documentation.md
   - Contribute:
       - Overview: contribute/index.md
       - Code of conduct: contribute/code-of-conduct.md
