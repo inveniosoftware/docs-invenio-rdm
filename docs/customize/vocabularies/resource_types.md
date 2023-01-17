@@ -58,30 +58,35 @@ resourcetypes:
     subtype: thesis-doctoral_thesis
     type: thesis
   tags:
-  - depositable
-  - linkable
+    - depositable
+    - linkable
   title:
     en: Doctoral Thesis
-- icon: graduation cap
-  id: thesis-masters_thesis
+
+- id: publication
+  icon: file alternate
   props:
-    coar: text, thesis
-    csl: thesis
+    csl: report
     datacite_general: Text
-    datacite_type: Masters Thesis
-    eurepo: info:eu-repo/semantics/masterThesis
-    notes: ''
+    datacite_type: ''
     openaire_resourceType: ''
-    openaire_type: masterThesis
-    schema.org: https://schema.org/Thesis
-    subtype: thesis-masters_thesis
-    type: thesis
+    openaire_type: publication
+    eurepo: info:eu-repo/semantics/other
+    schema.org: https://schema.org/CreativeWork
+    subtype: ''
+    type: publication
   tags:
-  - depositable
-  - linkable
+    - depositable
+    - linkable
   title:
-    en: Masters Thesis
+    en: Publication
 ```
+
+As seen in the above example, resource types can be grouped by type (e.g. the thesis examples), or they can be independent (e.g. the publication example). 
+
+If the resource type is part of a group, the `subtype` field should have the value of the `id` of the parent resource type. Note that the parent resource type cannot itself be the subtype of another resource type. Only two levels are allowed.
+
+If the resource type is independent, the `subtype` value has to be empty, and the `id` and `type` values must be the same. Otherwise, there will be issues when loading the facets. 
 
 Then, when you run `invenio-cli services setup` for the first time. Only those 3 resource types will be loaded.
 
