@@ -2,7 +2,7 @@
 
 The official RDM Docker image(s) are available in the [docker-invenio](https://github.com/inveniosoftware/docker-invenio) repo.
 
-Currently, the official base image uses `AlmaLinux` `v9` and it is pushed to the CERN registry.
+Currently, the official base image uses `AlmaLinux` `v9` and it is pushed to the [CERN registry](https://registry.cern.ch/).
 
 ## Building
 
@@ -12,23 +12,33 @@ the current RDM Docker image.
 
 ## CERN registry
 
+Docker images are pushed to the CERN registry [inveniosoftware]](https://registry.cern.ch/harbor/projects/1825/repositories) project. This is done to:
+
+1. Avoid [Docker Hub rate limits](https://www.docker.com/increase-rate-limits/).
+2. Take advantage of the automatic security scan provided by Harbor.
+
+The project is configured with tag retention policies, so that the disk space is not filled up too quickly (see below).
+
 ## Security scans
 
-You can test locally with: https://trivy.dev
+Security scans are automatic on the CERN Registry, using [Trivy](https://github.com/aquasecurity/trivy).
+You can run the scan locally installing Trivy or use the web app: <https://trivy.dev>.
+
+At the moment, the security scans from the CERN Registry are not sending reports or alerts.
+
+Security scans for Docker images are also being configured (work not yet completed) using GitHub Actions:
+it is easier to configure alerts, notifications or scan reports and also GitHub security issues can be automatically created.
 
 ## Retention
 
-latest -> almalinux-00120
-1.0.0 -> almalinux-00120
+This section Work In Progress: the development of the Docker images building process is not yet completed.
 
-almalinux-00120
-almalinux-12345
+See: <https://github.com/inveniosoftware/docker-invenio/issues/68>
 
-Decided: images are tagged with a digest, latest and version tags are updated to point to latest built image.
-Use a GitHub CI action to make sure the Actions are not disabled after 60 days and that we can always rebuilt the images
+To allow the CERN Registry to send notifications to Discord, we have a created a small web app to convert the payload and deployed on OpenShift:
 
-New repo: `alertabot`
-configuration charts in the repo
-OpenShift new project: invenio-alertabot.web.cern.ch
-Sentry: on InvenioRDM
-UpTimeRobot: ???
+- GitHub repo: <https://github.com/inveniosoftware/alertabot>
+- OpenShift project: `invenio-alertabot.web.cern.ch`
+- Sentry: `InvenioRDM` project
+
+This project might be archived when the GitHub Action development is completed, as it will already cover the features provided by this webapp.
