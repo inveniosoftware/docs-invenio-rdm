@@ -121,6 +121,7 @@ nav:
       - Concepts:
           - Optimistic concurrency control: develop/concepts/concurrency-control.md
           - Database transaction management: develop/concepts/transactions.md
+  - Deploy: deploy/index.md
   - Reference:
       - Overview: reference/index.md
       - CLI: reference/cli.md
@@ -183,6 +184,7 @@ nav:
       - Modules on GitHub: maintenance/modules.md
       - Branch management: maintenance/branch-management.md
       - Demo site & docs: maintenance/demosite.md
+      - Docker images: maintenance/docker-images.md
       - RFCs: maintenance/rfcs.md
       - Writing documentation: maintenance/documentation.md
   - Contribute:
