@@ -1,25 +1,30 @@
 # Deployment
 
-!!! info "Read the infrastructure section before proceeding"
+This guide is meant to give an high-level overview of deployment techniques and tips
+when planning how to deploy InvenioRDM.
+
+!!! info "Read the infrastructure architecture first!"
     This section assumes you have a good understanding of the different
     services that are needed to run an InvenioRDM application, and how they
     interact with each other. This information can be found in the
-    [infrastructure section](../develop/architecture/infrastructure/).
+    [infrastructure architecture](../develop/architecture/infrastructure/).
 
 ## Deployment models
 
 There is no one-size-fits all deployment strategy for InvenioRDM. Therefore,
-it is hard to recommend how to deploy. Moreover, there are many aspects to
-take into account: your knowledge in DevOps/Platform engineering, your
+it is hard to recommend how to deploy.
+Moreover, there are many aspects to take into account:
+your knowledge in DevOps/Platform engineering, your
 organization's infrastructure, resources, constraints or policies, the
-technology you want to invest in and maintain, pricing, etc. The two most
-popular alternatives are:
+technology you want to invest in and maintain, pricing, etc.
 
 !!! info "The mentioned technologies are just examples"
     Along this chapter many technologies will be named. However, note that
     those are mere examples based on our experience at CERN or from some of
     the InvenioRDM partners, with all certainty there are many other
     alternatives for each case.
+
+Two popular deployment models are:
 
 -  Platform as a Service (PaaS): using this model you will be in charge of the
 application and the data it handles. This more commonly known as _containers_,
@@ -48,11 +53,16 @@ your deployment, for example, using bare metal machines. However, that is out of
 scope of this documentation.
 
 !!! warning "Docker compose is not recommended"
-    The provided docker-compose files can give you a good idea on what you need
-    to deploy, including the underlying services. However, the provided files
-    are **NOT** meant to be used in production as-is: it requires knowledge
-    and experience on how to run it reliable, safely stores files with backups, managing software and infrastructure upgraders, understand
-    potential performance limitations, etc. Use at your own risk.
+    The provided docker-compose files in InvenioRDM can give you a good idea of what
+    you need to deploy, including the underlying services.
+
+    However, such configuration is **NOT** meant to be used in production as-is:
+    it requires knowledge and experience on how to run it reliably, safely stores
+    files with backups, managing software and infrastructure upgrades, understand
+    potential performance limitations (a single machine probably might not handle all
+    your traffic and it would be a single point of failure), etc.
+
+    **Use at your own risk.**
 
 ## Services
 
@@ -82,16 +92,19 @@ on how to deploy each service, refer to their official documentation.
 
 Independently of your deployment model choice, you will need to run the Flask
 Python application. However, the server bundled with Flask is not meant for
-production usage. Therefore, you will need some sort of WSGI HTTP server.
+production usage, it is there only to help with the development.
+Therefore, you will need some sort of WSGI HTTP server.
 Common choices are [Gunicorn](https://gunicorn.org) and [uWSGI](http://projects.unbit.it/uwsgi),
-The latter, is the one we use at CERN and it is bundled in the Dockerfile. You can find more infomation in the [InvenioRDM Docker images](../maintenance/docker-images.md) section.
+
+The latter, is the one we use at CERN and it is bundled in the Dockerfile.
+You can find more information in the [InvenioRDM Docker images](../maintenance/docker-images.md) section.
 
 ### Versioning
 
-During the lifetime of your service you will develop new features specific to
-your instance or need to upgrade to a newer version of InvenioRDM. This will
-means that your application code will change and versioning it will help you
-control which code is actually deployed. At CERN we use GitHub tags/release
+During the lifetime of your project or service, you will develop new features specific to
+your instance or need to upgrade to a newer version of InvenioRDM. This
+means that your application code will change and versioning will help you to
+control which code is actually deployed. At CERN, we use GitHub tags/release
 for each version (e.g. v1.0.0).
 
 If you are using container for the deployment, you can automate the image
@@ -102,43 +115,54 @@ and re-deploy it automatically.
 
 ## Monitoring
 
-After your application is deployed and running, monitoring it at many level
+After your application is deployed and running, monitoring it at many levels
 will provide you the observability needed to be aware of what is happening
-at all times.
+in your infrastructure.
 
-Once you have configured where the different services output their logs
-they can be aggregated and create dashboards to visualize them, for example in
+Once you have configured where the different services output their logs,
+they can be aggregated and used to create dashboards for visualization, for example in
 [Loki](https://grafana.com/oss/loki/) or [OpenSearch Dashboards](https://opensearch.org/docs/latest/dashboards/index/).
 
-In a IaaS deployment it might be useful to aggregate also the system logs to
+In a IaaS deployments, it might be useful to aggregate also the system logs to
 monitor the resources consumption. This metrics can be aggregated using
 [Prometheus](https://prometheus.io) and visualized in [Grafana](https://grafana.com).
 
 In some cases it is possible to have application specific monitoring. For
 example, using [Flower](https://flower.readthedocs.io/en/latest/) to monitor
-the queues status. Moreover, many of these can be plugged in to Prometheus.
-Closing that way the circle and providing a single point of view for your
-monitoring and metrics.
+the InvenioRDM asynchronous workers. Many of these can also be plugged in to Prometheus.
 
-For the Python application [Sentry](https://sentry.io/welcome/) provides a
-great level of details (variables' values, stacktraces, etc.), which is
-specially helpful when it comes to understanding errors that happen in
-production. **We really recommend it!**
-
-In an IaaS deployment, independently of the monitoring and log aggregation
-tool of your choice, we consider a good practice to store the logs in the
+In an IaaS deployment, independently of the monitoring and logs aggregation
+tool of your choice, it is a good practice to store the logs in the
 in the servers using log rotation.
 
 ### Alerting
 
-Once the monitoring is in place, the next steps is getting alerts when
-certain metrics reach a configured threshold. In the Grafana
-ecosystem, [OnCall](https://grafana.com/products/oncall). Alternatively, many
+Once the monitoring is in place, the next steps is getting alerts for code exceptions and
+when certain metrics reach a configured threshold.
+
+For the InvenioRDM Python application, [Sentry](https://sentry.io/welcome/) provides a
+great level of details (variables' values, stacktraces, etc.) when exceptions happen:
+this is extremely helpful when it comes to understanding errors that happen in
+production. If you have to invest in one alerting tool, **we really recommend this one!**
+
+In the Grafana ecosystem, [OnCall](https://grafana.com/products/oncall). Alternatively, many
 messaging apps can be configured with [webhooks to Grafana](https://grafana.com/docs/grafana/latest/alerting/manage-notifications/webhook-notifier/).
 
 ## Security
 
-TODO: https://github.com/inveniosoftware/training/tree/v3.4/13-securing-your-instance/
+To secure your instance, make sure that:
+
+- You have [correctly configured](../install/configuration.md) your InvenioRDM instance.
+- You have valid HTTPS certificates.
+- Your instance and services are up-to-date.
+- Secure file uploads: we should be really careful with what we allow users to upload in our instances,
+  since we are serving them back and they could contain malicious code. Some effective methods to avoid these vulnerabilities are:
+
+    - White listing MIMETypes, for example here
+    - Sanitizing MIMETypes so they do not get executed on the browser, for example sanitizing HTML files to plain text.
+    - Serve your files from a different domain with a static server where there are no sessions or anything to be compromised.
+
+This list is not meant to be exhaustive: please refer to well-known literature and best practices on how to make your infrastructure secure.
 
 ## Load testing
 
@@ -151,6 +175,10 @@ or [k6](https://k6.io).
 The first step to troubleshooting a problem would be to try to understand in
 which layer or service of the system is the problem. That can be checked using
 the monitoring and dashboard technologies mentioned above, or the log files
-directly. If the problem is in the python application, you can get more details
+directly.
+
+If the problem is in the InvenioRDM Python application, you can get more details
 in Sentry. Afterwards, you can try to reproduce it and debug in a local
-installation. For more information see the [how to debug section](../develop/getting-started/debugging/).
+installation.
+
+For more information see the [how to debug section](../develop/getting-started/debugging/).
