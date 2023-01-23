@@ -25,3 +25,14 @@ You can change the default citation style used when loading the record landing p
 ```
 RDM_CITATION_STYLES_DEFAULT = 'chicago-annotated-bibliography'
 ```
+
+### Download all files button
+
+!!! warning "Blocking connection and large files"
+     In contrast to other file-serving endpoints, this functionality does not offload the response to nginx, which means that for very large files and slower client connections these might become long-running blocking requests. You can mitigate these issues either via rate-limiting or setting up dedicated resources for serving this type of requests.
+
+To enable/disable the UI button and backend functionality for being able to download all of a record's files as a single ZIP file, you can set in your `invenio.cfg` the following config:
+
+```python
+RDM_ARCHIVE_DOWNLOAD_ENABLED = True
+```
