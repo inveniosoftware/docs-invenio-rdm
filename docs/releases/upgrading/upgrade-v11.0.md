@@ -83,3 +83,7 @@ Execute the data migration, note that there is no need to re-index the data:
 ```bash
 pipenv run invenio shell $(find $(pipenv --venv)/lib/*/site-packages/invenio_app_rdm -name migrate_10_0_to_11_0.py)
 ```
+
+Note that the parsing of the ROR dump used for the Funders vocabulary has
+been improved, adding the actual ROR identifier to the `identifiers` field.
+You can see how to update your data in the [Funders vocabulary section](../../customize/vocabularies/funding.md).
