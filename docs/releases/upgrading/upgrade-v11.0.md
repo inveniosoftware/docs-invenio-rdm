@@ -28,11 +28,18 @@ If unsure, run `invenio-cli install` from inside the instance directory before e
 !!! info "Virtual environments"
     In case you are not inside a virtual environment, make sure that you prefix each `invenio` command with `pipenv run`.
 
-### Python upgrade
+### Python version change
 
-As of InvenioRDM v11.0 only Python 3.9 is supported. Therefore you will need to recreate your virtual environment.
+As of InvenioRDM v11.0, only Python 3.9 is supported. This is because the official InvenioRDM Docker images now comes
+with Python 3.9 only and it is not anymore configurable.
 
-the first step is to edit the `<my-site>/Pipfile`:
+Developing with the same Python version as in deployed environments helps avoiding surprises when deploying
+code and it increases predictability.
+
+We strongly suggest recreating your virtual environment with Python 3.9. If you are already using Python 3.9,
+you can simply skip this first part and change to the [Upgrade InvenioRDM](#upgrade-inveniordm) section.
+
+The first step is to edit the `<my-site>/Pipfile`:
 
 ```diff
 [requires]
@@ -40,9 +47,11 @@ the first step is to edit the `<my-site>/Pipfile`:
 +++python_version = "3.9"
 ```
 
+Delete the `Pipfile.lock`.
+
 **Container images**
 
-Update the base docker image, and rebuild if necessary:
+Update the base Docker image in the `Dockerfile`, and rebuild the image if necessary:
 
 ```diff
 ---FROM inveniosoftware/centos8-python:3.8
@@ -51,11 +60,20 @@ Update the base docker image, and rebuild if necessary:
 
 **Local development**
 
-You need to upgrade the Python version to 3.9. However, this step highly
-depends on how you have setup your development environment, and there is no
-golden rule. One example would be to use PyEnv.
+Changing the Python version in your development environment highly
+depends on your setup, and there is no golden rule.
+One example would be to use [PyEnv](https://github.com/pyenv/pyenv).
+
+You should delete your virtual env before running `invenio-cli` or `pipenv` commands below.
+
+!!! warning "Risk of losing data"
+
+    Your virtual env folder contains uploaded files in InvenioRDM, in `var/instance/data`.
+    If you need to keep such files, make sure you copy them over to the new virtual env in the same location.
 
 ### Upgrade InvenioRDM
+
+Make sure you that your virtual env is now running with Python 3.9.
 
 Upgrade the RDM version:
 
@@ -84,6 +102,7 @@ Execute the data migration, note that there is no need to re-index the data:
 pipenv run invenio shell $(find $(pipenv --venv)/lib/*/site-packages/invenio_app_rdm -name migrate_10_0_to_11_0.py)
 ```
 
-Note that the parsing of the ROR dump used for the Funders vocabulary has
+The parsing of the ROR dump used for the Funders vocabulary has
 been improved, adding the actual ROR identifier to the `identifiers` field.
+
 You can see how to update your data in the [Funders vocabulary section](../../customize/vocabularies/funding.md).

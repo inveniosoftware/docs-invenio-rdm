@@ -1,25 +1,29 @@
 # Static pages
 
+_Introduced in InvenioRDM v11_
+
 InvenioRDM supports an easy "out-of-the-box" way of creating static pages.
 
-Static pages are loaded through the application data folder. A file named `pages.yaml` must be created and added in the root of the `app_data` folder.
+## Define pages
+
+To add the new static pages, create a file named `pages.yaml` in the `app_data` folder:
 
 ```
 app_data/
 └── pages.yaml
 ```
 
-The content of the file is as follows:
+Then, inside the file, define the URL, the title, the description and the HTML template of each static page:
 
 ```yaml
-#list of pages:
+# list of pages:
 - url: /help/search
   title: Search guide
   description: Search guide
   template: search_guide.html
 ```
 
-The templates used for each page must be provided in the application data folder as well, but in the `pages` folder.
+InvenioRDM will look for the content of each static page in the `template` HTML file, located in a new sub-folder named `pages`:
 
 ```
 app_data/
@@ -27,12 +31,18 @@ app_data/
     └──search_guide.html
 ```
 
-The templates contain the content that will be displayed in the static pages.
+The HTML file is what will be rendered to the user when navigating to the page's URL.
 
-Static pages are loaded during the setup (`invenio-cli services setup`). But can also be loaded any time by using the following command.
+## Load pages
+
+To load the new static page to your instance, you can:
+
+1. Run the instance setup command `invenio-cli services setup`: the command will find the pages defined as above and load them. **Warning: this command will delete all your data!**
+
+2. In a previously created instance folder, run:
 
 ```bash
 pipenv run invenio rdm pages create
 ```
 
-A `force` option is avalaible to wipe out all previous static pages and load them again.
+You can use the `--force` option to wipe out all previously created static pages and load them again.

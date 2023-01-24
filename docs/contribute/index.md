@@ -45,7 +45,7 @@ articles, and such.
 ### Translations
 
 InvenioRDM is used all over the world, but not yet translated to all languages.
-You can make  invenioRDM even more accessible by joining the translation team
+You can make InvenioRDM even more accessible by joining the translation team
 and helping with translations. Follow the guide [here](translators-guide).
 
 ### Submit Feedback

@@ -1,5 +1,7 @@
 # Create search terms mappings
 
+_Introduced in InvenioRDM v11_
+
 This guide describes the process to create search terms mappings in the application layer.
 
 This is particularly useful when a certain search term is not supported anymore by the search engine or we want to simplify a search term (e.g nested field), in favor of a new term.

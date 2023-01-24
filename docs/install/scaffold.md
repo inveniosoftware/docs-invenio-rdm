@@ -16,10 +16,11 @@ The CLI will require the following data:
 - **Author name**: Your name or that of your organization
 - **Author email**: Email for communication
 - **Year**: The current year
-- **Python version**: 3.8 (default), 3.6, 3.7, or 3.9.
 - **Database**: PostgreSQL (default) - we hope to support MySQL in the future.
-- **Elasticsearch version**: 7 (default) or 6
+- **Search**: OpenSearch 2 (default), OpenSearch 1 or Elasticsearch 7 (deprecated)
 - **Storage backend**: Local file system (default) or in a S3-like backend. If S3 is chosen a MinIO container is provided.
+- **Development tools**: `Yes` if you want to add extra development tools (e.g. OpenSearch Dashboard) to your instance.
+- **Site code**: `Yes` if you want to add custom code to your instance.
 
 It will also generate a test private key which is needed for SSL support in the development server.
 
@@ -44,25 +45,25 @@ github_repo [my-site/my-site]:
 description [My Site InvenioRDM Instance]:
 author_name [CERN]:
 author_email [info@my-site.com]:
-year [2021]:
-Select python_version:
-1 - 3.8
-2 - 3.7
-3 - 3.6
-4 - 3.9
-Choose from 1, 2, 3, 4 [1]:
+year [2023]:
+Choose from 1 [1]:
 Select database:
 1 - postgresql
-Choose from 1, 2 [1]:
+Choose from 1, 2, 3 [1]:
 Select elasticsearch:
-1 - 7
-2 - 6
+1 - opensearch2
+2 - opensearch1
+3 - elasticsearch7
 Choose from 1, 2 [1]:
 Select file_storage:
 1 - local
 2 - S3
 Choose from 1, 2 [1]:
 Select development_tools:
+1 - yes
+2 - no
+Choose from 1, 2 [1]:
+Select site_code:
 1 - yes
 2 - no
 Choose from 1, 2 [1]:
