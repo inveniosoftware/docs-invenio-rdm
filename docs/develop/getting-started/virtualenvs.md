@@ -29,7 +29,7 @@ Python programming language - e.g Python 3.8, 3.9 etc.
 ### Installation of a distribution
 
 You can have one or more Python distributions installed at the computer at the
-same time. E.g. you can have CPython 3.7, 3.8. Often, your operating system
+same time. E.g. you can have CPython 3.7, 3.8, 3.9. Often, your operating system
 also already ships a default Python installation.
 
 What's important to understand is that each installation of a distribution

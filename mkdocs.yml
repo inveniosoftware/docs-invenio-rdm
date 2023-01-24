@@ -7,7 +7,6 @@ repo_url: "https://github.com/inveniosoftware/docs-invenio-rdm"
 
 # Copyright
 copyright: "Copyright &copy; 2019-2022 CERN, Northwestern University and contributors."
-license: This work is licensed under a Creative Commons Attribution 4.0 International License.
 
 # Configuration
 theme:
@@ -100,7 +99,7 @@ nav:
           - Sanitize input data: develop/topics/validation.md
           - Theming: develop/topics/theming.md
           - Creating a new custom field: develop/topics/custom_fields.md
-          - Creating a custom view: develop/topics/custom_views.md
+          - Creating custom code and views: develop/topics/custom_code.md
           - Administration panel: develop/topics/administration_panel.md
       - How-to guides:
           - Create a database migration: develop/howtos/alembic.md
@@ -151,6 +150,7 @@ nav:
       - Maintenance policy: releases/maintenance-policy.md
       - Security policy: releases/security-policy.md
       - Versions:
+          - Version v11.0.0: releases/versions/version-v11.0.0.md
           - Version v10.1.0: releases/versions/version-v10.1.0.md
           - Version v10.0.0: releases/versions/version-v10.0.0.md
           - Version v9.1.0: releases/versions/version-v9.1.0.md
@@ -166,6 +166,7 @@ nav:
           - Version v1.0.0: releases/versions/version-v1.0.0.md
       - Upgrade guide:
           - Upgrade policy: releases/upgrading/index.md
+          - Upgrade from v10 to v11: releases/upgrading/upgrade-v11.0.md
           - Upgrade from v9 to v10: releases/upgrading/upgrade-v10.0.md
           - Migrate v9 to OpenSearch: releases/upgrading/migrate-opensearch-v9.md
           - Upgrade from v8 to v9: releases/upgrading/upgrade-v9.0.md

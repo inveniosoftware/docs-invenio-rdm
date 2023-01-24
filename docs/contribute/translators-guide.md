@@ -1,6 +1,6 @@
 # Getting involved as a Translator
 
-The translation of texts that are visible in the UI of invenioRDM, is integrated with the [Transifex](https://www.transifex.com/) platform. 
+The translation of texts that are visible in the UI of InvenioRDM, is integrated with the [Transifex](https://www.transifex.com/) platform.
 
 If you wish to contribute on translating your desired language. Please follow these steps:
 
@@ -14,7 +14,7 @@ For more details, check out the [Transifex Getting Started Guide](https://docs.t
 ## Step 2 - Join the inveniosoftware team
 
 Ask to join the inveniosoftware team: [https://www.transifex.com/inveniosoftware/invenio/dashboard/](https://www.transifex.com/inveniosoftware/invenio/dashboard/).
-Then get in contact with the invenioRDM translation team via [Discord `#rdm-translations`](https://discord.gg/Ya7qSG43Br). They will need to accept you in the inveniosoftware team.
+Then get in contact with the InvenioRDM translation team via [Discord `#rdm-translations`](https://discord.gg/Ya7qSG43Br). They will need to accept you in the inveniosoftware team.
 
 For more details, check out the [Joining a translation team section of the Transifex Getting Started Guide](https://docs.transifex.com/getting-started-1/translators#joining-a-translation-team).
 
@@ -24,13 +24,13 @@ Check for the existing [languages](https://www.transifex.com/inveniosoftware/inv
 
 - If your desired language is not on the list, Click the **Request language** button and search for the language you need.
 ![](transifex-request-language.png)
-    - Check with the invenioRDM translation team via [Discord `#rdm-translations`](https://discord.gg/Ya7qSG43Br). They will need to accept the request. When it is accepted you will be able to join the team as described in the next line.
+    - Check with the InvenioRDM translation team via [Discord `#rdm-translations`](https://discord.gg/Ya7qSG43Br). They will need to accept the request. When it is accepted you will be able to join the team as described in the next line.
 - If your desired language already exists. Choose the language and click on the **Join team** button.
 ![](transifex-join-team.png)
 
 ## Step 4 - Learn about your translation team
 
-- Check with the invenioRDM translation team via [Discord `#rdm-translations`](https://discord.gg/Ya7qSG43Br)
+- Check with the InvenioRDM translation team via [Discord `#rdm-translations`](https://discord.gg/Ya7qSG43Br)
     - to get sorted within your language team.
     - to find out whether you need the [reviewer](https://docs.transifex.com/teams/understanding-user-roles#reviewers) status.
 
@@ -53,8 +53,8 @@ There are some workflows to be aware of and we collected some advices and experi
 - Gender-neutral language: if the language you are translating uses different words for male, female, etc.
     - try to use a neutral way.
     - try to stick to one translation style.
-- Sometimes it is hard to translate a sentence without seeing its context. If you cannot find it in the invenioRDM UI (e.g., in the [invenioRDM-demo](https://inveniordm.web.cern.ch/)) contact the invenioRDM translation team in [Discord `#rdm-translations`](https://discord.gg/Ya7qSG43Br). They can point you and show you some tricks.
+- Sometimes it is hard to translate a sentence without seeing its context. If you cannot find it in the InvenioRDM UI (e.g., in the [InvenioRDM-demo](https://InvenioRDM.web.cern.ch/)) contact the InvenioRDM translation team in [Discord `#rdm-translations`](https://discord.gg/Ya7qSG43Br). They can point you and show you some tricks.
 
 ## Troubleshooting
 
-If you have any questions, suggestions. Reach out to the invenioRDM translation team via [Discord `#rdm-translations`](https://discord.gg/Ya7qSG43Br).
+If you have any questions, suggestions. Reach out to the InvenioRDM translation team via [Discord `#rdm-translations`](https://discord.gg/Ya7qSG43Br).

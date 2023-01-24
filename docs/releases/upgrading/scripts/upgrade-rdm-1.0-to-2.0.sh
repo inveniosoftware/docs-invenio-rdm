@@ -17,7 +17,7 @@ if [[ -f Pipfile && -f invenio.cfg ]]; then
 	pipenv run invenio alembic stamp
 	pipenv run invenio alembic upgrade
 
-	# lock and install packages for Invenio RDM 2.0
+	# lock and install packages for InvenioRDM 2.0
 	rm Pipfile.lock
 	sed -e 's/1.0.0/2.0.0/' -i Pipfile
 	invenio-cli packages lock

@@ -1,8 +1,8 @@
-# Creating a custom view
+# Creating custom code and views
 
-_Introduced in invenioRDM v11_
+_Introduced in InvenioRDM v11_
 
-To extend your instance with your own custom views, you can use the predefined “site” folder in your instance. The site folder works just like any other installed package. This means that you no longer need to develop and publish a separate package to add custom views and functionality to your instance.
+To extend your instance with your own custom code and views, you can use the predefined “site” folder in your instance. The site folder works just like any other installed package. This means that you no longer need to develop and publish a separate package to add custom views and functionality to your instance.
 
 Let's go through an example of making a new view in our instance:
 
@@ -17,7 +17,7 @@ Select site_code:
 Choose from 1, 2 [1]:
 ```
 
-To generate the site folder, you will need to select option `1 - yes` (This is already the default option). Now, after the installation is ready, you can see a folder named "site" in the root folder of your instance, as well as the following line in your instance folder’s Pipfile:
+To generate the site folder, you will need to select option `1 - yes` (This is already the default option). Now, after the installation is ready, you can see a folder named "site" in the root folder of your instance, as well as the following line in your instance folder's Pipfile:
 
 ```python
 

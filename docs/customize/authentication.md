@@ -310,6 +310,31 @@ You can set the user profile form as read-only by changing in your `invenio.cfg`
 USERPROFILES_READ_ONLY = True
 ```
 
+### Auto-confirm user
+
+_Introduced in InvenioRDM v11_
+
+By default, users who login using an external authentication provider are `confirmed` and the e-mail confirmation
+is not sent any more.
+
+The only exception is the ORCID OAuth plugin: the user e-mail cannot be retrieved by this provider
+and the user must provide it when registering for the first time.
+In this case, the registration follows the classic flow, with e-mail confirmation.
+
+You can modify this behavior per plugin:
+
+```diff
+_keycloak_helper = KeycloakSettingsHelper(
+    title="CERN",
+    description="CERN SSO authentication",
+    ...
++    signup_options=dict(
++        auto_confirm=True,
++        send_register_msg=False,
++    ),
+)
+```
+
 ### On the precedence mask
 
 On first user login after external authentication flow, the user information are fetched
@@ -454,6 +479,66 @@ from my_package.registration_form import my_registration_form
 
 # use the custom form function
 OAUTHCLIENT_SIGNUP_FORM = my_registration_form
+```
+
+### Custom user info
+
+_Introduced in InvenioRDM v11_
+
+You can customize how each OAuth plugin will fetch the user information on login, and what
+fields should be kept or how they should be serialized.
+
+You can customize the function that will be called to fetch the user information:
+
+```python
+def info_handler(remote, resp):
+    """Retrieve remote account information.
+
+    :param remote: The remote application.
+    :param resp: The response of the `authorized` endpoint.
+    :returns: A dictionary with the user information.
+    """
+    user_info = ... fetch user info ...
+    return custom_info_serializer(user_info)
+
+_keycloak_helper = KeycloakSettingsHelper(...)
+
+handlers = _keycloak_helper.get_handlers()
+handlers["signup_handler"]["info"] = custom_info_serializer
+```
+
+You can customize the function that will be called to serialize the user information:
+
+```python
+def custom_info_serializer(remote, resp, user_info):
+    """Serialize the account info response object.
+
+    :param remote: The remote application.
+    :param resp: The response of the `authorized` endpoint.
+    :param user_info: The response of the `user info` endpoint.
+    :returns: A dictionary with serialized user information.
+    """
+    return {
+        "user": {
+            "active": True,
+            "email": user_info["email"],
+            "profile": {
+                "full_name": user_info["name"],
+                "username": user_info["preferred_username"],
+            },
+            "prefs": {
+                "visibility": "restricted",
+                "email_visibility": "restricted",
+            },
+        },
+        "external_id": user_info["upn"],
+        "external_method": remote.name,
+    }
+
+_keycloak_helper = KeycloakSettingsHelper(...)
+
+handlers = _keycloak_helper.get_handlers()
+handlers["signup_handler"]["info_serializer"] = custom_info_serializer
 ```
 
 ### New OAuth plugins

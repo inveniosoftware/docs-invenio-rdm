@@ -5,7 +5,7 @@
 InvenioRDM depends on the following requirements to be installed on your local system:
 
 - MacOS or Linux-based systems (Windows systems is not supported).
-- [Python](https://www.python.org/) 3.7, 3.8 or 3.9 and [pip](https://pip.pypa.io/en/stable/)
+- [Python](https://www.python.org/) 3.9 and [pip](https://pip.pypa.io/en/stable/)
     - Python development headers:
         - On Ubuntu: `sudo apt install python3-dev`.
         - On RHEL/Fedora: `yum install -y python3-devel.x86_64`.
@@ -30,7 +30,7 @@ For running and building the application locally you will also need:
 - [ImageMagick](https://imagemagick.org/script/download.php) needed for IIIF file rendering.
 
 !!! warning "Supported Python distributions"
-    InvenioRDM targets CPython 3.7, 3.8, and 3.9. Anaconda Python in particular is not currently supported and other Python distributions are not tested.
+    InvenioRDM targets CPython 3.9. Anaconda Python in particular is not currently supported and other Python distributions are not tested.
 
 ### Services
 
@@ -106,10 +106,10 @@ On Linux, add the following to ``/etc/sysctl.conf`` on your local machine (host 
 vm.max_map_count=262144
 ```
 
-On macOS, do the following:
+On MacOS, do the following (paths might be outdated, please refer to the official documentation):
 
 ```bash
-screen ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/tty
+screen ~/Library/Containers/com.docker.docker/Data/vms/0/tty
 # and in the shell
 sysctl -w vm.max_map_count=262144
 ```
