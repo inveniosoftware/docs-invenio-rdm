@@ -407,6 +407,7 @@ from invenio_userprofiles.forms import ProfileForm
 from wtforms import BooleanField, validators, FormField
 from werkzeug.local import LocalProxy
 from flask import current_app, url_for
+from markupsafe import Markup
 
 _security = LocalProxy(lambda: current_app.extensions['security'])
 
@@ -415,7 +416,7 @@ def my_registration_form(*args, **kwargs):
     # create a link to a PDF file containing the terms and conditions
     # the PDF file is located in the `static/documents` folder.
     terms_of_use_url = url_for("static", filename=("documents/terms-of-use.pdf"))
-    terms_of_use_text = f"Accept the <a href='{terms_of_use_url}' target='_blank'>terms and conditions</a>"
+    terms_of_use_text = Markup(f"Accept the <a href='{terms_of_use_url}' target='_blank'>terms and conditions</a>")
     current_remote_app = kwargs.get("oauth_remote_app")
     if not current_remote_app:
         # return default just in case something is wrong
