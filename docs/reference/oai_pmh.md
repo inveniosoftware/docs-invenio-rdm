@@ -46,9 +46,20 @@ The OAI-PMH standard doesn't say anything about authentication of requests. The 
 
 The exposed metadata formats are validated against the [OpenAIRE Guidelines](http://guidelines.openaire.eu).
 
+## Manage sets
+
+You can manage OAI sets by using the administration panel.
+
+### Default sets
+
+*Introduced in InvenioRDM v11*
+
+The OpenAIRE OAI sets is included by default in InvenioRDM.
+
 ## Configuration
 
 #### OAI ID Prefix
+
 The prefix that will be applied to the generated OAI-PMH ids. Should be set to the domain of the repository (f.e. `inveniordm.docs.cern.ch`):
 
 ```python

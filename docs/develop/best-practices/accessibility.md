@@ -33,7 +33,7 @@ We recommend all contributors test their code before submitting PRs.
 - [Lighthouse Chrome extension](https://chrome.google.com/webstore/detail/lighthouse/blipmdconlkpinefehnmjammfjpmpbjk?hl=en)
 - [axe DevTools](https://chrome.google.com/webstore/detail/axe-devtools-web-accessib/lhdoppojpmngadmnindnejefpokejbdd)
 - [Screen reader plugin](https://chrome.google.com/webstore/detail/screen-reader/kgejglhpjiefppelpmljglcjbhoiplfn)
-    
+
 ### Screen reader software
 It's very useful to test a screen reader to understand how it works, and to see if your code is detected and announced the way you intended.
 
@@ -56,9 +56,9 @@ When using Semantic UI React, please be aware that the components are not always
 
 ✅ __DO__
 ```html
-<!-- 
-Use semantic HTML tags unless the only purpose 
-of the element is styling 
+<!--
+Use semantic HTML tags unless the only purpose
+of the element is styling
 -->
 
 <header class="ui fluid container">
@@ -119,8 +119,8 @@ For a list of available aria-roles, see [WAI-ARIA roles](https://developer.mozil
 
 ❌ __DON'T__
 ```html
-<!-- 
-Don't use divs or spans in place of semantic elements. 
+<!--
+Don't use divs or spans in place of semantic elements.
 If you do, make sure to add aria-roles!
 -->
 
@@ -150,7 +150,7 @@ If you do, make sure to add aria-roles!
 ### Increase heading levels by one
 Always use the correct level of heading. {==Each page should have one, and only one, `<h1>` heading, followed by increasing levels: `<h2>`,`<h3>`,`<h4>`...==}
 
-Headings should be followed by either the same heading-level or one level up, depending on the content structure. 
+Headings should be followed by either the same heading-level or one level up, depending on the content structure.
 
 Never skip heading levels only for styling purposes. If you want a different size, use styling instead. Semantic UI already has classes you can combine with `.ui .header` as in the following example:
 
@@ -177,9 +177,9 @@ _With Semantic UI React:_
 ✅ __DO__
 ```html
 
-<!-- 
-Only one h1 per page, 
-always increase heading level with one or zero 
+<!--
+Only one h1 per page,
+always increase heading level with one or zero
 -->
 
 <h1>Page title</h1>
@@ -196,10 +196,10 @@ always increase heading level with one or zero
 _With Semantic UI React:_
 
 ```js
-/* 
+/*
 Only one h1 per page,
 always specify your heading level in Semantic UI React,
-increase by one or zero 
+increase by one or zero
 */
 
 <Header as='h1'>Page title</Header>
@@ -215,9 +215,9 @@ increase by one or zero
 
 ❌ __DON'T__
 ```html
-<!-- 
-Don't skip heading levels or add more 
-than one h1 to the same page 
+<!--
+Don't skip heading levels or add more
+than one h1 to the same page
 -->
 
 <h1>Page title</h1>
@@ -276,8 +276,8 @@ If the info-message is dynamic, i.e. not available on page-load, you can simply 
 
 ✅ __DO__
 ```html
-<!-- 
-Add the alert-role to messages that can 
+<!--
+Add the alert-role to messages that can
 be considered info, warnings, errors or success
 -->
 
@@ -294,7 +294,7 @@ Some screen readers do not announce content that has not changed. This means tha
 ```html
 <div role="alert" id="info">
     <p id="info-message" style="display:none;">
-        This information should be announced 
+        This information should be announced
         immediately by a screen reader
     </p>
 </div>
@@ -315,7 +315,7 @@ document.addEventListener('DOMContentLoaded', event => {
 ### Use aria-attributes to communicate functionality
 
 #### Non-standard interactive elements
-Where elements have functionality that is non-standard, e.g. accordions, tab-menus, popups, modals etc., they should have descriptive aria-attributes. 
+Where elements have functionality that is non-standard, e.g. accordions, tab-menus, popups, modals etc., they should have descriptive aria-attributes.
 
 Follow the guidelines described by [w3.org](https://www.w3.org/TR/wai-aria-practices/#aria_ex).
 
@@ -323,11 +323,11 @@ Follow the guidelines described by [w3.org](https://www.w3.org/TR/wai-aria-pract
 
 ✅ __DO__
 ```html
-<!-- 
+<!--
 Provide meaning and context to non-semantic interactive elements
 by adding aria-attributes.
 
-Make sure to update dynamic values such as 'aria-selected' with javascript.
+Make sure to update dynamic values such as 'aria-selected' with JavaScript.
 -->
 
 <div role="tablist" class="ui top attached tabular menu">
@@ -377,8 +377,8 @@ Make sure to update dynamic values such as 'aria-selected' with javascript.
 
 ❌ __DON'T__
 ```html
-<!-- 
-Don't use unsemantic elements without descriptive 
+<!--
+Don't use unsemantic elements without descriptive
 aria-attributes.
 -->
 
@@ -392,7 +392,7 @@ aria-attributes.
 <div class="ui bottom attached tab segment">
     Tab panel 2 content
 </div>
-``` 
+```
 
 #### Interactive elements without descriptive text
 Every interactive element should have a related text that describes the element. In cases where no text is available (e.g. the text is replaced by an icon), the element should have an aria-label.
@@ -439,19 +439,19 @@ Standard interactive elements such as `<input>` and `<button>` come with default
 {==See [w3.org Design Patterns and Widgets](https://www.w3.org/TR/wai-aria-practices/#aria_ex) for accessibility guidelines for non-standard interactive elements.==}
 
 ✅ __DO__
-```js 
+```js
 // Make sure the interactive element is also triggered by keyboard interaction
 
 $('.ui.tabular.menu .item')
   .on('keydown', function(event) {
-    /* 
-    Handle tab change, including updating 
+    /*
+    Handle tab change, including updating
     the aria-attributes such as aria-selected.
     */
   });
 ```
 
-```html 
+```html
 <!-- Make sure to add tabindex and the recommended aria-attributes -->
 
 <div role="tablist" class="ui top attached tabular menu">
@@ -501,8 +501,8 @@ $('.ui.tabular.menu .item')
 _With Semantic UI React:_
 
 ```js
-/* 
-Pay attention to the keyboard accessibility of Semantic UI React components! 
+/*
+Pay attention to the keyboard accessibility of Semantic UI React components!
 Some need to be provided this functionality, e.g. the Tab-component.
 */
 
@@ -515,8 +515,8 @@ const TabsExample = () => {
     // Update dynamic aria-attributes
     }
 
-    /* 
-    Make sure to add aria-attributes to the menu-items. 
+    /*
+    Make sure to add aria-attributes to the menu-items.
     These are not always provided by default by Semantic UI React.
     */
     const panes = [
@@ -560,7 +560,7 @@ Note that some Semantic UI React components already come with keyboard accessibi
 The color contrast between the background and the text should satisfy the WCAG AA level. To test this, a useful tool is provided by [WebAIM - Contrast Checker](https://webaim.org/resources/contrastchecker/).
 
 
-## Read more  
-[https://www.w3.org/TR/UNDERSTANDING-WCAG20/intro.html#introduction-fourprincs-head](https://www.w3.org/TR/UNDERSTANDING-WCAG20/intro.html#introduction-fourprincs-head)  
-[https://uiowa.instructure.com/courses/40/pages/accessibility-principles-pour](https://uiowa.instructure.com/courses/40/pages/accessibility-principles-pour)  
+## Read more
+[https://www.w3.org/TR/UNDERSTANDING-WCAG20/intro.html#introduction-fourprincs-head](https://www.w3.org/TR/UNDERSTANDING-WCAG20/intro.html#introduction-fourprincs-head)
+[https://uiowa.instructure.com/courses/40/pages/accessibility-principles-pour](https://uiowa.instructure.com/courses/40/pages/accessibility-principles-pour)
 [https://dequeuniversity.com/class/archive/basic-concepts1/principles/](https://dequeuniversity.com/class/archive/basic-concepts1/principles/)

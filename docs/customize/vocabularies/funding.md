@@ -4,7 +4,7 @@ Funders and Awards are vocabulary types that enable users to provide funding inf
 
 ## Funders (ROR)
 
-Funders represent funding public or private bodies and organizations, such as the [European Commission](https://ror.org/00k4n6c32), the [Natinal Institues of Health](https://ror.org/01cwqze88), the [Alfred P. Sloan Foundation](https://ror.org/052csg198), etc. Out-of-the-box we provide support for importing funders from the [ROR](https://ror.org) dataset.
+Funders represent funding public or private bodies and organizations, such as the [European Commission](https://ror.org/00k4n6c32), the [National Institutes of Health](https://ror.org/01cwqze88), the [Alfred P. Sloan Foundation](https://ror.org/052csg198), etc. Out-of-the-box we provide support for importing funders from the [ROR](https://ror.org) dataset.
 
 !!! info "Why ROR?"
 

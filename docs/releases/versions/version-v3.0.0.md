@@ -274,6 +274,6 @@ We have done a larger cleanup of the codebase in preparation for getting a much 
 
 The development work in this release was done by:
 
-- CERN (Alex, Antonio, Audirus, Diego, Ezgi, George, Ines, Javier, Lars, Marco, Nico, Pablo, Pablo, Parth, Rodrigo, Zach)
+- CERN (Alex, Antonio, Audirus, Diego, Ezgi, George, Ines, Javier, Lars, Marco, Nico, Pablo G., Pablo P., Parth, Rodrigo, Zach)
 - Northwestern University (Guillaume)
 - Caltech (Tom Morrell)

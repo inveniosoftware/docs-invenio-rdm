@@ -1,8 +1,8 @@
-# CSS and JS
+# CSS and JavaScript
 
 ## jQuery
 
-The most common usage of jQuery is for JS in Jinja templates.
+The most common usage of jQuery is for JavaScript in Jinja templates.
 
 ### Selectors
 
@@ -17,11 +17,15 @@ Let's say you want to select the following top-level div:
 
 ✅ DO
 
+Whenever possible, prefers `id` for selectors: this is much more efficient.
+
 ```javascript
 $('#my-tab-menu').tab();
 ```
 
 ❌ DON'T
+
+When the usage of `id` is not possible, you might need to `.classes` for selectors, less efficient and more prone to errors.
 
 ```javascript
 $('.menu.tab').tab();
@@ -31,9 +35,11 @@ With the second approach, you apply the function to _all_ tab menu nodes on the 
 
 ## Semantic UI
 
+Semantic UI is the UI components library included in InvenioRDM and used in all web pages.
+
 ### Documentation
 
-Save your time and frustration, read the documentation before you start with semantic UI!
+Save your time and frustration, read the documentation before you start with Semantic UI!
 
 - [React Semantic UI](https://react.semantic-ui.com/)
 - [Semantic UI](https://semantic-ui.com/)
@@ -90,8 +96,6 @@ Semantic UI has a fixed file structure; therefore, for creating custom CSS, the 
 ❌ DON'T
 
 ![Semantic file structure](../img/not-advised-structure.png)
-
-
 
 ## Custom CSS
 

@@ -12,7 +12,7 @@ This guide is intended for developers of InvenioRDM.
 
 ## Overview
 
-Invenio administration panel gives the administrator an easy and simple web interface to effectively manage an instance of InvenioRDM. 
+Invenio administration panel gives the administrator an easy and simple web interface to effectively manage an instance of InvenioRDM.
 
 ## Domain dictionary
 
@@ -33,7 +33,7 @@ An instance developer can register new entries in the menu (see the administrati
 
 ![Architecture diagram](./img/administration/administration_architecture.png)
 
-The views are implemented as shown on the diagram below. InvenioRDM developer can implement a new admin view by inheriting one of the following view classes: 
+The views are implemented as shown on the diagram below. InvenioRDM developer can implement a new admin view by inheriting one of the following view classes:
 
 | View                    | Description                                                                                                                                   |
 |-------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
@@ -64,7 +64,7 @@ invenio-rdm-records
         |-- oai.py
 ```
 
-Views are implemented in `invenio_rdm_records/administration/views/<myview>.py`. We strongly recommend to follow this proposed folder structure as it promotes clear code organisation, however it is not technically required.  
+Views are implemented in `invenio_rdm_records/administration/views/<myview>.py`. We strongly recommend to follow this proposed folder structure as it promotes clear code organisation, however it is not technically required.
 
 ##### List view
 
@@ -159,7 +159,7 @@ For the full attributes list and description visit the [reference docs](../../re
 
 ![Edit view layout](./img/administration/administration_edit_view.png)
 
-This view displays a form to edit a selected resource. Form fields are customizable to each resource by implementing marshmallow [schema](../topics/serializers.md#data-transformations)  
+This view displays a form to edit a selected resource. Form fields are customizable to each resource by implementing marshmallow [schema](../topics/serializers.md#data-transformations)
 
 ###### Usage
 
@@ -331,16 +331,17 @@ In each view you can override or extend different blocks, mainly there are 2 blo
 
 - `admin_page_content`: Content of each view. It's present in all the views.
 - `JavaScript`: Main block to place any JavaScript content.
-- 
+-
 ```html
 {% extends "invenio_administration/details.html" %}
 
 {% block admin_page_content %}
    {# MY custom content #}
 {% endblock admin_page_content %}
+
 {% block javascript %}
   {{ super() }}  # don't forget the parent JS assets!
-  {{ webpack['invenio-administration-search.js'] }}  # it is crucial to remember about adding proper assets to your Jinja 
+  {{ webpack['invenio-administration-search.js'] }}  # it is crucial to remember about adding proper assets to your Jinja
 {% endblock %}
 ```
 
@@ -351,7 +352,7 @@ To find more about the different blocks that can be overridden in each of the vi
 ### Customisation: React components
 
 In addition to Jinja, in each view there is the possibility to overwrite single building block of the UI - React components.
-If you would like to, for example, change layout of the default view, you can create your own React component to display the view. 
+If you would like to, for example, change layout of the default view, you can create your own React component to display the view.
 
 Create a js file (`MyComponent.js`) containing your custom component, which you have to place in `/assets/js` folder of your module.
 
@@ -371,7 +372,7 @@ domContainer &&
   );
 ```
 
-Add the `.js` file as webpack entry - inside `webpack.py` file of your module: 
+Add the `.js` file as webpack entry - inside `webpack.py` file of your module:
 
 ```diff
 theme = WebpackThemeBundle(
@@ -423,7 +424,7 @@ There are two ways to grant this permission:
 
     ```bash
       # make sure you are inside your instance's directory
-      cd my-site 
+      cd my-site
       # Create a role named administration
       pipenv run invenio roles create administration
       # Allow access to administration to the administration role
@@ -438,7 +439,7 @@ There are two ways to grant this permission:
       # Grant access to a specific user to the action administration-access
       pipenv run invenio access allow administration-access user <user_email>
     ```
-   
+
 ### Admin actions permissions
 
 Any request endpoint which is handled by administration panel (creating a resource, editing a resource, featuring a community, etc.), must have `Administration()` permission added, for example:

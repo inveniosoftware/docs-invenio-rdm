@@ -65,10 +65,14 @@ INVENIO_THEME_FRONTPAGE_TITLE="Stage RePo: the Repository about Potatoes"
 
 Your instance comes with a folder structure prepared to welcome new files:
 
-- `assets/`  -- where custom javascript and less files go
+- `assets/`  -- where custom JavaScript and LESS files go
 - `static/`  -- where custom images and other static files go
 - `templates/` -- where custom Jinja templates go
 
-For Jinja templates, because the content of your `templates/` folder is consulted before the modules' `templates/` folder, mimicking a template's expected path in your `templates/` folder won't require you to change any configuration values.
+For Jinja templates, because the content of your `templates/` folder is consulted before the InvenioRDM modules' `templates/` folder, mimicking a template's expected path in your `templates/` folder won't require you to change any configuration values.
 
-In the next sections, we go through common customizations and show you the workflow commands to use.
+In the next sections, we go through common customizations and show you the workflow commands to use:
+
+- [Change logo](logo.md)
+- [Change templates](templates.md)
+- [Change theme](theme.md)

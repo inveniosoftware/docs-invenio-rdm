@@ -203,7 +203,7 @@ The coming week will be primarily focused on documentation as well as fixing iss
 The development work in this release was done by:
 
 - Caltech (Tom)
-- CERN (Alex, Dimitris, Ezgi, George, Ines, Javier, Lars, Nico, Pablo, Pablo, Zach, Jenny)
+- CERN (Alex, Dimitris, Ezgi, George, Ines, Javier, Lars, Nico, Pablo G., Pablo P., Zach, Jenny)
 - Northwestern University (Guillaume)
 - TU Graz (Mojib, David)
 - TU Wien (Max)

@@ -31,7 +31,7 @@ between them with e.g. DNS load balancing.
 The load balancer usually (if it supports SSL termination) allows you to split
 traffic into three categories of requests:
 
-- static files requests: e.g. javascript assets
+- static files requests: e.g. JavaScript assets
 - application requests: e.g. search queries
 - record files requests: e.g. downloading very large files
 

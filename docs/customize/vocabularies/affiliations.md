@@ -42,4 +42,4 @@ invenio rdm-records fixtures
 
     This means that once they are created, modifying the file and re-running the above
     command will have no effect. So make sure you have the correct configuration before
-    running the `fxitures` command.
+    running the `fixtures` command.

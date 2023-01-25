@@ -123,7 +123,7 @@ If you have questions related to these release notes, don't hesitate to jump on 
 
 The development work in this release was done by:
 
-- CERN: Alex, Javier, Jenny, Karolina, Lars, Manuel, Nicola, Nicolas, Pablo, Pablo, Zacharias
+- CERN: Alex, Javier, Jenny, Karolina, Lars, Manuel, Nicola, Nicolas, Pablo G., Pablo P., Zacharias
 - Northwestern University: Guillaume
 - TU Graz: Christoph, David, Mojib
 - TU Wien: Max

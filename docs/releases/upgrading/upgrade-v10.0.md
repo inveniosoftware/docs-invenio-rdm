@@ -119,6 +119,14 @@ cd <my-site>
 invenio-cli packages update 10.0.0
 ```
 
+Optionally, update the file `<my-site>/Pipfile`. This step is not necessary, but suggested for local development.
+
+```diff
+[packages]
+---invenio-app-rdm = {extras = [...], version = "~=9.0.0"}
++++invenio-app-rdm = {extras = [...], version = "~=10.0.0"}
+```
+
 From now on, make sure that the services (database, search, etc.) are up and running. For a local development, run `invenio-cli services start`.
 
 ### Re-index data

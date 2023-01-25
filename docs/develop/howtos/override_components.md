@@ -1,6 +1,8 @@
-# How to override a React component
+# How to override UI React components
 
-This documentation is targeted to developers that want to customize a specific React component in an instance.
+*Introduced in InvenioRDM v11*
+
+This documentation is targeted to developers that want to customize specific UI React components in an instance.
 
 ## Overridable
 

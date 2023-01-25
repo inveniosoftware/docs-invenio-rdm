@@ -1,6 +1,6 @@
 # Communities custom fields
 
-_Introduced in InvenioRDM v10_
+*Introduced in InvenioRDM v10*
 
 Communities custom fields can be configured in a very similar manner than [records](./records.md).
 The only difference is the prefix of the configuration variables and the place where they are
