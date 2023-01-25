@@ -1,10 +1,12 @@
 # Creating custom code and views
 
-_Introduced in InvenioRDM v11_
+*Introduced in InvenioRDM v11*
 
 To extend your instance with your own custom code and views, you can use the predefined “site” folder in your instance. The site folder works just like any other installed package. This means that you no longer need to develop and publish a separate package to add custom views and functionality to your instance.
 
-Let's go through an example of making a new view in our instance:
+Example of customizations could be the creation of new Python modules or utilities, new views (including Jinja templates) or REST APIs, new UI components and JavaScript code.
+
+Let's go through an example of making a new view with some JavaScript files in our instance.
 
 ## Enable the site folder
 
@@ -26,7 +28,7 @@ To generate the site folder, you will need to select option `1 - yes` (This is a
 my-site = {editable="True", path="./site"}
 ```
 
-This means that the site folder is installed as a package with the name `my-site`, and it is editable. This package now works as any other package installed in your instance (`invenio-app-rdm`, `invenio-communities`, etc.), allowing you to customise your instance and create new views and features without adding a separate package manually.
+This means that the site folder is installed as a package with the name `my-site`, and it is editable. This package now works as any other package installed in your instance (`invenio-app-rdm`, `invenio-communities`, etc.), allowing you to customize your instance and create new views and features without adding a separate package manually.
 
 When bootstrapped, your project will include the following structure:
 
@@ -42,6 +44,8 @@ When bootstrapped, your project will include the following structure:
 │   ├── setup.py
 │   ├── tests
 ```
+
+For existing installations, there is no automatic procedure. One easy way could be to generate a new InvenioRDM instance in another folder with the exact same naming as the original one, and then copy and paste the `site` folder.
 
 ## Configure your new view
 
@@ -144,7 +148,7 @@ That is really all you need to get your custom view available on your desired pa
 
 If you want, or need, to use JavaScript for your template, we will need to configure webpack for the site folder. This is done in the predefined `webpack.py` file of `site/my_site`.
 
-We can start by creating a js file in our assets folder:
+We can start by creating a JavaScript file in our assets folder:
 
 ```
 ├── site
@@ -157,29 +161,6 @@ We can start by creating a js file in our assets folder:
 │   │   ├── support
 │   │   ├── templates
 ```
-
-Now we need to register this file in our webpack configuration, so that it will be available for us to use through our instance.
-
-In our `webpack.py` we will add a new entry point, pointing to the file we just created:
-
-```python
-from invenio_assets.webpack import WebpackThemeBundle
-
-theme = WebpackThemeBundle(
-    __name__,
-    "assets",
-    default="semantic-ui",
-    themes={
-        "semantic-ui": dict(
-            entry={
-                "my-site-support": "./js/my_site/support.js",
-            },
-        ),
-    },
-)
-```
-
-Here you can see that we made an alias for our js-file: `my-site-support`, which is the name we will use to reference the file.
 
 The JavaScript file could be anything that should be executed when the page is rendered, as an example it can render a simple Semantic UI Form:
 
@@ -200,7 +181,44 @@ ReactDOM.render(
 );
 ```
 
-Now we are all set to connect the js-file to our template. In our template file `support.html`, we will add the following javascript block:
+Now we need to register this file in our webpack configuration. In our `webpack.py` we will add a definition of a new webpack bundle, with all the JavaScript files that it will contain (in this case, only one):
+
+```python
+from invenio_assets.webpack import WebpackThemeBundle
+
+support = WebpackThemeBundle(
+    __name__,
+    "assets",
+    default="semantic-ui",
+    themes={
+        "semantic-ui": dict(
+            entry={
+                "my-site-support": "./js/my_site/support.js",
+            },
+        ),
+    },
+)
+```
+
+Here you can see that we made an alias for our JavaScript file: `my-site-support`, which is the name we will use to reference the file.
+
+This new JavaScript file needs to be found by the InvenioRDM's building system for assets: its bundles' discovery process relies on Python entry-points, which define the path to each `webpack.py` file. In the `setup.cfg`, we will add:
+
+```diff
+[options.entry_points]
+...
++invenio_assets.webpack =
++    my-site-support = my_site.webpack:support
+...
+```
+
+As usual, when changing the entry-point, we need to re-install the Python module so new entry-points are picked up. In the `site` folder, we run:
+
+```bash
+pipenv run pip install -e .
+```
+
+Now we are all set to add the JavaScript file to our template. In our template file `support.html`, we will add the following JavaScript block:
 
 ```HTML
 {% block javascript %}

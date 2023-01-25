@@ -23,7 +23,7 @@ Development guidelines for specific areas of development.
 
 - [Accessibility (a11y)](best-practices/accessibility.md)
 - [Commits, pull requests and reviews](best-practices/commits.md)
-- [CSS/JS](best-practices/css-js.md)
+- [CSS/JavaScript](best-practices/css-js.md)
 - [React](best-practices/react.md)
 - [Translation (i18n)](best-practices/i18n.md)
 - [User interface](best-practices/ui.md)
@@ -38,16 +38,21 @@ Developer introductions to specific parts of the InvenioRDM source code:
 - [Grouping atomic operations](topics/uow.md)
 - [Sanitize input data](topics/validation.md)
 - [Theming](topics/theming.md)
-- [Creating a new custom field](topics/custom_fields.md)
-- [Creating a custom view](topics/custom_views.md)
 - [Administration panel](topics/administration_panel.md)
 
 ## How-to guides
 
 Step-by-step guides on how to perform certain tasks:
 
+- [Create a new custom field](howtos/custom_fields.md)
+- [Create custom code and views](howtos/custom_code.md)
+- [Add JavaScript](howtos/add_javascript.md)
+- [Override UI React components](howtos/override_components.md)
+- [Create search terms mappings](howtos/search_terms_migration.md)
 - [Create a database migration](howtos/alembic.md)
 - [Fix a vulnerability](howtos/security-fix.md)
+- [Test emails locally](howtos/dev_email.md)
+- [Migrate legacy routes](howtos/route_migration.md)
 
 ## Architecture
 

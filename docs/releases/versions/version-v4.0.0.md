@@ -91,7 +91,7 @@ During this month, we've done initial work in integrating the Mirador v3 IIIF im
 The development work in this release was done by:
 
 - Brookhaven National Laboratory (Carlos)
-- CERN (Alex, Ezgi, George, Ines, Javier, Lars, Nico, Pablo, Pablo, Zach)
+- CERN (Alex, Ezgi, George, Ines, Javier, Lars, Nico, Pablo G., Pablo P., Zach)
 - Data Futures (Dan Granville)
 - Northwestern University (Guillaume)
 - TU Graz (Mojib)

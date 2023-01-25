@@ -1,6 +1,6 @@
 # Migrate legacy routes
 
-_Introduced in InvenioRDM v11_
+*Introduced in InvenioRDM v11*
 
 This guide describes the process to migrate legacy routes using the redirector module.
 

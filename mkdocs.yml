@@ -84,7 +84,7 @@ nav:
       - Best practices:
           - Accessibility (a11y): develop/best-practices/accessibility.md
           - Commits, PRs & reviews: develop/best-practices/commits.md
-          - CSS/JS: develop/best-practices/css-js.md
+          - CSS/JavaScript: develop/best-practices/css-js.md
           - React: develop/best-practices/react.md
           - Translation (i18n): develop/best-practices/i18n.md
           - User interface: develop/best-practices/ui.md
@@ -98,16 +98,17 @@ nav:
           - Grouping atomic operations: develop/topics/uow.md
           - Sanitize input data: develop/topics/validation.md
           - Theming: develop/topics/theming.md
-          - Creating a new custom field: develop/topics/custom_fields.md
-          - Creating custom code and views: develop/topics/custom_code.md
           - Administration panel: develop/topics/administration_panel.md
       - How-to guides:
+          - Create a new custom field: develop/howtos/custom_fields.md
+          - Create custom code and views: develop/howtos/custom_code.md
+          - Add JavaScript: "develop/howtos/add_javascript.md"
+          - Override UI React components: develop/howtos/override_components.md
+          - Create search terms mappings: develop/howtos/search_terms_migration.md
           - Create a database migration: develop/howtos/alembic.md
           - Fix a vulnerability: develop/howtos/security-fix.md
           - Test emails locally: develop/howtos/dev_email.md
           - Migrate legacy routes: develop/howtos/route_migration.md
-          - Create search terms mappings: develop/howtos/search_terms_migration.md
-          - How to override a react component: develop/howtos/override_components.md
       - Architecture:
           - Introduction: develop/architecture/index.md
           - Infrastructure: develop/architecture/infrastructure.md

@@ -35,9 +35,9 @@ Last, but not least you can print SQL queries to the console by setting the  var
 SQLALCHEMY_ECHO = True
 ```
 
-## Javascript
+## JavaScript
 
-All modern browsers have a built-in Javascript debugger. You can enable the debugger in your browser and take advantage of the below 2 main ways to debug your JS application:
+All modern browsers have a built-in JavaScript debugger. You can enable the debugger in your browser and take advantage of the below 2 main ways to debug your JS application:
 
 - Use the `debugger` statement in your code.
 - Use the `console.log()`.

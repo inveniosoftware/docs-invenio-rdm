@@ -1,8 +1,9 @@
 # Static pages
 
-_Introduced in InvenioRDM v11_
+*Introduced in InvenioRDM v11*
 
-InvenioRDM supports an easy "out-of-the-box" way of creating static pages.
+InvenioRDM supports an easy "out-of-the-box" way of creating static pages, basically web pages for which the HTML content is stored in the database
+and you can, in the future versions of InvenioRDM, change it using the administration panel.
 
 ## Define pages
 
@@ -31,11 +32,11 @@ app_data/
     └──search_guide.html
 ```
 
-The HTML file is what will be rendered to the user when navigating to the page's URL.
+The HTML file content is what will be imported in the database and rendered to the user when navigating to the page's URL.
 
 ## Load pages
 
-To load the new static page to your instance, you can:
+To load the new static page to your instance, you have 2 options:
 
 1. Run the instance setup command `invenio-cli services setup`: the command will find the pages defined as above and load them. **Warning: this command will delete all your data!**
 

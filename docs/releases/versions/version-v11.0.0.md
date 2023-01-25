@@ -16,7 +16,12 @@ We're happy to announce the release of InvenioRDM v11.0. The release is a short-
 
 ### DOI and publisher field
 
-Minting DOIs now requires to have the publisher field defined. Submitters will see an error if such field is not provided when requesting a DOI.
+Minting DOIs now requires to have the `publisher` field defined. Submitters will see an error in the upload form if such field is not provided when requesting a DOI.
+
+### ROR for funders
+
+[ROR](https://ror.org) identifiers have been added to the `identifiers` field in the upload form.
+You can read more about it in the [Funding](../../customize/vocabularies/funding.md#funders-ror) documentation page.
 
 ### Static pages
 
@@ -26,24 +31,26 @@ See the [static pages](../../customize/static_pages.md) customization section to
 ### Featured communities
 
 You can now manage featured communities from the administration panel, and show them in the homepage.
-This is a **preview** feature and it is disabled by default: this is because of the limited user experience and features currently available in the administration panel. It will be improved in the upcoming releases.
+This is a **preview** feature and it is disabled by default: the user experience and features currently available in the administration panel are limited. It will be improved in the upcoming releases.
 
-You can try this out by changing the configuration variable `COMMUNITIES_ADMINISTRATION_DISABLED` to `True`.
+You can try this feature out by changing the configuration variable `COMMUNITIES_ADMINISTRATION_DISABLED` to `True`.
 
 ### Custom code
 
 With InvenioRDM v11, you can now add your own custom code and views directly to your instance,
 without creating extra modules and adding them to the list of dependencies.
 
-Discover how to by reading the [Creating custom code and views](../../develop/topics/custom_code.md) topic guide.
+Discover how by reading the dedicated [How-to](../../develop/howtos/custom_code.md).
 
 ### Override landing page template
 
 The record landing page template can now be overridden by editing the configuration variable `APP_RDM_RECORD_LANDING_PAGE_TEMPLATE`.
+You can read more on how to customize template in the [dedicated guide](../../customize/look-and-feel/templates.md).
 
-### Override deposit form template
+### Override upload form template
 
-The deposit form template can now be overridden by editing the configuration variable `APP_RDM_DEPOSIT_FORM_TEMPLATE`.
+The upload form template can now be overridden by editing the configuration variable `APP_RDM_DEPOSIT_FORM_TEMPLATE`.
+You can read more on how to customize template in the [dedicated guide](../../customize/look-and-feel/templates.md).
 
 ### URL redirection
 
@@ -62,16 +69,27 @@ See instruction on how to add search terms mappings in its [How-to](../develop/h
 
 The users' profile and e-mail visibility for new users can now be set by default to either `restricted` or `public`, by editing the configuration variables `ACCOUNTS_DEFAULT_USER_VISIBILITY` and `ACCOUNTS_DEFAULT_EMAIL_VISIBILITY` respectively.
 
+```python
+ACCOUNTS_DEFAULT_USER_VISIBILITY = "public"
+ACCOUNTS_DEFAULT_EMAIL_VISIBILITY = "restricted"
+```
+
 This change only affects new accounts, already existing accounts will keep their profile and e-mail visibility.
 
-### Docker images and helm charts
+### Download all files
 
-This new release introduces various changes to the official Docker image:
+You can now enable the download of a single archive containing all record's uploaded files at once. Read more [here](../../customize/record_landing_page.md#download-all-files-button).
+
+### Deployment
+
+This new release introduces various changes to the official InvenioRDM Docker image:
 
 - The base image now uses [AlmaLinux](https://almalinux.org/) instead of `CentOS`, after the choice of [changing focus to CentOS Stream](https://blog.centos.org/2020/12/future-is-centos-stream/). See more information in the [docker-invenio](https://github.com/inveniosoftware/docker-invenio) repository.
 - This new Docker image is now published in the CERN registry, to provide an alternative to the InvenioRDM community to the [Docker Hub rate limits](https://www.docker.com/increase-rate-limits/). The images will be versioned and checked with security scans.
 
 [Helm charts](https://github.com/inveniosoftware/helm-invenio/) are now updated with the latest deployment recipes, configuration variables and secrets.
+
+We have also added a new [dedicated deployment guide](../../deploy/index.md) to this documentation to give an overview and some tips related to deploying InvenioRDM. This is a work in progress and will be improved taking into account the input from the InvenioRDM community.
 
 ### CLI commands
 
@@ -105,16 +123,15 @@ The e-mail fields can be modified by editing the following configurations:
 
 The e-mail template can be overridden setting the configuration variable `FILES_INTEGRITY_REPORT_TEMPLATE`.
 
-
 ## Changes
-### Breaking changes
 
-- The following changes should not affect the majority of the users. We recommend to verify if any usage can be found in customisations or modules:
-    - in [Invenio-Records-Resources](https://github.com/inveniosoftware/invenio-records-resources), the func `pick` in the `ExpandableField` class, the func `expand` in `LinksTemplate` class and the func `pick_resolved_fields` in `EntityProxy` class now require a new param `identity`.
+#### Python and Node.js versions
 
-### Other changes
+While you can run InvenioRDM with Python version 3.7, 3.8 and 3.9, the recommended version for development and deployment is 3.9. We suggest switching to **Python 3.9**.
 
-#### OAuth users confirmed
+We recommend upgrading **Node.js** to **v16**. Next InvenioRDM releases will support more recent versions.
+
+#### OAuth users auto-confirmed
 
 For external authentication methods (e.g. ORCID, GitHub, SSO, etc.), the default behavior **has changed** and
 for newly logged in users (users without an Invenio account yet):
@@ -129,13 +146,20 @@ For more information on how to change this setting, see the [Auto-confirm user](
 
 You can also customize how user information is retrieved from the external provided. See the [Custom user info](../../customize/authentication.md#custom-user-info) section in the authentication documentation.
 
-## Deprecations
+#### OpenAIRE OAI set
 
-TODO
+New installations of InvenioRDM v11 will come with the default set for OpenAIRE.
+You can use the administration panel to manually add the OpenAIRE set in existing installations or use the [provided fixture](https://github.com/inveniosoftware/invenio-app-rdm/blob/master/invenio_app_rdm/fixtures/data/oai_sets.yaml).
+
+### Breaking changes
+
+- The following changes should not affect the majority of the users. We recommend to verify if any usage can be found in customisations or modules:
+    - in [Invenio-Records-Resources](https://github.com/inveniosoftware/invenio-records-resources), the func `pick` in the `ExpandableField` class, the func `expand` in `LinksTemplate` class and the func `pick_resolved_fields` in `EntityProxy` class now require a new param `identity`.
 
 ## Limitations
 
-TODO
+- The featured communities administration panel is disabled by default, due to the limited user experience and features available.
+- The possibility of overriding UI components is now available with InvenioRDM, but *experimental*: the documentation is limited and components might include breaking changes in future releases.
 
 ## Upgrading to v11.0
 
@@ -149,7 +173,12 @@ If you plan to deploy InvenioRDM as a production service, please use InvenioRDM 
 
 ## Requirements
 
-TODO
+InvenioRDM v11 supports:
+
+- Python 3.9
+- Node.js 14 and 16
+- PostgreSQL 10+
+- Elasticsearch v7 / OpenSearch v1 and v2
 
 ## Questions?
 
@@ -159,10 +188,11 @@ If you have questions related to these release notes, don't hesitate to jump on 
 
 The development work in this release was done by:
 
-- CERN: Alex, Anna, Antonio, Javier, Jenny, Karolina, Lars, Manuel, Nicola, Pablo, Pablo, Zacharias
+- CERN: Alex, Anna, Antonio, Javier, Jenny, Karolina, Lars, Manuel, Nicola, Pablo G., Pablo P., Zacharias
 - Northwestern University: Guillaume
 - TU Graz: Christoph, David, Mojib
 - TU Wien: Max
 - Uni Bamberg: Christina
 - Uni Münster: Werner
 - Front Matter: Martin
+- Other: Sam

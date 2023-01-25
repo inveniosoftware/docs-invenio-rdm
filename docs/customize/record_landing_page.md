@@ -28,6 +28,8 @@ RDM_CITATION_STYLES_DEFAULT = 'chicago-annotated-bibliography'
 
 ### Download all files button
 
+*Introduced in InvenioRDM v11*
+
 !!! warning "Blocking connection and large files"
      In contrast to other file-serving endpoints, this functionality does not offload the response to nginx, which means that for very large files and slower client connections these might become long-running blocking requests. You can mitigate these issues either via rate-limiting or setting up dedicated resources for serving this type of requests.
 

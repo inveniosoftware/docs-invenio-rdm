@@ -1,8 +1,8 @@
 # Change templates
 
-Out of the box, the front page of your instance provides links on how to change it. Perhaps you got here following those links. So let's do it!
+Out of the box, the front page of your instance provides links on how to change it. Perhaps you got here following those links. So let's change it!
 
-Note that InvenioRDM supports overriding pre-existing templates by placing custom ones with same filepath in the `templates/` folder.
+Note that InvenioRDM supports overriding pre-existing templates by placing custom ones with the same filepath in the `templates/` folder.
 
 ## Change the front page
 
@@ -13,7 +13,12 @@ THEME_FRONTPAGE_TEMPLATE = 'invenio_app_rdm/frontpage.html'
 """Frontpage template."""
 ```
 
-As we've seen previously, we have two options. Change the configuration value AND the template (option 1), OR create a file with same path relative to `templates` as the original. The first option lets you organize your files as you see fit, while the second option keeps the InvenioRDM organization. For our purposes, we will go with the second option because it involves less steps.
+There are 2 options to change this template:
+
+1. Change the configuration value setting the new template path. In this way, you can organize your template's files as you see fit.
+2. Create a file with same path relative to `templates` as the original. In this other way, you can keep the template's files as structured and organized in InvenioRDM.
+
+In this guide, we will see how to customize the front page using the second option.
 
 **Step 1** - Create the template
 

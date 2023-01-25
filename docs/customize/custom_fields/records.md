@@ -1,6 +1,6 @@
 # Records custom fields
 
-_Introduced in InvenioRDM v10_
+*Introduced in InvenioRDM v10*
 
 While the InvenioRDM's [metadata schema](../../reference/metadata.md) includes a wide range of bibliographic fields, there might still be cases where you need to include domain or system specific information in your records. This can be achieved using custom fields.
 To demonstrate how to take advantage of custom fields, we will use the following examples:
@@ -276,10 +276,10 @@ RDM_CUSTOM_FIELDS_UI = [
 
 You should add the `my_template.html` file in the `my-site/templates` folder in your instance. In your custom template, the following variables are injected and can be used:
 
-- `field_value`: the value of the field, as it is stored in the record after the UI serialization i.e. what is returned from the `ui_field` method when you [define your custom field](../../develop/topics/custom_fields.md).
+- `field_value`: the value of the field, as it is stored in the record after the UI serialization i.e. what is returned from the `ui_field` method when you [define your custom field](../../develop/howtos/custom_fields.md).
 - `field_cfg`: the UI configuration for that specific field as it is defined in the `RDM_CUSTOM_FIELDS_UI` config.
 
-See the example in the section [Adding a new custom field](../../develop/topics/custom_fields.md#define-the-template-for-the-record-landing-page).
+See the example in the [How-to](../../develop/howtos/custom_fields.md#define-the-template-for-the-record-landing-page).
 
 ### Search
 

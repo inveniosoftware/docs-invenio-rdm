@@ -198,7 +198,7 @@ If you have questions related to these release notes, don't hesitate to jump on 
 
 The development and translation work in this release was done by:
 
-- CERN: Alex, Dimitris, Javier, Jenny, Karolina, Lars, Nicola, Pablo, Pablo, Sergio, Zacharias
+- CERN: Alex, Dimitris, Javier, Jenny, Karolina, Lars, Nicola, Pablo G., Pablo P., Sergio, Zacharias
 - EU Joint Research Centre: Camelia
 - New York University: Laura
 - Northwestern University: Guillaume

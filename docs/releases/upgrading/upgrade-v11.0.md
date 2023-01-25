@@ -85,6 +85,14 @@ invenio-cli packages update 11.0.0
 invenio-cli assets build
 ```
 
+Optionally, update the file `<my-site>/Pipfile`. This step is not necessary, but suggested for local development.
+
+```diff
+[packages]
+---invenio-app-rdm = {extras = [...], version = "~=10.1.0"}
++++invenio-app-rdm = {extras = [...], version = "~=11.0.0"}
+```
+
 ### Database migration
 
 Execute the database migration:
