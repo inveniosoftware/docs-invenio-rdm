@@ -2,7 +2,7 @@
 
 The official RDM Docker image(s) are available in the [docker-invenio](https://github.com/inveniosoftware/docker-invenio) repo.
 
-Currently, the official base image uses `AlmaLinux` `v9` and it is pushed to the [CERN registry](https://registry.cern.ch/).
+Currently, the official base image uses `AlmaLinux v9` and is pushed to the [CERN registry](https://registry.cern.ch/).
 
 ## Building
 

@@ -20,12 +20,12 @@ Minting DOIs now requires to have the `publisher` field defined. Submitters will
 
 ### ROR for funders
 
-[ROR](https://ror.org) identifiers have been added to the `identifiers` field in the upload form.
+[ROR](https://ror.org) identifiers have been added under the `funders.identifiers` field in the upload form.
 You can read more about it in the [Funding](../../customize/vocabularies/funding.md#funders-ror) documentation page.
 
 ### Static pages
 
-You can now add new static pages to your instance, for example About page or Contact page.
+You can now add new static pages to your instance, for example an "About" or "Terms of Use" page.
 See the [static pages](../../customize/static_pages.md) customization section to learn how.
 
 ### Featured communities
@@ -54,14 +54,14 @@ You can read more on how to customize template in the [dedicated guide](../../cu
 
 ### URL redirection
 
-InvenioRDM now includes a redirector module. It allows an instance to define a map of URLs to redirect, a configuration variable.
+InvenioRDM now includes a redirector module. It allows an instance to define a mapping of URLs to redirect via a configuration variable.
 This is particularly useful when migrating from an old instance to InvenioRDM.
 
 See instructions on how to configure URL redirection in its [How-to](../../develop/howtos/route_migration.md).
 
 ### Search query parser
 
-Search parameters may change overtime. You can now map legacy search terms into newer terms.
+Search fields and parameters may change overtime. You can now map legacy search terms into newer terms.
 
 See instruction on how to add search terms mappings in its [How-to](../../develop/howtos/search_terms_migration.md).
 
@@ -74,11 +74,11 @@ ACCOUNTS_DEFAULT_USER_VISIBILITY = "public"
 ACCOUNTS_DEFAULT_EMAIL_VISIBILITY = "restricted"
 ```
 
-This change only affects new accounts, already existing accounts will keep their profile and e-mail visibility.
+This change only affects new accounts, already existing accounts will keep their existing profile and e-mail visibility.
 
 ### Download all files
 
-You can now enable the download of a single archive containing all record's uploaded files at once. Read more [here](../../customize/record_landing_page.md#download-all-files-button).
+You can now enable downloading of a single archive containing all of a record's uploaded files at once. Read more [here](../../customize/record_landing_page.md#download-all-files-button).
 
 ### Deployment
 
@@ -99,29 +99,29 @@ A new command `rebuild-all-indices` was added to `invenio rdm` command. It will 
 
 #### Confirm user on creation
 
-Command `invenio users create` has a new flag `--confirm`, or `-c` in short, that automatically confirms an user when created through the cli.
+Command `invenio users create` has a new flag `--confirm`, or `-c` in short, that automatically confirms an user when created through the CLI.
 
 ### Files integrity
 
-InvenioRDM v11 comes with new features to check the files integrity.
+InvenioRDM v11 comes with new features to check files integrity.
 
 #### Checksum
 
-A new asynchronous task now automatically checks whether files are corrupted, meaning that a file's checksum differs from the its original checksum.
+A new asynchronous task now automatically checks whether files have been corrupted, meaning that a file's checksum differs from the its original checksum.
 The celery task can be configured by editing the configuration `CELERY_BEAT_SCHEDULE['file-checks']`.
 
 #### Reports
 
-When the task detects corrupted files, it generates a report that it is sent by e-mail, by default every day at 07:00 UTC.
+When the above task detects corrupted files, it generates a report that it is sent by e-mail, by default every day at 07:00 UTC.
 The celery task can be configured by editing the configuration `CELERY_BEAT_SCHEDULE['file-integrity-report']`.
 
-The e-mail fields can be modified by editing the following configurations:
+The e-mail delivery options can be modified by editing the following configurations:
 
 - `MAIL_DEFAULT_SENDER`: modifies the e-mail sender (field `from`).
 - `APP_RDM_ADMIN_EMAIL_RECIPIENT`: modifies the e-mail recipient (field `to`).
 - `FILES_INTEGRITY_REPORT_SUBJECT`: modifies the  subject of the e-mail (field `subject`).
 
-The e-mail template can be overridden setting the configuration variable `FILES_INTEGRITY_REPORT_TEMPLATE`.
+The e-mail template can be overridden by setting the configuration variable `FILES_INTEGRITY_REPORT_TEMPLATE`.
 
 ## Changes
 
@@ -140,16 +140,16 @@ for newly logged in users (users without an Invenio account yet):
 - They will not receive a confirmation e-mail
 
 This is applied to all OAuth plugins, but **ORCID**: when logging in with ORCID, the e-mail is provided by the user
-and not retrieved from the authentication provider. It requires the user to confirm the e-mail address.
+and not retrieved from the authentication provider, and thus it requires the user to confirm the e-mail address.
 
 For more information on how to change this setting, see the [Auto-confirm user](../../customize/authentication.md#auto-confirm-user) section in the authentication documentation.
 
 You can also customize how user information is retrieved from the external provided. See the [Custom user info](../../customize/authentication.md#custom-user-info) section in the authentication documentation.
 
-#### OpenAIRE OAI set
+#### OpenAIRE OAI-PMH sets
 
-New installations of InvenioRDM v11 will come with the default set for OpenAIRE.
-You can use the administration panel to manually add the OpenAIRE set in existing installations or use the [provided fixture](https://github.com/inveniosoftware/invenio-app-rdm/blob/master/invenio_app_rdm/fixtures/data/oai_sets.yaml).
+New installations of InvenioRDM v11 will come with the default OAI-PMH sets [harvested by OpenAIRE](https://provide.openaire.eu/).
+You can also use the administration panel to manually add the OpenAIRE OAI-PMH set in existing installations or use the [provided fixture](https://github.com/inveniosoftware/invenio-app-rdm/blob/master/invenio_app_rdm/fixtures/data/oai_sets.yaml).
 
 ### Breaking changes
 
@@ -158,7 +158,7 @@ You can use the administration panel to manually add the OpenAIRE set in existin
 
 ## Deprecations
 
-Support to Elasticsearch v7 is deprecated and it will be removed in a future release.
+Support for Elasticsearch v7 is deprecated and it will be removed in a future release.
 
 ## Limitations
 
@@ -167,7 +167,7 @@ Support to Elasticsearch v7 is deprecated and it will be removed in a future rel
 
 ## Upgrading to v11.0
 
-We support upgrading from v10 to v11 Please see the [upgrade notice](../upgrading/upgrade-v11.0.md).
+We support upgrading from v10 to v11. Please see the [upgrade notice](../upgrading/upgrade-v11.0.md).
 
 ## Maintenance policy
 
