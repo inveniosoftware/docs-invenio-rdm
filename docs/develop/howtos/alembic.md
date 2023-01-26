@@ -22,7 +22,7 @@ pip install -e ".[all,postgresql,elasticsearch7]"
 
 ## Step 2 - Boot services
 
-Next, we boot the containers we also use for testing.
+Next, boot the containers that you will also use for testing.
 
 Check the exact command to run for booting the services in the ``run-tests.sh``
 script.
@@ -38,8 +38,7 @@ the one below:
 eval "$(docker-services-cli up --db ${DB:-postgresql} --search ${SEARCH:-elasticsearch} --mq redis --env)"
 ```
 
-Last, we need to export an environment variable (``SQLALCHEMY_DATABASE_URI``
-gets added by docker-services-cli):
+Last, export an environment variable (``SQLALCHEMY_DATABASE_URI`` gets added by docker-services-cli):
 
 ```
 export INVENIO_SQLALCHEMY_DATABASE_URI=${SQLALCHEMY_DATABASE_URI}
@@ -47,7 +46,7 @@ export INVENIO_SQLALCHEMY_DATABASE_URI=${SQLALCHEMY_DATABASE_URI}
 
 ## Step 3 - Upgrade database to latest head
 
-Next, we need to get the database to the head state, so that we later can use
+Next, you need to get the database to the head state, so that you can use
 Alembic to auto-generate a migration by comparing the code-level models with
 the database tables:
 

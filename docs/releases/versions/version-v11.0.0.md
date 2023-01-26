@@ -1,6 +1,6 @@
 # InvenioRDM v11.0
 
-_2023-01-25_
+_2023-01-26_
 
 _Short-term support (STS) release_
 
@@ -57,13 +57,13 @@ You can read more on how to customize template in the [dedicated guide](../../cu
 InvenioRDM now includes a redirector module. It allows an instance to define a map of URLs to redirect, a configuration variable.
 This is particularly useful when migrating from an old instance to InvenioRDM.
 
-See instructions on how to configure URL redirection in its [How-to](../develop/howtos/route_migration.md).
+See instructions on how to configure URL redirection in its [How-to](../../develop/howtos/route_migration.md).
 
 ### Search query parser
 
 Search parameters may change overtime. You can now map legacy search terms into newer terms.
 
-See instruction on how to add search terms mappings in its [How-to](../develop/howtos/search_terms_migration.md).
+See instruction on how to add search terms mappings in its [How-to](../../develop/howtos/search_terms_migration.md).
 
 ### User visibility
 
@@ -156,6 +156,10 @@ You can use the administration panel to manually add the OpenAIRE set in existin
 - The following changes should not affect the majority of the users. We recommend to verify if any usage can be found in customisations or modules:
     - in [Invenio-Records-Resources](https://github.com/inveniosoftware/invenio-records-resources), the func `pick` in the `ExpandableField` class, the func `expand` in `LinksTemplate` class and the func `pick_resolved_fields` in `EntityProxy` class now require a new param `identity`.
 
+## Deprecations
+
+Support to Elasticsearch v7 is deprecated and it will be removed in a future release.
+
 ## Limitations
 
 - The featured communities administration panel is disabled by default, due to the limited user experience and features available.
@@ -178,7 +182,7 @@ InvenioRDM v11 supports:
 - Python 3.9
 - Node.js 14 and 16
 - PostgreSQL 10+
-- Elasticsearch v7 / OpenSearch v1 and v2
+- OpenSearch v1 and v2 (Elasticsearch 7 deprecated)
 
 ## Questions?
 

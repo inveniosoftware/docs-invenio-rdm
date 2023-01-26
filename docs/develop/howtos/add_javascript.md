@@ -1,6 +1,6 @@
 # How to add JavaScript files
 
-This documentation is targeted to developers that want to add new JavaScript files in InvenioRDM.
+This documentation is targeted to developers who want to add new JavaScript files in InvenioRDM.
 
 In InvenioRDM, JavaScript files are part of bundles, which are basically multiple JavaScript files grouped together.
 Bundles are discovered in all InvenioRDM modules and built using [webpack](https://webpack.js.org/) to
@@ -21,9 +21,9 @@ You might need to add some JavaScript code globally, and not only executed when 
 2. Add the file to the `webpack.py` to register the new bundle and give it a name `my-site-support`.
 3. Add the bundle name to the entry points in the `setup.cfg`, so it can be discovered by InvenioRDM.
 
-The difference is in the last step: instead of adding the new bundle in a specific Jinja template (`support.html`), we will need to add it to the global JavaScript files block added in the footer, defined in <a href="https://github.com/inveniosoftware/invenio-theme/blob/master/invenio_theme/templates/semantic-ui/invenio_theme/page.html" target="_blank">`invenio-theme/page.html`</a>.
+The difference is in the last step: instead of adding the new bundle in a specific Jinja template (`support.html`), you will need to add it to the global JavaScript files block added in the footer, defined in <a href="https://github.com/inveniosoftware/invenio-theme/blob/master/invenio_theme/templates/semantic-ui/invenio_theme/page.html" target="_blank">`invenio-theme/page.html`</a>.
 
-We create a new template file `page.html` in the path matching Invenio-Theme module:
+Create a new template file `page.html` in the path matching Invenio-Theme module:
 
 ```
 ├── site
@@ -31,7 +31,7 @@ We create a new template file `page.html` in the path matching Invenio-Theme mod
 │   │   ├── templates/semantic-ui/invenio_theme/page.html
 ```
 
-We then re-define the `javascript` block, calling `super` to make sure other global JavaScript files are included:
+Then, re-implement the `javascript` block, calling `super` to make sure other global JavaScript files are included:
 
 ```HTML
 {% block javascript %}
