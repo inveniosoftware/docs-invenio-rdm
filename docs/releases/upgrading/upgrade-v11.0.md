@@ -30,7 +30,7 @@ If unsure, run `invenio-cli install` from inside the instance directory before e
 
 ### Python version change
 
-As of InvenioRDM v11.0, only Python 3.9 is supported. This is because the official InvenioRDM Docker images now comes
+As of InvenioRDM v11.0, only Python 3.9 is supported. This is because the official InvenioRDM Docker images now come
 with Python 3.9 only and it is not anymore configurable.
 
 Developing with the same Python version as in deployed environments helps avoiding surprises when deploying
@@ -47,7 +47,7 @@ The first step is to edit the `<my-site>/Pipfile`:
 +++python_version = "3.9"
 ```
 
-Delete the `Pipfile.lock`.
+and delete the `Pipfile.lock`.
 
 **Container images**
 
@@ -64,7 +64,7 @@ Changing the Python version in your development environment highly
 depends on your setup, and there is no golden rule.
 One example would be to use [PyEnv](https://github.com/pyenv/pyenv).
 
-You should delete your virtual env before running `invenio-cli` or `pipenv` commands below.
+You should delete your virtualenv before running `invenio-cli` or `pipenv` commands below.
 
 !!! warning "Risk of losing data"
 
@@ -120,11 +120,10 @@ You can see how to update your data in the [Funders vocabulary section](../../cu
 With InvenioRDM v11, the template to generate a new instance has been updated, adding more files and folders.
 It is now easier to add [translations](../../contribute/translators-guide.md) and [custom code](../../develop/howtos/custom_code.md).
 
-To upgrade your running instance and have the same new files, the easiest way is:
+To upgrade your running instance and have the same new files, the easiest way is to:
 
 1. Setup a new InvenioRDM instance v11 aside (`invenio-cli init rdm -c v11.0`), using the **exact same values** of your running instance when answering the questions of the instance generator.
 2. Copy the following folders from the new instance and paste them in your running instance:
 
     - `site/`
     - `translations/`
-
