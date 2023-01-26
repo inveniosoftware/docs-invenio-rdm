@@ -4,7 +4,6 @@ The translation of texts that are visible in the UI of InvenioRDM, is integrated
 
 If you wish to contribute on translating your desired language. Please follow these steps:
 
-
 ## Step 1 - Get a Transifex account
 
 Sign up for a free Open Source Transifex account at [https://www.transifex.com/signup/open-source/](https://www.transifex.com/signup/open-source/) (any other Transifex account will do as well).

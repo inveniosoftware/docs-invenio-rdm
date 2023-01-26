@@ -114,3 +114,17 @@ The parsing of the ROR dump used for the Funders vocabulary has
 been improved, adding the actual ROR identifier to the `identifiers` field.
 
 You can see how to update your data in the [Funders vocabulary section](../../customize/vocabularies/funding.md).
+
+### Update `my-site` folder
+
+With InvenioRDM v11, the template to generate a new instance has been updated, adding more files and folders.
+It is now easier to add [translations](../../contribute/translators-guide.md) and [custom code](../../develop/howtos/custom_code.md).
+
+To upgrade your running instance and have the same new files, the easiest way is:
+
+1. Setup a new InvenioRDM instance v11 aside (`invenio-cli init rdm -c v11.0`), using the **exact same values** of your running instance when answering the questions of the instance generator.
+2. Copy the following folders from the new instance and paste them in your running instance:
+
+    - `site/`
+    - `translations/`
+

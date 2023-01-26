@@ -10,7 +10,7 @@ Let's go through an example of making a new view with some JavaScript files in o
 
 ## Enable the site folder
 
-First of all, we need to make sure the site folder is available and editable. When installing InvenioRDM, you will get the following option:
+First of all, you need to make sure the site folder is available and editable. When installing InvenioRDM, you will get the following option:
 
 ```bash
 Select site_code:
@@ -49,7 +49,7 @@ For existing installations, there is no automatic procedure. One easy way could 
 
 ## Configure your new view
 
-To get started with our custom view, we will add a new folder in `./site/my_site`. In this example we will make a "support" view, hence we will name our folder "support". Our folder structure is now like this:
+To get started with the custom view, add a new folder in `./site/my_site`. In this example, you will create a "support" view, hence name your folder "support". The folder structure is now like this:
 
 ```
 ├── site
@@ -59,7 +59,7 @@ To get started with our custom view, we will add a new folder in `./site/my_site
 │   │   │   └── support.py
 ```
 
-In `support.py` we will define the class for our new support-view:
+In `support.py`, you define the class for our new support-view:
 
 ```python
 from flask import render_template
@@ -77,9 +77,9 @@ class MySiteSupport(MethodView):
         return render_template(self.template)
 ```
 
-In our init function, we define the path to our template. In the get function we instruct our view to render the template we defined in the init function.
+In the `__init__` method, you define the path to the template. The `get` method returns the rendered Jinja template to HTML.
 
-As you probably noticed, we added a reference to the template `support.html`. We will add this template in our templates folder:
+Create the new template `support.html` in the `templates` folder:
 
 ```
 ├── site
@@ -91,7 +91,7 @@ As you probably noticed, we added a reference to the template `support.html`. We
 │   │   │   │   │   └── support.html
 ```
 
-In this template we can add the following:
+Here the code of the template:
 
 ```HTML
 {%- extends "invenio_theme/page.html" %}
@@ -106,11 +106,11 @@ In this template we can add the following:
 {% endblock %}
 ```
 
-We added a `<div>` element (`root-container`) to later render a react application on it.
+The `<div>` element with id `root-container` will then later render a React application.
 
 ## Register the view
 
-Now we can register the view we configured in `support.py`. To do this, we will open the `views.py` file in `./site/my_site` and add a new url rule within the `create_blueprint` function like the following:
+Let's register the view configured in `support.py`. To do this, open the `views.py` file in `./site/my_site` and add a new URL rule within the `create_blueprint` function like the following:
 
 ```python
 blueprint.add_url_rule(
@@ -119,7 +119,7 @@ blueprint.add_url_rule(
 )
 ```
 
-Our full `views.py` file now looks like this:
+The `views.py` file now looks like this:
 
 ```python
 from flask import Blueprint
@@ -146,9 +146,9 @@ That is really all you need to get your custom view available on your desired pa
 
 ## Adding JavaScript to your template
 
-If you want, or need, to use JavaScript for your template, we will need to configure webpack for the site folder. This is done in the predefined `webpack.py` file of `site/my_site`.
+If you want, or need, to use JavaScript for your template, you will need to configure webpack for the `site` folder. This is done in the predefined `webpack.py` file of `site/my_site`.
 
-We can start by creating a JavaScript file in our assets folder:
+Let's start by creating a JavaScript file in the assets folder:
 
 ```
 ├── site
@@ -162,7 +162,7 @@ We can start by creating a JavaScript file in our assets folder:
 │   │   ├── templates
 ```
 
-The JavaScript file could be anything that should be executed when the page is rendered, as an example it can render a simple Semantic UI Form:
+The JavaScript file could be anything that should be executed when the page is rendered, as an example it can render a simple Semantic UI form:
 
 ```javascript
 import React from "react";
@@ -181,7 +181,7 @@ ReactDOM.render(
 );
 ```
 
-Now we need to register this file in our webpack configuration. In our `webpack.py` we will add a definition of a new webpack bundle, with all the JavaScript files that it will contain (in this case, only one):
+Now let's register this file in the webpack configuration. In the file `webpack.py`, add the definition of a new webpack bundle, with all the JavaScript files that it will contain (in this case, only one):
 
 ```python
 from invenio_assets.webpack import WebpackThemeBundle
@@ -200,9 +200,9 @@ support = WebpackThemeBundle(
 )
 ```
 
-Here you can see that we made an alias for our JavaScript file: `my-site-support`, which is the name we will use to reference the file.
+Here you can see the new alias for the JavaScript file `my-site-support`, which is the name that will be used to reference the file.
 
-This new JavaScript file needs to be found by the InvenioRDM's building system for assets: its bundles' discovery process relies on Python entry-points, which define the path to each `webpack.py` file. In the `setup.cfg`, we will add:
+This new JavaScript file needs to be found by the InvenioRDM's building system for assets: its bundles' discovery process relies on Python entry-points, which define the path to each `webpack.py` file. In the `setup.cfg`, let's add:
 
 ```diff
 [options.entry_points]
@@ -212,13 +212,13 @@ This new JavaScript file needs to be found by the InvenioRDM's building system f
 ...
 ```
 
-As usual, when changing the entry-point, we need to re-install the Python module so new entry-points are picked up. In the `site` folder, we run:
+As usual, when changing the entry-point, you will need to re-install the Python module so new entry-points are picked up. In the `site` folder, run:
 
 ```bash
 pipenv run pip install -e .
 ```
 
-Now we are all set to add the JavaScript file to our template. In our template file `support.html`, we will add the following JavaScript block:
+Now, you are all set to add the JavaScript file to the template. In the template file `support.html`, add the following JavaScript block:
 
 ```HTML
 {% block javascript %}
@@ -227,7 +227,7 @@ Now we are all set to add the JavaScript file to our template. In our template f
 {% endblock %}
 ```
 
-Now the full template will look like this:
+Now the full template looks like this:
 
 ```HTML
 {%- extends "invenio_theme/page.html" %}
@@ -247,22 +247,22 @@ Now the full template will look like this:
 {% endblock %}
 ```
 
-As you can see, we are extending the predefined template from <a href="https://github.com/inveniosoftware/invenio-theme/blob/master/invenio_theme/templates/semantic-ui/invenio_theme/page.html" target="_blank">`invenio-theme/page.html`</a>. To make sure we keep all the existing references defined in the original template, we are adding `{{ super() }}` before our js-reference; we don't want to _override_ the existing JavaScript references, but rather extend the javascript-block to also include our new JavaScript reference.
+As you can see, we are extending the predefined template from <a href="https://github.com/inveniosoftware/invenio-theme/blob/master/invenio_theme/templates/semantic-ui/invenio_theme/page.html" target="_blank">`invenio-theme/page.html`</a>. We are calling `{{ super() }}` as we don't want to replace the existing JavaScript bundles, but rather extend them to also include the new JavaScript file.
 
-Since we now added a new configuration for webpack, we will have to rebuild the assets of our instance by running the following command in our terminal:
+To include the new JavaScript bundle in the final built assets, you will have to rebuild them by running the following command:
 
-```
+```terminal
 invenio-cli assets build
 ```
 
-and restart our instance
+and restart the instance:
 
-```
+```terminal
 invenio-cli run
 ```
 
 That's all! Now you should be all set to further develop your custom view as you like.
 
-See the final result for the example shown in this guide:
+The final result should look like this:
 
 ![Support page](./img/mysite_custom_views/mysite_support_page.png)
