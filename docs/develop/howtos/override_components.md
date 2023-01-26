@@ -67,7 +67,7 @@ The `const overriddenComponents` is the map that will contain all your future ov
 
 Let's create a new React component, very similar to the default `FileUploaderToolbar`, changing the UI component that will render. In the same file `mapping.js`, add the following code above the `const overriddenComponents`:
 
-  ```javascript
+```javascript
   import React from "react";
   import { Checkbox } from "semantic-ui-react";
   import { useFormikContext } from "formik";
