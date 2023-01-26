@@ -136,8 +136,8 @@ We recommend upgrading **Node.js** to **v16**. Next InvenioRDM releases will sup
 For external authentication methods (e.g. ORCID, GitHub, SSO, etc.), the default behavior **has changed** and
 for newly logged in users (users without an Invenio account yet):
 
-    - the account is already confirmed
-    - they will not receive a confirmation e-mail
+- The account is already confirmed
+- They will not receive a confirmation e-mail
 
 This is applied to all OAuth plugins, but **ORCID**: when logging in with ORCID, the e-mail is provided by the user
 and not retrieved from the authentication provider. It requires the user to confirm the e-mail address.
@@ -154,7 +154,7 @@ You can use the administration panel to manually add the OpenAIRE set in existin
 ### Breaking changes
 
 - The following changes should not affect the majority of the users. We recommend to verify if any usage can be found in customisations or modules:
-    - in [Invenio-Records-Resources](https://github.com/inveniosoftware/invenio-records-resources), the func `pick` in the `ExpandableField` class, the func `expand` in `LinksTemplate` class and the func `pick_resolved_fields` in `EntityProxy` class now require a new param `identity`.
+    - in [Invenio-Records-Resources](https://github.com/inveniosoftware/invenio-records-resources), the function `pick` in the `ExpandableField` class, the function `expand` in `LinksTemplate` class and the function `pick_resolved_fields` in `EntityProxy` class now require a new parameter `identity`.
 
 ## Deprecations
 

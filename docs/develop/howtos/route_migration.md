@@ -30,47 +30,52 @@ Sometimes it is necessary to modify the request further (e.g. map old parameters
 Find below some examples
 
 - Redirect a request to a new endpoint.
-  ```python
-      REDIRECTOR_RULES = {
-        "redirect_my_rule": {
-            "source": "/old_endpoint",
-            "target": "/new_endpoint"
-        }
-    }
-  ```
+
+```python
+REDIRECTOR_RULES = {
+  "redirect_my_rule": {
+      "source": "/old_endpoint",
+      "target": "/new_endpoint"
+  }
+}
+```
+
 - Redirect a request to a new endpoint whose view arguments have changed.
-   ```python
-    def redirect_function():
-        # Anything is allowed here, as long as the function returns a valid url.
-        from flask import url_for
-        values = request.view_args
-        # A new argument is injected
-        values["new_argument"] = "foo"
-        target = url_for("new_endpoint", **values)
-        return target
 
-    REDIRECTOR_RULES = {
-        "redirect_rule": {
-            "source": "/old_endpoint",
-            "target": redirect_function
-        }
+```python
+def redirect_function():
+    # Anything is allowed here, as long as the function returns a valid url.
+    from flask import url_for
+    values = request.view_args
+    # A new argument is injected
+    values["new_argument"] = "foo"
+    target = url_for("new_endpoint", **values)
+    return target
+
+REDIRECTOR_RULES = {
+    "redirect_rule": {
+        "source": "/old_endpoint",
+        "target": redirect_function
     }
-  ```
+}
+```
+
 - Redirect a request to a new endpoint, specifying an HTTP code for the redirection.
-   ```python
-    def redirect_function():
-        # Anything is allowed here, as long as the function returns a valid url.
-        from flask import url_for
-        values = request.view_args
-        # A new argument is injected
-        values["new_argument"] = "foo"
-        target = url_for("new_endpoint", **values)
-        return target, 302
 
-    REDIRECTOR_RULES = {
-        "redirect_rule": {
-            "source": "/old_endpoint",
-            "target": redirect_function
-        }
+```python
+def redirect_function():
+    # Anything is allowed here, as long as the function returns a valid url.
+    from flask import url_for
+    values = request.view_args
+    # A new argument is injected
+    values["new_argument"] = "foo"
+    target = url_for("new_endpoint", **values)
+    return target, 302
+
+REDIRECTOR_RULES = {
+    "redirect_rule": {
+        "source": "/old_endpoint",
+        "target": redirect_function
     }
-  ```
+}
+```
