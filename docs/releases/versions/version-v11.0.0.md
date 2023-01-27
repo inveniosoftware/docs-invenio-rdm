@@ -199,4 +199,4 @@ The development work in this release was done by:
 - Uni Bamberg: Christina
 - Uni Münster: Werner
 - Front Matter: Martin
-- Other: Sam
+- KTH Royal Institute of Technology: Sam
