@@ -87,7 +87,7 @@ For modules in ``vX.Y.Z``, the new version is ``v(X+1).0.0.dev0``.
 - Cookiecutter-Invenio-RDM:
     - Merge everything to ``master``.
     - Create new version branch from ``master`` using the pattern ``vX.Y`` (e.g if Invenio-App-RDM is v1.0.0, the branch should be named ``v1.0``).
-- Write release notes (merge to [master@docs-invenio-rdm](https://github.com/inveniosoftware/docs-invenio-rdm) and check the [QA site](https://inveniordm-qa.docs.cern.ch).
+- Write release notes in `dev` branch, check the [dev site](https://inveniordm-dev.docs.cern.ch). Then merge to [master@docs-invenio-rdm](https://github.com/inveniosoftware/docs-invenio-rdm).
 
 ### Release
 
@@ -100,7 +100,8 @@ The final step to release the new modules and source code is to release Invenio-
 ### Post-release
 
 - [Deploy InvenioRDM](demosite.md) to QA and PROD (demo website AND docs).
-- Blog post (including adding a link under https://inveniosoftware.org/products/rdm/#status)
+- Check if the release announcement should be updated in the [homepage of this doc](../index.md).
+- Blog post (including adding a link under <https://inveniosoftware.org/products/rdm/#status>)
 - Website update
     - Update [public roadmap](https://inveniosoftware.org/products/rdm/roadmap/).
     - Review project information
