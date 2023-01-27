@@ -36,7 +36,7 @@ invenio-cli check-requirements --development
 Scaffold your InvenioRDM instance. Replace ``<version>`` with the version you want to install:
 
 - LTS release (for production systems): ``v9.1``
-- STS release (for feature previews): ``v10.0``
+- STS release (for feature previews): ``v11.0``
 
 ```
 invenio-cli init rdm -c <version>
