@@ -33,7 +33,7 @@ See the [static pages](../../customize/static_pages.md) customization section to
 You can now manage featured communities from the administration panel, and show them in the homepage.
 This is a **preview** feature and it is disabled by default: the user experience and features currently available in the administration panel are limited. It will be improved in the upcoming releases.
 
-You can try this feature out by changing the configuration variable `COMMUNITIES_ADMINISTRATION_DISABLED` to `True`.
+You can try this feature out by changing the configuration variable `COMMUNITIES_ADMINISTRATION_DISABLED` to `False`.
 
 ### Custom code
 
