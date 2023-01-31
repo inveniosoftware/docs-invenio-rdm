@@ -82,17 +82,17 @@ resourcetypes:
     en: Publication
 ```
 
-As seen in the above example, resource types can be grouped by type (e.g. the thesis examples), or they can be independent (e.g. the publication example). 
+As seen in the above example, resource types can be grouped by type (e.g. the thesis examples), or they can be independent (e.g. the publication example).
 
-If the resource type is part of a group, the `subtype` field should have the value of the `id` of the parent resource type. Note that the parent resource type cannot itself be the subtype of another resource type. Only two levels are allowed.
+If the resource type is part of a group, its `type` value should be the same as the group/parent's resource type `id` and its `subtype` value should be the same as its own `id`. Note that the parent resource type cannot itself be part of a group. Only two levels are allowed.
 
-If the resource type is independent, the `subtype` value has to be empty, and the `id` and `type` values must be the same. Otherwise, there will be issues when loading the facets. 
+If the resource type is independent, its `type` value should be the same as its own `id` and its `subtype` value should be empty. Otherwise, there will be issues when loading the facets.
 
 Then, when you run `invenio-cli services setup` for the first time. Only those 3 resource types will be loaded.
 
 The optional `tags` key accepts an array of options affecting the behavior of these resource tags:
 
 - `depositable` - the resource type will show up in the deposit form dropdown for the field **Resource type**.
-- `linkable` - the resource type will show up in the deposit form dropdown for **Related works / Resource type**.
+- `linkable` - the resource type will show up in the deposit form dropdown for the field **Related works / Resource type**.
 
 If no tags are passed, the resource type doesn't show there, but it shows in the search facets.
