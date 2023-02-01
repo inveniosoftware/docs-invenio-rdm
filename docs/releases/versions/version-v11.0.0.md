@@ -107,7 +107,7 @@ InvenioRDM v11 comes with new features to check files integrity.
 
 #### Checksum
 
-A new asynchronous task now automatically checks whether files have been corrupted, meaning that a file's checksum differs from the its original checksum.
+A new asynchronous task now automatically checks whether files have been corrupted, meaning that a file's checksum differs from its original checksum.
 The celery task can be configured by editing the configuration `CELERY_BEAT_SCHEDULE['file-checks']`.
 
 #### Reports
@@ -144,7 +144,7 @@ and not retrieved from the authentication provider, and thus it requires the use
 
 For more information on how to change this setting, see the [Auto-confirm user](../../customize/authentication.md#auto-confirm-user) section in the authentication documentation.
 
-You can also customize how user information is retrieved from the external provided. See the [Custom user info](../../customize/authentication.md#custom-user-info) section in the authentication documentation.
+You can also customize how user information is retrieved from the external provider. See the [Custom user info](../../customize/authentication.md#custom-user-info) section in the authentication documentation.
 
 #### OpenAIRE OAI-PMH sets
 
