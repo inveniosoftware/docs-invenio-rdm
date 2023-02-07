@@ -1,6 +1,6 @@
 # UI widgets
 
-*Introduced in InvenioRDM v10*
+_Introduced in InvenioRDM v10_
 
 The following document is a reference guide for all the React UI widgets available for custom fields.
 
@@ -217,6 +217,7 @@ A dropdown field that allows the user to search for values, connected to the RES
   icon="tags"
   description="List of keywords to select that describe the experiment."
   autocompleteFrom="/api/vocabularies/myexperimentkeywords"
+  autocompleteFromAcceptHeader="application/vnd.inveniordm.v1+json"
   required={false}
   multiple={false}
   clearable={true}
@@ -234,6 +235,9 @@ A dropdown field that allows the user to search for values, connected to the RES
 - **description** `String` _required_: The description for the element's display. You should provide useful information on how the users should fill this field in.
 
 - **autocompleteFrom** `String` _required_: The endpoint from which the component should fetch options. This will point to your vocabulary endpoint e.g `/api/vocabularies/myvocabulary`.
+
+- **autocompleteFromAcceptHeader** `String` _optional_: The `Accept` header to send to the `autocompleteFrom` API. If not provided, the **default** header is
+  `application/vnd.inveniordm.v1+json`.
 
 - **icon** `String` _optional_: The optional icon that your field might have. The value should be one of the [Semantic UI icons](https://react.semantic-ui.com/elements/icon/).
 
