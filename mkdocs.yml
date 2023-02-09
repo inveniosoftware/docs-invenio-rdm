@@ -117,6 +117,7 @@ nav:
           - Requests: develop/architecture/requests.md
           - Communities: develop/architecture/communities.md
           - Records: develop/architecture/records.md
+          - Event handling: develop/architecture/event_handling.md
           - Recommended reading: develop/architecture/reading.md
       - Concepts:
           - Optimistic concurrency control: develop/concepts/concurrency-control.md
