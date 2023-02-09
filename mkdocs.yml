@@ -146,6 +146,7 @@ nav:
           - UI widgets: "reference/widgets.md"
       - Administration:
           - Reference: "reference/administration_reference.md"
+      - File storage: "reference/file_storage.md"
   - Releases:
       - Overview: releases/index.md
       - Maintenance policy: releases/maintenance-policy.md
