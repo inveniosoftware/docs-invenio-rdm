@@ -43,16 +43,14 @@ The React component's overridable id for the '`Metadata-only record`' checkbox c
 
 ### The mapping file
 
-In a new InvenioRDM v11 or above installations, an almost empty file named `mapping.js` is available at the following path in your `site` folder:
+In a new InvenioRDM v11 or above installations, an almost empty file named `mapping.js` is available at the following path in your `assets` folder:
 
 ```terminal
-├── site
-│   ├── my_site
-│   │   ├── assets
-│   │   |   ├── js
-│   │   |   |   ├── invenio_app_rdm
-│   │   |   |   |   ├── overridableRegistry
-│   │   |   |   |   |   ├── mapping.js
+├── assets
+|   ├── js
+|   |   ├── invenio_app_rdm
+|   |   |   ├── overridableRegistry
+|   |   |   |   ├── mapping.js
 ```
 
 For existing installations, you will have to create it. It is a very simple file:
