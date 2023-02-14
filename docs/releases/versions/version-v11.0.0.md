@@ -20,7 +20,7 @@ Minting DOIs now requires to have the `publisher` field defined. Submitters will
 
 ### ROR for funders
 
-[ROR](https://ror.org) identifiers have been added under the `funders.identifiers` field in the upload form.
+[ROR](https://ror.org) identifiers have been added under the `funders.identifiers` field in the funders vocabulary.
 You can read more about it in the [Funding](../../customize/vocabularies/funding.md#funders-ror) documentation page.
 
 ### Static pages
