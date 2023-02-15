@@ -28,7 +28,7 @@ You will have to lock again your Pipfile:
 - delete Pipfile.lock
 - run `invenio-cli install`
 
-## Configuration of the URN PID provider
+## URN PID provider
 
 The DNB URN Rest-API offers a production service and a sandbox service. The `dnb-urn-service` wrapper
 automatically chooses the correct URL depending on the configuration variable `URN_DNB_TEST_MODE`.
@@ -69,7 +69,7 @@ RDM_PERSISTENT_IDENTIFIERS = {
 The URN PID provider is configured to automatically generate and mint the URN: there is no support
 for URNs in the upload form UI.
 
-## Configuration of the xMetaDissPlus export
+## xMetaDissPlus export
 
 The DNB offers harvesting metadata and data for long time preservation. You can configure it by adding
 the `xMetaDissPlus` export the InvenioRDM OAI-PMH 2.0 server.
