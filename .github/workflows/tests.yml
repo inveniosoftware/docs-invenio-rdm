@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+      - dev
+  pull_request:
+    branches:
+      - master
+      - dev
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron: "0 3 * * 6"
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: "Reason"
+        required: false
+        default: "Manual trigger"
+
+jobs:
+  Tests:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+          pip freeze
+
+      - name: Build
+        run: mkdocs build --strict
+
+      - name: Check links
+        uses: untitaker/hyperlink@0.1.27
+        with:
+          args: site/ --github-actions --sources docs/

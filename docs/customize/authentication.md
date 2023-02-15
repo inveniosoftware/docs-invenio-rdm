@@ -403,7 +403,7 @@ Then, open the `templates` folder in `my-site` (your instance) and paste it ther
 
 Edit the Jinja template as you need.
 
-For more information, see the guide [style other pages](/customize/styling/#change-other-pages).
+For more information, see the guide [style other pages](look-and-feel/templates.md).
 
 ### Custom user registration form
 
