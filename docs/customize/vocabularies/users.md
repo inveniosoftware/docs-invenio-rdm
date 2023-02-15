@@ -91,7 +91,7 @@ reindex_user(user.id)
 
 You may need to add users or make permission changes after the users vocabulary has been loaded. To create an account programmatically, run:
 
-```python
+```shell
 pipenv run invenio users create email@domain.edu --active
 ```
 
