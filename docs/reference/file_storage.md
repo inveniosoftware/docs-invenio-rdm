@@ -44,7 +44,7 @@ _Introduced in InvenioRDM v11_
     **Use it at your own risk!**
 
 Fetched files accept two more arguments than a local files on their
-[initialization](est_api_drafts_records/#start-draft-file-uploads): _storage\_class_, and
+[initialization](rest_api_drafts_records.md#start-draft-file-uploads): _storage\_class_, and
 _uri_:
 
 **Parameters**
@@ -110,7 +110,7 @@ Content-Type: application/json
 At this point an asynchronous task will be launched and the file will be transported into
 the InvenioRDM instance. Once the file transfer is completed, the status field will be
 changed to `completed`. At this point the `storage_class` of the files has also changed
-to `L`. The status can be checked using the _files_ url (`/api/records/{id}/draft/files`). 
+to `L`. The status can be checked using the _files_ url (`/api/records/{id}/draft/files`).
 Note, until all the files have been transferred (i.e. their status is `completed`) the
 record cannot be published.
 

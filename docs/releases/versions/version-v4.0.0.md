@@ -51,7 +51,7 @@ The [detailed documentation](/customize/authentication/) describes how a new OAu
 
 This month we continued work on vocabularies. Most notably we migrated the resource types from the old to the new vocabulary and made them easily customizable.
 
-Read more about this [here](/customize/application_data/).
+Read more about this [here](/customize/vocabularies/).
 
 #### Facets labelling
 
