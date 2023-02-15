@@ -43,4 +43,4 @@ jobs:
       - name: Check links
         uses: untitaker/hyperlink@0.1.27
         with:
-          args: site/ --github-actions --sources docs/
+          args: site/ --sources docs/
