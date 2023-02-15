@@ -68,6 +68,8 @@ nav:
       - Record landing page: "customize/record_landing_page.md"
       - Static pages: "customize/static_pages.md"
       - DOI registration: "customize/dois.md"
+      - Other PIDs integrations:
+        - DNB URNs: "customize/other-pids/urns.md"
       - Storage: "customize/s3.md"
       - Upload Limits: "customize/upload_limits.md"
   - Develop:
