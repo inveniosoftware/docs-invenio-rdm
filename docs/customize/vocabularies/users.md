@@ -97,6 +97,6 @@ pipenv run invenio users create email@domain.edu --active
 
 To give an account admin permissions, run:
 
-```python
+```shell
 pipenv run invenio roles add <email> admin
 ```
