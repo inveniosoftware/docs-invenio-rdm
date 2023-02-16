@@ -573,7 +573,7 @@ Example:
         "identifier": "0000-0001-8135-3489"
       }],
     },
-    "role": "editor",
+    "role": {"id": "editor"},
     "affiliations": [{
       "id": "01ggx4157",
       "name": "CERN",
