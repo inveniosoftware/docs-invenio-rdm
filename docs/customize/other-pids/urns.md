@@ -101,7 +101,7 @@ XMETADISS_TYPE_DCTERMS_DCMITYPE = "openaire_type"
 ```
 
 In order to fully implement xMetaDissPlus with all mandatory fields, the metadata definition has to be expanded by [custom
-fields](../../../develop/howtos/custom_fields.md).
+fields](../../develop/howtos/custom_fields.md).
 At first add the file `thesis_types.yaml` to `/app_data/vocabularies` (you will find the content [here](https://raw.githubusercontent.com/ulbmuenster/invenio-dnb-urn/main/thesis_types.yaml)):
 
 ```yaml
