@@ -11,6 +11,11 @@ In order to register URN's with InvenioRDM, you need to two extra modules:
 - [dnb-urn-service](https://pypi.org/project/dnb-urn-service/)
 - [invenio-dnb-urn](https://pypi.org/project/invenio-dnb-urn/)
 
+If you're interested in the source code, you will find it here:
+
+- [dnb-urn-service](https://github.com/ulbmuenster/dnb-urn-service)
+- [invenio-dnb-urn](https://github.com/ulbmuenster/invenio-dnb-urn)
+
 The first one implements a thin wrapper around the Rest-API maintained by the DNB (German national library),
 the second enhances the InvenioRDM with URN minting support and xMetaDissPlus serialization via OAI-PMH 2.0.
 
@@ -97,7 +102,40 @@ XMETADISS_TYPE_DCTERMS_DCMITYPE = "openaire_type"
 
 In order to fully implement xMetaDissPlus with all mandatory fields, the metadata definition has to be expanded by [custom
 fields](../../develop/howtos/custom_fields.md).
-At first add the file `thesis_types.yaml` to `/app_data/vocabularies`. Then change the `vocabularies.yaml`:
+At first add the file `thesis_types.yaml` to `/app_data/vocabularies` (you will find the content [here](https://raw.githubusercontent.com/ulbmuenster/invenio-dnb-urn/main/thesis_types.yaml)):
+
+```yaml
+- id: "thesis.doctoral"
+  title:
+    en: "PhD thesis"
+    de: "Dissertation"
+- id: "thesis.habilitation"
+  title:
+    en: "Habilitation treatise"
+    de: "Habilitationsschrift"
+- id: "bachelor"
+  title:
+    en: "Bachelor's thesis"
+    de: "Bachelorarbeit"
+- id: "master"
+  title:
+    en: "Master's thesis"
+    de: "Masterarbeit"
+- id: "Staatsexamen"
+  title:
+    en: "State examination"
+    de: "Staatsexamen"
+- id: "M.A."
+  title:
+    en: "Graduate degree"
+    de: "Magisterarbeit"
+- id: "Diplom"
+  title:
+    en: "Diploma thesis"
+    de: "Diplomarbeit"            
+```
+
+Then change the `vocabularies.yaml`:
 
 ```yaml
 thesis:
