@@ -30,7 +30,7 @@ upstream repository remote:
 # without GitHub CLI:
 git clone https://github.com/<your username>/invenio-app-rdm
 cd invenio-app-rdm
-git remote add upstream https://github.com/inveniosoftware/invenio-app-rdm
+git remote add upstream git@github.com:inveniosoftware/invenio-app-rdm.git
 ```
 
 ### Repositories survival guide
