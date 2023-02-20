@@ -21,12 +21,12 @@ editable install of the Python package:
 ```
 cd ~/src/invenio-app-rdm
 mkvirtualenv app-rdm
-# elasticsearch7 only needed for certain modules
-pip install -e ".[tests,elasticsearch7]"
+# opensearch2 only needed for certain modules
+pip install -e ".[tests,opensearch2]"
 ```
 
 For each module, you'll have to check what is the precise list of extras
-you need to add (the ``tests,elasticsearch7``). If you don't add them,
+you need to add (the ``tests,opensearch2``). If you don't add them,
 you won't have all the tools needed for testing.
 
 ### Run tests
@@ -61,7 +61,7 @@ editable installs of both:
 
 ```
 mkvirtualenv communities
-pip install -e "~/src/invenio-communities[tests,elasticsearch7]" \
+pip install -e "~/src/invenio-communities[tests,opensearch2]" \
     -e "~/src/invenio-requests[tests,elasticsearch7]"
 ```
 
