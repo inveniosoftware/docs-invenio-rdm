@@ -329,6 +329,13 @@ The ``affiliations`` field consists of objects with the following subfields:
 
 One of ``id`` or ``name`` must be given. It's recommended to use ``name`` if there is no matching ``id`` in the controlled vocabulary.
 
+
+The `role` field is as follows:
+
+| Field  | Cardinality |   Description                |
+|:------:|:-----------:|:-----------------------------|
+| ``id`` | (1, CV) | The role's controlled vocabulary identifier. |
+
 Example:
 
 ```json
