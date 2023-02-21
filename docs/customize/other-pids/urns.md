@@ -25,7 +25,7 @@ In your Pipfile:
 ```diff
 [packages]
 ...
-+ invenio-dnb-urn = ">=0.1.0,<1.0.0"
++ invenio-dnb-urn = ">=0.1.3,<1.0.0"
 ```
 
 You will have to lock again your Pipfile:
