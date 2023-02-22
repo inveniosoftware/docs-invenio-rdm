@@ -154,33 +154,41 @@ to (moving ``title`` to a top-level key and stripping ``akey``):
 
 ## Using schemas
 
-The schema can the be combined with the Marshmallow JSON serializer to
-output JSON:
+The schema can then be combined with the Marshmallow serializer, it takes three arguments:
+
+- format_serializer_cls: class in charge of transforming the data object into the desired
+format. In the example below the output is formatted as JSON but it could be any other
+(e.g. XML).
+- object_schema_cls: Marshmallow Schema of the object.
+- list_schema_cls: Marshmallow Schema of the object list.
+
 
 ```python
 # serializers/json/__init__.py
 
-from flask_resources.serializers import MarshmallowJSONSerializer
+from flask_resources import MarshmallowSerializer
+from flask_resources.serializers import JSONSerializer
+
 from .schema import MySchema
 
-class MySerializer(MarshmallowJSONSerializer):
+class MySerializer(MarshmallowSerializer):
     def __init__(self, **options):
-        super().__init__(schema_cls=MySchema, **options)
+        super().__init__(
+            format_serializer_cls=JSONSerializer,
+            object_schema_cls=MySchema,
+            **options  # passed as context to the Marshmallow schema
+        )
 ```
 
-Alternatively, you don't have to create the serializer class if you just
-want to use it on the API:
+Then you can add it to the list of response handlers that are accepted by the API:
 
 ```python
 # resources/config.py
-from flask_resources.serializers import MarshmallowJSONSerializer
-from .serializers.json.schema import MySchema
+from .serializers import MySerializer
 
 class ClickResourceConfig(ResourceConfig):
     response_handlers = {
-        "application/json": ResponseHandler(
-            MarshmallowJSONSerializer(schema_cls=MySchema)
-        )
+        "application/json": ResponseHandler(MySerializer())
     }
 ```
 
