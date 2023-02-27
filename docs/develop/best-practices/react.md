@@ -13,6 +13,36 @@ React is a very nice JavaScript library for building user interfaces, but its us
 
 ## Best practices
 
+### Functional vs Class components
+
+- Are you creating a component with only the `render` function? A functional component might be a good idea, it is less verbose:
+
+```javascript
+export const MyCmp = (props) => <div>{...}<div/>;
+```
+
+- Are you creating a more complex component, handling component's lifecycle or local/Redux state? Prefer a class component, it is more declarative, more readable:
+
+```javascript
+class MyCmp extends Component {
+  ...
+```
+
+#### On Hooks
+
+**Don't use [React Hooks](https://reactjs.org/docs/hooks-overview.html)**. Using hooks requires developers not only to learn React, but also to familiarize with this approach and remember the ad-hoc syntax:
+
+```javascript
+const [count, setCount] = useState(0);
+...
+useEffect(() => {
+  ...
+  return ...
+});
+```
+
+The classic component's lifecycle methods are surely much more verbose, but they favor clarity, readability and understanding of the code, in particular in the InvenioRDM context, where developers with different levels of experience are collaborating.
+
 ### Use Semantic UI React
 
 Use Semantic UI React components in React, instead of CSS classes. The React versions of Semantic UI components have normally implemented some logic, which is crucial for the component to work correctly. The plain CSS Semantic UI might not have all the features available when you use them in React.
@@ -41,6 +71,22 @@ class MyAccordion extends Component {}
   }
 ```
 
+For each UI component, Semantic UI (SUI) has its own props. When creating your own component which uses SUI components, you should be split your component's props and the dedicated SUI props using the `ui` name. This will make clear what are the SUI props:
+
+```javascript
+render() {
+    const { name, isDisabled, ...ui } = this.props;
+
+    return (
+      <Button
+        name={name}
+        disabled={isDisabled}
+        {...ui}
+      />
+    );
+  }
+```
+
 ### On Overridable
 
 See the [How to override UI React components](../howtos/override_components.md) how-to for detailed explanations on the library itself.
@@ -58,12 +104,16 @@ The `id` of each Overridable component should use the following pattern:
 - `[InvenioModuleName]`: the Invenio module name, e.g. `InvenioCommunities` or `InvenioAppRDM`.
 - `[ReactApp]`: the name of the web page where the ReactApp will be rendered, e.g. `MembersList`, `MyDashboard`, `MyUploads`, `MyCommunities`, `DepositForm`. There is no exact naming here, try to be consistent with the existing ones.
 - `[Component]`: the name of the component in the React app, e.g. `ResultsList`, `SortBy`, `ListItem`, `BtnAccept`.
-- `[Element]`: the name of the UI section inside the component. `Layout` is normally used of the entire Overridable component, `Title` might be used in an inner section, in case of large components:
+- `[Element]`: the name of the UI section inside the component. `Layout` is normally used of the entire Overridable component, inside the `render()` function, `Container` or `Title` might be used in an inner section, in case of large components:
 
   ```javascript
-  <Overridable id="InvenioCommunities.InvitationsList.ListItem.Layout">
-    ...
-      <Overridable id="InvenioCommunities.InvitationsList.ListItem.Title">
+  render() {
+    return (
+      <Overridable id="InvenioCommunities.InvitationsList.ListItem.Layout">
+        ...
+        <Overridable id="InvenioCommunities.InvitationsList.ListItem.Container">
+          ...
+          <Overridable id="InvenioCommunities.InvitationsList.ListItem.Title">
   ```
 
 Names should be CamelCase.

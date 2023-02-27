@@ -88,13 +88,13 @@ If you choose to deploy them using PaaS, images for the services can be
 found for example in [DockerHub](https://hub.docker.com). For more information
 on how to deploy each service, refer to their official documentation.
 
-## InvenioRDM Python application
+## InvenioRDM Python app
 
 Independently of your deployment model choice, you will need to run the Flask
 Python application. However, the server bundled with Flask is not meant for
 production usage, it is there only to help with the development.
 Therefore, you will need some sort of WSGI HTTP server.
-Common choices are [Gunicorn](https://gunicorn.org) and [uWSGI](http://projects.unbit.it/uwsgi),
+Common choices are [Gunicorn](https://gunicorn.org) and [uWSGI](http://projects.unbit.it/uwsgi).
 
 The latter, is the one we use at CERN and it is bundled in the Dockerfile.
 You can find more information in the [InvenioRDM Docker images](../maintenance/docker-images.md) section.
