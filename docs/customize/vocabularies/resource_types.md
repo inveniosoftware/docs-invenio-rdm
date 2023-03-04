@@ -1,6 +1,6 @@
 # Customize the resource types
 
-To override the resource types in your instance, you will want to edit the `vocabularies.yaml` file and create a `vocabularies/resource_types.yaml` file. The default `resource_types.yaml` is [available for download](https://github.com/inveniosoftware/invenio-rdm-records/blob/master/invenio_rdm_records/fixtures/data/vocabularies/resource_types.yaml)
+To override the resource types in your instance, you will want to edit the `vocabularies.yaml` file and create a `vocabularies/resource_types.yaml` file. The default `resource_types.yaml` is [available for download here](https://github.com/inveniosoftware/invenio-rdm-records/blob/master/invenio_rdm_records/fixtures/data/vocabularies/resource_types.yaml).
 
 Say you are creating an English repository to exclusively host academic theses, you would provide the following:
 
