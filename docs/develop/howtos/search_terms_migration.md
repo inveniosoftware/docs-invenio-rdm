@@ -8,6 +8,11 @@ This is particularly useful when a certain search term is not supported anymore 
 
 The query is parsed in the application layer and the old term is replaced with the new one before passing the query to the search engine.
 
+!!! warning "Terms not in the mapping are not considered!"
+    When a search term mapping is defined, other terms (not present in the mapping) are not used by the search engine.
+    E.g. if a mapping is defined with a single term "description" that matches "metadata.description", all the other terms such as "metadata.title" will not work anymore.
+    Proceed with caution.
+
 ## Steps
 
 - Identify the search term to be mapped (e.g. `q=old_term:"value"`).
