@@ -143,6 +143,10 @@ export class Experiments extends Component {
 }
 ```
 
+!!! tip "Where to place a custom UI widget?"
+    Custom UI widgets can be implemented in multiple places. Besides in the instance, they can also be implemented in other modules such as
+    `react-invenio-deposit` or `react-invenio-forms`, however be aware that "where" to place a widget depends on "who" needs the custom field.
+
 ## Layout template
 
 Let's now create the template that will be used to display the newly added field in the record landing page. We create a new file `experiments.html` in `my-site/templates`:
