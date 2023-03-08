@@ -20,6 +20,7 @@ The content of the file is as follows:
   full_name: <string>
   affiliations: <string>
   active: <bool>
+  confirmed: <bool>
   password: <string>
   roles: <array of strings>
   allow: <array of strings>
@@ -30,6 +31,7 @@ The content of the file is as follows:
 - `full_name`: Name of the user (optional).
 - `affiliations` : Affiliations of the user (optional).
 - `active` : Is the user active or not.
+- `confirmed` : Is the user confirmed or not (optional).
 - `password` : Their password. If empty, a random one is generated.
 - `roles` : Array of roles the user has. The roles must already be present in the DB.
 - `allow` : Array of action needs the user has.
