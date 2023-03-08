@@ -95,4 +95,4 @@ The optional `tags` key accepts an array of options affecting the behavior of th
 - `depositable` - the resource type will show up in the deposit form dropdown for the field **Resource type**.
 - `linkable` - the resource type will show up in the deposit form dropdown for the field **Related works / Resource type**.
 
-If no tags are passed, the resource type doesn't show there, but it shows in the search facets.
+If `tags` is not present, the resource type will only show in the search facets.
