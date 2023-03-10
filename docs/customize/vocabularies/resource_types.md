@@ -90,7 +90,7 @@ If the resource type is independent, its `type` value should be the same as its 
 
 Then, when you run `invenio-cli services setup` for the first time. Only those 3 resource types will be loaded.
 
-The optional `tags` key accepts an array of options affecting the behavior of these resource tags:
+The optional `tags` key accepts an array of options affecting the behavior of the resource type:
 
 - `depositable` - the resource type will show up in the deposit form dropdown for the field **Resource type**.
 - `linkable` - the resource type will show up in the deposit form dropdown for the field **Related works / Resource type**.
