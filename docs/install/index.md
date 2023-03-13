@@ -88,10 +88,10 @@ Go and explore your InvenioRDM instance on:
 
 To create a new administrator account:
 
-- `invenio users create <EMAIL> --password <PASSWORD>`
-- Activate it with `invenio users activate <EMAIL>`
+- `pipenv run invenio users create <EMAIL> --password <PASSWORD>`
+- Activate it with `pipenv run invenio users activate <EMAIL>`
 - If you have email verification enabled (as per defaults) you may want to [verifiy the account manually](https://inveniordm.docs.cern.ch/customize/vocabularies/users/#confirm-user)
-- Allow the user to access the administration panel: `invenio access allow administration-access user <EMAIL>`
+- Allow the user to access the administration panel: `pipenv run invenio access allow administration-access user <EMAIL>`
 
 #### [6. Stop it](destroy.md)
 
