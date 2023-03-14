@@ -200,6 +200,7 @@ nav:
       - Overview: maintenance/index.md
       - Newcomers: maintenance/newcomers.md
       - Sprintboard workflow: maintenance/board-workflow.md
+      - Community PR board: maintenance/pr-community-board.md
       - Release management: maintenance/release-management.md
       - Modules on GitHub: maintenance/modules.md
       - Branch management: maintenance/branch-management.md
