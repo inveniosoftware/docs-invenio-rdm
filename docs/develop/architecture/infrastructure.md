@@ -10,8 +10,8 @@ infrastructure. It consists of:
 - **Web servers:** Nginx, Apache or others.
 - **Application servers:** UWSGI, Gunicorn or mod_wsgi.
 - **Distributed task queue:** Celery
-- **Database:** PostgreSQL, MySQL or SQLite.
-- **Search engine:** Elasticsearch (v6 and v7).
+- **Database:** PostgreSQL.
+- **Search engine:** Opensearch.
 - **Message queue:** RabbitMQ, Redis or Amazon SQS.
 - **Cache system:** Redis or Memcache.
 - **Storage system:** Local, S3, XRootD, WebDAV and more.
