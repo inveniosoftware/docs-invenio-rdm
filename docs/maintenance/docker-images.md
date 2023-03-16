@@ -1,4 +1,4 @@
-# RDM Docker Images
+# RDM Docker images
 
 The official RDM Docker image(s) are available in the [docker-invenio](https://github.com/inveniosoftware/docker-invenio) repo.
 
@@ -14,8 +14,9 @@ the current RDM Docker image.
 
 Docker images are pushed to the CERN registry [inveniosoftware]](https://registry.cern.ch/harbor/projects/1825/repositories) project. This is done to:
 
-1. Avoid [Docker Hub rate limits](https://www.docker.com/increase-rate-limits/).
-2. Take advantage of the automatic security scan provided by Harbor.
+1. March 2023: Docker announced that Free Team organizations, such as `inveniosoftware`, will be removed.
+2. Avoid [Docker Hub rate limits](https://www.docker.com/increase-rate-limits/).
+3. Take advantage of the automatic security scan provided by Harbor.
 
 The project is configured with tag retention policies, so that the disk space is not filled up too quickly (see below).
 
