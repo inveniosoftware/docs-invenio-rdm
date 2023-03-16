@@ -58,6 +58,11 @@ Update the base Docker image in the `Dockerfile`, and rebuild the image if neces
 +++FROM registry.cern.ch/inveniosoftware/almalinux:1
 ```
 
+!!! Note
+
+    Testing the Docker images locally requires Docker version `20.10.10+`.
+
+
 **Local development**
 
 Changing the Python version in your development environment highly
