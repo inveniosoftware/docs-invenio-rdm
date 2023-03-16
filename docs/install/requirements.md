@@ -17,7 +17,7 @@ InvenioRDM depends on the following requirements to be installed on your local s
 
     - In case that `invenio-cli` (and other commands installed via `pip`) cannot be found after installing, you may have to update your `$PATH` to include the install directory (e.g. `PATH="$PATH:$HOME/.local/bin"` on Linux).
 
-- [Docker](https://docs.docker.com/) 1.13.0+
+- [Docker](https://docs.docker.com/) 20.10.10+
 - [Docker-Compose](https://docs.docker.com/compose/) 1.17.0+
 
 For running and building the application locally you will also need:
@@ -31,6 +31,10 @@ For running and building the application locally you will also need:
 
 !!! warning "Supported Python distributions"
     InvenioRDM targets CPython 3.9. Anaconda Python in particular is not currently supported and other Python distributions are not tested.
+
+!!! note "ARM-based CPUs"
+    If you are developing locally with an ARM-based CPU, notably a recent Apple M1/M2 Mac, the minimum support version of InvenioRDM is v10.
+    Previous versions cannot be installed because of a `node-sass` incompatibility.
 
 ### Services
 

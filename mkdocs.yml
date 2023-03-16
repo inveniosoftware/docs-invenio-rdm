@@ -173,6 +173,7 @@ nav:
           - Upgrade policy: releases/upgrading/index.md
           - Upgrade from v10 to v11: releases/upgrading/upgrade-v11.0.md
           - Upgrade from v9 to v10: releases/upgrading/upgrade-v10.0.md
+          - Migrate Docker images: releases/upgrading/migrate-docker-images.md
           - Migrate v9 to OpenSearch: releases/upgrading/migrate-opensearch-v9.md
           - Upgrade from v8 to v9: releases/upgrading/upgrade-v9.0.md
           - Upgrade from v7 to v8: releases/upgrading/upgrade-v8.0.md
