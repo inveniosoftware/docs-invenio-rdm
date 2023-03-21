@@ -172,6 +172,7 @@ nav:
           - Version v1.0.0: releases/versions/version-v1.0.0.md
       - Upgrade guide:
           - Upgrade policy: releases/upgrading/index.md
+          - Upgrade from v11 to v12: releases/upgrading/upgrade-v12.0.md
           - Upgrade from v10 to v11: releases/upgrading/upgrade-v11.0.md
           - Upgrade from v9 to v10: releases/upgrading/upgrade-v10.0.md
           - Migrate v9 to OpenSearch: releases/upgrading/migrate-opensearch-v9.md
