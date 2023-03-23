@@ -18,7 +18,7 @@ In addition to the many bugs fixed, this release introduces custom fields both f
 
 ### Custom Fields
 
-You can now add custom fields to [bibliographic records](https://inveniordm.docs.cern.ch/customize/custom_fields/records/) and [communities](https://inveniordm.docs.cern.ch/customize/custom_fields/communities/) data models. InvenioRDM supports a wide variety of field types and UI widgets: you can find the full list in the [custom fields](https://inveniordm.docs.cern.ch/customize/custom_fields/records/#reference) and the [UI widgets](https://inveniordm.docs.cern.ch/reference/widgets/) documentation pages.
+You can now add custom fields to [bibliographic records](https://inveniordm.docs.cern.ch/customize/metadata/custom_fields/records/) and [communities](https://inveniordm.docs.cern.ch/customize/metadata/custom_fields/communities/) data models. InvenioRDM supports a wide variety of field types and UI widgets: you can find the full list in the [custom fields](https://inveniordm.docs.cern.ch/customize/custom_fields/records/#reference) and the [UI widgets](https://inveniordm.docs.cern.ch/reference/widgets/) documentation pages.
 
 You can also extend the default components or implement your owns. To get more information, refer to the [custom fields development section](../../develop/howtos/custom_fields.md) in the documentation.
 
