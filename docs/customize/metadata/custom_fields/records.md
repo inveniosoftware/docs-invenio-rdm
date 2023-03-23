@@ -2,7 +2,7 @@
 
 *Introduced in InvenioRDM v10*
 
-While the InvenioRDM's [metadata schema](../../reference/metadata.md) includes a wide range of bibliographic fields, there might still be cases where you need to include domain or system specific information in your records. This can be achieved using custom fields.
+While the InvenioRDM's [metadata schema](../../../reference/metadata.md) includes a wide range of bibliographic fields, there might still be cases where you need to include domain or system specific information in your records. This can be achieved using custom fields.
 To demonstrate how to take advantage of custom fields, we will use the following examples:
 
 _In my university repository, when uploading my work, I want to input the programming language that I have used._
@@ -11,7 +11,7 @@ _At CERN, I want to input or select the experiment information of the research p
 
 !!! warning
 
-    Before jumping into adding custom fields, take a close look at the existing set of fields in the metadata schema, and especially the [subjects field](../../reference/metadata.md#subjects-0-n), which can be extended with terms from external vocabularies that might already exist.
+    Before jumping into adding custom fields, take a close look at the existing set of fields in the metadata schema, and especially the [subjects field](../../../reference/metadata.md#subjects-0-n), which can be extended with terms from external vocabularies that might already exist.
 
 ## Quickstart, how does it look?
 
@@ -46,7 +46,7 @@ RDM_CUSTOM_FIELDS_UI = [
 
 This will create a new section in the bottom of the record's upload page and will look like:
 
-![Programmatic language field](../img/programmatic_language.png)
+![Programmatic language field](../../img/programmatic_language.png)
 
 ## Configuration
 
@@ -129,11 +129,11 @@ RDM_CUSTOM_FIELDS = [
 
 **Custom error message when the field is required**
 
-![Custom error message](../img/custom_required_error.png)
+![Custom error message](../../img/custom_required_error.png)
 
 **Custom validation function to validate the new field**
 
-![Custom validation function](../img/custom_validation_func.png)
+![Custom validation function](../../img/custom_validation_func.png)
 
 ### Initialize
 
@@ -173,20 +173,24 @@ pipenv run invenio rdm-records custom-fields init -f <field_name> -f <field_name
 
 ## Displaying fields
 
-Now that you have defined and initialized your custom fields and configured their type and validation rules, you need to configure how you want them to be displayed on the upload form.
+Now that you have defined and initialized your custom fields and configured their type and validation rules, you need to configure how you want them to be displayed on the upload form and landing page using the following properties:
+
+- `section` - Title of the section.
+- `hidden` - Controls whether the custom field section is displayed in the landing page.
+- `fields` - Ordered list of fields to be included in the section.
+
+Each field can then be configured using the following properties:
+
+- `field` - The name of the custom field.
+- `template` - The jinja template used to render a field in the landing page.
+- `ui_widget` - The React form component to be used for the field.
+- `props` - Parameters to be injected in the React component.
 
 ### Upload (deposit) form
 
 Custom fields are displayed at the bottom of the upload form and are organized into sections. Each section has a title and the ordered list of the fields that it includes.
 
-- `section` - Title of the section.
-- `fields` - Ordered list of fields to be included in the section.
-
-Each field is an object that corresponds to an already defined field from the `RDM_CUSTOM_FIELDS` config.
-
-- `field` - The name of the field.
-- `ui_widget` - The React form component to be used for the field.
-- `props` - Parameters to be injected in the React component.
+Title of the section can be configured using the property `section`, while the list of fields the property `fields`. Note that each field is an object that corresponds to an already defined field from the `RDM_CUSTOM_FIELDS` config.
 
 ```python
 # for the above configured fields `cern:experiment`, `cern:experiment_description_html`, `cern:experiment_url`
@@ -235,19 +239,19 @@ RDM_CUSTOM_FIELDS_UI = [
 
 The upload form will then look like below:
 
-![Custom fields in upload form](../img/upload_form_custom_fields.png)
+![Custom fields in upload form](../../img/upload_form_custom_fields.png)
 
 ### Landing page
 
-In the record landing page, by default, the custom fields will be displayed in the _additional details_ section at the bottom of the page. Each custom fields section correspond to a tab item, containing the configured fields.
+In the record landing page, by default, the custom fields will be displayed in the *additional details* section at the bottom of the page. Each custom fields section correspond to a tab item, containing the configured fields. This can be disabled using the `hidden` attribute in the section's configuration.
 
 The additional details section:
 
-![Custom fields in additional details section](../img/landing_page_fields_display.png)
+![Custom fields in additional details section](../../img/landing_page_fields_display.png)
 
 The landing page with the configured custom fields:
 
-![Custom fields in landing page](../img/landing_page.png)
+![Custom fields in landing page](../../img/landing_page.png)
 
 However, it is possible to change this default layout by overriding the Jinja templates of the landing page.
 
@@ -276,10 +280,10 @@ RDM_CUSTOM_FIELDS_UI = [
 
 You should add the `my_template.html` file in the `my-site/templates` folder in your instance. In your custom template, the following variables are injected and can be used:
 
-- `field_value`: the value of the field, as it is stored in the record after the UI serialization i.e. what is returned from the `ui_field` method when you [define your custom field](../../develop/howtos/custom_fields.md).
+- `field_value`: the value of the field, as it is stored in the record after the UI serialization i.e. what is returned from the `ui_field` method when you [define your custom field](../../../develop/howtos/custom_fields.md).
 - `field_cfg`: the UI configuration for that specific field as it is defined in the `RDM_CUSTOM_FIELDS_UI` config.
 
-See the example in the [How-to](../../develop/howtos/custom_fields.md#define-the-template-for-the-record-landing-page).
+See the example in the [How-to](../../../develop/howtos/custom_fields.md#define-the-template-for-the-record-landing-page).
 
 ### Search
 
@@ -312,7 +316,7 @@ RDM_SEARCH = {
 
 In the search page, the new facet will be added in the bottom as below:
 
-![Custom field as search facet](../img/search_facets.png)
+![Custom field as search facet](../../img/search_facets.png)
 
 #### Text fields
 
@@ -412,9 +416,13 @@ This section lists the field types and UI widgets that are available in InvenioR
 - `Dropdown` for a value from a controlled vocabulary or a list of controlled vocabularies. The corresponding `VocabularyCF` must have the parameter `dump_options=True`.
 - `AutocompleteDropdown` for a value from a controlled vocabulary or a list of controlled vocabularies. The corresponding `VocabularyCF` must have the parameter `dump_options=False`. This widget will provide suggestions to autocomplete the user input. Similar to _subjects_, _languages_, _names_, etc.
 
-You can see a detailed view of all the available widgets at the [UI widgets](../../reference/widgets.md) reference section.
+You can see a detailed view of all the available widgets at the [UI widgets](../../../reference/custom_fields/widgets.md) reference section.
 
-## Complete example
+## Complete examples
+
+Below you can find multiple examples on how to add custom fields to records.
+
+### Create custom fields and add them to records
 
 You can find below a complete example of the configuration to add to your `invenio.cfg`.
 
@@ -517,3 +525,75 @@ RDM_SEARCH = {
     "facets": RDM_SEARCH["facets"] + ["experiment"]
 }
 ```
+
+### Add reusable custom fields to records
+
+Invenio provides a set of [custom fields ](../../../reference/custom_fields/fields_list.md) that can be added to an instance on demand.
+
+In the following example, we will customize fields, create a new section ("Publishing Information") to group custom fields, and hide the "Conference" section on the landing page. It is important to note that this change only affects the visual representation of the fields and not the underlying data model (metadata fields).
+
+```python
+from invenio_i18n import lazy_gettext as _
+from invenio_rdm_records.contrib.imprint import (
+    IMPRINT_CUSTOM_FIELDS,
+    IMPRINT_CUSTOM_FIELDS_UI,
+    IMPRINT_NAMESPACE,
+)
+from invenio_rdm_records.contrib.journal import (
+    JOURNAL_CUSTOM_FIELDS,
+    JOURNAL_CUSTOM_FIELDS_UI,
+    JOURNAL_NAMESPACE,
+)
+from invenio_rdm_records.contrib.thesis import (
+    THESIS_CUSTOM_FIELDS,
+    THESIS_CUSTOM_FIELDS_UI,
+    THESIS_NAMESPACE,
+)
+
+RDM_NAMESPACES = {
+    **JOURNAL_NAMESPACE,
+    **IMPRINT_NAMESPACE,
+    **THESIS_NAMESPACE,
+}
+
+# Combine custom fields
+RDM_CUSTOM_FIELDS = [
+    # journal
+    *JOURNAL_CUSTOM_FIELDS,
+    # meeting
+    *MEETING_CUSTOM_FIELDS,
+    # imprint
+    *IMPRINT_CUSTOM_FIELDS,
+    # thesis
+    *THESIS_CUSTOM_FIELDS,
+]
+
+# Hide "meeting" section in the landing page
+MEETING_CUSTOM_FIELDS_UI["hidden"] = True
+
+# Create a "Publishing Information" section in the deposit form and add multiple fields
+RDM_CUSTOM_FIELDS_UI = [
+    {
+        "section": _("Publishing information"),
+        "hidden": True,
+        "fields": [
+            # journal
+            *JOURNAL_CUSTOM_FIELDS_UI["fields"],
+            # imprint
+            *IMPRINT_CUSTOM_FIELDS_UI["fields"],
+            # thesis
+            *THESIS_CUSTOM_FIELDS_UI["fields"],
+        ],
+    },
+    # meeting
+    MEETING_CUSTOM_FIELDS_UI,
+]
+```
+
+The previous configuration produces the following result in the deposit form:
+
+![Reusable custom field result (deposit form)](../../img/custom_fields_example_deposit_form.png)
+
+and landing page:
+
+![Reusable custom field result (landing page)](../../img/custom_fields_example_landing_page.png)

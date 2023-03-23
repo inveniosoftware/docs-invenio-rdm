@@ -2,7 +2,7 @@
 
 *Introduced in InvenioRDM v10*
 
-This guide describes how to create your own custom field. If you have not done it yet, please read first about configuring [records custom fields](../../../customize/custom_fields/records).
+This guide describes how to create your own custom field. If you have not done it yet, please read first about configuring [records custom fields](../../../customize/metadata/custom_fields/records).
 The new custom field in this example will extend the use case described in the records custom field documentation:
 
 _When uploading a research preprint at CERN, I want to record the title and the research program of the related CERN experiments._
