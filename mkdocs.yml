@@ -62,9 +62,10 @@ nav:
           - Funding: "customize/vocabularies/funding.md"
           - Subjects: "customize/vocabularies/subjects.md"
           - Users: "customize/vocabularies/users.md"
-      - Custom fields:
-          - Add fields to records: "customize/custom_fields/records.md"
-          - Add fields to communities: "customize/custom_fields/communities.md"
+      - Metadata:
+          - Custom fields:
+            - Add fields to records: "customize/metadata/custom_fields/records.md"
+            - Add fields to communities: "customize/metadata/custom_fields/communities.md"
       - Record landing page: "customize/record_landing_page.md"
       - Static pages: "customize/static_pages.md"
       - DOI registration: "customize/dois.md"
@@ -146,7 +147,8 @@ nav:
           - Awards: "reference/rest_api_awards.md"
           - OAI-PMH Sets: "reference/rest_api_oaipmh_sets.md"
       - Custom fields:
-          - UI widgets: "reference/widgets.md"
+          - UI widgets: "reference/custom_fields/widgets.md"
+          - Fields list: "reference/custom_fields/fields_list.md"
       - Administration:
           - Reference: "reference/administration_reference.md"
       - File storage: "reference/file_storage.md"

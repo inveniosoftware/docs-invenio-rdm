@@ -63,7 +63,7 @@ Now that you have defined and initialized your custom fields and configured thei
 
 Custom fields are displayed at the bottom of the page, similar to the image below:
 
-![Custom fields in community settings page](../img/community_settings_custom_fields.png)
+![Custom fields in community settings page](../../img/community_settings_custom_fields.png)
 
 !!! warning "Custom fields in the community page"
 
