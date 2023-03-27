@@ -90,6 +90,7 @@ Initializes the application skeleton for the chosen flavour. Currently only `rdm
 
 - `-t`, `--template` `TEXT` Path or git URL to the Cookiecutter template.
 - `-c`, `--checkout` `TEXT` Branch, tag or commit to checkout if `--template` is a git URL.
+- `--config .invenio`, Auto pre-filling of initialization questions from the .invenio file. Refer to `.invenio` for file structure within your instance for more info.
 
 ### **`install`**
 
