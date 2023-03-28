@@ -1029,8 +1029,12 @@ Content-Type: application/json
     "self_html": "{scheme+hostname}/records/{id}",
     "latest_html": "{scheme+hostname}/records/{id}/latest",
     "self": "{scheme+hostname}/api/records/{id}",
+    "self_iiif_manifest": "{scheme+hostname}/api/records/{id}/manifest",
+    "self_iiif_sequence": "{scheme+hostname}/api/records/{id}/sequence/default",
     "files": "{scheme+hostname}/api/records/{id}/files",
-    "access_links": "{scheme+hostname}/api/records/{id}/access/links"
+    "access_links": "{scheme+hostname}/api/records/{id}/access/links",
+    "communities": "{scheme+hostname}/api/records/{id}/communities",
+    "requests": "{scheme+hostname}/api/records/{id}/requests"
   },
   "metadata": {
     "resource_type": {
@@ -1309,6 +1313,8 @@ Content-Type: application/json
     "self": "{scheme+hostname}/api/records/{id}/draft",
     "files": "{scheme+hostname}/api/records/{id}/draft/files",
     "access_links": "{scheme+hostname}/api/records/{id}/access/links"
+    "communities": "{scheme+hostname}/api/records/{id}/communities",
+    "requests": "{scheme+hostname}/api/records/{id}/requests"
   },
   "metadata": {
     "resource_type": {
@@ -1450,7 +1456,9 @@ Content-Type: application/json
     "latest_html": "{scheme+hostname}/records/{id}/latest",
     "self": "{scheme+hostname}/api/records/{id}",
     "files": "{scheme+hostname}/api/records/{id}/files",
-    "access_links": "{scheme+hostname}/api/records/{id}/access/links"
+    "access_links": "{scheme+hostname}/api/records/{id}/access/links",
+    "communities": "{scheme+hostname}/api/records/{id}/communities",
+    "requests": "{scheme+hostname}/api/records/{id}/requests"
   },
   "metadata": {
     "resource_type": {

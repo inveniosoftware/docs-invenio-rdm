@@ -264,7 +264,8 @@ Content-Type: application/json
     "members": "{scheme+hostname}/communities/{community_id}/members",
     "public_members": "{scheme+hostname}/communities/{community_id}/members/public",
     "invitations": "{scheme+hostname}/communities/{community_id}/invitations",
-    "requests": "{scheme+hostname}/communities/{community_id}/requests"
+    "requests": "{scheme+hostname}/communities/{community_id}/requests",
+    "featured": "{scheme+hostname}/communities/{community_id}/featured"
   },
   "metadata": {
     "title": "My Updated Community",
