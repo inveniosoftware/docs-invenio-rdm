@@ -25,7 +25,7 @@ Development guidelines for specific areas of development.
 - [Commits, pull requests and reviews](best-practices/commits.md)
 - [CSS/JavaScript](best-practices/css-js.md)
 - [React](best-practices/react.md)
-- [Translation (i18n)](best-practices/i18n.md)
+- [Translation (i18n)](howtos/i18n.md)
 - [User interface](best-practices/ui.md)
 
 ## Topics

@@ -88,7 +88,6 @@ nav:
           - Commits, PRs & reviews: develop/best-practices/commits.md
           - CSS/JavaScript: develop/best-practices/css-js.md
           - React: develop/best-practices/react.md
-          - Translation (i18n): develop/best-practices/i18n.md
           - User interface: develop/best-practices/ui.md
       - Topic guides:
           # - Building REST APIs: develop/topics/rest.md
@@ -102,6 +101,7 @@ nav:
           - Theming: develop/topics/theming.md
           - Administration panel: develop/topics/administration_panel.md
       - How-to guides:
+          - Translation (i18n): develop/howtos/i18n.md
           - Create a new custom field: develop/howtos/custom_fields.md
           - Create custom code and views: develop/howtos/custom_code.md
           - Add JavaScript: "develop/howtos/add_javascript.md"
