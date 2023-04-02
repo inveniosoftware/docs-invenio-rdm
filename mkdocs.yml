@@ -136,6 +136,7 @@ nav:
       - Configuration: reference/configuration.md
       - Metadata: reference/metadata.md
       - OAI-PMH: reference/oai_pmh.md
+      - Export formats: reference/export_formats.md
       - REST API:
           - Overview: "reference/rest_api_index.md"
           - Communities: "reference/rest_api_communities.md"
@@ -163,6 +164,7 @@ nav:
       - Maintenance policy: releases/maintenance-policy.md
       - Security policy: releases/security-policy.md
       - Versions:
+          - Version v11.0.0: releases/versions/version-v12.0.0.md
           - Version v11.0.0: releases/versions/version-v11.0.0.md
           - Version v10.1.0: releases/versions/version-v10.1.0.md
           - Version v10.0.0: releases/versions/version-v10.0.0.md
@@ -179,6 +181,7 @@ nav:
           - Version v1.0.0: releases/versions/version-v1.0.0.md
       - Upgrade guide:
           - Upgrade policy: releases/upgrading/index.md
+          - Upgrade from v10 to v11: releases/upgrading/upgrade-v12.0-beta.md
           - Upgrade from v10 to v11: releases/upgrading/upgrade-v11.0.md
           - Upgrade from v9 to v10: releases/upgrading/upgrade-v10.0.md
           - Migrate Docker images: releases/upgrading/migrate-docker-images.md
