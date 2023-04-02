@@ -1,24 +1,53 @@
 # InvenioRDM records export formats
 
-InvenioRDN provides various record export formats to allow users to easily download and transfer metadata records between different systems. These formats adhere to widely used metadata standards such as DataCite, Dublin Core, BibTeX, and MARCXML, DCAT-AP making it easier to integrate with other systems that use these standards. Additionally, Invenio-app-rdm provides the ability to export records in the GeoJSON format, which is commonly used for geospatial metadata.
+_Introduced in v12.0.0b1_
+
+InvenioRDM provides various record serialisation formats to allow users to easily export bibliographic records in a machine-readable way or transfer them to different systems. These formats adhere to widely used metadata standards such as DataCite, Dublin Core, BibTeX, MARCXML, DCAT-AP or GeoJSON, which is commonly used for geospatial metadata.
 
 By providing a range of export formats, Invenio-app-rdm enables users to share and exchange metadata records with other systems in a format that is compatible with their respective standards. This makes it easier to ensure that metadata records are accurate, complete, and consistent across different systems.
 
+A bibliographic record can be exported to a different format in a couple of ways:
+1. in the UI, using the `Export` dropdown menu in the record landing page (screenshot with the menu open)
+2. via REST APIs, using the `Accept` header:
+
+
+```
+GET /api/records/ HTTP/1.1
+Host: inveniordm.web.cern.ch
+Accept: <export-format-mime-type>;charset=UTF-8
+```
+
+Find below the `Accept` header MIME type for each export format.
+
+## JSON
+
+The JSON export format in InvenioRDM exports metadata records in a structured JSON format, which includes all the metadata fields associated with the record, as well as any custom fields. This makes it possible to export metadata records from Invenio-app-rdm in a machine-readable format that can be used for a variety of purposes, such as data analysis, visualization, or integration with other software systems.
+
+To export a metadata record in JSON format in InvenioRDM, users can simply select the "JSON" option from the export menu, which will generate a JSON file containing the record's metadata in the appropriate format. The JSON file can then be downloaded and used as needed.
+
+To export a record via REST API to JSON format, use the `application/json` MIME type:
+
+```shell
+GET /api/records/ HTTP/1.1
+Host: inveniordm.web.cern.ch
+Accept: application/json;charset=UTF-8
+```
+
 ## DataCite
 
-The DataCite Metadata Schema is a list of core metadata properties chosen for the accurate and consistent identification of a resource for citation and retrieval purposes, along with recommended use instructions. It was designed for use in the citation of research data, and includes both mandatory and optional elements, as well as specific rules for their usage."
-
-The DataCite Metadata Schema is widely used in the research community for the identification, discovery, and citation of research data, and is supported by a number of data repositories, publishers, and other organizations. It is an important tool for ensuring the proper management and sharing of research data, and helps to ensure that research data is findable, accessible, interoperable, and reusable (FAIR).
+The DataCite export format is a JSON and XML serialization of the DataCite internal data model. You can read more about the InvenioRDM data model <here - link to https://inveniordm.docs.cern.ch/reference/metadata/>.
 
 The official documentation for the DataCite metadata schema can be found on their [website](https://schema.datacite.org/meta/kernel-4.4/).
 
-Example search requests:
+To export a record to DataCite XML format, use the `application/vnd.datacite.datacite+xml` MIME type:
 
 ```shell
 GET /api/records/ HTTP/1.1
 Host: inveniordm.web.cern.ch
 Accept: application/vnd.datacite.datacite+xml;charset=UTF-8
 ```
+
+To export a record to DataCite JSON format, use the `application/vnd.datacite.datacite+json` MIME type:
 
 ```shell
 GET /api/records/ HTTP/1.1
@@ -34,7 +63,34 @@ The DCAT-AP data model is based on the Dublin Core metadata elements and include
 
 Here is a link to the DCAT-AP data model (format) documentation: https://joinup.ec.europa.eu/collection/semantic-interoperability-community-semic/solution/dcat-application-profile-data-portals-europe.
 
-Example search request:
+To export a record to DCAT-AP format, use the`application/dcat+xml` MIME type:
+```shell
+GET /api/records/ HTTP/1.1
+Host: inveniordm.web.cern.ch
+Accept: application/dcat+xml;charset=UTF-8
+```
+
+## CSL
+
+CSL (Citation Style Language) is a widely used XML-based format for defining citation styles used in academic writing. InvenioRDM provides CSL export format as a way to allow users to easily export metadata of their records in a citation format that can be used with various reference management software. This feature allows users to easily generate bibliographies and citations for their research work.
+
+To export a record to CSL format, use the `application/vnd.citationstyles.csl+json` MIME type:
+
+```shell
+GET /api/records/ HTTP/1.1
+Host: inveniordm.web.cern.ch
+Accept: application/vnd.citationstyles.csl+json;charset=UTF-8
+```
+
+## MARCXML
+
+MARCXML is an XML representation used to represent bibliographic records in the MARC 21 (MAchine Readable Cataloging) format, which is widely used in libraries for the description of bibliographic items. MARCXML includes a standard set of data elements, control fields, and subfields, each with its own tag and indicator values, that allow for the representation of bibliographic metadata.
+
+Here's a link to the official documentation of the MARC 21 data model:
+https://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd
+
+To export a record to MARCXML format, use the `application/marcxml+xml` MIME type:
+
 ```shell
 GET /api/records/ HTTP/1.1
 Host: inveniordm.web.cern.ch
@@ -42,22 +98,7 @@ Accept: application/marcxml+xml;charset=UTF-8
 ```
 
 
-## Marc21 XML
-
-MARC21 XML is a markup language used to represent bibliographic records in the MARC (MAchine Readable Cataloging) format. It is an XML representation of the MARC21 bibliographic format, which is widely used in libraries for the description of bibliographic items. MARC21 XML includes a standard set of data elements, control fields, and subfields, each with its own tag and indicator values, that allow for the representation of bibliographic metadata.
-
-Here's a link to the official documentation of the MARC21 XML data model:
-https://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd
-
-Example search request:
-```shell
-GET /api/records/ HTTP/1.1
-Host: inveniordm.web.cern.ch
-Accept: application/dcat+xml;charset=UTF-8
-```
-
-
-## Bibtex
+## BibTex
 
 BibTeX is a bibliographic file format commonly used with LaTeX documents. It allows users to easily organize and manage bibliographic references in their documents. The BibTeX format uses a plain text file with a .bib extension and consists of entries, each describing a reference.
 
@@ -67,7 +108,8 @@ BibTeX is widely used in the academic community and is supported by many referen
 
 Here's a link to the BibTeX documentation: https://www.bibtex.com/format/
 
-Example search request:
+To export a record to BibTex format, use the `application/x-bibtex` MIME type:
+
 ```shell
 GET /api/records/ HTTP/1.1
 Host: inveniordm.web.cern.ch
@@ -94,11 +136,11 @@ Accept: application/x-dc+xml;charset=UTF-8
 
 ## GeoJSON
 
-GeoJSON is a format for encoding geographic data structures using JSON (JavaScript Object Notation). It supports various types of geometries such as points, lines, and polygons, and allows for additional properties to be associated with those geometries. GeoJSON is often used to exchange data between web services and to display geospatial data on web maps.
+GeoJSON is a format for encoding geographic data structures using JSON. It supports various types of geometries such as points, lines, and polygons, and allows for additional properties to be associated with those geometries. GeoJSON is often used to exchange data between web services and to display geospatial data on web maps.
 
 Here is a link to the official GeoJSON specification: https://datatracker.ietf.org/doc/html/rfc7946
 
-Example search request:
+To export a record to GeoJSON format, use the `application/vnd.geojson+json` MIME type:
 
 ```shell
 GET /api/records/ HTTP/1.1
