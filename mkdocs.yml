@@ -115,6 +115,7 @@ nav:
           - Fix a vulnerability: develop/howtos/security-fix.md
           - Test emails locally: develop/howtos/dev_email.md
           - Migrate legacy routes: develop/howtos/route_migration.md
+          - Back up search indices: develop/howtos/backup_search_indices.md
       - Architecture:
           - Introduction: develop/architecture/index.md
           - Infrastructure: develop/architecture/infrastructure.md
@@ -149,12 +150,14 @@ nav:
           - Funders: "reference/rest_api_funders.md"
           - Awards: "reference/rest_api_awards.md"
           - OAI-PMH Sets: "reference/rest_api_oaipmh_sets.md"
+          - Statistics: "reference/rest_api_statistics.md"
       - Custom fields:
           - UI widgets: "reference/custom_fields/widgets.md"
           - Fields list: "reference/custom_fields/fields_list.md"
       - Administration:
           - Reference: "reference/administration_reference.md"
       - File storage: "reference/file_storage.md"
+      - Usage statistics: "reference/statistics.md"
   - Releases:
       - Overview: releases/index.md
       - Maintenance policy: releases/maintenance-policy.md
