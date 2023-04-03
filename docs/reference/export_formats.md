@@ -44,7 +44,7 @@ Accept: application/dcat+xml;charset=UTF-8
 
 ## Marc21 XML
 
-MARC21 XML is a markup language used to represent bibliographic records in the MARC (MAchine Readable Cataloging) format. It is an XML representation of the MARC21 bibliographic format, which is widely used in libraries for the description of bibliographic items. MARC21 XML includes a standard set of data elements, control fields, and subfields, each with its own tag and indicator values, that allow for the representation of bibliographic metadata.
+MARCXML is an XML representation used to represent bibliographic records in the MARC 21 (MAchine Readable Cataloging) format, which is widely used in libraries for the description of bibliographic items. MARCXML includes a standard set of data elements, control fields, and subfields, each with its own tag and indicator values, that allow for the representation of bibliographic metadata.
 
 Here's a link to the official documentation of the MARC21 XML data model:
 https://www.loc.gov/standards/marcxml/schema/MARC21slim.xsd
