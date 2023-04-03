@@ -38,7 +38,7 @@ Example search request:
 ```shell
 GET /api/records/ HTTP/1.1
 Host: inveniordm.web.cern.ch
-Accept: application/marcxml+xml;charset=UTF-8
+Accept: application/dcat+xml;charset=UTF-8
 ```
 
 
