@@ -72,7 +72,7 @@ Some of the key advantages of using invenio-pages to manage static pages include
 
 #### Metadata-only 
 
-Two new configuration variables were recently added to InvenioRDM and InvenioRDMRecords to control whether metadata-only records and restricted files of a record are allowed in the system.
+InvenoRDM v12.0.0b1 introduces two new configuration variables to control whether metadata-only records and restricted files of a record are allowed in the system.
 
 A metadata-only record is a record that contains only descriptive metadata, without any associated files or content. These types of records can be useful in cases where you want to provide metadata for a resource that does not have a corresponding digital object or content file.
 
