@@ -14,3 +14,4 @@ These guides are intended for advanced users, administrators and developers that
 - **[Custom fields](widgets.md)**: A reference guide for the available components for custom metadata fields.
 - **[Administration](administration_reference.md)**: A reference guide for building InvenioRDM Administration views.
 - **[File storage](file_storage.md)**: A reference guide regarding local vs. remote file storage systems.
+- **[Usage statistics](statistics.md)**: A reference guide to the implementation of usage statistics.
