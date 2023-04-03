@@ -32,6 +32,8 @@ nav:
       - Interoperable: "features/interoperable.md"
       - Powerful: "features/powerful.md"
       - Secure: "features/secure.md"
+  - Features walk-through:
+      - Site banners: "features-walk-through/banners.md"
   - Install:
       - Quick start: "install/index.md"
       - System requirements: "install/requirements.md"
@@ -69,7 +71,7 @@ nav:
       - Static pages: "customize/static_pages.md"
       - DOI registration: "customize/dois.md"
       - Other PIDs integrations:
-        - DNB URNs: "customize/other-pids/urns.md"
+          - DNB URNs: "customize/other-pids/urns.md"
       - Storage: "customize/s3.md"
       - Upload Limits: "customize/upload_limits.md"
   - Develop:
