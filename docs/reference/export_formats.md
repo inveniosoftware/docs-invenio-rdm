@@ -6,7 +6,7 @@ By providing a range of export formats, Invenio-app-rdm enables users to share a
 
 ## DataCite
 
-The DataCite Metadata Schema is a list of core metadata properties chosen for the accurate and consistent identification of a resource for citation and retrieval purposes, along with recommended use instructions. It was designed for use in the citation of research data, and includes both mandatory and optional elements, as well as specific rules for their usage."
+The DataCite export format is a JSON and XML serialization of the DataCite internal data model. You can read more about the InvenioRDM data model <here - link to https://inveniordm.docs.cern.ch/reference/metadata/>.
 
 The DataCite Metadata Schema is widely used in the research community for the identification, discovery, and citation of research data, and is supported by a number of data repositories, publishers, and other organizations. It is an important tool for ensuring the proper management and sharing of research data, and helps to ensure that research data is findable, accessible, interoperable, and reusable (FAIR).
 
