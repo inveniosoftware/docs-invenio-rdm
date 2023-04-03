@@ -1,6 +1,6 @@
 # InvenioRDM records export formats
 
-InvenioRDN provides various record export formats to allow users to easily download and transfer metadata records between different systems. These formats adhere to widely used metadata standards such as DataCite, Dublin Core, BibTeX, and MARCXML, DCAT-AP making it easier to integrate with other systems that use these standards. Additionally, Invenio-app-rdm provides the ability to export records in the GeoJSON format, which is commonly used for geospatial metadata.
+InvenioRDM provides various record serialisation formats to allow users to easily export bibliographic records in a machine-readable way or transfer them to different systems. These formats adhere to widely used metadata standards such as DataCite, Dublin Core, BibTeX, MARCXML, DCAT-AP or GeoJSON, which is commonly used for geospatial metadata.
 
 By providing a range of export formats, Invenio-app-rdm enables users to share and exchange metadata records with other systems in a format that is compatible with their respective standards. This makes it easier to ensure that metadata records are accurate, complete, and consistent across different systems.
 
