@@ -42,7 +42,7 @@ Accept: application/dcat+xml;charset=UTF-8
 ```
 
 
-## Marc21 XML
+## MARCXML
 
 MARCXML is an XML representation used to represent bibliographic records in the MARC 21 (MAchine Readable Cataloging) format, which is widely used in libraries for the description of bibliographic items. MARCXML includes a standard set of data elements, control fields, and subfields, each with its own tag and indicator values, that allow for the representation of bibliographic metadata.
 
