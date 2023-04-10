@@ -133,11 +133,11 @@ the InvenioRDM asynchronous workers. Many of these can also be plugged in to Pro
 
 In an IaaS deployment, independently of the monitoring and logs aggregation
 tool of your choice, it is a good practice to store the logs in the
-in the servers using log rotation.
+servers using log rotation.
 
 ### Alerting
 
-Once the monitoring is in place, the next steps is getting alerts for code exceptions and
+Once the monitoring is in place, the next step is getting alerts for code exceptions and
 when certain metrics reach a configured threshold.
 
 For the InvenioRDM Python application, [Sentry](https://sentry.io/welcome/) provides a
