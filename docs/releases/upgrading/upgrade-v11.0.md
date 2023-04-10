@@ -78,7 +78,7 @@ You should delete your virtualenv before running `invenio-cli` or `pipenv` comma
 
 ### Upgrade InvenioRDM
 
-Make sure you that your virtual env is now running with Python 3.9.
+Make sure that your virtual env is now running with Python 3.9.
 
 Upgrade the RDM version:
 
