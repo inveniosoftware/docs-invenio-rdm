@@ -32,7 +32,7 @@ export INVENIO_SQLALCHEMY_DATABASE_URI="postgresql+psycopg2://my-site:my-site@lo
 ```
 
 !!! info
-    Environment variables takes precedence over values in the ``invenio.cfg`` configuration file.
+    Environment variables take precedence over values in the ``invenio.cfg`` configuration file.
 
 ## Setting secrets and credentials
 
