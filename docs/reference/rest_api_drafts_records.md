@@ -1034,7 +1034,8 @@ Content-Type: application/json
     "files": "{scheme+hostname}/api/records/{id}/files",
     "access_links": "{scheme+hostname}/api/records/{id}/access/links",
     "communities": "{scheme+hostname}/api/records/{id}/communities",
-    "requests": "{scheme+hostname}/api/records/{id}/requests"
+    "requests": "{scheme+hostname}/api/records/{id}/requests",
+    "communities-suggestions": "{scheme+hostname}/api/records/{id}/communities-suggestions"
   },
   "metadata": {
     "resource_type": {
@@ -1314,7 +1315,8 @@ Content-Type: application/json
     "files": "{scheme+hostname}/api/records/{id}/draft/files",
     "access_links": "{scheme+hostname}/api/records/{id}/access/links"
     "communities": "{scheme+hostname}/api/records/{id}/communities",
-    "requests": "{scheme+hostname}/api/records/{id}/requests"
+    "requests": "{scheme+hostname}/api/records/{id}/requests",
+    "communities-suggestions": "{scheme+hostname}/api/records/{id}/communities-suggestions"
   },
   "metadata": {
     "resource_type": {
@@ -1458,7 +1460,8 @@ Content-Type: application/json
     "files": "{scheme+hostname}/api/records/{id}/files",
     "access_links": "{scheme+hostname}/api/records/{id}/access/links",
     "communities": "{scheme+hostname}/api/records/{id}/communities",
-    "requests": "{scheme+hostname}/api/records/{id}/requests"
+    "requests": "{scheme+hostname}/api/records/{id}/requests",
+    "communities-suggestions": "{scheme+hostname}/api/records/{id}/communities-suggestions"
   },
   "metadata": {
     "resource_type": {
