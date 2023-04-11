@@ -1,10 +1,10 @@
-# InvenioRDM v12.0-beta
+# InvenioRDM v12.0.0b1
 
-_2023-04-03
+_2023-04-13_
 
 _Beta release_
 
-We're happy to announce the release of InvenioRDM v12.0-beta. The release is a beta release which is an interim release until v12.0.
+We're happy to announce the release of InvenioRDM v12.0.0b1. The release is a beta release which is an interim release until v12.0.
 
 ## Try it
 
@@ -16,7 +16,7 @@ We're happy to announce the release of InvenioRDM v12.0-beta. The release is a b
 
 ### Usage statistics
 
-A major new feature in this release is the integration of `invenio-stats`, a powerful and flexible extension for measuring usage statistics of InvenioRDM records. With `invenio-stats`, you can gain valuable insights into how your InvenioRDM records are being used, which can help you make informed decisions about how to improve your application and better serve your users.
+A major new feature in this release is the integration of `invenio-stats`, a powerful and flexible extension for measuring usage statistics of InvenioRDM records. With `invenio-stats`, you can gain valuable insights into how your InvenioRDM records are being used, which can help you make informed decisions about how to improve your application and better serve your users. Usage statistics that are compliant with the [MakeDataCount](https://makedatacount.org/) and [COUNTER](https://www.projectcounter.org/) standards. This allows for better tracking and reporting of usage metrics for research data, helping to ensure transparency and accountability in research data management.
 
 Some of the key advantages of using invenio-stats for measuring usage statistics include:
 
@@ -28,21 +28,45 @@ Usage statistics are displayed in the record landing page and records' search:
 
 ![](./v12.0.0/stats-landing-page.png)
 
-### Direct community submission and request review
+#### Unique views and downloads
 
-Certainly! The "direct publish" to community feature added to InvenioRDM v12.0.0 allows community curators, community managers and owners to easily submit their research outputs (such as articles, datasets, or other materials) with a wider community of users without the need for previously required review process. Community manager or owner have the ability to enable or disable this feature for their communities through the community manager interface.
+If it seems like the view and download counts on the landing page are a bit low, that's
+probably because the landing page shows the *unique views/downloads* per default.
+They deduplicate events for each record that are coming from the same source.
+This is simply the more honest metric, even if it can be a little bit disappointing.
+
+#### Only records have stats
+
+Out of the box, InvenioRDM only collects statistics for records but not drafts.
+As a consequence, only the record search supports display of and sorting by views
+and downloads.
+
+#### Only UI visits are counted as view
+
+Currently, InvenioRDM will generate but immediately discard `record-view` events
+generated via REST API accesses.
+Thus, only landing page visits will count towards the record views.
+
+For more details about usage statistics, consult the documentation [page](../../reference/statistics.md)
+
+### Community submission and required review
+
+With InvenioRDM v12.0.0b1, you can now change if a review is always required when submitting a new record to your community, or if curators, managers and owners can submit a record without the review process. In this case, a review will be created anyway, but it will be automatically accepted. Community manager or owner have the ability to enable or disable this feature for their communities through the community manager interface.
+
 
 ![](./v12.0.0/community-curation-policy.png)
 
-When enabled, the "direct publish" option will be available to users when submitting their research outputs to the community. If disabled, this option will not be available, and users will need to go through the traditional peer review process in order to publish their work.
+When enabled, the community submission without required review option will be available to users when submitting their research outputs to the community. If disabled, this option will not be available, and users will need to go through the traditional peer review process in order to publish their work.
 
 ### Multiple communities submission
 
-One of the new features included in the InvenioRDM v12.0.0 release is the ability to include a single research output in multiple communities. This feature is designed to allow researchers to share their work with a broader audience and make it easier for communities to collaborate and exchange knowledge.
+One of the new features included in the InvenioRDM v12.0.0 release is the ability to include a record in multiple communities.
 
-When submitting a new record or editing an existing one, users will now have the option to select multiple communities to include the record in. This can be done through the InvenioRDM user interface or via the InvenioRDM API.
 
 ![](./v12.0.0/communities-menu.png)
+
+!!! note 
+    You can include a record to multiple communities only **after** having published the record.
 
 Once a record has been included in a community, it becomes visible and editable by the community curators. This means that members of the community who have been granted the appropriate permissions can view and modify the record metadata, add related files or links, and perform other actions related to the record.
 
@@ -78,7 +102,7 @@ A metadata-only record is a record that contains only descriptive metadata, with
 
 By default, InvenioRDM allows metadata-only records. However, with the addition of the RDM_ALLOW_METADATA_ONLY_RECORDS configuration variable, you can now choose to disallow metadata-only records if desired, and any attempt to create or update a record without files or content will result in an error.
 
-To use this configuration variable, you would add it to your InvenioRDM configuration file (`invenio.cfg`) and set it to either True or False, depending on whether you want to allow metadata-only records. For example:
+To use this configuration variable, add it to your `invenio.cfg`:
 
 ```python
 RDM_ALLOW_METADATA_ONLY_RECORDS = False
@@ -86,7 +110,7 @@ RDM_ALLOW_METADATA_ONLY_RECORDS = False
 
 With this configuration option set to False, users cannot anymore create metadata-only records by omitting the files field when creating or updating a record.
 
-It's worth noting that allowing metadata-only records may have implications for data management and preservation, as well as for editing existing records (users will not be required to provide a file for each record. Therefore, it's recommended to carefully consider the use case and potential consequences before disabling this configuration option.
+It's worth noting that allowing metadata-only records may have implications for data management and preservation, as well as for editing existing records (users will not be required to provide a file for each record. Therefore, it's recommended to carefully consider the use case and its potential consequences, before disabling this configuration option.
 
 #### Restricted records
 
@@ -94,15 +118,13 @@ A restricted record is a record that contains sensitive or confidential informat
 
 By default, InvenioRDM allows restricted records. However, with the addition of the RDM_ALLOW_RESTRICTED_RECORDS configuration variable, you can now choose to disallow restricted records if desired, and any attempt to create or update a record with restricted access will result in an error.
 
-To use this configuration variable, you would add it to your InvenioRDM configuration file (`invenio.cfg`) and set it to either True or False, depending on whether you want to allow restricted records. For example:
+To use this configuration variable, add it to your `invenio.cfg`:
 
 ```
 RDM_ALLOW_RESTRICTED_RECORDS = False
 ```
 
 With this configuration option set to True, users cannot create records with restricted access by setting the access field to "restricted". The user interface will no longer show the option to restrict the record, and the rest API will return an error if the user has no sufficient permissions to perform this action. This will disable the restricted access and the users will be able to create only open access records.
-
-TODO: document the permissions here ?
 
 
 ### New export formats
@@ -111,20 +133,20 @@ We are pleased to announce that the latest release includes several new export f
 
 Detailed documentation of export formats is available [here](../../reference/export_formats.md) 
 
-### Data model extensions 
+### Metadata extensions 
 
 The regular data model of InvenioRDM provides a set of core metadata fields that are commonly used to describe research data. These fields are designed to be generic enough to cover a wide range of research data, while still providing enough detail to describe the research in a meaningful way.
 
 However, there are situations where additional metadata fields are needed to capture more specific information about the research data. InvenioRDM provides the ability to add custom fields to the data model to accommodate these specific needs.
 
-The custom fields, such as journal, thesis, conference, imprint, and notes, are not included in the regular data model because they are not commonly used for describing research data. These fields are more specific to certain types of research or publications, and therefore, may not be relevant or necessary for all research data - however they are provided now provided possible extensions to the data model. Instance manages is able to include these fields by configuration.
+The custom fields, such as journal, thesis, conference, imprint, and notes, are not included in the regular data model because they are not commonly used for describing research data. These fields are more specific to certain types of research or publications, and therefore, may not be relevant or necessary for all research data - however they are provided now provided possible extensions to the data model. Instance manages is able to include these fields by configuration. For more details on how to configure the aforementioned fields, visit [reference page](../../reference/custom_fields/fields_list.md).
 
 ![](./v12.0.0/custom_fields_example_deposit_form.png)
 
 ## Other changes
 
-- deprecated dependency `flask-babelex` was replaced with flask babel. Check [upgrade guide](../upgrading/upgrade-v12.0-beta.md) for more details
-- communities REST endpoint accepts both UUID and slug in the url
+- deprecated dependency `flask-babelex` was replaced with flask babel. Check [upgrade guide](./upgrade-v12.0.0b1.md) for more details
+- communities REST endpoint accepts both UUID and slug in the URL
 
 
 #### Python and Node.js versions
@@ -133,28 +155,13 @@ While you can run InvenioRDM with Python version 3.7, 3.8 and 3.9, the recommend
 
 We recommend upgrading **Node.js** to **v16**. Next InvenioRDM releases will support more recent versions.
 
+## Upgrading to v12.0b1
 
-### Breaking changes
-
-- The following changes should not affect the majority of the users. We recommend to verify if any usage can be found in customisations or modules:
-    - in [Invenio-Records-Resources](https://github.com/inveniosoftware/invenio-records-resources), the function `pick` in the `ExpandableField` class, the function `expand` in `LinksTemplate` class and the function `pick_resolved_fields` in `EntityProxy` class now require a new parameter `identity`.
-
-## Deprecations
-
-Support for Elasticsearch v7 is deprecated and it will be removed in a future release.
-
-## Limitations
-
-- The featured communities administration panel is disabled by default, due to the limited user experience and features available.
-- The possibility of overriding UI components is now available with InvenioRDM, but *experimental*: the documentation is limited and components might include breaking changes in future releases.
-
-## Upgrading to v12.0
-
-We support upgrading from v11 to v12. Please see the [upgrade notice](../upgrading/upgrade-v12.0-beta.md).
+We support upgrading from v11 to v12b1. Please see the [upgrade notice](./upgrade-v12.0.0b1.md).
 
 ## Maintenance policy
 
-InvenioRDM v12.0-beta is a beta release which is interim release until InvenioRDM v12.0. See our [Maintenance Policy](../maintenance-policy.md).
+InvenioRDM v12.0.0b1 is a beta release which is interim release until InvenioRDM v12.0. See our [Maintenance Policy](../maintenance-policy.md).
 
 If you plan to deploy InvenioRDM as a production service, please use InvenioRDM v9.1 Long-Term Support (LTS) Release.
 

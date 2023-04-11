@@ -1,4 +1,4 @@
-# Upgrading from v11 to v12
+# Upgrading from v11 to v12.0.0b1
 
 ## Prerequisites
 
@@ -18,7 +18,7 @@ If unsure, run `invenio-cli install` from inside the instance directory before e
 
 !!! warning "Upgrade your invenio-cli"
 
-    Make sure you have the latest `invenio-cli`, for InvenioRDM v11 the release is v1.0.20
+    Make sure you have the latest `invenio-cli`, for InvenioRDM v12.0.0b1 the release is v1.0.20
 
     ```bash
     $ invenio-cli --version
@@ -43,25 +43,28 @@ You should delete your virtualenv before running `invenio-cli` or `pipenv` comma
 
 ### Upgrade InvenioRDM
 
-Make sure you that your virtual env is now running with Python 3.9.
+Make sure that your virtual env is now running with Python 3.9.
 
 Upgrade the RDM version:
 
 ```bash
 cd <my-site>
 # Upgrade to InvenioRDM v12
-invenio-cli packages update 12.0.0.beta
+invenio-cli packages update 12.0.0b1
 pipenv uninstall flask-babelex
 # Re-build assets
 invenio-cli assets build
 ```
 
-Optionally, update the file `<my-site>/Pipfile`. This step is not necessary, but suggested for local development.
+Optionally, update the file `<my-site>/Pipfile`. Attention: this action might lead to installing unwanted pre-releases of other packages.  
 
 ```diff
 [packages]
 ---invenio-app-rdm = {extras = [...], version = "~=11.0.0"}
-+++invenio-app-rdm = {extras = [...], version = "~=12.0.0"}
++++invenio-app-rdm = {extras = [...], version = "==12.0.0b1"}
+
+[pipenv]
+allow_prereleases = true
 ```
 
 ### Database migration
