@@ -108,7 +108,7 @@ To use this configuration variable, add it to your `invenio.cfg`:
 RDM_ALLOW_METADATA_ONLY_RECORDS = False
 ```
 
-With this configuration option set to False, users cannot anymore create metadata-only records by omitting the files field when creating or updating a record.
+With this configuration option set to `False`, users cannot anymore create metadata-only records by omitting the files field when creating or updating a record.
 
 It's worth noting that allowing metadata-only records may have implications for data management and preservation, as well as for editing existing records (users will not be required to provide a file for each record. Therefore, it's recommended to carefully consider the use case and its potential consequences, before disabling this configuration option.
 
@@ -124,7 +124,7 @@ To use this configuration variable, add it to your `invenio.cfg`:
 RDM_ALLOW_RESTRICTED_RECORDS = False
 ```
 
-With this configuration option set to True, users cannot create records with restricted access by setting the access field to "restricted". The user interface will no longer show the option to restrict the record, and the rest API will return an error if the user has no sufficient permissions to perform this action. This will disable the restricted access and the users will be able to create only open access records.
+With this configuration option set to `False`, users cannot create records with restricted access by setting the access field to "restricted". The user interface will no longer show the option to restrict the record, and the rest API will return an error if the user has no sufficient permissions to perform this action. This will disable the restricted access and the users will be able to create only open access records.
 
 
 ### New export formats
