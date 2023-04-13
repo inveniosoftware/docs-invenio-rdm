@@ -1,12 +1,12 @@
 # Site banners
 
-Banners can easily be added to your InvenioRDM instance through the admin panel. They can be added globally or to a specific path.
+Banners can easily be added to your InvenioRDM instance through the admin panel. They can be added globally or to a specific path. 
 
 ## Adding a new banner
 
 **As an admin user** you can add new banners through the admin panel at `/administration`. This is also available through the user-menu in the top right corner of your instance:
 
-<img src="/features-walk-through/img/user_menu_admin.png" width="200"/>
+![Banners page](./img/user_menu_admin.png)
 
 In the admin panel you will see "Banners" as a menu item in the sidebar. If you enter this, you will be shown an overview of all the banners added in your instance. In our case this list is empty, as we didn't add any banners yet.
 

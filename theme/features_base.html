@@ -21,15 +21,26 @@
 {% block content %}
   {% for item in nav %}
       {% if item.title == "Features" %}
-
           {% for sub_page in item.children %}
-            {% if sub_page.title != "Overview" %}
+            {% if sub_page.title != "Overview" and sub_page.meta %}
               {{ feature_box(sub_page.title, sub_page.url, sub_page.meta.summary, sub_page.meta.image) }}
             {% endif %}
           {% endfor %}
 
       {% endif %}
   {% endfor %}
+   <section class="feature">
+      <div class="content-wrapper">
+        <div class="image" style="background-image: url('../images/responsive.png')">
+        </div>
+
+        <div class="text-wrapper">
+            <h2>Features overview</h2>
+            <p>Learn how to use our features</p>
+            <a href="/features/features-walk-through/" class="learn-more"> Learn more ❯</a>
+        </div>
+      </div>
+    </section>
 {% endblock %}
 
 

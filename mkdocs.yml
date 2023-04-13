@@ -32,8 +32,9 @@ nav:
       - Interoperable: "features/interoperable.md"
       - Powerful: "features/powerful.md"
       - Secure: "features/secure.md"
-  - Features walk-through:
-      - Site banners: "features-walk-through/banners.md"
+      - Features walk-through:
+          - Features overview: "features/features-walk-through/index.md"
+          - Site banners: "features/features-walk-through/banners.md"
   - Install:
       - Quick start: "install/index.md"
       - System requirements: "install/requirements.md"
@@ -193,8 +194,8 @@ nav:
           - Upgrade from v2 to v3: releases/upgrading/upgrade-v3.0.md
           - Upgrade from v1 to v2: releases/upgrading/upgrade-v2.0.md
       - Temporary versions:
-            - Version v12.0.0b1: releases/temporary-versions/version-v12.0.0b1.md
-            - Upgrade from v11 to v12.0.0b1: releases/temporary-versions/upgrade-v12.0.0b1.md
+          - Version v12.0.0b1: releases/temporary-versions/version-v12.0.0b1.md
+          - Upgrade from v11 to v12.0.0b1: releases/temporary-versions/upgrade-v12.0.0b1.md
   - Maintainers:
       - Overview: maintenance/index.md
       - Newcomers: maintenance/newcomers.md
