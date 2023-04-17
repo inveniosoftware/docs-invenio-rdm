@@ -11,7 +11,7 @@ infrastructure. It consists of:
 - **Application servers:** UWSGI, Gunicorn or mod_wsgi.
 - **Distributed task queue:** Celery
 - **Database:** PostgreSQL.
-- **Search engine:** Opensearch.
+- **Search engine:** OpenSearch v2, OpenSearch v1, ElasticSearch v7.
 - **Message queue:** RabbitMQ, Redis or Amazon SQS.
 - **Cache system:** Redis or Memcache.
 - **Storage system:** Local, S3, XRootD, WebDAV and more.
