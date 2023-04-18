@@ -18,8 +18,8 @@
 | Name            | Type   | Location | Description                                                                                                                  |
 |-----------------|--------|----------|------------------------------------------------------------------------------------------------------------------------------|
 | `visibility`    | string | body     | Required, one of `"public"` or `"restricted"`. Visible by the public or restricted to those who have access.                 |
-| `member_policy` | string | body     | Required, one of `"open"` or `"closed"`. Can people ask to be part of the community (open) or not (closed)?                  |
-| `record_policy` | string | body     | Required, one of `"open"` or `"closed"` or `"restricted"`. Can records be submitted to the community (open) or not (closed)? |
+| `member_policy` | string | body     | Required, one of `"open"` or `"closed"`. Can people request to be part of the community (open) or not (closed)?                  |
+| `record_policy` | string | body     | Required, one of `"open"` or `"closed"`. Can community's members submit a record to the community without a review (open), or a review is always necessary (closed)? |
 | `owned_by`      | array  | body     | Array of Objects of the form: `{"user": <user_id> }`. Community owners (admins).                                             |
 
 ### Community metadata
@@ -652,7 +652,7 @@ The goal of featured communities is to increase the level of awareness for a com
 
 !!! hint
     Only public communities may be featured, as they can be accessed by everyone.
-    
+
     Only the search is available to any user. Other endpoints require the `system_process` permission need.
 
 ### Search Featured Communities
