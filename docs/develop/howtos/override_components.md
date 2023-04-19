@@ -96,7 +96,7 @@ Let's create a new React component, very similar to the default `FileUploaderToo
   };
 ```
 
-Now, change the map add your new component:
+Now, change the map by adding your new component:
 
 ```javascript
 ...
