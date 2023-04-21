@@ -20,27 +20,26 @@ The following general restrictions apply to the member API:
 - Members can change their own visibility to both public/hidden.
 - Owners/managers can change visibility of members to hidden.
 
-### Search members
+### Get Community Members
 
 `GET /api/communities/{id}/members`
 
 **Parameters**
 
-| Name         | Type    | Location | Description                                                              |
-| ------------ | ------- | -------- | ------------------------------------------------------------------------ |
-| `id`         | string  | path     | Community UUID identifier                                                |
-| `accept`     | string  | header   | - `application/json`                                                     |
-| `q`          | string  | query    | Search query used to filter results.                                     |
-| `sort`       | string  | query    | Sort search results.                                                     |
-| `size`       | integer | query    | Specify number of items in the results page (default: 10).               |
-| `page`       | integer | query    | Specify the page of results.                                             |
-| `role`       | string  | query    | Filter by role (one of ``reader``, ``curator``, ``manager``, ``owner``). |
-| `visibility` | boolean | query    | Filter by visibility (one of ``true``, ``false``)                        |
-
+| Name         | Type    | Location | Description                                                                                           |
+|--------------|---------|----------|-------------------------------------------------------------------------------------------------------|
+| `id`         | string  | path     | Community UUID identifier or slug e.g. `bd647379-23ea-477a-970f-201512ae5624` or `my-super-community` |
+| `accept`     | string  | header   | - `application/json`                                                                                  |
+| `q`          | string  | query    | Search query used to filter results.                                                                  |
+| `sort`       | string  | query    | Sort search results.                                                                                  |
+| `size`       | integer | query    | Specify number of items in the results page (default: 10).                                            |
+| `page`       | integer | query    | Specify the page of results.                                                                          |
+| `role`       | string  | query    | Filter by role (one of ``reader``, ``curator``, ``manager``, ``owner``).                              |
+| `visibility` | boolean | query    | Filter by visibility (one of ``true``, ``false``)                                                     |
 **Request**
 
 ```http
-GET /api/communities/bd647379-23ea-477a-970f-201512ae5624/members HTTP/1.1
+GET /api/communities/{id}/members HTTP/1.1
 Accept: application/json
 ```
 
@@ -149,13 +148,13 @@ Content-Type: application/json
 
 **Parameters**
 
-| Name     | Type    | Location | Description                                                |
-| -------- | ------- | -------- | ---------------------------------------------------------- |
-| `id`     | string  | path     | Community UUID identifier                                  |
-| `accept` | string  | header   | - `application/json`                                       |
-| `q`      | string  | query    | Search query used to filter results.                       |
-| `size`   | integer | query    | Specify number of items in the results page (default: 10). |
-| `page`   | integer | query    | Specify the page of results.                               |
+| Name     | Type    | Location | Description                                                                                           |
+|----------|---------|----------|-------------------------------------------------------------------------------------------------------|
+| `id`     | string  | path     | Community UUID identifier or slug e.g. `bd647379-23ea-477a-970f-201512ae5624` or `my-super-community` |
+| `accept` | string  | header   | - `application/json`                                                                                  |
+| `q`      | string  | query    | Search query used to filter results.                                                                  |
+| `size`   | integer | query    | Specify number of items in the results page (default: 10).                                            |
+| `page`   | integer | query    | Specify the page of results.                                                                          |
 
 **Request**
 
@@ -200,17 +199,17 @@ Content-Type: application/json
 
 **Parameters**
 
-| Name      | Type    | Location | Description                                                                                     |
-| --------- | ------- | -------- | ----------------------------------------------------------------------------------------------- |
-| `id`      | string  | path     | Community UUID identifier                                                                       |
-| `accept`  | string  | header   | - `application/json`                                                                            |
-| `q`       | string  | query    | Search query used to filter results.                                                            |
-| `sort`    | string  | query    | Sort search results.                                                                            |
-| `size`    | integer | query    | Specify number of items in the results page (default: 10).                                      |
-| `page`    | integer | query    | Specify the page of results.                                                                    |
-| `role`    | string  | query    | Filter by role (one of ``reader``, ``curator``, ``manager``, ``owner``).                        |
-| `status`  | string  | query    | Filter by status (one of ``submitted``, ``accepted``, ``declined``, ``expired``, ``cancelled``) |
-| `is_open` | boolean | query    | Filter by open/closed (one of ``true``, ``false``)                                              |
+| Name      | Type    | Location | Description                                                                                           |
+|-----------|---------|----------|-------------------------------------------------------------------------------------------------------|
+| `id`      | string  | path     | Community UUID identifier or slug e.g. `bd647379-23ea-477a-970f-201512ae5624` or `my-super-community` |
+| `accept`  | string  | header   | - `application/json`                                                                                  |
+| `q`       | string  | query    | Search query used to filter results.                                                                  |
+| `sort`    | string  | query    | Sort search results.                                                                                  |
+| `size`    | integer | query    | Specify number of items in the results page (default: 10).                                            |
+| `page`    | integer | query    | Specify the page of results.                                                                          |
+| `role`    | string  | query    | Filter by role (one of ``reader``, ``curator``, ``manager``, ``owner``).                              |
+| `status`  | string  | query    | Filter by status (one of ``submitted``, ``accepted``, ``declined``, ``expired``, ``cancelled``)       |
+| `is_open` | boolean | query    | Filter by open/closed (one of ``true``, ``false``)                                                    |
 
 **Request**
 
@@ -337,13 +336,13 @@ system identity.
 
 **Parameters**
 
-| Name           | Type    | Location | Description                                                                 |
-| -------------- | ------- | -------- | --------------------------------------------------------------------------- |
-| `id`           | string  | path     | Community UUID identifier                                                   |
-| `content-type` | string  | header   | - `application/json`                                                        |
-| `members`      | object  | body     | List of group members to add.                                               |
-| `role`         | string  | body     | Set role of group (one of ``reader``, ``curator``, ``manager``, ``owner``). |
-| `visible`      | boolean | body     | Set visibility (one of ``true``, ``false``)                                 |
+| Name           | Type    | Location | Description                                                                                           |
+|----------------|---------|----------|-------------------------------------------------------------------------------------------------------|
+| `id`           | string  | path     | Community UUID identifier or slug e.g. `bd647379-23ea-477a-970f-201512ae5624` or `my-super-community` |
+| `content-type` | string  | header   | - `application/json`                                                                                  |
+| `members`      | object  | body     | List of group members to add.                                                                         |
+| `role`         | string  | body     | Set role of group (one of ``reader``, ``curator``, ``manager``, ``owner``).                           |
+| `visible`      | boolean | body     | Set visibility (one of ``true``, ``false``)                                                           |
 
 **Request**
 
@@ -376,14 +375,14 @@ Note, only users can be invited. Groups must be added directly.
 
 **Parameters**
 
-| Name           | Type    | Location | Description                                                                 |
-| -------------- | ------- | -------- | --------------------------------------------------------------------------- |
-| `id`           | string  | path     | Community UUID identifier                                                   |
-| `content-type` | string  | header   | - `application/json`                                                        |
-| `members`      | object  | body     | List of group members to add.                                               |
-| `role`         | string  | body     | Set role of group (one of ``reader``, ``curator``, ``manager``, ``owner``). |
-| `visible`      | boolean | body     | Set visibility (one of ``true``, ``false``)                                 |
-| `message`      | string  | body     | A message to the user being invited.                                        |
+| Name           | Type    | Location | Description                                                                                           |
+|----------------|---------|----------|-------------------------------------------------------------------------------------------------------|
+| `id`           | string  | path     | Community UUID identifier or slug e.g. `bd647379-23ea-477a-970f-201512ae5624` or `my-super-community` |
+| `content-type` | string  | header   | - `application/json`                                                                                  |
+| `members`      | object  | body     | List of group members to add.                                                                         |
+| `role`         | string  | body     | Set role of group (one of ``reader``, ``curator``, ``manager``, ``owner``).                           |
+| `visible`      | boolean | body     | Set visibility (one of ``true``, ``false``)                                                           |
+| `message`      | string  | body     | A message to the user being invited.                                                                  |
 
 **Request**
 
@@ -415,11 +414,11 @@ HTTP/1.1 204 NO CONTENT
 
 **Parameters**
 
-| Name           | Type   | Location | Description                      |
-| -------------- | ------ | -------- | -------------------------------- |
-| `id`           | string | path     | Community UUID identifier        |
-| `content-type` | string | header   | - `application/json`             |
-| `members`      | object | body     | List of group members to delete. |
+| Name           | Type   | Location | Description                                                                                           |
+|----------------|--------|----------|-------------------------------------------------------------------------------------------------------|
+| `id`           | string | path     | Community UUID identifier or slug e.g. `bd647379-23ea-477a-970f-201512ae5624` or `my-super-community` |
+| `content-type` | string | header   | - `application/json`                                                                                  |
+| `members`      | object | body     | List of group members to delete.                                                                      |
 
 **Request**
 
@@ -449,13 +448,13 @@ HTTP/1.1 204 NO CONTENT
 
 **Parameters**
 
-| Name           | Type    | Location | Description                                                                 |
-| -------------- | ------- | -------- | --------------------------------------------------------------------------- |
-| `id`           | string  | path     | Community UUID identifier                                                   |
-| `content-type` | string  | header   | - `application/json`                                                        |
-| `members`      | object  | body     | List of group members to add.                                               |
-| `role`         | string  | body     | Set role of group (one of ``reader``, ``curator``, ``manager``, ``owner``). |
-| `visible`      | boolean | body     | Set visibility (one of ``true``, ``false``)                                 |
+| Name           | Type    | Location | Description                                                                                           |
+|----------------|---------|----------|-------------------------------------------------------------------------------------------------------|
+| `id`           | string  | path     | Community UUID identifier or slug e.g. `bd647379-23ea-477a-970f-201512ae5624` or `my-super-community` |
+| `content-type` | string  | header   | - `application/json`                                                                                  |
+| `members`      | object  | body     | List of group members to add.                                                                         |
+| `role`         | string  | body     | Set role of group (one of ``reader``, ``curator``, ``manager``, ``owner``).                           |
+| `visible`      | boolean | body     | Set visibility (one of ``true``, ``false``)                                                           |
 
 
 **Request**
@@ -492,13 +491,13 @@ HTTP/1.1 204 NO CONTENT
 
 **Parameters**
 
-| Name           | Type    | Location | Description                                                                 |
-| -------------- | ------- | -------- | --------------------------------------------------------------------------- |
-| `id`           | string  | path     | Community UUID identifier                                                   |
-| `content-type` | string  | header   | - `application/json`                                                        |
-| `members`      | object  | body     | List of group members to add.                                               |
-| `role`         | string  | body     | Set role of group (one of ``reader``, ``curator``, ``manager``, ``owner``). |
-| `visible`      | boolean | body     | Set visibility (one of ``true``, ``false``)                                 |
+| Name           | Type    | Location | Description                                                                                           |
+|----------------|---------|----------|-------------------------------------------------------------------------------------------------------|
+| `id`           | string  | path     | Community UUID identifier or slug e.g. `bd647379-23ea-477a-970f-201512ae5624` or `my-super-community` |
+| `content-type` | string  | header   | - `application/json`                                                                                  |
+| `members`      | object  | body     | List of group members to add.                                                                         |
+| `role`         | string  | body     | Set role of group (one of ``reader``, ``curator``, ``manager``, ``owner``).                           |
+| `visible`      | boolean | body     | Set visibility (one of ``true``, ``false``)                                                           |
 
 **Request**
 
