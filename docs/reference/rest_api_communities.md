@@ -15,12 +15,12 @@
 
 ### Community access
 
-| Name            | Type   | Location | Description                                                                                                                  |
-|-----------------|--------|----------|------------------------------------------------------------------------------------------------------------------------------|
-| `visibility`    | string | body     | Required, one of `"public"` or `"restricted"`. Visible by the public or restricted to those who have access.                 |
-| `member_policy` | string | body     | Required, one of `"open"` or `"closed"`. Can people request to be part of the community (open) or not (closed)?                  |
+| Name            | Type   | Location | Description                                                                                                                                                          |
+|-----------------|--------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `visibility`    | string | body     | Required, one of `"public"` or `"restricted"`. Visible by the public or restricted to those who have access.                                                         |
+| `member_policy` | string | body     | Required, one of `"open"` or `"closed"`. Can people request to be part of the community (open) or not (closed)?                                                      |
 | `record_policy` | string | body     | Required, one of `"open"` or `"closed"`. Can community's members submit a record to the community without a review (open), or a review is always necessary (closed)? |
-| `owned_by`      | array  | body     | Array of Objects of the form: `{"user": <user_id> }`. Community owners (admins).                                             |
+| `owned_by`      | array  | body     | Array of Objects of the form: `{"user": <user_id> }`. Community owners (admins).                                                                                     |
 
 ### Community metadata
 
@@ -86,15 +86,15 @@ Content-Type: application/json
   "id": "399a3cdc-d2ba-4f63-8b3a-9c2c977a5dd3",
   "revision_id": 1,
   "links": {
-    "self": "{scheme+hostname}/api/communities/{community_id}",
-    "self_html": "{scheme+hostname}/communities/{community_slug}",
-    "settings_html": "{scheme+hostname}/communities/{community_slug}/settings",
-    "logo": "{scheme+hostname}/communities/{community_id}/logo",
-    "rename": "{scheme+hostname}/communities/{community_id}",
-    "members": "{scheme+hostname}/communities/{community_id}/members",
-    "public_members": "{scheme+hostname}/communities/{community_id}/members/public",
-    "invitations": "{scheme+hostname}/communities/{community_id}/invitations",
-    "requests": "{scheme+hostname}/communities/{community_id}/requests"
+    "self": "{scheme+hostname}/api/communities/{id}",
+    "self_html": "{scheme+hostname}/communities/{id}",
+    "settings_html": "{scheme+hostname}/communities/{id}/settings",
+    "logo": "{scheme+hostname}/communities/{id}/logo",
+    "rename": "{scheme+hostname}/communities/{id}",
+    "members": "{scheme+hostname}/communities/{id}/members",
+    "public_members": "{scheme+hostname}/communities/{id}/members/public",
+    "invitations": "{scheme+hostname}/communities/{id}/invitations",
+    "requests": "{scheme+hostname}/communities/{id}/requests"
   },
   "metadata": {
     "title": "My Community",
@@ -126,7 +126,7 @@ Content-Type: application/json
 **Request**
 
 ```http
-PUT /api/communities/<comid> HTTP/1.1
+PUT /api/communities/{id} HTTP/1.1
 Content-Type: application/json
 
 {
@@ -170,15 +170,15 @@ Content-Type: application/json
   "id": "399a3cdc-d2ba-4f63-8b3a-9c2c977a5dd3",
   "revision_id": 2,
   "links": {
-    "self": "{scheme+hostname}/api/communities/{community_id}",
-    "self_html": "{scheme+hostname}/communities/{community_slug}",
-    "settings_html": "{scheme+hostname}/communities/{community_slug}/settings",
-    "logo": "{scheme+hostname}/communities/{community_id}/logo",
-    "rename": "{scheme+hostname}/communities/{community_id}",
-    "members": "{scheme+hostname}/communities/{community_id}/members",
-    "public_members": "{scheme+hostname}/communities/{community_id}/members/public",
-    "invitations": "{scheme+hostname}/communities/{community_id}/invitations",
-    "requests": "{scheme+hostname}/communities/{community_id}/requests"
+    "self": "{scheme+hostname}/api/communities/{id}",
+    "self_html": "{scheme+hostname}/communities/{id}",
+    "settings_html": "{scheme+hostname}/communities/{id}/settings",
+    "logo": "{scheme+hostname}/communities/{id}/logo",
+    "rename": "{scheme+hostname}/communities/{id}",
+    "members": "{scheme+hostname}/communities/{id}/members",
+    "public_members": "{scheme+hostname}/communities/{id}/members/public",
+    "invitations": "{scheme+hostname}/communities/{id}/invitations",
+    "requests": "{scheme+hostname}/communities/{id}/requests"
   },
   "metadata": {
     "title": "My Updated Community",
@@ -198,19 +198,19 @@ Content-Type: application/json
 
 ### Delete a Community
 
-`DELETE /api/communities/<com_slug>`
+`DELETE /api/communities/{id}`
 
 **Parameters**
 
-| Name       | Type   | Location | Description                                                                |
-|------------|--------|----------|----------------------------------------------------------------------------|
-| `com_slug` | string | path     | Identifier of the community, e.g.  `my_community`                          |
-| `accept`   | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
+| Name     | Type   | Location | Description                                                                                       |
+|----------|--------|----------|---------------------------------------------------------------------------------------------------|
+| `id`     | string | path     | UUID or slug of the community e.g. `399a3cdc-d2ba-4f63-8b3a-9c2c977a5dd3` or 'my-super-community' |
+| `accept` | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json`                        |
 
 **Request**
 
 ```http
-DELETE /api/communities/<comid> HTTP/1.1
+DELETE /api/communities/{id} HTTP/1.1
 Accept: application/json
 
 ```
@@ -223,19 +223,19 @@ HTTP/1.1 204 No Content
 
 ### Get a Community
 
-`GET /api/communities/<com_id>`
+`GET /api/communities/{id}`
 
  **Parameters**
 
-| Name     | Type   | Location | Description                                                                |
-|----------|--------|----------|----------------------------------------------------------------------------|
-| `com_id` | string | path     | UUID of the community e.g.  `399a3cdc-d2ba-4f63-8b3a-9c2c977a5dd3`         |
-| `accept` | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
+| Name     | Type   | Location | Description                                                                                         |
+|----------|--------|----------|-----------------------------------------------------------------------------------------------------|
+| `id`     | string | path     | UUID or slug  of the community e.g.  `399a3cdc-d2ba-4f63-8b3a-9c2c977a5dd3` or `my-super-community` |
+| `accept` | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json`                          |
 
 **Request**
 
 ```http
-GET /api/communities/<com_id> HTTP/1.1
+GET /api/communities/{id} HTTP/1.1
 Accept: application/json
 ```
 
@@ -256,16 +256,16 @@ Content-Type: application/json
   "id": "399a3cdc-d2ba-4f63-8b3a-9c2c977a5dd3",
   "revision_id": 2,
   "links": {
-    "self": "{scheme+hostname}/api/communities/{community_id}",
-    "self_html": "{scheme+hostname}/communities/{community_slug}",
-    "settings_html": "{scheme+hostname}/communities/{community_slug}/settings",
-    "logo": "{scheme+hostname}/communities/{community_id}/logo",
-    "rename": "{scheme+hostname}/communities/{community_id}",
-    "members": "{scheme+hostname}/communities/{community_id}/members",
-    "public_members": "{scheme+hostname}/communities/{community_id}/members/public",
-    "invitations": "{scheme+hostname}/communities/{community_id}/invitations",
-    "requests": "{scheme+hostname}/communities/{community_id}/requests",
-    "featured": "{scheme+hostname}/communities/{community_id}/featured"
+    "self": "{scheme+hostname}/api/communities/{id}",
+    "self_html": "{scheme+hostname}/communities/{id}",
+    "settings_html": "{scheme+hostname}/communities/{id}/settings",
+    "logo": "{scheme+hostname}/communities/{id}/logo",
+    "rename": "{scheme+hostname}/communities/{id}",
+    "members": "{scheme+hostname}/communities/{id}/members",
+    "public_members": "{scheme+hostname}/communities/{id}/members/public",
+    "invitations": "{scheme+hostname}/communities/{id}/invitations",
+    "requests": "{scheme+hostname}/communities/{id}/requests",
+    "featured": "{scheme+hostname}/communities/{id}/featured"
   },
   "metadata": {
     "title": "My Updated Community",
@@ -342,15 +342,15 @@ Content-Type: application/json
       "id": "399a3cdc-d2ba-4f63-8b3a-9c2c977a5dd3",
       "revision_id": 2,
       "links": {
-        "self": "{scheme+hostname}/api/communities/{community_id}",
-        "self_html": "{scheme+hostname}/communities/{community_slug}",
-        "settings_html": "{scheme+hostname}/communities/{community_slug}/settings",
-        "logo": "{scheme+hostname}/communities/{community_id}/logo",
-        "rename": "{scheme+hostname}/communities/{community_id}",
-        "members": "{scheme+hostname}/communities/{community_id}/members",
-        "public_members": "{scheme+hostname}/communities/{community_id}/members/public",
-        "invitations": "{scheme+hostname}/communities/{community_id}/invitations",
-        "requests": "{scheme+hostname}/communities/{community_id}/requests"
+        "self": "{scheme+hostname}/api/communities/{id}",
+        "self_html": "{scheme+hostname}/communities/{id}",
+        "settings_html": "{scheme+hostname}/communities/{id}/settings",
+        "logo": "{scheme+hostname}/communities/{id}/logo",
+        "rename": "{scheme+hostname}/communities/{id}",
+        "members": "{scheme+hostname}/communities/{id}/members",
+        "public_members": "{scheme+hostname}/communities/{id}/members/public",
+        "invitations": "{scheme+hostname}/communities/{id}/invitations",
+        "requests": "{scheme+hostname}/communities/{id}/requests"
       },
       "metadata": {
         "title": "My Updated Community",
@@ -426,19 +426,19 @@ Content-Type: application/json
 
 ### Rename a Community
 
-`POST /api/communities/<com_id>/rename`
+`POST /api/communities/{id}/rename`
 
 **Parameters**
 
-| Name     | Type   | Location | Description                                                                |
-|----------|--------|----------|----------------------------------------------------------------------------|
-| `accept` | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
- | `com_id` | string | path     | UUID of the community e.g.  `399a3cdc-d2ba-4f63-8b3a-9c2c977a5dd3`         |
+| Name     | Type   | Location | Description                                                                                         |
+|----------|--------|----------|-----------------------------------------------------------------------------------------------------|
+| `accept` | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json`                          |
+| `id`     | string | path     | UUID or slug  of the community e.g.  `399a3cdc-d2ba-4f63-8b3a-9c2c977a5dd3` or `my-super-community` |
 
 **Request**
 
 ```http
-POST /api/communities/<comid>/rename HTTP/1.1
+POST /api/communities/{id}/rename HTTP/1.1
 Content-Type: application/json
 
 {
@@ -485,15 +485,15 @@ Content-Type: application/json
   "id": "399a3cdc-d2ba-4f63-8b3a-9c2c977a5dd3",
   "revision_id": 2,
   "links": {
-    "self": "{scheme+hostname}/api/communities/{community_id}",
-    "self_html": "{scheme+hostname}/communities/{community_slug}",
-    "settings_html": "{scheme+hostname}/communities/{community_slug}/settings",
-    "logo": "{scheme+hostname}/communities/{community_id}/logo",
-    "rename": "{scheme+hostname}/communities/{community_id}",
-    "members": "{scheme+hostname}/communities/{community_id}/members",
-    "public_members": "{scheme+hostname}/communities/{community_id}/members/public",
-    "invitations": "{scheme+hostname}/communities/{community_id}/invitations",
-    "requests": "{scheme+hostname}/communities/{community_id}/requests"
+    "self": "{scheme+hostname}/api/communities/{id}",
+    "self_html": "{scheme+hostname}/communities/{id}",
+    "settings_html": "{scheme+hostname}/communities/{id}/settings",
+    "logo": "{scheme+hostname}/communities/{id}/logo",
+    "rename": "{scheme+hostname}/communities/{id}",
+    "members": "{scheme+hostname}/communities/{id}/members",
+    "public_members": "{scheme+hostname}/communities/{id}/members/public",
+    "invitations": "{scheme+hostname}/communities/{id}/invitations",
+    "requests": "{scheme+hostname}/communities/{id}/requests"
   },
   "metadata": {
     "title": "My Community",
@@ -511,20 +511,20 @@ Content-Type: application/json
 
 ### Update Community Logo
 
-`PUT api/communities/<com_id>/logo`
+`PUT /api/communities/{id}/logo`
 
 **Parameters**
 
-| Name           | Type   | Location | Description                                                                |
-|----------------|--------|----------|----------------------------------------------------------------------------|
-| `com_id`       | string | path     | UUID of the community e.g.  `399a3cdc-d2ba-4f63-8b3a-9c2c977a5dd3`         |
-| `content-type` | string | header   | Should always be `application/octet-stream`.                               |
-| `accept`       | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
+| Name           | Type   | Location | Description                                                                                         |
+|----------------|--------|----------|-----------------------------------------------------------------------------------------------------|
+| `id`           | string | path     | UUID or slug  of the community e.g.  `399a3cdc-d2ba-4f63-8b3a-9c2c977a5dd3` or `my-super-community` |
+| `content-type` | string | header   | Should always be `application/octet-stream`.                                                        |
+| `accept`       | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json`                          |
 
 **Request**
 
 ```http
-PUT api/communities/<com_id>/logo HTTP/1.1
+PUT /api/communities/{id}/logo HTTP/1.1
 Content-Type: application/octet-stream
 
 <...file binary data...>
@@ -542,7 +542,7 @@ Content-Type: application/json
   "created": "2021-04-26 10:52:23.945755",
   "file_id": "d2a7adb5",
   "key": "logo",
-  "links": {"self": "{scheme+hostname}/api/communities/<comid>/logo"},
+  "links": {"self": "{scheme+hostname}/api/communities/{id}/logo"},
   "metadata": None,
   "mimetype": "application/octet-stream",
   "size": file_size,
@@ -554,19 +554,19 @@ Content-Type: application/json
 ```
 
 ### Get Community Logo
-{scheme+hostname}
-`GET api/communities/<com_id>/logo`
+
+`GET /api/communities/{id}/logo`
 
 **Parameters**
 
-| Name     | Type   | Location | Description                                                        |
-|----------|--------|----------|--------------------------------------------------------------------|
-| `com_id` | string | path     | UUID of the community e.g.  `399a3cdc-d2ba-4f63-8b3a-9c2c977a5dd3` |
+| Name | Type   | Location | Description                                                                                         |
+|------|--------|----------|-----------------------------------------------------------------------------------------------------|
+| `id` | string | path     | UUID or slug  of the community e.g.  `399a3cdc-d2ba-4f63-8b3a-9c2c977a5dd3` or `my-super-community` |
 
 **Request**
 
 ```http
-GET api/communities/<com_id>/logo HTTP/1.1
+GET /api/communities/{id}/logo HTTP/1.1
 
 ```
 
@@ -583,18 +583,18 @@ Content-Type: application/json
 
 ### Delete Community Logo
 
-`DELETE api/communities/<com_id>/logo`
+`DELETE /api/communities/{id}/logo`
 
 **Parameters**
 
-| Name     | Type   | Location | Description                                                        |
-|----------|--------|----------|--------------------------------------------------------------------|
-| `com_id` | string | path     | UUID of the community e.g.  `399a3cdc-d2ba-4f63-8b3a-9c2c977a5dd3` |
+| Name | Type   | Location | Description                                                                                         |
+|------|--------|----------|-----------------------------------------------------------------------------------------------------|
+| `id` | string | path     | UUID or slug  of the community e.g.  `399a3cdc-d2ba-4f63-8b3a-9c2c977a5dd3` or `my-super-community` |
 
 **Request**
 
 ```http
-DELETE api/communities/<com_id>/logo HTTP/1.1
+DELETE /api/communities/{id}/logo HTTP/1.1
 
 ```
 
@@ -604,6 +604,69 @@ DELETE api/communities/<com_id>/logo HTTP/1.1
 HTTP/1.1 204 No Content
 ```
 
+### Get Community Records
+
+`GET /api/communities/{id}/records`
+
+**Parameters**
+
+| Name | Type   | Location | Description                                                                                         |
+|------|--------|----------|-----------------------------------------------------------------------------------------------------|
+| `id` | string | path     | UUID or slug of the community e.g.  `399a3cdc-d2ba-4f63-8b3a-9c2c977a5dd3` or `my-super-community`  |
+
+**Request**
+
+```http
+GET /api/communities/{id}/records HTTP/1.1
+
+```
+
+**Response**
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+    "hits": {
+        "hits": [
+            {...<record-1>...}
+        ],
+        "total": 1
+    },
+    "aggregations": {
+        "access_status": {
+            "buckets": [
+                {
+                    "key": "metadata-only",
+                    "doc_count": 1,
+                    "label": "Metadata-only",
+                    "is_selected": false
+                }
+            ],
+            "label": "Access status"
+        },
+        "resource_type": {
+            "buckets": [
+                {
+                    "key": "dataset",
+                    "doc_count": 1,
+                    "label": "Dataset",
+                    "is_selected": false,
+                    "inner": {
+                        "buckets": []
+                    }
+                }
+            ],
+            "label": "Resource types"
+        }
+    },
+    "sortBy": "newest",
+    "links": {
+        "self": "https://127.0.0.1:5000/api/communities/399a3cdc-d2ba-4f63-8b3a-9c2c977a5dd3/records?page=1&size=25&sort=newest"
+    }
+}
+```
 
 ### Error Responses of Community
 
@@ -771,21 +834,21 @@ Content-Type: application/json
 ```
 ### Create a Featured Community Entry
 
-`POST /api/communities/<community_id>/featured`
+`POST /api/communities/{id}/featured`
 
 **Parameters**
 
-| Name           | Type   | Location | Description                                                                                   |
-|----------------|--------|----------|-----------------------------------------------------------------------------------------------|
-| `accept`       | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json`                    |
-| `community_id` | string | path     | ID of the community.                                                                          |
-| `start_date`   | string | body     | Required, datetime in iso format. Community will be featured from this point in time onwards. |
+| Name | Type   | Location | Description                                                                                   |
+|------|--------|----------|-----------------------------------------------------------------------------------------------|
+| `accept` | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json`                    |
+| `id` | string | path     | ID of the community.                                                                          |
+| `start_date` | string | body     | Required, datetime in iso format. Community will be featured from this point in time onwards. |
 
 
 **Request**
 
 ```http
-POST /api/communities/<community_id>/featured HTTP/1.1
+POST /api/communities/{id}/featured HTTP/1.1
 Content-Type: application/json
 
 {
@@ -807,20 +870,20 @@ Content-Type: application/json
 
 ### Get Featured Community Entries
 
-`GET /api/communities/<community_id>/featured`
+`GET /api/communities/{id}/featured`
 
 **Parameters**
 
-| Name           | Type   | Location | Description                                                                |
-|----------------|--------|----------|----------------------------------------------------------------------------|
-| `accept`       | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
-| `community_id` | string | path     | ID of the community.                                                       |
+| Name     | Type   | Location | Description                                                                |
+|----------|--------|----------|----------------------------------------------------------------------------|
+| `accept` | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
+| `id`     | string | path     | ID of the community.                                                       |
 
 
 **Request**
 
 ```http
-GET /api/communities/<community_id>/featured HTTP/1.1
+GET /api/communities/{id}/featured HTTP/1.1
 ```
 
 **Response**
@@ -849,14 +912,14 @@ Content-Type: application/json
 
 ### Update a Featured Community Entry
 
-`PUT /api/communities/<community_id>/featured/<featured_entry_id>`
+`PUT /api/communities/{id}/featured/<featured_entry_id>`
 
 **Parameters**
 
 | Name                | Type   | Location | Description                                                                                   |
 |---------------------|--------|----------|-----------------------------------------------------------------------------------------------|
 | `accept`            | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json`                    |
-| `community_id`      | string | path     | ID of the community.                                                                          |
+| `id`                | string | path     | ID of the community.                                                                          |
 | `featured_entry_id` | string | path     | ID of the featured entry.                                                                     |
 | `start_date`        | string | body     | Required, datetime in iso format. Community will be featured from this point in time onwards. |
 
@@ -864,7 +927,7 @@ Content-Type: application/json
 **Request**
 
 ```http
-PUT /api/communities/<community_id>/featured/<featured_entry_id> HTTP/1.1
+PUT /api/communities/{id}/featured/<featured_entry_id> HTTP/1.1
 Content-Type: application/json
 
 {
@@ -886,21 +949,21 @@ Content-Type: application/json
 
 ### Delete a Featured Community Entry
 
-`DELETE /api/communities/<community_id>/featured/<featured_entry_id>`
+`DELETE /api/communities/{id}/featured/<featured_entry_id>`
 
 **Parameters**
 
 | Name                | Type   | Location | Description                                                                |
 |---------------------|--------|----------|----------------------------------------------------------------------------|
 | `accept`            | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
-| `community_id`      | string | path     | ID of the community.                                                       |
+| `id`                | string | path     | ID of the community.                                                       |
 | `featured_entry_id` | string | path     | ID of the featured entry.                                                  |
 
 
 **Request**
 
 ```http
-DELETE /api/communities/<community_id>/featured/<featured_entry_id> HTTP/1.1
+DELETE /api/communities/{id}/featured/<featured_entry_id> HTTP/1.1
 ```
 
 **Response**
