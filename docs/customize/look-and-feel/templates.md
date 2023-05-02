@@ -15,7 +15,7 @@ THEME_FRONTPAGE_TEMPLATE = 'invenio_app_rdm/frontpage.html'
 
 There are 2 options to change this template:
 
-1. Change the configuration value setting to the new template path. In this way, you can organize your template's files as you see fit.
+1. Change the configuration value setting to the new template path. This way, you can place and name your template file as you see fit.
 2. Create a file with the same path relative to `templates` as the original. In this way, you can keep the template's files as structured and organized in InvenioRDM.
 
 In this guide, we will see how to customize the front page using the second option.
