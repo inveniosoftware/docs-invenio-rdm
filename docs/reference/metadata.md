@@ -231,7 +231,8 @@ Example:
 }
 ```
 
-The `access` field is required by the REST API.
+The `access` field will default to `public` for both records and files if not
+provided to the REST API.
 
 ## Metadata
 
