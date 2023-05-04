@@ -1376,7 +1376,7 @@ Content-Type: application/json
 
 Notice that a new draft is returned with `publication_date` and `version` removed (as those are typically replaced in a new version).
 The `versions.index` is also incremented. The `{parent-id}` connects the different versions together.
-The new draft version has no files, it is possible to link files from the previous version (avoiding the need to re-upload, which would also cause duplication in the file store), see below.
+The new draft version has no files. However, it is possible to link files from the previous version (avoiding the need to re-upload, which would also cause duplication in the file store). See below.
 
 Use [Publish a draft record](#publish-a-draft-record) to publish it.
 
@@ -1390,7 +1390,7 @@ Links all files from the previous version to the new record.
 
 | Name | Type   | Location | Description                                              |
 | ---- | ------ | -------- | -------------------------------------------------------- |
-| `id` | string | path     | Identifier of the new draft version, e.g.  `1bc9x-3pq5x` |
+| `id` | string | path     | Identifier of the new draft version, e.g., `1bc9x-3pq5x` |
 
 **Request**
 
@@ -1435,7 +1435,6 @@ Note this call links all files from the previous version. Any files to be remove
 ### Get all versions
 
 `GET /api/records/{id}/versions`
-
 
 **Parameters**
 
