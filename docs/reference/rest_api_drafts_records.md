@@ -1376,12 +1376,66 @@ Content-Type: application/json
 
 Notice that a new draft is returned with `publication_date` and `version` removed (as those are typically replaced in a new version).
 The `versions.index` is also incremented. The `{parent-id}` connects the different versions together.
+The new draft version has no files, it is possible to link files from the previous version (avoiding the need to re-upload, which would also cause duplication in the file store), see below.
 
 Use [Publish a draft record](#publish-a-draft-record) to publish it.
+
+### Link files from previous version
+
+`POST /api/records/{id}/draft/actions/files-import`
+
+Links all files from the previous version to the new record.
+
+**Parameters**
+
+| Name | Type   | Location | Description                                              |
+| ---- | ------ | -------- | -------------------------------------------------------- |
+| `id` | string | path     | Identifier of the new draft version, e.g.  `1bc9x-3pq5x` |
+
+**Request**
+
+```http
+POST /api/records/{id}/draft/actions/files-import HTTP/1.1
+```
+
+**Response**
+
+```http
+HTTP/1.1 201 CREATED
+Content-Type: application/json
+
+{
+  "enabled": true,
+  "default_preview": "article.pdf",
+  "order": [],
+  "entries": [
+    {
+      "key": "article.pdf",
+      "created": "2020-11-26 14:30:53.911912",
+            "updated": "2020-11-26 14:30:53.920544",
+      "checksum": "md5:71449104d017a6056ac1a5fb58754975",
+      "mimetype": "application/pdf",
+      "size": 76122,
+      "status": "completed",
+      "metadata": {...},
+      "file_id": "...",
+      "version_id": "...",
+      "bucket_id": "...",
+      "storage_class": "S",
+      "links": {...}
+    }
+  ]
+  "links": {...},
+}
+
+```
+
+Note this call links all files from the previous version. Any files to be removed or updated can be [deleted](#delete-a-draft-file) from the draft version and remain attached to the previous version.
 
 ### Get all versions
 
 `GET /api/records/{id}/versions`
+
 
 **Parameters**
 
