@@ -884,7 +884,7 @@ What are the InvenioRDM SP end points?
 : In the example above the `SSO_SAML_IDPS` is a dictionary, the attributes are the names that will be used by Invenio-RDM in the SAML interactions. In the example "remote_app" will be an end point, this is probably not ideal, if you have one IdP only you could just name that attribute "ipd", if you have several then a more descriptive attribute name might be warranted. 
 
 SSO redirects work but Invenio shows 404 on return
-: This can happen when the IdP is configured in Invenio-RDM, the IdP has authorized your SP (the running Invenio-RDM instance). If the user isn't actually "logged in" then you may also have trouble in your `mappings` element.
+: This can happen when the IdP is configured in InvenioRDM, the IdP has authorized your SP (the running InvenioRDM instance). If the user isn't actually "logged in" then you may also have trouble in your `mappings` element.
 
 SSO redirects work, Invenio-RDM returns a dashboard
 : It is possible to have SAML/Shibboleth work from some users and not others. This maybe cause by an incorrect `mappings`. Double check that the values needed by Invenio-RDM are getting correct responses, this can be done from checking your system logs for the running Invenio-RDM instance.
