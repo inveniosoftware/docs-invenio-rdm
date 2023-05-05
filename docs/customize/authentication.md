@@ -887,7 +887,7 @@ SSO redirects work but Invenio shows 404 on return
 : This can happen when the IdP is configured in InvenioRDM, the IdP has authorized your SP (the running InvenioRDM instance). If the user isn't actually "logged in" then you may also have trouble in your `mappings` element.
 
 SSO redirects work, InvenioRDM returns a dashboard
-: It is possible to have SAML/Shibboleth work from some users and not others. This maybe cause by an incorrect `mappings`. Double check that the values needed by Invenio-RDM are getting correct responses, this can be done from checking your system logs for the running Invenio-RDM instance.
+: It is possible to have SAML/Shibboleth work from some users and not others. This maybe cause by an incorrect `mappings`. Double check that the values needed by InvenioRDM are getting correct responses, this can be done from checking your system logs for the running InvenioRDM instance.
 
 SSO logout fails
 : This could be as simple as correcting the `url` value in the `Idp`, `singleLogoutService` section. If ancient versions of SAML/Shibboleth did not support "logging out".
