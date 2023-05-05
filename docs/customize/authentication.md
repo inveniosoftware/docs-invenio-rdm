@@ -876,7 +876,7 @@ Here's an example mapping eduPerson elements to `urn:oid`. If you're not sure of
 ```
 
 
-##### Trouble shooting SAML configuration
+##### Troubleshooting SAML configuration
 
 In setting up SAML integration you may run into several scenarios before you "get it right".
 
