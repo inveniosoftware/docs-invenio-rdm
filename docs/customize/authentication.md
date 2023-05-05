@@ -852,7 +852,7 @@ This will set the `confirmed_at` attribute of the user to the current time.
 
 This can be done on a per provider basis, as not every provider may receive the same level of trust for a repository.
 
-The `mappings` attributes are critical to getting your SAML configuration working correctly.  The values for `<attibute_email>`, `<attribute_name>`, `<attribute_surname>` and `<attribute_external_id>` are set in the `urn:oid` notation. If you are coming from an institution that uses the [eduPerson]() as what is returned from your [IdP]() you'll need to make those names into the `urn:oid` form. Example mapping of `urn:oasis` to `urn:oid` like those provided at [University of California](https://spaces.ais.ucla.edu/display/iamucladocs/Mapping+of+URN+Attributes+and+OID+Attributes) administrative information systems website may provide a clue to how your institution needs to map the SAML response from the IdP.
+The `mappings` attributes are critical to getting your SAML configuration working correctly.  The values for `<attibute_email>`, `<attribute_name>`, `<attribute_surname>` and `<attribute_external_id>` are set in the `urn:oid` notation. If you are coming from an institution that uses the eduPerson as what is returned from your IdP you'll need to make those names into the `urn:oid` form. Example mapping of `urn:oasis` to `urn:oid` like those provided at [University of California](https://spaces.ais.ucla.edu/display/iamucladocs/Mapping+of+URN+Attributes+and+OID+Attributes) administrative information systems website may provide a clue to how your institution needs to map the SAML response from the IdP.
 
 NOTE: In the above example the `<idp>` values do not need to be replaced. Invenio-RDM will map those internally.
 
