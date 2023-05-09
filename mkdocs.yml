@@ -77,6 +77,7 @@ nav:
       - Storage: "customize/s3.md"
       - Upload Limits: "customize/upload_limits.md"
       - Metadata-only records: "customize/metadata_only.md"
+      - Notifications: "customize/notifications.md"
   - Develop:
       - Overview: "develop/index.md"
       - Getting started:
@@ -160,6 +161,7 @@ nav:
           - Reference: "reference/administration_reference.md"
       - File storage: "reference/file_storage.md"
       - Usage statistics: "reference/statistics.md"
+      - Notifications: "reference/notifications.md"
   - Releases:
       - Overview: releases/index.md
       - Maintenance policy: releases/maintenance-policy.md
