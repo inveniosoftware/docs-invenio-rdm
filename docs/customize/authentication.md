@@ -54,7 +54,7 @@ where contrib can be _orcid_, _cern_, _github_, etc.
 
 ### OAuth
 
-In addition to local accounts, InvenioRDM offers the possibilty to integrate external
+In addition to local accounts, InvenioRDM offers the possibility to integrate external
 [OAuth 2](https://oauth.net/2/) / [OpenID Connect](https://openid.net/connect/)
 authentication services via the
 [Invenio-OAuthClient](https://invenio-oauthclient.readthedocs.io/en/latest/) module.
@@ -661,7 +661,7 @@ data between two parties: an identity provider (IdP) and a service provider (SP)
 
 * Make sure you have installed in your system:
 
-  `libxml2-dev libxmlsec1-dev`
+  `libxml2-dev libxmlsec1-dev pkg-config`
 
 * Make sure you have installed the required Invenio Python module:
 
@@ -852,6 +852,47 @@ This will set the `confirmed_at` attribute of the user to the current time.
 
 This can be done on a per provider basis, as not every provider may receive the same level of trust for a repository.
 
+The `mappings` attributes are critical to getting your SAML configuration working correctly.  The values for `<attibute_email>`, `<attribute_name>`, `<attribute_surname>` and `<attribute_external_id>` are set in the `urn:oid` notation. If you are coming from an institution that uses the eduPerson as what is returned from your IdP you'll need to make those names into the `urn:oid` form. Example mapping of `urn:oasis` to `urn:oid` like those provided at [University of California](https://spaces.ais.ucla.edu/display/iamucladocs/Mapping+of+URN+Attributes+and+OID+Attributes) administrative information systems website may provide a clue to how your institution needs to map the SAML response from the IdP.
+
+NOTE: In the above example the `<idp>` values do not need to be replaced. Invenio-RDM will map those internally.
+
+##### Example configurations element
+
+Here's an example mapping eduPerson elements to `urn:oid`. If you're not sure of your institutions mappings reach out to your IdP and search for "`eduPerson to `urn:oid`" and see what others have documented.
+
+```
+        "mappings": {
+            # email mapped form eduPerson.mail
+            "email": "urn:oid:0.9.2342.19200300.100.1.3",
+            # name mapped from eduPerson.givenName
+            "name": "urn:oid:2.5.4.42",
+            # surname maps to eduPerson.sn
+            "surname": "urn:oid:2.5.4.4",
+            # external_id mapps to eduPerson.eduPersonPrincipalName
+            # (e.g. jane.doe@example.edu)
+	        "external_id": "urn:oid:1.3.6.1.4.1.5923.1.1.1.6",
+        },
+
+```
+
+
+##### Troubleshooting SAML configuration
+
+In setting up SAML integration you may run into several scenarios before you "get it right".
+
+What are the InvenioRDM SP end points?
+: In the example above the `SSO_SAML_IDPS` is a dictionary, the attributes are the names that will be used by InvenioRDM in the SAML interactions. In the example "remote_app" will be an end point, this is probably not ideal, if you have one IdP only you could just name that attribute "ipd", if you have several then a more descriptive attribute name might be warranted. 
+
+SSO redirects work but Invenio shows 404 on return
+: This can happen when the IdP is configured in InvenioRDM, the IdP has authorized your SP (the running InvenioRDM instance). If the user isn't actually "logged in" then you may also have trouble in your `mappings` element.
+
+SSO redirects work, InvenioRDM returns a dashboard
+: It is possible to have SAML/Shibboleth work from some users and not others. This maybe cause by an incorrect `mappings`. Double check that the values needed by InvenioRDM are getting correct responses, this can be done from checking your system logs for the running InvenioRDM instance.
+
+SSO logout fails
+: This could be as simple as correcting the `url` value in the `Idp`, `singleLogoutService` section. If ancient versions of SAML/Shibboleth did not support "logging out".
+
+
 #### Show the login button
 
 The last step is to enable the login template, provided by the SAML module, to display the new button
@@ -898,7 +939,7 @@ SSO_SAML_IDPS = {
 A `group` is a set of users that can be managed in your organization, externally to InvenioRDM.
 
 Groups can be useful, for example, to externally manage access and roles of communities' members,
-without hardcoding the list of users in your InvenioRDM instance.
+without hard coding the list of users in your InvenioRDM instance.
 Another possible scenario, not yet supported, could be to grant or restrict access to other resources,
 such as records or files.
 
