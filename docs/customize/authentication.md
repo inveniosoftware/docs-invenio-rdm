@@ -541,6 +541,10 @@ handlers = _keycloak_helper.get_handlers()
 handlers["signup_handler"]["info_serializer"] = custom_info_serializer
 ```
 
+!!! info "Mandatory external id"
+    When customizing an info endpoint, it is mandatory for a field to provide an external ID. This field must be named `external_id`.
+
+
 ### New OAuth plugins
 
 If you need to implement your own OAuth plugin to enable integration with your OAuth provider,
