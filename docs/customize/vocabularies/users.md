@@ -80,12 +80,12 @@ run:
 from flask_security.confirmable import confirm_user
 from invenio_accounts.proxies import current_datastore
 from invenio_db import db
-from invenio_users_resources.services.users.tasks import reindex_user
+from invenio_users_resources.services.users.tasks import reindex_users
 
 user = current_datastore.get_user("admin@inveniosoftware.org")
 confirm_user(user)
 db.session.commit()
-reindex_user(user.id)
+reindex_users([user.id])
 
 ```
 
