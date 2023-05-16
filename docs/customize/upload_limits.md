@@ -20,7 +20,7 @@ For the InvenioRDM deposit form, restrictions are available for the total number
 ```
 APP_RDM_DEPOSIT_FORM_QUOTA = {
     "maxFiles": 100,
-    "maxStorage": 30000000000,
+    "maxStorage": 30*10**9,
 }
 ```
 
