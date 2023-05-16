@@ -15,7 +15,7 @@ However, the total size of all files deposited with a single record cannot excee
 
 **Note** that the Flask configuration option `MAX_CONTENT_LENGTH` is only applied for multi-part form uploads (e.g. community logos), but not for the files deposited with records.
 
-For the InvenioRDM deposit form, restrictions are available for the total number of files (in decimal bytes) and total file size. These are set by the `APP_RDM_DEPOSIT_FORM_QUOTA` variable which can be configured in `invenio.cfg`. For example, if you want to restrict users to a maximum upload of 30 GB and 100 files, you would add:
+For the InvenioRDM deposit form, restrictions are available for the total number of files and total file size (in decimal bytes). These are set by the `APP_RDM_DEPOSIT_FORM_QUOTA` variable which can be configured in `invenio.cfg`. For example, if you want to restrict users to a maximum upload of 30 GB and 100 files, you would add:
 
 ```
 APP_RDM_DEPOSIT_FORM_QUOTA = {
