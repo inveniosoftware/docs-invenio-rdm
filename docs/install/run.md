@@ -328,7 +328,7 @@ curl -k -XGET https://127.0.0.1:5000/api/records | jq .
 
 !!! info "Authentication required"
 
-    All requests to the create-related REST API endpoints require authentication.
+    All requests to the create-related REST API endpoints require authentication. To create a token, login to the application, click on your user  -> `Applications` -> `New token`, enter a name and click on `Create`. Copy the token, since it will not be displayed again.
 
 #### Create a draft
 
