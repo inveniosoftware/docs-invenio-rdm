@@ -41,14 +41,14 @@ For running and building the application locally you will also need:
 InvenioRDM depends on the following services. During the installation we start these services in containers, but you could as well use externally hosted services for them:
 
 - Databases: PostgreSQL 10+
-- Elasticsearch: v7.0 - v7.10 (due to the license change introduced in v7.11).
+- Search: OpenSearch (2.0+) or Elasticsearch (v7.0 - v7.10 due to the license change introduced in v7.11)
 - Cache: Redis, memcached
 - Message broker: RabbitMQ, Redis
 - Storage systems: Network storage, S3, XRootD, and more
 
 !!! note "Elasticsearch vs OpenSearch"
 
-    InvenioRDM will be transitioning from Elasticsearch to OpenSearch due to license changes in Elasticsearch which means it is no longer an open source product. We are currently assessing if it is feasible from a technical and resource perspective to support both products.
+    InvenioRDM transitioned from Elasticsearch to OpenSearch due to license changes in Elasticsearch which means it is no longer an open source product. We are currently assessing if it is feasible from a technical and resource perspective to support both products.
 
 ### Hardware
 
