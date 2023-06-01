@@ -2,8 +2,13 @@
 
 _Introduced in InvenioRDM v12_
 
-The notification system in InvenioRDM is provided via the [`invenio-notifications`]() module.
-This module provides customization possibilities for notification backends, notification builders and resolvers.
+The notification system in InvenioRDM is provided via the [`invenio-notifications`](https://github.com/inveniosoftware/invenio-notifications) module.
+This module provides customization possibilities for:
+
+- [Notification Backends](#backends): A notification backend is responsible for the actual sending of the notification to a recipient.
+- [Notification Builders](#notification_builders): A notification builder specifies builders and filters in order to construct the notification context, fetch recipients, filter recipients and choose which backends should be used to send the notification.
+- [Resolvers](#notifications_entity_resolvers): An entity resolver knows how to fetch an entity given its identity.
+
 A notification manager is created, which will rely on these configuration values and provide logic to send notifications. Its task is also to call respective methods to resolve the notification context, generate recipients, filter recipients and generate the backend ids for further processing. With all information created, it will then dispatch further tasks to relay the notification to the backend, which will take care of sending the actual notification.
 
 Notifications are registered at the service level in the unit of work and send off to a celery task - which takes care of further processing.
@@ -28,6 +33,9 @@ class Notification:
 
 The context attribute of the notification holds information relevant for further processing and will be expanded throughout the workflow.
 When dispatching this notification in the service, the context shall be as minimal as possible, to reduce passing huge chunks of data.
+The implications of sending all of the required immediately would be a hit on performance and higher memory usage.
+As the notification operations are registered during methods of the service level, it would increase response time for requests using these methods.
+As we can offload the extension of the notification to a worker, the initial request can be processed quicker and save some precious time - leading to a more usable UI.
 
 An example creation of a notification object could be:
 
@@ -75,7 +83,7 @@ class EntityResolve(ContextGenerator):
     """Payload generator for a notification using the entity resolvers."""
 
     def __init__(self, key):
-        """Ctor."""
+        """Constructor."""
         self.key = key
 
     def __call__(self, notification):
@@ -114,7 +122,7 @@ class UserRecipient(RecipientGenerator):
     """User recipient generator for a notification."""
 
     def __init__(self, key):
-        """Ctor."""
+        """Constructor."""
         self.key = key
 
     def __call__(self, notification, recipients):
@@ -126,7 +134,7 @@ class UserRecipient(RecipientGenerator):
 
 #### RecipientFilter
 
-A recipient filter will get the fully expanded notification and all created recipients. The task of the filter is to filter recipients in place, which do not fulfill a certain requirement.c
+A recipient filter will get the fully expanded notification and all created recipients. The task of the filter is to filter recipients in place, which do not fulfill a certain requirement.
 
 _UserPreferencesRecipientFilter_
 
@@ -156,7 +164,7 @@ A recipient backend generator will get the fully expanded notification, a single
 
 _UserEmailBackend_
 
-This is a discrete implementatio of the recipient backend generator. When called, it will add the id of the email backend to the backends parameter. Since all information needed for sending mails are already available in the recipient, it does not have to do any additonal work.
+This is a discrete implementation of the recipient backend generator. When called, it will add the id of the email backend to the backends parameter. Since all information needed for sending mails are already available in the recipient, it does not have to do any additonal work.
 
 ```py
 class UserEmailBackend(RecipientBackendGenerator):
@@ -218,7 +226,7 @@ class EmailBackend(Backend):
 The Jinja templates provided shall include all parts of the notification that are subject to special formatting by a backend (e.g. subject, HTML/plaintext/markdown body, etc.) in separate Jinja blocks.
 Additional backends should provide their own templates, to be as specific as possible.
 
-This is an example notifitication
+This is an example notification
 
 ```jinja
 {# notifications/community-submission.submitted.jinja #}
@@ -253,7 +261,7 @@ Configuration values used in the `invenio-notifications` module can be overriden
 
 ### NOTIFICATION_BACKENDS
 
-Specifies available [notification backends](#notification_backends) for sending notifications.
+Specifies available [notification backends](#backends) for sending notifications.
 
 ```py
 NOTIFICATIONS_BACKENDS = {
@@ -265,7 +273,7 @@ NOTIFICATIONS_BACKENDS = {
 
 ### NOTIFICATION_BUILDERS
 
-Specifies [notification builders](#notification_builders) to be used for certain types of notifications. When a notification is handled by the manager, it will lookup the type in this variable and build the notification with the provided builder class.
+Specifies [notification builders](#notificationbuilder) to be used for certain types of notifications. When a notification is handled by the manager, it will lookup the type in this variable and build the notification with the provided builder class.
 
 ```py
 NOTIFICATIONS_BUILDERS = {
