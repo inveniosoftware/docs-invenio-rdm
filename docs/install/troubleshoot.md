@@ -39,3 +39,17 @@ spawned uWSGI worker 1 (pid: 255, cores: 2)
 spawned uWSGI worker 2 (pid: 257, cores: 2)
 *** Stats server enabled on 0.0.0.0:9001 fd: 11 ***
 ```
+
+## Build on M1
+When building on a M1 (arm64) you might encounter the following error:
+```bash
+pkg_resources.DistributionNotFound: The 'greenlet!=0.4.17; python_version >= "3" and (platform_machine == "aarch64" or (platform_machine == "ppc64le" or (platform_machine == "x86_64" or (platform_machine == "amd64" or (platform_machine == "AMD64" or (platform_machine == "win32" or platform_machine == "WIN32"))))))' distribution was not found and is required by SQLAlchemy
+```
+
+In order to solve it, a common workaround consists in installing the `sqlalchemy[asyncio]` package which brings in the correct dependencies.
+As such, you should add the following line inside your `Pipfile`:
+
+```python
+sqlalchemy = {version = "*", extras = ["asyncio"]}
+```
+in the `[packages]` section. 
