@@ -176,7 +176,8 @@ pipenv run invenio rdm-records custom-fields init -f <field_name> -f <field_name
 Now that you have defined and initialized your custom fields and configured their type and validation rules, you need to configure how you want them to be displayed on the upload form and landing page using the following properties:
 
 - `section` - Title of the section.
-- `hidden` - Controls whether the custom field section is displayed in the landing page (introduced in v12.0.0b1).
+- `hide_from_landing_page` - Controls whether the custom field section is displayed in the landing page.
+- `hide_from_upload_form` - Controls whether the custom field section is displayed in the upload form.
 - `fields` - Ordered list of fields to be included in the section.
 
 Each field can then be configured using the following properties:
