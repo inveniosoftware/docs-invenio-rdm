@@ -21,6 +21,7 @@ The CLI will require the following data:
 - **Storage backend**: Local file system (default) or in a S3-like backend. If S3 is chosen a MinIO container is provided.
 - **Development tools**: `Yes` if you want to add extra development tools (e.g. OpenSearch Dashboard) to your instance.
 - **Site code**: `Yes` if you want to add custom code to your instance.
+- **Reduced vocabularies**: `Yes` builds a full set of language, license and name vocabularies. `No` uses a reduced set for faster setup.
 
 It will also generate a test private key which is needed for SSL support in the development server.
 
@@ -66,6 +67,10 @@ Choose from 1, 2 [1]:
 Select site_code:
 1 - yes
 2 - no
+Choose from 1, 2 [1]:
+Select use_reduced_vocabs:
+1 - no
+2 - yes
 Choose from 1, 2 [1]:
 -------------------------------------------------------------------------------
 
