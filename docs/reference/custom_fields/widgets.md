@@ -104,6 +104,10 @@ An input field for multiple string values.
 
 - **additionLabel** `String` _optional_: The label to show when a user is adding a new value.
 
+#### Warning
+
+If you are going to use a MultiInput widget in a template - you must set the default (or new entry) value as [] as the widget is expecting a list.
+
 ## RichInput
 
 A rich input field for HTML text, with a WYSIWYG editor.
