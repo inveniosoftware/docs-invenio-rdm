@@ -353,6 +353,29 @@ Properties marked with `True` (or omitted) in the precedence mask will be taken
 from the authentication server user information payload if available, while properties marked
 with `False` will be taken from the user input in the registration form.
 
+### Defining post logout url
+
+By default, upon logging out, the application will disconnect you only from itself. However, if you logged in through an external provider, logging out from the application will not automatically log you out from that provider. To address this, you can define a `logout_url` when setting up the remote apps:
+
+```diff
+_keycloak_helper = KeycloakSettingsHelper(
+    title="CERN",
+    description="CERN SSO authentication",
+    ...
++   logout_url="your_app/logout",
+    ),
+)
+```
+
+After setting the `logout_url`, it is necessary to include the following configuration variable:
+
+```python
+SECURITY_POST_LOGOUT_VIEW = "/oauth/logout"
+"""Required by invenio-oauthclient to be able to set logout urls for the remote apps."""
+```
+
+This will redirect to the appropriate `logout_url` for each of the enabled remotes in the instance.
+
 ## Security
 
 For increased security, you should define the following in your `invenio.cfg`:
