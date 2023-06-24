@@ -96,7 +96,7 @@ removed when they are either published or deleted/discarded.
 Every time a record is created or updated a copy of record is written as a
 record revision. The changes are only tracked on the record versions and only
 happens when a draft is published. This ensures that it is only published
-changes which a tracked.
+changes which are tracked.
 
 ### Version state
 
