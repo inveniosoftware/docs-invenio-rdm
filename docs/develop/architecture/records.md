@@ -93,10 +93,10 @@ removed when they are either published or deleted/discarded.
 
 ### Record (version) revision
 
-Every time a record is created or updated a copy of record is written as a
-record revision. The changes are only tracked on the record versions and only
-happens when a draft is published. This ensures that it is only published
-changes which are tracked.
+Every time a record is created or updated, a copy of the record is written as
+a _record revision_. The revisions are tracked per record version and only
+when the corresponding version draft is published. This ensures that only
+published changes are tracked.
 
 ### Version state
 
