@@ -55,6 +55,8 @@ nav:
           - Site banners: "features/features-walk-through/banners.md"
           - Notifications: "features/features-walk-through/notifications.md"
           - Access requests: "features/features-walk-through/access_requests.md"
+          - Restricted records: "features/features-walk-through/restricted_records.md"
+          - Metadata-only records: "features/features-walk-through/metadata_only.md"
   - Install:
       - Quick start: "install/index.md"
       - System requirements: "install/requirements.md"
