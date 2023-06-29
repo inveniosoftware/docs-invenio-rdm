@@ -97,10 +97,10 @@ and adjust the `Memory` to the corresponding value. If you have a few cores
 more to spare, it might be a good idea to give more than 2. Take into account
 that you will run between 4 and 8 containers.
 
-#### Elasticsearch and Docker (macOS and Linux)
+#### OpenSearch and Docker (macOS and Linux)
 
-Among the containers you will run is an Elasticsearch container which is quite demanding.
-Per Elasticsearch's [Docker documentation](https://www.elastic.co/guide/en/elasticsearch/reference/7.9/docker.html#docker-prod-prerequisites),
+Among the containers you will run is an OpenSearch container which is quite demanding.
+Per OpenSearch's [Docker documentation](https://opensearch.org/docs/latest/install-and-configure/install-opensearch/docker/),
 you will want to apply the following kernel setting:
 
 On Linux, add the following to ``/etc/sysctl.conf`` on your local machine (host machine):
