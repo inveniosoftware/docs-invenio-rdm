@@ -28,7 +28,7 @@ pip install invenio-cli
 You can check if the proper requirements are installed via `invenio-cli`:
 
 ```console
-invenio-cli check-requirements --development
+invenio-cli check-requirements
 ```
 
 #### [3. Scaffold project](scaffold.md)
@@ -38,7 +38,7 @@ Scaffold your InvenioRDM instance. Replace ``<version>`` with the version you wa
 - LTS release (for production systems): ``v9.1``
 - STS release (for feature previews): ``v11.0``
 
-```
+```console
 invenio-cli init rdm -c <version>
 # e.g:
 invenio-cli init rdm -c v9.1
@@ -46,7 +46,15 @@ invenio-cli init rdm -c v9.1
 
 You will be asked several questions. If in doubt, choose the default.
 
+
 #### [4. Build, setup and run](build-setup-run.md)
+
+Now the scaffoling is complete, it is time to check the development requirements
+```console
+cd my-site/
+invenio-cli check-requirements --development
+```
+
 
 You can run the main InvenioRDM application in two modes (choose one):
 
@@ -56,14 +64,12 @@ You can run the main InvenioRDM application in two modes (choose one):
 **Containerized application**
 
 ```console
-cd my-site/
 invenio-cli containers start --lock --build --setup
 ```
 
 **Local application**
 
 ```console
-cd my-site/
 invenio-cli install
 invenio-cli services setup
 invenio-cli run
