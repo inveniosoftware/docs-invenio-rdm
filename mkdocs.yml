@@ -15,8 +15,7 @@ theme:
   palette:
     primary: "white"
     accent: "white"
-  font:
-    code: "Roboto Mono"
+  font: false
   logo: "images/logo-rdm.png"
   favicon: "images/favicon.svg"
   features:
