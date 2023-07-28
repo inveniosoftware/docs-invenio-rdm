@@ -78,6 +78,15 @@ The OAI-PMH server's metadata format ``oai_datacite`` that allows you to harvest
 DATACITE_DATACENTER_SYMBOL = "CERN.INVENIORDM"
 ```
 
+
+### Versioning end externally managed DOI
+
+By default, InvenioRDM allows versioning for any DOI type - internally or externally managed. Internally managed DOI is a DOI which is given thanks to InvenioRDM feature which allows us to configure the DOI registration on DataCite (check #Enable DOI registration). The external DOIs are not minted by our instance and in some cases repository manager decides to disallow versioning of records identified by external DOI. To disable versioning for external DOIs you need to set:
+
+```python
+RDM_ALLOW_EXTERNAL_DOI_VERSIONING = False
+```
+
 ## Known issues
 
 - **Restricted records:** DOIs are registered for all records including restricted
