@@ -14,7 +14,7 @@ Following is a quick overview over what you need to know in order to participate
 
 ### Join communication channels
 
-- Join Discord [``#rdm-internal``](https://discord.gg/8qatqBC)
+- Join Discord [``inveniosoftware``](https://discord.gg/8qatqBC)
 - Member of GitHub [inveniosoftware organisation](https://github.com/inveniosoftware/opensource/blob/master/repositories.yml) and the ``inveniordm`` and ``developers`` teams (ask`` @lnielsen``)
 - Mailing list project-inveniordm@cern.ch (ask ``@lnielsen``).
 - [ThisWeek](https://github.com/inveniosoftware/thisweek) digest is sent once a week on Discord #rdm-general channel.

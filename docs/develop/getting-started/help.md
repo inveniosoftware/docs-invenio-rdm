@@ -4,4 +4,4 @@ The development community is very active on Discord, so in case the documentatio
 wasn't sufficient or not clear, simply jump on Discord using the link below,
 and ask:
 
-- Join Discord [``#rdm-general``](https://discord.gg/8qatqBC)
+- Join Discord [``inveniosoftware``](https://discord.gg/8qatqBC)
