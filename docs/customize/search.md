@@ -7,6 +7,7 @@ InvenioRDM comes out of the box with facets for:
 - Languages
 - Resource types (nested)
 - Subjects (both plain and nested supported)
+- File type
 
 Similarly for sorting multiple fields are supported:
 
@@ -16,6 +17,8 @@ Similarly for sorting multiple fields are supported:
 - Version index
 - Most recently updated
 - Least recently updated
+- Most viewed
+- Most downloaded
 
 !!! tip
 
@@ -37,12 +40,19 @@ For instance:
 ```python
 RDM_SEARCH = {
     # Supported values: access_status, is_published, language, resource_type,
-    # subject, subject_nested
-    "facets": ["access_status", "resource_type", "subject"],
+    # subject, subject_nested, file_type
+    "facets": ["access_status", "file_type", "resource_type"],
 
     # Supported values: bestmatch, newest, oldest, version, updated-desc,
-    # updated-asc
-    "sort": ["bestmatch", "newest", "oldest", "version"]
+    # updated-asc, mostviewed, mostdownloaded
+    "sort": [
+        "bestmatch",
+        "newest",
+        "oldest",
+        "version",
+        "mostviewed",
+        "mostdownloaded",
+    ],
 }
 ```
 
