@@ -35,6 +35,7 @@ nav:
       - Features walk-through:
           - Features overview: "features/features-walk-through/index.md"
           - Site banners: "features/features-walk-through/banners.md"
+          - Notifications: "features/features-walk-through/notifications.md"
   - Install:
       - Quick start: "install/index.md"
       - System requirements: "install/requirements.md"
