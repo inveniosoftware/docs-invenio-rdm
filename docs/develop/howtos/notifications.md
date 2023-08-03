@@ -1,11 +1,5 @@
-# Notifications
-
-Depending on your instance needs regarding notifications, you might want to customize the default values provided by the `invenio-notifications` module.
-
-Specifically, we are going to have a look at templates and the following variables:
-
-- [NOTIFICATIONS_BACKENDS](#notifications_backends)
-- [NOTIFICATIONS_BUILDERS](#notifications_builders)
+# How to modify notifications
+This guide will show you how you can configure and modify all things related to notifications.
 
 ## Templates
 
@@ -141,10 +135,14 @@ In our case, we are happy with the content in the general template and _only_ wa
 
 Only the specified blocks will be overriden. Other blocks stay as they are in the base template.
 
-## NOTIFICATIONS_BACKENDS
 
-This config variable allows to specify the available backends. For a detailed description on backends, checkout the respective [reference section](/reference/notifications/#backends).
-For instance, you can provide an implementation for your institution's preferred communication tool and send notifications via this backend. For this, simply extend the `NotificationBackend` class and implement the `send` method.
+
+
+## Build your own
+This will show you can build your own notification classes.
+
+### Notification Backend
+Building your own notification backend can be achieved in a few steps. For instance, you can provide an implementation for your institution's preferred communication tool and send notifications via this backend. For this, simply extend the `NotificationBackend` class and implement the `send` method.
 
 ```py
 from invenio_notifications.backends import JinjaTemplateLoaderMixin, NotificationBackend,
@@ -161,18 +159,7 @@ class InstitutationalBackend(NotificationBackend, JinjaTemplateLoaderMixin):
         institutation_communication_tool.send_message(user_id=recipient.data["id"], template["md_body"])
 ```
 
-This backend can now be specified (e.g. in `invenio.cfg`):
-
-```py
-NOTIFICATION_BACKENDS = {
-    EmailNotificationBackend.id: EmailNotificationBackend,
-    InstitutationalBackend.id: InstitutationalBackend,
-}
-```
-
-## NOTIFICATIONS_BUILDERS
-
-This config variable defines which builder class should be used for a specific notification type. For detailed description on builders, filters and generators , checkout the respective [reference section](/reference/notifications/#builders-filters-generators).
+### Notification Builder
 Let us assume that you want to override who will get notified in the event of a community record submission (community curator and owner) and add the previously defined backend (so recipients will get notified via whatever the base class has defined and via the `InstitutationalBackend`).
 To do this, we will create a custom builder, which will inherit most of the properties from the existing base class.
 
@@ -193,10 +180,56 @@ class CustomSubmissionBuilder(CommunityInclusionSubmittedNotificationBuilder):
     ]
 ```
 
-This builder can now be specified (e.g. in `invenio.cfg`):
+## Configuration Values
+
+Configuration values used in the `invenio-notifications` module can be overriden, in order to adapt instances to specific needs.
+
+
+### NOTIFICATION_BACKENDS
+
+This config variable allows to specify the available backends. For a detailed description on backends, checkout the respective [reference section](/reference/notifications/#backends).
+For instance, you can provide an implementation for your institution's preferred communication tool and send notifications via this backend.
+
+As an example, take the backend shown in [build your own backend](#notification-backend). Then you only have to specify it in the config variable (e.g. in `invenio.cfg`).
+
+```py
+NOTIFICATION_BACKENDS = {
+    EmailNotificationBackend.id: EmailNotificationBackend,
+    InstitutationalBackend.id: InstitutationalBackend,
+}
+```
+
+### NOTIFICATION_BUILDERS
+
+Specifies [notification builders](#notificationbuilder) to be used for certain types of notifications. When a notification is handled by the manager, it will lookup the type in this variable and build the notification with the provided builder class.
+
+As an example, take the backend shown in [build your own builder](#notification-builder). Then you only have to specify it in the config variable (e.g. in `invenio.cfg`).
 
 ```py
 NOTIFICATIONS_BUILDERS = {
     CustomSubmissionBuilder.type: CustomSubmissionBuilder,
 }
+```
+
+Since the custom builder uses the same `type` as the builder we want to override, we can use either `type` as key for the entry. The following snippet will have the same effect, but it is more clear what will be overriden.
+
+```py
+NOTIFICATIONS_BUILDERS = {
+    CommunityInclusionSubmittedNotificationBuilder.type: CustomSubmissionBuilder,
+}
+```
+
+
+### NOTIFICATIONS_ENTITY_RESOLVERS
+
+Specifies entity resolvers (not to be confused with [EntityResolve](#entityresolve)) to be used for resolving the notification context. These are usually `ServiceResultResolver` objects, which provide functionality to dump an object to a reference dictionary and later on use the dump to fetch information as seen on the API/service level (i.e. fully resolved objects with links for easy access).
+
+```py
+NOTIFICATIONS_ENTITY_RESOLVERS = [
+    RDMRecordServiceResultResolver(),
+    ServiceResultResolver(service_id="users", type_key="user"),
+    ServiceResultResolver(service_id="communities", type_key="community"),
+    ServiceResultResolver(service_id="requests", type_key="request"),
+    ServiceResultResolver(service_id="request_events", type_key="request_event"),
+]
 ```

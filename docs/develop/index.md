@@ -54,6 +54,7 @@ Step-by-step guides on how to perform certain tasks:
 - [Test emails locally](howtos/dev_email.md)
 - [Migrate legacy routes](howtos/route_migration.md)
 - [Restrict access to pages](howtos/restrict_access.md)
+- [Create and configure notifications](howtos/notifications.md)
 
 ## Architecture
 
@@ -67,6 +68,7 @@ choices:
 - [Requests](architecture/requests.md)
 - [Communities](architecture/communities.md)
 - [Records](architecture/records.md)
+- [Notifications](architecture/notifications.md)
 - [Recommended reading](architecture/reading.md)
 
 ## Concepts
