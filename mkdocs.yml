@@ -77,7 +77,6 @@ nav:
       - Storage: "customize/s3.md"
       - Upload Limits: "customize/upload_limits.md"
       - Metadata-only records: "customize/metadata_only.md"
-      - Notifications: "customize/notifications.md"
   - Develop:
       - Overview: "develop/index.md"
       - Getting started:
@@ -118,6 +117,8 @@ nav:
           - Test emails locally: develop/howtos/dev_email.md
           - Migrate legacy routes: develop/howtos/route_migration.md
           - Back up search indices: develop/howtos/backup_search_indices.md
+          - Create and configure notifications: develop/howtos/notifications.md
+
       - Architecture:
           - Introduction: develop/architecture/index.md
           - Infrastructure: develop/architecture/infrastructure.md
@@ -127,6 +128,7 @@ nav:
           - Communities: develop/architecture/communities.md
           - Records: develop/architecture/records.md
           - Event handling: develop/architecture/event_handling.md
+          - Notifications: develop/architecture/notifications.md
           - Recommended reading: develop/architecture/reading.md
       - Concepts:
           - Optimistic concurrency control: develop/concepts/concurrency-control.md

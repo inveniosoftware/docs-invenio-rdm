@@ -34,4 +34,3 @@ In the following sections, we cover customization opportunities that InvenioRDM 
     - [Names](vocabularies/names.md)
     - [Subjects](vocabularies/subjects.md)
     - [Users](vocabularies/users.md)
-- [Notifications](notifications.md) - customize content, recipients and backends of notifications
