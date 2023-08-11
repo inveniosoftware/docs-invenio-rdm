@@ -11,7 +11,7 @@ infrastructure. It consists of:
 - **Application servers:** UWSGI, Gunicorn or mod_wsgi.
 - **Distributed task queue:** Celery
 - **Database:** PostgreSQL, MySQL or SQLite.
-- **Search engine:** Elasticsearch (v6 and v7).
+- **Search engine:** OpenSearch (v1 and v2).
 - **Message queue:** RabbitMQ, Redis or Amazon SQS.
 - **Cache system:** Redis or Memcache.
 - **Storage system:** Local, S3, XRootD, WebDAV and more.
@@ -97,17 +97,17 @@ than a database.
 
 ## Search and indexing
 
-Invenio uses Elasticsearch as its underlying search engine since Elasticsearch
+Invenio uses OpenSearch as its underlying search engine since OpenSearch
 is fully JSON-based, and thus fit well together with storing records internally
 in the database as JSON documents.
 
-Elasticsearch furthermore is highly scalable and provides very powerful search
+OpenSearch furthermore is highly scalable and provides very powerful search
 and aggregation capabilities. You can for instance make geospatial queries with
-Elasticsearch.
+OpenSearch.
 
 **Direct indexing**
 
-Invenio has the option to directly index a record in Elasticsearch when
+Invenio has the option to directly index a record in OpenSearch when
 handling a request, and thus make the record immediately available for
 searches.
 
