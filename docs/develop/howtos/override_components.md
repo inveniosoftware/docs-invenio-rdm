@@ -39,7 +39,7 @@ You can always [ask for help](../../develop/getting-started/help.md)!
 
 ### Find the React Overridable ID
 
-The React component's overridable id for the '`Metadata-only record`' checkbox component is `ReactInvenioDeposit.MetadataOnlyToggle.layout`. It can be found in the [react-invenio-deposit](https://github.com/inveniosoftware/react-invenio-deposit/blob/057d4bfe7ae73012f7ea55acfdde78981282ca7b/src/lib/components/FileUploader/FileUploaderToolbar.js#L39) module.
+The React component's overridable id for the '`Metadata-only record`' checkbox component is `ReactInvenioDeposit.FileUploaderToolbar.MetadataOnlyToggle.container`. It can be found in the [react-invenio-deposit](https://github.com/inveniosoftware/react-invenio-deposit/blob/040b698967e7fee14ac7fe466e49f883efbe8c47/src/lib/components/FileUploader/FileUploaderToolbar.js#L55) module.
 
 ### The mapping file
 
@@ -102,7 +102,7 @@ Now, change the map by adding your new component:
 ...
 
 export const overriddenComponents = {
-  "ReactInvenioDeposit.MetadataOnlyToggle.layout": MetadataToggle,
+  "ReactInvenioDeposit.FileUploaderToolbar.MetadataOnlyToggle.container": MetadataToggle,
 };
 ```
 
@@ -126,7 +126,7 @@ It is possible to remove a component using the overridable strategy. In the prev
 
 ```javascript
 export const overriddenComponents = {
-  "ReactInvenioDeposit.MetadataOnlyToggle.layout": () => null,
+  "ReactInvenioDeposit.FileUploaderToolbar.MetadataOnlyToggle.container": () => null,
 };
 ```
 
