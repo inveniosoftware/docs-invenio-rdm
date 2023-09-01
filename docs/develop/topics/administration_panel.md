@@ -263,7 +263,7 @@ A custom view can be created by inheriting directly from `AdminView`.
 
 ##### Usage
 
-In your module, create a new folder (anchor link to the folder structure) and a following `<filename>.py` file:
+In your `<invenio-module>` (called `invenio_module` for simplicity), create a `<filename>.py` file:
 
 ```python
 from invenio_administration.views.base import AdminView
@@ -273,7 +273,7 @@ class MyCustomView(AdminView):
 
     name = "customview"
     category = "My category"
-    template = "invenio_administration/index.html"
+    template = "invenio_module/custom_view_template.html"  # placed in templates/invenio_module/custom_view_template.html
     url = None
     menu_label = "Custom View"
     icon = "user"
@@ -281,12 +281,12 @@ class MyCustomView(AdminView):
 
 The class defined for the custom view must be registered as an entry point, as follows:
 
-Edit the setup.cfg of your module and add:
+Edit the `setup.cfg` of your module and add:
 
 ```ini
 [options.entry_points]
 invenio_administration.views =
-    invenio_module_admin_custom_view = invenio_module.administration.views:MyCustomView
+    invenio_module_admin_custom_view = invenio_module.path.to.filename:MyCustomView
 ```
 
 For the full attributes list and description visit the [reference docs](../../reference/administration_reference.md)
@@ -331,7 +331,7 @@ In each view you can override or extend different blocks, mainly there are 2 blo
 
 - `admin_page_content`: Content of each view. It's present in all the views.
 - `JavaScript`: Main block to place any JavaScript content.
--
+
 ```html
 {% extends "invenio_administration/details.html" %}
 
@@ -340,8 +340,10 @@ In each view you can override or extend different blocks, mainly there are 2 blo
 {% endblock admin_page_content %}
 
 {% block javascript %}
-  {{ super() }}  # don't forget the parent JS assets!
-  {{ webpack['invenio-administration-search.js'] }}  # it is crucial to remember about adding proper assets to your Jinja
+  # don't forget the parent JS assets!
+  {{ super() }}
+  # don't forget to add proper assets to your template
+  {{ webpack['invenio-administration-search.js'] }}
 {% endblock %}
 ```
 
@@ -357,17 +359,16 @@ If you would like to, for example, change layout of the default view, you can cr
 Create a js file (`MyComponent.js`) containing your custom component, which you have to place in `/assets/js` folder of your module.
 
 ```javascript
- class MyComponent extends Component{
-    render(){
+class MyComponent extends Component {
+    render() {
         return "Hello World!"
     }
 }
 
-
 const domContainer = document.getElementById("invenio-details-config");
 domContainer &&
   ReactDOM.render(
-    <MyCustomComponent />,
+    <MyComponent />,
     domContainer
   );
 ```
@@ -399,8 +400,10 @@ Once the file was added as webpack entry, we can add it to the template we are o
   </div>
 {% endblock admin_page_content %}
 {% block javascript %}
-  {{ super() }}                     # don't forget the parent JS assets!
-  {{ webpack['my-component.js'] }}  # make sure name of the asset matches the name you registered in webpack entry
+  # don't forget the parent JS assets!
+  {{ super() }}
+  # make sure the name of the asset matches the name you registered in the webpack entry
+  {{ webpack['my-component.js'] }}
 {% endblock %}
 ```
 
