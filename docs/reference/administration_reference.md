@@ -15,8 +15,8 @@ This document provides a reference guide for all the attributes available for `i
 | **resource_config**           | *required* |                                        | used to retrieve the resource (name of the resource attribute of the flask extension - available in ext.py)          |
 | **search_request_headers**    |            | *{ "Accept" :  "application/json" }*   | specifies resource-specific headers to add during REST API request                                                   |
 | **title**                     | *required* |                                        | displays a title in the list view page                                                                               |
-| **category**                  |            |                                        | places the menu entry under a category in the menu bar                                                               |                       
-| **pid_path**                  |            | *"pid"*                                | used for accessing the unique identifier of a resource                                                               | 
+| **category**                  |            |                                        | places the menu entry under a category in the menu bar                                                               |
+| **pid_path**                  |            | *"pid"*                                | used for accessing the unique identifier of a resource                                                               |
 | **icon**                      |            |                                        | displays an icon next to the menu's entry                                                                            |
 | **template**                  |            | *"invenio_administration/search.html"* | template to be rendered for the view. By default, it uses a predefined one. Can be overridden with a custom template |
 | **display_search**            |            | *True*                                 | displays/hides a searchbar in the list view                                                                          |
@@ -39,7 +39,7 @@ This document provides a reference guide for all the attributes available for `i
 | **name**                   |            | *view class name*                       | view's name used by Flask to create routing                                                                 |
 | **url**                    |            | *view's 'name'*                         | url used to route the view.                                                                                 |
 | **resource_config**        | *required* |                                         | used to retrieve the resource (name of the resource attribute of the flask extension - available in ext.py) |
-| **pid_path**               |            | *pid_path*                              | used for accessing the unique identifier of a resource                                                      | 
+| **pid_path**               |            | *pid_path*                              | used for accessing the unique identifier of a resource                                                      |
 | **api_endpoint**           | *required* |                                         | used to indicate API endpoint of update the resource                                                        |
 | **title**                  | *required* | *"Resource details"*                    | displays a title in the view page.                                                                          |
 | **list_view_name**         | *required* |                                         | name of the resource's list view name, enables  navigation between detail view and list view.               |
@@ -59,11 +59,11 @@ This document provides a reference guide for all the attributes available for `i
 | **name**            |            | *view class name*                      | view's name used by Flask to create routing                                                                 |
 | **url**             |            | *view's 'name'*                        | url used to route the view.                                                                                 |
 | **resource_config** | *required* |                                        | used to retrieve the resource (name of the resource attribute of the flask extension - available in ext.py) |
-| **pid_path**        |            | *pid*                                  | used for accessing the unique identifier of a resource                                                      | 
+| **pid_path**        |            | *pid*                                  | used for accessing the unique identifier of a resource                                                      |
 | **api_endpoint**    | *required* |                                        | used to execute POST request.                                                                               |
 | **title**           | *required* |                                        | displays a title in the view page.                                                                          |
 | **list_view_name**  | *required* |                                        | name of the resource's list view name, enables  navigation between create modal and list view.              |
-| **form_fields**     | *required* |                                        | fields to be displayed  in the creation form.                                                               |                                                
+| **form_fields**     | *required* |                                        | fields to be displayed  in the creation form.                                                               |
 | **template**        |            | *"invenio_administration/create.html"* | template to be rendered for the view. Can be overridden by a custom template.                               |
 
 ## Edit View
@@ -75,7 +75,7 @@ This document provides a reference guide for all the attributes available for `i
 | **name**            |            | *view class name*                     | view’s name used internally by Flask                                                                        |
 | **url**             |            | *view's 'name'*                       | url used to route the view.                                                                                 |
 | **resource_config** | *required* |                                       | used to retrieve the resource (name of the resource attribute of the flask extension - available in ext.py) |
-| **pid_path**        |            | *pid_path*                            | used for accessing the unique identifier of a resource                                                      | 
+| **pid_path**        |            | *pid_path*                            | used for accessing the unique identifier of a resource                                                      |
 | **api_endpoint**    | *required* |                                       | used to update the resource.                                                                                |
 | **title**           | *required* |                                       | displays a title in the view page.                                                                          |
 | **list_view_name**  | *required* |                                       | name of the resource's list view name, enables  navigation between edit view and list view.                 |
@@ -83,8 +83,9 @@ This document provides a reference guide for all the attributes available for `i
 | **template**        |            | *"invenio_administration/edit.html"*  | template to be rendered for the view. Can be overridden by a custom template.                               |
 
 
-### Custom view
+## Custom view
 
+### Attributes
 
 | Attribute      | Required | Default    | Description                                                                                                                                         |
 |----------------|----------|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------|
