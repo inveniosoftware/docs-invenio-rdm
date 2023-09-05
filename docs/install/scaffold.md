@@ -4,7 +4,9 @@ Now that you have Invenio-CLI [installed](cli.md), we will use it to scaffold a 
 
 ## Initialize project
 
-First, we need to create the project - the necessary files and folders for your InvenioRDM instance.
+First, we need to create the project - the necessary files and folders for your InvenioRDM instance. You'll want to commit
+the generated project into a version control system, as it will contain the customizations for your repository. If you're working 
+on an existing repository you can skip the scaffolding step, as it only has to be done once.
 
 The CLI will require the following data:
 
