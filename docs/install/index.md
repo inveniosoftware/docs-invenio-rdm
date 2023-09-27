@@ -94,11 +94,20 @@ Go and explore your InvenioRDM instance on:
 
 To create a new administrator account:
 
-- `pipenv run invenio users create <EMAIL> --password <PASSWORD>`
-- Activate it with `pipenv run invenio users activate <EMAIL>`
-- If you have email verification enabled (as per defaults) you may want to [verifiy the account manually](https://inveniordm.docs.cern.ch/customize/vocabularies/users/#confirm-user)
-- Allow the user to access the administration panel: `pipenv run invenio access allow administration-access user <EMAIL>`
+Depending on whether you are in a local or containerized setup, take note of the variations immediately following before stepping through the subsequently outlined steps. 
 
+**Local application**
+
+Per usual, in a local application context, precede the `invenio` commands by `pipenv run` (e.g., `pipenv run invenio users create <EMAIL> --password <PASSWORD>`).
+
+**Containerized application**   
+In a fully containerized context, connect to a container first e.g. the web-api container: `docker exec -it my-site-web-api-1 /bin/bash`. Then run the commands from within the container as-is. 
+
+**Steps**
+1- `invenio users create <EMAIL> --password <PASSWORD>`
+2- Activate it with `invenio users activate <EMAIL>`
+3- If you have email verification enabled (as per defaults), you may want to [verifiy the account manually](https://inveniordm.docs.cern.ch/customize/vocabularies/users/#confirm-user) using the user's <EMAIL>.
+4- Allow the user to access the administration panel: `invenio access allow administration-access user <EMAIL>`
 #### [6. Stop it](destroy.md)
 
 When you are done, you can stop your instance and optionally destroy the containers:
