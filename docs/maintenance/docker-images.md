@@ -12,7 +12,7 @@ the current RDM Docker image.
 
 ## CERN registry
 
-Docker images are pushed to the CERN registry [inveniosoftware]](https://registry.cern.ch/harbor/projects/1825/repositories) project. This is done to:
+Docker images are pushed to the CERN registry [inveniosoftware](https://registry.cern.ch/harbor/projects/1825/repositories) project. This is done to:
 
 1. March 2023: Docker announced that Free Team organizations, such as `inveniosoftware`, will be removed.
 2. Avoid [Docker Hub rate limits](https://www.docker.com/increase-rate-limits/).
