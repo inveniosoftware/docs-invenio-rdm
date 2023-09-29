@@ -12,7 +12,7 @@ Learn how to write technical documentation.
 
 ### Before starting
 
-- Setup a spell checker in your IDE, even better a "writing assistant" (popular ones [LanguageTool](https://languagetool.org/), [Grammarly](https://www.grammarly.com/)).
+- Set up a spell checker in your IDE, even better a "writing assistant" (popular ones [LanguageTool](https://languagetool.org/), [Grammarly](https://www.grammarly.com/)).
 - Determine what your audience needs to learn, fit documentation to your audience.
 
 ### When writing

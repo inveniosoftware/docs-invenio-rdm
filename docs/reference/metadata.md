@@ -35,15 +35,15 @@ This field is fully system-managed.
 
 Following is an overview of the top-level fields in a record:
 
-| Field |   Description   |
-|:-----:|:----------------|
-|  ``id``/``pid``  | The internal persistent identifier for a specific version.  |
-|  ``parent``  | The internal persistent identifier for all versions.  |
-|  ``pids`` | System-managed external persistent identifiers (DOIs, Handles, OAI-PMH identifiers).  |
-|  ``access`` | Access control information.  |
-|  ``metadata`` | Descriptive metadata for the resource.  |
-|  ``files`` | Associated files information.  |
-|  ``tombstone`` | Tombstone information.  |
+|     Field      | Description                                                                          |
+|:--------------:|:-------------------------------------------------------------------------------------|
+| ``id``/``pid`` | The internal persistent identifier for a specific version.                           |
+|   ``parent``   | The internal persistent identifier for all versions.                                 |
+|    ``pids``    | System-managed external persistent identifiers (DOIs, Handles, OAI-PMH identifiers). |
+|   ``access``   | Access control information.                                                          |
+|  ``metadata``  | Descriptive metadata for the resource.                                               |
+|   ``files``    | Associated files information.                                                        |
+| ``tombstone``  | Tombstone information.                                                               |
 
 Each of these keys will be explained below. Following is an example of how the
 top-level fields in a record look like:
@@ -83,15 +83,15 @@ A record stores information about two internal PIDs:
 
 Specific version PID:
 
-| Field |   Description   |
-|:-----:|:----------------|
-|``id`` | The value of the internal record identifier. |
+|  Field  | Description                                                                   |
+|:-------:|:------------------------------------------------------------------------------|
+| ``id``  | The value of the internal record identifier.                                  |
 | ``pid`` | Object level information about the identifier needed for operational reasons. |
 
 Concept version PID:
 
-| Field |   Description   |
-|:-----:|:----------------|
+|     Field     | Description                                 |
+|:-------------:|:--------------------------------------------|
 | ``parent.id`` | The value of the concept record identifier. |
 
 Example:
@@ -123,11 +123,11 @@ You can add a DOI that is not managed by InvenioRDM by using the provider `exter
 
 Only one identifier can be registered per system-defined scheme. Each identifier has the following subfields:
 
-| Field | Cardinality |   Description   |
-|:-----:|:-----------:|:----------------|
-| ``identifier`` | (1) | The identifier value. |
-| ``provider`` | (1) | The provider identifier used internally by the system. |
-| ``client`` | (0-1) | The client identifier used for connecting with an external registration service. |
+|     Field      | Cardinality | Description                                                                      |
+|:--------------:|:-----------:|:---------------------------------------------------------------------------------|
+| ``identifier`` |     (1)     | The identifier value.                                                            |
+|  ``provider``  |     (1)     | The provider identifier used internally by the system.                           |
+|   ``client``   |    (0-1)    | The client identifier used for connecting with an external registration service. |
 
 ```json
 {
@@ -146,7 +146,7 @@ Only one identifier can be registered per system-defined scheme. Each identifier
 }
 ```
 
-Other system-managed identifiers will also be be recorded here such as the OAI id.
+Other system-managed identifiers will also be recorded here such as the OAI id.
 
 ## Parent
 
@@ -154,22 +154,22 @@ Information related to the record as a concept is recorded under the top-level `
 
 Subfields:
 
-| Field | Cardinality |   Description   |
-|:-----:|:-----------:|:----------------|
-| ``id`` | (1) | The identifier of the parent record. |
-| ``access`` | (1) | Access details for the record as a whole. |
+|   Field    | Cardinality | Description                               |
+|:----------:|:-----------:|:------------------------------------------|
+|   ``id``   |     (1)     | The identifier of the parent record.      |
+| ``access`` |     (1)     | Access details for the record as a whole. |
 
 The ``access`` is described with the following subfields:
 
-| Field | Cardinality |   Description   |
-|:-----:|:-----------:|:----------------|
-| ``owned_by`` | (1-n) | An array of owners. |
+|    Field     | Cardinality | Description         |
+|:------------:|:-----------:|:--------------------|
+| ``owned_by`` |    (1-n)    | An array of owners. |
 
 Owners are defined as:
 
-| Field | Cardinality |   Description   |
-|:-----:|:-----------:|:----------------|
-| ``user`` | (1) | The id of the user owning the record as a whole. |
+|  Field   | Cardinality | Description                                      |
+|:--------:|:-----------:|:-------------------------------------------------|
+| ``user`` |     (1)     | The id of the user owning the record as a whole. |
 
 
 Example:
@@ -195,11 +195,11 @@ The `access` field denotes record-specific read (visibility) options.
 
 The `access` field has this structure:
 
-| Field | Cardinality |   Description   |
-|:-----:|:-----------:|:----------------|
-| `record` | (1) | `"public"` or `"restricted"`. Read access to the record. |
-| `files` | (1) |  `"public"` or `"restricted"`. Read access to the record's files. |
-| `embargo` | (0-1) | Embargo options for the record. |
+|   Field   | Cardinality | Description                                                      |
+|:---------:|:-----------:|:-----------------------------------------------------------------|
+| `record`  |     (1)     | `"public"` or `"restricted"`. Read access to the record.         |
+|  `files`  |     (1)     | `"public"` or `"restricted"`. Read access to the record's files. |
+| `embargo` |    (0-1)    | Embargo options for the record.                                  |
 
 `"public"` means anyone can see the record/files. `"restricted"` means only the owner(s) or
 specific users can see the record/files. Only in the cases of `"record": "restricted"` or
@@ -211,11 +211,11 @@ lifted, the `embargo` section is kept for transparency.
 The `embargo` field denotes when an embargo must be lifted, at which point the record
 is made publicly accessible. The `embargo` field has this structure:
 
-| Field | Cardinality |   Description   |
-|:-----:|:-----------:|:----------------|
-| `active` | (1) | boolean. Is the record under embargo or not. |
-| `until` | (0-1) | Required if `active` true. ISO date string. When to lift the embargo. e.g., `"2100-10-01"` |
-| `reason` | (0-1) | string. Explanation for the embargo. |
+|  Field   | Cardinality | Description                                                                                |
+|:--------:|:-----------:|:-------------------------------------------------------------------------------------------|
+| `active` |     (1)     | boolean. Is the record under embargo or not.                                               |
+| `until`  |    (0-1)    | Required if `active` true. ISO date string. When to lift the embargo. e.g., `"2100-10-01"` |
+| `reason` |    (0-1)    | string. Explanation for the embargo.                                                       |
 
 Example:
 
@@ -253,9 +253,9 @@ The resource type vocabulary also defines mappings to other vocabularies than Da
 
 Subfields:
 
-| Field | Cardinality |   Description   |
-|:-----:|:-----------:|:----------------|
-| ``id`` | (1, CV) | The resource type id from the controlled vocabulary. |
+| Field  | Cardinality | Description                                          |
+|:------:|:-----------:|:-----------------------------------------------------|
+| ``id`` |   (1, CV)   | The resource type id from the controlled vocabulary. |
 
 Example:
 
@@ -273,32 +273,32 @@ Note that only the subtype (which is more specific) is displayed if it exists.
 
 The creators field registers those persons or organisations that should be credited for the resource described by the record. The list of persons or organisations in the creators field is used for generating citations, while the persons or organisations listed in the contributors field are not included in the generated citations.
 
-The field is compatible with *2. Creator* in DataCite. In addition we are adding the possiblity of associating a role (like for contributors). This is specifically for cases where e.g. an editor needs to be credited for the work, while authors of individual articles will be listed under contributors.
+The field is compatible with *2. Creator* in DataCite. In addition we are adding the possibility of associating a role (like for contributors). This is specifically for cases where e.g. an editor needs to be credited for the work, while authors of individual articles will be listed under contributors.
 
 Subfields:
 
-| Field | Cardinality |   Description   |
-|:-----:|:-----------:|:----------------|
-| ``person_or_org`` | (1) | The person or organization. |
-| ``role`` | (0-1, CV) | The role of the person or organisation selected from a customizable controlled vocabulary. |
-| ``affiliations`` | (0-n) | Affilations if ``person_or_org.type`` is ``personal``. |
+|       Field       | Cardinality | Description                                                                                |
+|:-----------------:|:-----------:|:-------------------------------------------------------------------------------------------|
+| ``person_or_org`` |     (1)     | The person or organization.                                                                |
+|     ``role``      |  (0-1, CV)  | The role of the person or organisation selected from a customizable controlled vocabulary. |
+| ``affiliations``  |    (0-n)    | Affilations if ``person_or_org.type`` is ``personal``.                                     |
 
 A `person_or_org` is described with the following subfields:
 
-| Field            | Cardinality |   Description   |
-|:---------------------:|:-----------:|:----------------|
-| ``type`` | (1) | The type of name. Either ``personal`` or ``organizational``. |
-| ``given_name`` | (1 if `type` is `personal` / 0 if `type` is `organizational`) | Given name(s). |
-| ``family_name`` | (1 if `type` is `personal` / 0 if `type` is `organizational`) | Family name. |
-| ``name``              | (0 if `type` is `personal` / 1 if `type` is `organizational`) | The full name of the organisation. For a person, this field is generated from `given_name` and `family_name` |
-| ``identifiers``  | (0-n) | Person or organisation identifiers. |
+|      Field      |                          Cardinality                          | Description                                                                                                  |
+|:---------------:|:-------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------|
+|    ``type``     |                              (1)                              | The type of name. Either ``personal`` or ``organizational``.                                                 |
+| ``given_name``  | (1 if `type` is `personal` / 0 if `type` is `organizational`) | Given name(s).                                                                                               |
+| ``family_name`` | (1 if `type` is `personal` / 0 if `type` is `organizational`) | Family name.                                                                                                 |
+|    ``name``     | (0 if `type` is `personal` / 1 if `type` is `organizational`) | The full name of the organisation. For a person, this field is generated from `given_name` and `family_name` |
+| ``identifiers`` |                             (0-n)                             | Person or organisation identifiers.                                                                          |
 
 Identifiers are described with the following subfields (note, we only support one identifier per scheme):
 
-| Term | Cardinality |   Description   |
-|:-----:|:-----------:|:----------------|
-| ``scheme`` | (1, CV) | The identifier scheme. |
-| ``identifier`` | (1) | Actual value of the identifier. |
+|      Term      | Cardinality | Description                     |
+|:--------------:|:-----------:|:--------------------------------|
+|   ``scheme``   |   (1, CV)   | The identifier scheme.          |
+| ``identifier`` |     (1)     | Actual value of the identifier. |
 
 Supported creator identifier schemes:
 
@@ -323,19 +323,19 @@ Note that the identifiers' schemes are passed lowercased e.g. ORCID is ``orcid``
 
 The ``affiliations`` field consists of objects with the following subfields:
 
-| Field | Cardinality |   Description   |
-|:-----:|:-----------:|:----------------|
-| ``id`` | (0-1, CV) | The organizational or institutional id from the controlled vocabulary. |
-| ``name`` | (0-1) | The name of the organisation or institution. |
+|  Field   | Cardinality | Description                                                            |
+|:--------:|:-----------:|:-----------------------------------------------------------------------|
+|  ``id``  |  (0-1, CV)  | The organizational or institutional id from the controlled vocabulary. |
+| ``name`` |    (0-1)    | The name of the organisation or institution.                           |
 
 One of ``id`` or ``name`` must be given. It's recommended to use ``name`` if there is no matching ``id`` in the controlled vocabulary.
 
 
 The `role` field is as follows:
 
-| Field  | Cardinality |   Description                |
-|:------:|:-----------:|:-----------------------------|
-| ``id`` | (1, CV) | The role's controlled vocabulary identifier. |
+| Field  | Cardinality | Description                                  |
+|:------:|:-----------:|:---------------------------------------------|
+| ``id`` |   (1, CV)   | The role's controlled vocabulary identifier. |
 
 Example:
 
@@ -364,7 +364,7 @@ Example:
 
 A primary name or primary title by which a resource is known. May be the title of a dataset or the name of a piece of software. The primary title is used for display purposes throughout InvenioRDM.
 
-The fields is compatible with *3. Title* in DataCite. Compared to DataCite, the field does not support specifying the language of the title.
+The field is compatible with *3. Title* in DataCite. Compared to DataCite, the field does not support specifying the language of the title.
 
 Example:
 
@@ -382,7 +382,7 @@ The field is compatible *5. PublicationYear* in DataCite. In case of time interv
 
 Format:
 
-The string must be be formatted according to [Extended Date Time Format (EDTF)](http://loc.gov/standards/datetime/) Level 0. Only *"Date"* and *"Date Interval"* are supported. *"Date and Time"* is not supported. The following are examples of valid values:
+The string must be formatted according to [Extended Date Time Format (EDTF)](http://loc.gov/standards/datetime/) Level 0. Only *"Date"* and *"Date Interval"* are supported. *"Date and Time"* is not supported. The following are examples of valid values:
 
 - Date:
     - ``2020-11-10`` - a complete ISO8601 date.
@@ -419,10 +419,10 @@ Subfields:
 
 The ``type`` field is as follows:
 
-| Field | Cardinality |   Description   |
-|:-----:|:-----------:|:----------------|
-| ``id`` | (1, CV) | Title type id from the controlled vocabulary. By default one of: ``alternative-title``, ``subtitle`` ``translated-title`` or ``other``. |
-| ``title`` | (1) | The corresponding localized human readable label. e.g. ``{"en": "Alternative title"}`` |
+|   Field   | Cardinality | Description                                                                                                                             |
+|:---------:|:-----------:|:----------------------------------------------------------------------------------------------------------------------------------------|
+|  ``id``   |   (1, CV)   | Title type id from the controlled vocabulary. By default one of: ``alternative-title``, ``subtitle`` ``translated-title`` or ``other``. |
+| ``title`` |     (1)     | The corresponding localized human readable label. e.g. ``{"en": "Alternative title"}``                                                  |
 
 Note that multiple localized titles are supported e.g. ``{"en": "Alternative title", "fr": "Titre alternatif"}``. Use ISO 639-1 codes (2 letter locales) as keys.
 Only ``id`` needs to be passed on the REST API.
@@ -454,7 +454,7 @@ Example:
 
 The description of a record.
 
-The fields is compatible with *17. Description* in DataCite. Compared to DataCite the field does not support specifying the language of the description.
+The field is compatible with *17. Description* in DataCite. Compared to DataCite the field does not support specifying the language of the description.
 
 The description may use a whitelist of HTML tags and attributes to style the text.
 
@@ -483,10 +483,10 @@ Subfields:
 
 The ``type`` field is as follows:
 
-| Field | Cardinality |   Description   |
-|:-----:|:-----------:|:----------------|
-| ``id`` | (1, CV) | Description type id from the controlled vocabulary. By default one of: ``abstract``, ``methods``, ``series-information``, ``table-of-contents``, ``technical-info``, ``other``. |
-| ``title`` | (1) | The corresponding localized human readable label. e.g. ``{"en": "Abstract"}`` |
+|   Field   | Cardinality | Description                                                                                                                                                                     |
+|:---------:|:-----------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|  ``id``   |   (1, CV)   | Description type id from the controlled vocabulary. By default one of: ``abstract``, ``methods``, ``series-information``, ``table-of-contents``, ``technical-info``, ``other``. |
+| ``title`` |     (1)     | The corresponding localized human readable label. e.g. ``{"en": "Abstract"}``                                                                                                   |
 
 Note that multiple localized titles are supported e.g. ``{"en": "Table of contents", "fr": "Table des matières"}``. Use ISO 639-1 codes (2 letter locales) as keys.
 Only ``id`` needs to be passed on the REST API.
@@ -528,12 +528,12 @@ The rights statements does not have any impact on access control to the resource
 
 Subfields:
 
-| Field | Cardinality |   Description   |
-|:-----:|:-----------:|:----------------|
-| ``id`` | (0-1) | Identifier value |
-| ``title`` | (0-1) | Localized human readable title e.g., ``{"en": "The ACME Corporation License."}``. |
-| ``description`` | (0-1) | Localized license description text e.g., ``{"en": "This license..."}``. |
-| ``link`` | (0-1) | Link to full license. |
+|      Field      | Cardinality | Description                                                                       |
+|:---------------:|:-----------:|:----------------------------------------------------------------------------------|
+|     ``id``      |    (0-1)    | Identifier value                                                                  |
+|    ``title``    |    (0-1)    | Localized human readable title e.g., ``{"en": "The ACME Corporation License."}``. |
+| ``description`` |    (0-1)    | Localized license description text e.g., ``{"en": "This license..."}``.           |
+|    ``link``     |    (0-1)    | Link to full license.                                                             |
 
 REST API:
 
@@ -598,10 +598,10 @@ This field is compatible with *6. Subject* in DataCite.
 
 Subfields:
 
-| Field | Cardinality |   Description   |
-|:-----:|:-----------:|:----------------|
-| ``id`` | (0-1, CV) | The identifier of the subject from the controlled vocabulary. |
-| ``subject`` | (0-1) | A custom keyword. |
+|    Field    | Cardinality | Description                                                   |
+|:-----------:|:-----------:|:--------------------------------------------------------------|
+|   ``id``    |  (0-1, CV)  | The identifier of the subject from the controlled vocabulary. |
+| ``subject`` |    (0-1)    | A custom keyword.                                             |
 
 Either ``id`` or ``subject`` must be passed.
 
@@ -623,9 +623,9 @@ This field is compatible with *9. Language* in DataCite. DataCite however only s
 
 Subfields:
 
-| Field | Cardinality |   Description   |
-|:-----:|:-----------:|:----------------|
-| ``id`` | (1, CV) | The ISO-639-3 language code. |
+| Field  | Cardinality | Description                  |
+|:------:|:-----------:|:-----------------------------|
+| ``id`` |   (1, CV)   | The ISO-639-3 language code. |
 
 Example:
 
@@ -643,18 +643,18 @@ The field is compatible with *8. Date* in DataCite.
 
 Subfields:
 
-| Field | Cardinality |   Description   |
-|:-----:|:-----------:|:----------------|
-| ``date`` | (1) | A date or time interval according to Extended Date Time Format Level 0. |
-| ``type`` | (1) | The type of date. |
-| ``description`` | (0-1) | free text, specific information about the date. |
+|      Field      | Cardinality | Description                                                             |
+|:---------------:|:-----------:|:------------------------------------------------------------------------|
+|    ``date``     |     (1)     | A date or time interval according to Extended Date Time Format Level 0. |
+|    ``type``     |     (1)     | The type of date.                                                       |
+| ``description`` |    (0-1)    | free text, specific information about the date.                         |
 
 The ``type`` field is as follows:
 
-| Field | Cardinality |   Description   |
-|:-----:|:-----------:|:----------------|
-| ``id`` | (1, CV) | Date type id from the controlled vocabulary. By default one of: ``accepted``, ``available``, ``collected``, ``copyrighted``, ``created``, ``issued``, ``other``, ``submitted``, ``updated``, ``valid``, ``withdrawn``. |
-| ``title`` | (1) | The corresponding localized human readable label. e.g. ``{"en": "Accepted"}`` |
+|   Field   | Cardinality | Description                                                                                                                                                                                                            |
+|:---------:|:-----------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|  ``id``   |   (1, CV)   | Date type id from the controlled vocabulary. By default one of: ``accepted``, ``available``, ``collected``, ``copyrighted``, ``created``, ``issued``, ``other``, ``submitted``, ``updated``, ``valid``, ``withdrawn``. |
+| ``title`` |     (1)     | The corresponding localized human readable label. e.g. ``{"en": "Accepted"}``                                                                                                                                          |
 
 Note that multiple localized titles are supported e.g. ``{"en": "Available", "fr": "Disponible"}``. Use ISO 639-1 codes (2 letter locales) as keys.
 Only ``id`` needs to be passed on the REST API.
@@ -745,12 +745,12 @@ does not support the subfields *12.c relatedMetadataScheme*, *12.d schemeURI* an
 
 Subfields:
 
-| Field | Cardinality |   Description   |
-|:-----:|:-----------:|:----------------|
-| ``identifier`` | (1, CV) | A global unique persistent identifier for a related resource. |
-| ``scheme`` | (1, CV) | The scheme of the identifier. |
-| ``relation_type``  | (1) | The relation of the record to this related resource. |
-| ``resource_type``  | (0-1) | The resource type of the related resource. Can be different from the [Resource type](#resource-type-1) field. |
+|       Field       | Cardinality | Description                                                                                                   |
+|:-----------------:|:-----------:|:--------------------------------------------------------------------------------------------------------------|
+|  ``identifier``   |   (1, CV)   | A global unique persistent identifier for a related resource.                                                 |
+|    ``scheme``     |   (1, CV)   | The scheme of the identifier.                                                                                 |
+| ``relation_type`` |     (1)     | The relation of the record to this related resource.                                                          |
+| ``resource_type`` |    (0-1)    | The resource type of the related resource. Can be different from the [Resource type](#resource-type-1) field. |
 
 Supported identifier schemes:
 
@@ -760,17 +760,17 @@ Note that those are passed lowercased e.g., arXiv is ``arxiv``.
 
 The field ``relation_type`` is of this shape:
 
-| Field | Cardinality |   Description   |
-|:-----:|:-----------:|:----------------|
-| ``id`` | (1, CV) | Relation type id from the controlled vocabulary. The default list is [here](https://github.com/inveniosoftware/invenio-rdm-records/blob/master/invenio_rdm_records/fixtures/data/vocabularies/relation_types.yaml). |
-| ``title`` | (1) | The corresponding localized human readable label. e.g. ``{"en": "Is cited by"}`` |
+|   Field   | Cardinality | Description                                                                                                                                                                                                         |
+|:---------:|:-----------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|  ``id``   |   (1, CV)   | Relation type id from the controlled vocabulary. The default list is [here](https://github.com/inveniosoftware/invenio-rdm-records/blob/master/invenio_rdm_records/fixtures/data/vocabularies/relation_types.yaml). |
+| ``title`` |     (1)     | The corresponding localized human readable label. e.g. ``{"en": "Is cited by"}``                                                                                                                                    |
 
 The field ``resource_type`` is of this shape:
 
-| Field | Cardinality |   Description   |
-|:-----:|:-----------:|:----------------|
-| ``id`` | (1, CV) | Date type id from the controlled vocabulary. The default list is [here](https://github.com/inveniosoftware/invenio-rdm-records/blob/master/invenio_rdm_records/fixtures/data/vocabularies/resource_types.yaml). |
-| ``title`` | (1) | The corresponding localized human readable label. e.g. ``{"en": "Annotation collection"}`` |
+|   Field   | Cardinality | Description                                                                                                                                                                                                     |
+|:---------:|:-----------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|  ``id``   |   (1, CV)   | Date type id from the controlled vocabulary. The default list is [here](https://github.com/inveniosoftware/invenio-rdm-records/blob/master/invenio_rdm_records/fixtures/data/vocabularies/resource_types.yaml). |
+| ``title`` |     (1)     | The corresponding localized human readable label. e.g. ``{"en": "Annotation collection"}``                                                                                                                      |
 
 For both ``relation_type.title`` and ``resource_type.title`` multiple localized titles are supported e.g. ``{"en": "Cites", "fr": "Cite"}``. Use ISO 639-1 codes (2 letter locales) as keys. In both cases, only ``id`` needs to be passed on the REST API.
 
@@ -853,25 +853,25 @@ the type information as well as ``"properties": null`` in order to make it valid
 
 Subfields:
 
-| Field | Cardinality |   Description   |
-|:-----:|:-----------:|:----------------|
-| ``features`` | (1) | A list of GeoJSON feature objects. The reason for this keyword is to align with GeoJSON and allow for later expansion with other subfields such as bounding box (``bbox``) from the GeoJSON spec. |
+|    Field     | Cardinality | Description                                                                                                                                                                                       |
+|:------------:|:-----------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| ``features`` |     (1)     | A list of GeoJSON feature objects. The reason for this keyword is to align with GeoJSON and allow for later expansion with other subfields such as bounding box (``bbox``) from the GeoJSON spec. |
 
 Subfields of items in ``features``:
 
-| Field | Cardinality |   Description   |
-|:-----:|:-----------:|:----------------|
-| ``geometry`` | (0-1) | A GeoJSON [Geometry Object](https://tools.ietf.org/html/rfc7946#section-3.1) according to RFC 7946. Note, GeoJSON's coordinate reference system is [WGS84](https://tools.ietf.org/html/rfc7946#section-4). |
-| ``identifiers`` | (0-1) | A list of geographic location identifiers. This could for instance be from [GeoNames](https://www.geonames.org) or [Getty Thesaurus of Geographic Names](http://www.getty.edu/research/tools/vocabularies/tgn/) (TGN) which would allow linking to historic places. |
-| ``place`` | (0-1) | Free text, used to describe a geographical location. |
-| ``description`` | (0-1) | Free text, used for any extra information related to the location. |
+|      Field      | Cardinality | Description                                                                                                                                                                                                                                                         |
+|:---------------:|:-----------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|  ``geometry``   |    (0-1)    | A GeoJSON [Geometry Object](https://tools.ietf.org/html/rfc7946#section-3.1) according to RFC 7946. Note, GeoJSON's coordinate reference system is [WGS84](https://tools.ietf.org/html/rfc7946#section-4).                                                          |
+| ``identifiers`` |    (0-1)    | A list of geographic location identifiers. This could for instance be from [GeoNames](https://www.geonames.org) or [Getty Thesaurus of Geographic Names](http://www.getty.edu/research/tools/vocabularies/tgn/) (TGN) which would allow linking to historic places. |
+|    ``place``    |    (0-1)    | Free text, used to describe a geographical location.                                                                                                                                                                                                                |
+| ``description`` |    (0-1)    | Free text, used for any extra information related to the location.                                                                                                                                                                                                  |
 
 Identifier object in ``identifiers``:
 
-| Field | Cardinality |   Description   |
-|:-----:|:-----------:|:----------------|
-| ``identifier`` | (1, CV) | A globally unique identifier for the location. |
-| ``scheme`` | (1, CV) | The scheme of the identifier. |
+|     Field      | Cardinality | Description                                    |
+|:--------------:|:-----------:|:-----------------------------------------------|
+| ``identifier`` |   (1, CV)   | A globally unique identifier for the location. |
+|   ``scheme``   |   (1, CV)   | The scheme of the identifier.                  |
 
 Notes:
 
@@ -912,28 +912,28 @@ The funder subfield is intended to be linked to a customizable vocabulary from O
 
 Subfields:
 
-| Field | Cardinality |   Description   |
-|:-----:|:-----------:|:----------------|
-| ``funder`` | (1) | The organisation of the funding provider. |
-| ``award`` | (0-1) | The award (grant) sponsored by the funder. |
+|   Field    | Cardinality | Description                                |
+|:----------:|:-----------:|:-------------------------------------------|
+| ``funder`` |     (1)     | The organisation of the funding provider.  |
+| ``award``  |    (0-1)    | The award (grant) sponsored by the funder. |
 
 The ``funder`` subfields:
 
-| Field | Cardinality |   Description   |
-|:-----:|:-----------:|:----------------|
-| ``id`` | (0-1, CV) | The funder id from the controlled vocabulary. |
-| ``name`` | (0-1) | The name of the funder. |
+|  Field   | Cardinality | Description                                   |
+|:--------:|:-----------:|:----------------------------------------------|
+|  ``id``  |  (0-1, CV)  | The funder id from the controlled vocabulary. |
+| ``name`` |    (0-1)    | The name of the funder.                       |
 
 One of ``id`` OR ``name`` must be given. It's recommended to use ``name`` if there is no matching ``id`` in the controlled vocabulary.
 
 The ``award`` subfields:
 
-| Field | Cardinality |   Description   |
-|:-----:|:-----------:|:----------------|
-| ``id`` | (0-1, CV) | The award id from the controlled vocabulary. |
-| ``title`` | (0-1) | The localized title of the award (e.g., `{"en": "Nobel Prize in Physics"}`) |
-| ``number`` | (0-1) | The code assigned by the funder to a sponsored award (grant). |
-| ``identifiers`` | (0-N) | Identifiers for the award. |
+|      Field      | Cardinality | Description                                                                 |
+|:---------------:|:-----------:|:----------------------------------------------------------------------------|
+|     ``id``      |  (0-1, CV)  | The award id from the controlled vocabulary.                                |
+|    ``title``    |    (0-1)    | The localized title of the award (e.g., `{"en": "Nobel Prize in Physics"}`) |
+|   ``number``    |    (0-1)    | The code assigned by the funder to a sponsored award (grant).               |
+| ``identifiers`` |    (0-N)    | Identifiers for the award.                                                  |
 
 One of ``id`` OR (``title`` and ``number``) must be given. It's recommended to use ``title`` and ``number`` if there is no matching ``id`` in the controlled vocabulary.
 
@@ -976,11 +976,11 @@ A list of reference strings
 
 Subfields:
 
-| Field | Cardinality |   Description   |
-|:-----:|:-----------:|:----------------|
-| ``reference`` | (1) | free text, the full reference string |
-| ``scheme`` | (0-1) | the scheme of the identifier. |
-| ``identifier`` | (0-1) | the identifier if known. |
+|     Field      | Cardinality | Description                          |
+|:--------------:|:-----------:|:-------------------------------------|
+| ``reference``  |     (1)     | free text, the full reference string |
+|   ``scheme``   |    (0-1)    | the scheme of the identifier.        |
+| ``identifier`` |    (0-1)    | the identifier if known.             |
 
 Supported schemes:
 
@@ -1009,7 +1009,7 @@ Records may have associated digital files. A record is not meant to be associate
 with a high number of files, as the files are stored inside the record and thus
 increase the overall size of the JSON document.
 
-All of the fields below are under the ``"files"`` key.
+All the fields below are under the ``"files"`` key.
 
 ### Enabled (1)
 
@@ -1037,21 +1037,21 @@ The key (``paper.pdf`` below) represents a file path.
 
 Subfields:
 
-| Field | Cardinality |   Description   |
-|:-----:|:-----------:|:----------------|
-| ``bucket_id`` | (1) | The bucket identifier. |
-| ``checksum`` | (1) | The checksum of the file in the form ``<algorithm>:<value>``. |
-| ``created`` | (1) | Date of creation (init) of the file record. |
-| ``file_id`` | (1) |  The digital file instance identifier (references a file on storage). |
-| ``key`` | (1) | The filepath of the file. |
-| ``link`` | (1) | Links to the file (_self_, _content_, _iiif\_canvas_, _iiif\_base_, _iiif\_info_, _iiif\_api_, etc.)
-| ``metadata`` | (1) | Dictionary of free key-value pairs with meta information about the file (e.g. description). |
-| ``mimetype`` | (1) | The mimetype of the file. |
-| ``size`` | (1) | The size in bytes of the file. |
-| ``status`` | (1) | The current status of the file ingestion (_completed_ or _pending_). |
-| ``storage_class`` | (1) | The backend for the file (e.g. local or external storage). |
-| ``updated`` | (1) | Date of latest update of the file record metadata or file. |
-| ``version_id`` | (1) | The logical object identifier. |
+|       Field       | Cardinality | Description                                                                                          |
+|:-----------------:|:-----------:|:-----------------------------------------------------------------------------------------------------|
+|   ``bucket_id``   |     (1)     | The bucket identifier.                                                                               |
+|   ``checksum``    |     (1)     | The checksum of the file in the form ``<algorithm>:<value>``.                                        |
+|    ``created``    |     (1)     | Date of creation (init) of the file record.                                                          |
+|    ``file_id``    |     (1)     | The digital file instance identifier (references a file on storage).                                 |
+|      ``key``      |     (1)     | The filepath of the file.                                                                            |
+|     ``link``      |     (1)     | Links to the file (_self_, _content_, _iiif\_canvas_, _iiif\_base_, _iiif\_info_, _iiif\_api_, etc.) |
+|   ``metadata``    |     (1)     | Dictionary of free key-value pairs with meta information about the file (e.g. description).          |
+|   ``mimetype``    |     (1)     | The mimetype of the file.                                                                            |
+|     ``size``      |     (1)     | The size in bytes of the file.                                                                       |
+|    ``status``     |     (1)     | The current status of the file ingestion (_completed_ or _pending_).                                 |
+| ``storage_class`` |     (1)     | The backend for the file (e.g. local or external storage).                                           |
+|    ``updated``    |     (1)     | Date of latest update of the file record metadata or file.                                           |
+|  ``version_id``   |     (1)     | The logical object identifier.                                                                       |
 
 Example:
 
@@ -1113,12 +1113,12 @@ removed the record and when.
 
 Subfields:
 
-| Field | Cardinality |   Description   |
-|:-----:|:-----------:|:----------------|
-| ``reason`` | (1) | Free text, the reason for removal. |
-| ``category`` | (1) | An identifier for a category of reasons. Used for statistics purposes and for extracting e.g. spam records from the system. |
-| ``removed_by`` | (1) | The user who removed the record. |
-| ``timestamp`` | (1) | The UTC timestamp when the record was removed. |
+|     Field      | Cardinality | Description                                                                                                                 |
+|:--------------:|:-----------:|:----------------------------------------------------------------------------------------------------------------------------|
+|   ``reason``   |     (1)     | Free text, the reason for removal.                                                                                          |
+|  ``category``  |     (1)     | An identifier for a category of reasons. Used for statistics purposes and for extracting e.g. spam records from the system. |
+| ``removed_by`` |     (1)     | The user who removed the record.                                                                                            |
+| ``timestamp``  |     (1)     | The UTC timestamp when the record was removed.                                                                              |
 
 Example:
 

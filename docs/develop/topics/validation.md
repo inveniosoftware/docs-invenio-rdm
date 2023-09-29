@@ -6,7 +6,7 @@ For a more thorough guide please see [OWASP Input Validation Cheat Sheet](https:
 ## User input data
 
 - **Input data** is ANY data that *a client sends to a server* (depicted below).
-- **Output data** is ANY data that *a server sends to a client* (i.e the opposite
+- **Output data** is ANY data that *a server sends to a client* (i.e. the opposite
 direction).
 
 This guide **only covers input data**, and namely how to sanitize the input
@@ -32,7 +32,7 @@ This guide covers syntax and semantic validation. For instance an ISO-formatted
 date like ``2021-12-25`` may be *syntactically* correct, but may be
 *semantically* wrong if it is supposed to represent a start date in the future.
 The date ``2021-12-25`` may be **semantically** correct but we may anyway be
-unable to comply if e.g. its a delivery date and we don't deliver on Christmas
+unable to comply if e.g. it's a delivery date and we don't deliver on Christmas
 day (example of pragmatics). Pragmatics is often a core part of your business
 rules.
 
@@ -80,7 +80,7 @@ vulnerability.
 
 You can basically classify input data in two broad categories:
 
-- Binary data (files such as images, PDFs, etc)
+- Binary data (files such as images, PDFs, etc.)
 - Text data (Headers, URLs, query strings, form data, JSON, XML, ...)
 
 **Text data**
@@ -126,8 +126,8 @@ class ASchema(Schema):
 
 **When to use?**
 
-You want to accept rich text input from a user (i.e. they should be able use
-formatting such as bold, italics, bullet lists etc), so that you later can
+You want to accept rich text input from a user (i.e. they should be able to use
+formatting such as bold, italics, bullet lists etc.), so that you later can
 render the rich-text.
 
 **Why?**
@@ -171,8 +171,8 @@ cross-site scripting attacks).
 
 3. Serving out the file again, you should ideally serve it from a custom
    top-level domain (see e.g. how GitHub/Google/DropBox server user uploaded
-   files). If not, you should prevent the browser from rendering the file (e.g
-   SVGs, HTMLs, PDFs, etc) should simply be downloaded as a file or rendered
+   files). If not, you should prevent the browser from rendering the file (e.g.
+   SVGs, HTMLs, PDFs, etc.) should simply be downloaded as a file or rendered
    as text/plain.
 
 NEVER EVER allow file uploads and serve back the upload file again to other

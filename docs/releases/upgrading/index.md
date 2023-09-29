@@ -12,7 +12,7 @@ breaking change.
 ## Breaking changes
 
 We use semantic versioning, and thus you **MUST** expect breaking changes
-between major versions (REST API, programmatic APIs, templates, data models etc).
+between major versions (REST API, programmatic APIs, templates, data models etc.).
 We will document these breaking changes in the release notes, and do our best to
 provide automatic upgrades if possible.
 

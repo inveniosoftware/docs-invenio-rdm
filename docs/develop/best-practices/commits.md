@@ -25,7 +25,7 @@ git add --patch
 ####  Linear history
 
 Our branches follow a linear commit history, meaning that
-we use *rebasing* instead of e.g. *merge commits*. In an nutshell this
+we use *rebasing* instead of e.g. *merge commits*. In a nutshell this
 translates into:
 
 ```console
@@ -131,7 +131,7 @@ a third-party dependency must be careful evaluated if before being added.
 
 Reviews are a very important part of the development process, but also has the potential to lead to conflicts among developers.
 
-Follow this guidelines to minimize the risk of conflicts:
+Follow these guidelines to minimize the risk of conflicts:
 
 #### Code of conduct
 

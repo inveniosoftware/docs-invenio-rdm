@@ -54,7 +54,7 @@ MAIL_SERVER = '127.0.0.1'
 MAIL_PORT = 1025 
 ```
 
-Restart the application and e-mails will sent to the configured `SMTP` server.
+Restart the application and e-mails will be sent to the configured `SMTP` server.
 
 Check the inbox in [MailHog UI](http://127.0.0.1:8025).
 

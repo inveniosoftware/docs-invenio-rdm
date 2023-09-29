@@ -23,11 +23,11 @@ projects, prior history and practices.
 
 **Evolving**
 
-InvenioRDM is no different. The architecture is largely a by product our past
+InvenioRDM is no different. The architecture is largely a byproduct our past
 experiences and challenges we've faced. The architecture as described here, is
 not meant to be final answer, but rather an evolving architecture that adapts
 and improve over time. You also won't find the answer to all your question. As
-we work with the architecture, we identify short comings, missing things and concepts
+we work with the architecture, we identify shortcomings, missing things and concepts
 that could be better defined.
 
 **Past experiences and challenges**
@@ -43,7 +43,7 @@ By no means have we solved all of these, and any software project out there is l
 
 ### Why not X?
 
-InvenioRDM is a monolith application using something as old as an relational
+InvenioRDM is a monolith application using something as old as a relational
 database system, thus we sometimes get asked questions like why not use microservices, why not serverless
 and why not use NoSQL, so here's an attempt to give some vague answers.
 

@@ -57,7 +57,7 @@ way Flask allows you to build modular applications is via *blueprints*.
 In above example we have a small blueprint with just one *view*
 (``my_user_agent``), which returns the browser's user agent sting.
 
-This blueprint is *registered* on the *Flask application*. This allow you
+This blueprint is *registered* on the *Flask application*. This allows you
 to reuse the blueprint in another Flask application.
 
 ### Flask extensions
