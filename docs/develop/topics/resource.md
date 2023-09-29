@@ -34,7 +34,7 @@ class ClickResource(Resource):
 
 The resource config is used for dependency injection in the resource. The
 basics is e.g. that we allow modifying the routing for the REST API (i.e.
-routing is independent from implementation):
+routing is independent of implementation):
 
 ```python
 # config.py

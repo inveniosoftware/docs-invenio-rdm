@@ -11,7 +11,7 @@ You can find information behind the design and usage of the vocabulary in
 
 A _Name_ record contains:
 
-- The name of the author splitted in `family name` and `given name`, or a
+- The name of the author split in `family name` and `given name`, or a
   single `name` attribute with the full name formatted as
   `<family name>, <given name>`. Note that if `family name` and `given name`
   are present they will overwrite `name`.

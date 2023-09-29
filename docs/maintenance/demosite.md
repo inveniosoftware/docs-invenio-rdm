@@ -84,7 +84,7 @@ Create a new release commit and tag for the latest version in the
 [repository](https://github.com/inveniosoftware/demo-inveniordm).
 
 !!! note
-    The tags naming convention follow the numeration of the `invenio-app-rdm` package. For example, if you
+    The tags naming convention follow the numeration of the `invenio-app-rdm` package. For example, if you're
     deploying `invenio-app-rdm==0.25.9`, then the new release tag of the demo site will be `v0.25.9`.
 
 ```console

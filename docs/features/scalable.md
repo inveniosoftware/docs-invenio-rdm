@@ -28,7 +28,7 @@ InvenioRDM allows you to integrate multiple storage systems in the same instance
 
 ## Deploy anywhere
 
-InvenioRDM is a Python application and you can deploy into your institutional infrastructure whether it is on bare metal, VMs, containers, Kubernetes or OpenShift.
+InvenioRDM is a Python application that you can deploy into your institutional infrastructure whether it is on bare metal, VMs, containers, Kubernetes or OpenShift.
 
 ## Battle-tested
 

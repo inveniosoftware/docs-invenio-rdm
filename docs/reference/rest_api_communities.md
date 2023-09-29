@@ -733,7 +733,7 @@ The goal of featured communities is to increase the level of awareness for a com
 | `accept` | string  | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json`                                                                                                                                 |
 
 Only communities with a featured timestamp before the current time are retrieved.
-They are sorted by the begin of their latest featured timestamp (e.g. A is featured starting with 2022-06-01, B is featured starting with 2022-06-03 then the order will be [B, A]).
+They are sorted by the beginning of their latest featured timestamp (e.g. A is featured starting with 2022-06-01, B is featured starting with 2022-06-03 then the order will be [B, A]).
 
 **Request**
 

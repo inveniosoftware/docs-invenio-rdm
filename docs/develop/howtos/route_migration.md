@@ -26,7 +26,7 @@ Redirection rules are retrieved by the application from the config `REDIRECTOR_R
 
 ## Examples
 
-Sometimes it is necessary to modify the request further (e.g. map old parameters to newer ones). The redirector module also accepts a function that returns an URL as the rule's `target`.
+Sometimes it is necessary to modify the request further (e.g. map old parameters to newer ones). The redirector module also accepts a function that returns a URL as the rule's `target`.
 Find below some examples
 
 - Redirect a request to a new endpoint.

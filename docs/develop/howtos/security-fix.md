@@ -58,7 +58,7 @@ Also, remember to include release commits.
 ## Step 8 - Open pull requests against the private fork
 
 Push your branches to the temporary private fork, and open pull requests
-against the fork (the GitHub interface explains you how).
+against the fork (the GitHub interface explains how).
 
 ## Step 9 - Request a CVE
 
