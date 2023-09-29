@@ -73,8 +73,15 @@ db.session.commit()
 
 ## Confirm user
 
-Only confirmed accounts can be logged in. To confirm an account programmatically, create a new shell using `pipenv run invenio shell` and
-run:
+Only confirmed accounts can be logged in. There are two ways to confirm an account as an administrator:
+
+When creating the account pass the `--confirm` parameter like so:
+```shell
+pipenv run invenio users create email@domain.edu --confirm
+```
+
+Alternatively you can confirm an account programmatically by opening a new shell using `pipenv run invenio shell` and
+running:
 
 ```python
 from flask_security.confirmable import confirm_user
