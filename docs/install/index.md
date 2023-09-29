@@ -6,7 +6,7 @@ The guide is intended for system administrators and developers who want to try, 
 
 **Scope**
 
-This guide covers how to install InvenioRDM locally on your machine, how to setup and configure your system for InvenioRDM.
+This guide covers how to install InvenioRDM locally on your machine, how to set up and configure your system for InvenioRDM.
 
 ## Quick start
 
@@ -14,7 +14,7 @@ This guide covers how to install InvenioRDM locally on your machine, how to setu
 
 Install the InvenioRDM CLI tool (see [reference](../reference/cli.md)), e.g. via [`pip`](https://pip.pypa.io/en/stable/):
 
-```console
+```bash
 pip install invenio-cli
 ```
 
@@ -27,7 +27,7 @@ pip install invenio-cli
 
 You can check if the proper requirements are installed via `invenio-cli`:
 
-```console
+```bash
 invenio-cli check-requirements
 ```
 
@@ -38,7 +38,7 @@ Scaffold your InvenioRDM instance. Replace ``<version>`` with the version you wa
 - LTS release (for production systems): ``v9.1``
 - STS release (for feature previews): ``v11.0``
 
-```console
+```bash
 invenio-cli init rdm -c <version>
 # e.g:
 invenio-cli init rdm -c v9.1
@@ -49,8 +49,9 @@ You will be asked several questions. If in doubt, choose the default.
 
 #### [4. Build, setup and run](build-setup-run.md)
 
-Now the scaffoling is complete, it is time to check the development requirements
-```console
+Now the scaffolding is complete, it is time to check the development requirements
+
+```bash
 cd my-site/
 invenio-cli check-requirements --development
 ```
@@ -63,13 +64,13 @@ You can run the main InvenioRDM application in two modes (choose one):
 
 **Containerized application**
 
-```console
+```bash
 invenio-cli containers start --lock --build --setup
 ```
 
 **Local application**
 
-```console
+```bash
 invenio-cli install
 invenio-cli services setup
 invenio-cli run
@@ -98,16 +99,23 @@ Depending on whether you are in a local or containerized setup, take note of the
 
 **Local application**
 
-Per usual, in a local application context, precede the `invenio` commands by `pipenv run` (e.g., `pipenv run invenio users create <EMAIL> --password <PASSWORD>`).
+In a local application context, precede the `invenio` commands by `pipenv run` (e.g., `pipenv run invenio users create <EMAIL> --password <PASSWORD> --active --confirm`).
 
 **Containerized application**   
 In a fully containerized context, connect to a container first e.g. the web-api container: `docker exec -it my-site-web-api-1 /bin/bash`. Then run the commands from within the container as-is. 
 
-**Steps**
-1- `invenio users create <EMAIL> --password <PASSWORD>`
-2- Activate it with `invenio users activate <EMAIL>`
-3- If you have email verification enabled (as per defaults), you may want to [verifiy the account manually](https://inveniordm.docs.cern.ch/customize/vocabularies/users/#confirm-user) using the user's <EMAIL>.
-4- Allow the user to access the administration panel: `invenio access allow administration-access user <EMAIL>`
+The following command creates an activated and confirmed user (assuming you have email verification enabled as is the default). 
+
+```bash
+invenio users create <EMAIL> --password <PASSWORD> --active --confirm
+```
+
+Then, allow the user to access the administration panel: 
+
+```bash
+invenio access allow administration-access user <EMAIL>
+```
+
 #### [6. Stop it](destroy.md)
 
 When you are done, you can stop your instance and optionally destroy the containers:
