@@ -68,7 +68,7 @@ Otherwise, you can find the installation instructions on the [project's GitHub p
 
 #### Permissions to run Docker (Linux)
 
-Your user that will be executing the CLI tool MUST be able execute
+Your user that will be executing the CLI tool MUST be able to execute
 the `docker` command (i.e. it is not only available for the root user):
 
 ```bash

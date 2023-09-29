@@ -78,7 +78,7 @@ Both authenticated and unauthenticated access is possible.
 
 **Errors**
 
-- **403**: The group does not exists.
+- **403**: The group does not exist.
 
 **Request**
 
@@ -122,7 +122,7 @@ Both authenticated and unauthenticated access is possible.
 
 **Errors**
 
-- **403**: The group does not exists.
+- **403**: The group does not exist.
 
 **Request**
 

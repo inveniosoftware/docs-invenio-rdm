@@ -347,7 +347,7 @@ class MyExtension:
         return Configs
 ```
 
-In addition, a proxy is setup to access the current service:
+In addition, a proxy is set up to access the current service:
 
 ```python
 # proxies.py

@@ -23,9 +23,9 @@ An input field for a single string value.
 
 ### Props
 
-- **fieldPath** `String` _required_: The path to the field e.g `cern:experiment`.
+- **fieldPath** `String` _required_: The path to the field e.g. `cern:experiment`.
 
-- **label** `String` _required_: The label for the element's display. This is used whenever the field should be displayed e.g upload form, landing page etc.
+- **label** `String` _required_: The label for the element's display. This is used whenever the field should be displayed e.g. upload form, landing page etc.
 
 - **placeholder** `String` _required_: The placeholder for the element's display. You should fill this in with an example value.
 
@@ -33,13 +33,13 @@ An input field for a single string value.
 
 - **icon** `String` _optional_: The optional icon that your field might have. The value should be one of the [Semantic UI icons](https://react.semantic-ui.com/elements/icon/).
 
-- **required** `Boolean` _optional_: Define if the field should be required i.e display the `*` symbol.
+- **required** `Boolean` _optional_: Define if the field should be required i.e. display the `*` symbol.
 
 - **disabled** `Boolean` _optional_: Define if the field should be displayed as disabled thus no input can be filled.
 
 ## NumberInput
 
-An input field for numbers e.g integers, float etc.
+An input field for numbers e.g. integers, float etc.
 
 ### Usage
 
@@ -56,9 +56,9 @@ An input field for numbers e.g integers, float etc.
 
 ### Props
 
-- **fieldPath** `String` _required_: The path to the field e.g `cern:experiment`.
+- **fieldPath** `String` _required_: The path to the field e.g. `cern:experiment`.
 
-- **label** `String` _required_: The label for the element's display. This is used whenever the field should be displayed e.g upload form, landing page etc.
+- **label** `String` _required_: The label for the element's display. This is used whenever the field should be displayed e.g. upload form, landing page etc.
 
 - **placeholder** `String` _required_: The placeholder for the element's display. You should fill this in with an example value.
 
@@ -66,7 +66,7 @@ An input field for numbers e.g integers, float etc.
 
 - **icon** `String` _optional_: The optional icon that your field might have. The value should be one of the [Semantic UI icons](https://react.semantic-ui.com/elements/icon/).
 
-- **required** `Boolean` _optional_: Define if the field should be required i.e display the `*` symbol.
+- **required** `Boolean` _optional_: Define if the field should be required i.e. display the `*` symbol.
 
 - **disabled** `Boolean` _optional_: Define if the field should be displayed as disabled thus no input can be filled.
 
@@ -90,9 +90,9 @@ An input field for multiple string values.
 
 ### Props
 
-- **fieldPath** `String` _required_: The path to the field e.g `cern:experiment`.
+- **fieldPath** `String` _required_: The path to the field e.g. `cern:experiment`.
 
-- **label** `String` _required_: The label for the element's display. This is used whenever the field should be displayed e.g upload form, landing page etc.
+- **label** `String` _required_: The label for the element's display. This is used whenever the field should be displayed e.g. upload form, landing page etc.
 
 - **placeholder** `String` _required_: The placeholder for the element's display. You should fill this in with an example value.
 
@@ -100,7 +100,7 @@ An input field for multiple string values.
 
 - **icon** `String` _optional_: The optional icon that your field might have. The value should be one of the [Semantic UI icons](https://react.semantic-ui.com/elements/icon/).
 
-- **required** `Boolean` _optional_: Define if the field should be required i.e display the `*` symbol.
+- **required** `Boolean` _optional_: Define if the field should be required i.e. display the `*` symbol.
 
 - **additionLabel** `String` _optional_: The label to show when a user is adding a new value.
 
@@ -127,15 +127,15 @@ A rich input field for HTML text, with a WYSIWYG editor.
 
 ### Props
 
-- **fieldPath** `String` _required_: The path to the field e.g `cern:experiment`.
+- **fieldPath** `String` _required_: The path to the field e.g. `cern:experiment`.
 
-- **label** `String` _required_: The label for the element's display. This is used whenever the field should be displayed e.g upload form, landing page etc.
+- **label** `String` _required_: The label for the element's display. This is used whenever the field should be displayed e.g. upload form, landing page etc.
 
 - **description** `String` _required_: The description for the element's display. You should provide useful information on how the users should fill this field in.
 
 - **icon** `String` _optional_: The optional icon that your field might have. The value should be one of the [Semantic UI icons](https://react.semantic-ui.com/elements/icon/).
 
-- **required** `Boolean` _optional_: Define if the field should be required i.e display the `*` symbol.
+- **required** `Boolean` _optional_: Define if the field should be required i.e. display the `*` symbol.
 
 - **editorConfig** `Object` _optional_: The config to pass to the underlying HTML WYSIWYG editor as described in the [CKEditor configuration](https://ckeditor.com/docs/ckeditor5/latest/api/module_core_editor_editorconfig-EditorConfig.html) page.
 
@@ -157,15 +157,15 @@ An input field for multi line text.
 
 ### Props
 
-- **fieldPath** `String` _required_: The path to the field e.g `cern:experiment`.
+- **fieldPath** `String` _required_: The path to the field e.g. `cern:experiment`.
 
-- **label** `String` _required_: The label for the element's display. This is used whenever the field should be displayed e.g upload form, landing page etc.
+- **label** `String` _required_: The label for the element's display. This is used whenever the field should be displayed e.g. upload form, landing page etc.
 
 - **description** `String` _required_: The description for the element's display. You should provide useful information on how the users should fill this field in.
 
 - **icon** `String` _optional_: The optional icon that your field might have. The value should be one of the [Semantic UI icons](https://react.semantic-ui.com/elements/icon/).
 
-- **required** `Boolean` _optional_: Define if the field should be required i.e display the `*` symbol.
+- **required** `Boolean` _optional_: Define if the field should be required i.e. display the `*` symbol.
 
 ## Dropdown
 
@@ -189,9 +189,9 @@ A dropdown field that renders the complete list of possible options, where the u
 
 ### Props
 
-- **fieldPath** `String` _required_: The path to the field e.g `cern:experiment`.
+- **fieldPath** `String` _required_: The path to the field e.g. `cern:experiment`.
 
-- **label** `String` _required_: The label for the element's display. This is used whenever the field should be displayed e.g upload form, landing page etc.
+- **label** `String` _required_: The label for the element's display. This is used whenever the field should be displayed e.g. upload form, landing page etc.
 
 - **placeholder** `String` _required_: The placeholder for the element's display. You should fill this in with an example value.
 
@@ -199,7 +199,7 @@ A dropdown field that renders the complete list of possible options, where the u
 
 - **icon** `String` _optional_: The optional icon that your field might have. The value should be one of the [Semantic UI icons](https://react.semantic-ui.com/elements/icon/).
 
-- **required** `Boolean` _optional_: Define if the field should be required i.e display the `*` symbol.
+- **required** `Boolean` _optional_: Define if the field should be required i.e. display the `*` symbol.
 
 - **search** `Boolean` _optional_: Define if the user should be able to search in the current available options.
 
@@ -230,22 +230,22 @@ A dropdown field that allows the user to search for values, connected to the RES
 
 ### Props
 
-- **fieldPath** `String` _required_: The path to the field e.g `cern:experiment`.
+- **fieldPath** `String` _required_: The path to the field e.g. `cern:experiment`.
 
-- **label** `String` _required_: The label for the element's display. This is used whenever the field should be displayed e.g upload form, landing page etc.
+- **label** `String` _required_: The label for the element's display. This is used whenever the field should be displayed e.g. upload form, landing page etc.
 
 - **placeholder** `String` _required_: The placeholder for the element's display. You should fill this in with an example value.
 
 - **description** `String` _required_: The description for the element's display. You should provide useful information on how the users should fill this field in.
 
-- **autocompleteFrom** `String` _required_: The endpoint from which the component should fetch options. This will point to your vocabulary endpoint e.g `/api/vocabularies/myvocabulary`.
+- **autocompleteFrom** `String` _required_: The endpoint from which the component should fetch options. This will point to your vocabulary endpoint e.g. `/api/vocabularies/myvocabulary`.
 
 - **autocompleteFromAcceptHeader** `String` _optional_: The `Accept` header to send to the `autocompleteFrom` API. If not provided, the **default** header is
   `application/vnd.inveniordm.v1+json`.
 
 - **icon** `String` _optional_: The optional icon that your field might have. The value should be one of the [Semantic UI icons](https://react.semantic-ui.com/elements/icon/).
 
-- **required** `Boolean` _optional_: Define if the field should be required i.e display the `*` symbol.
+- **required** `Boolean` _optional_: Define if the field should be required i.e. display the `*` symbol.
 
 - **clearable** `Boolean` _optional_: Define if the user can deselect all the selected values.
 
@@ -253,7 +253,7 @@ A dropdown field that allows the user to search for values, connected to the RES
 
 ## BooleanCheckbox
 
-A field for boolean values. It displays 2 checkboxes for each corresponding value i.e true/false.
+A field for boolean values. It displays 2 checkboxes for each corresponding value i.e. true/false.
 
 ### Usage
 
@@ -269,16 +269,16 @@ A field for boolean values. It displays 2 checkboxes for each corresponding valu
 
 ### Props
 
-- **fieldPath** `String` _required_: The path to the field e.g `cern:experiment`.
+- **fieldPath** `String` _required_: The path to the field e.g. `cern:experiment`.
 
-- **label** `String` _required_: The label for the element's display. This is used whenever the field should be displayed e.g upload form, landing page etc.
+- **label** `String` _required_: The label for the element's display. This is used whenever the field should be displayed e.g. upload form, landing page etc.
 
-- **trueLabel** `String` _required_: The label for the element's display when the value is `true`. This is used whenever the `true` value should be displayed e.g upload form, landing page etc.
+- **trueLabel** `String` _required_: The label for the element's display when the value is `true`. This is used whenever the `true` value should be displayed e.g. upload form, landing page etc.
 
-- **falseLabel** `String` _required_: The label for the element's display when the value is `false`. This is used whenever the `false` value should be displayed e.g upload form, landing page etc.
+- **falseLabel** `String` _required_: The label for the element's display when the value is `false`. This is used whenever the `false` value should be displayed e.g. upload form, landing page etc.
 
 - **description** `String` _required_: The description for the element's display. You should provide useful information on how the users should fill this field in.
 
 - **icon** `String` _optional_: The optional icon that your field might have. The value should be one of the [Semantic UI icons](https://react.semantic-ui.com/elements/icon/).
 
-- **required** `Boolean` _optional_: Define if the field should be required i.e display the `*` symbol.
+- **required** `Boolean` _optional_: Define if the field should be required i.e. display the `*` symbol.

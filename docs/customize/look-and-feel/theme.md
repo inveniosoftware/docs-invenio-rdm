@@ -62,7 +62,7 @@ That's because `.less` files (and React files) always need to be transformed int
 
 ## Automatic re-build
 
-That way is to run `invenio-cli assets watch` in a separate terminal. This command watches for changes to assets and rebuilds them automatically. It run indefinitely until you cancel it via `<Ctrl+C>`.
+That way is to run `invenio-cli assets watch` in a separate terminal. This command watches for changes to assets and rebuilds them automatically. It runs indefinitely until you cancel it via `<Ctrl+C>`.
 
 It needs to "know" the assets already however. This means you still need to run `invenio-cli assets build` if you have added a new file to `assets/`.
 

@@ -30,8 +30,8 @@ communities to ensure a consistent user experience across all communities.
 A community roles translates into a set of permissions. The roles are
 configurable to ensure that they can be tailored to the needs of an instance,
 as well as allow for customizations. For example, one instance might want to use
-"curator" and another instance wants to use "editor" as a role because it adjust better
-to their use cases.
+"curator" and another instance wants to use "editor" as a role because it suits 
+their use cases better.
 
 By default the following community roles are defined:
 

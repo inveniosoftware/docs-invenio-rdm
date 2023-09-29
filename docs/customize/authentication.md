@@ -199,7 +199,7 @@ OAUTHCLIENT_REMOTE_APPS["keycloak"] = keycloak_remote_app
 ##### Multiple Keycloak authentication providers
 
 You might have the need to integrate multiple Keycloak authentication providers at the same time, to allow
-users to login with one or the other. You can "namespace" each remote application using a different
+users to log in with one or the other. You can "namespace" each remote application using a different
 value for the parameter `app_key`. In your `invenio.cfg`:
 
 ```python
@@ -281,7 +281,7 @@ OPENAIRE_APP_CREDENTIALS = dict(
 )
 ```
 
-In case you want use the sandbox environment, use ``openaire_aai.REMOTE_SANDBOX_APP`` instead
+In case you want to use the sandbox environment, use ``openaire_aai.REMOTE_SANDBOX_APP`` instead
 of ``openaire_aai.REMOTE_APP``.
 
 ### Login automatic redirection
@@ -314,8 +314,8 @@ USERPROFILES_READ_ONLY = True
 
 *Introduced in InvenioRDM v11*
 
-By default, users who login using an external authentication provider are `confirmed` and the e-mail confirmation
-is not sent any more.
+By default, users who log in using an external authentication provider are `confirmed` and the e-mail confirmation
+is not sent anymore.
 
 The only exception is the ORCID OAuth plugin: the user e-mail cannot be retrieved by this provider
 and the user must provide it when registering for the first time.
@@ -905,7 +905,7 @@ OAUTHCLIENT_LOGIN_USER_TEMPLATE = "invenio_saml/login_user.html"
 
 #### Multiple SAML authentication providers
 
-You might have the need to integrate multiple SAML authentication providers at the same time, to allow users to login
+You might have the need to integrate multiple SAML authentication providers at the same time, to allow users to log in
 with one or the other.
 You can define multiple SAML apps in your `invenio.cfg`:
 

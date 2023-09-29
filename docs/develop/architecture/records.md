@@ -22,9 +22,9 @@ The record data model is used to describe **a resource**. Examples of resources
 include e.g. journal articles, datasets, posters, videos, images, software and
 more. Some properties of resources:
 
-- A resource may exists in one or more versions.
+- A resource may exist in one or more versions.
 - A resource version has its own persistent identifiers and bibliographic
-  metadata (e.g. title, publication date, creator list etc may be different
+  metadata (e.g. title, publication date, creator list etc. may be different
   between versions).
 - All versions of a resource should be accessible and editable.
 
@@ -79,8 +79,8 @@ and save partial changes prior to being published.
 
 There's three different types of drafts:
 
-- **New draft**: The initial draft when no record versions has been published.
-- **Edit draft**: A draft of an published record version (used when editing an
+- **New draft**: The initial draft when no record versions have been published.
+- **Edit draft**: A draft of a published record version (used when editing an
   already published record)
 - **Next draft**: A draft without a published record version that is not the
   initial draft.
@@ -113,14 +113,14 @@ unordered child nodes. This means there is **no order** on record versions.
 
 One record version is designated as the latest version tracked by this
 state so that it's possible to show only the latest version of a record. It
-also keep tracks of which is the latest draft/next draft if they exists.
+also keeps track of which is the latest draft/next draft if they exist.
 
 Lastly, an integer index is incremented every time a new record version is
 created.
 
 The reason that we do not define an order on record versions is because
-multiple different orders may be relevant. A version history may no
-necessarily be linear so it can make sense to order by version number,
+multiple different orders may be relevant. A version history may not
+necessarily be linear, so it can make sense to order by version number,
 publication date or order in which the record version was created.
 
 ## Files
@@ -208,7 +208,7 @@ allowed to be used as
 The request itself follows the documented request states and transitions as
 documented under [requests](requests.md#statuses).
 
-The draft goes through it's own states as shown below:
+The draft goes through its own states as shown below:
 
 ![Draft review state diagram](../img/review-states.svg)
 

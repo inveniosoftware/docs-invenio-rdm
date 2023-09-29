@@ -5,7 +5,7 @@ institution's logo. We are going to change InvenioRDM's default logo to your log
 
 ## Step-by-step
 
-**Step 1** - Take an *svg* file and copy it to your **local** static files.
+**Step 1** - Take a *svg* file and copy it to your **local** static files.
 
 We'll use the [invenio white logo](https://github.com/inveniosoftware/cookiecutter-invenio-rdm/blob/master/%7B%7Bcookiecutter.project_shortname%7D%7D/static/images/logo-invenio-white.svg) as an example:
 

@@ -661,16 +661,16 @@ The goal of featured communities is to increase the level of awareness for a com
 
 **Parameters**
 
-| Name           | Type    | Location | Description                                                  |
-| -------------- | ------- | -------- | ------------------------------------------------------------ |
-| `q`            | string  | query    | Search query used to filter results based on [ElasticSearch's query string syntax](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax). |
-| `size`         | integer | query    | Specify number of items in the results page (default: 10).   |
-| `page`         | integer | query    | Specify the page of results.                                 |
-| `type`         | string  | query    | Specify community type as one of organization, event, topic or project. |
-| `accept`       | string  | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
+| Name     | Type    | Location | Description                                                                                                                                                                                                |
+|----------|---------|----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `q`      | string  | query    | Search query used to filter results based on [ElasticSearch's query string syntax](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax). |
+| `size`   | integer | query    | Specify number of items in the results page (default: 10).                                                                                                                                                 |
+| `page`   | integer | query    | Specify the page of results.                                                                                                                                                                               |
+| `type`   | string  | query    | Specify community type as one of organization, event, topic or project.                                                                                                                                    |
+| `accept` | string  | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json`                                                                                                                                 |
 
 Only communities with a featured timestamp before the current time are retrieved.
-They are sorted by the begin of their latest featured timestamp (e.g. A is featured starting with 2022-06-01, B is featured starting with 2022-06-03 then the order will be [B, A]).
+They are sorted by the beginning of their latest featured timestamp (e.g. A is featured starting with 2022-06-01, B is featured starting with 2022-06-03 then the order will be [B, A]).
 
 **Request**
 
@@ -773,11 +773,11 @@ Content-Type: application/json
 
 **Parameters**
 
-| Name          | Type   | Location | Description                                                  |
-| ----------    | ------ | -------- | ------------------------------------------------------------ |
-| `accept`      | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json`                    |
-| `community_id`| string | path     | ID of the community.                                                                          |
-| `start_date`  | string | body     | Required, datetime in iso format. Community will be featured from this point in time onwards. |
+| Name           | Type   | Location | Description                                                                                   |
+|----------------|--------|----------|-----------------------------------------------------------------------------------------------|
+| `accept`       | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json`                    |
+| `community_id` | string | path     | ID of the community.                                                                          |
+| `start_date`   | string | body     | Required, datetime in iso format. Community will be featured from this point in time onwards. |
 
 
 **Request**
@@ -809,10 +809,10 @@ Content-Type: application/json
 
 **Parameters**
 
-| Name          | Type   | Location | Description                                                  |
-| ----------    | ------ | -------- | ------------------------------------------------------------ |
-| `accept`      | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json`                  |
-| `community_id`| string | path     | ID of the community.                                                                        |
+| Name           | Type   | Location | Description                                                                |
+|----------------|--------|----------|----------------------------------------------------------------------------|
+| `accept`       | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
+| `community_id` | string | path     | ID of the community.                                                       |
 
 
 **Request**
@@ -851,12 +851,12 @@ Content-Type: application/json
 
 **Parameters**
 
-| Name                | Type   | Location | Description                                                  |
-| ----------          | ------ | -------- | ------------------------------------------------------------ |
-| `accept`            | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json`              |
-| `community_id`      | string | path     | ID of the community.                                                                    |
-| `featured_entry_id` | string | path     | ID of the featured entry.                                                               |
-| `start_date`  | string | body     | Required, datetime in iso format. Community will be featured from this point in time onwards. |
+| Name                | Type   | Location | Description                                                                                   |
+|---------------------|--------|----------|-----------------------------------------------------------------------------------------------|
+| `accept`            | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json`                    |
+| `community_id`      | string | path     | ID of the community.                                                                          |
+| `featured_entry_id` | string | path     | ID of the featured entry.                                                                     |
+| `start_date`        | string | body     | Required, datetime in iso format. Community will be featured from this point in time onwards. |
 
 
 **Request**
@@ -888,11 +888,11 @@ Content-Type: application/json
 
 **Parameters**
 
-| Name                | Type   | Location | Description                                                  |
-| ----------          | ------ | -------- | ------------------------------------------------------------ |
-| `accept`            | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json`                  |
-| `community_id`      | string | path     | ID of the community.                                                                        |
-| `featured_entry_id` | string | path     | ID of the featured entry.                                                                   |
+| Name                | Type   | Location | Description                                                                |
+|---------------------|--------|----------|----------------------------------------------------------------------------|
+| `accept`            | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
+| `community_id`      | string | path     | ID of the community.                                                       |
+| `featured_entry_id` | string | path     | ID of the featured entry.                                                  |
 
 
 **Request**

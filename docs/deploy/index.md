@@ -1,6 +1,6 @@
 # Deployment
 
-This guide is meant to give an high-level overview of deployment techniques and tips
+This guide is meant to give a high-level overview of deployment techniques and tips
 when planning how to deploy InvenioRDM.
 
 !!! info "Read the infrastructure architecture first!"
@@ -67,7 +67,7 @@ scope of this documentation.
 ## Services
 
 When deploying InvenioRDM, you can choose to install, securely configure and
-maintain yourself the services (such as the database, the search engine, etc..)
+maintain yourself the services (such as the database, the search engine, etc.)
 services, or use third party providers. For example, the three cloud providers
 mentioned above (AWS, GC, and Azure) can provide most of the services. If you
 choose to deploy them yourself you will need to deep-dive and get experienced
@@ -75,7 +75,7 @@ in the following topics:
 
 - Persist your data, and enable periodic backups. This includes the relational
 database, the search indices and the files.
-- Queue persistence (RabbitMQ) to avoid loosing tasks in case the service fails.
+- Queue persistence (RabbitMQ) to avoid losing tasks in case the service fails.
 - High availability, many of the services can be deployed redundantly. Note
 that most of the cloud providers offer this option or have an established SLA.
 - Secrets handling. Most of the services require credentials to connect. It is
@@ -107,7 +107,7 @@ means that your application code will change and versioning will help you to
 control which code is actually deployed. At CERN, we use GitHub tags/release
 for each version (e.g. v1.0.0).
 
-If you are using container for the deployment, you can automate the image
+If you are using containers for the deployment, you can automate the image
 build with for example [GitHub actions](https://github.com/features/actions)
 (or any other CI tool). In addition, some PaaS platforms have the capabilities
 to detect when a new image for a certain tag (e.g. `production`) has changed

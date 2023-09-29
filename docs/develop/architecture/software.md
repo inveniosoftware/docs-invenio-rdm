@@ -10,7 +10,7 @@ The guide provides a high-level overview of the core software architecture of In
 
 ## Layers
 
-InvenioRDM has a layered architecture that consistent of three layers:
+InvenioRDM has a layered architecture that consists of three layers:
 
 - Presentation layer
 - Service layer
@@ -24,13 +24,13 @@ The diagram below shows a simplified view of the data flow in the architecture.
 
 ![Architecture layers](../img/architecture.svg)
 
-*The presentation layer* parses incoming requests and routes them to service layer. This involves sending and receiving data in multiple different formats and translating these into an internal representation, as well as e.g. parsing arguments from an HTTP request (e.g parsing the query string parameters).
+*The presentation layer* parses incoming requests and routes them to service layer. This involves sending and receiving data in multiple different formats and translating these into an internal representation, as well as e.g. parsing arguments from an HTTP request (e.g. parsing the query string parameters).
 
 *The service layer* is completely independent from the presentation layer and can be used by many different presentation interfaces such as REST APIs, CLIs, Celery tasks. The service layer contains the overall control flow and is responsible for e.g. checking permissions and performing semantic data validation.
 
 *The data access layer* is responsible for ensuring data integrity, harmonizing data access to different storages as well as fetching and storing the data in the underlying systems.
 
-The data flow between the layers is strictly limited to some few well-defined objects to ensure a clean separation of concerns. The presentation layer communicates with the service layer via a e.g. a record projection (i.e. a view of a record localised to a specific identity). The service layer communicates with the data access layer via e.g. a record entity that provides data abstraction, syntactic data validation, and a strong programmatic API.
+The data flow between the layers is strictly limited to some few well-defined objects to ensure a clean separation of concerns. The presentation layer communicates with the service layer via e.g. a record projection (i.e. a view of a record localised to a specific identity). The service layer communicates with the data access layer via e.g. a record entity that provides data abstraction, syntactic data validation, and a strong programmatic API.
 
 !!! tip "Tip: Where do you belong?"
 
@@ -65,12 +65,12 @@ The data access layer serves two purposes:
 
 - Provide a strong programmatic API that produce a clean, simple and reliable
   control flow in the service layer.
-- Persist our business objects on data storage in an reliable and performant
+- Persist our business objects on data storage in a reliable and performant
   way.
 
 !!! tip "Tip: Messy service layer?"
 
-    If you service layer code looks messy, likely you need to work on your data
+    If you service layer code looks messy, you may need to work on your data
     access layer.
 
     A typical example is the service layer doing data-wrangling with
@@ -137,7 +137,7 @@ The search mappings define how records are indexed and made searchable. Records 
 
 Dumpers are responsible for dumping and loading prior to storing/fetching records on secondary storage (e.g. the search index), and play a key role for harmonizing data access to records from primary and secondary storages.
 
-Dumpers are specific to a secondary storage system (e.g. an search dumper, a file dumper, ...).
+Dumpers are specific to a secondary storage system (e.g. a search dumper, a file dumper, ...).
 
 The dump and load of a dumper MUST be idempotent - i.e. ``record == Record.load(record.dump())``. This ensures that independently of if a record was retrieved from primary or secondary storage, it has the same data and works in the same manner.
 
@@ -341,7 +341,7 @@ The resource config are used for dependency injection to
 
 ## Performance considerations
 
-Performance is of very high importance for InvenioRDM. There's however often
+Performance is of very high importance for InvenioRDM. There are however often
 trade-offs to be made.
 
 **Query vs indexing speed**
@@ -350,7 +350,7 @@ For InvenioRDM query speed is more important that fast indexing speeds. This mea
 we'll sometimes denormalize data to have high enough query speed. Once we denormalize
 data we immediately must also deal with stale data and cache invalidation.
 
-The version counter on on all records is instrumental in being able to manage
+The version counter on all records is instrumental in being able to manage
 the speed.
 
 **Database vs search engine**

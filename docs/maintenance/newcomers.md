@@ -48,7 +48,7 @@ You daily schedule looks like this:
 
 ## Developing with InvenioRDM
 
-### Setup your system
+### Set up your system
 
 See [Setting up your system](https://invenio.readthedocs.io/en/latest/getting-started/development-environment.html)
 

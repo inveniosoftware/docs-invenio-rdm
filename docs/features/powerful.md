@@ -20,7 +20,7 @@ InvenioRDM exposes advanced APIs for search-as-you-type scenarios.
 
 ## Citation formatting
 
-InvenioRDM can generate citation strings for your records using the Citation Style Language with support for more than 800+ journal citation styles.
+InvenioRDM can generate citation strings for your records using the Citation Style Language with support for over 800 journal citation styles.
 
 ## Previewers
 

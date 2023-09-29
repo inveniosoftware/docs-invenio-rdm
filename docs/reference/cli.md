@@ -98,7 +98,7 @@ Installs the project locally.
 
 Installs Python dependencies, creates an instance directory, symlinks the `invenio.cfg`, templates, static files, assets, and finally builds front-end assets.
 
-A python virtual environment is created if does not already exists.
+A python virtual environment is created if it does not already exist.
 
 **Options**
 
@@ -167,7 +167,7 @@ Watches InvenioRDM's Webpack project for changes, and automatically rebuild the 
 
 This command is useful for instance if you're editing the LESS or JavaScript files in your InvenioRDM instance.
 
-Note, if you run `assets build` with the `--production` option, then you local development files are not symlinked, and the
+Note, if you run `assets build` with the `--production` option, then your local development files are not symlinked, and the
 `assets watch` command will not detect edits of your local development files.
 
 ### **`assets watch-module`**

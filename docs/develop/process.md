@@ -74,7 +74,7 @@ them early.
 - Design mockups in Balsamiq.
 - Share and present in the bi-weekly InvenioRDM telecons to collect feedback.
 - Collaboratively write RFCs - this helps articulate names, think through possible problems and keep a log of why certain decisions were taken.
-- Match a coherent UX (e.g. know why you place a button a specific place, what's the text etc)
+- Match a coherent UX (e.g. know why you place a button a specific place, what's the text etc.)
 
 ### Development
 

@@ -132,7 +132,7 @@ public:
 
 **Errors**
 
-- **403**: The user does not exists or the profile is not public.
+- **403**: The user does not exist or the profile is not public.
 
 **Request**
 
@@ -187,7 +187,7 @@ Both authenticated and unauthenticated access is possible.
 
 **Errors**
 
-- **403**: The user does not exists or the profile is not public.
+- **403**: The user does not exist or the profile is not public.
 
 **Request**
 
