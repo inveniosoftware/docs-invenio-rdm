@@ -17,7 +17,7 @@ The guide covers general style guidelines.
 - **Brand**:
     - The color used for theming your InvenioRDM.
 
-**Do's and don'ts:**
+**Dos and don'ts:**
 
 - ✅ Do style components with logical class names (like ``<div class="ui brand segment">``).
 - ❌ Don't style components with color names (e.g. ``<div class="ui blue segment">``).
