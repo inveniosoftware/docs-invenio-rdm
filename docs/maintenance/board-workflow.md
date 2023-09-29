@@ -6,7 +6,7 @@ This guide is intended for maintainers and developers of InvenioRDM itself.
 
 **Scope**
 
-The guide covers how we use the GitHub sprint boards during development.
+The guide covers how we use the GitHub sprint boards during  development.
 
 ## Board
 
