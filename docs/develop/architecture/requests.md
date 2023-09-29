@@ -166,7 +166,7 @@ build grant tokens both from:
 - a required need: e.g. a request requiring needs to grant access.
 - a provided need: e.g. an identity providing needs.
 
-This provides an for efficient searches when you serialize the required grants
+This provides for efficient searches when you serialize the required grants
 into the indexed request, and when searching, you filter requests to the grants
 provided by the identity.
 
@@ -194,7 +194,7 @@ We imagine that requests can later be extended with features such as:
 
 A lot of the inspiration to the requests module comes from collaborative source code platforms like GitHub and GitLab and their pull/merge requests features. Other inspiration comes from user support systems like UserVoice.
 
-There are however notable differences between between pull/merge requests and requests in InvenioRDM.
+There are however notable differences between pull/merge requests and requests in InvenioRDM.
 Pull/merge requests is always made against a specific repository, and thus naturally *belong* to a given repository. This means that they are accessible on a single URL endpoint and permissions are conceptually somewhat easy to understand.
 
 Requests in InvenioRDM however makes sense from multiple endpoints depending on who is looking and the context they are doing it in.

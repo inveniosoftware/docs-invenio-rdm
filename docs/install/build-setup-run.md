@@ -1,6 +1,6 @@
 # Build, setup and run
 
-Now, that we have created a project folder, we need to build and setup the InvenioRDM application.
+Now, that we have created a project folder, we need to build and set up the InvenioRDM application.
 
 The application can be built and installed in two different ways:
 

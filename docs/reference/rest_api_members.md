@@ -14,7 +14,7 @@ The members API allows you to manage members of a community.
 The following general restrictions apply to the member API:
 
 - Owners can manage all roles including owners (except themselves).
-- Managers can managed all roles except owners (except themselves).
+- Managers can manage all roles except owners (except themselves).
 - A community MUST always have at least one owner.
 - User can leave a community.
 - Members can change their own visibility to both public/hidden.

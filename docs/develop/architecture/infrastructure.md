@@ -90,7 +90,7 @@ are usually highly reliable as compared to some NoSQL solutions.
 
 **Primary key lookups**
 
-Most access from Invenio to the database is via primary key look ups, which
+Most access from Invenio to the database is via primary key look-ups, which
 are usually very efficient in database. Search queries and the like are all
 sent to the search engine cluster which can provide much better performance
 than a database.

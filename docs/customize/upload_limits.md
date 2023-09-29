@@ -5,7 +5,7 @@ Limiting the maximum size for file uploads can be desirable for a few reasons, e
 
 ## Invenio Configuration
 
-`Invenio-Files-REST` provides some [configuration values](https://invenio-files-rest.readthedocs.io/en/latest/configuration.html) configuration values that are relevant for limiting file uploads.
+`Invenio-Files-REST` provides some [configuration values](https://invenio-files-rest.readthedocs.io/en/latest/configuration.html) that are relevant for limiting file uploads.
 The most relevant ones are `FILES_REST_DEFAULT_MAX_FILE_SIZE` which limits the maximum size for *each* uploaded file (in bytes) and `FILES_REST_DEFAULT_QUOTA_SIZE` which limits the maximum overall size of *all* files uploaded per record (also in bytes).
 
 For instance, consider the case that the maximum file size is set to 10GiB, and the default quota is set to 30GiB.

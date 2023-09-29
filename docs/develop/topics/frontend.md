@@ -6,7 +6,7 @@ This guide is intended for maintainers and developers of InvenioRDM itself.
 
 **Scope**
 
-This guide is an introduction to frontend development in in InvenioRDM.
+This guide is an introduction to frontend development in InvenioRDM.
 
 ## Overview
 

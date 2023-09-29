@@ -7,7 +7,7 @@ their own InvenioRDM instance.
 
 ## Overview
 
-InvenioRDM comes out-of-the-box with support for for user-provided DOIs,
+InvenioRDM comes out-of-the-box with support for user-provided DOIs,
 registering DataCite DOIs and OAI-PMH IDs.
 
 - Scheme
