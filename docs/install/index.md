@@ -14,7 +14,7 @@ This guide covers how to install InvenioRDM locally on your machine, how to set 
 
 Install the InvenioRDM CLI tool (see [reference](../reference/cli.md)), e.g. via [`pip`](https://pip.pypa.io/en/stable/):
 
-```bash
+```shell
 pip install invenio-cli
 ```
 
@@ -27,7 +27,7 @@ pip install invenio-cli
 
 You can check if the proper requirements are installed via `invenio-cli`:
 
-```bash
+```shell
 invenio-cli check-requirements
 ```
 
@@ -38,7 +38,7 @@ Scaffold your InvenioRDM instance. Replace ``<version>`` with the version you wa
 - LTS release (for production systems): ``v9.1``
 - STS release (for feature previews): ``v11.0``
 
-```bash
+```shell
 invenio-cli init rdm -c <version>
 # e.g:
 invenio-cli init rdm -c v9.1
@@ -49,9 +49,9 @@ You will be asked several questions. If in doubt, choose the default.
 
 #### [4. Build, setup and run](build-setup-run.md)
 
-Now the scaffolding is complete, it is time to check the development requirements
+Now that the scaffolding is complete, it is time to check the development requirements
 
-```bash
+```shell
 cd my-site/
 invenio-cli check-requirements --development
 ```
@@ -64,13 +64,13 @@ You can run the main InvenioRDM application in two modes (choose one):
 
 **Containerized application**
 
-```bash
+```shell
 invenio-cli containers start --lock --build --setup
 ```
 
 **Local application**
 
-```bash
+```shell
 invenio-cli install
 invenio-cli services setup
 invenio-cli run
@@ -104,15 +104,16 @@ In a local application context, precede the `invenio` commands by `pipenv run` (
 **Containerized application**   
 In a fully containerized context, connect to a container first e.g. the web-api container: `docker exec -it my-site-web-api-1 /bin/bash`. Then run the commands from within the container as-is. 
 
+**Steps**
 The following command creates an activated and confirmed user (assuming you have email verification enabled as is the default). 
 
-```bash
+```shell
 invenio users create <EMAIL> --password <PASSWORD> --active --confirm
 ```
 
 Then, allow the user to access the administration panel: 
 
-```bash
+```shell
 invenio access allow administration-access user <EMAIL>
 ```
 
@@ -124,23 +125,23 @@ When you are done, you can stop your instance and optionally destroy the contain
 
 To just stop the containers:
 
-```bash
+```shell
 invenio-cli containers stop
 ```
 
 To destroy them:
 
-```bash
+```shell
 invenio-cli containers destroy
 ```
 
 **Local application**
 
-```bash
+```shell
 ^C [CTRL+C]
 invenio-cli services stop
 ```
 
-```bash
+```shell
 invenio-cli services destroy
 ```
