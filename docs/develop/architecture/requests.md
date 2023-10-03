@@ -76,7 +76,7 @@ A request is conceptually modelled over the following state diagram:
 - **Expired** - The request expired without the creator or receiver taking action.
 - **Accepted** - The receiver accepted the request.
 - **Declined** - The receiver declined the request.
-- **Deleted** - The unsubmitted request was deleted by the creator or system.
+- **Deleted** - The draft request was deleted by the creator or system.
 
 In addition, the following meta states exists:
 
@@ -166,13 +166,13 @@ build grant tokens both from:
 - a required need: e.g. a request requiring needs to grant access.
 - a provided need: e.g. an identity providing needs.
 
-This provides for efficient searches when you serialize the required grants
+This provides efficient searches when you serialize the required grants
 into the indexed request, and when searching, you filter requests to the grants
 provided by the identity.
 
 ## Views
 
-Views over requests is a search filter applied in a given context. Currently we have the following views:
+Views over requests is a search filter applied in a given context. Currently, we have the following views:
 
 - User view - view specific to a given user.
     - Requests where the user is the creator (e.g. submissions)

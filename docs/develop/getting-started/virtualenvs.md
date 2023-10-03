@@ -11,7 +11,7 @@ environments, the tools used to create them and terms such as:
 
 ### Distributions
 
-There exists several Python distributions:
+There exist several Python distributions:
 
 - CPython (official one downloadable from python.org)
 - Anaconda
@@ -24,7 +24,7 @@ programs (i.e. a distribution provides the ``python`` command).
 ### Distribution version
 
 Each distribution comes in multiple versions that's able to interpret the
-Python programming language - e.g. Python 3.8, 3.9 etc.
+Python programming language - e.g., Python 3.8 and 3.9
 
 ### Installation of a distribution
 
@@ -57,13 +57,13 @@ Thus in addition to having multiple ``python`` commands, you can have multiple
 A Python virtual environment is *created from a distribution installation*. It
 isolates the Python packages and commands installed.
 
-For instance you have two Python programs A and B. Python program A depends on
+For instance, if you have two Python programs A and B, and Python program A depends on
 version 1 of package X, and program B depends on version 2 of the same
 package X. Both version 1 and version 2 cannot be installed at the same time
 in a single Python distribution.
 
-Virtual environments allows you to have a virtual environment for program A and
-another for program B each with different version installed of package X.
+Virtual environments allow you to have a virtual environment for program A and
+another for program B each with a different version installed of package X.
 
 This means that a virtual environment has its own ``python`` and ``pip``
 commands that are *enhanced aliases* to the distributions ``python`` and ``pip``
@@ -79,5 +79,3 @@ command.
 - ``brew``, ``yum``, ``apt`` are package manages that can be used to install e.g. multiple Python **distributions**.
 - ``invenio-cli`` uses ``pipenv`` on your local machine or in containers to create and manage
   a **virtual environment**.
-
-All of this can be further complicated if you run container images or virtual machines
