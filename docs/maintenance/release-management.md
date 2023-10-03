@@ -86,7 +86,7 @@ For modules in ``vX.Y.Z``, the new version is ``v(X+1).0.0.dev0``.
 - Release Invenio-App-RDM (removing the pre-release suffix - e.g. ``dev0``).
 - Cookiecutter-Invenio-RDM:
     - Merge everything to ``master``.
-    - Create a new version branch from ``master`` using the pattern ``vX.Y`` (e.g. if Invenio-App-RDM is v1.0.0, then the branch should be named ``v1.0``).
+    - Create a new version branch from ``master`` using the pattern ``vX.Y`` (e.g., if Invenio-App-RDM is v1.0.0, then the branch should be named ``v1.0``).
 - Write release notes in `dev` branch, check the [dev site](https://inveniordm-dev.docs.cern.ch). Then merge to [master@docs-invenio-rdm](https://github.com/inveniosoftware/docs-invenio-rdm).
 
 ### Release
