@@ -76,7 +76,7 @@ A request is conceptually modelled over the following state diagram:
 - **Expired** - The request expired without the creator or receiver taking action.
 - **Accepted** - The receiver accepted the request.
 - **Declined** - The receiver declined the request.
-- **Deleted** - The draft request was deleted by the creator or system.
+- **Deleted** - The unsubmitted request was deleted by the creator or system.
 
 In addition, the following meta states exists:
 
@@ -172,7 +172,7 @@ provided by the identity.
 
 ## Views
 
-Views over requests is a search filter applied in a given context. Currently, we have the following views:
+Requests can be viewed in different contexts which map to appropriate search filters. Currently, we have the following views:
 
 - User view - view specific to a given user.
     - Requests where the user is the creator (e.g. submissions)
@@ -194,7 +194,7 @@ We imagine that requests can later be extended with features such as:
 
 A lot of the inspiration to the requests module comes from collaborative source code platforms like GitHub and GitLab and their pull/merge requests features. Other inspiration comes from user support systems like UserVoice.
 
-There are however notable differences between pull/merge requests and requests in InvenioRDM.
+There are, however, notable differences between pull/merge requests and requests in InvenioRDM.
 Pull/merge requests is always made against a specific repository, and thus naturally *belong* to a given repository. This means that they are accessible on a single URL endpoint and permissions are conceptually somewhat easy to understand.
 
 Requests in InvenioRDM however makes sense from multiple endpoints depending on who is looking and the context they are doing it in.

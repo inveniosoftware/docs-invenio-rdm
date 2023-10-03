@@ -23,8 +23,7 @@ programs (i.e. a distribution provides the ``python`` command).
 
 ### Distribution version
 
-Each distribution comes in multiple versions that's able to interpret the
-Python programming language - e.g., Python 3.8 and 3.9
+Each distribution supports multiple versions of the Python programming language e.g., Python 3.8 and Python 3.9.
 
 ### Installation of a distribution
 
@@ -65,9 +64,7 @@ in a single Python distribution.
 Virtual environments allow you to have a virtual environment for program A and
 another for program B each with a different version installed of package X.
 
-This means that a virtual environment has its own ``python`` and ``pip``
-commands that are *enhanced aliases* to the distributions ``python`` and ``pip``
-command.
+This means that a virtual environment has its own ``python`` and ``pip`` commands.
 
 ![Graphical view of virtual environments and distributions](../img/venvs.svg)
 
