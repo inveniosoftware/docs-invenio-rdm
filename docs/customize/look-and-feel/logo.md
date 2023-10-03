@@ -5,11 +5,11 @@ institution's logo. We are going to change InvenioRDM's default logo to your log
 
 ## Step-by-step
 
-**Step 1** - Take a *svg* file and copy it to your **local** static files.
+**Step 1** - Take an *svg* file and copy it to your **local** static files.
 
 We'll use the [invenio white logo](https://github.com/inveniosoftware/cookiecutter-invenio-rdm/blob/master/%7B%7Bcookiecutter.project_shortname%7D%7D/static/images/logo-invenio-white.svg) as an example:
 
-``` bash
+```shell
 cp static/images/logo-invenio-white.svg static/images/my-logo.svg
 ```
 
@@ -22,10 +22,9 @@ cp static/images/logo-invenio-white.svg static/images/my-logo.svg
 
 **Step 3** - Use the `invenio-cli assets build` command:
 
-``` bash
+```shell
 invenio-cli assets build
-```
-``` console
+
 # Summarized output
 Collecting statics and assets...
 Collect static from blueprints.
@@ -53,7 +52,6 @@ In the browser, go to [https://127.0.0.1:5000/](https://127.0.0.1:5000) or refre
 
 !!! warning "That evil cache"
     If you do not see it changing, check in an incognito window; the browser might have cached the logo.
-
 
 
 ## Custom static files workflow

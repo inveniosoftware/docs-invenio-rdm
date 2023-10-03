@@ -24,7 +24,7 @@ more. Some properties of resources:
 
 - A resource may exist in one or more versions.
 - A resource version has its own persistent identifiers and bibliographic
-  metadata (e.g. title, publication date, creator list etc. may be different
+  metadata (e.g. title, publication date, or creator list may be different
   between versions).
 - All versions of a resource should be accessible and editable.
 
