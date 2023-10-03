@@ -24,7 +24,7 @@ The diagram below shows a simplified view of the data flow in the architecture.
 
 ![Architecture layers](../img/architecture.svg)
 
-*The presentation layer* parses incoming requests and routes them to service layer. This involves sending and receiving data in multiple different formats and translating these into an internal representation, as well as e.g., parsing arguments from an HTTP request (e.g., parsing the query string parameters).
+*The presentation layer* parses incoming requests and routes them to service layer. This involves sending and receiving data in multiple different formats and translating these into an internal representation. For instance, this includes parsing arguments from an HTTP request (e.g., parsing the query string parameters).
 
 *The service layer* is completely independent of the presentation layer and can be used by many different presentation interfaces such as REST APIs, CLIs, Celery tasks. The service layer contains the overall control flow and is responsible for e.g. checking permissions and performing semantic data validation.
 
@@ -34,7 +34,7 @@ The data flow between the layers is strictly limited to some few well-defined ob
 
 !!! tip "Tip: Where do you belong?"
 
-    A key question you should always ask yourself when designing or writing code is where you code belongs in the architecture:
+    A key question you should always ask yourself when designing or writing code is where your code belongs in the architecture:
 
     - Is it a presentation, service, or data access layer object?
     - Is the object crossing boundaries between layers?
