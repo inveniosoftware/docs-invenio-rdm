@@ -15,7 +15,7 @@ breakpoint()
 
 You can also install [Flask-DebugToolbar](https://flask-debugtoolbar.readthedocs.io/en/latest/):
 
-```
+```shell
 cd ~/src/my-site
 pipenv run pip install Flask-Debugtoolbar
 ```
@@ -28,9 +28,9 @@ It has built-in:
 
 **SQL queries**
 
-Last, but not least you can print SQL queries to the console by setting the  variable in your ``config.py``:
+Last, but not least you can print SQL queries to the console by setting the `SQLALCHEMY_ECHO` variable in your ``config.py``:
 
-```
+```shell
 # config.py
 SQLALCHEMY_ECHO = True
 ```
@@ -46,7 +46,8 @@ All modern browsers have a built-in JavaScript debugger. You can enable the debu
 
 You can add the `debugger` statement wherever you want to stop the execution of the application code. You can do that by following the next steps:
 
-- Add the statement in your code e.g.
+- Add the statement in your code e.g.,
+
 ```javascript
 function hello(name) {
   let phrase = `Hello, ${name}!`;
@@ -60,6 +61,7 @@ function say(phrase) {
   alert(`** ${phrase} **`);
 }
 ```
+
 - Refresh the page.
 - The application execution will stop in the place that you have put the `debugger` statement. You can think of it as a breakpoint to your source code.
 
@@ -73,7 +75,8 @@ function say(phrase) {
 Another powerful tool you have to debug your application is the `console.log()` function. You can think of it as something similar to Python's `print()` function but instead of printing in your terminal, it shows the output in your browser's console.
 
 To use the command you can follow the next steps:
-- Add the statement in your code e.g.
+- Add the statement in your code e.g.,
+
 ```javascript
 function hello(name) {
   let phrase = `Hello, ${name}!`;
@@ -87,6 +90,7 @@ function say(phrase) {
   alert(`** ${phrase} **`);
 }
 ```
+
 - Go to your browser and open the debugger console.
 - Check the output of your log command:
 

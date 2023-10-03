@@ -24,13 +24,13 @@ The diagram below shows a simplified view of the data flow in the architecture.
 
 ![Architecture layers](../img/architecture.svg)
 
-*The presentation layer* parses incoming requests and routes them to service layer. This involves sending and receiving data in multiple different formats and translating these into an internal representation, as well as e.g. parsing arguments from an HTTP request (e.g. parsing the query string parameters).
+*The presentation layer* parses incoming requests and routes them to service layer. This involves sending and receiving data in multiple different formats and translating these into an internal representation, as well as e.g., parsing arguments from an HTTP request (e.g., parsing the query string parameters).
 
-*The service layer* is completely independent from the presentation layer and can be used by many different presentation interfaces such as REST APIs, CLIs, Celery tasks. The service layer contains the overall control flow and is responsible for e.g. checking permissions and performing semantic data validation.
+*The service layer* is completely independent of the presentation layer and can be used by many different presentation interfaces such as REST APIs, CLIs, Celery tasks. The service layer contains the overall control flow and is responsible for e.g. checking permissions and performing semantic data validation.
 
 *The data access layer* is responsible for ensuring data integrity, harmonizing data access to different storages as well as fetching and storing the data in the underlying systems.
 
-The data flow between the layers is strictly limited to some few well-defined objects to ensure a clean separation of concerns. The presentation layer communicates with the service layer via e.g. a record projection (i.e. a view of a record localised to a specific identity). The service layer communicates with the data access layer via e.g. a record entity that provides data abstraction, syntactic data validation, and a strong programmatic API.
+The data flow between the layers is strictly limited to some few well-defined objects to ensure a clean separation of concerns. The presentation layer communicates with the service layer via a record projection (i.e. a view of a record localised to a specific identity). The service layer communicates with the data access layer via a record entity that provides data abstraction, syntactic data validation, and a strong programmatic API.
 
 !!! tip "Tip: Where do you belong?"
 
@@ -70,7 +70,7 @@ The data access layer serves two purposes:
 
 !!! tip "Tip: Messy service layer?"
 
-    If you service layer code looks messy, you may need to work on your data
+    If your service layer code looks messy, you may need to work on your data
     access layer.
 
     A typical example is the service layer doing data-wrangling with
