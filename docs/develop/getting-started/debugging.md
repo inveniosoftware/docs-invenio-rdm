@@ -35,6 +35,32 @@ Last, but not least you can print SQL queries to the console by setting the `SQL
 SQLALCHEMY_ECHO = True
 ```
 
+**Logging output**
+
+If you need to debug some code in a deployed environment (hard to debug locally), you can print the logs to
+the standard output or to a file.
+To see the logs in the terminal (e.g. in a container log), you can do the following:
+
+1. prepare your code with the necessary logging instructions:
+```python
+from flask import current_app
+  ...
+  current_app.logger.info(f"my variable: {my_variable}")
+```
+2. make sure that the log level of Flask is at least the same as your log instructions, in this case `info`.
+This is needed because Flask does not set a log level when running in non-DEBUG mode:
+```python
+def my_func():
+  import logging
+  current_app.logger.setLevel(logging.INFO)
+  current_app.logger.root.setLevel(logging.INFO)
+  current_app.logger.handlers[0].setLevel(logging.INFO)  # handlers[0] is normally the stdout handler
+  ...
+```
+3. deploy and run: you should now see all your logs.
+
+You can customize this, for example, with a file handler. Refer to the Python documentation for more information.
+
 ## JavaScript
 
 All modern browsers have a built-in JavaScript debugger. You can enable the debugger in your browser and take advantage of the below 2 main ways to debug your JS application:
