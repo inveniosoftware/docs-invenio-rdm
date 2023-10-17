@@ -35,7 +35,7 @@ If the command gives a different output, the database was likely on an older sta
 
 ### Updating Configuration Variables
 
-**Note**: The DataCite-related configuration values have been renamed in v7!  
+**Note**: The DataCite-related configuration values have been renamed in v7!
 Please adjust your configurations in `invenio.cfg` as per the following table:
 
 | Old Name                             | New Name             |
@@ -49,7 +49,7 @@ Please adjust your configurations in `invenio.cfg` as per the following table:
 
 
 Further, the `OAISERVER_ID_PREFIX` needs to be set to the site name (without the protocol, e.g. `inveniordm.web.cern.ch`),
-even if you don't intend to use the OAI-PMH feature.  
+even if you don't intend to use the OAI-PMH feature.
 During the migration, the OAI PIDs will be created for each record and this variable ensures that they have meaningful values.
 
 
@@ -101,7 +101,7 @@ The mentioned records must be fixed manually (usually a matter of manipulating t
 
 #### Success
 
-If no errors were reported, congratulations on the successful data migration! :partying_face:
+If no errors were reported, congratulations on the successful data migration! 🥳
 
 
 ### Elasticsearch
@@ -123,4 +123,4 @@ As soon as the indices have been rebuilt, the entire migration is complete!
 
 *December 7th, 2021*: Added required last step (Elasticsearch) because we *did* find some changes in the mappings, and updated some wording and headings.
 
-*March 3rd, 2022*: Removed the `invenio alembic stamp` command from the upgrade guide, because the command does not actually find out the current revisions for the database. 
+*March 3rd, 2022*: Removed the `invenio alembic stamp` command from the upgrade guide, because the command does not actually find out the current revisions for the database.
