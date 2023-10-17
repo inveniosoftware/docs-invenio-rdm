@@ -143,7 +143,7 @@ export class Experiments extends Component {
 }
 ```
 
-Since we added a new asset, we need to rebuild them:
+Since we added a new Javascript file, we need to [rebuild our assets](../../customize/look-and-feel/theme.md#automatic-re-build):
 
 ```bash
 $ invenio-cli assets build
