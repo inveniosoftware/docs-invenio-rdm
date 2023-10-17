@@ -143,6 +143,12 @@ export class Experiments extends Component {
 }
 ```
 
+Since we added a new asset, we need to rebuild them:
+
+```bash
+$ invenio-cli assets build
+```
+
 !!! tip "Where to place a custom UI widget?"
     Custom UI widgets can be implemented in multiple places. Besides in the instance, they can also be implemented in other modules such as
     `react-invenio-deposit` or `react-invenio-forms`, however be aware that "where" to place a widget depends on "who" needs the custom field.
