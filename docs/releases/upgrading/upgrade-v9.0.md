@@ -133,4 +133,4 @@ pipenv run invenio rdm-records rebuild-index
 
 This will ensure that all indices and their contents are based on the latest definitions and not out of date.
 
-As soon as the indices have been rebuilt, the entire migration is complete! :partying_face:
+As soon as the indices have been rebuilt, the entire migration is complete! 🥳
