@@ -71,14 +71,25 @@ current_datastore.activate_user(user)
 db.session.commit()
 ```
 
+## Adding users and roles
+
+You may need to add users or make permission changes after the users vocabulary has been loaded. To create an account programmatically, run:
+
+```shell
+pipenv run invenio users create email@domain.edu --active --confirm
+```
+
+This will automatically confirm the account. If you want to force the user to verify their email address, leave off the `--confirm` paramter.
+
+To give an account admin permissions, run:
+
+```shell
+pipenv run invenio roles add <email> admin
+```
+
 ## Confirm user
 
-Only confirmed accounts can be logged in. There are two ways to confirm an account as an administrator:
-
-When creating the account pass the `--confirm` parameter like so:
-```shell
-pipenv run invenio users create email@domain.edu --confirm
-```
+Only confirmed accounts can be logged in. You can confirm an account automatically upon creation using the `--confirm` parameter.
 
 Alternatively you can confirm an account programmatically by opening a new shell using `pipenv run invenio shell` and
 running:
@@ -94,18 +105,4 @@ confirm_user(user)
 db.session.commit()
 reindex_users([user.id])
 
-```
-
-## Adding users and roles
-
-You may need to add users or make permission changes after the users vocabulary has been loaded. To create an account programmatically, run:
-
-```shell
-pipenv run invenio users create email@domain.edu --active
-```
-
-To give an account admin permissions, run:
-
-```shell
-pipenv run invenio roles add <email> admin
 ```
