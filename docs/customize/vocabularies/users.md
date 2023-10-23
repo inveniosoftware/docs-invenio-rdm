@@ -73,7 +73,7 @@ db.session.commit()
 
 ## Adding users and roles
 
-You may need to add users or make permission changes after the users vocabulary has been loaded. To create an account programmatically, run:
+You may need to add users or make permission changes after the users vocabulary has been loaded. To create an account, run:
 
 ```shell
 pipenv run invenio users create email@domain.edu --active --confirm
