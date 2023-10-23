@@ -79,7 +79,7 @@ You may need to add users or make permission changes after the users vocabulary 
 pipenv run invenio users create email@domain.edu --active --confirm
 ```
 
-This will automatically confirm the account. If you want to force the user to verify their email address, leave off the `--confirm` paramter.
+This will automatically confirm the account. If you want to force the user to verify their email address, leave off the `--confirm` parameter.
 
 To give an account admin permissions, run:
 
