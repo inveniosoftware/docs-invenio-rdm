@@ -1,5 +1,5 @@
 {#-
-  This file was automatically generated - do not edit
+  This file was originally automatically generated, but we edited it to customize the frontpage.
 -#}
 {% import "partials/language.html" as lang with context %}
 <!doctype html>
@@ -39,18 +39,9 @@
       {% endif %}
     {% endblock %}
     {% block styles %}
-      <link rel="stylesheet" href="{{ 'assets/stylesheets/main.1118c9be.min.css' | url }}">
-      {% if config.theme.palette %}
-        {% set palette = config.theme.palette %}
-        <link rel="stylesheet" href="{{ 'assets/stylesheets/palette.ba0d045b.min.css' | url }}">
-        {% if palette.primary %}
-          {% import "partials/palette.html" as map %}
-          {% set primary = map.primary(
-            palette.primary | replace(" ", "-") | lower
-          ) %}
-          <meta name="theme-color" content="{{ primary }}">
-        {% endif %}
-      {% endif %}
+      <link rel="stylesheet" href="{{ 'assets/stylesheets/main.fad675c6.min.css' | url }}">
+      <link rel="stylesheet" href="{{ 'assets/stylesheets/palette.356b1318.min.css' | url }}">
+      <meta name="theme-color" content="{{ primary }}">
     {% endblock %}
     {% block libs %}{% endblock %}
     {% block fonts %}
@@ -168,9 +159,6 @@
                     {% include "partials/source-file.html" %}
                   {% endif %}
                 {% endif %}
-              {% endblock %}
-              {% block disqus %}
-                {% include "partials/integrations/disqus.html" %}
               {% endblock %}
             </article>
           </div>
