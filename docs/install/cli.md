@@ -32,8 +32,8 @@ You'll find the latest released version number on [PyPi](https://pypi.org/projec
 
 ### Commands reference
 
-For a full reference of available commands, see the [CLI reference](/reference/cli/)
+For a full reference of available commands, see the [CLI reference](../reference/cli.md)
 
 
 !!! tip "Shell tab completion"
-     Invenio-CLI has support for Shell tab completion of commands. See [Shell completion](/reference/cli/#shell-completion).
+     Invenio-CLI has support for Shell tab completion of commands. See [Shell completion](../reference/cli.md#shell-completion).

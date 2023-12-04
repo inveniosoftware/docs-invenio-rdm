@@ -7,7 +7,7 @@ when planning how to deploy InvenioRDM.
     This section assumes you have a good understanding of the different
     services that are needed to run an InvenioRDM application, and how they
     interact with each other. This information can be found in the
-    [infrastructure architecture](../develop/architecture/infrastructure/).
+    [infrastructure architecture](../develop/architecture/infrastructure.md).
 
 ## Deployment models
 
@@ -181,4 +181,4 @@ If the problem is in the InvenioRDM Python application, you can get more details
 in Sentry. Afterwards, you can try to reproduce it and debug in a local
 installation.
 
-For more information see the [how to debug section](../develop/getting-started/debugging/).
+For more information see the [how to debug section](../develop/getting-started/debugging.md).

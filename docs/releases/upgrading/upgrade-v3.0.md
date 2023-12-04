@@ -15,7 +15,7 @@ If unsure, run `invenio-cli install` from inside the instance directory before e
 !!! warning "Upgrade from v1 to v2"
 
     If you are upgrading an instance, that you previously upgrade from v1, please
-    check the [troubleshooting section](/releases/upgrading/upgrade-v2.0/#troubleshooting) for
+    check the [troubleshooting section](upgrade-v2.0.md#troubleshooting) for
     errors that were discovered in the v1 to v2 upgrade.
 
 ## Upgrade Steps
