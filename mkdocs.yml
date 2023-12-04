@@ -6,12 +6,12 @@ site_url: "https://inveniordm.docs.cern.ch"
 repo_url: "https://github.com/inveniosoftware/docs-invenio-rdm"
 
 # Copyright
-copyright: "Copyright &copy; 2019-2022 CERN, Northwestern University and contributors."
+copyright: "Copyright &copy; 2019-2023 CERN, Northwestern University and contributors."
 
 # Configuration
 theme:
   name: "material"
-  custom_dir: "theme"
+  custom_dir: "theme/"
   palette:
     primary: "white"
     accent: "white"
@@ -20,6 +20,7 @@ theme:
   favicon: "images/favicon.svg"
   features:
     - navigation.tabs
+    - navigation.footer
 
 nav:
   - Home: "index.md"
