@@ -19,7 +19,7 @@ migration may complain about missing packages.
 !!! warning upgrade your invenio-cli
 
     Make sure you have the latest invenio-cli, for InvenioRDM v6 release is v1.0.0
-    
+
 ### Upgrade your instance dependencies
 
 Bump the RDM version and rebuild the assets:
@@ -99,14 +99,14 @@ This script will check that your creators and contributors affiliations are
 either free text, which will require no action on your side, contain a ROR
 identifier or that they should be a custom vocabulary.
 
-If the affiliations contain ROR identifiers, you will need to add that 
-vocabulary. See more details [here](../../../customize/vocabularies/affiliations/). Otherwise, you will need to create a
+If the affiliations contain ROR identifiers, you will need to add that
+vocabulary. See more details [here](../../customize/vocabularies/affiliations.md). Otherwise, you will need to create a
 custom vocabulary in a similar fashion that was done for the subjects above,
 or fix your records (remove the identifiers so only the name is preserved).
 
 ### Prepare ES
 
-Once the vocabularies have been checked for compatibility and fixed 
+Once the vocabularies have been checked for compatibility and fixed
 accordingly, they need to be created:
 
 ```bash
