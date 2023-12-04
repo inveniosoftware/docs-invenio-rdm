@@ -9,6 +9,10 @@
     color: #000000;
 }
 
+.md-nav__title {
+    color: unset;
+}
+
 .md-typeset table code {
     word-break: normal;
 }
@@ -69,6 +73,10 @@
     border-bottom: 0.05rem solid #ffffff;
 }
 
+.md-header__topic:first-child {
+    font-weight: unset;
+}
+
 .md-source__facts {
     display: none;
 }
@@ -80,24 +88,33 @@
 
 .md-footer {
     border-top: 0.05rem solid #ffffff;
+    background-color: #0377cd;
 }
 
 .md-footer__link {
     padding-top: 0.8rem;
     padding-bottom: 0;
-}
-
-.md-footer {
-    background-color: #0377cd;
-}
-.md-footer__link {
     color: #ffffff;
     opacity: 0.75;
+    margin-bottom: 0;
+    margin-top: 0;
 }
 
 .md-footer__direction {
     color: #ffffff;
     opacity: 0.75;
+    font-size: .64rem;
+    left: 0;
+    position: absolute;
+    right: 0;
+    padding: 0 1rem;
+    margin-top: -1rem;
+}
+
+.md-footer__title {
+    line-height: 2.4rem;
+    position: relative;
+    margin-bottom: 0;
 }
 
 .md-footer .made-with {
@@ -124,10 +141,25 @@ html .md-footer-meta .md-footer-meta__inner a {
 
 .md-footer-copyright {
     padding: 0.7rem 0;
+    color: var(--md-footer-fg-color--lighter);
+    font-size: .64rem;
+    width: auto;
+    margin: auto .6rem;
+}
+
+.md-footer-copyright__highlight {
+    color: var(--md-footer-fg-color--light);
 }
 
 .md-footer-social {
     padding: 0.4rem 0;
+    margin: 0 .4rem;
+}
+
+.md-footer-social__link svg {
+    fill: currentColor;
+    max-height: .8rem;
+    vertical-align: -25%;
 }
 
 .md-search-result__link[data-md-state="active"] {
@@ -159,6 +191,15 @@ html .md-footer-meta .md-footer-meta__inner a {
     color: #0377cd;
 }
 
+[data-md-color-primary="white"] .md-typeset .md-button.md-button--primary {
+    background-color: var(--md-primary-fg-color);
+    border-color: var(--md-primary-fg-color);
+    color: #0377cd;
+}
+
+[data-md-color-primary="white"] .md-typeset .md-button {
+    color: var(--md-primary-fg-color);
+}
 
 ::placeholder {
     color: #ffffff;
@@ -285,6 +326,7 @@ html .md-footer-meta .md-footer-meta__inner a {
     background: transparent;
     position: static;
 }
+
 .frontpage .md-tabs {
     border-bottom: none;
     background: transparent;
