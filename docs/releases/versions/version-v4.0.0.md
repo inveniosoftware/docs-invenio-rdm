@@ -20,7 +20,7 @@ InvenioRDM can now easily integrate with external authentication providers. You 
 
 ![](v4.0/sso1.png)
 
-Read the [Authentication](/customize/authentication/) documentation section to get to know how to set it up.
+Read the [Authentication](../../customize/authentication.md) documentation section to get to know how to set it up.
 
 SAML integration is also supported, but it requires a more advanced setup.
 
@@ -44,14 +44,14 @@ After the first login with an external authentication provider, InvenioRDM can n
 
 When only one external authentication provider is configured, InvenioRDM can be configured to skip the login page and automatically redirect to the external login page.
 
-The [detailed documentation](/customize/authentication/) describes how a new OAuth plugin integration can be implemented.
+The [detailed documentation](../../customize/authentication.md) describes how a new OAuth plugin integration can be implemented.
 
 
 ### Vocabularies
 
 This month we continued work on vocabularies. Most notably we migrated the resource types from the old to the new vocabulary and made them easily customizable.
 
-Read more about this [here](/customize/vocabularies/).
+Read more about this [here](../../customize/vocabularies/index.md).
 
 #### Facets labelling
 
