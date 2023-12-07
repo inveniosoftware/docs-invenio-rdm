@@ -32,14 +32,13 @@ For every event there is one or more operations that need to be executed. In the
 examples the logic is implemented in case-specific tasks that run periodically (celery
 beat).
 
-When processing events it important to _eventually_ arrive to the same state. For example,
-if all events where to be reprocessed (e.g. _event sourcing_) several times the final
-state should be the same. In addition, if one or more event were processed more than once
+When processing events it is important to _eventually_ arrive to the same state. For example,
+if all events where to be reprocessed (e.g. _event sourcing_) several times, the final
+state should be the same. In addition, if one or more events were processed more than once
 the final state should also be the same, this means that event processing must be
 idempotent.
 
-Moreover, processing events can be a long running task. If this time to process/persist
-the result would affect the user experience _eager read derivation_ could be used. However, this comes at a cost of having to handle rollbacks and potential data inconsistency.
+Moreover, processing events can take a long time. If this effects the user experience _eager read derivation_ could be used. However, this comes at a cost of having to handle rollbacks and potential data inconsistency.
 
 ## Events
 
@@ -68,8 +67,7 @@ and use optimistic concurrency, therefore idempotence can be guaranteed.
 ### Statistics
 
 Statistics such as record view or file downloads are calculated using events. These
-events are emitted on the resources/views, by registering a message in a specific queue.
-These messages have a custom payload. Then event indexers will read this messages and
+events are emitted on the resources/views, by registering a message with a custom payload in a specific queue. Event indexers will then read these messages and
 carry out the appropriate operations (e.g. aggregations). Event indexers are running as
 celery beat tasks. To guarantee idempotence each event contains a unique identifier (e.g.
 timestamp + User-agent + IP address + URL), which guarantees that the event is captured/persisted only once.
