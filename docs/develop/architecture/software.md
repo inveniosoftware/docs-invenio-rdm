@@ -315,7 +315,7 @@ services.
 
 Celery tasks are considered part of the presentation layer and thus normally
 only call a service method. As a service may want to use background jobs to
-perform tasks we however often define celery tasks in the service.
+perform tasks we however often define Celery tasks in the service.
 
 **Views**
 

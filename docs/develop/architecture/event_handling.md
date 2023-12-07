@@ -58,7 +58,7 @@ information also need to be updated too (e.g. membership requests reflecting the
 username).
 
 To achieve this, the events or _change notifications_ are registered in the unit of work.
-On an operation that will trigger an asynchronous celery task with a custom payload on
+On an operation that will trigger an asynchronous Celery task with a custom payload on
 `post_commit`. This task will enrich the payload and trigger all the handlers registered
 for the record type that was changed. These handlers are service methods with custom
 signatures, and are configurable in the `invenio.cfg` file. The records have a revision id
