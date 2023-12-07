@@ -30,7 +30,7 @@ The diagram below shows a simplified view of the data flow in the architecture.
 
 *The data access layer* is responsible for ensuring data integrity, harmonizing data access to different storages as well as fetching and storing the data in the underlying systems.
 
-The data flow between the layers is strictly limited to some few well-defined objects to ensure a clean separation of concerns. The presentation layer communicates with the service layer via a record projection (i.e. a view of a record localised to a specific identity). The service layer communicates with the data access layer via a record entity that provides data abstraction, syntactic data validation, and a strong programmatic API.
+The data flow between the layers is strictly limited to a few well-defined objects to ensure a clean separation of concerns. The presentation layer communicates with the service layer via a record projection (i.e. a view of a record localised to a specific identity). The service layer communicates with the data access layer via a record entity that provides data abstraction, syntactic data validation, and a strong programmatic API.
 
 !!! tip "Tip: Where do you belong?"
 
@@ -109,9 +109,9 @@ identifiers and files.
 
 The record is in charge of:
 
-- define the structural schema that data is validated against (using
+- defining the structural schema that data is validated against (using
   JSONSchemas).
-- define search index routing and indexing behaviour.
+- defining search index routing and indexing behaviour.
 - managing the life-cycle of an associated persistent identifier.
 - data versioning
 - state management
@@ -123,7 +123,7 @@ on [Python data descriptors](https://docs.python.org/3/howto/descriptor.html).
 
 The JSONSchemas defines the structure of a JSON document we store in the database. The main responsibility is structural validation of the JSON document. The best analogy is that it is a database table schema. Most importantly, it is NOT responsible for business-level validation of the JSON document.
 
-A good example of this, is making a field a required property. It's correct to require a property if you would e.g. have defined a database table column as ``NOT NULL``. It's wrong to require a property, if it's requirement that the user must enter a value in a certain field (because this is business-level validation, and you may want to store partially valid documents).
+A good example of this is making a field a required property. It's correct to require a property if you would e.g. have defined a database table column as ``NOT NULL``. It's wrong to require a property if it's requirement that the user must enter a value in a certain field (because this is business-level validation, and you may want to store partially valid documents).
 
 Modules:
 - Invenio-Records: Defines the high-level APIs for the Record API, SQLAlchemy models, system fields and dumpers.
@@ -156,7 +156,7 @@ System fields are responsible for:
 
 System fields basically provides a declarative programmatic API that makes it easier to work with records and related objects. Under the hood, system fields are Python data descriptors.
 
-A key design principle for system fields, is that an *instance* of a system field manages a single namespace of a record so that system fields do not conflict. For instance an access system field manages the top-level ``access`` key in a record ``{'access': ...}``.
+A key design principle for system fields is that an *instance* of a system field manages a single namespace of a record so that system fields do not conflict. For instance an access system field manages the top-level ``access`` key in a record ``{'access': ...}``.
 
 System fields participate in the dumping/loading of records from secondary storage via being able to hook into the record life-cycle. The difference between system fields and dumpers, is that a dumpers produce a dump for a specific secondary storage system, while system fields produce the same dump for all secondary storage systems.
 
@@ -168,7 +168,7 @@ Applications of system fields are vast, but some examples include:
 - Created, update and delete persistent identifiers for records and serialize them into the record.
 - Ensure a certain property on the JSON document is operated as a set.
 
-System fields to a large degree avoids building inheritance among record APIs and instead provides a declarative way of composing a record API class.
+System fields to a large degree avoid building inheritance among record APIs and instead provide a declarative way of composing a record API class.
 
 **SQLAlchemy models**
 
@@ -223,7 +223,7 @@ The service layer is built around the following guiding principles:
 A service itself is the high-level entry point into the application. A service
 provides methods that usually maps directly to some sort of user interface action like pressing a button, performing a search and similar.
 
-A service, similar often provides transactional boundaries within InvenioRDM.
+A service often provides transactional boundaries within InvenioRDM.
 
 **Input**
 
@@ -231,10 +231,11 @@ A service, similar often provides transactional boundaries within InvenioRDM.
 
 The service config is a container for
 
-Responsibility:
+Responsible for:
+
 - Inject dependencies via a single object.
 
-**Unit of work (UoW) **
+**Unit of work (UoW)**
 
 We use a design pattern called
 [*unit of work*](https://martinfowler.com/eaaCatalog/unitOfWork.html) in order
@@ -242,15 +243,15 @@ to ensure that we can group multiple state changing service methods into a
 single atomic operation. State changing service methods is essentially anything
 that commits a database transaction such as create/update/delete.
 
-In a single service method we for instance must always ensure that we commit
+For instance in a single service method we must always ensure that we commit
 the database transaction before indexing and sending off Celery tasks.
-Otherwise we risk the transaction commit fails, and we have documents out of
+Otherwise we risk the transaction commit fails and we have documents out of
 sync between our database and search index.
 
 When we group multiple service method calls, we have to delay the database
 transaction commit until after all service methods have done their work, and
-thus we need to coordinate also the indexing and task operations from each
-service method that has to be done afterward the commit.
+thus we also need to coordinate indexing and task operations from each
+service method that has to be done after the commit.
 
 The unit of work context manager takes care of this job for us. It coordinates
 transaction operations between multiple service calls.
@@ -276,19 +277,21 @@ The ``unit_of_work()`` decorator ensures that if a UoW is not provided,
 
 **Service schema**
 
-Responsibility:
+Responsible for:
+
 - data validation
 - field-level permission checking
 - dumping and loading record projections
 
 **Search**
 
-Responsibility:
+Responsible for:
+
 - Faceting, search query parsing, etc.
 
 **Permissions**
 
-Responsibility for defining a declarative permission model.
+Responsibile for defining a declarative permission model.
 
 **Components**
 
@@ -298,46 +301,43 @@ Responsible for providing a specific feature in the service, and make the servic
 
 **Purpose**
 
-The main purpose of the presentation layer is to parse user requests and call the different
+The main purpose of the presentation layer is to parse user requests and call required
 services.
 
 **Guiding principles**
 
-- Explicit parse and validate all input parameters.
-
+- Explicitely parse and validate all input parameters.
 - Serialize to/from a single internal representation.
-
 - Conflict detection through optimistic concurrency control.
-
 - Presentation must not contain business logic (e.g. permission checks).
 
 **Celery tasks**
 
 Celery tasks are considered part of the presentation layer and thus normally
-simply call a service method. As a service may want to use background jobs to
-perform its task, we however often defined the celery tasks in the service.
+only call a service method. As a service may want to use background jobs to
+perform tasks we however often define celery tasks in the service.
 
 **Views**
 
 UI Flask views are part of the presentation layer, and similarly always call
 services to perform their job. Often, the UI views are simply rendering
-a template that injects a JavaScript frontend application which queries the
+a template which injects a JavaScript frontend application that queries the
 REST API.
 
 **Resources**
 
-Resources defines the REST API and are responsible for RESTful routing,
+Resources define the REST API and are responsible for RESTful routing,
 parameter parsing, content negotiation etc.
 
 **Resources request context**
 
 The resource request context is a Flask context object on which only validated
 input data is stored. Thus, accessing data on ``requests_resourcectx`` instead of
-``request`` means that at least basic validation have been performed.
+``request`` means that at least basic validation has been performed.
 
 **Resource configs**
 
-The resource config are used for dependency injection to
+The resource config are used for dependency injection
 
 ## Performance considerations
 
@@ -346,8 +346,8 @@ trade-offs to be made.
 
 **Query vs indexing speed**
 
-For InvenioRDM query speed is more important that fast indexing speeds. This means
-we'll sometimes denormalize data to have high enough query speed. Once we denormalize
+For InvenioRDM query speed is more important than fast indexing speeds. This means
+we'll sometimes denormalize data to have quicker queries. Once we denormalize
 data we immediately must also deal with stale data and cache invalidation.
 
 The version counter on all records is instrumental in being able to manage
@@ -356,7 +356,7 @@ the speed.
 **Database vs search engine**
 
 The database is the primary data storage for InvenioRDM, however the database
-is not performing well for searching large number of records. Thus in general
+does not perform well for searching large number of records. Thus in general
 we only perform primary key lookups in the database, and try to move all other
 queries to the search index.
 
