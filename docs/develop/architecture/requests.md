@@ -6,12 +6,12 @@ This guide is intended for maintainers and developers of InvenioRDM itself.
 
 **Scope**
 
-The guide provides a high-level architectural overview of the requests module InvenioRDM.
+The guide provides a high-level architectural overview of the requests module of InvenioRDM.
 Requests are considered part of the service layer in the [software architecture](software.md).
 
 ## Purpose
 
-Requests is a generic InvenioRDM feature to support handling and automation of
+Requests is a generic InvenioRDM feature to support the handling and automation of
 requests between entities such as users, communities, administrators and/or the
 system.
 
@@ -20,7 +20,7 @@ administrative  tasks as possible and thereby reduce human resources required
 for handling them.
 
 A repository often has to deal with many types of requests. Examples of these
-could include e.g.:
+could include:
 
 - Approval of new submission
 - File replacement
@@ -38,13 +38,13 @@ streamlines and centralizes the UX for how users deal with requests.
 
 ## Overview
 
-With the above examples of request in mind we can think of requests as:
+With the above examples in mind we can think of requests as something which:
 
-- Requests are created by someone who can cancel the request.
-- Requests are received by someone who can accept or decline the request.
-- Requests may require clarifications (i.e. a conversation) between the one
+- are created by someone who can cancel it.
+- are received by someone who can accept or decline it.
+- may require clarifications (i.e. a conversation) between the one
   creating the request and the one(s) accepting/declining it.
-- Requests may expire after a certain amount of time.
+- may expire after a certain amount of time.
 
 ## Entities
 
