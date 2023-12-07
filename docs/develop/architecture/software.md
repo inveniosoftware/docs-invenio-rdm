@@ -126,8 +126,8 @@ The JSONSchemas defines the structure of a JSON document we store in the databas
 A good example of this is making a field a required property. It's correct to require a property if you would e.g. have defined a database table column as ``NOT NULL``. It's wrong to require a property if it's requirement that the user must enter a value in a certain field (because this is business-level validation, and you may want to store partially valid documents).
 
 Modules:
-- Invenio-Records: Defines the high-level APIs for the Record API, SQLAlchemy models, system fields and dumpers.
-- Invenio-JSONSchemas: Provides a registry for JSONSchemas available to the application.
+- [Invenio-Records](https://github.com/inveniosoftware/invenio-records): Defines the high-level APIs for the Record API, SQLAlchemy models, system fields and dumpers.
+- [Invenio-JSONSchemas](https://github.com/inveniosoftware/invenio-jsonschemas): Provides a registry for JSONSchemas available to the application.
 
 **Mappings**
 
