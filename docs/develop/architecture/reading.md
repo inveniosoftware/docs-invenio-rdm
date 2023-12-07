@@ -24,7 +24,7 @@ of your architecture.
 - [Patterns of Enterprise Application Architecture](https://martinfowler.com/eaaCatalog/)
     - List of design patterns often found in enterprise systems.
 - [Azure application architecture fundamentals](https://docs.microsoft.com/en-us/azure/architecture/guide/)
-    - Overview over different architectual styles.
+    - Overview of different architectual styles.
 - [Clean architecture](https://www.amazon.com/Clean-Architecture-Craftsmans-Software-Structure/dp/0134494164)
     - Overview of fundamental design principles.
 
