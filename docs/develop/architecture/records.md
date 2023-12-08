@@ -19,7 +19,7 @@ repositories.
 ## Data model
 
 The record data model is used to describe **a resource**. Examples of resources
-include e.g. journal articles, datasets, posters, videos, images, software and
+include journal articles, datasets, posters, videos, images, software and
 more. Some properties of resources:
 
 - A resource may exist in one or more versions.
@@ -167,7 +167,7 @@ as help to curators of the community.
 ### Record versions
 
 Record ownership is defined on the parent record and it's a parent record
-that's member of a community, hence all versions of a record are owned by
+that's a member of a community, hence all versions of a record are owned by
 a community.
 
 ### Multiple communities
