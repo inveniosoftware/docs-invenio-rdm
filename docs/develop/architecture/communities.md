@@ -27,11 +27,11 @@ community on the other hand may only contain restricted records.
 An InvenioRDM instance defines a set of community roles that apply globally to all
 communities to ensure a consistent user experience across all communities.
 
-A community roles translates into a set of permissions. The roles are
+A community role translates into a set of permissions. The roles are
 configurable to ensure that they can be tailored to the needs of an instance,
-as well as allow for customizations. For example, one instance might want to use
-"curator" and another instance wants to use "editor" as a role because it suits 
-their use cases better.
+as well as allow for customizations. For example, one instance may use
+"curator" and another may use "editor" as a role because it suits 
+their use case better.
 
 By default the following community roles are defined:
 
@@ -97,8 +97,8 @@ A community should be removed if there is only one owner and it wants to leave.
 
 **No self role change**
 
-A member cannot change its own role. This prevents owners and managers from loosing
-their access, as they'll have to ask another manager/owner to perform the
+A member cannot change their own role. This prevents owners and managers from losing
+their access as they'll have to ask another manager/owner to perform the
 change.
 
 **Visibility can be changed by members themselves**
@@ -107,7 +107,7 @@ For privacy reasons only members themselves can set their visibility to public.
 
 **Visibility cannot be changed to public by managers/owners**
 
-To allow owners/managers to manage how the community looks, they can decide
+To allow owners/managers to manage how the community looks they can decide
 to hide certain members from a community.
 
 **Users can leave a community**
