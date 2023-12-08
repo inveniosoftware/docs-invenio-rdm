@@ -35,14 +35,14 @@ traffic into three categories of requests:
 - application requests: e.g. search queries
 - record files requests: e.g. downloading very large files
 
-This way you can dimension the number connection slots between different types
+This way you can dimension the number of connection slots between different types
 of requests according to available resources. For instance a static file
 request can usually be served extremely efficiently, while an application request
 usually takes longer and requires more memory.
 
-Similar, downloading a very file depends on the client's available bandwidth
+Similar, downloading a very large file depends on the client's available bandwidth
 and can thus take up a connection slot for a significant amount time. If your
-storage system supports it, it is possible with Invenio to completely offload
+storage system supports it, Invenio allows you to completely offload
 the serving of large files to your storage system (e.g. S3).
 
 All in all, the primary job of the load balancer is to manage traffic to your
@@ -58,7 +58,7 @@ during major incidents.
 ## Web servers
 
 The load balancer proxies traffic to one of several web servers. The web
-server's primary job is to manage the connections into your application server.
+server's primary job is to manage the connections to your application server.
 A web server like Apache and Nginx is usually much better than an application
 server to manage connections. Also, you can use the web server to configure
 limits on specific parts of your application so that for instance you can
@@ -82,8 +82,8 @@ a binary format.
 
 **Transactional databases**
 
-The primary reason using an SQL database is that they provide transactions,
-which is very important since data consistency for a repository is of utmost
+The primary reason for using an SQL database is that they provide transactions
+which are very important as data consistency is of utmost
 importance. Also, database servers can handle very large amounts of data
 as long as they are scaled and configured properly. Last but not least, they
 are usually highly reliable as compared to some NoSQL solutions.
@@ -91,14 +91,14 @@ are usually highly reliable as compared to some NoSQL solutions.
 **Primary key lookups**
 
 Most access from Invenio to the database is via primary key lookups, which
-are usually very efficient in database. Search queries and the like are all
+are usually very efficient in-database. Search queries and the like are all
 sent to the search engine cluster which can provide much better performance
 than a database.
 
 ## Search and indexing
 
 Invenio uses OpenSearch as its underlying search engine since OpenSearch
-is fully JSON-based, and thus fit well together with storing records internally
+is fully JSON-based, and thus fits well together with storing records internally
 in the database as JSON documents.
 
 OpenSearch furthermore is highly scalable and provides very powerful search
@@ -129,24 +129,24 @@ it can offload some task to asynchronous jobs. It works by the application
 sending a message to the message queue (e.g. RabbitMQ), which several Celery
 worker nodes continuously consume tasks from.
 
-An example of background tasks can for instance be sending an email or
+For example a background task can be sending an email or
 registering a DOI.
 
 **Multiple queues**
 
 The background processing supports multiple queues and advanced
 workflows. You could for instance have a low priority queue that constantly
-runs x number of file integrity checks per day, and another normal queue
+runs X number of file integrity checks per day, and another normal queue
 for other tasks like DOI registration.
 
 **Cronjobs and retries**
 
 Celery also supports running jobs at scheduled intervals as well as
-retrying tasks in case the fail (e.g. if a remote service is temporarily down).
+retrying tasks in case they fail (e.g. if a remote service is temporarily down).
 
 ## Caching and temporary storage
 Invenio uses an in-memory cache like Redis or Memcache for fast temporary
-storage. The cache is for instance used for:
+storage. For example the cache is used for:
 
 - User session storage
 - Results from background jobs
@@ -164,5 +164,5 @@ access correctly on the external system.
 **Multiple storage systems**
 
 One strength of Invenio is that you can store files on multiple systems at the
-same time. This is useful if you for instance need to use multiple systems or
+same time. This is useful if you need to use multiple systems or
 do live migration from one system to another.

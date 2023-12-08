@@ -1,9 +1,8 @@
 # Runtime architecture
 
-Invenio is at the core an application built on-top of the Flask web
+At its core Invenio is an application built on-top of the Flask web
 development framework, and fully understanding Invenio's architectural design
-requires you to understand core concepts from Flask which will briefly be
-covered here.
+requires you to understand core concepts of Flask which will be covered in brief here.
 
 The Flask application is exposed via different *application interfaces*
 depending on if the application is running in a web server, CLI or job queue.
@@ -88,7 +87,7 @@ make this thread safe.
 
 ## Interfaces: WSGI, CLI and Celery
 
-Overall the Flask application is running via three different application
+Overall the Flask application runs via three different application
 interfaces:
 
 - **WSGI:** The frontend web server interfaces with Flask via Flask's WSGI
@@ -150,7 +149,7 @@ The Invenio application factory assembles your application in five phases:
    variables for which you don't want to use the default values, e.g.  the
    database host configuration.
 3. **URL converter loading**: In this phase, the application will load any of
-   your URL converts. This phase is usually only needed for some few specific
+   your URL converters. This phase is usually only needed for some few specific
    cases.
 4. **Flask extensions loading**: In this phase all the Invenio modules which
    provide Flask extensions will initialize the extension. Usually the
