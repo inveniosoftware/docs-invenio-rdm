@@ -13,7 +13,30 @@ Behind the scenes, fixtures are currently loaded in a 2-step process: first `inv
 Another behind the scenes note, `invenio-cli services setup` calls `pipenv run invenio rdm-records fixtures` to deal with fixtures. That command-line tool (part of the internal API and therefore subject to change) assesses if fixtures are already existing before submitting them to the task queue. This means, it can be used to **add** new fixtures to your instance by being run again later which can be useful to add new subjects. It won't override/update previously existing fixtures.
 
 !!! warning "Unsupported cases"
-    There is no moment between database creation and fixture loading when you can create database entries (e.g., a role) and then use them for your fixtures. However, you can still create roles and assign them to users manually with `invenio` commands. We hope to make loading specific fixtures independent of each other and updating existing fixtures possible in the future.
+    There is no moment between database creation and fixture loading when you can create database entries (e.g., a role) and then use them for your fixtures. However, you can still create roles and assign them to users manually with `invenio` commands.  We hope to make loading specific fixtures independent of each other and updating existing fixtures possible in the future.
+
+## Add/Update Fixtures Command
+
+_Introduced in InvenioRDM v12_
+
+To add or update a vocabulary fixture:
+
+```bash
+pipenv run invenio rdm-records add-to-fixture <vocabulary_name>
+```
+
+This command enables the addition or updating of entries within specified vocabulary fixtures in InvenioRDM and is operational on live instances.
+Note that its functionality is restricted to the addition of new vocabularies or the updating of existing ones.
+
+Example
+To update the 'contributorsroles' vocabulary fixture, use:
+
+```bash
+pipenv run invenio rdm-records add-to-fixture contributorsroles
+```
+
+!!! warning "Note"
+    This command will not delete existing vocabulary entries.
 
 ## The app_data/ folder
 
