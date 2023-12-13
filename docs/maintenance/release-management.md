@@ -113,24 +113,24 @@ The final step to release the new modules and source code is to release Invenio-
 
 ## Release a Python or JavaScript package
 
-- Ensure all changes are merged in ``master`` branch on GitHub.
-- Checkout master branch and make sure it's identical to GitHub.
+- Ensure all PR's are merged in ``master`` branch on GitHub.
+
+- create a PR with commit message "release: vX.Y.Z"
+- the PR contains:
+    - a list of changes added to the CHANGES.md file
+    - bump version number:
+        - python: ``<package>/__init__.py``
+        - Javascript: ``package.json``, update ``package-lock.json``
+
+- create the tag
 ```
-git checkout master
-git reset --hard upstream/master
+git remote update
+git checkout upstream/master
 ```
-- Bump version number:
-    - Python: ``<package>/version.py``
-    - JavaScript: ``package.json`` and ``package-lock.json``.
-- Commit on master:
+for the version number see the section about semantic versioning
 ```
-git add <package>/version.py
-git commit -m "release: vX.Y.Z"
-```
-- Tag and push (both master and tag)
-```
-git tag vX.Y.Z
-git push upstream master vX.Y.Z
+git tag vX.Y.Z 
+git push upstream vX.Y.Z
 ```
 
 ## Maintenance releases
