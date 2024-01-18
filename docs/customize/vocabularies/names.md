@@ -24,12 +24,14 @@ A _Name_ record contains:
 ```yaml
 - family_name: Carberry
   given_name: Josiah
+  id: 0000-0002-1825-0097
   identifiers:
     - identifier: https://orcid.org/0000-0002-1825-0097
       scheme: orcid
   affiliations:
     - name: Wesleyan University
 - name: Haak, Laurel L
+  id: 0000-0001-5109-3700
   identifiers:
     - identifier: https://orcid.org/0000-0001-5109-3700
   affiliations:
