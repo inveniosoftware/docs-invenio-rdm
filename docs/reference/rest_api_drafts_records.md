@@ -1106,7 +1106,7 @@ Content-Type: application/json
 | `sort`         | string  | query    | Sort search results.                                         |
 | `size`         | integer | query    | Specify number of items in the results page (default: 10).   |
 | `page`         | integer | query    | Specify the page of results.                                 |
-| `allversions` &nbsp; | boolean | query    | Specify if all versions should be included.                  |
+| `allversions` &nbsp; | boolean | query    | Specify if all versions should be included (default: `False`, displays just latest version).   |
 | `accept`       | string  | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
 
 **Request**
