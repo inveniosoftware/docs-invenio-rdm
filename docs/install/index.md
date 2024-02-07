@@ -114,7 +114,7 @@ invenio users create <EMAIL> --password <PASSWORD> --active --confirm
 Then, allow the user to access the administration panel: 
 
 ```shell
-invenio access allow administration-access user <EMAIL>
+invenio access allow admin-access user <EMAIL>
 ```
 
 #### [6. Stop it](destroy.md)
