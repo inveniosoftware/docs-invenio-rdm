@@ -2,8 +2,8 @@
 
 _Introduced in InvenioRDM v11_
 
-InvenioRDM supports an easy "out-of-the-box" way of creating static pages, basically web pages for which the HTML content is stored in the database,
-and you can change them using the administration panel.
+InvenioRDM supports an easy "out-of-the-box" way of creating static pages, basically web pages for which the HTML content is stored in the database.
+And you can change them using the administration panel in v12.
 
 ## Define pages
 
@@ -54,7 +54,35 @@ pipenv run invenio rdm pages create --force
 
 This will wipe out all previously created static pages and load them again. I.e. it will delete the templates you have removed from your `pages.yaml` and update the existing templates with the changes you have made, if any.
 
+## Changing the base template
+
+Your custom template will be an extension of the base template [defined in `invenio-app-rdm`](https://github.com/inveniosoftware/invenio-app-rdm/blob/9f1ba6a646362ff80de6b0c9cd092209e9190c44/invenio_app_rdm/theme/templates/semantic-ui/invenio_app_rdm/default_static_page.html). If you want to create your own base template, you can do it by setting the following variables in your `invenio.cfg` file:
+
+```
+PAGES_DEFAULT_TEMPLATE = "my_site/my_custom_base_template.html"
+
+PAGES_TEMPLATES = [
+    ("invenio_pages/dynamic.html", "Default dynamic"),
+    ("my_site/my_custom_base_template.html", "Default")
+]
+```
+
+This implies that your new template was created in
+
+```
+templates
+└── my_site/my_custom_base_template.html
+```
+
+After making this change, you'll have to restart your instance and run
+
+```bash
+pipenv run invenio rdm pages create --force
+```
+
 ## Edit pages
+
+_Introduced in InvenioRDM v12_
 
 Now that your custom page is configured, you can access it from the path you defined in the first step, in our case `/my-custom-page`. Since we didn't add any content yet, what you will see is an empty page with only a title.
 
@@ -83,29 +111,3 @@ As you can see, the title and description we added in the configuration step is 
 Now we can go to our custom page again and see the content displayed on the page.
 
 ![Custom page with content](./img/custom-page_with-content.png)
-
-## Changing the base template
-
-Your custom template will be an extension of the base template [defined in `invenio-app-rdm`](https://github.com/inveniosoftware/invenio-app-rdm/blob/9f1ba6a646362ff80de6b0c9cd092209e9190c44/invenio_app_rdm/theme/templates/semantic-ui/invenio_app_rdm/default_static_page.html). If you want to create your own base template, you can do it by setting the following variables in your `invenio.cfg` file:
-
-```
-PAGES_DEFAULT_TEMPLATE = "my_site/my_custom_base_template.html"
-
-PAGES_TEMPLATES = [
-    ("invenio_pages/dynamic.html", "Default dynamic"),
-    ("my_site/my_custom_base_template.html", "Default")
-]
-```
-
-This implies that your new template was created in
-
-```
-templates
-└── my_site/my_custom_base_template.html
-```
-
-After making this change, you'll have to restart your instance and run
-
-```bash
-pipenv run invenio rdm pages create --force
-```
