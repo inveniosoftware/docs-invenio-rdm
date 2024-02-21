@@ -19,6 +19,7 @@ Used for interacting with unpublished or edited draft records.
 | `access`   | object | body     | [Access options](metadata.md#access) for the record. |
 | `files`    | object | body     | Files options (see below) for the record. |
 | `metadata` | object | body     | [Metadata](metadata.md#metadata) of the record. |
+| `custom_fields` | object | body     | [Custom fields](https://inveniordm.docs.cern.ch/customize/metadata/custom_fields/records/#declaring-custom-fields)) metadata for the record. (v10 and newer) |
 
 #### Files Options
 
@@ -287,6 +288,7 @@ Content-Type: application/json
 | `access`   | object | body     | [Access options](metadata.md#access-information) for the record. |
 | `files`    | object | body     | [Files options](#files-options) for the record. |
 | `metadata` | object | body     | [Metadata](metadata.md#metadata) of the record. |
+| `custom_fields` | object | body     | [Custom fields](https://inveniordm.docs.cern.ch/customize/metadata/custom_fields/records/#declaring-custom-fields)) metadata for the record. (v10 and newer) |
 
 **Request**
 
