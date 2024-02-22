@@ -6,7 +6,7 @@ site_url: "https://inveniordm.docs.cern.ch"
 repo_url: "https://github.com/inveniosoftware/docs-invenio-rdm"
 
 # Copyright
-copyright: "Copyright &copy; 2019-2023 CERN, Northwestern University and contributors."
+copyright: "Copyright &copy; 2019-2024 CERN, Northwestern University and contributors."
 
 # Configuration
 theme:
