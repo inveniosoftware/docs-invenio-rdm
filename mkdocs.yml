@@ -35,6 +35,8 @@ nav:
       - Features walk-through:
           - Features overview: "features/features-walk-through/index.md"
           - Site banners: "features/features-walk-through/banners.md"
+          - Restricted records: "features/features-walk-through/restricted_records.md"
+          - Metadata-only records: "features/features-walk-through/metadata_only.md"
   - Install:
       - Quick start: "install/index.md"
       - System requirements: "install/requirements.md"
