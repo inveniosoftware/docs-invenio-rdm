@@ -66,10 +66,10 @@ After having registered a new client application in the ORCID website and having
 the plugin and configuring key and secret. In your `invenio.cfg`:
 
 ```python
-from invenio_oauthclient.contrib import orcid
+from invenio_oauthclient.contrib.orcid import REMOTE_APP as ORCID_REMOTE_APP
 
 OAUTHCLIENT_REMOTE_APPS = dict(
-    orcid=orcid.REMOTE_APP,
+    orcid=ORCID_REMOTE_APP,
 )
 
 ORCID_APP_CREDENTIALS = dict(
@@ -82,6 +82,42 @@ You can also test ORCID login using the ORCID sandbox environment.
 See the
 plugin [documentation](https://invenio-oauthclient.readthedocs.io/en/latest/usage.html#module-invenio_oauthclient.contrib.orcid)
 for more information.
+
+#### GITHUB
+
+To integrate GitHub authentication into InvenioRDM, follow the steps below:
+
+- Register a New GitHub Application by Navigating to GitHub's [New OAuth Application page](https://github.com/settings/applications/new) to create a new OAuth application.
+Provide the necessary details with special attention to the `Homepage URL` and `Authorization callback URL`, which should match your InvenioRDM instance's callback URL format:
+
+```cfg
+Homepage URL: https://127.0.0.1
+Authorization callback URL: https://127.0.0.1/oauth/authorized/github
+```
+
+Change `https://127.0.0.1` to `SITE_UI_URL` in the `invenio.cfg` file to reflect your actual site URL.
+
+After registration, GitHub will provide a `Client ID` and `Client Secret`. These credentials are essential for the OAuth integration.
+
+- Configure GitHub login in InvenioRDM by enabling the plugin and add the key and secret. In your `invenio.cfg`:
+
+```python
+from invenio_oauthclient.contrib.github import REMOTE_APP as GITHUB_REMOTE_APP
+
+# Setup Github Authentication
+# ===========================
+
+GITHUB_APP_CREDENTIALS = dict(
+    consumer_key="<my-key>",
+    consumer_secret="<my-secret>",
+)
+
+OAUTHCLIENT_REMOTE_APPS = dict(
+    github=GITHUB_REMOTE_APP,
+)
+```
+
+If you encounter any issues, or if a `302` appears in your logs, seek help through this [resource](https://docs.github.com/en/apps/oauth-apps/maintaining-oauth-apps/troubleshooting-authorization-request-errors) or join the discussion on [discord](https://discord.gg/8qatqBC) for support.
 
 #### Keycloak
 
