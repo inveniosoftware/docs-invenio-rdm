@@ -78,6 +78,7 @@ nav:
       - Storage: "customize/s3.md"
       - Upload Limits: "customize/upload_limits.md"
       - Metadata-only records: "customize/metadata_only.md"
+      - Logging: "customize/Logging.md"
   - Develop:
       - Overview: "develop/index.md"
       - Getting started:
