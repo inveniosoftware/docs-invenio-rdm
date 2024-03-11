@@ -443,3 +443,40 @@ Compile message catalogs (generate `.mo` files).
 ### **`upgrade`**
 
 !!! error "Not yet supported"
+
+## Invenio RDM commands
+
+### **`rdm`**
+
+Invenio app rdm commands.
+
+### **`rdm pages`**
+
+see [Static pages](/customize/static_pages).
+
+### **`rdm pages create`**
+
+**Options**
+
+- `-f`, `--force` Creates static pages.
+
+### **`rdm fixtures`**
+
+Create the fixtures.
+
+### **`rdm rebuild-all-indices`**
+
+Reindex all services with optional selecting and ordering.
+
+**Options**
+
+- `-o`, `--order` Comma-separated list of services to reindex in the specified order. If not provided, all services will be reindexed.
+e.g.:
+
+```bash
+invenio rdm rebuild-all-indices -o users,communities,records,requests,request_events
+```
+
+if you don't specify services, The following services will be reindexed:
+
+`users, groups, domains, communities, members, records, record-media-files, affiliations, awards, funders, names, subjects, vocabularies, requests, request_events, oaipmh-server`
