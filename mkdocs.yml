@@ -53,6 +53,7 @@ nav:
           - Change logo: "customize/look-and-feel/logo.md"
           - Change templates: "customize/look-and-feel/templates.md"
           - Change theme: "customize/look-and-feel/theme.md"
+          - Change font: "customize/look-and-feel/font.md"
       - Authentication: "customize/authentication.md"
       - Sending emails: "customize/emails.md"
       - Search:
