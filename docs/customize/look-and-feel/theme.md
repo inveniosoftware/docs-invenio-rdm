@@ -28,6 +28,11 @@ The `assets/less/site/globals/site.variables` is where you can override site wid
 ```
 
 You can override any styling variable in your `site.variables` file. The available styling variables are typically found in the `.variables` files of the various Invenio modules installed (see note below).
+For instance, To change the orange search button color, in your instance create `assets/less/site/elements/button.variables` file (notice the use of the elements folder instead of the globals one) and add the following line to it:
+
+```less
+@searchButtonColor: /* your desired color */;
+```
 
 !!! info "List of variables that can be overridden"
 
