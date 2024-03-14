@@ -137,3 +137,27 @@ USERS_RESOURCES_ADMINISTRATION_ENABLED = True
 - add: administration panel
 - add: set quota
 - add: branded communities
+
+
+## OPEN PROBLEMS
+
+- users-user-v2.0.0 vs users-user-v1.0.0 indices
+  the problem is that user-v1.0.0 does not have the `confirmed_at` attribute
+  which is needed in `/api/users`.
+  SOLUTION 1:
+  ```bash
+  invenio index destroy --yes-i-know
+  invenio index init
+  invenio rdm rebuild-all-indices
+  ```
+  SOLUTION 2:
+  ```bash
+  invenio index delete users-user-v1.0.0-NUMBER --force --yes-i-know
+  invenio index create users-user-v2.0.0-NUMBER -b path/to/invenio_users_resources/records/mappings/os-v2/users/user-v2.0.0.json
+  invenio shell
+    from invenio_search.proxies import current_search_client
+    current_search_client.indices.put_alias("users-user-v2.0.0-NUMBER", "users-user-v2.0.0")
+    current_search_client.indices.put_alias("users-user-v2.0.0-NUMBER", "users")
+    exit
+  invenio rdm rebuild-all-indices -o users
+  ```
