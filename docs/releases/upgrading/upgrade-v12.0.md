@@ -18,12 +18,12 @@ The steps listed in this article require an existing local installation of Inven
 !!! warning "Upgrade your invenio-cli"
 
     Make sure you have the latest `invenio-cli` installed. For InvenioRDM v12 it is v1.2.0
-    
+
     ```bash
     $ invenio-cli --version
     invenio-cli, version 1.
     ```
-    
+
 !!! info "Virtual environments"
 
     In case you are not inside a virtual environment, make sure that you prefix each `invenio`
@@ -97,9 +97,10 @@ invenio index update rdmrecords-records-record-v5.0.0
 CAVEAT: this is not working because of an permission problem in
 [invenio-search](https://github.com/inveniosoftware/invenio-search/blob/d8b23ecf48f63d8d313f90fd4618a480e15fbd7b/invenio_search/ext.py#L448).
 The only way to solve it is to destroy the index and reinit and
-rebuild it from scratch. This is possible now. Be aware of that it is
-not a good idea after v12 to purge the index because in v12 the
-statistics are keep in opensearch indices!!!
+rebuild it from scratch. Yes the statistics will be only in the stored only in
+the index but the statistic indices are created by templates and therefore not
+affected by `invenio index destroy --yes-i-know`. The statistic indices will
+remain in the list of indices and are totally functional also after a reinit.
 
 
 ### Data migration
@@ -132,7 +133,7 @@ USERS_RESOURCES_ADMINISTRATION_ENABLED = True
 
 - remove: dependency of flask-babelex
 - add: concept doi (aka parent doi)
-- add: statistics. (NOTE: statistic is stored in opensearch/libresearch -> NOT persistent)!
+- add: statistics. (NOTE: statistic is stored in opensearch/libresearch)
 - add: administration panel
 - add: set quota
 - add: branded communities
