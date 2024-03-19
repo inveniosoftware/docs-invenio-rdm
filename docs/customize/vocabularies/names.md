@@ -71,6 +71,8 @@ names:
         origin: "./app_data/names.yaml"
   writers:
     - type: names-service
+      args:
+        update: false
 ```
 
 Finally, to run an **import** using this `vocabularies-future.yaml` file you
