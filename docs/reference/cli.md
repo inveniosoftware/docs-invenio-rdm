@@ -452,7 +452,7 @@ Invenio app rdm commands.
 
 ### **`rdm pages`**
 
-see [Static pages](/customize/static_pages).
+see [Static pages](../customize/static_pages.md).
 
 ### **`rdm pages create`**
 
