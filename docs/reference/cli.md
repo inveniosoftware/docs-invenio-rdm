@@ -480,3 +480,7 @@ invenio rdm rebuild-all-indices -o users,communities,records,requests,request_ev
 if you don't specify services, The following services will be reindexed:
 
 `users, groups, domains, communities, members, records, record-media-files, affiliations, awards, funders, names, subjects, vocabularies, requests, request_events, oaipmh-server`
+
+Note that the users and groups use bulk indexing and rely on celery running. They will not be reindexed if ceoery is not running.
+
+This command does not impact usage statistics indexes. You need to manually restore statistics indexes [from a backup](../develop/howtos/backup_search_indices.md).
