@@ -11,8 +11,13 @@ Query and retrieve entries from the [**awards** vocabulary](../customize/vocabul
 | Name     | Type   | Location | Description                          |
 | -------- | ------ | -------- | ------------------------------------ |
 | `q`      | string | query    | Search query used to filter results. |
+| `sort`  | string | query    | Sort search results. Built-in options are `"bestmatch"`, `"title"`, `"newest"`, `"oldest"` (default: `"bestmatch"` or `"title"`).  |
+| `size`    | integer | query    | Specify number of items in the results page (default: 10).                                                                                                                                                 |
+| `page`    | integer | query    | Specify the page of results.                                                                                                                                                                               |
 | `suggest` | string | query   | "Search as you type" query.          |
 | `accept` | string | header   | - `application/json`                 |
+
+Sort options for awards are configured on the vocabulary service class. Note that `"bestmatch"` is only available as a sort option on requests that provide a query string as a `q` parameter. Otherwise `"bestmatch"` is ignored and the default `"title"` sort is used.
 
 **Query string syntax**
 
