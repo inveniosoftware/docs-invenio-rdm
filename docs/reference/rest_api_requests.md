@@ -138,10 +138,12 @@ Used for listing all requests you can interact with.
 | Name           | Type    | Location | Description                                                  |
 | -------------- | ------- | -------- | ------------------------------------------------------------ |
 | `q`            | string  | query    | Search query used to filter results based on [ElasticSearch's query string syntax](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax). |
-| `sort`         | string  | query    | Sort search results.                                         |
+| `sort`         | string  | query    | Sort search results. Built-in options are `"bestmatch"`, `"name"`, `"newest"`, `"oldest"` (default: `"newest"` or `"bestmatch"`).  |
 | `size`         | integer | query    | Specify number of items in the results page (default: 10).   |
 | `page`         | integer | query    | Specify the page of results.                                 |
 | `accept`       | string  | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
+
+Note that `"bestmatch"` is only available as a sort option on requests that provide a query string as a `q` parameter, in which case it is the default sort type. If no query string is provided in the request, the default sort type is `"newest"`. In this case a `"bestmatch"` value is ignored and the default `"newest"` sort is used.
 
 **Request**
 
@@ -188,6 +190,7 @@ Content-Type: application/json
     ],
     "total": 2
   },
+  "sortBy": "newest",
   "links": {
     "self": "{scheme+hostname}/api/requests?page=1&size=25&sort=newest"
   }
