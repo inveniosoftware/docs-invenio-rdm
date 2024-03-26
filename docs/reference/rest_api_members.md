@@ -31,11 +31,14 @@ The following general restrictions apply to the member API:
 | `id`         | string  | path     | Community UUID identifier or slug e.g. `bd647379-23ea-477a-970f-201512ae5624` or `my-super-community` |
 | `accept`     | string  | header   | - `application/json`                                                                                  |
 | `q`          | string  | query    | Search query used to filter results.                                                                  |
-| `sort`       | string  | query    | Sort search results.                                                                                  |
+| `sort`       | string  | query    | Sort search results. Built-in options are `"bestmatch"`, `"name"`, `"newest"`, `"oldest"` (default: `"name"` or `"bestmatch"`).                                                                                      |
 | `size`       | integer | query    | Specify number of items in the results page (default: 10).                                            |
 | `page`       | integer | query    | Specify the page of results.                                                                          |
 | `role`       | string  | query    | Filter by role (one of ``reader``, ``curator``, ``manager``, ``owner``).                              |
 | `visibility` | boolean | query    | Filter by visibility (one of ``true``, ``false``)                                                     |
+
+Sort options for community members can be configured using the `COMMUNITIES_MEMBERS_SORT_OPTIONS` config variable as described in the [search customization](../customize/search) section. Note that `"bestmatch"` is only available as a sort option on requests that provide a query string as a `q` parameter, in which case it is the default sort type. If no query string is provided in the request, the default sort type is `"name"`. In this case a `"bestmatch"` value is ignored and the default `"name"` sort is used.
+
 **Request**
 
 ```http
@@ -156,6 +159,8 @@ Content-Type: application/json
 | `size`   | integer | query    | Specify number of items in the results page (default: 10).                                            |
 | `page`   | integer | query    | Specify the page of results.                                                                          |
 
+Note that no sort options are available when searching public members. The results are sorted by `"name"` in ascending order.
+
 **Request**
 
 ```http
@@ -204,12 +209,14 @@ Content-Type: application/json
 | `id`      | string  | path     | Community UUID identifier or slug e.g. `bd647379-23ea-477a-970f-201512ae5624` or `my-super-community` |
 | `accept`  | string  | header   | - `application/json`                                                                                  |
 | `q`       | string  | query    | Search query used to filter results.                                                                  |
-| `sort`    | string  | query    | Sort search results.                                                                                  |
+| `sort`    | string  | query    | Sort search results.  Built-in options are `"bestmatch"`, `"name"`, `"newest"`, `"oldest"` (default: `"name"` or `"bestmatch"`).                                                                                 |
 | `size`    | integer | query    | Specify number of items in the results page (default: 10).                                            |
 | `page`    | integer | query    | Specify the page of results.                                                                          |
 | `role`    | string  | query    | Filter by role (one of ``reader``, ``curator``, ``manager``, ``owner``).                              |
 | `status`  | string  | query    | Filter by status (one of ``submitted``, ``accepted``, ``declined``, ``expired``, ``cancelled``)       |
 | `is_open` | boolean | query    | Filter by open/closed (one of ``true``, ``false``)                                                    |
+
+Sort options for community members can be configured using the `COMMUNITIES_INVITATIONS_SORT_OPTIONS` config variable as described in the [search customization](../customize/search) section. Note that `"bestmatch"` is only available as a sort option on requests that provide a query string as a `q` parameter, in which case it is the default sort type. If no query string is provided in the request, the default sort type is `"name"`. In this case a `"bestmatch"` value is ignored and the default `"name"` sort is used.
 
 **Request**
 
