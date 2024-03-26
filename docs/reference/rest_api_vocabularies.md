@@ -33,7 +33,19 @@ Specifically for the `application/vnd.inveniordm.v1+json` format:
 
 The API uses a locale matching algorithm, that will do its best effort to translate the vocabulary record's title and description.
 
-The sort options available vary depending on the vocabulary being searched. These cannot presently be configured via config variables but are set in the service configuration for each vocabulary service. The default sort options are used where a vocabulary service has not defined its own.
+The sort options available vary depending on the vocabulary being searched. These cannot presently be configured via config variables but are set in the service configuration for each vocabulary service. The default sort options are used where a vocabulary service has not defined its own:
+
+| Vocabulary | Available sort options | Default | Default without a query string |
+| ---------- | ---------------------- | ------- | ------------------------------ |
+| default | `"bestmatch"`, `"title"`, `"newest"`, `"oldest"` | `"bestmatch"` | `"title"` |
+| affiliations | `"bestmatch"`, `"name"`, `"newest"`, `"oldest"` | `"bestmatch"` | `"name"` |
+| awards | `"bestmatch"`, `"title"`, `"newest"`, `"oldest"` | `"bestmatch"` | `"title"` |
+| funders | `"bestmatch"`, `"name"`, `"newest"`, `"oldest"` | `"bestmatch"` | `"name"` |
+| names | `"bestmatch"`, `"name"`, `"newest"`, `"oldest"` | `"bestmatch"` | `"name"` |
+| subjects* | `"bestmatch"`, `"subject"`, `"newest"`, `"oldest"` | `"bestmatch"` | `"subject"` |
+
+(\* Subjects are available only at the `/api/subjects` endpoint, but are included here for reference since they are provided by a vocabulary service.)
+<!--Maybe the subjects sort options should be moved to documentation for the `api/subjects` endpoint-->
 
 **Request**
 
