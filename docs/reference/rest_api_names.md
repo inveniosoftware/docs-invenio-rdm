@@ -11,8 +11,13 @@ Query and retrieve entries from the [**names** vocabulary](../customize/vocabula
 | Name     | Type   | Location | Description                          |
 | -------- | ------ | -------- | ------------------------------------ |
 | `q`      | string | query    | Search query used to filter results. |
+| `sort` | string | query | Sort search results. Built-in options are `"bestmatch"`, `"name"`, `"newest"`, `"oldest"` (default: `"bestmatch"` or `"name"`).  |
+| `size`    | integer | query    | Specify number of items in the results page (default: 10).                                                                                                                                                 |
+| `page`    | integer | query    | Specify the page of results.                                                                                                                                                                               |
 | `suggest` | string | query   | "Search as you type" query.          |
 | `accept` | string | header   | - `application/json`                 |
+
+Sort options for names are configured on the vocabulary service class. Note that `"bestmatch"` is only available as a sort option on requests that provide a query string as a `q` parameter. Otherwise `"bestmatch"` is ignored and the default `"name"` sort is used.
 
 **Query string syntax**
 
