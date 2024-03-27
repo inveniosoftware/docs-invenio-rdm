@@ -11,7 +11,7 @@ Query and retrieve entries from the [**awards** vocabulary](../customize/vocabul
 | Name     | Type   | Location | Description                          |
 | -------- | ------ | -------- | ------------------------------------ |
 | `q`      | string | query    | Search query used to filter results. |
-| `sort`  | string | query    | Sort search results. Built-in options are `"bestmatch"`, `"title"`, `"newest"`, `"oldest"` (default: `"bestmatch"` or `"title"`).  |
+| `sort`   | string | query    | Sort search results. Customizable. Built-in options are `"bestmatch"`, `"title"`, `"newest"`, `"oldest"` (default: `"bestmatch"` or `"title"`).  |
 | `size`    | integer | query    | Specify number of items in the results page (default: 10).                                                                                                                                                 |
 | `page`    | integer | query    | Specify the page of results.                                                                                                                                                                               |
 | `suggest` | string | query   | "Search as you type" query.          |
