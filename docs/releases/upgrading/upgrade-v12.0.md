@@ -127,6 +127,7 @@ invenio access allow superuser-access role administration
 ```bash
 COMMUNITIES_IDENTITIES_CACHE_REDIS_URL = "URI_TO_REDIS"
 USERS_RESOURCES_ADMINISTRATION_ENABLED = True
+THEME_SITENAME = "Project name for header and UI"
 ```
 
 ## Big Changes
