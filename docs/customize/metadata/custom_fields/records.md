@@ -280,10 +280,10 @@ RDM_CUSTOM_FIELDS_UI = [
 
 You should add the `my_template.html` file in the `my-site/templates` folder in your instance. In your custom template, the following variables are injected and can be used:
 
-- `field_value`: the value of the field, as it is stored in the record after the UI serialization i.e. what is returned from the `ui_field` method when you [define your custom field](../../../develop/howtos/custom_fields.md).
+- `field_value`: the value of the field, as it is stored in the record after the UI serialization i.e. what is returned from the `ui_field` method when you [define your custom field](../../../howtos/custom_fields.md).
 - `field_cfg`: the UI configuration for that specific field as it is defined in the `RDM_CUSTOM_FIELDS_UI` config.
 
-See the example in the [How-to](../../../develop/howtos/custom_fields.md#define-the-template-for-the-record-landing-page).
+See the example in the [How-to](../../../howtos/custom_fields.md#define-the-template-for-the-record-landing-page).
 
 ### Search
 

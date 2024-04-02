@@ -109,18 +109,6 @@ nav:
           - Sanitize input data: develop/topics/validation.md
           - Theming: develop/topics/theming.md
           - Administration panel: develop/topics/administration_panel.md
-      - How-to guides:
-          - Translation (i18n): develop/howtos/i18n.md
-          - Create a new custom field: develop/howtos/custom_fields.md
-          - Create custom code and views: develop/howtos/custom_code.md
-          - Add JavaScript: "develop/howtos/add_javascript.md"
-          - Override UI React components: develop/howtos/override_components.md
-          - Create search terms mappings: develop/howtos/search_terms_migration.md
-          - Create a database migration: develop/howtos/alembic.md
-          - Fix a vulnerability: develop/howtos/security-fix.md
-          - Test emails locally: develop/howtos/dev_email.md
-          - Migrate legacy routes: develop/howtos/route_migration.md
-          - Back up search indices: develop/howtos/backup_search_indices.md
       - Architecture:
           - Introduction: develop/architecture/index.md
           - Infrastructure: develop/architecture/infrastructure.md
@@ -136,10 +124,22 @@ nav:
           - Database transaction management: develop/concepts/transactions.md
   - Deploy: deploy/index.md
   - How-tos:
-      - How Tos: "how-tos/index.md"
+      - How Tos: "howtos/index.md"
       - Administration:
-          - Setup: "how-tos/administration/index.md"
-          - Interface: "how-tos/administration/interface.md"
+          - Setup: "howtos/administration/index.md"
+          - Interface: "howtos/administration/interface.md"
+      - Development:
+          - Translation (i18n): howtos/i18n.md
+          - Create a new custom field: howtos/custom_fields.md
+          - Create custom code and views: howtos/custom_code.md
+          - Add JavaScript: "howtos/add_javascript.md"
+          - Override UI React components: howtos/override_components.md
+          - Create search terms mappings: howtos/search_terms_migration.md
+          - Create a database migration: howtos/alembic.md
+          - Fix a vulnerability: howtos/security-fix.md
+          - Test emails locally: howtos/dev_email.md
+          - Migrate legacy routes: howtos/route_migration.md
+          - Back up search indices: howtos/backup_search_indices.md
   - Reference:
       - Overview: reference/index.md
       - CLI: reference/cli.md

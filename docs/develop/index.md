@@ -25,7 +25,7 @@ Development guidelines for specific areas of development.
 - [Commits, pull requests and reviews](best-practices/commits.md)
 - [CSS/JavaScript](best-practices/css-js.md)
 - [React](best-practices/react.md)
-- [Translation (i18n)](howtos/i18n.md)
+- [Translation (i18n)](../howtos/i18n.md)
 - [User interface](best-practices/ui.md)
 
 ## Topics
@@ -44,15 +44,7 @@ Developer introductions to specific parts of the InvenioRDM source code:
 
 Step-by-step guides on how to perform certain tasks:
 
-- [Create a new custom field](howtos/custom_fields.md)
-- [Create custom code and views](howtos/custom_code.md)
-- [Add JavaScript](howtos/add_javascript.md)
-- [Override UI React components](howtos/override_components.md)
-- [Create search terms mappings](howtos/search_terms_migration.md)
-- [Create a database migration](howtos/alembic.md)
-- [Fix a vulnerability](howtos/security-fix.md)
-- [Test emails locally](howtos/dev_email.md)
-- [Migrate legacy routes](howtos/route_migration.md)
+- [How to guides section](../howtos/index.md)
 
 ## Architecture
 

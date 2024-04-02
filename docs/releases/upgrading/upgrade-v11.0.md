@@ -123,7 +123,7 @@ You can see how to update your data in the [Funders vocabulary section](../../cu
 ### Update `my-site` folder
 
 With InvenioRDM v11, the template to generate a new instance has been updated, adding more files and folders.
-It is now easier to add [translations](../../contribute/translators-guide.md) and [custom code](../../develop/howtos/custom_code.md).
+It is now easier to add [translations](../../contribute/translators-guide.md) and [custom code](../../howtos/custom_code.md).
 
 To upgrade your running instance and have the same new files, the easiest way is to:
 

@@ -2,7 +2,7 @@
 
 *Introduced in InvenioRDM v10*
 
-This guide describes how to create your own custom field. If you have not done it yet, please read first about configuring [records custom fields](../../customize/metadata/custom_fields/records.md).
+This guide describes how to create your own custom field. If you have not done it yet, please read first about configuring [records custom fields](../customize/metadata/custom_fields/records.md).
 The new custom field in this example will extend the use case described in the records custom field documentation:
 
 _When uploading a research preprint at CERN, I want to record the title and the research program of the related CERN experiments._
@@ -143,7 +143,7 @@ export class Experiments extends Component {
 }
 ```
 
-Since we added a new Javascript file, we need to [rebuild our assets](../../customize/look-and-feel/theme.md#automatic-re-build):
+Since we added a new Javascript file, we need to [rebuild our assets](../customize/look-and-feel/theme.md#automatic-re-build):
 
 ```bash
 $ invenio-cli assets build
@@ -214,10 +214,10 @@ $ pipenv run invenio rdm-records custom-fields init -f experiments
 
 The new field will be displayed at the bottom of the upload form:
 
-![Experiments field upload form](../img/new_custom_field_upload_form.png)
+![Experiments field upload form](img/new_custom_field_upload_form.png)
 
 ### Record landing page
 
 The new field will be displayed in the record landing page:
 
-![Experiments field record landing page](../img/new_custom_field_landing_page.png)
+![Experiments field record landing page](img/new_custom_field_landing_page.png)
