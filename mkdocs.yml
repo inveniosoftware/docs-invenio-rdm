@@ -135,6 +135,11 @@ nav:
           - Optimistic concurrency control: develop/concepts/concurrency-control.md
           - Database transaction management: develop/concepts/transactions.md
   - Deploy: deploy/index.md
+  - How-tos:
+      - How Tos: "how-tos/index.md"
+      - Administration:
+          - Setup: "how-tos/administration/index.md"
+          - Interface: "how-tos/administration/interface.md"
   - Reference:
       - Overview: reference/index.md
       - CLI: reference/cli.md
