@@ -1105,13 +1105,13 @@ Content-Type: application/json
 | Name           | Type    | Location | Description                                                  |
 | -------------- | ------- | -------- | ------------------------------------------------------------ |
 | `q`            | string  | query    | Search query used to filter results based on [ElasticSearch's query string syntax](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax). |
-| `sort`         | string  | query    | Sort search results. Built-in options are `"bestmatch"`, `"newest"`, `"oldest"`, `"updated-desc"`, `"updated-asc"`, `"version"`, `"mostviewed"`, `"mostdownloaded"` (default: `"newest"` or `"bestmatch"`).                                        |
+| `sort`         | string  | query    | Sort search results. Customizable. Built-in options are `"bestmatch"`, `"newest"`, `"oldest"`, `"updated-desc"`, `"updated-asc"`, `"version"`, `"mostviewed"`, `"mostdownloaded"` (default: `"bestmatch"` or `"newest"`).                                        |
 | `size`         | integer | query    | Specify number of items in the results page (default: 10).   |
 | `page`         | integer | query    | Specify the page of results.                                 |
 | `allversions` &nbsp; | boolean | query    | Specify if all versions should be included (default: `False`, displays just latest version).   |
 | `accept`       | string  | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
 
-Sort options for communities can be configured using the `RDM_SORT_OPTIONS` config variable as described in the [search customization](../customize/search) section. Note that `"bestmatch"` is only available as a sort option on requests that provide a query string as a `q` parameter. Otherwise `"bestmatch"` is ignored and the default `"newest"` sort is used. Queries sorted by `"mostviewed"` and `"mostdownloaded"` are in descending order.
+Sort options for records can be configured using the `RDM_SORT_OPTIONS` config variable as described in the [search customization](../customize/search.md) section. Note that `"bestmatch"` is only available as a sort option on requests that provide a query string as a `q` parameter. Otherwise `"bestmatch"` is ignored and the default `"newest"` sort is used. Queries sorted by `"mostviewed"` and `"mostdownloaded"` are in descending order.
 
 **Request**
 
@@ -1774,13 +1774,13 @@ Used for interacting with the records and drafts you can edit.
 | Name     | Type    | Location | Description                                                  |
 | -------- | ------- | -------- | ------------------------------------------------------------ |
 | `q`      | string  | query    | Search query used to filter results based on [ElasticSearch's query string syntax](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax). |
-| `sort`   | string  | query    | Sort search results. Built-in options are `"bestmatch"`, `"newest"`, `"oldest"`, `"updated-desc"`, `"updated-asc"`, `"version"`, `"mostviewed"`, `"mostdownloaded"` (default: `"newest"` or `"bestmatch"`).                                        |
+| `sort`   | string  | query    | Sort search results. Customizable. Built-in options are `"bestmatch"`, `"newest"`, `"oldest"`, `"updated-desc"`, `"updated-asc"`, `"version"`, `"mostviewed"`, `"mostdownloaded"` (default: `"bestmatch"` or `"newest"`).                                        |
 | `size`   | integer | query    | Specify number of items in the results page (default: 10).   |
 | `page`   | integer | query    | Specify the page of results.                                 |
 | `allversions` &nbsp; | boolean | query    | Specify if all versions should be included.      |
 | `accept` | string  | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
 
-Sort options for communities can be configured using the `RDM_SORT_OPTIONS` config variable as described in the [search customization](../customize/search) section. Note that `"bestmatch"` is only available as a sort option on requests that provide a query string as a `q` parameter. Otherwise `"bestmatch"` is ignored and the default `"newest"` sort is used. Queries sorted by `"mostviewed"` and `"mostdownloaded"` are in descending order.
+Sort options for records can be configured using the `RDM_SORT_OPTIONS` config variable as described in the [search customization](../customize/search.md) section. Note that `"bestmatch"` is only available as a sort option on requests that provide a query string as a `q` parameter. Otherwise `"bestmatch"` is ignored and the default `"newest"` sort is used. Queries sorted by `"mostviewed"` and `"mostdownloaded"` are in descending order.
 
 **Request**
 
