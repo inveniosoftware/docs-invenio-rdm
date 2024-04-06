@@ -26,12 +26,12 @@ Search for users
 | Name     | Type   | Location | Description                          |
 | -------- | ------ | -------- | ------------------------------------ |
 | `q`      | string | query    | Search query used to filter results. |
-| `sort`   | string | query    | Sort search results. Built-in options are `"bestmatch"`, `"username"`, `"email"`, `"domain"`, `"newest"`, `"oldest"`, `"updated"` (default: `"newest"` or `"bestmatch"`).  |
+| `sort`   | string | query    | Sort search results. Customizable. Built-in options are `"bestmatch"`, `"username"`, `"email"`, `"domain"`, `"newest"`, `"oldest"`, `"updated"` (default: `"bestmatch"` or `"newest"`).  |
 | `size`       | integer | query    | Specify number of items in the results page (default: 10).               |
 | `page`       | integer | query    | Specify the page of results.                                             |
 | `accept` | string | header   | - `application/json`                 |
 
-Sort options for users can be configured using the `USERS_RESOURCES_SORT_OPTIONS` config variable as described in the [search customization](../customize/search) section. Note that `"bestmatch"` is only available as a sort option on requests that provide a query string as a `q` parameter, in which case it is the default sort type. If no query string is provided in the request, the default sort type is `"newest"`. In this case a `"bestmatch"` value is ignored and the default `"newest"` sort is used.
+Sort options for users can be configured using the `USERS_RESOURCES_SORT_OPTIONS` config variable as described in the [search customization](../customize/search.md) section. Note that `"bestmatch"` is only available as a sort option on requests that provide a query string as a `q` parameter, in which case it is the default sort type. If no query string is provided in the request, the default sort type is `"newest"`. In this case a `"bestmatch"` value is ignored and the default `"newest"` sort is used.
 
 **Query string syntax**
 
