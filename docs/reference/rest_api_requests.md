@@ -138,7 +138,7 @@ Used for listing all requests you can interact with.
 | Name           | Type    | Location | Description                                                  |
 | -------------- | ------- | -------- | ------------------------------------------------------------ |
 | `q`            | string  | query    | Search query used to filter results based on [ElasticSearch's query string syntax](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax). |
-| `sort`         | string  | query    | Sort search results. Built-in options are `"bestmatch"`, `"name"`, `"newest"`, `"oldest"` (default: `"newest"` or `"bestmatch"`).  |
+| `sort`         | string  | query    | Sort search results. Built-in options are `"bestmatch"`, `"name"`, `"newest"`, `"oldest"` (default: `"bestmatch"` or `"newest"`).  |
 | `size`         | integer | query    | Specify number of items in the results page (default: 10).   |
 | `page`         | integer | query    | Specify the page of results.                                 |
 | `accept`       | string  | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |

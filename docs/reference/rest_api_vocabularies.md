@@ -19,7 +19,7 @@ are supported:
 | `q`       | string  | query    | Search query used to filter results based on [ElasticSearch's query string syntax](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-query-string-query.html#query-string-syntax). |
 | `suggest` | string  | query    | One or more words used to suggest records as the user types (i.e. auto-complete).                                                                                                                          |
 | `tags`    | string  | query    | Filter results to the tag                                                                                                                                                                                  |
-| `sort`    | string  | query    | Sort search results.                                                                                                                                                                                       |
+| `sort`    | string  | query    | Sort search results. Unless overridden by a specific vocabulary, the built-in options are `"bestmatch"`, `"title"`, `"newest"`, `"oldest"` (default: `"bestmatch"` or `"title"`). |                                                                                                                                                                                       |
 | `size`    | integer | query    | Specify number of items in the results page (default: 10).                                                                                                                                                 |
 | `page`    | integer | query    | Specify the page of results.                                                                                                                                                                               |
 | `accept`  | string  | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json`                                                                                                                                 |
@@ -33,19 +33,7 @@ Specifically for the `application/vnd.inveniordm.v1+json` format:
 
 The API uses a locale matching algorithm, that will do its best effort to translate the vocabulary record's title and description.
 
-The sort options available vary depending on the vocabulary being searched. These cannot presently be configured via config variables but are set in the service configuration for each vocabulary service. The default sort options are used where a vocabulary service has not defined its own:
-
-| Vocabulary | Available sort options | Default | Default without a query string |
-| ---------- | ---------------------- | ------- | ------------------------------ |
-| default | `"bestmatch"`, `"title"`, `"newest"`, `"oldest"` | `"bestmatch"` | `"title"` |
-| affiliations | `"bestmatch"`, `"name"`, `"newest"`, `"oldest"` | `"bestmatch"` | `"name"` |
-| awards | `"bestmatch"`, `"title"`, `"newest"`, `"oldest"` | `"bestmatch"` | `"title"` |
-| funders | `"bestmatch"`, `"name"`, `"newest"`, `"oldest"` | `"bestmatch"` | `"name"` |
-| names | `"bestmatch"`, `"name"`, `"newest"`, `"oldest"` | `"bestmatch"` | `"name"` |
-| subjects* | `"bestmatch"`, `"subject"`, `"newest"`, `"oldest"` | `"bestmatch"` | `"subject"` |
-
-(\* Subjects are available only at the `/api/subjects` endpoint, but are included here for reference since they are provided by a vocabulary service.)
-<!--Maybe the subjects sort options should be moved to documentation for the `api/subjects` endpoint-->
+The sort options available vary depending on the vocabulary being searched. These cannot presently be configured via config variables but are set in the service configuration for each vocabulary service. The default sort options are used where a vocabulary service has not defined its own.
 
 **Request**
 
