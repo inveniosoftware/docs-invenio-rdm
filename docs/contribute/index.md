@@ -1,4 +1,4 @@
-# Contribute to InvenioRDM
+# Onboard & Contribute to InvenioRDM
 
 InvenioRDM is a vibrant open-source project with a community spanning the globe.
 We cover almost all time zones during our major online workshops! Here we highlight
@@ -7,20 +7,29 @@ how you can contribute and how we work.
 Contributions are welcome, and they are greatly appreciated! Every
 little bit helps, and credit will always be given.
 
+## Onboarding
+
+Discoved how to get to know and join the InvenioRDM community [here](onboarding.md).
+
 ## Governance
 
 How the project is governed is outlined [here](https://inveniosoftware.org/governance/).
 
 ## Types of Contributions
 
-### Report Bugs and ask for features
+### Report Bugs
 
 Submit an issue at [https://github.com/inveniosoftware/invenio-app-rdm/issues](https://github.com/inveniosoftware/invenio-app-rdm/issues).
-Select bug or feature and you will have a prepopulated GitHub issue created for you.
+Select bug and you will have a prepopulated GitHub issue created for you.
 Fill it out!
 
 InvenioRDM is made up of a collection of modules. As you become more familiar with them,
 you may want to submit your ticket to their respective repositories.
+
+### Ask For Feature
+
+Read through the already opened [GitHub Discussions](https://github.com/inveniosoftware/product-rdm/discussions), or create a new one.
+Already approved discussions and ongoing development is converted to an [issue](https://github.com/inveniosoftware/product-rdm/issues).
 
 ### Fix Bugs
 
