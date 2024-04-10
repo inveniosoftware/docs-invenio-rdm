@@ -211,8 +211,9 @@ nav:
       - Docker images: maintenance/docker-images.md
       - RFCs: maintenance/rfcs.md
       - Writing documentation: maintenance/documentation.md
-  - Contribute:
+  - Onboard & Contribute:
       - Overview: contribute/index.md
+      - Onboarding: contribute/onboarding.md
       - Code of conduct: contribute/code-of-conduct.md
       - Copyright policy: contribute/copyright-policy.md
       - Roadmap: contribute/roadmap.md
