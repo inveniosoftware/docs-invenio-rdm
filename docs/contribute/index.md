@@ -9,7 +9,7 @@ little bit helps, and credit will always be given.
 
 ## Onboarding
 
-Discoved how to get to know and join the InvenioRDM community [here](onboarding.md).
+Discover how to get to know and join the InvenioRDM community [here](onboarding.md).
 
 ## Governance
 
