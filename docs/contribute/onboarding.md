@@ -33,3 +33,4 @@ Feel free to join any of these channels if you are interested in these topics:
 * Documentation: <https://discord.gg/c3vjwN8kxD>
 * Events & Conferences: <https://discord.gg/SpAheeagG9>
 * Telecons: <https://discord.gg/vc28P5yTZA>
+* Research Data Preservation Technologies and Policies: <https://discord.gg/7ztjD8St4E>
