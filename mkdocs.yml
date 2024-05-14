@@ -21,6 +21,7 @@ theme:
   features:
     - navigation.tabs
     - navigation.footer
+    - content.code.copy
 
 nav:
   - Home: "index.md"
@@ -143,6 +144,7 @@ nav:
       - Export formats: reference/export_formats.md
       - REST API:
           - Overview: "reference/rest_api_index.md"
+          - Quickstart: "reference/rest_api_quickstart.md"
           - Communities: "reference/rest_api_communities.md"
           - Drafts and Records: "reference/rest_api_drafts_records.md"
           - Groups: "reference/rest_api_groups.md"
