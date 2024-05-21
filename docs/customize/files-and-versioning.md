@@ -18,10 +18,10 @@ In some cases repository manager might need to chose to disable the file version
 
 - Performance: Maintaining version history can impact system performance, especially when handling a large number of files and records. Disabling versioning can help improve system responsiveness and speed, particularly in resource-constrained environments.
 
-In order to provide custom rules of unlocking the file edition without creating a new version, you need to implement a callable which evaluates the conditions to a return a bool variable:
+In order to provide custom rules for unlocking the file edition without creating a new version, you need to implement a callable which evaluates the conditions to return a bool value:
 
 ```python
-def lock_edit_record_published_files(record):
+def lock_edit_record_published_files(service, identity, record=None, draft=None):
     """Custom conditions for file bucket lock."""
     if record:
         is_external_doi = record.get("pids", {}).get("doi", {}).get("provider") == "external"
