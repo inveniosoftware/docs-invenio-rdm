@@ -18,7 +18,6 @@ affiliations:
       data-file: vocabularies/affiliations_ror.yaml
 ```
 
-
 The `affiliations_ror.yaml` file can be downloaded from [here](https://github.com/inveniosoftware/cookiecutter-invenio-rdm/raw/master/%7B%7Bcookiecutter.project_shortname%7D%7D/app_data/vocabularies/affiliations_ror.yaml).
 
 Afterwards you will need to import the affiliations. To do so, run the following command
@@ -43,3 +42,22 @@ invenio rdm-records fixtures
     This means that once they are created, modifying the file and re-running the above
     command will have no effect. So make sure you have the correct configuration before
     running the `fixtures` command.
+
+_Introduced in InvenioRDM v12_
+
+From V12 onwards, the previous method has been simplified. You can now enable affiliations directly by specifying the data file in `app_data/vocabularies.yaml`:
+
+```yaml
+affiliations:
+  pid-type: aff
+  data-file: vocabularies/affiliations_ror.yaml
+```
+
+To update the fixtures with the new dataset, run the following command:
+
+```bash
+invenio rdm-records add-to-fixture affiliations
+```
+
+!!! warning "Note"
+    This command will not delete existing vocabulary entries.
