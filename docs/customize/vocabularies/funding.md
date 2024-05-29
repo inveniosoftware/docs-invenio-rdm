@@ -8,7 +8,9 @@ Funders represent funding public or private bodies and organizations, such as th
 
 !!! info "Why ROR?"
 
-    Although the ROR dataset is used as a datasource for importing creator and contributor affiliations, it also contains funding-related information and identifiers (e.g. CrossRef's Funder ID).
+    Although the ROR dataset is also used as a datasource for importing creator
+    and contributor affiliations, it has replaced the CrossRef funder registry
+    and contains CrossRef's Funder ID
 
 ### Data model
 
@@ -17,19 +19,38 @@ A **Funder** record contains:
 - The unique identifier `id` for the record. This can be either a unique external persistent identifier (e.g. a ROR like `00k4n6c32`, or CrossRef Funder ID like `10.13039/501100000780`) or any unique internal identifier. This value will be used when programmatically referencing the funder, e.g. in a record's metadata.
 - The `name` of the funder (e.g. "European Commission").
 - An optional list of `identifiers`, composed by their identifier value and scheme. The scheme can potentially be autocompleted if it is known by the _idutils_ library (e.g. ROR, DOI).
-- The `country` Alpha‑2 code of the funder (e.g. `DE`, `GB`). This field is optional.
+
+There are a number of optional fields:
+- The `country` Alpha‑2 code of the funder (e.g. `DE`, `GB`).
+- The `country_name` of the funder (e.g. "Germany", "United Kingdom").
+- The `location_name` of the funder (e.g. "Berlin", "London").
+- The `status` of the funder (e.g. "active", "inactive", "withdrawn").
+- The `types` of the funder (e.g. "education", "funder", "company").
+- The `acronyms` of the funder (e.g. "EC", "NIH").
+- The `aliases` of the funder (e.g. "Caltech").
 
 Here is an example of two such records in YAML format:
 
 ```yaml
-- id: 01cwqze88
-  name: National Institutes of Health
-  identifiers:
-    - identifier: 01cwqze88
-      scheme: ror
-    - identifier: 0000000122975165
-      scheme: isni
+- acronym: NIH
   country: US
+  country_name: United States
+  id: 01cwqze88
+  identifiers:
+  - identifier: 01cwqze88
+    scheme: ror
+  - identifier: grid.94365.3d
+    scheme: grid
+  - identifier: 0000 0001 2297 5165
+    scheme: isni
+  location_name: Bethesda
+  name: National Institutes of Health
+  status: active
+  title:
+    en: National Institutes of Health
+  types:
+  - government
+  - funder
 - id: 202100-0000
   country: SE
   name: Swedish Research Council
