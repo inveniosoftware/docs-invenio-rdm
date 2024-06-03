@@ -48,6 +48,9 @@ In the beginning of each iteration we start by releasing new development version
     - bump flask-resources
     - bump marshmallow-utils
     - bump invenio-records-permissions
+- invenio-users-resources [Github](https://github.com/inveniosoftware/invenio-users-resources)
+    - bump invenio-administration
+    - bump invenio-records-resources
 - invenio-drafts-resources [GitHub](https://github.com/inveniosoftware/invenio-drafts-resources)
     - bump invenio-records-resources
 - invenio-vocabularies [GitHub](https://github.com/inveniosoftware/invenio-vocabularies)
