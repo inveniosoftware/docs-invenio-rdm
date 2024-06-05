@@ -132,7 +132,7 @@ git checkout upstream/master
 ```
 for the version number see the section about semantic versioning
 ```
-git tag vX.Y.Z 
+git tag vX.Y.Z
 git push upstream vX.Y.Z
 ```
 
@@ -146,3 +146,16 @@ only need to replace ``master`` with ``maint-x.y`` branches.
     Be aware that when the independent modules are released, they will be
     picked up immediately by new InvenioRDM installations. This should not be
     an issues since the releases MUST be backward compatible.
+
+## Bleeding Edge Development Workflow
+
+Bleeding-edge dev happens in master, where we work with `v(latest stable + 1).0.0bX.devY` versions (i.e. `v13.0.0b0.dev0` now).
+Changes in master usually won't have an out-of-the-box backwards-compatibility assurance (things might break, but we'll fix them ASAP since we want to be able to develop reliably).
+
+Stable releases, like e.g. `v12.0.x` now, are being maintained under their equivalent `maint-v12.0.x` branch.
+
+- They will receive bug fixes following semver, i.e. `v12.0.1`, etc.
+- Occasionally, if we see features in bleeding edge that the community agrees they would like to see in the stable branches, we can organize efforts to backport them using a minor version bump in the stable release (e.g. `v12.1.x`). These minor releases will have the following assurances:
+    - The new features **MUST** be disabled by default using config feature flags
+    - If an instance doesn't enable or use the new features, their instance **MUST** still work
+    - If an instance wants to enable/use the new features, there **MAY** be some migration/upgrade recipes required to be run (most of which will not require downtime for the application, e.g. adding new search mapping fields + reindexing records)
