@@ -197,12 +197,14 @@ The service layer contains the domain and business logic of the application and 
 
 The service layer usually lives inside an Invenio module in a package named ``service``. It may consist of:
 
+
+- Service config (``config.py``)
+- Service schema(s) (``schema/``)
+- Service implementations (``service.py``)
 - Service components (``components/``)
-- Service config (``components/``)
-- Service schema (``components/``)
-- Service results (``results``)
+- Service results (``results.py``)
 - Domain errors (``errors.py``)
-- Background tasks.py
+- Background tasks (``tasks.py``)
 
 **Purpose**
 
