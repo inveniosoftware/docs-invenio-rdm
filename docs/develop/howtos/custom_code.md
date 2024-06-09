@@ -24,7 +24,7 @@ To generate the site folder, you will need to select option `1 - yes` (this is a
 ```python hl_lines="3"
 [packages]
 ...
-my-site = {editable="True", path="./site"}
+my-site = {editable=true, path="./site"}
 ```
 
 This means that the site folder will be installed as a package with the name `my-site`, and it is editable. This package now works as any other package installed in your instance (`invenio-app-rdm`, `invenio-communities`, etc.), allowing you to customize your instance and create new views and features without adding a separate package manually.
