@@ -838,10 +838,10 @@ Content-Type: application/json
 
 **Parameters**
 
-| Name | Type   | Location | Description                                                                                   |
-|------|--------|----------|-----------------------------------------------------------------------------------------------|
-| `accept` | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json`                    |
-| `id` | string | path     | ID of the community.                                                                          |
+| Name         | Type   | Location | Description                                                                                   |
+|--------------|--------|----------|-----------------------------------------------------------------------------------------------|
+| `accept`     | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json`                    |
+| `id`         | string | path     | ID of the community.                                                                          |
 | `start_date` | string | body     | Required, datetime in iso format. Community will be featured from this point in time onwards. |
 
 

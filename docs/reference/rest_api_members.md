@@ -38,6 +38,7 @@ The following general restrictions apply to the member API:
 | `visibility` | boolean | query    | Filter by visibility (one of ``true``, ``false``)                                                     |
 
 Sort options for community members can be configured using the `COMMUNITIES_MEMBERS_SORT_OPTIONS` config variable as described in the [search customization](../customize/search.md) section. Note that `"bestmatch"` is only available as a sort option on requests that provide a query string as a `q` parameter, in which case it is the default sort type. If no query string is provided in the request, the default sort type is `"name"`. In this case a `"bestmatch"` value is ignored and the default `"name"` sort is used.
+
 **Request**
 
 ```http

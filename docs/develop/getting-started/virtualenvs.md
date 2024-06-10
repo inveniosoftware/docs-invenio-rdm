@@ -23,8 +23,7 @@ programs (i.e. a distribution provides the ``python`` command).
 
 ### Distribution version
 
-Each distribution comes in multiple versions that's able to interpret the
-Python programming language - e.g. Python 3.8, 3.9 etc.
+Each distribution supports multiple versions of the Python programming language e.g., Python 3.8 and Python 3.9.
 
 ### Installation of a distribution
 
