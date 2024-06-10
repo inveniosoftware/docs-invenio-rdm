@@ -53,9 +53,9 @@ Add the following to your `invenio.cfg`:
 RDM_PERSISTENT_IDENTIFIER_PROVIDERS = [
   ...
 +   # URN identifier
-+   provider.DnbUrnProvider(
++   providers.DnbUrnProvider(
 +     "urn",
-+     client=provider.DNBUrnClient("dnb"),
++     client=providers.DNBUrnClient("dnb"),
 +     label=_("URN"),
 +   ),
 ]
@@ -66,6 +66,7 @@ RDM_PERSISTENT_IDENTIFIERS = {
 +     "providers": ["urn"],
 +     "required": True,
 +     "label": _("URN"),
++     "is_enabled": providers.DnbUrnProvider.is_enabled,
 +   },
   ...
 }
