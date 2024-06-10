@@ -78,7 +78,6 @@ The OAI-PMH server's metadata format ``oai_datacite`` that allows you to harvest
 DATACITE_DATACENTER_SYMBOL = "CERN.INVENIORDM"
 ```
 
-
 ### Versioning end externally managed DOI
 
 By default, InvenioRDM allows versioning for any DOI type - internally or externally managed. Internally managed DOI is a DOI which is given thanks to InvenioRDM feature which allows us to configure the DOI registration on DataCite (check #Enable DOI registration). The external DOIs are not minted by our instance and in some cases repository manager decides to disallow versioning of records identified by external DOI. To disable versioning for external DOIs you need to set:
@@ -87,9 +86,29 @@ By default, InvenioRDM allows versioning for any DOI type - internally or extern
 RDM_ALLOW_EXTERNAL_DOI_VERSIONING = False
 ```
 
+#### Configuring DOI Behavior
+
+You can change how DOIs work in InvenioRDM by adding modified configuration variables to `invenio.cfg`. For example, if you want to make DOIs *optional* you can add the following block to invenio.cfg
+
+```python
+RDM_PERSISTENT_IDENTIFIERS = {
+    # DOI automatically removed if DATACITE_ENABLED is False.
+    "doi": {
+        "providers": ["datacite", "external"],
+        "required": False,
+        "label": _("DOI"),
+        "validator": idutils.is_doi,
+        "normalizer": idutils.normalize_doi,
+    },
+    "oai": {
+        "providers": ["oai"],
+        "required": True,
+        "label": _("OAI"),
+    },
+}
+```
+You [can view the default configuration in invenio-rdm-records](https://github.com/inveniosoftware/invenio-rdm-records/blob/e64dd0b81757a391584e63d162d5e6caf6780637/invenio_rdm_records/config.py#L322)
+
 ## Known issues
 
-- **Restricted records:** DOIs are registered for all records including restricted
-  records, thus metadata like titles, authors, description and more is sent to
-  DataCite Metadata registry where it is public. Provide an external DOI if
-  no DOI should be registered by InvenioRDM.
+- **Restricted records:** Once a DOI is created, it cannot be fully removed from DataCite. Starting with v12, InvenioRDM will not register DOIs for restricted records. It will also hide a DOI from the DataCite Search is a record is changed from public to restricted. However that DOI will still resolve and metadata may be available to DataCite members.
