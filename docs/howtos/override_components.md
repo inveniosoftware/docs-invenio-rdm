@@ -16,7 +16,7 @@ For this guide, we assume that you are familiar with React and JavaScript.
     **Use it at your own risk!**
 
 The UI of InvenioRDM is composed of classic HTML web pages for mostly static content, and React web apps for very dynamic content to enhance the user experience.
-While a [dedicated guide](../../customize/look-and-feel/templates.md) describes how to override HTML web pages (Jinja templates), this guide focus on how to override React components.
+While a [dedicated guide](../customize/look-and-feel/templates.md) describes how to override HTML web pages (Jinja templates), this guide focus on how to override React components.
 
 InvenioRDM uses the React library [`react-overridable`](https://github.com/indico/react-overridable). The library provides a mechanism to mark React components as "overridable" by id.
 Developers can define a map `{ id: Overridden React component }`, which is then applied when each React component is rendered: the overridden component is rendered instead of the default one.
@@ -35,7 +35,7 @@ At the moment, the easiest way to understand how to identify if the component th
 
 You can then find the component in the InvenioRDM modules source code, searching it in your local development environment or using the search feature in GitHub in the [inveniosoftware organization](https://github.com/search?q=org%3Ainveniosoftware+FileUploaderToolbar&type=code).
 
-You can always [ask for help](../../develop/getting-started/help.md)!
+You can always [ask for help](../develop/getting-started/help.md)!
 
 ### Find the React Overridable ID
 

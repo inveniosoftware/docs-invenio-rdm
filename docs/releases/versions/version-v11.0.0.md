@@ -40,7 +40,7 @@ You can try this feature out by changing the configuration variable `COMMUNITIES
 With InvenioRDM v11, you can now add your own custom code and views directly to your instance,
 without creating extra modules and adding them to the list of dependencies.
 
-Discover how by reading the dedicated [How-to](../../develop/howtos/custom_code.md).
+Discover how by reading the dedicated [How-to](../../howtos/custom_code.md).
 
 ### Override landing page template
 
@@ -57,13 +57,13 @@ You can read more on how to customize template in the [dedicated guide](../../cu
 InvenioRDM now includes a redirector module. It allows an instance to define a mapping of URLs to redirect via a configuration variable.
 This is particularly useful when migrating from an old instance to InvenioRDM.
 
-See instructions on how to configure URL redirection in its [How-to](../../develop/howtos/route_migration.md).
+See instructions on how to configure URL redirection in its [How-to](../../howtos/route_migration.md).
 
 ### Search query parser
 
 Search fields and parameters may change overtime. You can now map legacy search terms into newer terms.
 
-See instruction on how to add search terms mappings in its [How-to](../../develop/howtos/search_terms_migration.md).
+See instruction on how to add search terms mappings in its [How-to](../../howtos/search_terms_migration.md).
 
 ### User visibility
 

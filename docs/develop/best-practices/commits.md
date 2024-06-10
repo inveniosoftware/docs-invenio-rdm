@@ -103,8 +103,8 @@ When making your pull request, please keep the following in mind:
 - Add tests and don't decrease test coverage.
 - Add documentation.
 - Follow our best practices:
-    - [Data migrations](../howtos/alembic.md)
-    - [Translation strings](../howtos/i18n.md)
+    - [Data migrations](../../howtos/alembic.md)
+    - [Translation strings](../../howtos/i18n.md)
     - [CSS/JS](css-js.md) and [React](react.md)
     - [Web accessibility](accessibility.md)
     - [User interface](ui.md)
