@@ -1,16 +1,10 @@
 # How-to Guides
 
-!!! warning "🚧 Work in Progress"
-
-    This page is a work in progress.
 Step-by-step guides on how to perform certain tasks:
 
 ## User Guides
 
 Check out the [User Guides](https://help.zenodo.org/docs/) section on Zenodo.org.
-!!! warning "🚧 Work in Progress"
-
-    This section is a work in progress.
 
 ## Instance Administrators
 
