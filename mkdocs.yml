@@ -72,6 +72,7 @@ nav:
           - Change templates: "customize/look-and-feel/templates.md"
           - Change theme: "customize/look-and-feel/theme.md"
           - Change font: "customize/look-and-feel/font.md"
+          - Change menus: "customize/look-and-feel/menus.md"
       - Authentication: "customize/authentication.md"
       - Sending emails: "customize/emails.md"
       - Search:
