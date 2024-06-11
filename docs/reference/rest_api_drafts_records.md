@@ -1677,7 +1677,7 @@ Content-Type: application/json
 
 {
   "permission": "edit",
-  "expires_at": "2121-03-25T21:06:29.563235"
+  "expires_at": "2024-12-25"
 }
 ```
 
