@@ -86,6 +86,7 @@ nav:
           - Change templates: "operate/customize/look-and-feel/templates.md"
           - Change theme: "operate/customize/look-and-feel/theme.md"
           - Change font: "operate/customize/look-and-feel/font.md"
+          - Change menus: "operate/customize/look-and-feel/menus.md"
           - Override React components: "operate/customize/look-and-feel/override_components.md"
       - Customize metadata model:
           - Enable metadata-only records: "operate/customize/metadata/metadata_only.md"
