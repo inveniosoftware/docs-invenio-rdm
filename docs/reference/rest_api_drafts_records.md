@@ -1591,7 +1591,7 @@ Access links are URLs that can be shared with others to give them access and per
 | -------- | ------ | -------- | ------------------------------------------------------------ |
 | `id`     | string | path     | Identifier of the record, e.g. `cbc2k-q9x58`                 |
 | `accept` | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
-| `expires_at`     | string | body     | Date time string. When the link expires.                 |
+| `expires_at`     | string | body     | `ISO 8601 Date`Format (YYYY-MM-DD) When the link expires.          |
 | `permission`     | string | body     | Required. Action that can be undertaken with the link (``view``, ``preview`` or ``edit``). |
 
 
@@ -1602,7 +1602,8 @@ POST /api/records/{id}/access/links HTTP/1.1
 Content-Type: application/json
 
 {
-  "permission": "view"
+  "permission": "view",
+  "expires_at": "2024-11-06"
 }
 ```
 
@@ -1613,11 +1614,12 @@ HTTP/1.1 201 CREATED
 Content-Type: application/json
 
 {
-  "permission": "view",
-  "created_at": "2021-03-25T21:06:29.563235",
-  "token": "eyJhbGciOiJIUzUxMiJ9.eyJpZCI6IjNkMzMyMGVhLTA3NTUtNGQ5My1hNzZlLWUyZjJmYzY1NWQyYSIsImRhdGEiOnt9LCJyYW5kb20iOiI2NzZhYTk3OTczMzgwMjkyNTJiM2MwZDBjNjliMTVkYSJ9.dBqk7YzIZ7kwG4oijNgH1VU-cjQmBiQlMQKMoB2y-YjVWmgnZetFAESsqRP6VpGTtaKdftrtob1PVZJF4YGpfg",
-  "id": "3d3320ea-0755-4d93-a76e-e2f2fc655d2a",
-  "expires_at": null
+    "id": "07fb00f3-928c-4ce9-8d2e-8e9c4dca3092",
+    "created_at": "2024-06-12T13:07:09.951029+00:00",
+    "expires_at": "2024-11-06",
+    "permission": "view",
+    "description": "",
+    "token": "eyJhbGciOiJIUzUxMiIsImlhdCI6MTcxODE5NzYyOSwiZXhwIjoxNzMwODUxMTk5fQ.eyJpZCI6IjA3ZmIwMGYzLTkyOGMtNGNlOS04ZDJlLThlOWM0ZGNhMzA5MiIsImRhdGEiOnt9LCJyYW5kb20iOiI1NzVjNzEwY2QwNWI3YWFhMTM2MzY3ZmMzZWFkYzA0MSJ9.GPfPBvrbvEu-JMddFXjb5MZKNWRnzAK53oTVOSgfdZOcMIoRfszO39GEglko74dohZiUcJ11jWXj0fwfdq1WnQ"
 }
 ```
 
@@ -1647,11 +1649,12 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-  "permission": "view",
-  "created_at": "2021-03-25T21:06:29.563235",
-  "token": "eyJhbGciOiJIUzUxMiJ9.eyJpZCI6IjNkMzMyMGVhLTA3NTUtNGQ5My1hNzZlLWUyZjJmYzY1NWQyYSIsImRhdGEiOnt9LCJyYW5kb20iOiI2NzZhYTk3OTczMzgwMjkyNTJiM2MwZDBjNjliMTVkYSJ9.dBqk7YzIZ7kwG4oijNgH1VU-cjQmBiQlMQKMoB2y-YjVWmgnZetFAESsqRP6VpGTtaKdftrtob1PVZJF4YGpfg",
-  "id": "3d3320ea-0755-4d93-a76e-e2f2fc655d2a",
-  "expires_at": null
+    "id": "61c2d20f-4c88-440d-9978-dd16a69bf97e",
+    "created_at": "2024-06-12T13:23:11.271139+00:00",
+    "expires_at": "2024-11-06",
+    "permission": "view",
+    "description": "",
+    "token": "eyJhbGciOiJIUzUxMiIsImlhdCI6MTcxODE5ODU5MSwiZXhwIjoxNzMwODUxMTk5fQ.eyJpZCI6IjYxYzJkMjBmLTRjODgtNDQwZC05OTc4LWRkMTZhNjliZjk3ZSIsImRhdGEiOnt9LCJyYW5kb20iOiI2MWYwZTg4YjgzY2E2ZDhkMjJiMTY0MGFjNmIzMmEwZiJ9.AFEmgQ8_gtEj7dvlZ2MHD9qneKy0UEC1HMByo8J5xVGMYG8PXwuRsyUgeq_k_ZeHybO5W4_Do_P4NVGXsrjHyg"
 }
 ```
 
@@ -1663,10 +1666,10 @@ Content-Type: application/json
 
 | Name     | Type   | Location | Description                                                  |
 | -------- | ------ | -------- | ------------------------------------------------------------ |
-| `id`     | string | path     | Identifier of the record, e.g. `cbc2k-q9x58`                 |
-| `link-id`     | string | path     | Identifier of the link, e.g. `3d3320ea-0755-4d93-a76e-e2f2fc655d2a` |
+| `id`     | string | path     | Identifier of the record, e.g. `cbc2k-q9x58`                               |
+| `link-id`     | string | path     | Identifier of the link, e.g. `3d3320ea-0755-4d93-a76e-e2f2fc655d2a`   |
 | `accept` | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
-| `expires_at`     | string | body     | Date time string. When the link expires.                 |
+| `expires_at`     | string | body     |  `ISO 8601 Date`Format (YYYY-MM-DD) When the link expires.         |
 | `permission`     | string | body     | Required. Action that can be undertaken with the link.             |
 
 **Request**
@@ -1677,7 +1680,7 @@ Content-Type: application/json
 
 {
   "permission": "edit",
-  "expires_at": "2024-12-25"
+  "expires_at": "2024-11-06"
 }
 ```
 
@@ -1688,11 +1691,12 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-  "permission": "edit",
-  "created_at": "2021-03-25T21:06:29.563235",
-  "token": "eyJhbGciOiJIUzUxMiJ9.eyJpZCI6IjNkMzMyMGVhLTA3NTUtNGQ5My1hNzZlLWUyZjJmYzY1NWQyYSIsImRhdGEiOnt9LCJyYW5kb20iOiI2NzZhYTk3OTczMzgwMjkyNTJiM2MwZDBjNjliMTVkYSJ9.dBqk7YzIZ7kwG4oijNgH1VU-cjQmBiQlMQKMoB2y-YjVWmgnZetFAESsqRP6VpGTtaKdftrtob1PVZJF4YGpfg",
-  "id": "3d3320ea-0755-4d93-a76e-e2f2fc655d2a",
-  "expires_at": "2121-03-25T21:06:29.563235"
+    "id": "df672812-6b23-411a-b40a-9bb22787f0a2",
+    "created_at": "2024-06-12T12:48:43.724970+00:00",
+    "expires_at": "2024-11-06",
+    "permission": "edit",
+    "description": "",
+    "token": "eyJhbGciOiJIUzUxMiJ9.eyJpZCI6ImRmNjcyODEyLTZiMjMtNDExYS1iNDBhLTliYjIyNzg3ZjBhMiIsImRhdGEiOnt9LCJyYW5kb20iOiIwZWE3ZWQ5YTBiZTE3N2ZjMjE4YjNjYzY3M2RiOTI5OSJ9.kqJ_gTvgjEc_-1Jxv-XHqSCUmOpcQDdBzx-T5BP7ybvQItK91wGxmVT_gfHxyHHDQ_7e8_LH1A5TotAZCA8q_w"
 }
 ```
 
@@ -1747,16 +1751,17 @@ Content-Type: application/json
 
 {
   "hits": {
-    "hits": [
-      {
-        "permission": "view",
-        "id": "140f69c9-a8a5-41d4-8ae2-3dfbfe0e2796",
-        "created_at": "2021-03-25T21:48:03.289198",
-        "expires_at": null,
-        "token": "eyJhbGciOiJIUzUxMiJ9.eyJpZCI6IjE0MGY2OWM5LWE4YTUtNDFkNC04YWUyLTNkZmJmZTBlMjc5NiIsImRhdGEiOnt9LCJyYW5kb20iOiI2NzE3MmY4MTNkYzhkNGJjZDAwOWFlOTlhOWM3NjU1MSJ9.1O9MwTmt_nfvsCm4qvlkUH0Rpe5bK3hT422A879DJSblOCONsNxPe_feNHrgTV3s6ZA6t6vLziXjhAwgKjHhIQ"
-      }
-    ],
-    "total": 1
+      "hits": [
+          {
+              "id": "61c2d20f-4c88-440d-9978-dd16a69bf97e",
+              "created_at": "2024-06-12T13:23:11.271139+00:00",
+              "expires_at": "2024-11-06",
+              "permission": "edit",
+              "description": "",
+              "token": "eyJhbGciOiJIUzUxMiIsImlhdCI6MTcxODE5ODU5MSwiZXhwIjoxNzMwODUxMTk5fQ.eyJpZCI6IjYxYzJkMjBmLTRjODgtNDQwZC05OTc4LWRkMTZhNjliZjk3ZSIsImRhdGEiOnt9LCJyYW5kb20iOiI2MWYwZTg4YjgzY2E2ZDhkMjJiMTY0MGFjNmIzMmEwZiJ9.AFEmgQ8_gtEj7dvlZ2MHD9qneKy0UEC1HMByo8J5xVGMYG8PXwuRsyUgeq_k_ZeHybO5W4_Do_P4NVGXsrjHyg"
+          }
+      ],
+      "total": 1
   }
 }
 ```
