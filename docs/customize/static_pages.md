@@ -126,3 +126,71 @@ As you can see, the title and description we added in the configuration step is 
 Now we can go to our custom page again and see the content displayed on the page.
 
 ![Custom page with content](./img/custom-page_with-content.png)
+
+## Changing the base template
+
+Your custom template will be an extension of the base template [defined in `invenio-app-rdm`](https://github.com/inveniosoftware/invenio-app-rdm/blob/9f1ba6a646362ff80de6b0c9cd092209e9190c44/invenio_app_rdm/theme/templates/semantic-ui/invenio_app_rdm/default_static_page.html). If you want to create your own base template, you can do it by setting the following variables in your `invenio.cfg` file:
+
+```
+PAGES_DEFAULT_TEMPLATE = "my_site/my_custom_base_template.html"
+
+PAGES_TEMPLATES = [
+    ("invenio_pages/dynamic.html", "Default dynamic"),
+    ("my_site/my_custom_base_template.html", "Default")
+]
+```
+
+This implies that your new template was created in
+
+```
+templates
+└── my_site/my_custom_base_template.html
+```
+
+After making this change, you'll have to restart your instance and run
+
+```bash
+pipenv run invenio rdm pages create --force
+```
+
+## Static Pages Content HTML Sanitization
+
+_Introduced in InvenioRDM v12_
+
+InvenioRDM version 12 introduces enhanced HTML sanitization for static pages content. This update provides greater security and integrity of the content.
+The changes involve extending the list of allowed HTML tags and attributes for static page content.
+If you find certain tags absent in your static page, you have the option to incorporate these configurations into your instance.
+
+### Configuration
+
+Two new configurations have been introduced:
+
+`PAGES_ALLOWED_EXTRA_HTML_TAGS`: This configuration extends the [list of HTML tags](https://github.com/inveniosoftware/invenio-config/blob/2a52eafe3c44bc162538d2f65817332cfadfa168/invenio_config/default.py#L16) permitted in static pages content. By default, it extends tags like `img` and `button`, if you like to add more tags you can override this in your `invenio.cfg`, or remove the extra tags by provide empty list:
+
+```python
+PAGES_ALLOWED_EXTRA_HTML_TAGS = []
+```
+
+`PAGES_ALLOWED_EXTRA_HTML_ATTRS`: Accompanying the tags, this configuration specifies the allowed attributes for each tag. For instance, for img tags, attributes like `src, alt, title, width, height, loading`, are permitted. Similarly, button tags can have attributes like `type, name, value, disabled, onclick`.
+
+**example**
+
+```python
+# invenio.cfg
+
+PAGES_ALLOWED_EXTRA_HTML_TAGS = ["video", "audio"]
+"""Extend allowed HTML tags list for static pages content."""
+
+PAGES_ALLOWED_EXTRA_HTML_ATTRS = {
+    "video": ["src", "controls", "autoplay", "loop", "muted"],
+    "audio": ["src", "controls", "autoplay", "loop"],
+}
+"""Extend allowed HTML attrs list for static pages content."""
+
+```
+
+After adding these configs, you'll have to restart your instance and run
+
+```bash
+pipenv run invenio rdm pages create --force
+```
