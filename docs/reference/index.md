@@ -16,3 +16,4 @@ These guides are intended for advanced users, administrators and developers that
 - **[File storage](file_storage.md)**: A reference guide regarding local vs. remote file storage systems.
 - **[Usage statistics](statistics.md)**: A reference guide to the implementation of usage statistics.
 - **[Export formats](export_formats.md)**: A reference guide for export formats of the InvenioRDM records
+- **[Notifications](notifications.md)**: A reference guide for implementation details of notifications.
