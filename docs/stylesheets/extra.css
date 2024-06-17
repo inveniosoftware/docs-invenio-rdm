@@ -1,4 +1,15 @@
-.md-typeset a,
+
+:root {
+    --background-color: white;
+    --text-color: black;
+}
+
+[data-md-color-scheme="slate"] {
+    --background-color: black;
+    --text-color: white;
+}
+
+/* .md-typeset a,
 .md-nav__link--active {
     color: #000000;
     opacity: 0.54;
@@ -75,8 +86,8 @@
 
 .md-header__topic:first-child {
     font-weight: unset;
-}
-
+} */
+/*
 .md-source__facts {
     display: none;
 }
@@ -151,21 +162,21 @@ html .md-footer-meta .md-footer-meta__inner a {
     color: var(--md-footer-fg-color--light);
 }
 
+*/
 .md-footer-social {
     padding: 0.4rem 0;
     margin: 0 .4rem;
 }
-
 .md-footer-social__link svg {
     fill: currentColor;
     max-height: .8rem;
     vertical-align: -25%;
 }
 
-.md-search-result__link[data-md-state="active"] {
+/* .md-search-result__link[data-md-state="active"] {
     background-color: #ffffff;
-}
-
+} */
+/*
 .md-typeset h1[id] .headerlink:focus,
 .md-typeset h1[id]:hover .headerlink:hover,
 .md-typeset h1[id]:target .headerlink,
@@ -189,8 +200,8 @@ html .md-footer-meta .md-footer-meta__inner a {
 
 .md-typeset .md-button--primary {
     color: #0377cd;
-}
-
+} */
+/*
 [data-md-color-primary="white"] .md-typeset .md-button.md-button--primary {
     background-color: var(--md-primary-fg-color);
     border-color: var(--md-primary-fg-color);
@@ -199,11 +210,11 @@ html .md-footer-meta .md-footer-meta__inner a {
 
 [data-md-color-primary="white"] .md-typeset .md-button {
     color: var(--md-primary-fg-color);
-}
+} */
 
-::placeholder {
+/* ::placeholder {
     color: #ffffff;
-}
+} */
 
 .rdm-toc {
     display: flex;
@@ -227,6 +238,10 @@ html .md-footer-meta .md-footer-meta__inner a {
 }
 
 .rdm-hero-bg {
+    display: none;
+}
+
+[data-md-color-scheme="default"] .rdm-hero-bg {
     display: block;
     width: 100%;
     height: 673px;
@@ -301,21 +316,18 @@ html .md-footer-meta .md-footer-meta__inner a {
     margin: 15px 0px 20px 0px;
 }
 
-.rdm-hero > a {
-    opacity: 1;
-}
 
-.rdm-hero > a.md-button.md-button--primary:hover {
+/* .rdm-hero > a.md-button.md-button--primary:hover {
     background-color: transparent;
     border-color: white;
     color: white;
-}
+} */
 
-.rdm-hero > a.md-button:hover {
+/* .rdm-hero > a.md-button:hover {
     background-color: white;
     border-color: white;
     color: #0377cd;
-}
+} */
 
 .frontpage .md-main > .md-main__inner, .frontpage .md-main .md-content__inner {
     margin-top: 0;
@@ -332,6 +344,6 @@ html .md-footer-meta .md-footer-meta__inner a {
     background: transparent;
 }
 
-.frontpage .md-main {
+/* .frontpage .md-main {
     background-color: white;
-}
+} */

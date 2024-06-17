@@ -13,8 +13,20 @@ theme:
   name: "material"
   custom_dir: "theme/"
   palette:
-    primary: "white"
-    accent: "white"
+    - scheme: default
+      primary: blue
+      accent: white
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - scheme: slate
+      primary: black
+      accent: orange
+      toggle:
+        accent: orange
+        icon: material/brightness-4
+        name: Switch to light mode
   font: false
   logo: "images/logo-rdm.png"
   favicon: "images/favicon.svg"
