@@ -236,8 +236,9 @@ nav:
 # Customization
 extra:
   social:
-    - icon: "fontawesome/brands/github"
-      link: "https://github.com/inveniosoftware"
+    - icon: fontawesome/brands/github
+      link: https://github.com/inveniosoftware
+  generator: false
 extra_css:
   - stylesheets/extra.css
 
