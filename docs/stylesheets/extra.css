@@ -3,12 +3,18 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/templates/assets/st
 */
 
 [data-md-color-scheme="default"] {
-    .md-typeset a,
+    --md-primary-fg-color: #707070;
+    --md-primary-fg-color--light: #5fb8fc;
+    --md-primary-fg-color--dark:  #003258;
+
+    /* .md-typeset a, */
     .md-nav__link--active {
         color: #000000;
         opacity: 0.54;
     }
-
+    .md-tabs__link{
+        color: white;
+    }
     .md-typeset a:hover,
     .md-nav__link:hover {
         color: #000000;
@@ -171,21 +177,6 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/templates/assets/st
         color: #0377cd;
     }
 
-    .md-typeset .md-button--primary {
-        color: #0377cd;
-        opacity: 100%;
-    }
-
-    .md-typeset .md-button.md-button--primary {
-        background-color: white;
-        border-color: white;
-        color: #0377cd;
-    }
-
-    .md-typeset .md-button {
-        color: var(--md-primary-fg-color);
-    }
-
     ::placeholder {
         color: #ffffff;
     }
@@ -208,13 +199,6 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/templates/assets/st
         margin: 15px 0px 20px 0px;
     }
 
-
-    .rdm-hero > a.md-button.md-button--primary:hover {
-        background-color: transparent;
-        border-color: white;
-        color: white;
-    }
-
     .frontpage .md-main {
         background-color: white;
     }
@@ -227,9 +211,9 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/templates/assets/st
     .rdm-hero-bg {
         background: linear-gradient(
             12deg,
-            rgba(1, 87, 150, 1),
-            rgba(1, 87, 150, 1) 52.52%,
-            rgba(179, 92, 81, 0.69)
+            hsla(205, 99%, 30%, 0.432),
+            rgba(1, 88, 150, 0.438) 52.52%,
+            rgba(179, 93, 81, 0.329)
         );
     }
 
@@ -241,20 +225,29 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/templates/assets/st
         margin: 15px 0px 20px 0px;
     }
 
-    .rdm-hero > a.md-button.md-button--primary:hover {
-        background-color: transparent;
-        border-color: var(--md-accent-fg-color);
-        color: var(--md-accent-fg-color);
-    }
-
-    .md-typeset .md-button--primary {
-        color: white;
-        opacity: 100%;
-    }
-
 }
 
 /* Common styles */
+.md-typeset .md-button.md-button--primary {
+    background-color: white;
+    border-color: white;
+    color: #0377cd;
+    opacity: 100%;
+}
+
+.rdm-hero > a.md-button.md-button--primary:hover {
+    background-color: transparent;
+    border-color: white;
+    color: white;
+}
+.md-typeset .md-button--primary {
+    color: white;
+    opacity: 100%;
+}
+
+.md-typeset .md-button {
+    color: white;
+}
 
 .rdm-hero-bg {
     display: block;
