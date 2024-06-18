@@ -14,8 +14,10 @@ theme:
   custom_dir: "theme/"
   palette:
     - scheme: default
-      primary: blue
-      accent: white
+      primary: custom
+      accent: custom
+      extra_css:
+        - stylesheets/extra.css
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
