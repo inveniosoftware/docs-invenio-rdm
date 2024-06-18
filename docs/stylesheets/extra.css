@@ -3,7 +3,6 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/templates/assets/st
 */
 
 [data-md-color-scheme="default"] {
-    --md-primary-fg-color: white;
     .md-typeset a,
     .md-nav__link--active {
         color: #000000;
@@ -49,29 +48,7 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/templates/assets/st
     }
 
     .md-search form.md-search__form:hover {
-        background-color: rgba(255,255,255, 0.5);
         color: rgba(0,0,0,0.54);
-    }
-
-    .md-search form.md-search__form:hover .md-search__input::placeholder {
-        color: rgba(0,0,0,0.54);
-    }
-
-    .md-search form.md-search__form:hover .md-search__icon.md-icon svg {
-        fill: rgba(0,0,0,0.54);
-    }
-
-    [data-md-toggle=search]:checked~.md-header .md-search__inner .md-search__icon.md-icon svg {
-        fill: rgba(0,0,0,0.54);
-    }
-
-    .md-search form.md-search__form .md-search__input::placeholder {
-        color: #fff;
-    }
-
-    .md-search form.md-search__form .md-search__icon.md-icon svg {
-        fill: #fff;
-        transition: 0.3s;
     }
 
     .md-header[data-md-state="shadow"] {
@@ -200,8 +177,8 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/templates/assets/st
     }
 
     .md-typeset .md-button.md-button--primary {
-        background-color: var(--md-primary-fg-color);
-        border-color: var(--md-primary-fg-color);
+        background-color: white;
+        border-color: white;
         color: #0377cd;
     }
 
@@ -213,98 +190,15 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/templates/assets/st
         color: #ffffff;
     }
 
-    .rdm-toc {
-        display: flex;
-        justify-content: center;
-    }
-
-    .rdm-toc-item.level1 {
-        display: inline-flex;
-    }
-
-    .rdm-toc-item.level1 > div > a {
-        font-weight: bolder;
-    }
-
-    .rdm-toc-item.level1 > div {
-        width: 200px;
-    }
-
-    .rdm-toc-item.level2 {
-        font-size: small;
-    }
-
     .rdm-hero-bg {
-        display: none;
-    }
-
-    .rdm-hero-bg {
-        display: block;
-        width: 100%;
-        height: 673px;
         background: linear-gradient(
             12deg,
             rgba(3, 119, 205, 1),
             rgba(3, 119, 205, 1) 52.52%,
-            rgba(251, 130, 115, 0.69));
-        position: absolute;
-        top: 0;
-        z-index: -1;
+            rgba(251, 130, 115, 0.69)
+        );
     }
 
-    .rdm-hero-bg .wave-svg {
-        fill: var(--md-default-bg-color);
-        width: 100%;
-        position: absolute;
-        bottom: 0;
-    }
-
-    @media screen and (min-width: 1920px) {
-        .rdm-hero-bg {
-            height: 700px;
-        }
-    }
-
-    @media screen and (min-width: 2000px) {
-        .rdm-hero-bg {
-            height: 749px;
-        }
-    }
-
-    @media screen and (min-width: 3000px) {
-        .rdm-hero-bg {
-            height: 850px;
-        }
-    }
-
-    @media screen and (min-width: 3500px) {
-        .rdm-hero-bg {
-            height: 900px;
-        }
-    }
-
-    @media screen and (min-width: 4000px) {
-        .rdm-hero-bg {
-            height: 950px;
-        }
-    }
-
-    @media screen and (min-width: 4500px) {
-        .rdm-hero-bg .wave-svg {
-            display: none;
-        }
-    }
-
-    .rdm-hero {
-        height: 557px;
-        text-align: center;
-        margin-bottom: -2px;
-    }
-
-    .rdm-hero > img {
-        margin-top: 75px;
-        height: 80px;
-    }
 
     .rdm-hero .rdm-hero-subtitle {
         font-size: 30px;
@@ -321,105 +215,22 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/templates/assets/st
         color: white;
     }
 
-    .rdm-hero > a.md-button:hover {
-        background-color: white;
-        border-color: white;
-        color: #0377cd;
-    }
-
-    .frontpage .md-main > .md-main__inner, .frontpage .md-main .md-content__inner {
-        margin-top: 0;
-        padding-top: 0;
-    }
-
-    .frontpage .md-header {
-        background: transparent;
-        position: static;
-    }
-
-    .frontpage .md-tabs {
-        border-bottom: none;
-        background: transparent;
-    }
-
     .frontpage .md-main {
         background-color: white;
     }
 }
 
+/* Dark mode */
+/* --------- */
 [data-md-color-scheme="slate"] {
-    /* --md-primary-fg-color: white; */
-
-    /* .rdm-hero-bg {
-        display: none;
-    } */
 
     .rdm-hero-bg {
-        display: block;
-        width: 100%;
-        height: 673px;
         background: linear-gradient(
             12deg,
-        rgba(1, 87, 150, 1),
-        rgba(1, 87, 150, 1) 52.52%,
-        rgba(179, 92, 81, 0.69));
-        position: absolute;
-        top: 0;
-        z-index: -1;
-    }
-
-    .rdm-hero-bg .wave-svg {
-        fill: var(--md-default-bg-color);
-        width: 100%;
-        position: absolute;
-        bottom: 0;
-    }
-
-    @media screen and (min-width: 1920px) {
-        .rdm-hero-bg {
-            height: 700px;
-        }
-    }
-
-    @media screen and (min-width: 2000px) {
-        .rdm-hero-bg {
-            height: 749px;
-        }
-    }
-
-    @media screen and (min-width: 3000px) {
-        .rdm-hero-bg {
-            height: 850px;
-        }
-    }
-
-    @media screen and (min-width: 3500px) {
-        .rdm-hero-bg {
-            height: 900px;
-        }
-    }
-
-    @media screen and (min-width: 4000px) {
-        .rdm-hero-bg {
-            height: 950px;
-        }
-    }
-
-    @media screen and (min-width: 4500px) {
-        .rdm-hero-bg .wave-svg {
-            display: none;
-        }
-    }
-
-    .rdm-hero {
-        height: 557px;
-        text-align: center;
-        margin-bottom: -2px;
-    }
-
-    .rdm-hero > img {
-        margin-top: 75px;
-        height: 80px;
+            rgba(1, 87, 150, 1),
+            rgba(1, 87, 150, 1) 52.52%,
+            rgba(179, 92, 81, 0.69)
+        );
     }
 
     .rdm-hero .rdm-hero-subtitle {
@@ -430,38 +241,122 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/templates/assets/st
         margin: 15px 0px 20px 0px;
     }
 
-
     .rdm-hero > a.md-button.md-button--primary:hover {
         background-color: transparent;
         border-color: var(--md-accent-fg-color);
         color: var(--md-accent-fg-color);
     }
+
     .md-typeset .md-button--primary {
         color: white;
         opacity: 100%;
     }
-    .rdm-hero > a.md-button:hover {
-        background-color: white;
-        border-color: white;
-        color: #0377cd;
-    }
 
-    .frontpage .md-main > .md-main__inner, .frontpage .md-main .md-content__inner {
-        margin-top: 0;
-        padding-top: 0;
-    }
+}
 
-    .frontpage .md-header {
-        background: transparent;
-        position: static;
-    }
+/* Common styles */
 
-    .frontpage .md-tabs {
-        border-bottom: none;
-        background: transparent;
-    }
+.rdm-hero-bg {
+    display: block;
+    width: 100%;
+    height: 673px;
+    position: absolute;
+    top: 0;
+    z-index: -1;
+}
 
-    /* .frontpage .md-main {
-        background-color: white;
-    } */
+.rdm-toc {
+    display: flex;
+    justify-content: center;
+}
+
+.rdm-toc-item.level1 {
+    display: inline-flex;
+}
+
+.rdm-toc-item.level1 > div > a {
+    font-weight: bolder;
+}
+
+.rdm-toc-item.level1 > div {
+    width: 200px;
+}
+
+.rdm-toc-item.level2 {
+    font-size: small;
+}
+
+.rdm-hero-bg .wave-svg {
+    fill: var(--md-default-bg-color);
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+}
+
+@media screen and (min-width: 1920px) {
+    .rdm-hero-bg {
+        height: 700px;
+    }
+}
+
+@media screen and (min-width: 2000px) {
+    .rdm-hero-bg {
+        height: 749px;
+    }
+}
+
+@media screen and (min-width: 3000px) {
+    .rdm-hero-bg {
+        height: 850px;
+    }
+}
+
+@media screen and (min-width: 3500px) {
+    .rdm-hero-bg {
+        height: 900px;
+    }
+}
+
+@media screen and (min-width: 4000px) {
+    .rdm-hero-bg {
+        height: 950px;
+    }
+}
+
+@media screen and (min-width: 4500px) {
+    .rdm-hero-bg .wave-svg {
+        display: none;
+    }
+}
+
+.rdm-hero {
+    height: 557px;
+    text-align: center;
+    margin-bottom: -2px;
+}
+
+.rdm-hero > img {
+    margin-top: 75px;
+    height: 80px;
+}
+
+.rdm-hero > a.md-button:hover {
+    background-color: white;
+    border-color: white;
+    color: #0377cd;
+}
+
+.frontpage .md-main > .md-main__inner, .frontpage .md-main .md-content__inner {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.frontpage .md-header {
+    background: transparent;
+    position: static;
+}
+
+.frontpage .md-tabs {
+    border-bottom: none;
+    background: transparent;
 }
