@@ -13,7 +13,9 @@ theme:
   name: "material"
   custom_dir: "theme/"
   palette:
-    - scheme: default
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
       primary: custom
       accent: custom
       extra_css:
@@ -22,7 +24,8 @@ theme:
         icon: material/brightness-7
         name: Switch to dark mode
     # Palette toggle for dark mode
-    - scheme: slate
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
       primary: black
       accent: orange
       toggle:
