@@ -110,10 +110,22 @@ and are totally functional also after a reinit.
 
 ### Data migration
 
-Execute the data migration, note that there is no need to re-index the data:
+Execute the data migration
 
 ```bash
 pipenv run invenio shell $(find $(pipenv --venv)/lib/*/site-packages/invenio_app_rdm -name migrate_11_0_to_12_0.py)
+```
+
+### Reindex
+
+```bash
+invenio index destroy --yes-i-know
+invenio index init
+invenio rdm-records rebuild-index
+invenio community rebuild-index
+# TODO rebuild users
+# TODO rebuild groups
+# TODO rebuild community members
 ```
 
 ### New roles
