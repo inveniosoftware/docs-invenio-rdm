@@ -17,11 +17,12 @@ The steps listed in this article require an existing local installation of Inven
 
 !!! warning "Upgrade your invenio-cli"
 
-    Make sure you have the latest `invenio-cli` installed. For InvenioRDM v12 it is v1.2.0
+    Make sure you have the latest `invenio-cli` installed. For InvenioRDM v12 it
+    is at least v1.2.0
 
     ```bash
     $ invenio-cli --version
-    invenio-cli, version 1.
+    invenio-cli, version 1.2.0
     ```
 
 !!! info "Virtual environments"
@@ -45,30 +46,34 @@ You should delete your virtualenv before running `invenio-cli` or `pipenv` comma
 
 ### Upgrade InvenioRDM
 
-(TODO: should we write that 3.9<=X<=3.12 is possible?)
-Make sure that your virtual env is now running with Python 3.9.
+Make sure that your virtual env is now running with Python 3.9. InvenioRDM v12
+is also tested with Python 3.12.
 
 Upgrade the RDM version:
 
 ```bash
 cd <my-site>
+
 # Upgrade to InvenioRDM v12
 invenio-cli packages update 12.0.0
 pipenv uninstall flask-babelex
+
 # Re-build assets
 invenio-cli assets build
 ```
 
-Optionally, update the file `<my-site>/Pipfile`. Attention: this action might lead to
-installing unwanted pre-releases of other packages.
+Optionally, update the file `<my-site>/Pipfile`.
 
 ```diff
 [packages]
 ---invenio-app-rdm = {extras = [...], version = "~=11.0.0"}
 +++invenio-app-rdm = {extras = [...], version = "~=12.0.0"}
+```
 
-[pipenv]
-allow_prereleases = true
+Due to a dependency upgrade update following line.
+```diff
+---my-site = {editable="True", path="./site"}
++++my-site = {editable=true, path="./site"}
 ```
 
 ### Database migration
@@ -94,13 +99,13 @@ invenio index update rdmrecords-drafts-draft-v5.0.0
 invenio index update rdmrecords-records-record-v5.0.0
 ```
 
-CAVEAT: this is not working because of an permission problem in
+CAVEAT: this is not working because of a permission problem in
 [invenio-search](https://github.com/inveniosoftware/invenio-search/blob/d8b23ecf48f63d8d313f90fd4618a480e15fbd7b/invenio_search/ext.py#L448).
-The only way to solve it is to destroy the index and reinit and
-rebuild it from scratch. Yes the statistics will be only in the stored only in
-the index but the statistic indices are created by templates and therefore not
-affected by `invenio index destroy --yes-i-know`. The statistic indices will
-remain in the list of indices and are totally functional also after a reinit.
+The only way to solve it is to destroy the index and reinit and rebuild it from
+scratch. Yes the statistics will be only stored in the index but the statistic
+indices are created by templates and therefore not affected by `invenio index
+destroy --yes-i-know`. The statistic indices will remain in the list of indices
+and are totally functional also after a reinit.
 
 
 ### Data migration
@@ -138,6 +143,12 @@ THEME_SITENAME = "Project name for header and UI"
 - add: administration panel
 - add: set quota
 - add: branded communities
+- change: the default delimiter for the licenses vocabulary file has been
+  changed from ";" to ",". The default licenses are available
+  [here](https://github.com/inveniosoftware/invenio-rdm-records/blob/master/invenio_rdm_records/fixtures/data/vocabularies/licenses.csv).
+  You can now add and update licenses with `pipenv run invenio rdm-records
+  add-to-fixture licenses`
+
 
 
 ## OPEN PROBLEMS
