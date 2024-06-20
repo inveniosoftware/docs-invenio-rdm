@@ -46,10 +46,15 @@ You should delete your virtualenv before running `invenio-cli` or `pipenv` comma
 
 ### Upgrade InvenioRDM
 
-Make sure that your virtual env is now running with Python 3.9. InvenioRDM v12
-is also tested with Python 3.12.
+Make sure that your virtual env is now running with at least Python 3.9. (InvenioRDM v12
+is also tested with Python 3.12.)
 
-Upgrade the RDM version:
+There are two options to upgrade your system.
+
+#### Option 1
+
+This approach upgrades the dependencies in place. Your virtual environment for the
+v11 version will be gone afterwards.
 
 ```bash
 cd <my-site>
@@ -62,7 +67,19 @@ pipenv uninstall flask-babelex
 invenio-cli assets build
 ```
 
-Optionally, update the file `<my-site>/Pipfile`.
+#### Option 2
+
+This approach will create a new virtual environment and leafs the v11 as it is.
+If you are using a docker image on your production instance this will be the
+option you chose.
+
+##### Step 1
+- create a new virtual environment
+- activate your new virtual environment
+- install `invenio-cli` by `pip install invenio-cli`
+
+##### Step 2
+Update the file `<my-site>/Pipfile`.
 
 ```diff
 [packages]
@@ -70,11 +87,26 @@ Optionally, update the file `<my-site>/Pipfile`.
 +++invenio-app-rdm = {extras = [...], version = "~=12.0.0"}
 ```
 
-Due to a dependency upgrade update following line.
+Due to a dependency upgrade, update the following line.
 ```diff
 ---my-site = {editable="True", path="./site"}
 +++my-site = {editable=true, path="./site"}
 ```
+
+##### Step 3
+Update the `Pipfile.lock` file
+
+```bash
+invenio-cli packages lock
+```
+
+##### Step 4
+install InvenioRDM v12
+
+```bash
+invenio-cli install
+```
+
 
 ### Database migration
 
@@ -121,11 +153,7 @@ pipenv run invenio shell $(find $(pipenv --venv)/lib/*/site-packages/invenio_app
 ```bash
 invenio index destroy --yes-i-know
 invenio index init
-invenio rdm-records rebuild-index
-invenio community rebuild-index
-# TODO rebuild users
-# TODO rebuild groups
-# TODO rebuild community members
+invenio rdm rebuild-all-indices
 ```
 
 ### New roles
