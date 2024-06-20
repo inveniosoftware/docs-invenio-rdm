@@ -99,6 +99,7 @@ This script will check that your creators and contributors affiliations are
 either free text, which will require no action on your side, contain a ROR
 identifier or that they should be a custom vocabulary.
 
+
 If the affiliations contain ROR identifiers, you will need to add that
 vocabulary. See more details [here](../../customize/vocabularies/affiliations.md). Otherwise, you will need to create a
 custom vocabulary in a similar fashion that was done for the subjects above,
