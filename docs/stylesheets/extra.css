@@ -281,6 +281,7 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/templates/assets/st
     width: 100%;
     position: absolute;
     bottom: 0;
+    transform: translateY(1px);
 }
 
 @media screen and (min-width: 1920px) {
