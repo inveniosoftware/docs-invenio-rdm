@@ -1,4 +1,14 @@
-{% extends "frontpage_base.html" %}
+<!--
+
+ Copyright (C) 2018-2024 CERN.
+ Copyright (C) 2018-2024 Northwestern University.
+ Copyright (C) 2022-2024 KTH Royal Institute of Technology.
+
+ Invenio is free software; you can redistribute it and/or modify it
+ under the terms of the MIT License; see LICENSE file for more details.
+
+-->
+{% extends "main.html" %}
 
 {% block styles %}
   {{ super() }}
@@ -6,7 +16,8 @@
 {% endblock %}
 
 
-{% block hero %}
+{% block tabs %}
+{{ super() }}
   <div class="rdm-hero-bg">
     <svg class="wave-svg" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1123 258'>
       <path d='M1124,2c0,0 0,256 0,256l-1125,0l0,-48c0,0 16,5 55,5c116,0 197,-92 325,-92c121,0 114,46 254,46c140,0 214,-167 572,-166Z' />

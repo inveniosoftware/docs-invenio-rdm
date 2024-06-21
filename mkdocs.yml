@@ -10,8 +10,8 @@ copyright: "Copyright &copy; 2019-2024 CERN, Northwestern University and contrib
 
 # Configuration
 theme:
-  name: "material"
-  custom_dir: "theme/"
+  name: material
+  custom_dir: theme
   palette:
     # Palette toggle for light mode
     - media: "(prefers-color-scheme: light)"
