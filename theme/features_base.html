@@ -19,13 +19,7 @@
 {% block tabs %}
 {{ super() }}
 <style>
-  /* Override styles to not affect other pages */
-  body[data-md-color-scheme] .md-main > .md-main__inner,
-  .md-main .md-content__inner {
-      margin-top: 0;
-      padding-top: 0;
-  }
-
+  /* Embedded CSS styles to isolate changes to this page only */
   body[data-md-color-scheme] .md-header {
       background: transparent;
       position: static;
@@ -36,7 +30,7 @@
       border-bottom: none;
       background: transparent;
   }
-  </style>
+</style>
 
   <div class="rdm-hero-bg">
     <svg class="wave-svg" xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1123 258'>
