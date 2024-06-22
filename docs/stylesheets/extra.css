@@ -68,9 +68,6 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/templates/assets/st
         border-bottom: 0.05rem solid var(--color-white);
     }
 
-    .md-source__facts {
-        display: none;
-    }
 
     .md-footer {
         border-top: 0.05rem solid var(--color-white);
