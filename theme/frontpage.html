@@ -39,6 +39,25 @@
 <!-- Render hero under tabs -->
 {% block tabs %}
 {{ super() }}
+<style>
+    /* Override styles to not affect other pages */
+    body[data-md-color-scheme] .md-main > .md-main__inner,
+    .md-main .md-content__inner {
+        margin-top: 0;
+        padding-top: 0;
+    }
+
+    body[data-md-color-scheme] .md-header {
+        background: transparent;
+        position: static;
+        transform: translateY(1px);
+    }
+
+    body[data-md-color-scheme] .md-tabs {
+        border-bottom: none;
+        background: transparent;
+    }
+</style>
 
 <!-- Hero for landing page -->
 <section class="mdx-container">

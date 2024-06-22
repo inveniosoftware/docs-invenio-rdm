@@ -198,7 +198,7 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/templates/assets/st
         color: rgba(255, 255, 255, 0.6);
     }
 
-    .frontpage .md-main {
+    body[data-md-color-scheme] .md-main {
         background-color: var(--color-white);
     }
 }
@@ -337,18 +337,21 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/templates/assets/st
     color: var(--color-invenio);
 }
 
-.frontpage .md-main > .md-main__inner,
-.frontpage .md-main .md-content__inner {
+.md-main > .md-main__inner,
+.md-main .md-content__inner {
     margin-top: 0;
     padding-top: 0;
 }
 
-.frontpage .md-header {
+/* gradiant fix */
+.md-header {
     background: transparent;
     position: static;
+    /* fix page jump on theme toggle */
+    transform: translateY(0px);
 }
 
-.frontpage .md-tabs {
+.md-tabs {
     border-bottom: none;
     background: transparent;
 }
