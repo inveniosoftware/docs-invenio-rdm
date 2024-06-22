@@ -1,3 +1,11 @@
+/*
+ Copyright (C) 2018-2024 CERN.
+ Copyright (C) 2018-2024 Northwestern University.
+ Copyright (C) 2022-2024 KTH Royal Institute of Technology.
+
+ Invenio is free software; you can redistribute it and/or modify it
+ under the terms of the MIT License; see LICENSE file for more details.
+*/
 /* Color variables
 https://github.com/squidfunk/mkdocs-material/blob/master/src/templates/assets/stylesheets/main/_colors.scss
 */
@@ -5,20 +13,27 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/templates/assets/st
     --color-invenio: #0377cd;
     --color-black: #000000;
     --color-white: #ffffff;
+    --color-gray: #707070;
+    --color-dark-blue: #003258;
+    --color-light-coral: rgba(251, 130, 115, 0.69);
 }
 
 [data-md-color-scheme='default'] {
-    --md-primary-fg-color: #707070;
+    --md-primary-fg-color: var(--color-gray);
     --md-primary-fg-color--light: var(--color-invenio);
-    --md-primary-fg-color--dark: #003258;
+    --md-primary-fg-color--dark: var(--color-dark-blue);
+    --gradient-header: linear-gradient(
+        90deg,
+        var(--color-invenio),
+        var(--color-invenio) 52.52%,
+        var(--color-light-coral)
+    ) no-repeat;
 
     .md-nav__link--active {
         color: var(--color-black);
         opacity: 0.54;
     }
-    .md-tabs__link {
-        color: var(--color-white);
-    }
+
     .md-typeset a:hover,
     .md-nav__link:hover {
         color: var(--color-black);
@@ -28,28 +43,13 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/templates/assets/st
         color: unset;
     }
 
-    .md-typeset table code {
-        word-break: normal;
+    .md-tabs__link {
+        color: inherit;
     }
 
-    .md-header {
-        background: linear-gradient(
-                90deg,
-                rgba(3, 119, 205, 1),
-                rgba(3, 119, 205, 1) 52.52%,
-                rgba(251, 130, 115, 0.69)
-            )
-            no-repeat;
-        color: var(--color-white);
-    }
+    .md-header,
     .md-tabs {
-        background: linear-gradient(
-                90deg,
-                rgba(3, 119, 205, 1),
-                rgba(3, 119, 205, 1) 52.52%,
-                rgba(251, 130, 115, 0.69)
-            )
-            no-repeat;
+        background: var(--gradient-header);
         color: var(--color-white);
     }
 
@@ -68,109 +68,8 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/templates/assets/st
         border-bottom: 0.05rem solid var(--color-white);
     }
 
-
     .md-footer {
-        border-top: 0.05rem solid var(--color-white);
         background-color: var(--color-invenio);
-    }
-
-    .md-footer__link {
-        padding-top: 0.8rem;
-        padding-bottom: 0;
-        color: var(--color-white);
-        opacity: 0.75;
-        margin-bottom: 0;
-        margin-top: 0;
-    }
-
-    .md-footer__direction {
-        color: var(--color-white);
-        opacity: 0.75;
-        font-size: 0.64rem;
-        left: 0;
-        position: absolute;
-        right: 0;
-        padding: 0 1rem;
-        margin-top: -1rem;
-    }
-
-    .md-footer__title {
-        line-height: 2.4rem;
-        position: relative;
-        margin-bottom: 0;
-    }
-
-    .md-footer .made-with {
-        color: var(--md-footer-fg-color--lighter);
-        font-size: 0.64rem;
-    }
-
-    .md-footer__link:hover,
-    .md-footer__direction:hover {
-        opacity: 1;
-    }
-
-    .md-footer-meta {
-        background-color: #0162aa;
-    }
-
-    html .md-footer-meta .md-footer-meta__inner a {
-        color: var(--color-white);
-    }
-
-    .md-footer-meta__inner {
-        padding: 0 0.2rem;
-    }
-
-    .md-footer-copyright {
-        padding: 0.7rem 0;
-        color: var(--md-footer-fg-color--lighter);
-        font-size: 0.64rem;
-        width: auto;
-        margin: auto 0.6rem;
-    }
-
-    .md-footer-copyright__highlight {
-        color: var(--md-footer-fg-color--light);
-    }
-
-    .md-footer-social {
-        padding: 0.4rem 0;
-        margin: 0 0.4rem;
-    }
-    .md-footer-social__link svg {
-        fill: currentColor;
-        max-height: 0.8rem;
-        vertical-align: -25%;
-    }
-
-    .md-search-result__link[data-md-state='active'] {
-        background-color: var(--color-white);
-    }
-
-    .md-typeset h1[id] .headerlink:focus,
-    .md-typeset h1[id]:hover .headerlink:hover,
-    .md-typeset h1[id]:target .headerlink,
-    .md-typeset h2[id] .headerlink:focus,
-    .md-typeset h2[id]:hover .headerlink:hover,
-    .md-typeset h2[id]:target .headerlink,
-    .md-typeset h3[id] .headerlink:focus,
-    .md-typeset h3[id]:hover .headerlink:hover,
-    .md-typeset h3[id]:target .headerlink,
-    .md-typeset h4[id] .headerlink:focus,
-    .md-typeset h4[id]:hover .headerlink:hover,
-    .md-typeset h4[id]:target .headerlink,
-    .md-typeset h5[id] .headerlink:focus,
-    .md-typeset h5[id]:hover .headerlink:hover,
-    .md-typeset h5[id]:target .headerlink,
-    .md-typeset h6[id] .headerlink:focus,
-    .md-typeset h6[id]:hover .headerlink:hover,
-    .md-typeset h6[id]:target .headerlink {
-        color: var(--color-invenio);
-    }
-
-    ::placeholder {
-        color: var(--color-white);
     }
 
     .rdm-hero-bg {
@@ -205,32 +104,35 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/templates/assets/st
 }
 
 /* Common styles */
+/* ------------- */
 
-.rdm-hero .rdm-hero-subtitle {
-    font-size: 30px;
-    font-weight: 300;
-    font-family: Oswald, 'Open Sans', sans-serif;
-    margin: 15px 0px 20px 0px;
-}
+.rdm-hero {
+    height: 557px;
+    text-align: center;
+    margin-bottom: -2px;
 
-.md-typeset .md-button.md-button--primary {
-    background-color: var(--color-white);
-    border-color: var(--color-white);
-    color: var(--color-invenio);
-    opacity: 100%;
+    > img {
+        margin-top: 75px;
+        height: 80px;
+    }
+
+    > a.md-button:hover {
+        background-color: var(--color-white);
+        border-color: var(--color-white);
+        color: var(--color-invenio);
+    }
+
+    .rdm-hero-subtitle {
+        font-size: 30px;
+        font-weight: 300;
+        font-family: Oswald, 'Open Sans', sans-serif;
+        margin: 15px 0px 20px 0px;
+    }
 }
 
 .rdm-hero > a.md-button.md-button--primary:hover {
     background-color: transparent;
     border-color: var(--color-white);
-    color: var(--color-white);
-}
-.md-typeset .md-button--primary {
-    color: var(--color-white);
-    opacity: 100%;
-}
-
-.md-typeset .md-button {
     color: var(--color-white);
 }
 
@@ -241,27 +143,6 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/templates/assets/st
     position: absolute;
     top: 0;
     z-index: -1;
-}
-
-.rdm-toc {
-    display: flex;
-    justify-content: center;
-}
-
-.rdm-toc-item.level1 {
-    display: inline-flex;
-}
-
-.rdm-toc-item.level1 > div > a {
-    font-weight: bolder;
-}
-
-.rdm-toc-item.level1 > div {
-    width: 200px;
-}
-
-.rdm-toc-item.level2 {
-    font-size: small;
 }
 
 .rdm-hero-bg .wave-svg {
@@ -290,56 +171,53 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/templates/assets/st
     }
 }
 
-@media screen and (min-width: 3500px) {
-    .rdm-hero-bg {
-        height: 900px;
-    }
-}
-
-@media screen and (min-width: 4000px) {
-    .rdm-hero-bg {
-        height: 950px;
-    }
-}
-
 @media screen and (min-width: 4500px) {
-    .rdm-hero-bg .wave-svg {
-        display: none;
+    .rdm-hero-bg {
+        height: 1000px;
+
+        .wave-svg {
+            display: none;
+        }
     }
 }
 
-.rdm-hero {
-    height: 557px;
-    text-align: center;
-    margin-bottom: -2px;
+.md-typeset table code {
+    word-break: normal;
 }
 
-.rdm-hero > img {
-    margin-top: 75px;
-    height: 80px;
-}
-
-.rdm-hero > a.md-button:hover {
+.md-typeset .md-button.md-button--primary {
     background-color: var(--color-white);
     border-color: var(--color-white);
     color: var(--color-invenio);
+    opacity: 100%;
 }
 
-.md-main > .md-main__inner,
-.md-main .md-content__inner {
-    margin-top: 0;
-    padding-top: 0;
+.md-typeset .md-button--primary {
+    color: var(--color-white);
+    opacity: 100%;
 }
 
-/* gradiant fix */
-.md-header {
-    background: transparent;
-    position: static;
-    /* fix page jump on theme toggle */
-    transform: translateY(0px);
+.md-typeset .md-button {
+    color: var(--color-white);
 }
 
-.md-tabs {
-    border-bottom: none;
-    background: transparent;
+.rdm-toc {
+    display: flex;
+    justify-content: center;
+}
+
+.rdm-toc-item.level1 {
+    display: inline-flex;
+}
+
+.rdm-toc-item.level1 > div > a {
+    font-weight: bolder;
+}
+
+.rdm-toc-item.level1 > div {
+    width: 200px;
+}
+
+.rdm-toc-item.level2 {
+    font-size: small;
 }
