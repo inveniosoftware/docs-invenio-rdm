@@ -285,7 +285,7 @@ Content-Type: application/json
 | Name       | Type   | Location | Description                                                  |
 | ---------- | ------ | -------- | ------------------------------------------------------------ |
 | `id`       | string | path     | Identifier of the record, e.g.  `4d0ns-ntd89`                |
-| `access`   | object | body     | [Access options](metadata.md#access-information) for the record. |
+| `access`   | object | body     | [Access options](metadata.md#access) for the record. |
 | `files`    | object | body     | [Files options](#files-options) for the record. |
 | `metadata` | object | body     | [Metadata](metadata.md#metadata) of the record. |
 | `custom_fields` | object | body     | [Custom fields](../customize/metadata/custom_fields/records.md#declaring-custom-fields) metadata for the record. (v10 and newer) |

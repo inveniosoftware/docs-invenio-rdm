@@ -10,11 +10,28 @@ copyright: "Copyright &copy; 2019-2024 CERN, Northwestern University and contrib
 
 # Configuration
 theme:
-  name: "material"
-  custom_dir: "theme/"
+  name: material
+  custom_dir: theme
   palette:
-    primary: "white"
-    accent: "white"
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: custom
+      accent: custom
+      extra_css:
+        - stylesheets/extra.css
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: orange
+      toggle:
+        accent: orange
+        icon: material/brightness-4
+        name: Switch to light mode
   font: false
   logo: "images/logo-rdm.png"
   favicon: "images/favicon.svg"
@@ -224,8 +241,8 @@ nav:
 # Customization
 extra:
   social:
-    - icon: "fontawesome/brands/github"
-      link: "https://github.com/inveniosoftware"
+    - icon: fontawesome/brands/github
+      link: https://github.com/inveniosoftware
 extra_css:
   - stylesheets/extra.css
 

@@ -117,7 +117,7 @@ External PIDs are persistent identifiers managed via [Invenio-PIDStore](https://
 with external registration services.
 
 Persistent identifiers are globally unique in the system, thus you cannot have two records
-with the same system-managed persistent identifier (see also [Metadata > Identifiers](#identifiers-0-n)).
+with the same system-managed persistent identifier (see also [Metadata > Identifiers](#alternate-identifiers-0-n)).
 
 You can add a DOI that is not managed by InvenioRDM by using the provider `external`. You are not able to add `external` DOIs that have a prefix that is configured as part of a different PID provider.
 
@@ -1091,7 +1091,7 @@ Example:
     IIIF links are only returned for files who are compatible with IIIF.
     Those formats are defined by the `IIIF_FORMATS` configuration variable.
     By default _gif_, _jp2_, _jpeg_, _jpg_, _png_, _tif_, and _tiff_.
-    
+
 ### Default preview (0-1)
 
 The default preview field names the filename of the file which should by default
