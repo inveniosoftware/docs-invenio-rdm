@@ -69,6 +69,24 @@ invenio-cli run
         invenio-cli services destroy
         invenio-cli services setup
 
+In some cases you might want to include a forked package in your InvenioRDM 
+instance permanently. For example, you might have a local identifier scheme that 
+you want [idutils](https://github.com/inveniosoftware/idutils) 
+to verify. It wouldn't be appropriate to make a pull request, since this
+change is only relevant to your organization. You can make your fork available on GitHub
+and add the following to your Pipfile
+
+```
+[packages]
+idutils = {git = "https://github.com/your-username/idutils.git", ref = "main"}
+```
+
+You may need to delete your Pipfile.lock and run `invenio-cli install` the first time you make this change.
+
+!!! warning
+    It's not recommended to do this with invenio packages that change often,
+    since it will be difficult to keep your fork up to date.
+
 **Edit CSS and JavaScript included in Python modules**
 
 Some Python modules includes CSS/JavaScript which is usually located in
