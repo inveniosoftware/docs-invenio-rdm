@@ -29,6 +29,8 @@ Used for interacting with unpublished or edited draft records.
 | `default_preview` &nbsp;  | string | body     | Filename of file to be previewed by default. |
 | `order`    | array | body     | Array of filename strings in display order. |
 
+A file must be uploaded to the draft before it can be used as the default
+preview. See "[Start a draft file upload](#start-draft-file-uploads)" below.
 
 **Request**
 
