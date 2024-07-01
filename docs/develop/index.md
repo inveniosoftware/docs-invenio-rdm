@@ -53,6 +53,7 @@ Step-by-step guides on how to perform certain tasks:
 - [Fix a vulnerability](howtos/security-fix.md)
 - [Test emails locally](howtos/dev_email.md)
 - [Migrate legacy routes](howtos/route_migration.md)
+- [Restrict access to pages](howtos/restrict_access.md)
 
 ## Architecture
 
