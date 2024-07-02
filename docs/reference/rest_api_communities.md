@@ -779,7 +779,7 @@ Content-Type: application/json
 |----------------|--------|----------|-----------------------------------------------------------------------------------------------|
 | `accept`       | string | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json`                    |
 | `community_id` | string | path     | ID of the community.                                                                          |
-| `start_date`   | string | body     | Required, datetime in iso format. Community will be featured from this point in time onwards. |
+| `start_date`   | string | body     | Required, ISO 8601 DateTime format in UTC (YYYY-MM-DDTHH:MM:SS.ssssssZ). Community will be featured from this point in time onwards. |
 
 
 **Request**

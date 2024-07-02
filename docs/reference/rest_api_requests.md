@@ -80,16 +80,13 @@ PUT /api/requests/{request_id} HTTP/1.1
 Content-Type: application/json
 
 {
-  "created_by": {"user": "1"},
   "expires_at": null,
   "id": "{request_id}",
   "number": "{request_number}",
-  "receiver": {"user": "2"},
   "revision_id": 1,
   "status": "draft",
   "title": "A new title",
-  "topic": {"record": "abcd-1234"},
-  "type": "default-request",
+  "type": "default-request"
 }
 ```
 
