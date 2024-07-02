@@ -139,7 +139,14 @@ The regular data model of InvenioRDM provides a set of core metadata fields that
 
 However, there are situations where additional metadata fields are needed to capture more specific information about the research data. InvenioRDM provides the ability to add custom fields to the data model to accommodate these specific needs.
 
-The custom fields, such as journal, thesis, conference, imprint, and notes, are not included in the regular data model because they are not commonly used for describing research data. These fields are more specific to certain types of research or publications, and therefore, may not be relevant or necessary for all research data - however they are now provided as possible extensions to the data model. Instance manages is able to include these fields by configuration. For more details on how to configure the aforementioned fields, visit [reference page](../../reference/custom_fields/fields_list.md).
+The custom fields, such as journal, thesis, conference, imprint, and notes, are
+not included in the regular data model because they are not commonly used for
+describing research data. These fields are more specific to certain types of
+research or publications, and therefore, may not be relevant or necessary for
+all research data - however they are now provided as possible extensions to the
+data model. Instance manages is able to include these fields by configuration.
+For more details on how to configure the aforementioned fields, visit
+[reference page](../../reference/metadata/optional_metadata.md).
 
 ![](./v12.0.0/custom_fields_example_deposit_form.png)
 
