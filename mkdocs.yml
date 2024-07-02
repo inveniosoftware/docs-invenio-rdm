@@ -69,6 +69,7 @@ nav:
           - Subjects: "customize/vocabularies/subjects.md"
           - Users: "customize/vocabularies/users.md"
       - Metadata:
+          - Optional metadata: "customize/metadata/optional_fields.md"
           - Custom fields:
             - Add fields to records: "customize/metadata/custom_fields/records.md"
             - Add fields to communities: "customize/metadata/custom_fields/communities.md"
@@ -141,6 +142,7 @@ nav:
       - CLI: reference/cli.md
       - Configuration: reference/configuration.md
       - Metadata: reference/metadata.md
+      - Optional metadata: reference/metadata/optional_metadata.md
       - OAI-PMH: reference/oai_pmh.md
       - Export formats: reference/export_formats.md
       - REST API:
@@ -161,7 +163,6 @@ nav:
           - Statistics: "reference/rest_api_statistics.md"
       - Custom fields:
           - UI widgets: "reference/custom_fields/widgets.md"
-          - Fields list: "reference/custom_fields/fields_list.md"
       - Administration:
           - Reference: "reference/administration_reference.md"
       - File storage: "reference/file_storage.md"
