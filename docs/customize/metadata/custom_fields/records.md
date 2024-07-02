@@ -65,7 +65,7 @@ cernexperiments:
   data-file: vocabularies/cern_experiments.jsonl
 ```
 
-You can read more about [all the vocabulary options](../../vocabularies/) in that documentation section.
+You can read more about [all the vocabulary options](../../vocabularies/index.md) in that documentation section.
 
 For our example, you'll then want to make a file `app_data/vocabularies/cern_experiments.jsonl` with content
 

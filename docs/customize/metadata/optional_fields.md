@@ -2,7 +2,7 @@
 
 _Introduced in InvenioRDM v12_
 
-InvenioRDM comes with a base [metadata schema](../../../reference/metadata.md), which is used for every record in the system and includes many common fields. InvenioRDM also includes *optional* metadata fields, which can be activated by an administrator. These fields may not be applicable to every instance, but if they are applicable we recommend you use them instead of creating your own custom fields.
+InvenioRDM comes with a base [metadata schema](../../reference/metadata.md), which is used for every record in the system and includes many common fields. InvenioRDM also includes *optional* metadata fields, which can be activated by an administrator. These fields may not be applicable to every instance, but if they are applicable we recommend you use them instead of creating your own custom fields.
 
 The current optional fields are:
 
@@ -170,8 +170,8 @@ MEETING_CUSTOM_FIELDS_UI["hide_from_landing_page"] = True
 
 You'll need to initialize the field by typing `pipenv run invenio rdm-records custom-fields init`. Restart your instance, and you should see the fields appear in the deposit form like:
 
-![Optional field result (deposit form)](../../img/custom_fields_example_deposit_form.png)
+![Optional field result (deposit form)](../img/custom_fields_example_deposit_form.png)
 
 and the landing page should look like:
 
-![Optional field result (landing page)](../../img/custom_fields_example_landing_page.png)
+![Optional field result (landing page)](../img/custom_fields_example_landing_page.png)
