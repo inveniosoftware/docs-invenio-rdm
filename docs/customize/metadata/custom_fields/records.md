@@ -1,52 +1,13 @@
 # Records custom fields
 
-*Introduced in InvenioRDM v10*
-
 While the InvenioRDM's [metadata schema](../../../reference/metadata.md) includes a wide range of bibliographic fields, there might still be cases where you need to include domain or system specific information in your records. This can be achieved using custom fields.
-To demonstrate how to take advantage of custom fields, we will use the following examples:
-
-_In my university repository, when uploading my work, I want to input the programming language that I have used._
+To demonstrate how to take advantage of custom fields, we will use the following example:
 
 _At CERN, I want to input or select the experiment information of the research preprint that I am uploading. In addition, when searching for other preprints, I want to filter the search results by experiment name._
 
 !!! warning
 
-    Before jumping into adding custom fields, take a close look at the existing set of fields in the metadata schema, and especially the [subjects field](../../../reference/metadata.md#subjects-0-n), which can be extended with terms from external vocabularies that might already exist.
-
-## Quickstart, how does it look?
-
-To add a _programming language_ field, you will need to configure the type of
-field and how it should be displayed. The configuration will look like:
-
-```python
-from invenio_records_resources.services.custom_fields import TextCF
-
-RDM_CUSTOM_FIELDS = [
-    TextCF(name="programming_language")
-]
-
-RDM_CUSTOM_FIELDS_UI = [
-    {
-        "section": _("Quickstart example section"),
-        "fields": [
-            dict(
-                field="programming_language",
-                ui_widget="Input",
-                props=dict(
-                    label="Programming language",
-                    placeholder="Python...",
-                    icon="pencil",
-                    description="The programming language of your choice...",
-                )
-            ),
-        ]
-    }
-]
-```
-
-This will create a new section in the bottom of the record's upload page and will look like:
-
-![Programmatic language field](../../img/programmatic_language.png)
+    Before jumping into adding custom fields, take a close look at the [optional fields](../optional_fields.md) as well as the default set of fields in the metadata schema. For example, the [subjects field](../../../reference/metadata.md#subjects-0-n) can be extended with terms from external vocabularies instead of creating custom fields.
 
 ## Configuration
 
@@ -64,8 +25,6 @@ The `RDM_NAMESPACES` config variable accepts key-value pairs of namespace prefix
 
 ```python
 RDM_NAMESPACES = {
-    # CodeMeta
-    "code": "https://codemeta.github.io/terms/",
     # CERN
     "cern": "https://greybook.cern.ch/",
 }
@@ -89,15 +48,39 @@ RDM_CUSTOM_FIELDS = [
         dump_options=True,  # True when the list of all possible values will be visible in the dropdown UI component, typically for small vocabularies
         multiple=False, # if the field accepts a list of values (True) or single value (False)
     ),
-    TextCF(  # a simple text input field
-        name="programming_language"
-    ),
     TextCF(  # a text input field that will allow HTML tags
         name="cern:experiment_description_html",
         field_cls=SanitizedHTML,
     ),
 ]
 ```
+
+### Defining a custom vocabulary
+
+For a VocabularyCF field to work, you need a custom vocabulary for it to search from. First you'll want to edit `app_data/vocabularies.yaml` to add the name of the vocabulary
+
+```yaml
+cernexperiments:
+  pid-type: cexp
+  data-file: vocabularies/cern_experiments.jsonl
+```
+
+You can read more about [all the vocabulary options](../../vocabularies/) in that documentation section.
+
+For our example, you'll then want to make a file `app_data/vocabularies/cern_experiments.jsonl` with content
+
+```json
+{"id": "ATLAS", "title": {"en": "ATLAS"}}
+{"id": "LHC", "title": {"en": "Large Hadron Collider"}}
+```
+
+If you've already set up your services, you can create this vocabulary with
+
+```
+pipenv run invenio rdm-records fixtures
+```
+
+You can see then see the vocabulary at `/api/vocabularies/cernexperiments`
 
 ### Customizing validation and error messages
 
@@ -152,7 +135,7 @@ When you want to make a new specific field searchable:
 
 ```bash
 # initialize specific custom fields to make them searchable
-pipenv run invenio rdm-records custom-fields init -f <field_name> -f <field_name>
+pipenv run invenio rdm-records custom-fields init -f cern:experiment -f <field_name>
 ```
 
 !!! tip
@@ -250,41 +233,7 @@ The additional details section:
 
 ![Custom fields in additional details section](../../img/landing_page_fields_display.png)
 
-The landing page with the configured custom fields:
-
-![Custom fields in landing page](../../img/landing_page.png)
-
-However, it is possible to change this default layout by overriding the Jinja templates of the landing page.
-
-You can change how a specific field is displayed in the _additional details_ section via the _template_ parameter:
-
-```python
-RDM_CUSTOM_FIELDS_UI = [
-    {
-        "section": _("Quickstart example section"),
-        "fields": [
-            dict(
-                field="programming_language",
-                ui_widget="Input",
-                template="/my_template.html"
-                props=dict(
-                    label="Programming language",
-                    placeholder="Python...",
-                    icon="pencil",
-                    description="The programming language of your choice...",
-                )
-            ),
-        ]
-    }
-]
-```
-
-You should add the `my_template.html` file in the `my-site/templates` folder in your instance. In your custom template, the following variables are injected and can be used:
-
-- `field_value`: the value of the field, as it is stored in the record after the UI serialization i.e. what is returned from the `ui_field` method when you [define your custom field](../../../develop/howtos/custom_fields.md).
-- `field_cfg`: the UI configuration for that specific field as it is defined in the `RDM_CUSTOM_FIELDS_UI` config.
-
-See the example in the [How-to](../../../develop/howtos/custom_fields.md#define-the-template-for-the-record-landing-page).
+It is possible to do additional customization of both how custom fields display on the deposit form and landing page. See this [How-to](../../../develop/howtos/custom_fields.md#define-the-template-for-the-record-landing-page) for an example.
 
 ### Search
 
@@ -418,189 +367,3 @@ This section lists the field types and UI widgets that are available in InvenioR
 - `AutocompleteDropdown` for a value from a controlled vocabulary or a list of controlled vocabularies. The corresponding `VocabularyCF` must have the parameter `dump_options=False`. This widget will provide suggestions to autocomplete the user input. Similar to _subjects_, _languages_, _names_, etc.
 
 You can see a detailed view of all the available widgets at the [UI widgets](../../../reference/custom_fields/widgets.md) reference section.
-
-## Complete examples
-
-Below you can find multiple examples on how to add custom fields to records.
-
-### Create custom fields and add them to records
-
-You can find below a complete example of the configuration to add to your `invenio.cfg`.
-
-```python
-from invenio_rdm_records.config import RDM_FACETS, RDM_SEARCH
-from invenio_records_resources.services.custom_fields import TextCF
-from invenio_records_resources.services.records.facets import CFTermsFacet
-from invenio_vocabularies.services.custom_fields import VocabularyCF
-from marshmallow import validate
-from marshmallow_utils.fields import SanitizedHTML
-
-RDM_NAMESPACES = {
-    # CodeMeta
-    "code": "https://codemeta.github.io/terms/",
-    # CERN
-    "cern": "https://greybook.cern.ch/",
-}
-
-RDM_CUSTOM_FIELDS = [
-    VocabularyCF(
-        name="cern:experiment",
-        vocabulary_id="cernexperiments",
-        dump_options=True,
-        multiple=False,
-    ),
-    TextCF(
-        name="cern:experiment_description_html",
-        field_cls=SanitizedHTML,
-    ),
-    TextCF(
-        name="cern:experiment_url",
-        field_args={
-            "validate": validate.URL(),
-            "required": True,
-            "error_messages": {
-                "required": "You must provide the experiment homepage URL. "
-            }
-        },
-        multiple=False,
-    ),
-]
-
-RDM_CUSTOM_FIELDS_UI = [
-    {
-        "section": _("CERN Experiment"),
-        "fields": [
-            dict(
-                field="cern:experiment",
-                ui_widget="Dropdown",
-                props=dict(
-                    label="CERN Experiment",
-                    placeholder="ATLAS",
-                    icon="lab",
-                    description="You should fill this field with one of the experiments e.g LHC, ATLAS etc.",
-                    search=False,  # True for autocomplete dropdowns
-                    multiple=False,   # True for list of values
-                    clearable=True,
-                )
-            ),
-            dict(
-                field="cern:experiment_description_html",
-                ui_widget="RichInput",
-                props=dict(
-                    label="Experiment description",
-                    placeholder="This experiment aims to...",
-                    icon="pencil",
-                    description="You should fill this field with the experiment description.",
-                )
-            ),
-            dict(
-                field="cern:experiment_url",
-                ui_widget="Input",
-                props=dict(
-                    label="Experiment URL",
-                    placeholder="https://your.experiment.url",
-                    icon="linkify",
-                    description="URL of the experiment to which the record belongs to.",
-                    required=True,
-                )
-            ),
-        ]
-    }
-]
-
-RDM_FACETS = {
-    **RDM_FACETS,
-    "experiment": {
-        "facet": CFTermsFacet(  # backend facet
-            field="cern:experiment.id",  # id is the keyword field of a vocabulary
-            label=_("CERN Experiment"),
-        ),
-        "ui": {  # ui display
-            "field": CFTermsFacet.field("cern:experiment.id"),
-        },
-    },
-}
-
-RDM_SEARCH = {
-    **RDM_SEARCH,
-    "facets": RDM_SEARCH["facets"] + ["experiment"]
-}
-```
-
-### Add reusable custom fields to records
-
-Invenio provides a set of [custom fields ](../../../reference/custom_fields/fields_list.md) that can be added to an instance on demand.
-
-In the following example, we will customize fields, create a new section ("Publishing Information") to group custom fields, and hide the "Conference" section on the landing page. It is important to note that this change only affects the visual representation of the fields and not the underlying data model (metadata fields).
-
-```python
-from invenio_i18n import lazy_gettext as _
-from invenio_rdm_records.contrib.imprint import (
-    IMPRINT_CUSTOM_FIELDS,
-    IMPRINT_CUSTOM_FIELDS_UI,
-    IMPRINT_NAMESPACE,
-)
-from invenio_rdm_records.contrib.journal import (
-    JOURNAL_CUSTOM_FIELDS,
-    JOURNAL_CUSTOM_FIELDS_UI,
-    JOURNAL_NAMESPACE,
-)
-from invenio_rdm_records.contrib.thesis import (
-    THESIS_CUSTOM_FIELDS,
-    THESIS_CUSTOM_FIELDS_UI,
-    THESIS_NAMESPACE,
-)
-from invenio_rdm_records.contrib.meeting import (
-    MEETING_CUSTOM_FIELDS,
-    MEETING_CUSTOM_FIELDS_UI,
-    MEETING_NAMESPACE,
-)
-
-RDM_NAMESPACES = {
-    **JOURNAL_NAMESPACE,
-    **IMPRINT_NAMESPACE,
-    **THESIS_NAMESPACE,
-    **MEETING_NAMESPACE,
-}
-
-# Combine custom fields
-RDM_CUSTOM_FIELDS = [
-    # journal
-    *JOURNAL_CUSTOM_FIELDS,
-    # meeting
-    *MEETING_CUSTOM_FIELDS,
-    # imprint
-    *IMPRINT_CUSTOM_FIELDS,
-    # thesis
-    *THESIS_CUSTOM_FIELDS,
-]
-
-# Hide "meeting" section in the landing page
-MEETING_CUSTOM_FIELDS_UI["hidden"] = True
-
-# Create a "Publishing Information" section in the deposit form and add multiple fields
-RDM_CUSTOM_FIELDS_UI = [
-    {
-        "section": _("Publishing information"),
-        "hidden": True,
-        "fields": [
-            # journal
-            *JOURNAL_CUSTOM_FIELDS_UI["fields"],
-            # imprint
-            *IMPRINT_CUSTOM_FIELDS_UI["fields"],
-            # thesis
-            *THESIS_CUSTOM_FIELDS_UI["fields"],
-        ],
-    },
-    # meeting
-    MEETING_CUSTOM_FIELDS_UI,
-]
-```
-
-The previous configuration produces the following result in the deposit form:
-
-![Reusable custom field result (deposit form)](../../img/custom_fields_example_deposit_form.png)
-
-and landing page:
-
-![Reusable custom field result (landing page)](../../img/custom_fields_example_landing_page.png)
