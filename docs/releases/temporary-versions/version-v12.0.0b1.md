@@ -143,9 +143,9 @@ The custom fields, such as journal, thesis, conference, imprint, and notes, are
 not included in the regular data model because they are not commonly used for
 describing research data. These fields are more specific to certain types of
 research or publications, and therefore, may not be relevant or necessary for
-all research data - however they are now provided as possible extensions to the
-data model. Instance manages is able to include these fields by configuration.
-For more details on how to configure the aforementioned fields, visit
+all research data. However, they are now provided as possible extensions to the
+data model. Instance managers are able to include those fields by configuration.
+For more details on how to configure them, visit
 [reference page](../../reference/metadata/optional_metadata.md).
 
 ![](./v12.0.0/custom_fields_example_deposit_form.png)
