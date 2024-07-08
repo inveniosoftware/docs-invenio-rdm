@@ -69,6 +69,26 @@ DATACITE_FORMAT = "{prefix}/inveniordm.{id}"
     [Cool DOIs](https://doi.org/10.5438/55e5-t5c0) and why it might not be a
     good idea.
 
+#### Parent or Concept DOIs
+
+_Introduced in InvenioRDM v12_
+
+By default InvenioRDM will create two DOIs when an initial record is
+published, and create one DOI each time a new version of the record is
+published. The first DOI is the version DOI, which represents the specific
+record that is published. The second DOI is the parent DOI, which represents
+the concept of the record and will always resolve to the latest version.
+This feature has been implemented in Zenodo for many years, and the concept DOI enables
+researchers to cite something that won't change when they make changes to their
+records. 
+
+The parent DOI is optional and can be disabled by setting the following in
+invenio.cfg:
+
+```python
+RDM_PARENT_PERSISTENT_IDENTIFIERS={}
+```
+
 
 #### OAI-PMH
 
@@ -99,11 +119,13 @@ RDM_PERSISTENT_IDENTIFIERS = {
         "label": _("DOI"),
         "validator": idutils.is_doi,
         "normalizer": idutils.normalize_doi,
+        "is_enabled": providers.DataCitePIDProvider.is_enabled,
     },
     "oai": {
         "providers": ["oai"],
         "required": True,
         "label": _("OAI"),
+        "is_enabled": providers.OAIPIDProvider.is_enabled,
     },
 }
 ```
