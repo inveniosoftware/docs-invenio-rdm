@@ -17,7 +17,7 @@ A _Name_ record contains:
   are present they will overwrite `name`.
 - A list of `identifiers`, composed by their identifier value and scheme.
   The scheme can potentially be autocompleted if it is known by the _idutils_
-  library (e.g. ORCiD).
+  library (e.g. ORCID).
 - A list of `affiliations`, which can be represented by its `name` or, if it
   belongs to the _Affiliations_ vocabulary, by its `id`.
 
@@ -96,7 +96,7 @@ invenio vocabularies update \
 ### Creating a `names.yaml` file
 
 The Names vocabulary has been implemented with the
-[ORCiD public dataset](https://orcid.figshare.com/articles/dataset/ORCID_Public_Data_File_2021/16750535?file=31020067)
+[ORCID public dataset](https://support.orcid.org/hc/en-us/articles/360006897394-How-do-I-get-the-public-data-file)
 as a possible source to import entries from. This means that the functionality
 to **read** entries from this format is already available. For example, you
 can use the `vocabularies convert` command to convert this dataset into a YAML
@@ -112,7 +112,7 @@ invenio vocabularies convert \
 Alternatively, you can simply import it directly:
 
 !!! warning "Long and blocking operation"
-    Note that the import process is done synchronously and the ORCiD dataset is
+    Note that the import process is done synchronously and the ORCID dataset is
     very large. Therefore, this operation can take a long time.
 
 ```bash
