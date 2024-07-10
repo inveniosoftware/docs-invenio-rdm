@@ -1,10 +1,17 @@
-# Change Menus
+# Change Menus/Tabs
 
-For navigation, InvenioRDM uses *menu*s. For example, one such menu is at the
-top of the dashboard shown to users on their personal page (with submenus
-*Uploads*, *Communities*, and *Requests*):
+For navigation, InvenioRDM often uses menus or tabs. For example, one such menu is the user-dropdown menu:
+
+![User-settings menu with its 5 default entries](./img/settings-menu.png)
+
+And one such set of tabs is at the top of the user-dashboard:
+
 ![User's personal dashboard with three tabs labeled (left-to-right) "Uploads", "Communities", and "Requests"](./img/user-dashboard.png)
-Menus are configurable in the following ways:
+
+In the codebase, menus and sets of tabs like those are referred as *menus*, so we do so here for the remainder of this how-to as well.
+Their options (e.g., "Uploads", "Profile") are referred as *submenus*.
+
+These *menus* can be configured in the following ways:
 
 - which submenus to show
 - what title-text to show in those submenus
@@ -13,9 +20,9 @@ Menus are configurable in the following ways:
 
 ## Configurable Properties
 
-All submenus share the following properties.
 Properties of existing submenus can be overridden,
 properties of newly added submenus can be freely chosen.
+All submenus share the following properties:
 
 | Name           | Example values                       | Notes                                               |
 |----------------|--------------------------------------|-----------------------------------------------------|
@@ -25,7 +32,7 @@ properties of newly added submenus can be freely chosen.
 | `visible_when` | `flask_menu.menu.CONDITION_TRUE`     | when to show this submenu<br />- must be of type `callable[[], bool]`<br />- `CONDITION_TRUE` is just a named `lambda: True`<br />- use `CONDITION_FALSE` to hide a submenu |
 | ...            | ...                                  | in addtion to the above properties, all arguments for `flask_menu.menu:MenuNode.register` are configurable |
 
-For an example consider the user-dashboard pictured above.
+For example, consider the user-dashboard pictured above.
 Its *Uploads* submenu has the following default configuration:
 ```python
 {
@@ -42,9 +49,9 @@ Its *Uploads* submenu has the following default configuration:
 Existing menus can be extended by custom-configured submenus.
 To add a new submenu to an existing menu:
 
-1. get the name of the to-be-added-to menu from the [list of menus](#list-of-menus)  
+1. Get the name of the to-be-added-to menu from the [list of menus](#list-of-menus)
   For example, the user-dashboard is named `"dashboard"` (most names of menus/submenus are straightforward).
-2. write a function that registers the new submenu
+2. Write a function that registers the new submenu
   ```python
   # ext.py  # ext.py is commonly used, you may use another file though
 
@@ -67,9 +74,9 @@ To add a new submenu to an existing menu:
 
       ...  # could .register more submenus here (or do so in another package)
   ```
-3. have the endpoint `invenio_base.finalize_app` point at your function  
-  This will make your function be called at the app-finalization build-step.  
-  For example, when using setuptools' `setup.cfg` with your python-package, add:
+3. Register your function with the `invenio_base.finalize_app` entrypoint.
+  This will make your function be called at the app-finalization build-step.
+  For example, when using setuptools' `setup.cfg` with your python package, add:
   ```ini
   # setup.cfg
 
@@ -82,8 +89,7 @@ To add a new submenu to an existing menu:
     For entrypoint changes to be picked up, you will need to reinstall the python package.
     *This is necessary even if the package is installed editably!*
 
-!!! info "Have you tried to turn it off and on again?"
-    After entrypoint changes were picked up,
+    After entrypoint changes are picked up,
     you will further need to restart the server for changes to take effect:
     ```shell
     <CTRL+C>
@@ -95,12 +101,12 @@ To add a new submenu to an existing menu:
 The defaults of submenus' properties are selectively overridable via config-variables.
 To modify an existing submenu's properties:
 
-1. find the name of the corresponding override-variable in the [list of menus](#list-of-menus)  
+1. Find the name of the corresponding override-variable in the [list of menus](#list-of-menus)
   For example, the override-variable for the user-dashboard is named `USER_DASHBOARD_MENU_OVERRIDES`.
-2. find the name of the to-be-overridden submenu in that same [list of menus](#list-of-menus)  
+2. Find the name of the to-be-overridden submenu in that same [list of menus](#list-of-menus)
   For example, the user-dashboard has a submenu for communities.
   This submenu is named (obviously enough) `"communities"`.
-3. add to your `invenio.cfg`:
+3. Add to your `invenio.cfg`:
   ```python
   # invenio.cfg
 
