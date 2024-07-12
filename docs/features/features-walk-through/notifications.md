@@ -1,8 +1,10 @@
 # Notifications
 
-Notifications are sent at specific events (e.g. community invitation, community recod submission), to inform users of relevant actions. Institutions can define their own available ways of sending notifications. InvenioRDM ships with E-Mail notifications as standard.
+_Introduced in InvenioRDM v12_
 
-As an example, imagine submitting a record to a community. When you do this, a notification will be sent to community owners and managers informing them of your request. When they comment on your request, you will receive a notification of said comment. This will allow all participating parties to get informed of relevant actions and updates, without the need of manually observing the site.
+Notifications are sent at specific events (e.g. community invitation, community record submission), to inform users of relevant actions. Institutions can define their own available ways of sending notifications. InvenioRDM ships with E-Mail notifications as standard.
+
+As an example, imagine submitting a record to a community. When you do this, a notification will be sent to community owners and managers informing them of your request. When they comment on your request, you will receive a notification of said comment. This will allow all participating parties to get informed of relevant actions and updates, without anyone needing to manually observe the site.
 
 ## Notification Settings
 
