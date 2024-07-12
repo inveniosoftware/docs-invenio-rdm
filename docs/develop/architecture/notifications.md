@@ -6,6 +6,7 @@ The notification system in InvenioRDM is provided via the [`invenio-notification
 
 
 ## Service Level
+
 Notifications are registered at the service level in the unit of work and send off to a celery task - which takes care of further processing. When dispatching this notification in the service, the context shall be as minimal as possible, to reduce passing huge chunks of data.
 The implications of sending all of the required immediately would be a hit on performance and higher memory usage.
 As the notification operations are registered during methods of the service level, it would increase response time for requests using these methods.
@@ -28,9 +29,8 @@ After it is build, it can be dumped and send to a background task for further pr
 
 
 ## Notification Manager
+
 A notification manager is created, which will rely on certain [configuration values](../howtos/notifications.md#configuration-values) and provide logic to send notifications. Its task is also to call respective methods to resolve the notification context, generate recipients, filter recipients and generate the backend ids for further processing. With all information created, it will then dispatch further tasks to relay the notification to the backend, which will take care of sending the actual notification.
-
-
 
 <details>
 <summary>A recipient entity could look like this</summary>
