@@ -11,15 +11,21 @@ Note: accepted access requests grant to the requestor access to **all** versions
 ## Enable access requests
 
 As a record owner, you first need to allow accessing restricted files via a request:
+
 0. Create a record with restricted files
+
 1. Click on the "Share" button on the record landing page:
 ![Share button](./img/access_request_share_button.png)
-2. Navigate to the "Access requests" tab of the modal:
+
+2. Navigate to the "Settings" tab of the modal:
 ![Access requests tab](./img/access_requests_tab.png)
+
 3. Change the settings for the access requests:
-*  Allow authenticated or/and unauthenticated users to request access to restricted files of your record.
-*  Accept conditions. Provide a message that will be visible to the users in the request form (see screenshots below)
-*  Set access expiration date. This setting will be applied by default to all access requests. When reviewing an access request, you can set a different value.
+
+    * Allow authenticated or/and unauthenticated users to request access to restricted files of your record.
+    * Accept conditions. Provide a message that will be visible to the users in the request form (see screenshot below)
+    * Set access expiration date. This setting will be applied by default to all access requests. When reviewing an access request, you can set a different value.
+
 4. Save your changes
 ![Access requests tab save](./img/access_requests_tab_save.png)
 
