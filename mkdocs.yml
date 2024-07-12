@@ -194,6 +194,7 @@ nav:
       - Maintenance policy: releases/maintenance-policy.md
       - Security policy: releases/security-policy.md
       - Versions:
+          - Version v12.0.0: releases/versions/version-v12.0.0.md
           - Version v11.0.0: releases/versions/version-v11.0.0.md
           - Version v10.1.0: releases/versions/version-v10.1.0.md
           - Version v10.0.0: releases/versions/version-v10.0.0.md
@@ -261,6 +262,10 @@ markdown_extensions:
   - pymdownx.highlight
   - pymdownx.superfences
   - pymdownx.critic
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+
 
   - toc:
       permalink: true
