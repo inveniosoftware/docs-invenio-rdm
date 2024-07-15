@@ -5,7 +5,7 @@ _Introduced in InvenioRDM v12_
 The following document is a reference guide for the instance-level optional metadata fields available in InvenioRDM.
 
 !!!tip "How to add a field to an instance?"
-    If you want to add a field to an instance, please refer to the custom fields [documentation](../../customize/metadata/custom_fields/optional_fields.md).
+    If you want to add one of the fields below to an instance, please refer to the [optional field customization page](../../customize/metadata/optional_fields.md).
 
 ## Publishing information
 
