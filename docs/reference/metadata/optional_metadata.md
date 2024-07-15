@@ -2,16 +2,16 @@
 
 _Introduced in InvenioRDM v12_
 
-The following document is a reference guide for the optional metadata fields available in InvenioRDM.
+The following document is a reference guide for the instance-level optional metadata fields available in InvenioRDM.
 
 !!!tip "How to add a field to an instance?"
-    If you want to add a field to an instance, please refer to the custom fields [documentation](../../customize/metadata/custom_fields/optional_fields.mds.
+    If you want to add a field to an instance, please refer to the custom fields [documentation](../../customize/metadata/custom_fields/optional_fields.md).
 
 ## Publishing information
 
 This group of fields contains the metadata for "Journal", "Imprint" and "Thesis". Each set of fields can be used independently, but the normal configuration is to group them in the UI.
 
-**Deposit form** 
+**Deposit form**
 
 ![Deposit form](../../images/pub_info_deposit_form.png)
 

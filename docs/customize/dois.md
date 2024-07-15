@@ -80,7 +80,9 @@ record that is published. The second DOI is the parent DOI, which represents
 the concept of the record and will always resolve to the latest version.
 This feature has been implemented in Zenodo for many years, and the concept DOI enables
 researchers to cite something that won't change when they make changes to their
-records. 
+records.
+
+![Concept DOI help-text](./img/concept_doi.png)
 
 The parent DOI is optional and can be disabled by setting the following in
 invenio.cfg:
