@@ -187,7 +187,7 @@ Configuration values used in the `invenio-notifications` module can be overriden
 
 ### NOTIFICATION_BACKENDS
 
-This config variable allows to specify the available backends. For a detailed description on backends, checkout the respective [reference section](/reference/notifications/#backends).
+This config variable allows to specify the available backends. For a detailed description on backends, checkout the respective [reference section](../../reference/notifications.md#backends).
 For instance, you can provide an implementation for your institution's preferred communication tool and send notifications via this backend.
 
 As an example, take the backend shown in [build your own backend](#notification-backend). Then you only have to specify it in the config variable (e.g. in `invenio.cfg`).
@@ -201,7 +201,7 @@ NOTIFICATION_BACKENDS = {
 
 ### NOTIFICATION_BUILDERS
 
-Specifies [notification builders](#notificationbuilder) to be used for certain types of notifications. When a notification is handled by the manager, it will lookup the type in this variable and build the notification with the provided builder class.
+Specifies [notification builders](#notification-builder) to be used for certain types of notifications. When a notification is handled by the manager, it will lookup the type in this variable and build the notification with the provided builder class.
 
 As an example, take the backend shown in [build your own builder](#notification-builder). Then you only have to specify it in the config variable (e.g. in `invenio.cfg`).
 
@@ -222,7 +222,7 @@ NOTIFICATIONS_BUILDERS = {
 
 ### NOTIFICATIONS_ENTITY_RESOLVERS
 
-Specifies entity resolvers (not to be confused with [EntityResolve](#entityresolve)) to be used for resolving the notification context. These are usually `ServiceResultResolver` objects, which provide functionality to dump an object to a reference dictionary and later on use the dump to fetch information as seen on the API/service level (i.e. fully resolved objects with links for easy access).
+Specifies entity resolvers to be used for resolving the notification context. These are usually `ServiceResultResolver` objects, which provide functionality to dump an object to a reference dictionary and later on use the dump to fetch information as seen on the API/service level (i.e. fully resolved objects with links for easy access).
 
 ```py
 NOTIFICATIONS_ENTITY_RESOLVERS = [
