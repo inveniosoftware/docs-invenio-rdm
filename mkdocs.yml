@@ -54,6 +54,7 @@ nav:
           - Features overview: "features/features-walk-through/index.md"
           - Site banners: "features/features-walk-through/banners.md"
           - Notifications: "features/features-walk-through/notifications.md"
+          - Access requests: "features/features-walk-through/access_requests.md"
   - Install:
       - Quick start: "install/index.md"
       - System requirements: "install/requirements.md"
@@ -212,6 +213,7 @@ nav:
       - Upgrade guide:
           - Upgrade from v11 to v12: releases/upgrading/upgrade-v12.0.md
           - Upgrade policy: releases/upgrading/index.md
+          - Upgrade from v11 to v12: releases/upgrading/upgrade-v12.0.0.md
           - Upgrade from v10 to v11: releases/upgrading/upgrade-v11.0.md
           - Upgrade from v9 to v10: releases/upgrading/upgrade-v10.0.md
           - Migrate Docker images: releases/upgrading/migrate-docker-images.md

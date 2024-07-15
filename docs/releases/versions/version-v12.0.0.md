@@ -87,7 +87,7 @@ The landing page for a record can now provide nicer visuals for configured relat
 
 ### Miscellaneous additions
 
-- Introduction of `PAGES_ALLOWED_EXTRA_HTML_ATTRS` and `PAGES_ALLOWED_EXTRA_HTML_TAGS` to allow specific HTML attributes and tags in Pages from [invenio-pages](PAGES_ALLOWED_EXTRA_HTML_TAGS)
+- Introduction of `PAGES_ALLOWED_EXTRA_HTML_ATTRS` and `PAGES_ALLOWED_EXTRA_HTML_TAGS` to allow specific HTML attributes and tags in Pages from [invenio-pages](https://github.com/inveniosoftware/invenio-pages)
 - Improvements to the `invenio rdm rebuild-all-indices` command
 - Mathematical formulas in a deposit can be rendered on the landing page via `THEME_MATHJAX_CDN = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"` and updated content-secuirty policy headers: add `cdnjs.cloudflare.com` to  `APP_DEFAULT_SECURE_HEADERS`
 - Possibility to [add entry to a controlled vocabulary](../../customize/vocabularies/index.md#addupdate-fixtures-command) via the CLI: `invenio rdm-records add-to-fixture`
@@ -131,7 +131,7 @@ Notably, older versions of Elasticsearch/Opensearch, PostgreSQL, and Node.js hav
 
 ## Upgrading to v12.0
 
-We support upgrading from v11 to v12. See the [upgrade notice](../upgrading/upgrade-v12.0.md) for how.
+We support upgrading from v11 to v12. See the [upgrade notice](../upgrading/upgrade-v12.0.0.md) for how.
 
 ## Questions?
 
