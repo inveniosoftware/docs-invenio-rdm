@@ -25,12 +25,12 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
-      - name: Set up Python 3.9
-        uses: actions/setup-python@v2
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
         with:
-          python-version: 3.9
+          python-version: 3.12
 
       - name: Install dependencies
         run: |
@@ -41,6 +41,6 @@ jobs:
         run: mkdocs build --clean --strict -v
 
       - name: Check links
-        uses: untitaker/hyperlink@0.1.27
+        uses: untitaker/hyperlink@0.1.32
         with:
           args: site/ --sources docs/
