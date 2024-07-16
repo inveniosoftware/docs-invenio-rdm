@@ -98,7 +98,6 @@ nav:
       - Storage: "customize/s3.md"
       - Upload Limits: "customize/upload_limits.md"
       - Metadata-only records: "customize/metadata_only.md"
-      - Notifications: "customize/notifications.md"
       - Logging: "customize/Logging.md"
       - Internationalisation (i18n) and Localisation (l10n): "customize/i18n-and-l10n.md"
   - Develop:
