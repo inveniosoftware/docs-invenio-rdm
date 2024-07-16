@@ -35,13 +35,13 @@ invenio-cli check-requirements
 
 Scaffold your InvenioRDM instance. Replace ``<version>`` with the version you want to install:
 
-- LTS release (for production systems): ``v9.1``
+- LTS release (for production systems): ``v12.0``
 - STS release (for feature previews): ``v11.0``
 
 ```shell
 invenio-cli init rdm -c <version>
 # e.g:
-invenio-cli init rdm -c v9.1
+invenio-cli init rdm -c v12.0
 ```
 
 You will be asked several questions. If in doubt, choose the default.
@@ -95,23 +95,23 @@ Go and explore your InvenioRDM instance on:
 
 To create a new administrator account:
 
-Depending on whether you are in a local or containerized setup, take note of the variations immediately following before stepping through the subsequently outlined steps. 
+Depending on whether you are in a local or containerized setup, take note of the variations immediately following before stepping through the subsequently outlined steps.
 
 **Local application**
 
 In a local application context, precede the `invenio` commands by `pipenv run` (e.g., `pipenv run invenio users create <EMAIL> --password <PASSWORD> --active --confirm`).
 
-**Containerized application**   
-In a fully containerized context, connect to a container first e.g. the web-api container: `docker exec -it my-site-web-api-1 /bin/bash`. Then run the commands from within the container as-is. 
+**Containerized application**
+In a fully containerized context, connect to a container first e.g. the web-api container: `docker exec -it my-site-web-api-1 /bin/bash`. Then run the commands from within the container as-is.
 
 **Steps**
-The following command creates an activated and confirmed user (assuming you have email verification enabled as is the default). 
+The following command creates an activated and confirmed user (assuming you have email verification enabled as is the default).
 
 ```shell
 invenio users create <EMAIL> --password <PASSWORD> --active --confirm
 ```
 
-Then, allow the user to access the administration panel: 
+Then, allow the user to access the administration panel:
 
 ```shell
 invenio access allow administration-access user <EMAIL>

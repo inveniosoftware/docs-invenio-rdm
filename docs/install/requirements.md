@@ -5,7 +5,7 @@
 InvenioRDM depends on the following requirements to be installed on your local system:
 
 - MacOS or Linux-based systems (Windows systems is not supported).
-- [Python](https://www.python.org/) 3.9 and [pip](https://pip.pypa.io/en/stable/)
+- [Python](https://www.python.org/) 3.9 / 3.11 / 3.12 and [pip](https://pip.pypa.io/en/stable/)
     - Python development headers:
         - On Ubuntu: `sudo apt install python3-dev`.
         - On RHEL/Fedora: `yum install -y python3-devel.x86_64`.
@@ -23,36 +23,34 @@ InvenioRDM depends on the following requirements to be installed on your local s
 For running and building the application locally you will also need:
 
 - [Git](https://git-scm.com/).
-- [Node.js](https://nodejs.org) 14.0.0+ (needed for local installation). We recommend that you install node through [nvm](https://github.com/nvm-sh/nvm) (e.g. `nvm install --lts --default 14`).
-- [npm](https://www.npmjs.com/get-npm) < 7.
+- [Node.js](https://nodejs.org) 18.0+ (needed for local installation) and corresponding npm. We recommend that you install node through [nvm](https://github.com/nvm-sh/nvm) (e.g. `nvm install --lts --default 18`) or [equivalent](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
 - [Cairo](https://invenio-formatter.readthedocs.io/en/latest/installation.html) needed for badges to be properly displayed.
 - [DejaVu Fonts](https://dejavu-fonts.github.io/Download.html) needed for badges rendering.
 - [ImageMagick](https://imagemagick.org/script/download.php) needed for IIIF file rendering.
 
-!!! warning "Supported Python distributions"
-    InvenioRDM targets CPython 3.9. Anaconda Python in particular is not currently supported and other Python distributions are not tested.
+!!! warning "Supported Python implementations"
+    InvenioRDM targets CPython. Anaconda Python in particular is not supported and other Python implementations are not tested.
 
 !!! note "ARM-based CPUs"
-    If you are developing locally with an ARM-based CPU, notably a recent Apple M1/M2 Mac, the minimum support version of InvenioRDM is v10.
-    Previous versions cannot be installed because of a `node-sass` incompatibility.
+    If you are developing locally with an ARM-based CPU, notably a recent Apple M1/M2 Mac, the minimum support version of InvenioRDM is v10. Previous versions cannot be installed because of an incompatibility with `node-sass`.
 
 ### Services
 
 InvenioRDM depends on the following services. During the installation we start these services in containers, but you could as well use externally hosted services for them:
 
-- Databases: PostgreSQL 10+
-- Search: OpenSearch (2.0+) or Elasticsearch (v7.0 - v7.10 due to the license change introduced in v7.11)
+- Databases: PostgreSQL 12+
+- Search: OpenSearch (2.0+)
 - Cache: Redis, memcached
 - Message broker: RabbitMQ, Redis
 - Storage systems: Network storage, S3, XRootD, and more
 
 !!! note "Elasticsearch vs OpenSearch"
 
-    InvenioRDM transitioned from Elasticsearch to OpenSearch due to license changes in Elasticsearch which means it is no longer an open source product. We are currently assessing if it is feasible from a technical and resource perspective to support both products.
+    InvenioRDM transitioned from Elasticsearch to OpenSearch due to license changes in Elasticsearch which meant it was no longer an open source product.
 
 ### Hardware
 
-We usually run InvenioRDM on machines that have at least 8GB of RAM and at least 4 cores.
+InvenioRDM runs on machines that have at least 8GB of RAM and at least 4 cores.
 
 ### Python virtual environments
 
