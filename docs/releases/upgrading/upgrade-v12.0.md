@@ -1,4 +1,4 @@
-# Upgrading from v11 to v12
+# Upgrading from v11 to v12.0
 
 ## Prerequisites
 
@@ -11,31 +11,28 @@ The steps listed in this article require an existing local installation of Inven
 !!! info "Older Versions"
 
     In case you have an InvenioRDM installation older than v11, you can gradually upgrade
-    using the existing infrastructure to v11 and afterwards continue from here.
+    to v11 and afterwards continue from here.
 
 ## Upgrade Steps
 
-!!! warning "Upgrade your invenio-cli"
+Make sure you have the latest `invenio-cli` installed. For InvenioRDM v12 it
+is at least v1.3.1
 
-    Make sure you have the latest `invenio-cli` installed. For InvenioRDM v12 it
-    is at least v1.3.1
-
-    ```bash
-    $ invenio-cli --version
-    invenio-cli, version 1.3.1
-    ```
+```bash
+$ invenio-cli --version
+invenio-cli, version 1.3.1
+```
 
 !!! info "Virtual environments"
 
     In case you are not inside a virtual environment, make sure that you prefix each `invenio`
     command with `pipenv run`.
 
-
 **Local development**
 
 Changing the Python version in your development environment highly
-depends on your setup, and there is no golden rule.
-One example would be to use [PyEnv](https://github.com/pyenv/pyenv).
+depends on your setup, so we won't cover it here.
+One way would be to use [PyEnv](https://github.com/pyenv/pyenv).
 
 !!! warning "Risk of losing data"
 
@@ -50,7 +47,7 @@ running `invenio-cli` or `pipenv` commands below.
 
 ### Upgrade InvenioRDM
 
-Python 3.9 or Python 3.12 are required to run InvenioRDM v12.
+Python 3.9 or 3.11 or 3.12 is required to run InvenioRDM v12.
 
 There are two options to upgrade your system:
 
@@ -72,9 +69,9 @@ invenio-cli assets build
 
 #### Upgrade option 2: New virtual environment
 
-This approach will create a new virtual environment and leaves the v11 as it is.
+This approach will create a new virtual environment and leaves the v11 one as-is.
 If you are using a docker image on your production instance this will be the
-option you chose.
+option you choose.
 
 ##### Step 1
 - create a new virtual environment
@@ -90,7 +87,7 @@ Update the file `<my-site>/Pipfile`.
 +++invenio-app-rdm = {extras = [...], version = "~=12.0.0"}
 ```
 
-Due to a dependency upgrade, update the following line.
+Due to changes in Pipenv 2024.0.0, update the following line:
 ```diff
 ---my-site = {editable="True", path="./site"}
 +++my-site = {editable=true, path="./site"}
@@ -192,8 +189,6 @@ THEME_SITENAME = "Project name for header and UI"
   [here](https://github.com/inveniosoftware/invenio-rdm-records/blob/master/invenio_rdm_records/fixtures/data/vocabularies/licenses.csv).
   You can now add and update licenses with `pipenv run invenio rdm-records
   add-to-fixture licenses`
-
-
 
 ## OPEN PROBLEMS
 
