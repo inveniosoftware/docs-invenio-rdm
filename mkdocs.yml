@@ -101,6 +101,7 @@ nav:
       - Metadata-only records: "customize/metadata_only.md"
       - Logging: "customize/Logging.md"
       - Internationalisation (i18n) and Localisation (l10n): "customize/i18n-and-l10n.md"
+      - Notifications: "customize/notifications.md"
   - Develop:
       - Overview: "develop/index.md"
       - Getting started:
@@ -211,7 +212,6 @@ nav:
           - Version v2.0.0: releases/versions/version-v2.0.0.md
           - Version v1.0.0: releases/versions/version-v1.0.0.md
       - Upgrade guide:
-          - Upgrade from v11 to v12: releases/upgrading/upgrade-v12.0.md
           - Upgrade policy: releases/upgrading/index.md
           - Upgrade from v11 to v12: releases/upgrading/upgrade-v12.0.md
           - Upgrade from v10 to v11: releases/upgrading/upgrade-v11.0.md

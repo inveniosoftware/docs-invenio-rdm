@@ -35,3 +35,4 @@ In the following sections, we cover customization opportunities that InvenioRDM 
     - [Subjects](vocabularies/subjects.md)
     - [Users](vocabularies/users.md)
 - [Internationalisation (i18n) and Localisation (l10n)](i18n-and-l10n.md)
+- [Notifications](notifications.md) - customize content, recipients and backends of notifications
