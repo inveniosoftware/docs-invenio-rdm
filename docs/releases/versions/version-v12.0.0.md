@@ -136,6 +136,7 @@ Here is a quick summary of the myriad other improvements in this release:
 - Backend IIIF tile generation can be set
 - Great improvements in bulk serialization performance
 - The communities REST endpoint accepts both UUID and slug in the URL
+- Many new configuration variables (e.g., `COMMUNITIES_SEARCH_SORT_BY_VERIFIED`) to tune your instance
 - ...and many more bug fixes!
 
 ## Breaking changes
