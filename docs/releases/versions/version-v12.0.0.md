@@ -156,6 +156,8 @@ Here is a quick summary of the myriad other improvements in this release:
 ## Limitations and known issues
 
 - Translations for v12 will be coming in v12.1 targeted for release in two months time from the release of v12.0
+- Sharing a secret link to a restricted record in a restricted community does not provide access to the record yet.
+  Work on this is [tracked here](https://github.com/inveniosoftware/invenio-app-rdm/issues/2706).
 
 ## Requirements
 
@@ -170,7 +172,7 @@ Notably, older versions of Elasticsearch/Opensearch, PostgreSQL, and Node.js hav
 
 ## Upgrading to v12.0
 
-We support upgrading from v11 to v12. See the [upgrade notice](../upgrading/upgrade-v12.0.md) for how.
+We support upgrading from v11 to v12. See the [upgrade guide](../upgrading/upgrade-v12.0.md) for how.
 
 ## Questions?
 
