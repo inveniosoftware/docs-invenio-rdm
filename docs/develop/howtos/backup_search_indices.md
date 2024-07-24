@@ -124,3 +124,61 @@ Tue, 04 Apr 2023 17:01:40 GMT | dump complete
 ```
 
 Now, the index is fully restored including the mappings as well as the data!
+
+
+### Example scripts
+
+Backing up each index manually can quickly become tedious.
+Luckily there is an API endpoint for listing the available indices in both [ES](https://www.elastic.co/guide/en/elasticsearch/reference/current/cat-indices.html) and [OS](https://opensearch.org/docs/latest/api-reference/cat/cat-indices/).
+The following basic `bash` script uses this endpoint to find all `stats` indices and backs them up:
+
+```bash
+# adapt variables according to your instance setup
+SEARCH_BASE_URL="http://localhost:9200"
+SEARCH_INDEX_PREFIX="${INVENIO_SEARCH_INDEX_PREFIX:-}"
+
+# query the search engine for all stats indices
+# and back them up as files in the current directory
+while read -r index; do
+    mapping_fn="${index}.mappings.json"
+    data_fn="${index}.data.json"
+
+    elasticdump --input "${SEARCH_BASE_URL}/${index}" \
+                --output "./${mapping_fn}" \
+                --type mapping
+
+    elasticdump --input "${SEARCH_BASE_URL}/${index}" \
+                --output "./${data_fn}" \
+                --type data
+
+done < <(curl -s "${SEARCH_BASE_URL}/_cat/indices/${SEARCH_INDEX_PREFIX}stats*?h=index")
+```
+
+!!! info "Back up your statistics indices regularly!"
+    As mentioned at the start of the page, some search indices cannot be recreated from the database alone anymore beginning with v12.
+    For example, the record statistics are only stored in the `stats` indices - if they get lost, all statistics will be reset!
+    Thus, we recommend you to back up your statistics indices regularly to prevent data loss.
+
+
+The indices can be restored from the previously created files with some more `bash` magic:
+
+```bash
+# adapt variables according to your instance setup
+SEARCH_BASE_URL="http://localhost:9200"
+
+# first, restore the mappings
+for mapping_fn in ./*.mappings.json; do
+    index="$(basename "${mapping_fn%.mappings.json}")"
+    elasticdump --output "${SEARCH_BASE_URL}/${index}" \
+                --input "${mapping_fn}" \
+                --type mapping
+done
+
+# then, restore the data
+for data_fn in ./*.data.json; do
+    index="$(basename "${data_fn%.data.json}")"
+    elasticdump --output "${SEARCH_BASE_URL}/${index}" \
+                --input "${data_fn}" \
+                --type data
+done
+```
