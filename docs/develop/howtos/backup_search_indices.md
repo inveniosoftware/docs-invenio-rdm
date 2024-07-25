@@ -38,7 +38,7 @@ for Elasticsearch), but this should give you an idea where to start.
 For the sake of brevity, this guide only deals with `elasticdump` as it is a very simple
 tool to use and works with both Elasticsearch and OpenSearch.
 
-!!! info "Make sure to back up all indices"
+!!! info "Make sure to back up all relevant indices"
     Please note that the given example only deals with backing up and restoring one single index.
     In your instance, you should make sure to back up *all* relevant indices regularly!
 
