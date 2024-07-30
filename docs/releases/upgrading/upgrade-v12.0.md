@@ -157,6 +157,18 @@ invenio access allow administration-access role administration
 invenio access allow superuser-access role administration
 ```
 
+### Optional Step
+
+In order to use the domain feature on `/administration`, it is necessary to
+carry out the following steps:
+
+```bash
+invenio domains create organization
+invenio domains create company
+invenio domains create mailprovider
+invenio domains create spammer
+```
+
 ### New configuration variables
 
 ```bash
