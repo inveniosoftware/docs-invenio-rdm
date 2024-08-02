@@ -112,7 +112,7 @@ With the addition of [`invenio-banners`](https://github.com/inveniosoftware/inve
 Another notable addition is the integration of [`invenio-pages`](https://github.com/inveniosoftware/invenio-pages) with the administration panel. It exposes a convenient UI to create and manage static pages. With invenio-pages, you can easily create custom pages for your application, such as "About Us", "Contact Us", or "Terms of Service" pages.
 They are also version-controlled, so page changes can be tracked and rolled back to previous versions if needed - this feature is only available to developers.
 
-Static pages support custom CSS and Javascript. `PAGES_ALLOWED_EXTRA_HTML_ATTRS` and `PAGES_ALLOWED_EXTRA_HTML_TAGS` have been introdduced to allow specific HTML attributes and tags in static pages in order to provide a workable security / usability trade-off.
+Static pages support custom CSS and Javascript. `PAGES_ALLOWED_EXTRA_HTML_ATTRS` and `PAGES_ALLOWED_EXTRA_HTML_TAGS` have been introduced to allow specific HTML attributes and tags in static pages in order to provide a workable security / usability trade-off.
 
 ### Miscellaneous additions
 
@@ -131,7 +131,7 @@ Here is a quick summary of the myriad other improvements in this release:
 - Addition of a proper handler for API permission errors that returns 403 when permission is denied
 - Datastreams can sync funders and affiliations. ROR and OpenAIRE are supported.
 - Fix for long affiliations' autocomplete crashing search
-- Replacement of ckeditor with tinymce
+- Replacement of CKEditor with TinyMCE
 - Transition modules from using Flask's deprecated `before_first_request` to using InvenioRDM's `finalize_app` entrypoint
 - Backend IIIF tile generation can be set
 - Great improvements in bulk serialization performance
@@ -176,13 +176,13 @@ We support upgrading from v11 to v12. See the [upgrade guide](../upgrading/upgra
 
 ## Questions?
 
-If you have questions related to these release notes, don't hesitate to jump on [discord](https://discord.gg/8qatqBC) and ask us!
+If you have questions related to these release notes, don't hesitate to jump on [Discord](https://discord.gg/8qatqBC) and ask us!
 
 ## Credit
 
 The development work of this impressive release wouldn't have been possible without the help of these great people:
 
-- CERN: Alex, Anna, Antonio, Javier, Jenny, Karolina, Lars, Manuel, Nicola, Pablo G., Pablo P., Zacharias
+- CERN: Alex, Anna, Antonio, Carlin, Fatimah, Javier, Jenny, Karolina, Lars, Manuel, Nicola, Pablo G., Pablo P., Pablo T., Yash, Zacharias
 - Northwestern University: Guillaume
 - TU Graz: Christoph, David, Mojib
 - TU Wien: Max
