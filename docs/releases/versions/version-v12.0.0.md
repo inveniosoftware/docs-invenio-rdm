@@ -145,7 +145,6 @@ Here is a quick summary of the myriad other improvements in this release:
 - The [react-invenio-deposit module](https://github.com/inveniosoftware/react-invenio-deposit) has been moved to [invenio-rdm-records](https://github.com/inveniosoftware/invenio-rdm-records)
     - Any imports should be replaced: `import { ... } from "react-invenio-deposit"` -> `import { ... } from "@js/invenio-rdm-records"`
 - Some `Overridable` React component ids may have changed. Verify that your overridden components load
-- `RoleNeed` uses the role's `id` instead of the role's `name`
 - The `/access/users` API URL has been renamed to `/access/grants` to manage access grants
 - Persistent identifiers have a new required `is_enabled` parameter, which enables better customization
 - `MarshmallowJSONSerializer`, `XMLSerializer`, `SerializerMixin` have been removed from flask-resources
