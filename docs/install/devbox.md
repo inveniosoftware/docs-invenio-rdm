@@ -6,18 +6,18 @@ It provides a standardized way of installation that can be shared with other dev
 
 More information on Devbox and InvenioRDM can be found in [this presentation](https://zenodo.org/records/12554567) from the Open Repositories 2024 conference.
 
-Devbox uses the Nix package manager to provide the user with encapsulated shell sessions that handle their own system package dependencies (so ypu can have for example a python and a node version living only in a devbox environment, not polluting you system outside of it).
+Devbox uses the Nix package manager to provide the user with encapsulated shell sessions that handle their own system package dependencies (so you can have for example a Python and a node version living only in a devbox environment, not polluting your system outside of it).
 
 !!! info "Information"
 
-    The main difference between this method and the manual install is that you let nix manage the dependencies for you - no need to use pyenv or nvm to manage python versions for example. The provided installation script is just a small extra to make the installation even easier but it is not obligatory to use.
+    The main difference between this method and the manual installation method is that you let `nix` manage the dependencies for you - no need to use `pyenv` or `nvm` to manage Python or Node versions for example. The provided installation script is just a small extra to make the installation even easier but it is not obligatory to use.
 
 ## Preparation
 
 - On your machine you will need to install **Docker** and **Devbox** (as well as `git`):
     - Please read the [system requirements for Docker](https://inveniordm.docs.cern.ch/install/requirements/#docker) of InvenioRDM!
     - You can find the current Devbox installation guide [here](https://www.jetify.com/devbox/docs/installing_devbox/).
-- Clone the [invenio-devbox repository](https://github.com/ulbmuenster/invenio-devbox) to your lcoal machine. It contains a pre-configured installation script that can later be adapted to match your instance's needs. This includes installation of the Invenio CLI tool and scaffolding of the project.
+- Clone the [invenio-devbox repository](https://github.com/ulbmuenster/invenio-devbox) to your lcoal machine. It contains a pre-configured installation script that can later be adapted to match your instance's needs. This includes the installation of the Invenio CLI tool and the scaffolding of the project.
 
 ## Devbox installation
 
@@ -30,7 +30,7 @@ Devbox uses the Nix package manager to provide the user with encapsulated shell 
     ```
     devbox shell
     ```
-- Install a fresh InvenioRDM instance with the [provided installation script](https://github.com/ulbmuenster/invenio-devbox/blob/main/devbox_scripts/install-empty.sh) that is using `invenio-cli` to set up the instance:
+- Install a fresh InvenioRDM instance with the [provided installation script](https://github.com/ulbmuenster/invenio-devbox/blob/main/devbox_scripts/install-empty.sh) which is using `invenio-cli` to set up the instance:
     ```
     devbox run install-empty
     ```
