@@ -151,6 +151,7 @@ Here is a quick summary of the myriad other improvements in this release:
 - Although not immediately breaking, the [`subject_nested` facet](https://github.com/inveniosoftware/invenio-rdm-records/blob/master/invenio_rdm_records/services/facets.py#L87) is deprecated in favor of [`subject_combined`](https://github.com/inveniosoftware/invenio-rdm-records/blob/master/invenio_rdm_records/services/facets.py#L103) to provide proper nested subject aggregation
 - The Python module `flask_babelex` has been replaced by `invenio_i18n`
     - Any imports should be replaced: `from flask_babelex import lazy_gettext as _` -> `from invenio_i18n import lazy_gettext as _`
+- The cardinality of the Drafts and Records Metadata/REST API field `parent.access.owned_by` changed from `(1-n)` (an array of objects) to `(1)` (a single object).
 
 ## Limitations and known issues
 
