@@ -151,11 +151,9 @@ Content-Type: application/json
   "parent": {
     "id": "{parent-id}",
     "access": {
-      "owned_by": [
-        {
-          "user": {user-id}
-        }
-      ],
+      "owned_by": {
+        "user": {user-id}
+      },
       "links": []
     }
   },
@@ -259,11 +257,9 @@ Content-Type: application/json
   "parent": {
     "id": "{parent-id}",
     "access": {
-      "owned_by": [
-        {
-            "user": {user-id}
-        }
-      ],
+      "owned_by": {
+        "user": {user-id}
+      },
       "links": []
     }
   },
@@ -410,11 +406,9 @@ Content-Type: application/json
   "parent": {
     "id": "{parent-id}",
     "access": {
-      "owned_by": [
-        {
-            "user": {user-id}
-        }
-      ],
+      "owned_by": {
+        "user": {user-id}
+      },
       "links": []
     }
   },
@@ -513,11 +507,9 @@ Content-Type: application/json
   "parent": {
     "id": "{parent-id}",
     "access": {
-      "owned_by": [
-        {
-            "user": {user-id}
-        }
-      ],
+      "owned_by": {
+        "user": {user-id}
+      },
       "links": []
     }
   },
@@ -618,11 +610,9 @@ Content-Type: application/json
   "parent": {
     "id": "{parent-id}",
     "access": {
-      "owned_by": [
-        {
-            "user": {user-id}
-        }
-      ],
+      "owned_by": {
+        "user": {user-id}
+      },
       "links": []
     }
   },
@@ -1081,11 +1071,9 @@ Content-Type: application/json
   "parent": {
     "id": "{parent-id}",
     "access": {
-      "owned_by": [
-        {
-            "user": {user-id}
-        }
-      ],
+      "owned_by": {
+        "user": {user-id}
+      },
       "links": []
     }
   },
@@ -1361,11 +1349,9 @@ Content-Type: application/json
   "parent": {
     "id": "{parent-id}",
     "access": {
-      "owned_by": [
-        {
-            "user": {user-id}
-        }
-      ],
+      "owned_by": {
+        "user": {user-id}
+      },
       "links": []
     }
   },
@@ -1559,11 +1545,9 @@ Content-Type: application/json
   "parent": {
     "id": "{parent-id}",
     "access": {
-      "owned_by": [
-        {
-            "user": {user-id}
-        }
-      ],
+      "owned_by": {
+        "user": {user-id}
+      },
       "links": []
     }
   },

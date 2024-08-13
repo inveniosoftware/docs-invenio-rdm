@@ -163,7 +163,7 @@ The ``access`` is described with the following subfields:
 
 |    Field     | Cardinality | Description         |
 |:------------:|:-----------:|:--------------------|
-| ``owned_by`` |    (1-n)    | An array of owners. |
+| ``owned_by`` |    (1)    | A single owner. (*WARNING: This was changed in v12. It used to be an array.*)|
 
 Owners are defined as:
 
@@ -179,11 +179,9 @@ Example:
   "parent": {
     "id": "fghij-12345",
     "access": {
-      "owned_by": [
-        {
-          "user": 2
-        }
-      ],
+      "owned_by": {
+        "user": 2
+      }
     }
   },
 }
