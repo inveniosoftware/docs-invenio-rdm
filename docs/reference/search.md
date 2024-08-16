@@ -2,31 +2,31 @@
 
 ### InvenioRDM Suggest API
 
-The suggest API endpoint (`/api/{resource}/?suggest={search_input}`) provides an interface for real-time search suggestions. It leverages OpenSearch's `multi_match` query to search across multiple fields within a specified index, returning relevant suggestions based on user input.
+The suggest API endpoint (`/api/{resource}?suggest={search_input}`) provides an interface for real-time search suggestions. It leverages OpenSearch's `multi_match` query to search across multiple fields within a specified index, returning relevant suggestions based on user input.
 
-### Endpoint Structure
+#### Endpoint Structure
 
-**URL:** `/api/{index-name}?suggest={search_input}`
+**URL:** `/api/{resource}?suggest={search_input}`
 **Method:** GET
 
 Each index in InvenioRDM can have its own configuration to customize how the suggest API behaves. This includes defining which fields are searchable and other settings provided by the `multi_match` query API.
 
 ## How to use suggest API?
 
-InvenioRDM's Suggest API is designed to provide search suggestions by using a `multi_match` query. It can be configured for all the indices using the `SuggestQueryParser` class in `invenio-records-resources` and supports the use of specialized field types like `search_as_you_type` or `completion`. These types are optimized for real-time suggestions and provide additional features like prefix matching and auto-completion.
+InvenioRDM's Suggest API is designed to provide search suggestions by using a `multi_match` query. It can be configured for all the indices using the `SuggestQueryParser` class that can be imported from `invenio-records-resources` module. The fields are analyzed using custom analyzers at index time which apply filters like `asciifolding` for accent search and `edge_ngram` to generate tokens of all lengths according to the filter settings to power `prefix matching` search capabilities in the dropdown UI fields.
 
-Check the [official documentation](https://opensearch.org/docs/latest/field-types/supported-field-types/autocomplete/) for more context on the autocomplete fields.
+Check the [official documentation](https://opensearch.org/docs/2.0/opensearch/ux/) and [Reference](#reference) for more context on the `edge_ngram` filter and custom analyzers.
 
 ### When to Use the Suggest API
 
-- **Typo Tolerance & Auto-completion:** Helps correct typos and completes partial inputs.
+- **Typo Tolerance & Auto-completion:** Helps correct typos (using `fuzziness` at search time analyzing) and completes partial inputs.
 - **Large, Diverse Datasets:** Useful for datasets with a wide variety of terms, like names or titles.
 - **Pre-query Optimization:** Reduces unnecessary searches by suggesting relevant terms.
 
 ### When Not to Use the Suggest API
 
 - **Small or Specific Datasets:** Less beneficial for well-defined datasets.
-- **Performance Constraints:** Because the suggest API creates extra subfields like `._2gram`, `._3gram` and `._index_prefix`, it is important to observe how it affects the index size.
+- **Performance Constraints:** Because the suggest API creates large amounts of token using the `edge_ngram` filter, it is important to observe how it affects the index size.
   - A reasonable trade-off might involve an index size increase of up to 20-30% if it significantly improves search speed and relevance.
   - A 10-20% improvement in response times might justify a moderate increase in index size.
 
@@ -41,7 +41,7 @@ For more information check the [official documentation](https://www.elastic.co/g
 
 ### Speed
 
-- Search Performance: Implement search_as_you_type or completion fields for quick suggestions, and optimize for frequently queried fields to enhance search speed.
+- Search Performance: Kepeping size in mind, apply custom analyzers that include `edge_ngram` filter for providing quick suggestions, and optimize for frequently queried fields to enhance search speed.
 - Analyzer and filter selection: Configure only when necessary to improve search time.
 
 ## Fine tuning the search
@@ -93,6 +93,8 @@ For our indices in InvenioRDM, we are currently using a custom pattern replace f
 ```
 
 ### Tokenizers and token filters
+
+We are using the following tokenizers and token filters in some of our indices in InvenioRDM:
 
 - **[ngram and edge_ngram](https://opensearch.org/docs/latest/analyzers/tokenizers/index/#partial-word-tokenizers)** — Both of these are used for matching parts of words, n-gram creates n sized chunks ("car" ngram(1,2) -> "c", "ca", "a", "ar") and edge_ngram creates chunks from the beginning of the word ("dog" edge_ngram(1,3) -> "d", "do", "dog"). Edge N-gram enables prefix searching and is preferred as it produces less tokens. Additionally it is recommended that these are used as token filters so that they produce tokens on each word rather than between words.
 - **[uax_url_email](https://opensearch.org/docs/latest/analyzers/tokenizers/index/#word-tokenizers)** — If it is likely that searches and/or documents will contain URLs or emails, it is better to use this tokenizer. If a standard tokenizer is used the URL/email will be split on the special characters which results in behaviour which may be unexpected (searching tim@apple.com will return documents with apple in them for example)
