@@ -1,4 +1,5 @@
 # Searching in InvenioRDM
+_Introduced in InvenioRDM v13_
 
 ### InvenioRDM Suggest API
 
