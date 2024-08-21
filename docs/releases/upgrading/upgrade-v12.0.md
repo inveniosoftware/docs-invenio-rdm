@@ -15,12 +15,12 @@ The steps listed in this article require an existing local installation of Inven
 
 ## Upgrade Steps
 
-Make sure you have the latest `invenio-cli` installed. For InvenioRDM v12 it
-is at least v1.3.1
+Make sure you have the latest `invenio-cli` installed. For InvenioRDM v12, it
+should be v1.5.0+
 
 ```bash
 $ invenio-cli --version
-invenio-cli, version 1.3.1
+invenio-cli, version 1.5.0
 ```
 
 !!! info "Virtual environments"
@@ -36,12 +36,12 @@ One way would be to use [PyEnv](https://github.com/pyenv/pyenv).
 
 !!! warning "Risk of losing data"
 
-    Your virtual env folder may contain uploaded files. If you kept the default
-    location it is in in `var/instance/data`. If you need to keep those files,
-    make sure you copy them over to the new virtual env in the same location.
+    Your virtual environment folder a.k.a., `venv` folder, may contain uploaded files. If you kept the default
+    location, it is in `<venv folder>/var/instance/data`. If you need to keep those files,
+    make sure you copy them over to the new `venv` folder in the same location.
     The command `invenio files location list` shows the file upload location.
 
-If you upgraded your python version, you should recreate your virtualenv before
+If you upgraded your python version, you should recreate your virtual environment before
 running `invenio-cli` or `pipenv` commands below.
 
 
