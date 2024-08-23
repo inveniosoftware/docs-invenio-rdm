@@ -10,14 +10,14 @@ similar to the normal installation guide. The primary difference is that you sho
 use another instance template (by adding ``-c master`` to the scaffolding
 command):
 
-```
+```bash
 cd ~/src
 invenio-cli init rdm -c master
 ```
 
 Then install the instance as usual:
 
-```
+```bash
 cd my-site
 invenio-cli install
 invenio-cli services setup
@@ -48,7 +48,7 @@ a development install of an InvenioRDM instance see below:
 Once you have a source code checkout, you can install the module in the
 development instance:
 
-```
+```bash
 cd ~/src/my-site
 invenio-cli packages install ~/src/invenio-app-rdm
 invenio-cli run
@@ -71,14 +71,14 @@ invenio-cli run
 
 #### Install a forked package in an instance
 
-In some cases you might want to include a forked package in your InvenioRDM 
-instance permanently. For example, you might have a local identifier scheme that 
-you want [idutils](https://github.com/inveniosoftware/idutils) 
+In some cases you might want to include a forked package in your InvenioRDM
+instance permanently. For example, you might have a local identifier scheme that
+you want [idutils](https://github.com/inveniosoftware/idutils)
 to verify. It wouldn't be appropriate to make a pull request, since this
 change is only relevant to your organization. You can make your fork available on GitHub
 and add the following to your Pipfile:
 
-```
+```toml
 [packages]
 idutils = {git = "https://github.com/your-username/idutils.git", ref = "main"}
 ```
@@ -99,7 +99,7 @@ By default, assets are not rebuilt when you edit the files, however you can
 watch the files for changes and automatically rebuild the assets using the
 following watch command.
 
-```
+```bash
 cd ~/src/my-site
 invenio-cli assets watch
 ```
@@ -119,25 +119,33 @@ invenio-cli assets watch
 ### Integrating React development modules
 
 InvenioRDM depends on a number of React modules published on NPM, namely
-React-SearchKit, React-Invenio-Deposit and React-Invenio-Forms. If you need
+React-SearchKit and React-Invenio-Forms. If you need
 to develop on these modules, there's a couple of extra steps.
 
-- First, install the React module:
+- First, install the React module e.g., react-invenio-forms:
 
-```
-invenio-cli assets install ~/src/react-invenio-deposit
+```bash
+invenio-cli assets install ~/src/react-invenio-forms
 ```
 
 - Next, watch the modules for changes:
 
-```
-invenio-cli assets watch-module --link ~/src/react-invenio-deposit
+```bash
+invenio-cli assets watch-module --link ~/src/react-invenio-forms
 ```
 
 - Last, in another terminal start the instance's assets watch (thus running
 two watch commands):
 
+```bash
+invenio-cli assets watch
 ```
+
+Starting with [InvenioRDM v12](https://inveniordm.docs.cern.ch/releases/versions/version-v12.0.0/#breaking-changes), the `React-Invenio-Deposit` module has been integrated into the `invenio-rdm-records` package.
+To develop on this module, you can now install it as a local package, no need to link it as a separate module:
+
+```bash
+invenio-cli packages install ~/src/invenio-rdm-records
 invenio-cli assets watch
 ```
 
