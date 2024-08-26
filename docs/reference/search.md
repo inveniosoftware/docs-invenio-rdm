@@ -14,9 +14,9 @@ Each index in InvenioRDM can have its own configuration to customize how the sug
 
 ## How to use suggest API?
 
-InvenioRDM's Suggest API is designed to provide search suggestions by using a `multi_match` query. It can be configured for all the indices using the `SuggestQueryParser` class that can be imported from `invenio-records-resources` module. The fields are analyzed using custom analyzers at index time which apply filters like `asciifolding` for accent search and `edge_ngram` to generate tokens of all lengths according to the filter settings to power `prefix matching` search capabilities in the dropdown UI fields.
+InvenioRDM's Suggest API is designed to provide search suggestions by using a `multi_match` query. It can be configured for all the indices using the `SuggestQueryParser` class that can be imported from `invenio-records-resources` module. The fields are analyzed using custom analyzers at index time which apply filters like `asciifolding` for accent search and `edge_ngram` for prefix search.
 
-Check the [official documentation](https://opensearch.org/docs/2.0/opensearch/ux/) and [Reference](#reference) for more context on the `edge_ngram` filter and custom analyzers.
+Check the [official documentation](https://opensearch.org/docs/2.0/opensearch/ux/) and the [reference](#reference) section below for more context on the `edge_ngram` filter and custom analyzers.
 
 ### When to Use the Suggest API
 
@@ -27,7 +27,7 @@ Check the [official documentation](https://opensearch.org/docs/2.0/opensearch/ux
 ### When Not to Use the Suggest API
 
 - **Small or Specific Datasets:** Less beneficial for well-defined datasets.
-- **Performance Constraints:** Because the suggest API creates large amounts of token using the `edge_ngram` filter, it is important to observe how it affects the index size.
+- **Performance Constraints:** Because the suggest API creates large amounts of tokens using the `edge_ngram` filter, it is important to observe how it affects the index size.
   - A reasonable trade-off might involve an index size increase of up to 20-30% if it significantly improves search speed and relevance.
   - A 10-20% improvement in response times might justify a moderate increase in index size.
 
@@ -42,16 +42,16 @@ For more information check the [official documentation](https://www.elastic.co/g
 
 ### Speed
 
-- Search Performance: Kepeping size in mind, apply custom analyzers that include `edge_ngram` filter for providing quick suggestions, and optimize for frequently queried fields to enhance search speed.
+- Search Performance: Keeping size in mind, apply custom analyzers that include `edge_ngram` filter to provide quick suggestions, and optimize for frequently queried fields to enhance search speed.
 - Analyzer and filter selection: Configure only when necessary to improve search time.
 
 ## Fine tuning the search
 
-- **Relevance Adjustment:** Boosting affects the relevance score of documents. A higher boost value means a stronger influence on the search ranking. Determine which fields are most critical for your search relevance (e.g., titles, authors, keywords).
+Boosting affects the relevance score of documents. A higher boost value means a stronger influence on the search ranking. Determine which fields are most critical for your search relevance (e.g., titles, authors, keywords).
 
-Boosting of field(s) can be done by using the caret operator **(^)** followed by a number.
-Examples: `name^100` will boost the name field by a factor of 100.
-Asterisk **(\*)** can be used to apply boosting to all the subfields. `i18n_titles.*^50`
+- **Relevance Adjustment:** Boosting of field(s) can be done by using the caret operator **(^)** followed by a number. For example:
+    * `name^100` will boost the name field by a factor of 100.
+    * Asterisk **(\*)** can be used to apply boosting to all the subfields. `i18n_titles.*^50`
 
 - **Balance and Tuning:** Use boosting judiciously to avoid skewing results too heavily towards particular fields. Assign boost factors based on the importance of each field. Higher values increase the influence of matches in that field.
 
