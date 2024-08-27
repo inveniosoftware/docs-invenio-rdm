@@ -16,9 +16,13 @@ to complete
 
 ### Jobs and ORCID/ROR
 
-Explain about jobs and ORCID/ROR jobs
+Explain about jobs and ORCID/ROR jobs.
+
+Related [new doc page](../../customize/vocabularies/names.md#using-orcid-public-data-sync).
 
 ### Search improvements
+
+Related [new doc page](../../reference/search.md).
 
 Easier to find records with accents or other non-standard characters, also searching by DOIs [PR](https://github.com/inveniosoftware/invenio-rdm-records/pull/1774)
 Users can be found with partial matches [PR](https://github.com/inveniosoftware/invenio-users-resources/pull/127)
