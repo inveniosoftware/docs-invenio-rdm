@@ -196,6 +196,7 @@ nav:
       - Maintenance policy: releases/maintenance-policy.md
       - Security policy: releases/security-policy.md
       - Versions:
+          - Version v13.0.0: releases/versions/version-v13.0.0.md
           - Version v12.0.0: releases/versions/version-v12.0.0.md
           - Version v11.0.0: releases/versions/version-v11.0.0.md
           - Version v10.1.0: releases/versions/version-v10.1.0.md
@@ -213,6 +214,7 @@ nav:
           - Version v1.0.0: releases/versions/version-v1.0.0.md
       - Upgrade guide:
           - Upgrade policy: releases/upgrading/index.md
+          - Upgrade from v12 to v13: releases/upgrading/upgrade-v13.0.md
           - Upgrade from v11 to v12: releases/upgrading/upgrade-v12.0.md
           - Upgrade from v10 to v11: releases/upgrading/upgrade-v11.0.md
           - Upgrade from v9 to v10: releases/upgrading/upgrade-v10.0.md
