@@ -1,4 +1,4 @@
-# InvenioRDM v12.0
+# InvenioRDM v13.0
 
 _Draft_
 
