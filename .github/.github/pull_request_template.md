@@ -13,7 +13,7 @@ Ticks in all boxes and 🟢 on all GitHub actions status checks are required to 
 - [ ] I'm aware of the [code of conduct](https://inveniordm.docs.cern.ch/contribute/code-of-conduct/).
 - [ ] I've created [logical separate commits](https://inveniordm.docs.cern.ch/develop/best-practices/commits/#commits) and followed the [commit message format](https://inveniordm.docs.cern.ch/develop/best-practices/commits/#commit-message).
 - [ ] I've targeted the `master` branch.
-- [ ] If this documentation upgrade impacts the current release, I will backport it to the `production` branch following approval.
+- [ ] If this documentation change impacts the current release of InvenioRDM, I will backport it to the `production` branch following approval or indicate to a maintainer that it should be backported.
 
 **Reminder**
 
