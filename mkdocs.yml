@@ -57,6 +57,7 @@ nav:
           - Access requests: "features/features-walk-through/access_requests.md"
   - Install:
       - Quick start: "install/index.md"
+      - Devbox: "install/devbox.md"
       - System requirements: "install/requirements.md"
       - Install CLI: "install/cli.md"
       - Scaffold: "install/scaffold.md"
