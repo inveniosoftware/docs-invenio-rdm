@@ -10,7 +10,7 @@ The base Docker images for InvenioRDM v9.x and v10.x were hosted on Docker Hub, 
 
 Depending on what will happen, building the Docker images on InvenioRDM v9/v10 with the commands `invenio-cli containers ` might fail.
 
-With InvenioRDM v11, released on January 26, 2023, we have migrated the Docker images to the CERN registry, see [here the release notes](../versions/version-v11.0.0.md#deployment). This was done for a couple of reasons:
+With InvenioRDM v11, released on January 26, 2023, we have migrated the Docker images to the CERN registry, see [here the release notes](v11/version-v11.0.0.md#deployment). This was done for a couple of reasons:
 
 1. Avoid [Docker Hub rate limits](https://www.docker.com/increase-rate-limits/).
 2. Take advantage of the automatic security scan provided by the CERN registry.
@@ -75,7 +75,7 @@ There are two possible ways to migrate:
     + FROM registry.cern.ch/inveniosoftware/almalinux:1
     ```
 
-    In this last case of AlmaLinux, make sure that you are running Python 3.9, which is the Python version that comes with the `almalinux` image. You should follow the [v11 Python version change](./upgrade-v11.0.md#python-version-change) instructions to make sure that you are taking the necessary steps.
+    In this last case of AlmaLinux, make sure that you are running Python 3.9, which is the Python version that comes with the `almalinux` image. You should follow the [v11 Python version change](v11/upgrade-v11.0.md#python-version-change) instructions to make sure that you are taking the necessary steps.
 
 !!! warning "Test!"
     The change of the base Docker image can lead to unexpected issues. We recommend testing your instance extensively in a test environment, before deployment to production.

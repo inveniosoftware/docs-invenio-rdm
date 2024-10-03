@@ -20,7 +20,7 @@ In addition to the many bugs fixed, many features were added.
 
 InvenioRDM now supports auto-completion of creators and contributors in the upload form.
 
-![Demo of creators/contributors auto-completion.](v8.0/creator-auto-completion.gif)
+![Demo of creators/contributors auto-completion.](imgs/creator-auto-completion.gif)
 
 The search box is powered by a new names vocabulary, exposed under the ``/api/names`` endpoint.
 
@@ -32,7 +32,7 @@ More about the names vocabulary [here](../../customize/vocabularies/names.md).
 
 The record landing page was redesigned to improve the overall readability and web accessibility of records.
 
-![Record landing page](v8.0/landing-page.png)
+![Record landing page](imgs/landing-page.png)
 
 The changes to the landing page include:
 
@@ -52,7 +52,7 @@ We have changed the header menu from "Uploads" to "My dashboard" in preparation 
 
 This also means we have changed the URL endpoint of the uploads page from ``/uploads`` to ``/me/uploads`` so that we can later add both ``/me/communities`` and ``/me/requests``.
 
-![A view of the new dashboard.](v8.0/dashboard.png)
+![A view of the new dashboard.](imgs/dashboard.png)
 
 ### OAI-PMH server improvements
 
@@ -92,13 +92,13 @@ Accessibility was tested with Apple VoiceOver and Screen Reader Chrome Plugin on
 
 We have improved how the search facets work. It is now possible to easily clear selected facets. In addition, the facets will be automatically cleared if you change the search query.
 
-![Clearing of a search facet.](v8.0/facets-clear.png)
+![Clearing of a search facet.](imgs/facets-clear.png)
 
 **No results search tips**
 
 We have also improved the page shown when no search results could be found. It now includes a "ProTip" section and allows the user to easily clear the search.
 
-![A view of an empty search result.](v8.0/no-results.png)
+![A view of an empty search result.](imgs/no-results.png)
 
 **Deposit form arrays**
 
@@ -148,7 +148,7 @@ COMMUNITIES_ENABLED = True
 
 This will enable the communities and requests modules. You'll e.g. see the dashboard has been extended with two new tabs "Communities" and "Requests".
 
-![View of my dashboard with feature preview enabled](v8.0/requests.png)
+![View of my dashboard with feature preview enabled](imgs/requests.png)
 
 You'll also see in the header there's a new "Communities" item, as well as a "request inbox" icon.
 
@@ -157,7 +157,7 @@ You'll also see in the header there's a new "Communities" item, as well as a "re
 
 ## Upgrading to v8.0
 
-We support upgrading from v7.0 to v8.0. Please see the [upgrade notice](../upgrading/upgrade-v8.0.md).
+We support upgrading from v7.0 to v8.0. Please see the [upgrade notice](./upgrade-v8.0.md).
 
 ## Maintenance policy
 
@@ -206,4 +206,3 @@ The development and translation work in this release was done by:
 - TU Graz: Alex, Christoph, David, Hermann, Mojib
 - TU Wien: Max
 - Uni Bamberg: Christina
-
