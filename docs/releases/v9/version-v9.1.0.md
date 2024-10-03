@@ -19,7 +19,7 @@ InvenioRDM v9.1 adds many user experience improvements as well as bug fixes.
 A new drop-down in the search bar allows users to control the scope of their search - for example the entire repository or the current community.
 The options are configurable via your instance's Jinja templates.
 
-![](img/../v9.1/multioption-search.png)
+![](imgs/multioption-search.png)
 
 ### IIIF
 
@@ -27,10 +27,10 @@ Preview of images attached to a record is now powered by [IIIF](https://iiif.io/
 
   * Improves user experience by delivering images optimised for the preview window, meaning less bandwidth and faster page loads.
   * Preview of TIFF and JPEG2000 attachments is now possible. These widely used archive formats have limited browser support, which is overcome by conversion to JPEG when previewing.
-  
+
 For example, a 20MB TIFF file attached to a record is previewed as a JPEG under 250kB:
 
-![](img/../v9.1/iiif.png)
+![](imgs/iiif.png)
 
 The IIIF previewer configuration options are shown below:
 
@@ -62,19 +62,19 @@ IIIF_SIMPLE_PREVIEWER_SIZE = "!800,800"
 
 * Request searching has been redesigned providing more information on the requests in a cleaner style, mirroring the style of the records search page.
 
-![](img/../v9.1/requests.png)
+![](imgs/requests.png)
 
 
 When a comment is deleted, the user will see a specific timeline event replacing the comment message.
 
-![](img/../v9.1/comment-deletion.png)
+![](imgs/comment-deletion.png)
 
 
 ### Communities
 
 The community search view has been redesigned to improve the user experience with more detail shown when searching, helping users find the right community.
 
-![](img/../v9.1/communities.png)
+![](imgs/communities.png)
 
 ### Theme improvements
 
@@ -82,7 +82,7 @@ Version 9.1 introduces "context" coded theme elements (labels, buttons and icons
 It also is easier to replace the default InvenioRDM colors (`.negative`, `.positive`, `.warning`, `.neutral`, `.danger`) with custom color variants.
 Below is an example from the upload form with custom colours for each action button:
 
-![](img/../v9.1/color-codes.png)
+![](imgs/color-codes.png)
 
 
 #### Limitations
@@ -90,7 +90,7 @@ Below is an example from the upload form with custom colours for each action but
 While this release includes many improvements related to communities, it does not resolve all known limitations:
 
 - **E-mail notifications**: There is no notification mechanism for requests. No
-  e-mail or other notification is sent for new requests. Users will need to check for new 
+  e-mail or other notification is sent for new requests. Users will need to check for new
   requests and messages via their dashboard / community requests pages.
 
 - **Add to community after publishing**: If you publish a record without adding it to a

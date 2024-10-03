@@ -22,7 +22,7 @@ InvenioRDM v5.0 adds support for generating citation strings from the metadata.
 
 The record landing page will now prominently display a citation for the record, and you can easily copy the citation string via the copy button as well as choose between different citation styles:
 
-![](v5.0/citation.png)
+![](imgs/citation.png)
 
 **REST API**
 
@@ -40,7 +40,7 @@ van de Sandt, S., Nielsen, L. H., Ioannidis, A., Muench, A., Henneken, E., Accom
 
 The new feature is based on the [Citation Style Language (CSL)](https://citationstyles.org). From InvenioRDM, we are able to generate a CSL JSON representation, which can then be transformed to a citation string using one of more than [800+ styles](https://github.com/citation-style-language/styles) that are available.
 
-![](v5.0/csl.png)
+![](imgs/csl.png)
 
 **Default styles**
 
@@ -63,7 +63,7 @@ With more than 800+ different citation styles, chances are that one of them fits
 
 The affiliations field in the deposit form now supports auto-completion from an affiliations vocabulary which can be seeded, for instance, with the [ROR data](https://ror.org):
 
-![](v5.0/affiliations-form.png)
+![](imgs/affiliations-form.png)
 
 The development instance, by default, only loads a few affiliation records (namely the InvenioRDM partners). You can however load the full ROR dataset which is about 100,000 entries.
 
@@ -73,7 +73,7 @@ Behind the scenes, the ROR identifier for the affiliation will automatically be 
 
 All the affiliations are naturally available via a REST API:
 
-![](v5.0/affiliations-rest.png)
+![](imgs/affiliations-rest.png)
 
 The API is available on ``/api/affiliations``.
 
@@ -85,7 +85,7 @@ Importing the entirety of the ROR dataset is time consuming. We will provide an 
 
 InvenioRDM also ships with a new subjects field in the deposit form as well as a vocabulary that allows importing subjects from many different vocabularies such as Medical Subject Headings (MeSH), Library of Congress Subject Headings, Dewey Decimal Classifcation and many others.
 
-![](v5.0/subjects.png)
+![](imgs/subjects.png)
 
 By default, the subjects field will auto-complete terms from all available subject vocabularies as the user types. If a user only wants suggestions from a specific vocabulary (e.g. MeSH), they can easily change it using the drop-down.
 
@@ -119,7 +119,7 @@ The new vocabularies are all available via the REST API:
 
 Each of the vocabularies also provides a mapping to other vocabularies. For instance, resource types needs to map to both DataCite resource types as well as Dublin Core:
 
-![](v5.0/resourcetype.png)
+![](imgs/resourcetype.png)
 
 **Localization**
 
@@ -139,7 +139,7 @@ In addition to the existing export formats of v4.0 (InvenioRDM JSON and DataCite
 
 The new export formats can easily be accessed from the landing page's Export box:
 
-![](v5.0/export.png)
+![](imgs/export.png)
 
 InvenioRDM now supports the following MIME types in the REST API:
 
@@ -166,7 +166,7 @@ We have added support for the automatic lifting of an embargo period. Once an em
 
 We have changed the DOI string to no longer include any textual information (previously it contained the term ``datacite``):
 
-![](v5.0/doi-string.png)
+![](imgs/doi-string.png)
 
 You can now also easily customize the generated DOI string via a configuration variable in ``invenio.cfg``:
 
@@ -178,7 +178,7 @@ RDM_RECORDS_DOI_DATACITE_FORMAT = "{prefix}/zenodo.{id}"
 
 The preview feature now has a "Back to edit" button to make it easier to go back to the deposit form:
 
-![](v5.0/preview-back.png)
+![](imgs/preview-back.png)
 
 **Resource types**
 
