@@ -95,6 +95,15 @@ and adjust the `Memory` to the corresponding value. If you have a few cores
 more to spare, it might be a good idea to give more than 2. Take into account
 that you will run between 4 and 8 containers.
 
+#### Docker socket (macOS)
+
+invenio-cli uses the Docker Python API to check things like the Docker version. The Docker Python API
+uses the Docker socket, which may not be enabled by default on a Mac. You'll know you have this problem
+if you see the error message `docker.errors.DockerException: Error while fetching server API version:`.
+You can enable to Docker socket by going to Docker desktop, Settings, Advanced, and checking the box for 
+"Allow the default Docker socket to be used". You will need to enter your Mac password after you "Apply & restart"
+this change.
+
 #### OpenSearch and Docker (macOS and Linux)
 
 Among the containers you will run is an OpenSearch container which is quite demanding.
