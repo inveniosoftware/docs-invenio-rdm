@@ -167,7 +167,7 @@ Support for Elasticsearch v7 is deprecated and it will be removed in a future re
 
 ## Upgrading to v11.0
 
-We support upgrading from v10 to v11. Please see the [upgrade notice](../upgrading/upgrade-v11.0.md).
+We support upgrading from v10 to v11. Please see the [upgrade notice](./upgrade-v11.0.md).
 
 ## Maintenance policy
 

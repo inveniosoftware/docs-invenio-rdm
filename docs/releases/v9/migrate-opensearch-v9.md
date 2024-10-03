@@ -10,7 +10,7 @@ After careful analysis on how to enable OpenSearch integration in InvenioRDM v9,
 
 ## Setup OpenSearch cluster
 
-To set up the new OpenSearch v1 cluster, follow the **first** step in the InvenioRDM v10 [upgrade guide](../upgrading/upgrade-v10.0.md#migrate-to-opensearch). When following the guide, do not continue to step 2, do not change or upgrade any Python package.
+To set up the new OpenSearch v1 cluster, follow the **first** step in the InvenioRDM v10 [upgrade guide](../v10/upgrade-v10.0.md#migrate-to-opensearch). When following the guide, do not continue to step 2, do not change or upgrade any Python package.
 
 In your new cluster, make sure that you enable the `compatibility` flag: `compatibility.override_main_response_version: true`.
 
@@ -62,5 +62,5 @@ The Elasticsearch Python library [v7.14](https://github.com/elastic/elasticsearc
 
 In your new cluster, re-index all data, as described in InvenioRDM v10 upgrade guide:
 
-1. [Re-index data](../upgrading/upgrade-v10.0.md#re-index-data)
-2. [Complete re-indexing](../upgrading/upgrade-v10.0.md#complete-re-indexing)
+1. [Re-index data](../v10/upgrade-v10.0.md#re-index-data)
+2. [Complete re-indexing](../v10/upgrade-v10.0.md#complete-re-indexing)
