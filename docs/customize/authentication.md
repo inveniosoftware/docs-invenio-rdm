@@ -618,7 +618,7 @@ from invenio_oauthclient.contrib.settings import OauthSettingsHelper
 
 
 class MyOAuthSettingsHelper(OAuthSettingsHelper):
-    def __init__():
+    def __init__(self):
         super().__init__(
             title="my plugin",
             description="a description",
