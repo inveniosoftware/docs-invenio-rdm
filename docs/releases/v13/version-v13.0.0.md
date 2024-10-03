@@ -61,7 +61,7 @@ Notably, older versions of Elasticsearch/Opensearch, PostgreSQL, and Node.js hav
 
 ## Upgrading to v13.0
 
-We support upgrading from v12 to v13. See the [upgrade guide](../upgrading/upgrade-v13.0.md) for how.
+We support upgrading from v12 to v13. See the [upgrade guide](./upgrade-v13.0.md) for how.
 
 ## Questions?
 
