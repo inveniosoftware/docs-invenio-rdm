@@ -65,7 +65,7 @@ CVSS:3.1/AV:N/AC:L/PR:L/UI:N/S:C/C:L/I:L/A:N
 
 ## Upgrading to v6.0.5
 
-First make sure that you have upgraded to v6.0.x. See [upgrading to v6.0](../upgrading/upgrade-v6.0.md).
+First make sure that you have upgraded to v6.0.x. See [upgrading to v6.0](./upgrade-v6.0.md).
 
 Next, all that is needed is an upgrade of the PyPI packages. After executing below command, your ``Pipfile`` and ``Pipfile.lock`` should have been updated:
 ```
@@ -93,7 +93,7 @@ Alternatively, run a command inside the virtualenv with pipenv run.
 Version 6.0.5 installed successfully.
 ```
 
-See full instructions on [upgrading to v6.0.5](../upgrading/upgrade-v6.0.5.md).
+See full instructions on [upgrading to v6.0.5](./upgrade-v6.0.5.md).
 
 ## Maintenance policy
 

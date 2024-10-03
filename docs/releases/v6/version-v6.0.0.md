@@ -27,7 +27,7 @@ InvenioRDM v6.0 is maintained minimum until August 5, 2022 and possibly longer. 
 
 We have redesigned the documentation frontpage to provide a better overview of the available documentation as well as provide a nicer welcome experience. We hope you like it!
 
-![](v6.0/docs-site.png)
+![](imgs/docs-site.png)
 
 ### Facets and sort options
 
@@ -65,7 +65,7 @@ It is now possible to allow only certain resource types to be deposited while ot
 
 Affiliations that is linked to a ROR affiliation record now have a small ROR icon displayed next to them.
 
-![](v6.0/ror.png)
+![](imgs/ror.png)
 
 **Preview for .txt files and .ipynb**
 
@@ -75,7 +75,7 @@ The previewer will now also work for ``.txt`` and ``.ipynb`` files.
 
 We have changed the selected list of citation styles from a text list to a dropdown to improve the user experience and allow for more styles to be included.
 
-![](v6.0/citation.png)
+![](imgs/citation.png)
 
 **DOI landing page**
 
@@ -127,7 +127,7 @@ The largest known issue relates to DOI registration and means that, at this poin
 
 ## Upgrading to v6.0
 
-We support upgrading from v4.0 to v6.0. Please see the [upgrade notice](../upgrading/upgrade-v6.0.md)
+We support upgrading from v4.0 to v6.0. Please see the [upgrade notice](./upgrade-v6.0.md)
 
 ## Production services notice
 
