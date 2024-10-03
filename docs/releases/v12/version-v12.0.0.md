@@ -24,7 +24,7 @@ A wide variety of usage statistics are tracked over time and versions, including
 
 Usage statistics are displayed in the record landing page and record search:
 
-![Statistics on the record landing page](./v12.0/stats-landing-page.png)
+![Statistics on the record landing page](imgs/stats-landing-page.png)
 
 The landing page shows the *unique views/downloads* (it deduplicates events coming from the same source) by default.
 And only visits to the landing page count towards the record views.
@@ -35,11 +35,11 @@ For more details about usage statistics, consult the [reference page](../../refe
 
 A record can now belong to multiple communities.
 
-![The communities menu](./v12.0/communities-menu.png)
+![The communities menu](imgs/communities-menu.png)
 
 You can include a record to multiple communities only **after** having published the record. Once a record has been included in a community, it becomes visible and editable by that community's curators. Including a record in multiple communities will let different curators change the files or metadata of the record.
 
-![Multiple communities a record belongs to](./v12.0/multiple-communities.png)
+![Multiple communities a record belongs to](imgs/multiple-communities.png)
 
 ### Powerful and reliable record access
 
@@ -59,7 +59,7 @@ This provides flexible, yet reliable access control to the records of an instanc
 
 ### Moderation of users and records
 
-![The moderation actions](./v12.0/user_moderation.png)
+![The moderation actions](imgs/user_moderation.png)
 
 The administration panel now includes a "User management" section to suspend, block and delete users, as well as undo all those actions.
 Suspending a user temporarily prevents them from creating records, but lets them appeal their suspension. Blocked users cannot sign in anymore and deleted users are removed from the system.
@@ -77,11 +77,11 @@ InvenioRDM now mints a concept DOI for every record by default, similar to what 
 Along with this update, restricted records will now stop minting a DOI upon publication thus keeping *private* records **truly private**.
 And if the visibility of a record becomes restricted after being public, a tombstone will be shown:
 
-![Tombstone for public record turned restricted](./v12.0/tombstone_for_privatized.png)
+![Tombstone for public record turned restricted](imgs/tombstone_for_privatized.png)
 
 ### Even better previewers
 
-![Paused video preview](./v12.0/video_previewer.png)
+![Paused video preview](imgs/video_previewer.png)
 
 Audio and video previewers come by default. Beware that supporting these typically larger files may require some changes to an instance's [upload limits](../../customize/upload_limits.md) and using delegated file serving.
 
@@ -93,19 +93,19 @@ Text previewing has been made much more resilient thanks to that improvement, be
 The landing page for a record can now provide nicer visuals for configured related works. The configuration variable
 [`APP_RDM_RECORD_LANDING_PAGE_EXTERNAL_LINKS`](https://github.com/inveniosoftware/invenio-app-rdm/blob/master/invenio_app_rdm/config.py#L849) can be set to highlight some referred platforms:
 
-![External resources sidebar](./v12.0/external_resources.png)
+![External resources sidebar](imgs/external_resources.png)
 
 ### Skippable community submission review
 
 With InvenioRDM v12, you can change if a record review is always required for your community, or if curators, managers and owners can submit a record without the review process. In this case, a review will also be created, but it will be automatically accepted. Community managers or owners have the ability to enable or disable this feature for their communities through the "Curation policy" settings.
 
-![Community curation policy](./v12.0/community-curation-policy.png)
+![Community curation policy](imgs/community-curation-policy.png)
 
 ### Banners
 
 With the addition of [`invenio-banners`](https://github.com/inveniosoftware/invenio-banners), you can now easily add and manage important alerts and messages on your InvenioRDM instance, such as system maintenance notifications or announcements. The extension supports various types of banners, including fixed, floating, and dismissible banners. It also allows banners to be customized with different colors, icons, and animations.
 
-![Administration panel for banners](./v12.0/Banners.png)
+![Administration panel for banners](imgs/Banners.png)
 
 ### Static pages - administration panel
 
@@ -172,7 +172,7 @@ Notably, older versions of Elasticsearch/Opensearch, PostgreSQL, and Node.js hav
 
 ## Upgrading to v12.0
 
-We support upgrading from v11 to v12. See the [upgrade guide](../upgrading/upgrade-v12.0.md) for how.
+We support upgrading from v11 to v12. See the [upgrade guide](./upgrade-v12.0.md) for how.
 
 ## Questions?
 

@@ -21,17 +21,17 @@ InvenioRDM can now register DataCite DOIs. This feature is an optional feature t
 
 If the feature is enabled, the deposit form will automatically ask the user if they already have a DOI for their upload.
 
-![](v3.0/doi-field-existing.png)
+![](imgs/doi-field-existing.png)
 
 If they don't, they have the option to reserve a DOI immediately, or simply leave the field empty and the DOI will be automatically registered.
 
-![](v3.0/doi-field.png)
+![](imgs/doi-field.png)
 
 **Landing page**
 
 Once you publish the record, the DOI is automatically registered with DataCite and the landing page will show the DOI badge.
 
-![](v3.0/doi-landing-page.png)
+![](imgs/doi-landing-page.png)
 
 **Backend**
 
@@ -63,7 +63,7 @@ Check the [documentation](../../customize/dois.md) to see how to enable and conf
 
 In addition to being able to register DOIs, we can now also store information about other identifiers your upload may have. These identifiers are all considered to be metadata, and thus we do **not** use them operationally (e.g. to actively deduplicate content).
 
-![](v3.0/alternate-identifiers.png)
+![](imgs/alternate-identifiers.png)
 
 **Automatic scheme detection and normalization**
 
@@ -86,11 +86,11 @@ We have now added the possibility to preview the landing page of a record prior 
 
 In the deposit form, you'll find the new button "Preview":
 
-![](v3.0/preview-button.png)
+![](imgs/preview-button.png)
 
 Clicking the preview button will take you to the landing page so you can see how your upload will look once published. The page has a header showing that it's a preview, and also certain parts of the landing page like the versions lists, will only show information from already published versions.
 
-![](v3.0/preview.png)
+![](imgs/preview.png)
 
 **Reviewing prior to publication**
 
@@ -102,11 +102,11 @@ InvenioRDM v2.0 shipped with REST API support for creating secret links that cou
 
 The feature is accessed via the new Share-button on the landing page:
 
-![](v3.0/share-button.png)
+![](imgs/share-button.png)
 
 The user will be presented with a dialog where they can choose between different permission-levels for the link. Currently two are supported: "can view" and "can edit". We plan to add also a "can preview", to support single-blind peer-reviews for example.
 
-![](v3.0/share-modal.png)
+![](imgs/share-modal.png)
 
 **Future directions**
 
@@ -131,7 +131,7 @@ All records now display an access status badge that can be one of either (accord
 
 You are also able to filter records according to these values using the search facets.
 
-![](v3.0/access-badge-facets.png)
+![](imgs/access-badge-facets.png)
 
 The values are computed based on the visibility settings, embargo, and whether the record has files or not.
 
@@ -139,15 +139,15 @@ The values are computed based on the visibility settings, embargo, and whether t
 
 In addition to having the access badge indicators, we now also have clear color coding on the file listing and previews to aid users in understanding if they are viewing restricted files. Below is an example of a record with restricted files as seen by the owner and seen by an anonymous visitor:
 
-![](v3.0/files-embargoed.png)
+![](imgs/files-embargoed.png)
 
-![](v3.0/files-restricted.png)
+![](imgs/files-restricted.png)
 
 **Restricted landing pages**
 
 In cases where the full record is either embargoed or restricted, we also display a top-level banner on the record to distinguish it from the case where only the files are restricted:
 
-![](v3.0/record-restricted.png)
+![](imgs/record-restricted.png)
 
 ### Communities (feature preview)
 
@@ -162,24 +162,24 @@ The basics include:
 
 We've tried to simplify the community setup as much as possible, by only requiring very minimal information in the setup form (name, identifier and visibility).
 
-![](v3.0/create-community.png)
+![](imgs/create-community.png)
 
 
 Afterwards, users are taken directly to the profile page, where further changes can be made and logos uploaded.
 
-![](v3.0/community-settings.png)
+![](imgs/community-settings.png)
 
 **Browsing communities**
 
 You can search and browse communities from the top community headline. By default, we display first any communities that you're a member of (right now that equals all communities that you own), and we display featured communities (right now this is just the top-5 newest communities).
 
-![](v3.0/communities-frontpage.png)
+![](imgs/communities-frontpage.png)
 
 ### Files from previous version
 
 It is now possible to import files from the previous version when you create a new version of a record. When you create a new version, you're presented with a button to import files.
 
-![](v3.0/import-files.png)
+![](imgs/import-files.png)
 
 Using a button allows us to improve the user experience for two different use cases:
 

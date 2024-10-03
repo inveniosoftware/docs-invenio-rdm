@@ -162,7 +162,7 @@ We have finished the overall REST API flow needed by the frontend which includes
 
 ## Upgrading to v7.0
 
-We support upgrading from v6.0 to v7.0. Please see the [upgrade notice](../upgrading/upgrade-v7.0.md).
+We support upgrading from v6.0 to v7.0. Please see the [upgrade notice](./upgrade-v7.0.md).
 
 ## Maintenance policy
 
