@@ -98,7 +98,7 @@ that you will run between 4 and 8 containers.
 #### Docker socket (macOS)
 
 invenio-cli uses the Docker Python API to check things like the Docker version. The Docker Python API
-uses the Docker socket, which may not be enabled by default on a Mac. You'll know you have this problem
+uses the Docker socket, which may not be enabled by default in Docker Desktop on a Mac. You'll know you have this problem
 if you see the error message `docker.errors.DockerException: Error while fetching server API version:`.
 You can enable to Docker socket by going to Docker desktop, Settings, Advanced, and checking the box for 
 "Allow the default Docker socket to be used". You will need to enter your Mac password after you "Apply & restart"
