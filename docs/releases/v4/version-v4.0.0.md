@@ -18,7 +18,7 @@ If you want to install it, follow the installation instructions on [https://inve
 
 InvenioRDM can now easily integrate with external authentication providers. You can enable ORCID integration and OpenID Connect/OAuth with Keycloak servers.
 
-![](v4.0/sso1.png)
+![](imgs//sso1.png)
 
 Read the [Authentication](../../customize/authentication.md) documentation section to get to know how to set it up.
 
@@ -30,17 +30,17 @@ InvenioRDM v4.0 comes with various new features around authentication.
 
 You can now e.g. disable local authentication (login and registration) via a configuration variable.
 
-![](v4.0/no-local.png)
+![](imgs//no-local.png)
 
 Changes to the user profile (change full name or e-mail address) can be blocked, which is particularly useful when using only external authentication in your setup.
 
-![](v4.0/profile.png)
+![](imgs//profile.png)
 
 #### Terms & conditions
 
 After the first login with an external authentication provider, InvenioRDM can now prompt a custom account registration form to require input of extra information. For example, the user can be asked to accept the website's terms and conditions.
 
-![](v4.0/accept.png)
+![](imgs//accept.png)
 
 When only one external authentication provider is configured, InvenioRDM can be configured to skip the login page and automatically redirect to the external login page.
 
@@ -59,7 +59,7 @@ We've made it a lot easier to define new facets as well as provide human-readabl
 
 However, we had to temporarily disable nested faceting, which was available for the resource type facet. We are working on bringing this feature back in the next release.
 
-![](v4.0/facets.png)
+![](imgs//facets.png)
 
 #### Performance improvements
 

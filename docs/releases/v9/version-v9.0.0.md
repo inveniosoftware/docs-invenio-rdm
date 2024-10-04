@@ -35,7 +35,7 @@ Communities visibility can be set to either:
 - *public* - any user can see the community
 - *restricted* - only community members can see the community
 
-![Create a community](img/../v9.0/community-create.png)
+![Create a community](imgs/community-create.png)
 
 Both public and restricted communities can contain restricted records, and thus
 not all records in a public community may be visible to everyone. A restricted
@@ -46,19 +46,19 @@ community on the other hand may only contain restricted records.
 A community may co-own any number of records, and users can search through
 the records of the community:
 
-![Community frontpage](img/../v9.0/community-records.png)
+![Community frontpage](imgs/community-records.png)
 
 Records that are owned by a community are, by default, branded with the community
 as well:
 
-![Landing page branding](img/../v9.0/community-branding.png)
+![Landing page branding](imgs/community-branding.png)
 
 #### Members
 
 A community by default always has one or more owners, but you can invite
 multiple members to a community. Members can be either people or groups:
 
-![Community members](img/../v9.0/community-members.png)
+![Community members](imgs/community-members.png)
 
 It's possible to disable support for group members via the ``COMMUNITIES_GROUPS_ENABLED``
 feature flag. See the [groups](https://inveniordm.docs.cern.ch/customize/authentication/#groups)
@@ -86,12 +86,12 @@ variable. Thus, both titles and capabilities of the roles can be modified.
 Owners and managers can invite other users to join the community. Groups can be
 added directly as a member of the community:
 
-![Invitation dialog](v9.0/community-invitations-dialog.png)
+![Invitation dialog](imgs/community-invitations-dialog.png)
 
 The invited user can accept/decline the invitation and in addition have a
 conversation with the sender of the invitation:
 
-![Invitation request](v9.0/community-invitations.png)
+![Invitation request](imgs/community-invitations.png)
 
 By default invitations automatically expire after 30 days and become invalid.
 
@@ -99,11 +99,11 @@ By default invitations automatically expire after 30 days and become invalid.
 
 Any user can submit records to public communities for review:
 
-![Submit to community](v9.0/deposit-community.png)
+![Submit to community](imgs/deposit-community.png)
 
 At submission time, a message can also be provided to the community curators:
 
-![Submit to community](v9.0/deposit-submit.png)
+![Submit to community](imgs/deposit-submit.png)
 
 **Curation**
 
@@ -113,9 +113,9 @@ preview the submitted record. Both the submitter and curator can edit and update
 the record under review until it's published. Once published the record is
 owned by both the submitter and the community:
 
-![Community review](v9.0/deposit-review1.png)
+![Community review](imgs/deposit-review1.png)
 
-![Community review](v9.0/deposit-review2.png)
+![Community review](imgs/deposit-review2.png)
 
 See also the [Reviews REST API documentation](../../reference/rest_api_reviews.md).
 
@@ -184,12 +184,12 @@ field in multiple ways.
 First, the user registration form now shows more fields in addition
 to email and password, namely:
 
-![](img/../v9.0/registration-form.png)
+![](imgs/registration-form.png)
 
 On the user's account settings page the new fields as well as the user
 preferences field will be displayed:
 
-![](img/../v9.0/profile-settings.png)
+![](imgs/profile-settings.png)
 
 **User preferences**
 
@@ -210,7 +210,7 @@ Users and groups now also have basic avatars. The avatars are created by taking
 a letter from the full name, username or email and compute a color for the
 user:
 
-![User avatar example.](img/../v9.0/avatar.png)
+![User avatar example.](imgs/avatar.png)
 
 In the future, the idea is to support user uploaded avatars, identicons and
 online avatar services.
@@ -235,7 +235,7 @@ InvenioRDM comes with a complete new REST APIs for users and groups search.
 The REST API powers for instance the member search when inviting new members
 to a community:
 
-![Search for members](img/../v9.0/member-search.png)
+![Search for members](imgs/member-search.png)
 
 The REST API is currently limited to search, but will be extended in the future
 to also support creation and management of users and groups.
@@ -258,14 +258,14 @@ automatically by the upgrade procedures.
 We have added support for adding funding information to both records
 and communities:
 
-![Deposit form: Funding information](img/v9.0/../../v9.0/funders-awards.png)
+![Deposit form: Funding information](imgs/funders-awards.png)
 
 You can either search the funders/awards database for an existing award or
 add a custom award:
 
-![Add a standard award](img/v9.0/../../v9.0/award-standard.png)
+![Add a standard award](imgs/award-standard.png)
 
-![Add a custom award](img/v9.0/../../v9.0/award-custom.png)
+![Add a custom award](imgs/award-custom.png)
 
 The features is driven by the underlying funder and award vocabulary. Both
 vocabularies can be loaded with data according to your organisational needs.
@@ -285,7 +285,7 @@ Array fields in the deposit form (e.g. dates, related identifiers) now have a li
 grey background around the group of fields for a single entry. This makes it
 easier to see which fields belongs together (especially in mobile/tablet views):
 
-![](img/../v9.0/deposit-ux1.png)
+![](imgs/deposit-ux1.png)
 
 **Responsive design and screen real estate**
 
@@ -395,7 +395,7 @@ class UserSearchOptions(SearchOptions):
 
 ## Upgrading to v9.0
 
-We support upgrading from v8.0 to v9.0. Please see the [upgrade notice](../upgrading/upgrade-v9.0.md).
+We support upgrading from v8.0 to v9.0. Please see the [upgrade notice](./upgrade-v9.0.md).
 
 ## Maintenance policy
 

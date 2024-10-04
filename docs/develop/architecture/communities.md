@@ -6,7 +6,7 @@ This guide is intended for maintainers and developers of InvenioRDM itself.
 
 **Scope**
 
-The guide provides a high-level architectural overview of the communities 
+The guide provides a high-level architectural overview of the communities
 module for InvenioRDM.
 
 ## Community visibility
@@ -16,7 +16,7 @@ Communities visibility can be set to either:
 - *public* - any user can see the community
 - *restricted* - only community members can see the community
 
-![Create a community](../../releases/versions/v9.0/community-create.png)
+![Create a community](../../releases/v9/imgs/community-create.png)
 
 Both public and restricted communities can contain restricted records, and thus
 not all records in a public community may be visible to everyone. A restricted
@@ -30,7 +30,7 @@ communities to ensure a consistent user experience across all communities.
 A community role translates into a set of permissions. The roles are
 configurable to ensure that they can be tailored to the needs of an instance,
 as well as allow for customizations. For example, one instance may use
-"curator" and another may use "editor" as a role because it suits 
+"curator" and another may use "editor" as a role because it suits
 their use case better.
 
 By default the following community roles are defined:

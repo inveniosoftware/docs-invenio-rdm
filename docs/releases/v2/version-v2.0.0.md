@@ -23,18 +23,18 @@ Now, a user can create a new version of the record, add or remove files and publ
 
 One way to make new versions is from the record's landing page directly by clicking on the "New Version" button. Only allowed users can do so:
 
-![](v2.0/landing-page.png)
+![](imgs/landing-page.png)
 
 Another way is while editing a previously published record:
 
-![](v2.0/deposit-form.png)
+![](imgs/deposit-form.png)
 
 #### Search
 
 Search results will by default only display the latest published version of a record. However, toggling the flip switch in the versions facet, allows you to view and search all versions.
 
 
-![](v2.0/search-results.png)
+![](imgs/search-results.png)
 
 #### Landing page
 
@@ -42,7 +42,7 @@ The landing page for previous versions of a record clearly displays that a newer
 
 Also, in the right-hand column you have a link to view all published versions:
 
-![](v2.0/landing-page-old.png)
+![](imgs/landing-page-old.png)
 
 #### Permissions
 
@@ -69,9 +69,9 @@ In the future, we plan to also allow sharing only a preview of an unsubmitted re
 
 We plan to have a first minimal user interface for allowing users to use this new feature in the April release (v3.0). Below you see some of the mockups:
 
-![](v2.0/share-button.png)
+![](imgs/share-button.png)
 
-![](v2.0/get-a-link.png)
+![](imgs/get-a-link.png)
 
 
 #### Usage
@@ -204,4 +204,3 @@ The development work in this release was done by:
 - CERN (Lars & Zach)
 - Northwestern University (Guillaume)
 - TU Wien (Max)
-
