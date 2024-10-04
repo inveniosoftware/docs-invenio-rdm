@@ -715,13 +715,39 @@ Subfields:
 | Field          | Cardinality | Description                   |
 |:--------------:|:-----------:|:------------------------------|
 | ``identifier`` | (1)         | identifier value              |
-| ``scheme``     | (1, CV)     | The scheme of the identifier  |
+| ``scheme``     | (1, CV)     | The scheme of the identifier. See below.  |
 
-Supported identifier schemes:
 
-ARK, arXiv, Bibcode, DOI, EAN13, EISSN, Handle, IGSN, ISBN, ISSN, ISTC, LISSN, LSID, PubMed ID, PURL, UPC, URL, URN, W3ID. See `RDM_RECORDS_IDENTIFIERS_SCHEMES` in [invenio-rdm-records](https://github.com/inveniosoftware/invenio-rdm-records/blob/master/invenio_rdm_records/config.py).
+#### Identifier schemes
 
-Note that those are passed lowercased e.g., arXiv is ``arxiv``.
+The default valid schemes are listed below. They are defined in [invenio-rdm-records](https://github.com/inveniosoftware/invenio-rdm-records/blob/master/invenio_rdm_records/config.py) and configurable via `RDM_RECORDS_IDENTIFIERS_SCHEMES`.
+
+|        Scheme        |       Label        |
+| :------------------: | :----------------: |
+|       ``ark``        |        ARK         |
+|      ``arxiv``       |       arXiv        |
+|       ``ads``        |      Bibcode       |
+| ``crossreffunderid`` | Crossref Funder ID |
+|       ``doi``        |        DOI         |
+|      ``ean13``       |       EAN13        |
+|      ``eissn``       |       EISSN        |
+|       ``grid``       |        GRID        |
+|      ``handle``      |       Handle       |
+|       ``igsn``       |        IGSN        |
+|       ``isbn``       |        ISBN        |
+|       ``isni``       |        ISNI        |
+|       ``issn``       |        ISSN        |
+|       ``istc``       |        ISTC        |
+|      ``lissn``       |       LISSN        |
+|       ``lsid``       |        LSID        |
+|       ``pmid``       |        PMID        |
+|       ``purl``       |        PURL        |
+|       ``upc``        |        UPC         |
+|       ``url``        |        URL         |
+|       ``urn``        |        URN         |
+|       ``w3id``       |        W3ID        |
+|      ``other``       |       Other        |
+
 
 Example:
 
@@ -744,9 +770,9 @@ does not support the subfields *12.c relatedMetadataScheme*, *12.d schemeURI* an
 Subfields:
 
 |       Field       | Cardinality | Description                                                                                                   |
-|:-----------------:|:-----------:|:--------------------------------------------------------------------------------------------------------------|
+| :---------------: | :---------: | :------------------------------------------------------------------------------------------------------------ |
 |  ``identifier``   |   (1, CV)   | A global unique persistent identifier for a related resource.                                                 |
-|    ``scheme``     |   (1, CV)   | The scheme of the identifier.                                                                                 |
+|    ``scheme``     |   (1, CV)   | The scheme of the identifier. See [identifier schemes](#identifier-schemes).                                                                                |
 | ``relation_type`` |     (1)     | The relation of the record to this related resource.                                                          |
 | ``resource_type`` |    (0-1)    | The resource type of the related resource. Can be different from the [Resource type](#resource-type-1) field. |
 
@@ -967,27 +993,15 @@ Example:
 
 ### References (0-n)
 
-!!! warning "Not part of the deposit page yet."
-    Although available via the API, this field may see changes when added to the deposit page.
-
-A list of reference strings
+A list of reference strings.
 
 Subfields:
 
-|     Field      | Cardinality | Description                          |
-|:--------------:|:-----------:|:-------------------------------------|
-| ``reference``  |     (1)     | free text, the full reference string |
-|   ``scheme``   |    (0-1)    | the scheme of the identifier.        |
-| ``identifier`` |    (0-1)    | the identifier if known.             |
-
-Supported schemes:
-
-- CrossRef Funder ID
-- GRID
-- ISNI
-- Other
-
-Note that those are passed lowercased with spaces removed e.g., CrossRef Funder ID is ``crossreffunderid``.
+|     Field      | Cardinality | Description                                                                  |
+| :------------: | :---------: | :--------------------------------------------------------------------------- |
+| ``reference``  |     (1)     | The full reference string.                                                   |
+|   ``scheme``   |  (0-1, CV)  | The scheme of the identifier. See [identifier schemes](#identifier-schemes). |
+| ``identifier`` |    (0-1)    | The identifier if known.                                                     |
 
 Example:
 
