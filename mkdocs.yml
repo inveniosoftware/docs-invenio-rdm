@@ -263,6 +263,7 @@ nav:
           - Statistics: "reference/rest_api_statistics.md"
       - Administration:
           - Reference: "reference/administration_reference.md"
+          - Jobs: "reference/invenio_jobs_reference.md"
       - File storage: "reference/file_storage.md"
       - Notifications: "reference/notifications.md"
       - Searching: "reference/search.md"
