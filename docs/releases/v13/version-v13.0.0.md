@@ -30,6 +30,91 @@ Searches like ` Universitatea "Dunărea de Jos” din Galați` now work [PR](htt
 
 BREAKING -> mapping changes, create new indices
 
+### Collections
+
+Collections are a "big" feature added to v13.
+
+!!!warning Collections require new database tables, therefore its migration recipes must be executed (`invenio db upgrade` or similar)
+
+Collections are stored in the Database and each collection defines a search query string that is used to fetch each collection records. Find more information in the [RFC](https://github.com/inveniosoftware/rfcs/blob/master/rfcs/rdm-0079-collections.md).
+
+**How to create a collection for a community**
+
+Currently collections are created using a python shell (`invenio shell`)
+
+Requirements:
+
+- A community.
+- A collection tree that acts as the "root" node of the collection.
+
+If you do not have a collection tree, start by creating one:
+
+```python
+from invenio_rdm_records.collections.api import CollectionTree
+
+ctree = CollectionTree.create(
+    title="Programs", order=10, community_id="<community_uuid>", slug="programs"
+)
+```
+
+The `order` parameter controls the order that trees are rendered in the UI.
+
+Create a collection under `programs`:
+
+```python
+from invenio_rdm_records.proxies import current_rdm_records
+from invenio_access.permissions import system_identity
+
+collections_service = current_rdm_records.collections_service
+
+# Use another identity if needed
+identity = system_identity
+
+# Desired community ID
+community_id = "9d0d45ce-0ea9-424a-ab17-a72215b2e8c3"
+
+collection = collections_service.create(
+        identity,
+        community_id,
+        tree_slug="programs",
+        slug="h2020",
+        title="Horizon 2020",
+        query="metadata.funding.program:h2020",
+        order=10
+    )
+```
+
+For nested collections, the `add` service method can be used:
+
+```python
+
+h2020 = collections_service.read(
+    identity, community_id=community_id, tree_slug='programs', slug='h2020'
+)
+
+open_records = collections_service.add(
+        identity,
+        collection=h2020._collection,
+        slug="h-open-records",
+        title="Horizon 2020 (Open records)",
+        query="access.record:public",
+        order=20
+    )
+```
+
+All the service methods that create collections also implements the Unit of Work pattern, so it can used if transactional consistency is needed.
+
+The created collections can be accessed at:
+
+- https://127.0.0.1:5000/communities/<community_slug>/collections/h2020
+- https://127.0.0.1:5000/communities/<community_slug>/collections/h-open-records
+
+Adjust the URL and `community_slug` as needed.
+
+An overview of all the collections can be found in the community browse page (if enabled):
+
+- https://127.0.0.1:5000/communities/<community_slug>/browse
+
 ### Miscellaneous additions
 
 Here is a quick summary of the myriad other improvements in this release:
