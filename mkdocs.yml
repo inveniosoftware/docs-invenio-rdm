@@ -188,6 +188,7 @@ nav:
           - UI widgets: "reference/custom_fields/widgets.md"
       - Administration:
           - Reference: "reference/administration_reference.md"
+          - Invenio jobs: "reference/invenio_jobs_reference.md"
       - File storage: "reference/file_storage.md"
       - Usage statistics: "reference/statistics.md"
       - Notifications: "reference/notifications.md"
