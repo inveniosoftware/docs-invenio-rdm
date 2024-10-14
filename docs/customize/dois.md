@@ -135,4 +135,4 @@ You [can view the default configuration in invenio-rdm-records](https://github.c
 
 ## Known issues
 
-- **Restricted records:** Once a DOI is created, it cannot be fully removed from DataCite. Starting with v12, InvenioRDM will not register DOIs for restricted records. It will also hide a DOI from the DataCite Search is a record is changed from public to restricted. However that DOI will still resolve and metadata may be available to DataCite members.
+- **Restricted records:** Once a DOI is created, it cannot be fully removed from DataCite. Starting with v12, InvenioRDM will not register DOIs for restricted records. It will also hide a DOI from the DataCite Search if a record is changed from public to restricted. However that DOI will still resolve and metadata may be available to DataCite members.
