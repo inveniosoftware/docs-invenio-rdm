@@ -252,6 +252,20 @@ The library has been restructured to use a configurable scheme system with a new
 
 See the [related documentation](../../operate/customize/metadata/custom_pids_schemes.md) how to add your own custom schemes.
 
+### EuroSciVoc Subjects
+
+#### Optional Feature
+
+You can now import EuroSciVoc subjects using the new Jobs system. If you previously had imported EuroSciVoc subjects, you will need to update the existing records, drafts, and communities that were using these subjects and then deleting the old subjects in the database. This is necessary due to changes in the structure, such as the introduction of the `props` property and updates to the `id` format.
+_Note that mapping updates are needed. Also, you would need to reindex the relevant subjects, records, drafts and communities._
+
+### CORDIS Awards
+
+#### Optional Feature
+
+CORDIS data can now be imported to enhance OpenAIRE awards using the new Jobs system. This update allows for the addition of supplementary information to the awards, including subjects _(Note: The EuroSciVoc subjects are needed for this)_, organizations, and other related metadata. The three funding programs supported are `HE`, `FP7` and `H2020`.
+_Note that mapping updates are needed. Also, you would need to reindex the relevant awards, records, drafts and communities._
+
 ### Miscellaneous additions
 
 Here is a quick summary of the myriad other improvements in this release:
@@ -273,6 +287,7 @@ Here is a quick summary of the myriad other improvements in this release:
 ## Breaking changes
 
 - Direct imports of identifier schemes (e.g., from idutils.isbn import normalize_isbn) are now deprecated and will be removed in future versions. If you have custom code that directly imports scheme modules, you'll need to update it to use the new API.
+- Mapping updates in Subjects, Awards, Records _(including percolators)_, Drafts and Communities
 
 ## Limitations and known issues
 
