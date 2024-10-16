@@ -104,17 +104,30 @@ The `id` of each Overridable component should use the following pattern:
 - `[InvenioModuleName]`: the Invenio module name, e.g. `InvenioCommunities` or `InvenioAppRDM`.
 - `[ReactApp]`: the name of the web page where the ReactApp will be rendered, e.g. `MembersList`, `MyDashboard`, `MyUploads`, `MyCommunities`, `DepositForm`. There is no exact naming here, try to be consistent with the existing ones.
 - `[Component]`: the name of the component in the React app, e.g. `ResultsList`, `SortBy`, `ListItem`, `BtnAccept`.
-- `[Element]`: the name of the UI section inside the component. `Layout` is normally used of the entire Overridable component, inside the `render()` function, `Container` or `Title` might be used in an inner section, in case of large components:
+- `[Element]`: the name of the UI section inside the component. `Layout` is normally used of the entire presentation of the component, inside the `render()` function, `Container` might be used to wrap the inner section of the render method - it is used when we want to replace only one instance of the component used inside the render block - the one wrapped by `.Container`
+
+Render function example:
 
   ```javascript
   render() {
     return (
-      <Overridable id="InvenioCommunities.InvitationsList.ListItem.Layout">
+      // ATTENTION: it is very important to pass all the necessary props (fe. prop1, prop2) to Overridable, otherwise you cannot use these props in your custom component!
+      <Overridable id="InvenioCommunities.InvitationsList.ListItem.Layout" prop1={this.props.prop1} prop2={this.props.prop2}>
         ...
-        <Overridable id="InvenioCommunities.InvitationsList.ListItem.Container">
+        <Overridable id="InvenioCommunities.InvitationsList.ListItem.Header.Container">
           ...
-          <Overridable id="InvenioCommunities.InvitationsList.ListItem.Title">
+          <Header>...
   ```
+
+Full component example:
+
+```javascript
+class MyComponent extends Component{
+// My implementation 
+}
+
+export default Overridable.component("[InvenioModuleName].MyComponent", MyComponent);
+```
 
 Names should be CamelCase.
 
