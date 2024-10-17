@@ -46,7 +46,6 @@ One way would be to use [PyEnv](https://github.com/pyenv/pyenv).
 If you upgraded your python version, you should recreate your virtual environment before
 running `invenio-cli` or `pipenv` commands below.
 
-
 ### Upgrade InvenioRDM
 
 Python 3.9 or 3.11 or 3.12 is required to run InvenioRDM v12.
@@ -75,11 +74,13 @@ If you are using a docker image on your production instance this will be the
 option you choose.
 
 ##### Step 1
+
 - create a new virtual environment
 - activate your new virtual environment
 - install `invenio-cli` by `pip install invenio-cli`
 
 ##### Step 2
+
 Update the file `<my-site>/Pipfile`.
 
 ```diff
@@ -89,6 +90,7 @@ Update the file `<my-site>/Pipfile`.
 ```
 
 ##### Step 3
+
 Update the `Pipfile.lock` file:
 
 ```bash
@@ -96,6 +98,7 @@ invenio-cli packages lock
 ```
 
 ##### Step 4
+
 Install InvenioRDM v13:
 
 ```bash
@@ -112,11 +115,9 @@ invenio alembic upgrade
 
 ### Data migration
 
-
 Execute the data migration:
 
 ### TODO
-
 
 ### Rebuild search indices
 
@@ -127,7 +128,7 @@ invenio rdm rebuild-all-indices
 ```
 
 From v12 onwards, record statistics will be stored in search indices rather than the
-database. These indices are created through some *index templates* machinery
+database. These indices are created through some _index templates_ machinery
 rather than having indices registered directly in `Invenio-Search`. As such, the
 search indices for statistics are not affected by `invenio index destroy
 --yes-i-know` and are totally functional after the rebuild step.
@@ -155,6 +156,5 @@ ADMINISTRATION_DISPLAY_VERSIONS = [
 ### TODO
 
 ## OPEN PROBLEMS
-
 
 ### TODO
