@@ -54,6 +54,19 @@ There are some workflows to be aware of and we collected some advices and experi
     - try to stick to one translation style.
 - Sometimes it is hard to translate a sentence without seeing its context. If you cannot find it in the InvenioRDM UI (e.g., in the [InvenioRDM-demo](https://InvenioRDM.web.cern.ch/)) contact the InvenioRDM translation team in [Discord `#rdm-translations`](https://discord.gg/Ya7qSG43Br). They can point you and show you some tricks.
 
+## Submitting Translations for Pages Outside Transifex
+
+For certain static pages, like [help pages](https://github.com/inveniosoftware/invenio-app-rdm/tree/master/invenio_app_rdm/theme/templates/semantic-ui/invenio_app_rdm/help), translating directly via Transifex is impractical due to the extensive use of `_()` functions required for each string. For these specific cases, we use language-specific HTML files (e.g., `page.sv.html` for Swedish or `page.de.html` for German) for these static content-heavy pages.
+
+If you are working on translations for these static pages, submit your translations as Pull Requests directly to [invenio-app-rdm](https://github.com/inveniosoftware/invenio-app-rdm) on GitHub.
+Here is a full list of pages that are translated this way:
+
+- [Help](https://github.com/inveniosoftware/invenio-app-rdm/blob/master/invenio_app_rdm/theme/templates/semantic-ui/invenio_app_rdm/help/search.en.html)
+- [Statistics](https://github.com/inveniosoftware/invenio-app-rdm/blob/master/invenio_app_rdm/theme/templates/semantic-ui/invenio_app_rdm/help/statistics.en.html)
+- [Versioning](https://github.com/inveniosoftware/invenio-app-rdm/blob/master/invenio_app_rdm/theme/templates/semantic-ui/invenio_app_rdm/help/versioning.en.html)
+
+Once your Pull Request is merged, the changes will be reflected in the next release of InvenioRDM.
+
 ## Troubleshooting
 
 If you have any questions, suggestions. Reach out to the InvenioRDM translation team via [Discord `#rdm-translations`](https://discord.gg/Ya7qSG43Br).
