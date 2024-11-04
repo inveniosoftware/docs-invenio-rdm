@@ -34,7 +34,7 @@ Custom fields will be displayed at the bottom of the community's settings page.
 
 ![](imgs/custom_fields_communities.png)
 
-When a community field is required, it will be also displayed in the form to [create a new community](https://inveniordm.web.cern.ch/communities/new).
+When a community field is required, it will be also displayed in the form to [create a new community](https://inveniordm.web.cern.ch/communities-new).
 
 ### Administration panel
 
