@@ -36,6 +36,8 @@ Collections are a "big" feature added to v13.
 
 !!!warning Collections require new database tables, therefore its migration recipes must be executed (`invenio db upgrade` or similar)
 
+A collection serves as a curated set of records that are grouped based on a specific filter or query, displayed on a dedicated page, introducing a new way of organizing records within a community. For instance, a collection can be defined within a community to highlight records sharing common attributes, like funding programs or specific categories.
+
 Collections are stored in the Database and each collection defines a search query string that is used to fetch each collection records. Find more information in the [RFC](https://github.com/inveniosoftware/rfcs/blob/master/rfcs/rdm-0079-collections.md).
 
 **How to create a collection for a community**
