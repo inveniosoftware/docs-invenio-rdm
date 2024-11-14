@@ -30,6 +30,11 @@ Searches like ` Universitatea "Dunărea de Jos” din Galați` now work [PR](htt
 
 BREAKING -> mapping changes, create new indices
 
+### Names Vocabulary
+
+TODO
+Names listing endpoint is now restricted to authenticated users, names can be "unlisted" not showing anymore in the search result for non-admin users
+
 ### Collections
 
 Collections are a "big" feature added to v13.
