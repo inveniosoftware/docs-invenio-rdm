@@ -14,6 +14,12 @@ If a system is not listed below, check the original documentation on how to inst
 brew update && brew install mailhog
 ```
 
+and then start MailHog via 
+
+```terminal
+mailhog
+```
+
 ### Docker version
 
 ```terminal
@@ -25,7 +31,7 @@ Note that, by default, `MailHog` uses the following ports:
 - `SMTP` server runs in port `1025`
 - `HTTP` server runs in port `8025`.
 
-Validate that `MailHog` is running by accessing its `HTTP` server in `http://127.0.0.1:8025` (or the configured `HTTP` server port).
+Validate that `MailHog` is running by accessing its `HTTP` server in [`http://127.0.0.1:8025`](http://127.0.0.1:8025) (or the configured `HTTP` server port).
 
 ## Step 2 - enable e-mails for development
 
