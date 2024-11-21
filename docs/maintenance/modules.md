@@ -21,7 +21,7 @@ Below is the list of InvenioRDM modules available on GitHub. This list can be us
 * `flask-celeryext` - [GitHub](https://github.com/inveniosoftware/flask-celeryext)
 * `flask-collect-invenio` - [GitHub](https://github.com/inveniosoftware/flask-collect-invenio)
 * `flask-iiif` - [GitHub](https://github.com/inveniosoftware/flask-iiif)
-* `flask-kvsession-invenio` - [GitHub](https://github.com/inveniosoftware/flask-kvsession-invenio)
+* `flask-kvsession-invenio` - [GitHub](https://github.com/inveniosoftware/flask-kvsession)
 * `flask-menu` - [GitHub](https://github.com/inveniosoftware/flask-menu)
 * `flask-resources` - [GitHub](https://github.com/inveniosoftware/flask-resources)
 * `flask-security-invenio` - [GitHub](https://github.com/inveniosoftware/flask-security-invenio)
