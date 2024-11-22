@@ -49,6 +49,7 @@ nav:
       - Customizable: "features/customization.md"
       - Interoperable: "features/interoperable.md"
       - Powerful: "features/powerful.md"
+      - Moderation: "features/moderation.md"
       - Secure: "features/secure.md"
       - Features walk-through:
           - Features overview: "features/features-walk-through/index.md"
