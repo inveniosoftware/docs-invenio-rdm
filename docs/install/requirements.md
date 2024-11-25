@@ -5,7 +5,7 @@
 InvenioRDM depends on the following requirements to be installed on your local system:
 
 - MacOS or Linux-based systems (Windows systems is not supported).
-- [Python](https://www.python.org/) 3.9 / 3.11 / 3.12 and [pip](https://pip.pypa.io/en/stable/)
+- [Python](https://www.python.org/) 3.9 / 3.10 / 3.11 / 3.12 and [pip](https://pip.pypa.io/en/stable/)
     - Python development headers:
         - On Ubuntu: `sudo apt install python3-dev`.
         - On RHEL/Fedora: `yum install -y python3-devel.x86_64`.
