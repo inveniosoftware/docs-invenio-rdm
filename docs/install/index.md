@@ -8,6 +8,11 @@ The guide is intended for system administrators and developers who want to try, 
 
 This guide covers how to install InvenioRDM locally on your machine, how to set up and configure your system for InvenioRDM.
 
+!!! info "Alternative Installation Method using [Devbox](https://www.jetify.com/devbox/)"
+
+    If you are interested in an alternative installation approach that requires fewer manual steps
+    you are welcome to check out [Devbox](devbox.md)
+
 ## Quick start
 
 #### [1. Install CLI tool](cli.md)
