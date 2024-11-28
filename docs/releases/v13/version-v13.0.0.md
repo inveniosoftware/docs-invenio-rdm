@@ -14,6 +14,8 @@ _DATE_
 
 to complete
 
+*TODO*: the quota feature has not been documented. It should be added, with a screenshot of the admin panel.
+
 ### Jobs and ORCID/ROR
 
 Explain about jobs and ORCID/ROR jobs.
