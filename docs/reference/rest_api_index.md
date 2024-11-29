@@ -28,6 +28,15 @@ curl -k https://127.0.0.1:5000/api/records?access_token=API-TOKEN
     The `-k` or `--insecure` option here is simply because a certificate is typically not setup locally. In production,
     your `curl` calls shouldn't need this option because you will be using a valid certificate.
 
+_Introduced in InvenioRDM v12_
+When making requests to the new REST API endpoints introduced in v12, you can set the Content-Type header to:
+
+```shell
+Content-Type: application/vnd.inveniordm.v1+json
+```
+
+Including Content-Type ensures that the server correctly interprets your request payloads according to the new API specifications introduced in v12. While the `application/json` Content-Type is still supported, it is recommended to use the new Content-Type to ensure compatibility with future versions of InvenioRDM.
+
 ### Scopes
 
 !!! warning "Work in progress"
