@@ -126,7 +126,7 @@ invenio queues declare
 Execute the data migration:
 
 ```bash
-pipenv run invenio shell $(find $(pipenv --venv)/lib/*/site-packages/invenio_app_rdm -name migrate_11_0_to_12_0.py)
+invenio shell $(find $(pipenv --venv)/lib/*/site-packages/invenio_app_rdm -name migrate_11_0_to_12_0.py)
 ```
 
 ### Rebuild search indices
@@ -134,6 +134,10 @@ pipenv run invenio shell $(find $(pipenv --venv)/lib/*/site-packages/invenio_app
 ```bash
 invenio index destroy --yes-i-know
 invenio index init
+# if you have records custom fields
+invenio rdm-records custom-fields init
+# if you have communities custom fields
+invenio communities custom-fields init
 invenio rdm rebuild-all-indices
 ```
 
@@ -199,6 +203,10 @@ THEME_SITENAME = "Project name for header and UI"
   ```bash
   invenio index destroy --yes-i-know
   invenio index init
+  # if you have records custom fields
+  invenio rdm-records custom-fields init
+  # if you have communities custom fields
+  invenio communities custom-fields init
   invenio rdm rebuild-all-indices
   ```
   SOLUTION 2:

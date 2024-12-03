@@ -112,7 +112,7 @@ invenio alembic upgrade
 Execute the data migration, note that there is no need to re-index the data:
 
 ```bash
-pipenv run invenio shell $(find $(pipenv --venv)/lib/*/site-packages/invenio_app_rdm -name migrate_10_0_to_11_0.py)
+invenio shell $(find $(pipenv --venv)/lib/*/site-packages/invenio_app_rdm -name migrate_10_0_to_11_0.py)
 ```
 
 The parsing of the ROR dump used for the Funders vocabulary has

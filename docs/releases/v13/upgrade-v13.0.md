@@ -120,7 +120,7 @@ Execute the data migration:
 
 ### Rebuild search indices
 
-TODO if not destroying and rebuiliding for names we need to update the mappings: 
+TODO if not destroying and rebuiliding for names we need to update the mappings:
 ```bash
 invenio index update names-name-v2.0.0 --no-check
 ```
@@ -128,6 +128,10 @@ invenio index update names-name-v2.0.0 --no-check
 ```bash
 invenio index destroy --yes-i-know
 invenio index init
+# if you have records custom fields
+invenio rdm-records custom-fields init
+# if you have communities custom fields
+invenio communities custom-fields init
 invenio rdm rebuild-all-indices
 ```
 
