@@ -200,10 +200,10 @@ nav:
     - Maintenance policy: releases/maintenance-policy.md
     - Upgrade policy: releases/upgrade-policy.md
     - Security policy: releases/security-policy.md
-    - WIP - Version v13.0 STS:
+    - Version v13.0:
       - Release Notes v13.0: releases/v13/version-v13.0.0.md
       - Upgrade from v12 to v13: releases/v13/upgrade-v13.0.md
-    - Version v12.0 LTS:
+    - Version v12.0:
       - Release Notes v12.0: releases/v12/version-v12.0.0.md
       - Upgrade from v11 to v12: releases/v12/upgrade-v12.0.md
     - Version v11.0 STS:
