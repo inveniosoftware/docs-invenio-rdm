@@ -11,11 +11,8 @@ the maintenance policy.
 
 ## Overview
 
-An InvenioRDM Long-Term Support (LTS) release is supported for minimum 1 year
-and for minimum 6 months after the next new LTS release (see
-[maintenance policy](../releases/maintenance-policy.md)). Only the latest minor
-version of an LTS release is supported (e.g. we do not support both v6.0 and
-v6.1).
+The latest InvenioRDM release is supported until the next release
+(see [maintenance policy](../releases/maintenance-policy.md)).
 
 ### Opening pull requests
 
@@ -48,37 +45,6 @@ The maintainer merging the PR is now responsible for backporting the fix to all
 maintained releases. The maintainer is free to ask the developer opening the
 PR to backport the fix, but it's the maintainer that's ultimately responsible
 for ensuring that the fix is backported.
-
-#### Supported maintenance branches
-
-Following is an overview of which versions/branch(es) are currently supported for
-InvenioRDM modules (see the currently supported InvenioRDM versions and their
-end of life dates on the
-[maintenance policy](../releases/maintenance-policy.md)).
-
-| Module                      | Supported versions     | Supported branches             |
-| --------------------------- | ---------------------- | ------------------------------ |
-| flask-resources             | ``0.7.x``, ``0.8.x``   | ``maint-0.7``, ``maint-0.8``   |
-| invenio-app-rdm             | ``6.0.x``, ``8.0.x``   | ``maint-6.0``, ``maint-8.0``   |
-| invenio-communities         | ``2.5.x``, ``2.7.x``   | ``maint-2.5``, ``maint-2.7``   |
-| invenio-drafts-resources    | ``0.13.x``, ``0.15.x`` | ``maint-0.13``, ``maint-0.15`` |
-| invenio-rdm-records         | ``0.32.x``, ``0.34.x`` | ``maint-0.32``, ``maint-0.34`` |
-| invenio-records-permissions | ``0.12.x``, ``0.13.x`` | ``maint-0.12``, ``maint-0.13`` |
-| invenio-records-resources   | ``0.16.x``, ``0.18.x`` | ``maint-0.16``, ``maint-0.18`` |
-| invenio-requests            | ``0.2.x``              | ``maint-0.2``                  |
-| invenio-s3                  | ``1.0.x``              | ``maint-1.0``                  |
-| invenio-vocabularies        | ``0.8.x``, ``0.10.x``  | ``maint-0.8``, ``maint-0.10``  |
-| marshmallow-utils           | ``0.5.x``              | ``maint-0.5``                  |
-| react-invenio-deposit       | ``0.16.x``, ``0.17.x`` | ``maint-0.16``, ``maint-0.17`` |
-| react-invenio-forms         | ``0.8.x``, ``0.9.x``   | ``maint-0.8``, ``maint-0.9``   |
-
-!!! info "Didn't find the module?"
-
-    If a module is not listed above, it is because the version is either
-    unconstrained or part of Invenio Framework and constrained by the Invenio
-    Framework setup. For unconstrained modules you should take great care that
-    the change/fix is backward compatible. If not, we have to constrain the
-    module version in one of the InvenioRDM modules.
 
 ### Backporting
 
@@ -117,9 +83,9 @@ Once you have determined which major versions of InvenioRDM that are supported,
 you can start from ``invenio-app-rdm`` to figuoure out which module versions
 and branches that are supported and can update the table accordingly.
 
-#### Create maintenance branches on LTS releases
+#### Create maintenance branches on release
 
-When a new LTS version is released, the release manager should go through all
+When a new release is released, the release manager should go through all
 above repositories and create ``maint-x.y`` branches from the master/main
 branch.
 

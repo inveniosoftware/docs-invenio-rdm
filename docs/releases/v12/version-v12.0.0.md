@@ -2,9 +2,7 @@
 
 _2024-07-31_
 
-_Long-term support (LTS) release_
-
-We're happy to announce the release of InvenioRDM v12.0, the new much anticipated long-term support release! Version 12 will be maintained until at least 6 months following the next long-term support release. This also means that in February 2025, we will retire v9.1, the previous LTS. Visit our [maintenance policy page](../maintenance-policy.md) to learn more.
+We're happy to announce the release of InvenioRDM v12.0, the new much anticipated release! Version 12 will be maintained until at least 6 months following the next release. This also means that in February 2025, we will retire v9.1, the previous LTS. Visit our [maintenance policy page](../maintenance-policy.md) to learn more.
 
 ## Try it
 
