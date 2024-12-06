@@ -20,7 +20,6 @@
 | `visibility`    | string | body     | Required, one of `"public"` or `"restricted"`. Visible by the public or restricted to those who have access.                                                         |
 | `member_policy` | string | body     | Required, one of `"open"` or `"closed"`. Can people request to be part of the community (open) or not (closed)?                                                      |
 | `record_policy` | string | body     | Required, one of `"open"` or `"closed"`. Can community's members submit a record to the community without a review (open), or a review is always necessary (closed)? |
-| `owned_by`      | array  | body     | Array of Objects of the form: `{"user": <user_id> }`. Community owners (admins).                                                                                     |
 
 ### Community metadata
 
