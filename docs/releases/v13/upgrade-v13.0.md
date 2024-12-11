@@ -115,6 +115,27 @@ invenio alembic upgrade
 
 Execute the data migration:
 
+
+### Configuration change for `nginx`
+
+The new PDF file previewer is based on `pdfjs-dist` v4, which uses ECMAScript modules (`.mjs`) over CommonJS files (`.js`).
+These files are not registered in the [default configuration](https://github.com/nginx/nginx/blob/master/conf/mime.types#L8) for `nginx`.
+This can result in the MIME type being reported incorrectly, and thus being blocked by the browser, leading to a broken PDF preview.
+
+Luckily, this can be simply fixed by adding a custom [`types`](https://nginx.org/en/docs/http/ngx_http_core_module.html#types) entry;
+e.g. in the `http` block in [`nginx.conf`](https://github.com/inveniosoftware/cookiecutter-invenio-rdm/blob/master/%7B%7Bcookiecutter.project_shortname%7D%7D/docker/nginx/nginx.conf)
+(cf. this [Cookiecutter PR](https://github.com/inveniosoftware/cookiecutter-invenio-rdm/pull/299)).
+```nginx
+include       /etc/nginx/mime.types;
+default_type  application/octet-stream;
+types {
+    # Tell nginx that ECMAScript modules are also JS
+    application/javascript js mjs;
+}
+```
+
+
+
 ### TODO
 
 
