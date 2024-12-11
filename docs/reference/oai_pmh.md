@@ -63,7 +63,7 @@ The OpenAIRE OAI sets is included by default in InvenioRDM.
 The prefix that will be applied to the generated OAI-PMH ids. Should be set to the domain of the repository (f.e. `inveniordm.docs.cern.ch`):
 
 ```python
-OAISERVER_ID_PREFIX = 'inveniordm.docs.cern.ch':
+OAISERVER_ID_PREFIX = 'inveniordm.docs.cern.ch'
 ```
 
 #### Admin Emails
@@ -75,3 +75,15 @@ OAISERVER_ADMIN_EMAILS = [
     'info@inveniosoftware.org',
 ]
 ```
+
+## XSL Stylesheet
+
+To enhance the presentation of OAI 2.0 results for users navigating to the OAI Server, you can define an XSL Stylesheet to transform XML into HTML.
+
+To use a local XSL Stylesheet, you can download a pre-defined XSL Stylesheet for OAI 2.0 from the [EPrints repository](https://raw.githubusercontent.com/eprints/eprints3.4/refs/heads/master/lib/static/oai2.xsl) (GNU Lesser General Public License v3 licensed). Place the file in the `static` folder within your instance, run `invenio-cli assets build`, and set the relative URL in the `invenio.cfg`:
+
+```python
+OAISERVER_XSL_URL = '/static/oai2.xsl'
+```
+
+now when you navigate to the OAI Server, the XSL Stylesheet will be applied to the XML results.
