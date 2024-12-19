@@ -88,6 +88,13 @@ Update the file `<my-site>/Pipfile`.
 +++invenio-app-rdm = {extras = [...], version = "~=13.0.0"}
 ```
 
+If you're using Sentry, update invenio-logging in `<my-site>/Pipfile` to
+
+```diff
+---invenio-logging = {extras = ["sentry_sdk"], version = "~=2.0"}
++++invenio-logging = {extras = ["sentry"]}
+```
+
 ##### Step 3
 Update the `Pipfile.lock` file:
 
