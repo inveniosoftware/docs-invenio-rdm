@@ -35,11 +35,11 @@ This field implements a journal's metadata. It can be used to describe a journal
 
 ### Imprint
 
-This nested field implements an imprint's metadata. It can be used to describe a book, report or chapter where a record was published.
+This nested field implements an imprint's metadata. It can be used to describe a book, chapter, report, or conference proceedings where a record was published.
 
 **Metadata**
 
-- **title** `String`: The title of the book or report where the record was published.
+- **title** `String`: The title of the book, report, or proceedings where the record was published.
 - **isbn** `ISBN`(defined by [idutils](https://github.com/inveniosoftware/idutils/blob/10b05b702b06e93f02774426df59a217035b1cee/idutils/__init__.py#L400)): The book's International Standard Book Number. Applies if the imprint is a book.
 - **place** `String`: Location where the book (or report) was published.
 - **pages** `String`: The pages within the book or report. It can be a number or a range in any format.
