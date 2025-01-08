@@ -59,6 +59,7 @@ nav:
           - Metadata-only records: "features/features-walk-through/metadata_only.md"
   - Install:
       - Quick start: "install/index.md"
+      - Devbox: "install/devbox.md"
       - System requirements: "install/requirements.md"
       - Install CLI: "install/cli.md"
       - Scaffold: "install/scaffold.md"
