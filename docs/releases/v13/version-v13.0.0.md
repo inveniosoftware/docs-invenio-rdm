@@ -47,6 +47,10 @@ A collection serves as a curated set of records that are grouped based on a spec
 
 Collections are stored in the Database and each collection defines a search query string that is used to fetch each collection records. Find more information in the [RFC](https://github.com/inveniosoftware/rfcs/blob/master/rfcs/rdm-0079-collections.md).
 
+### Optional DOI
+
+DOIs can now be configured as optional. Describe the feature.
+
 **How to create a collection for a community**
 
 Currently collections are created using a python shell (`invenio shell`)
