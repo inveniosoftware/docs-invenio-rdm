@@ -181,6 +181,7 @@ ADMINISTRATION_DISPLAY_VERSIONS = [
 - feature: invenio jobs module, periodic tasks administration panel
 - feature: invenio vocabularies entries deprecation
 - improvement: search mappings and analyzers to improve performance
+- OpenSearch version now required v2.17 at least
 
 ### TODO
 
