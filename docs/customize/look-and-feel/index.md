@@ -35,15 +35,15 @@ INVENIO_THEME_FRONTPAGE_TITLE="Stage RePo: the Repository about Potatoes"
 
     ❌ DON'T
     ```shell
-    INVENIO_APP_ALLOWED_HOSTS=["127.0.0.1"] invenio-cli run
+    INVENIO_TRUSTED_HOSTS=["127.0.0.1"] invenio-cli run
     ```
-    `APP_ALLOWED_HOSTS` is interpreted as the string `"[127.0.0.1]"` because of shell substitution followed by Python literal conversion.
+    `TRUSTED_HOSTS` is interpreted as the string `"[127.0.0.1]"` because of shell substitution followed by Python literal conversion.
 
     ✅ DO
     ```shell
-    INVENIO_APP_ALLOWED_HOSTS='["127.0.0.1"]' invenio-cli run
+    INVENIO_TRUSTED_HOSTS='["127.0.0.1"]' invenio-cli run
     ```
-    `APP_ALLOWED_HOSTS` is interpreted as the list `["127.0.0.1"]` which is right.
+    `TRUSTED_HOSTS` is interpreted as the list `["127.0.0.1"]` which is right.
 
     Another pitfall to avoid is when a value can be interpreted as the wrong type.
 
