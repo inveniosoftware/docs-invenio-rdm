@@ -181,7 +181,7 @@ ADMINISTRATION_DISPLAY_VERSIONS = [
 - feature: invenio jobs module, periodic tasks administration panel
 - feature: invenio vocabularies entries deprecation
 - improvement: search mappings and analyzers to improve performance
-- OpenSearch version now required v2.17 at least
+- OpenSearch min version now required v2.12 due to breaking changes in `geo-shape` fields, see issue [here](https://github.com/inveniosoftware/invenio-rdm-records/issues/1807) and related OpenSearch issue and comment [here](https://github.com/opensearch-project/OpenSearch/issues/10958#issuecomment-2037882756).
 
 ### TODO
 
