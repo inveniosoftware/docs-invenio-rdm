@@ -182,6 +182,7 @@ ADMINISTRATION_DISPLAY_VERSIONS = [
 - feature: invenio vocabularies entries deprecation
 - improvement: search mappings and analyzers to improve performance
 - OpenSearch min version now required v2.12 due to breaking changes in `geo-shape` fields, see issue [here](https://github.com/inveniosoftware/invenio-rdm-records/issues/1807) and related OpenSearch issue and comment [here](https://github.com/opensearch-project/OpenSearch/issues/10958#issuecomment-2037882756).
+- change from `APP_ALLOWED_HOSTS` to `TRUSTED_HOSTS` due flask >= 3
 
 ### TODO
 

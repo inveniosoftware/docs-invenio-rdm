@@ -45,9 +45,9 @@ The credentials you do find in the ``invenio.cfg`` file are for the default deve
 ## Options
 
 ---
-### ``APP_ALLOWED_HOSTS``
+### ``TRUSTED_HOSTS``
 
-Invenio has a configuration option called ``APP_ALLOWED_HOSTS`` which controls which hosts/domain names can be served. A client request to a web server usually includes the domain name in the Host HTTP header:
+Invenio has a configuration option called ``TRUSTED_HOSTS`` which controls which hosts/domain names can be served. A client request to a web server usually includes the domain name in the Host HTTP header:
 
 ```
 GET /
@@ -61,10 +61,10 @@ An attacker has full control of the host header and can thus change it to whatev
 
 Normally your load balancer/web server should only route requests with a white-listed set of hosts to your application. It is however very easy to misconfigure this in your web server, and thus Invenio includes a protective measure.
 
-Simply set APP_ALLOWED_HOSTS to a list of allowed hosts/domain names:
+Simply set TRUSTED_HOSTS to a list of allowed hosts/domain names:
 
 ```
-APP_ALLOWED_HOSTS = ['www.example.org']
+TRUSTED_HOSTS = ['www.example.org']
 ```
 
 Failing to properly configure this variable will cause the error `Bad Request Host x.x.x.x is not trusted.` when starting the web app.
