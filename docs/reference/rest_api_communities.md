@@ -72,12 +72,7 @@ Content-Type: application/json
   "access": {
     "visibility": "public",
     "member_policy": "open",
-    "record_policy": "open",
-    "owned_by": [
-      {
-          "user": {user-id}
-      }
-    ],
+    "record_policy": "open"
   },
   "created": "2020-11-27 10:52:23.945755",
   "updated": "2020-11-27 10:52:23.945755",
@@ -471,12 +466,7 @@ Content-Type: application/json
   "access": {
     "visibility": "public",
     "member_policy": "open",
-    "record_policy": "open",
-    "owned_by": [
-      {
-          "user": {user-id}
-      }
-    ],
+    "record_policy": "open"
   },
   "created": "2020-11-27 10:52:23.945755",
   "updated": "2020-11-27 10:52:23.945755",
