@@ -69,7 +69,7 @@ You can configure Celery, SQLAlchemy, and Redis to send logs to Sentry. This beh
 
 To enable Sentry integration, follow these steps:
 
-- Install the Sentry SDK: In your `Pipefile`, under the packages section, add the invenio-logging package with the sentry extra:
+- Install the Sentry SDK: In your `Pipfile`, under the `[packages]` section, add the `invenio-logging` package with the `sentry` extra:
 
 ```python
 invenio-logging = {extras = ["sentry"]}
