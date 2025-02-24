@@ -14,7 +14,7 @@ If a system is not listed below, check the original documentation on how to inst
 brew update && brew install mailhog
 ```
 
-and then start MailHog via 
+and then start MailHog via
 
 ```terminal
 mailhog
@@ -57,7 +57,7 @@ MAIL_SUPPRESS_SEND = False
 MAIL_SERVER = '127.0.0.1'
 
 # Configured SMTP server's port
-MAIL_PORT = 1025 
+MAIL_PORT = 1025
 ```
 
 Restart the application and e-mails will be sent to the configured `SMTP` server.
@@ -66,5 +66,5 @@ Check the inbox in [MailHog UI](http://127.0.0.1:8025).
 
 ## Further reading
 
-- How to configure flask mail - [docs](https://pythonhosted.org/Flask-Mail/#configuring-flask-mail)
+- How to configure flask mail - [docs](https://flask-mail.readthedocs.io/en/latest/#configuring)
 - MailHog - [original repo](https://github.com/mailhog/MailHog)
