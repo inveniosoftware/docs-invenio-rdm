@@ -17,7 +17,7 @@ Set this to False when sending actual emails.
 """
 ```
 For more possible adjustments see the
-[flask-mail-documentation](https://pythonhosted.org/Flask-Mail/#configuring-flask-mail).
+[flask-mail-documentation](https://flask-mail.readthedocs.io/en/latest/#configuring).
 
 If `MAIL_SUPPRESS_SEND` is set to `True` you can find the 'sent' emails in the
 logs of the worker:
