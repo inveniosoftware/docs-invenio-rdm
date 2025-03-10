@@ -10,14 +10,27 @@
 -->
 {% extends "main.html" %}
 
-{% macro render(nav_item, path, level) %}
+
+{% macro first_url(nav_item) %}
+  {# Returns the first link (if possible) that should be attributed to nav_item.
+
+    In particular, if nav_item contains deeply nested sections before an actual page
+    `first_url` will find the URL for that page.
+  #}
   {% if nav_item.url %}
     {% set link = nav_item.url | url %}
   {% elif nav_item.children %}
-    {% set link = nav_item.children[0].url | url %}
+    {% set link = first_url(nav_item.children[0]) %}
   {% else %}
     {% set link = "" %}
-  {% endif %}
+  {%endif%}
+  {{ link }}
+{% endmacro %}
+
+
+{% macro render(nav_item, path, level) %}
+  {# Renders the nav_item section: its title and first level subsections #}
+  {% set link = first_url(nav_item) %}
   {% if nav_item.children and level <= 1 %}
     <li class="rdm-toc-item level{{level}} nested">
       <div>
