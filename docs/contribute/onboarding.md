@@ -5,7 +5,7 @@ Welcome to the InvenioRDM and to our collaborative, open source community!
 Find here important resources for onboarding.
 
 ## For everyone
-* Mailing list (self-subscribe): https://lists.e-infra.cz/wws/info/project-inveniordm
+* Mailing list (self-subscribe): <https://lists.e-infra.cz/wws/info/project-inveniordm>
 * Telecon schedule 2025: [Google Calendar](https://docs.google.com/document/d/1KWvDoVN0hx4jG5wfm4BF322Gyf06dLNuvrAvrbXL9Mc)
 * Chat on Discord: <https://discord.com/invite/8qatqBC>
 * Discussion forum on Discourse: <https://invenio-talk.web.cern.ch>
