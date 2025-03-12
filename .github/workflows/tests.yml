@@ -1,14 +1,14 @@
-name: CI
+name: Run tests
 
 on:
   push:
     branches:
       - master
-      - dev
+      - production
   pull_request:
     branches:
       - master
-      - dev
+      - production
   schedule:
     # * is a special character in YAML so you have to quote this string
     - cron: "0 3 * * 6"
@@ -21,7 +21,7 @@ on:
 
 jobs:
   Tests:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout

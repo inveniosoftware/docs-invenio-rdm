@@ -1,0 +1,23 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright (C) 2022-2023 Northwestern University.
+#
+# Documentation: https://docs.github.com/en/code-security/dependabot
+
+version: 2
+updates:
+  # Enable version updates for pip
+  - package-ecosystem: "pip"
+    # Look for `setup.py`, `requirements.txt`, `pyproject.toml`... files in the `root` directory
+    directory: "/"
+    # Check the pypi registry for updates once a week on Monday
+    schedule:
+      interval: "weekly"
+
+  # Enable version updates for GitHub actions
+  - package-ecosystem: "github-actions"
+    # Exception as per documentation: "/" means to look for any files in `.github/workfows/`
+    directory: "/"
+    # Check for updates once a week on Monday
+    schedule:
+      interval: "weekly"
