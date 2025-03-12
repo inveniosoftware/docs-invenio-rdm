@@ -1,10 +1,10 @@
-# Writing documentation
+# Contribute documentation
 
-Learn how to write technical documentation.
+Learn how to write and contribute technical documentation.
 
 ## References
 
-- [The documentation system](https://documentation.divio.com/): learn how to write *tutorials*, *how-to guides*, *reference guides*, *explanation*.
+- [Diátaxis](https://diataxis.fr/): learn how to write *tutorials*, *how-to guides*, *reference guides*, *explanation*.
 
 - Training of 2-3 hours: [Google Technical Writing Courses for Engineers](https://developers.google.com/tech-writing/overview).
 

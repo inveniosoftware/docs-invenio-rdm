@@ -76,7 +76,7 @@ languages.
     InvenioRDM provides several languages, for example, Arabic (`ar`), Chinese
     (`zh_CN`), German (`de`), and Spanish (`es`). If your letter code does not
     work, test with German (`de`). If you want your language to be included,
-    see: [Contribution](../contribute/translators-guide.md)
+    see: [Contribution](../community/translations/translators-guide.md)
 
 ## Change the Default Language
 
@@ -143,17 +143,16 @@ via the `invenio.cfg`-file.
     InvenioRDM provides several languages, for example, Arabic (`ar`), Chinese
     (`zh_CN`), German (`de`), and Spanish (`es`). If your letter code does not
     work, test it with German. If you want your language to be included, see:
-    [Contribution](../contribute/translators-guide.md)
+    [Contribution](../community/translations/translators-guide.md)
 
 ## Troubleshooting
 
 - There are English texts showing up in your user interface: If the application
   cannot find a translation, it will fall back to English. You can help filling
-  these gaps by [becoming a translator](../contribute/translators-guide.md).
+  these gaps by [becoming a translator](../community/translations/translators-guide.md).
 - Strings appear in many places in your instance and different techniques are
   involved to handle them. We are working on documentation for translations of
     - (customized) vocabularies
     - static pages
     - (customized) emails
 - Ask for knowledge in [Discord `#rdm-translations`](https://discord.gg/Ya7qSG43Br).
-
