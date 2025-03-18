@@ -8,7 +8,7 @@ Our maintenance policy strives to strike a balance between supporting a rock-sol
 
 Starting with the v12 release, we have shifted from the Long-Term Support (LTS) and Short-Term Support (STS) model to aiming for one stable major release per year.
 
-**Major release:** Major versions, such as v12, introduce new features, make backward incompatible changes and remove deprecated features in a progressive manner. Only the latest minor-level release for each major version is supported. A major version release is supported for 6 months past the next major version release.
+**Major release:** Major versions, such as v12, introduce new features, can make backward incompatible changes, and sometimes remove deprecated features in a progressive manner. Only the latest minor-level release for each major version is supported. A major version release is supported for 6 months past the next major version release. In practice, a major version *could* be incompatible with prior customizations, but not necessarily. It is more often a way for the development team to establish a new set of features/modules for which they guarantee cohesion and for which they limit their attention to.
 
 **Minor releases:** Minor versions, such as v12.1, introduce backward compatible changes in a manner that allows users to easily upgrade.
 
