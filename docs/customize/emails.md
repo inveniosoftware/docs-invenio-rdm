@@ -2,7 +2,7 @@
 
 ## Adding Credentials
 
-You can add your credentials for sending emails in `invenio.cfg`. For example:
+You can add your credentials for sending emails for account-related tasks in `invenio.cfg`. For example:
 
 ``` python
 SECURITY_EMAIL_SENDER = "reasearchdata@my-university.com"
@@ -42,6 +42,15 @@ worker_1      | 2021-11-16T12:47:41.816512277Z
 worker_1      | 2021-11-16T12:47:41.816520657Z This is my wonderful email-template in plain text!
 worker_1      | 2021-11-16T12:47:41.816529772Z -------------------------------------------------------------------------------
 ```
+
+Notification emails are configured separately from the account-related email settings. Notifications are things like 
+the results of the asynchronous task that automatically checks whether files have been corrupted, meaning that a file's checksum differs from its original checksum.
+
+Notification e-mail options can be modified by editing the following configurations:
+
+- `MAIL_DEFAULT_SENDER`: modifies the e-mail sender (field `from`).
+- `APP_RDM_ADMIN_EMAIL_RECIPIENT`: modifies the e-mail recipient (field `to`).
+- `FILES_INTEGRITY_REPORT_SUBJECT`: modifies the  subject of the e-mail (field `subject`).
 
 ## Templates
 
@@ -86,3 +95,5 @@ SECURITY_EMAIL_HTML = False
 For further inspiration including translation and variables you can take a look
 at the templates created in
 [invenio-accounts](https://github.com/inveniosoftware/invenio-accounts/tree/master/invenio_accounts/templates/security/email).
+
+Notification templates can be modified by overridden by setting specific configuration variables, such as `FILES_INTEGRITY_REPORT_TEMPLATE`.
