@@ -50,7 +50,6 @@ Notification e-mail options can be modified by editing the following configurati
 
 - `MAIL_DEFAULT_SENDER`: modifies the e-mail sender (field `from`).
 - `APP_RDM_ADMIN_EMAIL_RECIPIENT`: modifies the e-mail recipient (field `to`).
-- `FILES_INTEGRITY_REPORT_SUBJECT`: modifies the  subject of the e-mail (field `subject`).
 
 ## Templates
 
@@ -96,4 +95,4 @@ For further inspiration including translation and variables you can take a look
 at the templates created in
 [invenio-accounts](https://github.com/inveniosoftware/invenio-accounts/tree/master/invenio_accounts/templates/security/email).
 
-Notification templates can be modified by setting specific configuration variables, such as `FILES_INTEGRITY_REPORT_TEMPLATE`.
+Notification templates can be modified by setting specific configuration variables, such as `FILES_INTEGRITY_REPORT_TEMPLATE` and `FILES_INTEGRITY_REPORT_SUBJECT` for the subject of the e-mail.
