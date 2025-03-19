@@ -96,4 +96,4 @@ For further inspiration including translation and variables you can take a look
 at the templates created in
 [invenio-accounts](https://github.com/inveniosoftware/invenio-accounts/tree/master/invenio_accounts/templates/security/email).
 
-Notification templates can be modified by overridden by setting specific configuration variables, such as `FILES_INTEGRITY_REPORT_TEMPLATE`.
+Notification templates can be modified by setting specific configuration variables, such as `FILES_INTEGRITY_REPORT_TEMPLATE`.
