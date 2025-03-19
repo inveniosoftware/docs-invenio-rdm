@@ -1,7 +1,5 @@
 # List of optional metadata fields
 
-_Introduced in InvenioRDM v12_
-
 The following document is a reference guide for the instance-level optional metadata fields available in InvenioRDM.
 
 !!!tip "How to add a field to an instance?"
@@ -43,14 +41,17 @@ This nested field implements an imprint's metadata. It can be used to describe a
 - **isbn** `ISBN`(defined by [idutils](https://github.com/inveniosoftware/idutils/blob/10b05b702b06e93f02774426df59a217035b1cee/idutils/__init__.py#L400)): The book's International Standard Book Number. Applies if the imprint is a book.
 - **place** `String`: Location where the book (or report) was published.
 - **pages** `String`: The pages within the book or report. It can be a number or a range in any format.
+- **edition** `String`: The edition of a book or report. 
 
 ### Thesis
 
-This field implements thesis metadata, more specifically an awarding university. A thesis supervisor can be found in the list of contributors whose role is "Supervisor".
+This field implements thesis metadata. A thesis supervisor can be found in the list of contributors whose role is "Supervisor".
 
 **Metadata**
 
-- **university**: Name of the awarding university.
+- **university** `String`: Name of the awarding university.
+- **department** `String`: Department which awarded the thesis.
+- **type** `String`: The type of thesis (e.g. Masters, PhD, Engineers, Bachelors).
 
 ## Meeting
 
