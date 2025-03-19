@@ -49,7 +49,7 @@ Choose from 1 [1]:
 Select database:
 1 - postgresql
 Choose from 1 [1]:
-Select esearch:
+Select search:
 1 - opensearch2
 Choose from 1, 2 [1]:
 Select file_storage:
