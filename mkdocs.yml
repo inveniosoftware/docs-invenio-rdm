@@ -106,21 +106,10 @@ nav:
       - Notifications: "customize/notifications.md"
   - Develop:
       - Overview: "develop/index.md"
-      - Getting started:
-          - Source code: "develop/getting-started/source-code.md"
-          - Package development: "develop/getting-started/package-development.md"
-          - Instance development: "develop/getting-started/instance-development.md"
-          - Debugging: "develop/getting-started/debugging.md"
-          - Coding style: "develop/getting-started/code-style.md"
-          - Virtual environments: "develop/getting-started/virtualenvs.md"
-          - Getting help: "develop/getting-started/help.md"
-          - Development process: develop/process.md
-      - Best practices:
-          - Accessibility (a11y): develop/best-practices/accessibility.md
-          - Commits, PRs & reviews: develop/best-practices/commits.md
-          - CSS/JavaScript: develop/best-practices/css-js.md
-          - React: develop/best-practices/react.md
-          - User interface: develop/best-practices/ui.md
+      - Getting Started:
+        - Virtual environments: "develop/getting-started/virtualenvs.md"
+        - Debugging: "develop/getting-started/debugging.md"
+        - Getting help: "develop/getting-started/help.md"
       - Topic guides:
           # - Building REST APIs: develop/topics/rest.md
           - Building resources: develop/topics/resource.md
@@ -133,7 +122,6 @@ nav:
           - Theming: develop/topics/theming.md
           - Administration panel: develop/topics/administration_panel.md
       - How-to guides:
-          - Translation (i18n): develop/howtos/i18n.md
           - Create a new custom field: develop/howtos/custom_fields.md
           - Create custom code and views: develop/howtos/custom_code.md
           - Add JavaScript: "develop/howtos/add_javascript.md"
@@ -146,7 +134,6 @@ nav:
           - Back up search indices: develop/howtos/backup_search_indices.md
           - Restrict access to pages: develop/howtos/restrict_access.md
           - Create and configure notifications: develop/howtos/notifications.md
-
       - Architecture:
           - Introduction: develop/architecture/index.md
           - Infrastructure: develop/architecture/infrastructure.md
@@ -246,25 +233,41 @@ nav:
       - Version v1.0:
         - Release Notes v1.0: releases/v1/version-v1.0.0.md
 
+  - Join the Community:
+    - Overview: community/index.md
+    - Onboard: community/onboard.md
+    - Code of conduct: community/code-of-conduct.md
+    - Copyright policy: community/copyright-policy.md
+    - Contribute code:
+      - Development process: community/code/process.md
+      - Source code: community/code/source-code.md
+      - Package Development: "community/code/package-development.md"
+      - Pre-release Instance Development: "community/code/prerelease-instance-development.md"
+      - Coding style: community/code/code-style.md
+      - Best practices:
+          - Accessibility (a11y): community/code/best-practices/accessibility.md
+          - Commits, PRs & reviews: community/code/best-practices/commits.md
+          - CSS/JavaScript: community/code/best-practices/css-js.md
+          - React: community/code/best-practices/react.md
+          - User interface: community/code/best-practices/ui.md
+    - Contribute translations:
+      - community/translations/translators-guide.md
+      - community/translations/i18n.md
+    - Contribute documentation: community/documentation.md
+    - Community PR board: community/pr-community-board.md
+    #   # Merge Sprintboard workflow: maintenance/board-workflow.md with above
+    - Roadmap: community/roadmap.md
+
   - Maintainers:
       - Overview: maintenance/index.md
       - Newcomers: maintenance/newcomers.md
       - Sprintboard workflow: maintenance/board-workflow.md
-      - Community PR board: maintenance/pr-community-board.md
       - Release management: maintenance/release-management.md
       - Modules on GitHub: maintenance/modules.md
       - Branch management: maintenance/branch-management.md
       - Demo site & docs: maintenance/demosite.md
       - Docker images: maintenance/docker-images.md
       - RFCs: maintenance/rfcs.md
-      - Writing documentation: maintenance/documentation.md
-  - Onboard & Contribute:
-      - Overview: contribute/index.md
-      - Onboarding: contribute/onboarding.md
-      - Code of conduct: contribute/code-of-conduct.md
-      - Copyright policy: contribute/copyright-policy.md
-      - Roadmap: contribute/roadmap.md
-      - Translators guide: contribute/translators-guide.md
 
 # Customization
 extra:
@@ -281,6 +284,7 @@ markdown_extensions:
   - pymdownx.highlight
   - pymdownx.superfences
   - pymdownx.critic
-
+  - pymdownx.tabbed:
+      alternate_style: true
   - toc:
       permalink: true
