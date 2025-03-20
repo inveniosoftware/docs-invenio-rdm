@@ -41,6 +41,7 @@ Initializing RDM application...
 Running cookiecutter...
 project_name [My Site]:
 project_shortname [my-site]:
+package_name [my_site]:
 project_site [my-site.com]:
 author_name [CERN]:
 author_email [info@my-site.com]:
