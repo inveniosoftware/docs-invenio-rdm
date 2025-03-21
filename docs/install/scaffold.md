@@ -8,6 +8,8 @@ First, we need to create the project - the necessary files and folders for your 
 the generated project into a version control system, as it will contain the customizations for your repository. If you're working 
 on an existing repository you can skip the scaffolding step, as it only has to be done once.
 
+This documentation describes `invenio-cli` version 1.6.0. Other versions may have different data requests.
+
 The CLI will require the following data:
 
 - **Project name**: Title of your project with space allowed (project name for humans)
@@ -69,17 +71,6 @@ Select use_reduced_vocabs:
 1 - no
 2 - yes
 Choose from 1, 2 [1]:
--------------------------------------------------------------------------------
-
-Generating SSL certificate and private key for testing....
-Generating a 4096 bit RSA private key
-...................................................................................................++
-.............................................++
-writing new private key to 'docker/nginx/test.key'
------
--------------------------------------------------------------------------------
-Writing invenio-invenio_cli config file...
-Creating logs directory...
 ```
 
 ## Project structure
