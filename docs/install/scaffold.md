@@ -8,18 +8,19 @@ First, we need to create the project - the necessary files and folders for your 
 the generated project into a version control system, as it will contain the customizations for your repository. If you're working 
 on an existing repository you can skip the scaffolding step, as it only has to be done once.
 
+This documentation describes `invenio-cli` version 1.6.0. Other versions may have different data requests.
+
 The CLI will require the following data:
 
 - **Project name**: Title of your project with space allowed (project name for humans)
 - **Project short name**: Hyphenated and lowercased title (project name for machines)
+- **Package name**: Snake cased and lowercased title (project name for machines)
 - **Project website**: URL where the project will be deployed
-- **GitHub repository**: Repository in format `<owner>/<code repository>`
-- **Description**: Short description of project
 - **Author name**: Your name or that of your organization
 - **Author email**: Email for communication
 - **Year**: The current year
-- **Database**: PostgreSQL (default) - we hope to support MySQL in the future.
-- **Search**: OpenSearch 2 (default), OpenSearch 1 or Elasticsearch 7 (deprecated)
+- **Database**: PostgreSQL (default)
+- **Search**: OpenSearch 2 (default)
 - **Storage backend**: Local file system (default) or in a S3-like backend. If S3 is chosen a MinIO container is provided.
 - **Development tools**: `Yes` if you want to add extra development tools (e.g. OpenSearch Dashboard) to your instance.
 - **Site code**: `Yes` if you want to add custom code to your instance.
@@ -35,28 +36,24 @@ invenio-cli init rdm -c <version>
 
 Where ``<version>`` should be replaced with the version you want to install, e.g.:
 
-- LTS release (for production systems): ``v9.1``
-- STS release (for feature previews): ``v10.0``
+- Current release (for production systems): ``v12.0``
 
 ``` console
 Initializing RDM application...
 Running cookiecutter...
 project_name [My Site]:
 project_shortname [my-site]:
+package_name [my_site]:
 project_site [my-site.com]:
-github_repo [my-site/my-site]:
-description [My Site InvenioRDM Instance]:
 author_name [CERN]:
 author_email [info@my-site.com]:
 year [2023]:
 Choose from 1 [1]:
 Select database:
 1 - postgresql
-Choose from 1, 2, 3 [1]:
-Select elasticsearch:
+Choose from 1 [1]:
+Select search:
 1 - opensearch2
-2 - opensearch1
-3 - elasticsearch7
 Choose from 1, 2 [1]:
 Select file_storage:
 1 - local
@@ -74,17 +71,6 @@ Select use_reduced_vocabs:
 1 - no
 2 - yes
 Choose from 1, 2 [1]:
--------------------------------------------------------------------------------
-
-Generating SSL certificate and private key for testing....
-Generating a 4096 bit RSA private key
-...................................................................................................++
-.............................................++
-writing new private key to 'docker/nginx/test.key'
------
--------------------------------------------------------------------------------
-Writing invenio-invenio_cli config file...
-Creating logs directory...
 ```
 
 ## Project structure
