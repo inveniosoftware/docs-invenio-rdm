@@ -14,7 +14,7 @@ The CLI will require the following data:
 
 - **Project name**: Title of your project with space allowed (project name for humans)
 - **Project short name**: Hyphenated and lowercased title (project name for machines)
-- **Package name**: Hyphenated and lowercased title (project name for machines)
+- **Package name**: Snake cased and lowercased title (project name for machines)
 - **Project website**: URL where the project will be deployed
 - **Author name**: Your name or that of your organization
 - **Author email**: Email for communication
