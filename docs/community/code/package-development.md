@@ -16,9 +16,9 @@ editable install of the Python package:
 !!! note
 
     ``mkvirtualenv`` is a tool provided by virtualenv-wrapper to manage Python
-    virtualenvs. See [Python virtual environments](virtualenvs.md)
+    virtualenvs. See [Python virtual environments](../../develop/getting-started/virtualenvs.md)
 
-```
+```bash
 cd ~/src/invenio-app-rdm
 mkvirtualenv app-rdm
 # opensearch2 only needed for certain modules
@@ -33,7 +33,7 @@ you won't have all the tools needed for testing.
 
 Running the test is normally as simple as:
 
-```
+```bash
 ./run-tests.sh
 ```
 
@@ -59,7 +59,7 @@ to a single module:
 First make sure you have the source code of both modules. Next, simply do
 editable installs of both:
 
-```
+```bash
 mkvirtualenv communities
 pip install -e "~/src/invenio-communities[tests,opensearch2]" \
     -e "~/src/invenio-requests[tests,elasticsearch7]"
@@ -67,6 +67,5 @@ pip install -e "~/src/invenio-communities[tests,opensearch2]" \
 
 ### Application integration
 
-See the section [instance development](instance-development.md) for how to
-integrate your development versions in the InvenioRDM application.
-
+See the section on [pre-release instance development](prerelease-instance-development.md) for how to
+integrate your development version(s) in a development InvenioRDM application for integration testing.

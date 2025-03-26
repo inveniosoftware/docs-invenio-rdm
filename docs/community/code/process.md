@@ -10,7 +10,7 @@ a checklist and collection of prior experience.
 !!! warning "Don't skip!"
 
 We expect every community member to adhere to our
-[code of conduct](../contribute/code-of-conduct.md), and we thus expect
+[code of conduct](../code-of-conduct.md), and we thus expect
 that you have read it! Overall, the code of conduct says that we're:
 
 - Open
@@ -34,8 +34,6 @@ paraverbal part of message accounts for the remaining 90% of a message).
     - Provide and receive feedback: Feedback is like a gift. You give it with best
       intentions to help another person. When you receive it, you say thank you and
       it's fully up to you what you do with that gift afterwards.
-
-
 
 ### Principles
 
