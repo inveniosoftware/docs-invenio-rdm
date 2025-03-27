@@ -144,6 +144,10 @@ An overview of all the collections can be found in the community browse page (if
 
 - https://127.0.0.1:5000/communities/<community_slug>/browse
 
+### Helm charts
+
+To be announced?
+
 ### Miscellaneous additions
 
 Here is a quick summary of the myriad other improvements in this release:
