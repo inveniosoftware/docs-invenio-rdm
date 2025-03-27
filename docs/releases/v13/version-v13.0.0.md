@@ -18,7 +18,7 @@ to complete
 
 ### Jobs and ORCID/ROR
 
-Explain about jobs and ORCID/ROR jobs.
+Explain about the new jobs feature, logging and ORCID/ROR jobs.
 
 Related [new doc page](../../customize/vocabularies/names.md#using-orcid-public-data-sync).
 
@@ -37,6 +37,26 @@ BREAKING -> mapping changes, create new indices
 TODO
 Names listing endpoint is now restricted to authenticated users, names can be "unlisted" not showing anymore in the search result for non-admin users
 
+### Optional DOI
+
+DOIs can now be configured as optional. Describe the feature.
+
+### Compare revisions
+
+Administrators can compare revisions from the administration panel.
+
+### Thesis
+
+Anything to mention?
+
+### Requests sharing
+
+When a record is shared, its inclusion requests will be also accessible. There is a new filter in the My Dashboard to show the records shared with me.
+
+### Audit logs
+
+To be completed
+
 ### Collections
 
 Collections are a "big" feature added to v13.
@@ -46,10 +66,6 @@ Collections are a "big" feature added to v13.
 A collection serves as a curated set of records that are grouped based on a specific filter or query, displayed on a dedicated page, introducing a new way of organizing records within a community. For instance, a collection can be defined within a community to highlight records sharing common attributes, like funding programs or specific categories.
 
 Collections are stored in the Database and each collection defines a search query string that is used to fetch each collection records. Find more information in the [RFC](https://github.com/inveniosoftware/rfcs/blob/master/rfcs/rdm-0079-collections.md).
-
-### Optional DOI
-
-DOIs can now be configured as optional. Describe the feature.
 
 **How to create a collection for a community**
 
