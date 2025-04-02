@@ -148,6 +148,10 @@ An overview of all the collections can be found in the community browse page (if
 
 To be announced?
 
+### Diff tool in the admin panel
+
+Explain and screenshot of the diff tool in the admin panel
+
 ### Miscellaneous additions
 
 Here is a quick summary of the myriad other improvements in this release:
