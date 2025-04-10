@@ -152,6 +152,26 @@ To be announced?
 
 Explain and screenshot of the diff tool in the admin panel
 
+### FAIR signposting
+
+[FAIR signposting level 2](https://signposting.org/FAIR/#level2) is enabled by default. The response header of each record's landing page includes a `Link` HTTP response header pointing to a JSON-based linkset which contains the FAIR signposting information.
+
+In order to increase discoverability, [FAIR signposting level 1](https://signposting.org/FAIR/#level1) can be enabled with the configuration flag `APP_RDM_RECORD_LANDING_PAGE_FAIR_SIGNPOSTING_LEVEL_1_ENABLED = True`. Once enabled, FAIR signposting information will be directly included in the `Link` HTTP response header.
+
+Please note that for records having many authors, files, or licenses, FAIR signposting will fall back to level 2 only, in order to avoid generating excessively big HTTP response headers.
+
+However, since enabling FAIR signposting level 1 does increase the size of HTTP response headers, it is recommended to edit the `nginx` configuration and specifying [`uwsgi_buffers`](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_buffers) and [`uwsgi_buffer_size`](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_buffer_size) with higher limits than the default values, for instance:
+
+```nginx
+server {
+    # ...
+    # Allow for larger HTTP response headers for FAIR signposting level 1 support
+    uwsgi_buffers 8 16k;
+    uwsgi_buffer_size 16k;
+    # ...
+}
+```
+
 ### Miscellaneous additions
 
 Here is a quick summary of the myriad other improvements in this release:
