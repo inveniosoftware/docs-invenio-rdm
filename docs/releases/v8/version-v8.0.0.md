@@ -78,7 +78,7 @@ See the [OAI-PMH server documentation](../../reference/oai_pmh.md).
 
 InvenioRDM v8.0 has seen a lot of improvements on the translation front as well. We are now almost at a stage where the system is fully translated with German being the first translated language.
 
-We aim at finishing the full translation of InvenioRDM by v9 LTS. If you'd like to participate in the translation, please checkout our new guide for [getting involved as a translator](../../contribute/translators-guide.md).
+We aim at finishing the full translation of InvenioRDM by v9 LTS. If you'd like to participate in the translation, please checkout our new guide for [getting involved as a translator](../../community/translations/translators-guide.md).
 
 ### Web accessibility (A11y)
 

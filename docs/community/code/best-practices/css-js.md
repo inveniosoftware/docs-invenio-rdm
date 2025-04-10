@@ -91,11 +91,11 @@ Semantic UI has a fixed file structure; therefore, for creating custom CSS, the 
 
 ✅ DO
 
-![Semantic file structure](../img/semantic-structure.png)
+![Semantic file structure](img/semantic-structure.png)
 
 ❌ DON'T
 
-![Semantic file structure](../img/not-advised-structure.png)
+![Semantic file structure](img/not-advised-structure.png)
 
 ## Custom CSS
 

@@ -23,7 +23,7 @@ Following is a quick overview over what you need to know in order to participate
 
 We run **iterations of 6-8 weeks** and each iteration produces a new release. We use one sprint board per team to keep track of the current iteration.
 
-We use a [product roadmap](../contribute/roadmap.md) in GitHub to keep track of high-level features and plan the release.
+We use a [product roadmap](../community/roadmap.md) in GitHub to keep track of high-level features and plan the release.
 
 ### Board workflow
 
