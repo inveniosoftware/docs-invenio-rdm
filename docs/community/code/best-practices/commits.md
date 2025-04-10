@@ -103,12 +103,11 @@ When making your pull request, please keep the following in mind:
 - Add tests and don't decrease test coverage.
 - Add documentation.
 - Follow our best practices:
-    - [Data migrations](../howtos/alembic.md)
-    - [Translation strings](../howtos/i18n.md)
+    - [Translation strings](../../translations/i18n.md)
     - [CSS/JS](css-js.md) and [React](react.md)
     - [Web accessibility](accessibility.md)
     - [User interface](ui.md)
-- Identify the [copyright holder(s)](../../contribute/copyright-policy.md) and update copyright headers for touched files (>15 lines contributions).
+- Identify the [copyright holder(s)](../../copyright-policy.md) and update copyright headers for touched files (>15 lines contributions).
 - New third-party code (copy/pasted source code or new dependencies) requires approval from architect or maintainer.
 - 🟢 Green light on all GitHub status checks is required in order to merge your
   PR.
@@ -135,7 +134,7 @@ Follow these guidelines to minimize the risk of conflicts:
 
 #### Code of conduct
 
-We expect everyone to comply with our [code of conduct](../../contribute/code-of-conduct.md) - be open, inclusive, considerate and respectful.
+We expect everyone to comply with our [code of conduct](../../code-of-conduct.md) - be open, inclusive, considerate and respectful.
 
 - *Reviewer*: Be respectful of the effort (often the labour was completed simply for the good of the community).
 - *Creator*: Be receptive to constructive comments and criticism (the reviews are labour intensive and serves to produce a better product and development for the community).

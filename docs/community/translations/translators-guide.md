@@ -22,10 +22,10 @@ For more details, check out the [Joining a translation team section of the Trans
 Check for the existing [languages](https://www.transifex.com/inveniosoftware/invenio/languages/).
 
 - If your desired language is not on the list, Click the **Request language** button and search for the language you need.
-![](transifex-request-language.png)
+![](img/transifex-request-language.png)
     - Check with the InvenioRDM translation team via [Discord `#rdm-translations`](https://discord.gg/Ya7qSG43Br). They will need to accept the request. When it is accepted you will be able to join the team as described in the next line.
 - If your desired language already exists. Choose the language and click on the **Join team** button.
-![](transifex-join-team.png)
+![](img/transifex-join-team.png)
 
 ## Step 4 - Learn about your translation team
 
@@ -48,7 +48,7 @@ There are some workflows to be aware of and we collected some advices and experi
 - Every change you make, should be reviewed by another member of your language team. You might need to press the `Unreview`-Button after changing a reviewed item.
 - For each item you translate/review you can add comments including mentioning other members using `@name`.
 - Several words/sentences appear in different places and packages. To create consistency, try to use the same translations. You might find the [transifex-inveniosoftware-Search Strings](https://www.transifex.com/inveniosoftware/search/) and its Filters helpful.
-![](transifex-search-strings.png)
+![](img/transifex-search-strings.png)
 - Gender-neutral language: if the language you are translating uses different words for male, female, etc.
     - try to use a neutral way.
     - try to stick to one translation style.

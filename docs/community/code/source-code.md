@@ -3,47 +3,48 @@
 For development you need the latest ``master`` or ``main`` branch of the source
 code (name depends on  the repository).
 
-Following show you to fork the repository and checkout the source code.
+### How to fork a repository and checkout the source code
 
-### With GitHub CLI
+=== "With GitHub CLI"
 
-First checkout the source code from GitHub and get the latest ``master`` or
-``main``  branch (depends on the repository which name is used).
+    First checkout the source code from GitHub and get the latest ``master`` or
+    ``main``  branch (depends on the repository which name is used).
 
-This is most easily done using the [GitHub CLI tool](https://cli.github.com):
+    This is most easily done using the [GitHub CLI tool](https://cli.github.com):
 
-```
-# with GitHub CLI tool:
-gh repo fork inveniosoftware/invenio-app-rdm
-cd invenio-app-rdm
-```
+    ```bash
+    # with GitHub CLI tool:
+    gh repo fork inveniosoftware/invenio-app-rdm
+    cd invenio-app-rdm
+    ```
 
-With the previous command, we made a checkout of [Invenio-App-RDM](https://github.com/inveniosoftware/invenio-app-rdm) module. You'll have to adapt the command to checkout the module you want to work on.
+    With the previous command, we made a checkout of [Invenio-App-RDM](https://github.com/inveniosoftware/invenio-app-rdm) module. You'll have to adapt the command to checkout the module you want to work on.
 
-### Without GitHub CLI
+=== "Without GitHub CLI"
 
-Without the GitHub CLI tool, you'll first have to [fork the repository](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
-on GitHub. Then, once you have a fork you can clone the repository and add the
-upstream repository remote:
+    Without the GitHub CLI tool, you'll first have to [fork the repository](https://docs.github.com/en/get-started/quickstart/fork-a-repo)
+    on GitHub. Then, once you have a fork you can clone the repository and add the
+    upstream repository remote:
 
-```
-# without GitHub CLI:
-git clone https://github.com/<your username>/invenio-app-rdm
-cd invenio-app-rdm
-git remote add upstream git@github.com:inveniosoftware/invenio-app-rdm.git
-```
+    ```bash
+    # without GitHub CLI:
+    git clone https://github.com/<your username>/invenio-app-rdm
+    cd invenio-app-rdm
+    git remote add upstream git@github.com:inveniosoftware/invenio-app-rdm.git
+    ```
+
 
 ### Repositories survival guide
 
 The InvenioRDM codebase is split over a number of different repositories. Below you'll find a short overview over the most
 
-![Repositories overview](../img/repository-overview.svg)
+![Repositories overview](img/repository-overview.svg)
 
 - CLI tool
-    - [invenio-cli](https://github.com/inveniosoftware/)
+    - [invenio-cli](https://github.com/inveniosoftware/invenio-cli)
         - Standalone CLI tool used to install and manage InvenioRDM.
 - Instance template
-    - [cookiecutter-invenio-instance](https://github.com/inveniosoftware/)
+    - [cookiecutter-invenio-instance](https://github.com/inveniosoftware/cookiecutter-invenio-rdm)
         - Template for the project folder created by ``invenio-cli``.
 - Application repositories
     - [invenio-app-rdm](https://github.com/inveniosoftware/invenio-app-rdm)

@@ -27,7 +27,7 @@ which has significant influence on the maintainability of the styling - and it i
 
 ### Variety of available components and elements
 
-Semantic UI exists both in "clean" HTML/CSS as well as in React. To know more about best practices between the two, visit [Best practices](../../develop/best-practices/react.md) page.
+Semantic UI exists both in "clean" HTML/CSS as well as in React. To know more about best practices between the two, visit [Best practices](../../community/code/best-practices/react.md) page.
 
 Semantic UI provides the developer with a plethora of ready to use React components and CSS classes. The important step in mastering Semantic UI development is consulting the documentation and experimenting with the outcome of using the provided elements. Custom CSS rules should be a last resort to achieve specific styling.
 

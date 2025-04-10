@@ -17,8 +17,6 @@ GPL or AGPL.
 
 ## Tracking copyright
 
-
-
 **Copyright statements**
 
 Copyright statements must be included in:

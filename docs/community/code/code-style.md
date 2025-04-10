@@ -1,4 +1,4 @@
-# Code style
+# Coding style
 
 InvenioRDM follows Invenio practices:
 
@@ -19,5 +19,7 @@ InvenioRDM follows Invenio practices:
 
 In doubt if something is allowed or not? Just ask on Discord
 
-Please also refer to the [development process](../process.md) for standards on
+Please also refer to the [development process](./process.md) for standards on
 UX and scalability.
+
+<!-- The content of this file can be split into other existing documents. -->

@@ -20,7 +20,7 @@ InvenioRDM can load external subjects vocabularies used for classifications such
 
 ## Multilingual support
 
-InvenioRDM is full internationalized and localized so that you can present the interface in the language of your choice. Vocabularies have full multilingual support. We might not have your language available yet, but you can participate easily in the [translation](../contribute/translators-guide.md) and become part of the community.
+InvenioRDM is full internationalized and localized so that you can present the interface in the language of your choice. Vocabularies have full multilingual support. We might not have your language available yet, but you can participate easily in the [translation](../community/translations/translators-guide.md) and become part of the community.
 
 ## Authentication
 
