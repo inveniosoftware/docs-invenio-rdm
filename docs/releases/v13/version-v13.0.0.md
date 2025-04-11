@@ -152,7 +152,7 @@ To be announced?
 
 Explain and screenshot of the diff tool in the admin panel
 
-### FAIR signposting
+### FAIR signposting level 1
 
 [FAIR signposting level 2](https://signposting.org/FAIR/#level2) is enabled by default. The response header of each record's landing page includes a `Link` HTTP response header pointing to a JSON-based linkset which contains the FAIR signposting information.
 
