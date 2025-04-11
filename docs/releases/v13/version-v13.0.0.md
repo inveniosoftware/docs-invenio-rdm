@@ -154,7 +154,7 @@ Explain and screenshot of the diff tool in the admin panel
 
 ### FAIR signposting level 1
 
-[FAIR signposting level 2](https://signposting.org/FAIR/#level2) is enabled by default. The response header of each record's landing page includes a `Link` HTTP response header pointing to a JSON-based linkset which contains the FAIR signposting information.
+[FAIR signposting level 2](https://signposting.org/FAIR/#level2) is already enabled by default since v12. The response header of each record's landing page includes a `Link` HTTP response header pointing to a JSON-based linkset which contains the FAIR signposting information.
 
 In order to increase discoverability, [FAIR signposting level 1](https://signposting.org/FAIR/#level1) can be enabled with the configuration flag `APP_RDM_RECORD_LANDING_PAGE_FAIR_SIGNPOSTING_LEVEL_1_ENABLED = True`. Once enabled, FAIR signposting information will be directly included in the `Link` HTTP response header.
 
