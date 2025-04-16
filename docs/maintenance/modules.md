@@ -1,14 +1,8 @@
 # Modules on GitHub
 
-### Intended audience
-
-This guide is intended for maintainers and developers of InvenioRDM.
-
-### List of modules
-
 Below is the list of InvenioRDM modules available on GitHub. This list can be useful for InvenioRDM maintainers and contributors to have an ensemble view of the project or when having to apply code changes to all modules installed with InvenioRDM.
 
-#### Python
+## Python
 
 * `babel-edtf` - [GitHub](https://github.com/inveniosoftware/babel-edtf)
 * `base32-lib` - [GitHub](https://github.com/inveniosoftware/base32-lib)
@@ -34,6 +28,7 @@ Below is the list of InvenioRDM modules available on GitHub. This list can be us
 * `invenio-app` - [GitHub](https://github.com/inveniosoftware/invenio-app)
 * `invenio-app-rdm` - [GitHub](https://github.com/inveniosoftware/invenio-app-rdm)
 * `invenio-assets` - [GitHub](https://github.com/inveniosoftware/invenio-assets)
+* `invenio-banners` - [GitHub](https://github.com/inveniosoftware/invenio-banners)
 * `invenio-base` - [GitHub](https://github.com/inveniosoftware/invenio-base)
 * `invenio-cache` - [GitHub](https://github.com/inveniosoftware/invenio-cache)
 * `invenio-celery` - [GitHub](https://github.com/inveniosoftware/invenio-celery)
@@ -46,9 +41,11 @@ Below is the list of InvenioRDM modules available on GitHub. This list can be us
 * `invenio-formatter` - [GitHub](https://github.com/inveniosoftware/invenio-formatter)
 * `invenio-i18n` - [GitHub](https://github.com/inveniosoftware/invenio-i18n)
 * `invenio-indexer` - [GitHub](https://github.com/inveniosoftware/invenio-indexer)
+* `invenio-jobs` - [GitHub](https://github.com/inveniosoftware/invenio-jobs)
 * `invenio-jsonschemas` - [GitHub](https://github.com/inveniosoftware/invenio-jsonschemas)
 * `invenio-logging` - [GitHub](https://github.com/inveniosoftware/invenio-logging)
 * `invenio-mail` - [GitHub](https://github.com/inveniosoftware/invenio-mail)
+* `invenio-notifications` - [GitHub](https://github.com/inveniosoftware/invenio-notifications)
 * `invenio-oaiserver` - [GitHub](https://github.com/inveniosoftware/invenio-oaiserver)
 * `invenio-oauth2server` - [GitHub](https://github.com/inveniosoftware/invenio-oauth2server)
 * `invenio-oauthclient` - [GitHub](https://github.com/inveniosoftware/invenio-oauthclient)
@@ -67,6 +64,7 @@ Below is the list of InvenioRDM modules available on GitHub. This list can be us
 * `invenio-s3` - [GitHub](https://github.com/inveniosoftware/invenio-s3)
 * `invenio-search` - [GitHub](https://github.com/inveniosoftware/invenio-search)
 * `invenio-search-ui` - [GitHub](https://github.com/inveniosoftware/invenio-search-ui)
+* `invenio-stats` - [GitHub](https://github.com/inveniosoftware/invenio-stats)
 * `invenio-theme` - [GitHub](https://github.com/inveniosoftware/invenio-theme)
 * `invenio-userprofiles` - [GitHub](https://github.com/inveniosoftware/invenio-userprofiles)
 * `invenio-users-resources` - [GitHub](https://github.com/inveniosoftware/invenio-users-resources)
@@ -77,20 +75,21 @@ Below is the list of InvenioRDM modules available on GitHub. This list can be us
 * `pytest-invenio` - [GitHub](https://github.com/inveniosoftware/pytest-invenio)
 * `pywebpack` - [GitHub](https://github.com/inveniosoftware/pywebpack)
 
-#### JavaScript
+## JavaScript
 
-* `react-invenio-deposit` - [GitHub](https://github.com/inveniosoftware/react-invenio-deposit)
 * `react-invenio-forms` - [GitHub](https://github.com/inveniosoftware/react-invenio-forms)
 * `react-searchkit` - [GitHub](https://github.com/inveniosoftware/react-searchkit)
 
-#### Meta
+## Meta
 
 Modules related to InvenioRDM that are not Python or JavaScript.
 
+* `awesome-invenio` - [GitHub](https://github.com/inveniosoftware/awesome-invenio)
 * `cookiecutter-invenio-module` - [GitHub](https://github.com/inveniosoftware/cookiecutter-invenio-module)
 * `cookiecutter-invenio-rdm` - [GitHub](https://github.com/inveniosoftware/cookiecutter-invenio-rdm)
-* `demo-inveniordms` - [GitHub](https://github.com/inveniosoftware/demo-inveniordms)
+* `demo-inveniordm` - [GitHub](https://github.com/inveniosoftware/demo-inveniordm)
 * `docker-invenio` - [GitHub](https://github.com/inveniosoftware/docker-invenio)
 * `docs-invenio-rdm` - [GitHub](https://github.com/inveniosoftware/docs-invenio-rdm)
 * `helm-invenio` - [GitHub](https://github.com/inveniosoftware/helm-invenio)
+* `inveniosoftware.org` - [GitHub](https://github.com/inveniosoftware/inveniosoftware.org)
 * `requirements-builder` - [GitHub](https://github.com/inveniosoftware/requirements-builder)

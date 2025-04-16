@@ -48,11 +48,11 @@ Some OAI-PMH sets are automatically created when a new community is added. These
 
 #### Resource based views
 
-The newly added [Invenio-Administration](https://github.com/inveniosoftware/invenio-administration) module allows to add new administration views with a minimal implementation. A developer can easily create a new view for any of the [resources REST APIs](../../develop/topics/resource.md) available in InvenioRDM.
+The newly added [Invenio-Administration](https://github.com/inveniosoftware/invenio-administration) module allows to add new administration views with a minimal implementation. A developer can easily create a new view for any of the [resources REST APIs](../../maintenance/internals/resource.md) available in InvenioRDM.
 
 #### Customisable views
 
-The administration views are fully customisable, using Jinja templates and React components. You can read the [full documentation](../../develop/topics/administration_panel.md) to discover how to create and customise the administration views.
+The administration views are fully customisable, using Jinja templates and React components. You can read the [full documentation](../../maintenance/internals/administration_panel.md) to discover how to create and customise the administration views.
 
 ### OpenSearch
 

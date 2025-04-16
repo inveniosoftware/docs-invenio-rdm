@@ -7,11 +7,10 @@ presentation layer in our [software architecture](../architecture/software.md).
 
 ## Key principles
 
-A serializer should adhere to some few key principles. First and foremost, you
+A serializer should adhere to a few key principles. First and foremost, you
 should think of a serializer as a translator. This means that the serializer
 should be provided with all data it needs in order to perform the translation.
-The sole purpose is to translate between formats. A serializer should for instance
-**NOT**:
+The sole purpose is to translate between formats. A serializer should **NOT**:
 
 - handle HTTP requests and parse request parameters
 - query the database or search index for extra information
@@ -26,7 +25,7 @@ You can thus think of serializer as translators from/to a stream of bytes:
 - Deserialize: Decode a stream of bytes to our internal data representation
 - Serialize: Encode our internal data representation as a stream of bytes.
 
-![High-level view of serializers and deserializers.](../img/serializer.svg)
+![High-level view of serializers and deserializers.](img/serializer.svg)
 
 ## Use case
 
@@ -194,15 +193,16 @@ class ClickResourceConfig(ResourceConfig):
 
 ## Advanced serialization
 
-The serialization and deserialization can be become pretty complex, and often
+Serialization and deserialization can become pretty complex, and often
 there might be existing tools you may want to leverage for more complex data
 models. Before writing your own serializer, we encourage you to explore the
 serializers in [Invenio-RDM-Records](https://github.com/inveniosoftware/invenio-rdm-records/tree/master/invenio_rdm_records/resources/serializers)
 for more advanced use cases.
 
-You'll find examples of schemas, XML serializers, pipelines (such as Python
-dictionary -> DataCite JSON -> DataCite XML).
+You'll find examples of schemas, serializers and pipelines like:
 
-- Dictionary to MARC21 representation using dojson
-- MARC21 representation to MARCXML
-- MARCXML to MODS using XSLT.
+- XML serializers
+- Python dictionary -> DataCite JSON -> DataCite XML
+- Python dictionary -> MARC21 using dojson
+- MARC21 -> MARCXML
+- MARCXML -> MODS using XSLT

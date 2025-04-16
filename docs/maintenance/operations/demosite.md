@@ -5,7 +5,7 @@ The QA demo site is accessible at [https://inveniordm-qa.web.cern.ch](https://in
 
 ## Upgrade the instance
 
-Both QA and production infrastructure project (OpenShift) are located at
+Both QA and production infrastructure (OpenShift) projects are located on
 [https://paas.cern.ch](https://paas.cern.ch):
 
 * [inveniordm-qa](https://paas.cern.ch/console/project/inveniordm-qa/)
@@ -17,15 +17,13 @@ The steps to upgrade any of the two instances to a newer version or release are 
 **1. Upgrade code**
 
 Overall, you need to perform an upgrade so follow the upgrade guide released.
-Example of [v6 to v7](https://inveniordm.docs.cern.ch/releases/upgrading/upgrade-v7.0/).
+For example, if transitioning from InvenioRDM v6 to v7, then you would follow the [v6 to v7 upgrade guide](../../releases/v7/upgrade-v7.0.md).
 
 Code is on GitHub: [demo-inveniordm](https://github.com/inveniosoftware/demo-inveniordm).
 
 !!! warning
-    To lock the Pipenv file, in your machine **you need to have Python 3.7**. No other versions will work.
-    This is because the base Docker image (at the moment of writing) is `centos8-python:3.7`.
-    Other Python version might install some Python packages that are not compatible.
-
+    To lock the Pipenv file, **you need to have the Python version of the Docker file on your machine**.
+    No other versions will work. Other Python version might install some Python packages that are not compatible.
 
 1. Clone and make a local install of the code
    ```

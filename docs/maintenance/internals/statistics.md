@@ -10,7 +10,7 @@ designed to be compatible with the [COUNTER Code of Practice Release 4](https://
     All information related to statistics (i.e. the raw events and aggregations) are stored
     exclusively in search indices and not in the database, which makes search engine backups
     much more relevant.
-    Some recommendations are given in the [how-to section](../develop/howtos/backup_search_indices.md).
+    Some recommendations are given in the [how-to section](../../develop/howtos/backup_search_indices.md).
 
 ## Inner workings
 
@@ -154,7 +154,7 @@ aggregations' search indices.
 
 ## REST API endpoint
 
-`Invenio-Stats` provides a [REST API endpoint](./rest_api_statistics.md) for querying the statistics.
+`Invenio-Stats` provides a [REST API endpoint](../../reference/rest_api_statistics.md) for querying the statistics.
 The required permissions to access this endpoint are determined by the `query_stats` entry
 in the permissions policy.
 

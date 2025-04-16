@@ -12,18 +12,6 @@ Explains how to get development install up and running:
 - [Debugging](getting-started/debugging.md)
 - [Getting help](getting-started/help.md)
 
-## Topics
-
-Developer introductions to specific parts of the InvenioRDM source code:
-
-- [Building resources](topics/resource.md)
-- [Building services](topics/service.md)
-- [Building serializers](topics/serializers.md)
-- [Grouping atomic operations](topics/uow.md)
-- [Sanitize input data](topics/validation.md)
-- [Theming](topics/theming.md)
-- [Administration panel](topics/administration_panel.md)
-
 ## How-to guides
 
 Step-by-step guides on how to perform certain tasks:
@@ -39,26 +27,3 @@ Step-by-step guides on how to perform certain tasks:
 - [Migrate legacy routes](howtos/route_migration.md)
 - [Restrict access to pages](howtos/restrict_access.md)
 - [Create and configure notifications](howtos/notifications.md)
-
-## Architecture
-
-High-level conceptual overviews of the design and the thoughts behind those
-choices:
-
-- [Introduction](architecture/index.md)
-- [Infrastructure architecture](architecture/infrastructure.md)
-- [Software architecture](architecture/software.md)
-- [Runtime architecture](architecture/runtime.md)
-- [Requests](architecture/requests.md)
-- [Communities](architecture/communities.md)
-- [Records](architecture/records.md)
-- [Notifications](architecture/notifications.md)
-- [Recommended reading](architecture/reading.md)
-
-## Concepts
-
-Explanation of general methods and techniques used in InvenioRDM to solve
-particular problems:
-
-- [Optimistic concurrency control](concepts/concurrency-control.md)
-- [Database transactions](concepts/transactions.md)
