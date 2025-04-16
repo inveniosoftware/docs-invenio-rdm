@@ -1,7 +1,7 @@
 # Administration panel
 
 The administration panel is a feature in InvenioRDM introduced in v10 that provides a graphical user interface for managing users and records. It is designed to be used by administrators and superusers to moderate the content of the repository.
-For more technical details you can read the [developer guide to the InvenioRDM administration panel](../../develop/topics/administration_panel.md), detailing its programmatic interface and usage.
+For more technical details you can read the [developer guide to the InvenioRDM administration panel](../../maintenance/internals/administration_panel.md), detailing its programmatic interface and usage.
 
 ## Moderation of users and records
 

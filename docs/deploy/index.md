@@ -7,7 +7,7 @@ when planning how to deploy InvenioRDM.
     This section assumes you have a good understanding of the different
     services that are needed to run an InvenioRDM application, and how they
     interact with each other. This information can be found in the
-    [infrastructure architecture](../develop/architecture/infrastructure.md).
+    [infrastructure architecture](../maintenance/architecture/infrastructure.md).
 
 ## Deployment models
 
@@ -97,7 +97,7 @@ Therefore, you will need some sort of WSGI HTTP server.
 Common choices are [Gunicorn](https://gunicorn.org) and [uWSGI](http://projects.unbit.it/uwsgi).
 
 The latter, is the one we use at CERN and it is bundled in the Dockerfile.
-You can find more information in the [InvenioRDM Docker images](../maintenance/docker-images.md) section.
+You can find more information in the [InvenioRDM Docker images](../maintenance/operations/docker-images.md) section.
 
 ### Versioning
 

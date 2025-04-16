@@ -1,6 +1,6 @@
 # Building a service
 
-The service layer is a high-level entry point into your application. Often, you'll have a direct connection between e.g. a button in the UI and a single service method. The service layer contains the domain and business logic of the application and is e.g. responsible for checking permissions, business-level validation and overall control flow.
+The service layer is a high-level entry point into an InvenioRDM application. Often, you'll have a direct connection between e.g. a button in the UI and a single service method. The service layer contains the domain and business logic of the application and is responsible for checking permissions, business-level validation and overall control flow.
 
 ## Designing a service
 
@@ -35,7 +35,7 @@ module structure:
 ## Service
 
 A service in itself is quite basic. For instance, we can imagine building a
-click service with a single service method.
+click service with a single method.
 
 ```python
 # service.py
@@ -178,7 +178,7 @@ class ClickService(Service):
 
 ## Permissions
 
-#### Checking permissions
+### Checking permissions
 
 A service method nearly always checks permissions first thing:
 
@@ -203,7 +203,7 @@ def view()
     service.click(g.identity)
 ```
 
-#### Defining permission policies
+### Defining permission policies
 
 The ``require_permission()`` method delegates permission checks to a permission
 policy for the given service. The policy is defined in the config:
@@ -241,8 +241,7 @@ while the ``delete()`` method may need to just delete the persistent identifier.
 A service component groups related functionality across service
 methods, so for instance a ``PIDComponent`` would implement the ``create()``
 and ``delete()`` method related to registering/deleting a persistent identifier
-while a ``Metadata`` component would only deal with metadata in its service
-methods.
+while a ``Metadata`` component would only deal with metadata in its methods.
 
 ```python
 # service.py
