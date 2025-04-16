@@ -27,7 +27,7 @@ Usage statistics are displayed in the record landing page and record search:
 The landing page shows the *unique views/downloads* (it deduplicates events coming from the same source) by default.
 And only visits to the landing page count towards the record views.
 
-For more details about usage statistics, consult the [reference page](../../reference/statistics.md)
+For more details about usage statistics, consult the [explainer page](../../maintenance/internals/statistics.md)
 
 ### Record inclusion in multiple communities
 

@@ -1,11 +1,11 @@
-# Building a resource
+# Building resources
 
 A resource belongs to the presentation layer and is used to build REST APIs. A
 resource is at the core essentially a Flask Blueprint.
 
 ## Directory structure
 
-A resource normally split over multiple files. Below is an example of such a
+A resource is normally split over multiple files. Below is an example of such a
 module structure:
 
 ```
@@ -17,7 +17,7 @@ module structure:
 ## Resource
 
 A basic resource is created from the Flask-Resources library, and one or more
-service is injected in addition to a resource config:
+services are injected in addition to a resource config:
 
 ```python
 # resource.py
@@ -32,9 +32,9 @@ class ClickResource(Resource):
 
 ## Resource config
 
-The resource config is used for dependency injection in the resource. The
-basics is e.g. that we allow modifying the routing for the REST API (i.e.
-routing is independent of implementation):
+The resource config is used for dependency injection in the resource.
+Routing for the REST API is independent of implementation and so it is
+injected this way:
 
 ```python
 # config.py
@@ -61,6 +61,8 @@ resource = ClickResource(ClickResourceConfig(), service)
 app = Flask()
 app.register_blueprint(resource.as_blueprint())
 ```
+
+This is typically done in the [extension loading phase](../architecture/runtime.md#flask-extensions)
 
 ## Routing
 
@@ -89,7 +91,7 @@ class ClickResource(Resource):
 Content negotiation allows to support multiple different metadata formats on
 the same endpoint, which can also be used for versioning the REST API.
 
-Below is an example of how the result item from the service, is return
+Below is an example of how the result item from the service, is returned
 as a dict to the response handler:
 
 ```python
@@ -122,7 +124,7 @@ class ClickResourceConfig(ResourceConfig):
 ```
 
 The ``JSONSerializer`` is responsible for turning the Python dictionary (from
-``item.to_dict()``) into byte string, and the ``ResponseHandler`` is responsible
+``item.to_dict()``) into a byte string, and the ``ResponseHandler`` is responsible
 for wrappging the byte string in an HTTP response.
 
 ## Parameter parsing
@@ -172,7 +174,7 @@ class ClickResource(Resource):
 ## Error handling
 
 The resource further allows you to easily map service layer errors to an HTTP
-error. Below is an example of mapping the `` AlreadyClickedError to an
+error. Below is an example of mapping the ``AlreadyClickedError`` to a
 ``400`` Bad Request HTTP error:
 
 ```python
@@ -191,6 +193,3 @@ class ClickResource(Resource):
         )
     }
 ```
-
-## Bootstrap
-

@@ -11,7 +11,7 @@ module for InvenioRDM.
 
 ## Community visibility
 
-Communities visibility can be set to either:
+Communities can be set to either:
 
 - *public* - any user can see the community
 - *restricted* - only community members can see the community
@@ -33,14 +33,14 @@ as well as allow for customizations. For example, one instance may use
 "curator" and another may use "editor" as a role because it suits
 their use case better.
 
-By default the following community roles are defined:
+By default, the following community roles are defined:
 
-- Owner: Can perform all actions.
-- Managers: Can manage community members (except owners).
-- Curators: Can accept/decline inclusion requests and edit records.
-- Readers: Can view restricted records in the community.
+- *Owner*: Can perform all actions
+- *Manager*: Can manage community members (except owners)
+- *Curator*: Can manage community records (accept/decline inclusion requests and perform edits)
+- *Reader*: Can view restricted records and hidden members of the community
 
-The _owner_ role must exist, although it can be named differently .
+The *owner* role must exist, although it can be named differently.
 
 ## Member types
 
@@ -50,33 +50,34 @@ A community has two member types:
 - Groups
 
 Groups are by default added to a community, whereas users are invited to a
-community (i.e. requires the user to confirm their membership). This is
+community i.e. an invitation is sent and the user is required to confirm their membership). This is
 because groups may not have a person to address the invitation request to.
 Users are not added directly for privacy reasons.
 
 ## Memberships and invitations
 
 A user or group can be a member of a community. Each membership is associated
-with a community role and a visibility:
+with a community role, a visibility, the request
+that led to the membership if any and the active status (or not) of that request.
+So a membership consists of:
 
 - Community
 - Member
 - Role
 - Visibility
+- Request
+- Active
 
-The "visibility" property defines a value public or hidden, to determine if a
+The "visibility" property defines a value "public" or "hidden", to determine if a
 community membership is visible to everyone or only to other members of the
 community. For privacy reasons only members themselves, and administrators
 (system identity), are allowed to set their visibility to public. Nevertheless,
-owners and managers can set the visibility of all members to _hidden_.
+owners and managers can set the visibility of all members to *hidden*.
 
-Invitations to join a community are stored in the same table using two extra
-properties:
+Invitations to join a community are stored in the same table but leveraging
+the "active" and "request" extra properties.
 
-- Active
-- Request
-
-The property "active" is meant to only be used for invitations. For
+The property "active" is meant to only be used for requests/invitations. For
 instance, it's not meant to temporarily deactivate an existing membership, in
 which case the membership should simply be deleted instead.
 
@@ -127,7 +128,7 @@ have already given their consent.
 ### Members Command and Query Responsibility Segregation (CQRS)
 
 All state changing commands such as add, invite, update and delete
-performs only the required changes, but does not return any results.
+perform only the required changes, but do not return any results.
 
 Instead, to retrieve the list of members, the caller must perform a query to one
 of the search endpoints.
