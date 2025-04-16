@@ -1,10 +1,10 @@
 # Database transactions
 
-Invenio uses [SQLAlchemy](https://www.sqlalchemy.org) for all database related operations.
+InvenioRDM uses [SQLAlchemy](https://www.sqlalchemy.org) for all database related operations.
 
 ## Transactions are tied to requests
 
-In Invenio, a transaction is tied to an HTTP request. By default, the transaction is
+In InvenioRDM, a transaction is tied to an HTTP request. By default, the transaction is
 automatically rolled back unless you explicitly call ``db.session.commit()``.
 
 ## Exceptions cause rollback
@@ -19,8 +19,8 @@ Transactions are tied to requests, because the outer view, in charge of handling
 request, needs full control of when a transaction is committed. If the view was not
 in charge, you could end up with inconsistent data in the database - for instance
 persistent identifier may have been committed, but the associated record was not committed.
-That is why Invenio makes use of SQLAlchemy’s version counter feature to provide [optimistic
-concurrency control](concurrency-control.md) on the records table when the database
+That is why InvenioRDM makes use of SQLAlchemy’s version counter feature to provide
+[optimistic concurrency control](concurrency-control.md) on the records table when the database
 transaction isolation level is below repeatable read isolation level.
 
 ## When are SQL statements sent to the database server?
@@ -81,7 +81,7 @@ def index():
     try:
         with db.session.begin_nested():
             # db operations 2 ....
-        raise Exception()
+            raise Exception()
         db.session.commit()
     except Exception:
         db.session.rollback()

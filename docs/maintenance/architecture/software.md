@@ -22,7 +22,7 @@ There is a strict data flow between the layers, and each layer has very specific
 
 The diagram below shows a simplified view of the data flow in the architecture.
 
-![Architecture layers](../img/architecture.svg)
+![Architecture layers](img/architecture.svg)
 
 *The presentation layer* parses incoming requests and routes them to service layer. This involves sending and receiving data in multiple different formats and translating these into an internal representation. For instance, this includes parsing arguments from an HTTP request (e.g., parsing the query string parameters).
 
@@ -74,7 +74,7 @@ The data access layer serves two purposes:
     access layer.
 
     A typical example is the service layer doing data-wrangling with
-    dictionaries. For instance a conditional get on a dictionary key (e.g.
+    dictionaries. For instance, a conditional get on a dictionary key (e.g.
     ``data.get('...')``), or having to e.g. convert back and forth between
     data types (e.g. UUIDs to/from strings).
 
@@ -82,9 +82,9 @@ The data access layer serves two purposes:
 
 The data layer is built around the following guiding principles:
 
-- **One data representation**: The service layer should work with one an only one
-  data representation of an entity independent of if the entity was retrieved
-  from primary or secondary storage.
+- **One data representation**: The service layer should work with one and only one
+  data representation of an entity independent of whether the entity was retrieved
+  from primary or from secondary storage.
 
 - **One primary storage, many secondary storages**: The primary version of a record
   exists in one and only one copy on the primary storage (the database),
@@ -97,7 +97,7 @@ The data layer is built around the following guiding principles:
   fast read speed over fast write speed.
 
 - **Data versioning**: We version data and rely heavily on [optimistic
-  concurrency control](../concepts/concurrency-control.md) for detecting conflicts
+  concurrency control](../internals/concurrency-control.md) for detecting conflicts
   and determining stale secondary copies.
 
 **Record API**
@@ -116,14 +116,14 @@ The record is in charge of:
 - data versioning
 - state management
 
-A record is usually defined using a declarative API named **system fields** based
+A record is usually defined using a declarative API using **system fields** based
 on [Python data descriptors](https://docs.python.org/3/howto/descriptor.html).
 
 **JSONSchemas**
 
-The JSONSchemas defines the structure of a JSON document we store in the database. The main responsibility is structural validation of the JSON document. The best analogy is that it is a database table schema. Most importantly, it is NOT responsible for business-level validation of the JSON document.
+The JSONSchemas define the structure of a JSON document stored in the database. The main responsibility of a JSONSchema is structural validation of the JSON document. The best analogy is that it is a database table schema. Most importantly, it is NOT responsible for business-level validation of the JSON document.
 
-A good example of this is making a field a required property. It's correct to require a property if you would e.g. have defined a database table column as ``NOT NULL``. It's wrong to require a property if it's requirement that the user must enter a value in a certain field (because this is business-level validation, and you may want to store partially valid documents).
+A good example of this is making a field a required property. It's correct to require a property if you would e.g. have defined a database table column as ``NOT NULL``. It's wrong to require a property if it's a requirement that the user must enter a value in a certain field (because this is business-level validation, and you may want to store partially valid documents).
 
 Modules:
 - [Invenio-Records](https://github.com/inveniosoftware/invenio-records): Defines the high-level APIs for the Record API, SQLAlchemy models, system fields and dumpers.
@@ -158,14 +158,14 @@ System fields basically provides a declarative programmatic API that makes it ea
 
 A key design principle for system fields is that an *instance* of a system field manages a single namespace of a record so that system fields do not conflict. For instance an access system field manages the top-level ``access`` key in a record ``{'access': ...}``.
 
-System fields participate in the dumping/loading of records from secondary storage via being able to hook into the record life-cycle. The difference between system fields and dumpers, is that a dumpers produce a dump for a specific secondary storage system, while system fields produce the same dump for all secondary storage systems.
+System fields participate in the dumping/loading of records from secondary storage by being able to hook into the record life-cycle. The difference between system fields and dumpers, is that dumpers produce a dump for a specific secondary storage system, while system fields produce the same dump for all secondary storage systems.
 
 System fields may be used to manage relations to other objects, and can work similar to a foreign key.
 
 Applications of system fields are vast, but some examples include:
 
 - Added ``$schema`` to the record to ensure JSON schema validation.
-- Created, update and delete persistent identifiers for records and serialize them into the record.
+- Create, update and delete persistent identifiers for records and serialize them into the record.
 - Ensure a certain property on the JSON document is operated as a set.
 
 System fields to a large degree avoid building inheritance among record APIs and instead provide a declarative way of composing a record API class.
@@ -214,40 +214,34 @@ The main purpose of the service layer is to have an interface independent entry 
 
 The service layer is built around the following guiding principles:
 
-- **Mimick the end-user interface**: There is usually a one to one correspondence between say a button in the user interface and a method in a service.
+- **Mimick the end-user interface**: There is usually a one-to-one correspondence between, say, a button on the user interface and a method in a service.
 
-- **Clean control flow**: The control flow of a service method should be reasonable easy to follow,
+- **Clean control flow**: The control flow of a service method should be reasonably easy to follow.
 
 - **Interface independent**: The service must be independent of the interface it's being called from. This means among other things that a service knows nothing about the HTTP request.
 
 **Service**
 
 A service itself is the high-level entry point into the application. A service
-provides methods that usually maps directly to some sort of user interface action like pressing a button, performing a search and similar.
+provides methods that usually map directly to some sort of user interface action like pressing a button, performing a search and similar.
 
 A service often provides transactional boundaries within InvenioRDM.
 
-**Input**
-
 **Service config**
 
-The service config is a container for
-
-Responsible for:
-
-- Inject dependencies via a single object.
+A service configuration (usualle of the form `ServiceConfig`) injects dependencies into the service via a single object.
 
 **Unit of work (UoW)**
 
 We use a design pattern called
 [*unit of work*](https://martinfowler.com/eaaCatalog/unitOfWork.html) in order
 to ensure that we can group multiple state changing service methods into a
-single atomic operation. State changing service methods is essentially anything
+single atomic operation. State changing service methods are essentially anything
 that commits a database transaction such as create/update/delete.
 
-For instance in a single service method we must always ensure that we commit
+For instance, in a single service method we must always ensure that we commit
 the database transaction before indexing and sending off Celery tasks.
-Otherwise we risk the transaction commit fails and we have documents out of
+Otherwise, we risk the transaction commit failing and having documents out of
 sync between our database and search index.
 
 When we group multiple service method calls, we have to delay the database
@@ -275,7 +269,7 @@ transaction operations between multiple service calls.
     ```
 
 The ``unit_of_work()`` decorator ensures that if a UoW is not provided,
-  it is automatically created and committed once the function returns.
+one is automatically created and committed once the function returns.
 
 **Service schema**
 
@@ -297,7 +291,7 @@ Responsibile for defining a declarative permission model.
 
 **Components**
 
-Responsible for providing a specific feature in the service, and make the service customizable.
+Responsible for providing a specific feature in the service, and make the service customizable. They follow an observer pattern.
 
 ### Presentation Layer
 
@@ -339,7 +333,7 @@ input data is stored. Thus, accessing data on ``requests_resourcectx`` instead o
 
 **Resource configs**
 
-The resource config are used for dependency injection
+The resource config are used for dependency injection.
 
 ## Performance considerations
 
@@ -353,7 +347,7 @@ we'll sometimes denormalize data to have quicker queries. Once we denormalize
 data we immediately must also deal with stale data and cache invalidation.
 
 The version counter on all records is instrumental in being able to manage
-the speed.
+data conflicts.
 
 **Database vs search engine**
 
