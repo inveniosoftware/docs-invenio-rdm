@@ -191,6 +191,8 @@ ADMINISTRATION_DISPLAY_VERSIONS = [
 - OpenSearch min version now required v2.12 due to breaking changes in `geo-shape` fields, see issue [here](https://github.com/inveniosoftware/invenio-rdm-records/issues/1807) and related OpenSearch issue and comment [here](https://github.com/opensearch-project/OpenSearch/issues/10958#issuecomment-2037882756).
 - change from `APP_ALLOWED_HOSTS` to `TRUSTED_HOSTS` due flask >= 3
 - dashboard: `shared_with_me` drafts and requests. See [issue[(https://github.com/inveniosoftware/docs-invenio-rdm/blob/master/docs/releases/v13/upgrade-v13.0.md)
+- custom fields: thesis subfields renamed (TODO: migration recipe)
+- custom fields: meeting url changed to identifiers subfield (TODO: migration recipe)
 
 ### TODO
 
