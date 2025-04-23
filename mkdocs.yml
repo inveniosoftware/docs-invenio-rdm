@@ -49,7 +49,6 @@ nav:
       - Customizable: "features/customization.md"
       - Interoperable: "features/interoperable.md"
       - Powerful: "features/powerful.md"
-      - Moderation: "features/moderation.md"
       - Secure: "features/secure.md"
       - Features walk-through:
           - Features overview: "features/features-walk-through/index.md"
@@ -58,6 +57,7 @@ nav:
           - Access requests: "features/features-walk-through/access_requests.md"
           - Restricted records: "features/features-walk-through/restricted_records.md"
           - Metadata-only records: "features/features-walk-through/metadata_only.md"
+          - Moderation: "features/features-walk-through/moderation.md"
   - Install:
       - Quick start: "install/index.md"
       - System requirements: "install/requirements.md"
