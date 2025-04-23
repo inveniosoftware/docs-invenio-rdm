@@ -2,6 +2,9 @@
 
 The translation of texts that are visible in the UI of InvenioRDM, is integrated with the [Transifex](https://www.transifex.com/) platform.
 
+!!! note "**Trust-chain approval**"
+     Access requests are approved once a current translator / partner vouches for you in [Discord `#rdm-translations`](https://discord.gg/Ya7qSG43Br).
+
 If you wish to contribute on translating your desired language. Please follow these steps:
 
 ## Step 1 - Get a Transifex account
@@ -12,8 +15,13 @@ For more details, check out the [Transifex Getting Started Guide](https://docs.t
 
 ## Step 2 - Join the inveniosoftware team
 
-Ask to join the inveniosoftware team: [https://www.transifex.com/inveniosoftware/invenio/dashboard/](https://www.transifex.com/inveniosoftware/invenio/dashboard/).
-Then get in contact with the InvenioRDM translation team via [Discord `#rdm-translations`](https://discord.gg/Ya7qSG43Br). They will need to accept you in the inveniosoftware team.
+1. **Introduce yourself on Discord first**
+
+    Post your Transifex username and target language(s) in [Discord `#rdm-translations`](https://discord.gg/Ya7qSG43Br). A member of the team will confirm they can vouch for you.
+
+2. Ask to join the inveniosoftware team: <https://www.transifex.com/inveniosoftware/invenio/dashboard/>.
+
+    Your request will be accepted once the Discord step above is complete.
 
 For more details, check out the [Joining a translation team section of the Transifex Getting Started Guide](https://docs.transifex.com/getting-started-1/translators#joining-a-translation-team).
 
@@ -21,11 +29,11 @@ For more details, check out the [Joining a translation team section of the Trans
 
 Check for the existing [languages](https://www.transifex.com/inveniosoftware/invenio/languages/).
 
-- If your desired language is not on the list, Click the **Request language** button and search for the language you need.
-![](img/transifex-request-language.png)
-    - Check with the InvenioRDM translation team via [Discord `#rdm-translations`](https://discord.gg/Ya7qSG43Br). They will need to accept the request. When it is accepted you will be able to join the team as described in the next line.
-- If your desired language already exists. Choose the language and click on the **Join team** button.
-![](img/transifex-join-team.png)
+- **If your desired language is not on the list**, click **Request language** and search for the language you need.
+  ![](img/transifex-request-language.png)
+  – Ping the team again on Discord so they can approve the request.
+- **If your desired language already exists**, choose the language and click **Join team**.
+  ![transifex join team](img/transifex-join-team.png)
 
 ## Step 4 - Learn about your translation team
 
