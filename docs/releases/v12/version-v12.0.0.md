@@ -59,12 +59,7 @@ This provides flexible, yet reliable access control to the records of an instanc
 
 ![The moderation actions](imgs/user_moderation.png)
 
-The administration panel now includes a "User management" section to suspend, block and delete users, as well as undo all those actions.
-Suspending a user temporarily prevents them from creating records, but lets them appeal their suspension. Blocked users cannot sign in anymore and deleted users are removed from the system.
-
-Records can also be deleted (with a grace period for appeal or undoing) which empowers administrators to enforce institutional policies and fight spam. This leaves a [tombstone page](../../reference/metadata.md#tombstone) in place of the record landing page. See the [Concept DOIs section](#dois-for-concept-records-and-no-dois-for-restricted-records) below for a screenshot.
-
-Associated JSON APIs (e.g. `/api/domains`) have been added. Bulk versions of these are in the works.
+The administration panel now includes a "User management" section to deactivate, block and delete users, as well as undo all those actions. You can read more about [moderation here](../../features/features-walk-through/moderation.md/#moderation-of-users-and-records).
 
 ### DOIs for concept records and no DOIs for restricted records
 
