@@ -1,10 +1,10 @@
-# Unit of work
+# Unit of Work
 
-The unit of work is used to group multiple service operations into a single atomic unit. The Unit
-of Work maintains a list of operations and coordinates the commit, indexing and
+The Unit of Work pattern is used to group multiple service operations into a single atomic unit.
+The Unit of Work maintains a list of operations and coordinates the commit, indexing and
 task execution.
 
-The main purpose of the Unit of Work in Invenio is to coordinate when the database
+The main purpose of the Unit of Work pattern in InvenioRDM is to coordinate when the database
 transaction commit is called, and ensure tasks that have to run after the
 transaction are executed (such as indexing and running celery tasks).
 
@@ -13,7 +13,7 @@ transaction and perform the necessary indexing/task execution afterwards.
 
 **When to use?**
 
-You should use the unit of work instead of running an explicit
+You should use Unit of Work instead of running an explicit
 ``db.session.commit()`` or ``db.session.rollback()`` in the code. Basically
 any function where you would normally have called a ``db.session.commit()``
 should be changed to something like:
@@ -31,7 +31,7 @@ def create(self, ... , uow=None):
 ```
 
 Any private method that need to run operations after the database transaction
-commit should take the unit of work as input:
+commit should take the Unit of Work as input:
 
 ```python
 def _reindex_something(uow, ...):
@@ -45,14 +45,14 @@ def _send_a_task(uow, ...):
 
 **When not to use?**
 
-If you're not changing the database state there's no need to use the unit of
-work. Examples include:
+If you're not changing the database state there's no need to use a Unit of
+Work. Examples when not to use include:
 
 - Reading a record
-- Search for records
-- Reindex all records - because there's no database transaction involved, and
+- Searching for records
+- Reindexing all records - because there is no database transaction involved, and
   the method is also not intended to be grouped together with multiple other
-  state changing service calls there's no need to use the unit of work.
+  state changing service calls
 
 **How to group multiple service calls?**
 
@@ -64,7 +64,7 @@ from invenio_records_resources.services.uow import UnitOfWork
 
 with UnitOfWork() as uow:
     # Be careful to always inject "uow" to the service. If not, the
-    # service will create its own unit of work and commit.
+    # service will create its own Unit of Work and commit.
     service.communities.add(..., uow=uow)
     service.publish(... , uow=uow)
     uow.commit()
@@ -79,7 +79,7 @@ service.publish(...)
 
 **Writing your own operation?**
 
-You can write your own unit of work operation by subclassing the operation
+You can write your own Unit of Work operation by subclassing the operation
 class and implementing the desired methods:
 
 ```python

@@ -33,21 +33,21 @@ An instance developer can register new entries in the menu (see the administrati
 
 ![Architecture diagram](./img/administration/administration_architecture.png)
 
-The views are implemented as shown on the diagram below. InvenioRDM developer can implement a new admin view by inheriting one of the following view classes:
+The views are implemented as shown on the diagram above. InvenioRDM developer can implement a new admin view by inheriting one of the following view classes:
 
-| View                    | Description                                                                                                                                   |
-|-------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------|
-| AdminView               | Base view class, provides flask view blueprint registration and administration side menu registration                                         |
-| AdminResourceDetailView | Details view base - displays details of a single item of the resource                                                                         |
-| AdminResourceListView   | ListView base - displays a search page with all the resource items of a given type                                                            |
-| AdminResourceCreateView | View generating a form to add a new instance of a resource                                                                                    |
-| AdminResourceEditView   | View generating a form to edit an existing resource item                                                                                      |
+| View                    | Description                                                                                           |
+| ----------------------- | ----------------------------------------------------------------------------------------------------- |
+| AdminView               | Base view class, provides flask view blueprint registration and administration side menu registration |
+| AdminResourceDetailView | Details view base - displays details of a single item of the resource                                 |
+| AdminResourceListView   | ListView base - displays a search page with all the resource items of a given type                    |
+| AdminResourceCreateView | View generating a form to add a new instance of a resource                                            |
+| AdminResourceEditView   | View generating a form to edit an existing resource item                                              |
 
 ### Views
 
 #### Create a resource based view
 
-Administration resource based views are using existing REST API. The CRUD operations are provided for any existent InvenioRDM [resource](../../develop/topics/resource.md) (e.g. community, record, OAISet - meaning they follow the REST API resource architecture pattern).
+Administration resource based views are using existing REST API. The CRUD operations are provided for any existent InvenioRDM [resource](../../maintenance/internals/resource.md) (e.g. community, record, OAISet - meaning they follow the REST API resource architecture pattern).
 
 As an example, a step-by-step guide is provided to generate an administration view for OAI-PMH Sets.
 
@@ -68,7 +68,7 @@ Views are implemented in `invenio_rdm_records/administration/views/<myview>.py`.
 
 ##### List view
 
-A ListView displays a list of records that are retrieved from an InvenioRDM [resource](../../develop/topics/resource.md) REST APIs endpoint. By default, `Invenio-Administration` provides a core module that generates this view, based on given `ListView` configuration.
+A ListView displays a list of records that are retrieved from an InvenioRDM [resource](../../maintenance/internals/resource.md) REST APIs endpoint. By default, `Invenio-Administration` provides a core module that generates this view, based on given `ListView` configuration.
 
 By default, the ListView is represented as a table. The view uses a search app, bootstrapped using [React-SearchKit](https://inveniosoftware.github.io/react-searchkit/). It provides a tabular view of the resources, as well as a set of features such as searching, sorting and even faceting.
 
@@ -125,7 +125,7 @@ For the full attributes list and description visit the [reference docs](../../re
 
 A create view displays a page on which a resource can be created. By default, `Invenio-Administration` provides a core module that generates this view based on given `CreateView` configuration.
 
-Form fields are configured as class attributes. If the `form_fields` attribute is not implemented, the view will display all the fields configured in the resource's [serializer](../topics/serializers.md#data-transformations).
+Form fields are configured as class attributes. If the `form_fields` attribute is not implemented, the view will display all the fields configured in the resource's [serializer](serializers.md#data-transformations).
 
 ###### Usage
 
@@ -159,7 +159,7 @@ For the full attributes list and description visit the [reference docs](../../re
 
 ![Edit view layout](./img/administration/administration_edit_view.png)
 
-This view displays a form to edit a selected resource. Form fields are customizable to each resource by implementing marshmallow [schema](../topics/serializers.md#data-transformations)
+This view displays a form to edit a selected resource. Form fields are customizable to each resource by implementing marshmallow [schema](serializers.md#data-transformations)
 
 ###### Usage
 

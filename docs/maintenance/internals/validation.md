@@ -12,7 +12,7 @@ direction).
 This guide **only covers input data**, and namely how to sanitize the input
 data.
 
-![Input data](../img/user-input.svg)
+![Input data](img/user-input.svg)
 
 Data provided by a user (trusted or untrusted) MUST be sanitized and
 validated for two reasons:
@@ -31,7 +31,7 @@ Validation is often a conflated term. It can mean:
 This guide covers syntax and semantic validation. For instance an ISO-formatted
 date like ``2021-12-25`` may be *syntactically* correct, but may be
 *semantically* wrong if it is supposed to represent a start date in the future.
-The date ``2021-12-25`` may be **semantically** correct but we may anyway be
+The date ``2021-12-25`` may be *semantically* correct but we may anyway be
 unable to comply if e.g. it's a delivery date and we don't deliver on Christmas
 day (example of pragmatics). Pragmatics is often a core part of your business
 rules.
@@ -58,13 +58,13 @@ Client-side validation (e.g. using JavaScript to validate the user provided
 input data) is purely to improve the user experience. An attacker can always
 bypass the client-side validation by constructing the same HTTP request that
 the browser is going to send. Hence, while client-side validation improves the
-user experience, it can in no way replace the server-side validation of data.
+user experience, in no way does it replace the server-side validation of data.
 
 ### General strategies
 
 **Validate at the edge**
 
-Validation should happen as early as possible so that our code works with
+Validation should happen as early as possible, so that our code works with
 well-formed data.
 
 **Whitelist over blacklist**
@@ -74,7 +74,6 @@ you define all possible input data, while blacklist just excludes values.
 If you forget to add a value to a whitelist, it rarely creates a vulnerability,
 whereas if you forget to add a value to a black list it can create a
 vulnerability.
-
 
 ### Types of input data
 
@@ -102,10 +101,10 @@ You want to accept string input from a user (e.g. a title).
 
 **Why?**
 
+So that characters disallowed in different formats are not inadvertently present.
 A typical example is a user that copy/pastes a title from a PDF and
 inadvertently copies hidden unicode characters. These characters might not be
-allowed in e.g. XML documents, and hence we cannot generate e.g. a DataCite XML
-export format.
+allowed in e.g. XML documents, and hence would break the DataCite XML export format.
 
 **Low-level**
 
@@ -132,9 +131,9 @@ render the rich-text.
 
 **Why?**
 
-The input data only allow a set of white-listed tags and escapes everything
-else. This way, we're sure that we can later safely render the value without
-opening up for XSS attacks.
+So that the value can be rendered later safely without opening up the site
+to cross-site scripting attacks. Only allow a set of white-listed tags and
+escape everything else typically.
 
 **Low-level**
 
@@ -151,34 +150,29 @@ class ASchema(Schema):
     afield = SanitizedHTML()
 ```
 
-### Could find what you were looking for?
+### Could not find what you were looking for?
 
 If you didn't find the type of data you want to validate, please get in touch
-on the chat room and we'll add an example.
+and we'll add an example.
 
 ### What to do when you cannot validate (file upload example)?
 
-In some cases it is either not possible or even wanted to validate input data.
+In some cases it is either impossible or even desired to validate input data.
 A typical example of this is a file upload (e.g. InvenioRDM must be able to
 accept any file format including binary data and HTML files with possible
 cross-site scripting attacks).
 
-1. First of all, do validate all that's possible to validate. For instance content
+1. First of all, do validate all that is possible to validate. For instance, content
    length, mime types, virus check and similar may all be possible to validate.
 
-2. Be extremely clear (via e.g. naming) in your application when something is
+2. Be extremely clear (via e.g., naming) in your application when something is
    unvalidated and should be considered untrusted.
 
 3. Serving out the file again, you should ideally serve it from a custom
-   top-level domain (see e.g. how GitHub/Google/DropBox server user uploaded
-   files). If not, you should prevent the browser from rendering the file (e.g.
-   SVGs, HTMLs, PDFs, etc.) should simply be downloaded as a file or rendered
+   top-level domain (see e.g., how GitHub/Google/DropBox serve user uploaded
+   files). If not, you should prevent the browser from rendering the file (e.g.,
+   SVGs, HTMLs, PDFs, etc.). It should simply be downloaded as a file or rendered
    as text/plain.
 
-NEVER EVER allow file uploads and serve back the upload file again to other
+NEVER EVER serve back an uploaded file again directly to other
 users. It's a huge vulnerability.
-
-
-The best example is likely that you need to be able to upload any file format
-to InvenioRDM.
-

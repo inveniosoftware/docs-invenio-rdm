@@ -11,12 +11,12 @@ Requests are considered part of the service layer in the [software architecture]
 
 ## Purpose
 
-Requests is a generic InvenioRDM feature to support the handling and automation of
+"Requests" are a generic InvenioRDM feature to support the handling and automation of
 requests between entities such as users, communities, administrators and/or the
 system.
 
 The overall goal is to streamline, distribute and automate as many types of
-administrative  tasks as possible and thereby reduce human resources required
+administrative tasks as possible and thereby reduce human resources required
 for handling them.
 
 A repository often has to deal with many types of requests. Examples of these
@@ -29,22 +29,21 @@ could include:
 - Access requests
 - Quota increases
 - Invitations to join
-- Claiming of records
+- Record claims
 
-From technical perspective, the goal is to enable faster development of
+From a technical perspective, the goal is to enable faster development of
 automation tasks with human involvement in InvenioRDM, by not having to design
 and invent a new user interface for every new type of automation. Also, it
 streamlines and centralizes the UX for how users deal with requests.
 
 ## Overview
 
-With the above examples in mind we can think of requests as something which:
+With the above examples in mind, a request ...
 
-- are created by someone who can cancel it.
-- are received by someone who can accept or decline it.
-- may require clarifications (i.e. a conversation) between the one
-  creating the request and the one(s) accepting/declining it.
-- may expire after a certain amount of time.
+- is created by someone who can cancel it
+- is received by someone who can accept or decline it
+- may require clarifications (i.e. a conversation) between the creator of the request and the recipient(s)
+- may expire after a certain amount of time
 
 ## Entities
 
@@ -59,16 +58,16 @@ The key entities in the data model:
 
 A request has four key properties:
 
-- **Creator** - the entity creating request.
-- **Topic** - the entity the request is about.
-- **Receiver** - the entity the request is addressed to.
-- **Status** - represents the state a request is in.
+- **Creator** - the entity creating request
+- **Topic** - the entity the request is about
+- **Receiver** - the entity the request is addressed to
+- **Status** - the state a request is in
 
 ## Statuses
 
 A request is conceptually modelled over the following state diagram:
 
-![Request states](../img/request-states.svg)
+![Request states](img/request-states.svg)
 
 - **Created** - The request has been created but not yet submitted to the receiver.
 - **Submitted** - The request has been sent to the receiver.

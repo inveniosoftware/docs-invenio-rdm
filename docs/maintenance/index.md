@@ -1,18 +1,13 @@
-# Maintenance guide
+# Maintain and Develop InvenioRDM
 
 **Intended audience**
 
 This guide is intended for maintainers and developers of InvenioRDM itself.
 
-## Guides
+## Sections
 
 - **[Newcomers](newcomers.md)**: A quick overview for new core developers.
-- **[Sprintboard workflow](board-workflow.md)**: A reference for our sprintboard workflow.
-- **[Release management](release-management.md)**: A checklist for releasing InvenioRDM.
-- **[Modules on GitHub](modules.md)**: List of GitHub modules related to InvenioRDM.
-- **[Branch management](branch-management.md)**: A checklist for releasing InvenioRDM.
-- **[Demo site & docs deployment](demosite.md)**: A reference guide for deploying the demo site and docs.
-
-## References
-
-- **[RFCs](rfcs.md)**: An overview of RFCs relevant for InvenioRDM.
+- **[Modules on GitHub](modules.md)**: A list of GitHub modules making up or relating to InvenioRDM.
+- **[High-level architecture]()**: The big picture view of the main parts.
+- **[Lower-level internals]()**: The details on specific foundational code components and decisions.
+- **[Operational Tasks]()**: An outline of the tasks that make the project run.

@@ -141,7 +141,7 @@ standard requests that requires some sort of human approval. We are also looking
 forward to expand the requests module with assignees and status checks that could
 be updated from externally running workflows.
 
-See documentation on the [requests architecture](../../develop/architecture/requests.md).
+See documentation on the [requests architecture](../../maintenance/architecture/requests.md).
 
 #### Limitations
 

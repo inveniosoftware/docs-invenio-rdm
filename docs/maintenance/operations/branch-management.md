@@ -7,12 +7,20 @@ This guide is intended for maintainers and developers of InvenioRDM itself.
 **Scope**
 
 The guide covers how branches are managed in InvenioRDM in order to support
-the maintenance policy.
+the [maintenance policy](../../releases/maintenance-policy.md).
 
 ## Overview
 
-The latest InvenioRDM release is supported until the next release
-(see [maintenance policy](../releases/maintenance-policy.md)).
+InvenioRDM follows [Trunk-Based Development](https://trunkbaseddevelopment.com/) on the main branch (`master`) of all its modules. Changes in `master` usually won't have an out-of-the-box backwards-compatibility assurance. If things break, they are usually fixed as soon as possible anyway, since we want to be able to develop reliably.
+
+Stable releases are being maintained under their equivalent `maint` branches. For example, `v12.0.x` is maintained on the `maint-v12.x` branch of `invenio-app-rdm`. Those releases receive bug fixes following SemVer, e.g., `v12.0.1`, by backporting (usually via cherry-picking) the fixes from the `master` branch into the `maint` branch.
+
+Occasionally, if we see features in `master` that the community agrees should be in the stable branches, we can organize efforts to backport them using a minor version bump in the stable release (e.g., `v12.1.x`). To qualify for such minor version bumps, the changes adhere to the following assurances:
+    - The new features **MUST** be disabled by default using config feature flags
+    - If an instance doesn't enable or use the new features, it **MUST** still work
+    - If an instance wants to enable or use the new features, there **MAY** be some migration/upgrade recipes required to be run
+
+The latest InvenioRDM release is supported until the next release.
 
 ### Opening pull requests
 
@@ -76,18 +84,14 @@ The table over supported maintenance releases/branches must be updated when:
 - a new major version is released
 - a major version reaches end of life.
 
-First, make sure the end of life and support versions have been updated in
-the [maintenance policy](../releases/maintenance-policy.md).
-
-Once you have determined which major versions of InvenioRDM that are supported,
-you can start from ``invenio-app-rdm`` to figuoure out which module versions
-and branches that are supported and can update the table accordingly.
+Make sure the end of life and support versions have been updated in
+the [maintenance policy](../../releases/maintenance-policy.md).
 
 #### Create maintenance branches on release
 
-When a new release is released, the release manager should go through all
-above repositories and create ``maint-x.y`` branches from the master/main
+When a new version is released, the release manager should go through all
+the repositories and create ``maint-x.y`` branches from the master/main
 branch.
 
 The newly created maintenance branches must be added to [repositories.yml](https://github.com/inveniosoftware/opensource/blob/master/repositories.yml) to configure branch protection in GitHub so only maintainers
-can merge to the branch.
+can merge to the branches.

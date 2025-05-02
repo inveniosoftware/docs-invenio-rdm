@@ -12,11 +12,11 @@ the current RDM Docker image.
 
 ## CERN registry
 
-Docker images are pushed to the CERN registry [inveniosoftware](https://registry.cern.ch/harbor/projects/1825/repositories) project. This is done to:
+Docker images are pushed to the CERN registry [inveniosoftware](https://registry.cern.ch/harbor/projects/1825/repositories) project. This is done because:
 
-1. March 2023: Docker announced that Free Team organizations, such as `inveniosoftware`, will be removed.
-2. Avoid [Docker Hub rate limits](https://www.docker.com/increase-rate-limits/).
-3. Take advantage of the automatic security scan provided by Harbor.
+1. On March 2023, Docker announced that Free Team organizations, such as `inveniosoftware`, will be removed.
+2. To Avoid [Docker Hub rate limits](https://www.docker.com/increase-rate-limits/).
+3. To Take advantage of the automatic security scan provided by Harbor.
 
 The project is configured with tag retention policies, so that the disk space is not filled up too quickly (see below).
 
@@ -32,7 +32,7 @@ it is easier to configure alerts, notifications or scan reports and also GitHub 
 
 ## Retention
 
-This section Work In Progress: the development of the Docker images building process is not yet completed.
+This section is a Work In Progress: the development of the Docker images building process is not yet completed.
 
 See: <https://github.com/inveniosoftware/docker-invenio/issues/68>
 
