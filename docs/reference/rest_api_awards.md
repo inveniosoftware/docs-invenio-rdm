@@ -1,6 +1,6 @@
 # Awards
 
-Query and retrieve entries from the [**awards** vocabulary](../customize/vocabularies/funding.md).
+Query and retrieve entries from the [**awards** vocabulary](../operate/customize/vocabularies/funding.md).
 
 ### Search awards
 

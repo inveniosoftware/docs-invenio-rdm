@@ -31,7 +31,7 @@ Search for users
 | `page`       | integer | query    | Specify the page of results.                                             |
 | `accept` | string | header   | - `application/json`                 |
 
-Sort options for users can be configured using the `USERS_RESOURCES_SORT_OPTIONS` config variable as described in the [search customization](../customize/search.md) section. Note that `"bestmatch"` is only available as a sort option on requests that provide a query string as a `q` parameter, in which case it is the default sort type. If no query string is provided in the request, the default sort type is `"newest"`. In this case a `"bestmatch"` value is ignored and the default `"newest"` sort is used.
+Sort options for users can be configured using the `USERS_RESOURCES_SORT_OPTIONS` config variable as described in the [search customization](../operate/customize/search.md) section. Note that `"bestmatch"` is only available as a sort option on requests that provide a query string as a `q` parameter, in which case it is the default sort type. If no query string is provided in the request, the default sort type is `"newest"`. In this case a `"bestmatch"` value is ignored and the default `"newest"` sort is used.
 
 **Query string syntax**
 

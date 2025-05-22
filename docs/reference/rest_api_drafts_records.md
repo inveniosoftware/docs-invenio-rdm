@@ -19,7 +19,7 @@ Used for interacting with unpublished or edited draft records.
 | `access`   | object | body     | [Access options](metadata.md#access) for the record. |
 | `files`    | object | body     | Files options (see below) for the record. |
 | `metadata` | object | body     | [Metadata](metadata.md#metadata) of the record. |
-| `custom_fields` | object | body     | [Custom fields](../customize/metadata/custom_fields/records.md#declaring-custom-fields) metadata for the record. (v10 and newer) |
+| `custom_fields` | object | body     | [Custom fields](../operate/customize/metadata/custom_fields/records.md#declaring-custom-fields) metadata for the record. (v10 and newer) |
 | `pids`     | object | body     | Optional. For providing your own external persistent identifiers (e.g., DOIs). See [Providing your own PID](#providing-your-own-pid). To mint a new DOI, use the [Reserve a DOI endpoint](#reserve-a-doi-for-a-draft-record) instead. |
 
 #### Files Options
@@ -416,7 +416,7 @@ Content-Type: application/json
 | `access`   | object | body     | [Access options](metadata.md#access) for the record. |
 | `files`    | object | body     | [Files options](#files-options) for the record. |
 | `metadata` | object | body     | [Metadata](metadata.md#metadata) of the record. |
-| `custom_fields` | object | body     | [Custom fields](../customize/metadata/custom_fields/records.md#declaring-custom-fields) metadata for the record. (v10 and newer) |
+| `custom_fields` | object | body     | [Custom fields](../operate/customize/metadata/custom_fields/records.md#declaring-custom-fields) metadata for the record. (v10 and newer) |
 
 **Request**
 
@@ -1231,7 +1231,7 @@ Content-Type: application/json
 | `allversions` &nbsp; | boolean | query    | Specify if all versions should be included (default: `False`, displays just latest version).   |
 | `accept`       | string  | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
 
-Sort options for records can be configured using the `RDM_SORT_OPTIONS` config variable as described in the [search customization](../customize/search.md) section. Note that `"bestmatch"` is only available as a sort option on requests that provide a query string as a `q` parameter. Otherwise `"bestmatch"` is ignored and the default `"newest"` sort is used. Queries sorted by `"mostviewed"` and `"mostdownloaded"` are in descending order.
+Sort options for records can be configured using the `RDM_SORT_OPTIONS` config variable as described in the [search customization](../operate/customize/search.md) section. Note that `"bestmatch"` is only available as a sort option on requests that provide a query string as a `q` parameter. Otherwise `"bestmatch"` is ignored and the default `"newest"` sort is used. Queries sorted by `"mostviewed"` and `"mostdownloaded"` are in descending order.
 
 **Request**
 
@@ -1901,7 +1901,7 @@ Used for interacting with the records and drafts you can edit.
 | `allversions` &nbsp; | boolean | query    | Specify if all versions should be included.      |
 | `accept` | string  | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` |
 
-Sort options for records can be configured using the `RDM_SORT_OPTIONS` config variable as described in the [search customization](../customize/search.md) section. Note that `"bestmatch"` is only available as a sort option on requests that provide a query string as a `q` parameter. Otherwise `"bestmatch"` is ignored and the default `"newest"` sort is used. Queries sorted by `"mostviewed"` and `"mostdownloaded"` are in descending order.
+Sort options for records can be configured using the `RDM_SORT_OPTIONS` config variable as described in the [search customization](../operate/customize/search.md) section. Note that `"bestmatch"` is only available as a sort option on requests that provide a query string as a `q` parameter. Otherwise `"bestmatch"` is ignored and the default `"newest"` sort is used. Queries sorted by `"mostviewed"` and `"mostdownloaded"` are in descending order.
 
 **Request**
 
