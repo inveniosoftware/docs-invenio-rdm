@@ -22,6 +22,6 @@ The administration panel now includes a "User management" section to deactivate,
 - **Blocked users**: Cannot sign in anymore, but their records remain visible.
 - **Deleted users**: Their records are removed from public view and replaced with a tombstone page indicating the user has been deleted.
 
-Records can also be deleted (with a grace period for appeal or undoing) which empowers administrators to enforce institutional policies and fight spam. This leaves a [tombstone page](../../reference/metadata.md#tombstone) in place of the record landing page. See the [Concept DOIs section](../../customize/dois.md#doi-registration) below for a screenshot.
+Records can also be deleted (with a grace period for appeal or undoing) which empowers administrators to enforce institutional policies and fight spam. This leaves a [tombstone page](../../reference/metadata.md#tombstone) in place of the record landing page. See the [Concept DOIs section](../../operate/customize/dois.md#doi-registration) below for a screenshot.
 
 Associated JSON APIs (e.g. `/api/domains`) have been added. Bulk versions of these are in the works.

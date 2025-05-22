@@ -51,4 +51,4 @@ If you would like to add another layer of **reusable** theme you can create your
 
 #### Your customizations to RDM theme
 
-If your instance is on the same "level" as `my-site` and is not extended further, everything is already configured in InvenioRDM, with no need for changes. To overwrite the InvenioRDM theme, use the [Customize theme section](../../customize/look-and-feel/theme.md).
+If your instance is on the same "level" as `my-site` and is not extended further, everything is already configured in InvenioRDM, with no need for changes. To overwrite the InvenioRDM theme, use the [Customize theme section](../../operate/customize/look-and-feel/theme.md).

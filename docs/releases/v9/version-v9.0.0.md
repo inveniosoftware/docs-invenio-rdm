@@ -273,7 +273,7 @@ You could for instance decide to load CrossRef Funder Registry or ROR into the
 funder vocabulary, and the awards vocabulary could be loaded from the OpenAIRE
 grants database.
 
-See the [Funder and Award vocabularies documentation](../../customize/vocabularies/funding.md) for further details.
+See the [Funder and Award vocabularies documentation](../../operate/customize/vocabularies/funding.md) for further details.
 
 ### User Experience (UX) improvements
 
@@ -297,7 +297,7 @@ estate to display their information on.
 **Backend: Theme polishing**
 
 The InvenioRDM theme was refactored and cleaned up, providing better
-overridability for subthemes and instances. See [documentation](../../customize/look-and-feel/theme.md) for further
+overridability for subthemes and instances. See [documentation](../../operate/customize/look-and-feel/theme.md) for further
 details.
 
 ### OAI-PMH sets support

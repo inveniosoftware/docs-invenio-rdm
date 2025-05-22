@@ -26,7 +26,7 @@ The search box is powered by a new names vocabulary, exposed under the ``/api/na
 
 It is up to each instance of InvenioRDM to populate the names vocabulary with the persons they'd like to auto-complete. An InvenioRDM instance could, for example, choose to import names from an institutional directory service. Out-of-the-box, InvenioRDM supports importing the public data dump from ORCID so you can auto-complete from public ORCID profiles.
 
-More about the names vocabulary [here](../../customize/vocabularies/names.md).
+More about the names vocabulary [here](../../operate/customize/vocabularies/names.md).
 
 ### Record landing page
 
@@ -108,7 +108,7 @@ Array components on the deposit form, now behave correctly when one of their ite
 
 We have made a larger update to our developer documentation to make it accessible to developers of different skill levels from long-time contributors or to first-time beginners.
 
-See our new [developer documentation](../../develop/index.md).
+See our new [developer documentation](../../operate/index.md).
 
 ### Code changes
 
@@ -192,7 +192,7 @@ InvenioRDM will be shipped with an upgrade guide and data migrations. However, i
 
 ## Questions?
 
-If you have questions related to these release notes, don't hesitate to jump on our chat and ask questions: [Getting help](../../develop/getting-started/help.md)
+If you have questions related to these release notes, don't hesitate to jump on our chat and ask questions: [Getting help](../../install/help.md)
 
 ## Credit
 

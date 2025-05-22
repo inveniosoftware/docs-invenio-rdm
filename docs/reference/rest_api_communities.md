@@ -293,7 +293,7 @@ Content-Type: application/json
 | `type`   | string  | query    | Specify community type as one of organization, event, topic or project.                                                                                                                                    |
 | `accept` | string  | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json`                                                                                                                                 |
 
-Sort options for communities can be configured using the `COMMUNITIES_SORT_OPTIONS` config variable as described in the [search customization](../customize/search.md) section. Note that `"bestmatch"` is only available as a sort option on requests that provide a query string as a `q` parameter. Otherwise `"bestmatch"` is ignored and the default `"newest"` sort is used.
+Sort options for communities can be configured using the `COMMUNITIES_SORT_OPTIONS` config variable as described in the [search customization](../operate/customize/search.md) section. Note that `"bestmatch"` is only available as a sort option on requests that provide a query string as a `q` parameter. Otherwise `"bestmatch"` is ignored and the default `"newest"` sort is used.
 
 **Request**
 
@@ -394,7 +394,7 @@ Same as `GET /api/communities` but with the authenticated user's communities in 
 | `type`   | string  | query    | Specify community type as one of organization, event, topic or project.                                                                                                                                    |
 | `accept` | string  | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json`                                                                                                                                 |
 
-Sort options for communities can be configured using the `COMMUNITIES_SORT_OPTIONS` config variable as described in the [search customization](../customize/search.md) section. Note that `"bestmatch"` is only available as a sort option on requests that provide a query string as a `q` parameter. Otherwise `"bestmatch"` is ignored and the default `"newest"` sort is used.
+Sort options for communities can be configured using the `COMMUNITIES_SORT_OPTIONS` config variable as described in the [search customization](../operate/customize/search.md) section. Note that `"bestmatch"` is only available as a sort option on requests that provide a query string as a `q` parameter. Otherwise `"bestmatch"` is ignored and the default `"newest"` sort is used.
 
 **Request**
 

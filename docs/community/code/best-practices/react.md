@@ -89,7 +89,7 @@ render() {
 
 ### On Overridable
 
-See the [How to override UI React components](../../../develop/howtos/override_components.md) how-to for detailed explanations on the library itself.
+See the [How to override UI React components](../../../operate/customize/look-and-feel/override_components.md) how-to for detailed explanations on the library itself.
 
 The library allows developers to mark components that can be overridden. While it is very easy to use, it can also lead to subtle errors.
 
