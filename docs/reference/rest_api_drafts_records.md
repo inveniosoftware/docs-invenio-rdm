@@ -20,6 +20,7 @@ Used for interacting with unpublished or edited draft records.
 | `files`    | object | body     | Files options (see below) for the record. |
 | `metadata` | object | body     | [Metadata](metadata.md#metadata) of the record. |
 | `custom_fields` | object | body     | [Custom fields](../customize/metadata/custom_fields/records.md#declaring-custom-fields) metadata for the record. (v10 and newer) |
+| `pids`     | object | body     | Optional. For providing your own external persistent identifiers (e.g., DOIs). See [Providing your own PID](#providing-your-own-pid). To mint a new DOI, use the [Reserve a DOI endpoint](#reserve-a-doi-for-a-draft-record) instead. |
 
 #### Files Options
 
@@ -31,6 +32,21 @@ Used for interacting with unpublished or edited draft records.
 
 A file must be uploaded to the draft before it can be used as the default
 preview. See "[Start a draft file upload](#start-draft-file-uploads)" below.
+
+#### Providing your own PID
+
+You can provide your own external persistent identifier (PID) when creating a draft record by including the `pids` field:
+
+```json
+{
+  "pids": {
+    "doi": {
+      "identifier": "10.1234/your.doi",
+      "provider": "external"
+    }
+  }
+}
+```
 
 **Request**
 
@@ -169,6 +185,120 @@ Content-Type: application/json
 ```
 
 Note how if a name and id are given for an affiliation identifiers. The instance's name it has for the given id is used e.g. "Entity One" is replaced by "European Organization for Nuclear Research" above.
+
+### Reserve a DOI for a draft record
+
+`POST /api/records/{id}/draft/pids/doi`
+
+Reserves a DOI for a draft record. The DOI will be registered when the record is published.
+
+**Parameters**
+
+| Name | Type   | Location | Description                                   |
+| ---- | ------ | -------- | --------------------------------------------- |
+| `id` | string | path     | Identifier of the draft record, e.g. `4d0ns-ntd13` |
+
+**Request**
+
+```http
+POST /api/records/{id}/draft/pids/doi HTTP/1.1
+```
+
+**Response**
+
+```http
+HTTP/1.1 201 CREATED
+Content-Type: application/json
+
+{
+  "id": "{id}",
+  "created": "2025-05-22T10:07:39.346289+00:00",
+  "updated": "2025-05-22T12:50:44.591407+00:00",
+  "links": {
+    "self": "{scheme+hostname}/api/records/{id}/draft",
+    "self_html": "{scheme+hostname}/uploads/{id}",
+    "doi": "https://handle.stage.datacite.org/10.71775/kth.{id}",
+    "publish": "{scheme+hostname}/api/records/{id}/draft/actions/publish",
+    "files": "{scheme+hostname}/api/records/{id}/draft/files",
+    "reserve_doi": "{scheme+hostname}/api/records/{id}/draft/pids/doi",
+    "versions": "{scheme+hostname}/api/records/{id}/versions"
+    // ...other links omitted for brevity...
+  },
+  "pids": {
+    "doi": {
+      "identifier": "10.71775/kth.{id}",
+      "provider": "datacite",
+      "client": "datacite"
+    }
+  },
+  // ...rest of the draft record...
+}
+```
+
+**Error responses**
+
+If the DOI already exists:
+
+```http
+HTTP/1.1 400 BAD REQUEST
+Content-Type: application/json
+
+{
+  "status": 400,
+  "message": "A validation error occurred.",
+  "errors": [
+    {
+      "field": "pids.doi",
+      "messages": [
+        "A PID already exists for type doi"
+      ]
+    }
+  ]
+}
+```
+
+### Delete a DOI from a draft record
+
+`DELETE /api/records/{id}/draft/pids/doi`
+
+Deletes a DOI that was previously reserved for a draft record.
+
+**Parameters**
+
+| Name | Type   | Location | Description                                   |
+| ---- | ------ | -------- | --------------------------------------------- |
+| `id` | string | path     | Identifier of the draft record, e.g. `4d0ns-ntd13` |
+
+
+!!! note "Deleting external DOIs"
+
+    This endpoint only deletes DOIs reserved via the InvenioRDM API. If you supplied an external DOI (`provider: "external"` in the `pids` field), remove it by updating the draft record to exclude the `pids` field, then reserve a new DOI if needed.
+
+**Request**
+
+```http
+DELETE /api/records/{id}/draft/pids/doi HTTP/1.1
+```
+
+**Response**
+
+```http
+HTTP/1.1 204 NO CONTENT
+```
+
+**Error responses**
+
+If the DOI does not exist:
+
+```http
+HTTP/1.1 404 NOT FOUND
+Content-Type: application/json
+
+{
+  "status": 404,
+  "message": "The persistent identifier does not exist."
+}
+```
 
 ### Get a draft record
 
