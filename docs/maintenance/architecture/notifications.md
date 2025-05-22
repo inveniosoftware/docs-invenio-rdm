@@ -30,7 +30,7 @@ After it is build, it can be dumped and send to a background task for further pr
 
 ## Notification Manager
 
-A notification manager is created, which will rely on certain [configuration values](../../develop/howtos/notifications.md#configuration-values) and provide logic to send notifications. Its task is also to call respective methods to resolve the notification context, generate recipients, filter recipients and generate the backend ids for further processing. With all information created, it will then dispatch further tasks to relay the notification to the backend, which will take care of sending the actual notification.
+A notification manager is created, which will rely on certain [configuration values](../../operate/customize/notifications_modify.md#configuration-values) and provide logic to send notifications. Its task is also to call respective methods to resolve the notification context, generate recipients, filter recipients and generate the backend ids for further processing. With all information created, it will then dispatch further tasks to relay the notification to the backend, which will take care of sending the actual notification.
 
 <details>
 <summary>A recipient entity could look like this</summary>
