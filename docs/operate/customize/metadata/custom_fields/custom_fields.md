@@ -1,4 +1,4 @@
-# Create a new type of field
+# Create a new type of custom field
 
 *Introduced in InvenioRDM v10*
 

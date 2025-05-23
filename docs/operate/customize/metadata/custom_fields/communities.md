@@ -1,4 +1,4 @@
-# Add field(s) to communities
+# Add custom field(s) to communities
 
 *Introduced in InvenioRDM v10*
 
