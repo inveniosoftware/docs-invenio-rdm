@@ -78,7 +78,7 @@ WSGI_PROXIES = 2
 
 ### Secret keys
 
-Probably the most important security measure is to have strong random secret keys set for you InvenioRDM instance.
+Probably the most important security measure is to have strong random secret keys set for your InvenioRDM instance.
 
 Good practices:
 
