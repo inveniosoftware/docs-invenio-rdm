@@ -45,7 +45,7 @@ The backend works not only for DOIs but for any other external or internal persi
 
 **Using the new feature**
 
-Check the [documentation](../../customize/dois.md) to see how to enable and configure the feature. Note that you'll need a testing account with DataCite to complete this. If you don't have that, you can check the demo site, where we have the DOI feature enabled.
+Check the [documentation](../../operate/customize/dois.md) to see how to enable and configure the feature. Note that you'll need a testing account with DataCite to complete this. If you don't have that, you can check the demo site, where we have the DOI feature enabled.
 
 **Known issues and future developments**
 
