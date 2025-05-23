@@ -60,6 +60,7 @@ nav:
           - Moderation: "features/features-walk-through/moderation.md"
   - Install:
       - Quick start: "install/index.md"
+      - Devbox: "install/devbox.md"
       - System requirements: "install/requirements.md"
       - Install CLI: "install/cli.md"
       - Scaffold: "install/scaffold.md"
