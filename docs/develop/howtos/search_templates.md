@@ -49,7 +49,7 @@ This template applies to indices matching the `example_instance` prefix, again c
 
 **Example of a new-style `_comment_template**
 
-In this new `_index_template` system you can also break down settings into reusable components. So we could put our shard settings into their own `_component_template`:
+In the new `_index_template` system, you can also break down settings into reusable components. So we could put our shard settings into their own `_component_template`:
 
 ```bash
 PUT _component_template/shard_count_template
