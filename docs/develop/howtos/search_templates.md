@@ -90,7 +90,7 @@ Most InvenioRDM search indices are created by declaring index mappings alone, wi
 
 ### Declaring a default index template
 
-To adjust the default number of shards across all indices created by Invenio, we can declare a *cluster-wide default index template*. For example, we can match any index beginning with a certain prefix (`example_instance*`) and provide a default setting of 3 shards:
+To adjust the default number of shards across all indices created by Invenio, we can declare a *cluster-wide default index template*. For example, we can match any index beginning with a certain prefix (`example_instance`) and provide a default setting of 3 shards:
 
 ```json
 {
