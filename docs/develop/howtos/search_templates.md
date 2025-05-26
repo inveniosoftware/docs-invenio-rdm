@@ -111,7 +111,7 @@ invenio_search.index_templates =
     example_instance = example_instance.index_templates.templates:get_index_templates
 ```
 
-The value provided for the entry point is an import path to either an iterable or a function that returns an iterable. Each member of the iterable should be a string representing the import path to a folder containing an index template. In this example, entry point value points to a function `get_index_templates` that returns
+The value provided for the entry point is an import path to an iterable of import paths or a function that returns an iterable of such paths. Each such import path string should point to a folder containing an index template. In this example, it's the function `get_index_templates` with the sole resulting import path of `"example_instance.index_templates.default"`:
 
 ```python
 def get_index_templates():
