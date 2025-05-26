@@ -27,7 +27,7 @@ This will configure all of our indices with names starting by `example_instance`
 
 ### **New-style templates**
 
-In the newer `_index_template` system, only one index template can be applied to each index. This avoids the  unexpected results that could emerge when two old-style templates had settings that collided. The new index templates can be composed using component templates, but those component templates now have to be explicitly included in the index template.
+In the newer `_index_template` system, only one index template can be applied to each index. This avoids the  unexpected results that could emerge when two or more old-style templates have conflicting settings. The new index templates can be composed using component templates, but those component templates now have to be explicitly included in the index template.
 
 **Example of a new-style `_index_template`:**
 
