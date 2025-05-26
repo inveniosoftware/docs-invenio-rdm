@@ -136,7 +136,7 @@ example_instance/
 
 When needed, additional new-style index templates can be declared with a *higher priority* to override the default settings for specific indices. These, too, are registered on the `invenio_search.index_templates` entry point. The import paths for the containing folders must be provided as strings in the entry point value, just like our default index template example above. And as with the default index template, the folder containing the index template must contain an `os-v2` subfolder, which in turn contains the json file with our custom template, named for the index template it provides.
 
-If you would like to take advantage of template composition, you can also declare component templates via the `invenio_search.component_templates` entry point.
+If you would like to take advantage of template composition, you can also declare component templates via the `invenio_search.component_templates` entry point group.
 
 If for some reason you need to use old-style templates for specific indices, you can register them via the `invenio_search.templates` entry point instead.
 
