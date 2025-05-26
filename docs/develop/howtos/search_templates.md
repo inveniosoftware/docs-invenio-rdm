@@ -8,7 +8,7 @@ To understand how to configure InvenioRDM to use custom OpenSearch index templat
 
 ### **Old-style templates**
 
-The old style system is now deprecated by OpenSearch, but is currently still employed by the `invenio-stats` module and supported by `invenio_search`. Using this system, you can create a template that applies to any index whose name matches an index pattern. If multiple templates match the same index pattern, OpenSearch will merge all of their settings. So all we would have to do is make this PUT request to our OpenSearch `_template` endpoint, sending a template in the body with our desired settings, and making sure that the index pattern would match all of our InvenioRDM instance's indices. (These indices all have the prefix `example_instance`, but this prefix will be unique for each InvenioRDM instance.)
+The old style system is now deprecated by OpenSearch, but is currently still employed by the `invenio-stats` module and supported by `invenio-search`. Using this system, you can create a template that applies to any index whose name matches an index pattern. If multiple templates match the same index pattern, OpenSearch will merge all of their settings. So all we would have to do is make this PUT request to our OpenSearch `_template` endpoint, sending a template in the body with our desired settings, and making sure that the index pattern would match all of our InvenioRDM instance's indices. (These indices all have the prefix `example_instance`, but this prefix will be unique for each InvenioRDM instance.)
 
 **Example of an old-style `_template`:**
 
