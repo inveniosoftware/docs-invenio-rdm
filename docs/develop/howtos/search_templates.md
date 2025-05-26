@@ -106,7 +106,9 @@ We can place this in a JSON file somewhere in our instance's `site` folder. Alth
 
 This template can then be registered via the `invenio_search.index_templates` entry point group in our instance's `site/setup.cfg` file (or in an external package's).
 
-```yaml
+```ini
+[options.entry_points]
+# ...
 invenio_search.index_templates =
     example_instance = example_instance.index_templates.templates:get_index_templates
 ```
