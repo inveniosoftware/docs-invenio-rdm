@@ -1,105 +1,34 @@
-# Newcomers Guide
+# New core developers and maintainers
 
 **Intended audience**
 
-The guide is intended as a crash course for new core developers of InvenioRDM with prior experience in running and installing InvenioRDM.
+The guide is intended as a crash course for new core developers/maintainers of InvenioRDM with prior experience in running and installing InvenioRDM.
 
-**Scope**
+## Scope
 
-The guide covers how we collaborate, the essential communication channels and key tools we use.
+Maintainers and core developers are trusted members of the project that regularly contribute to and manage the core codebase of InvenioRDM.
+Some come from CERN and others from partner institutions that have dedicated time and effort to the project over time. Management of the core codebase is done by code contributions, pull request reviews and merges, translation effort coordination, branch and work boards administration and various forms of communication, documentation and process management.
 
-## Overview
+This section provides concrete details about those fundamental aspects of the project. As such, although they are targeted at (often new) maintainers and core developers, they can be useful to the occasional contributor in order to better understand the section of the project that they are contributing to. All of the information detailed in ["Join the InvenioRDM Community"](../community/index.md) is prologue to the additional, more specialized information here.
 
-Following is a quick overview over what you need to know in order to participate in the InvenioRDM development.
+## Important resources
 
-### Join communication channels
+Still relevant to you as a maintainer, are the [important contributor resources](../community/onboard.md) highlighted in the onboarding section.
 
-- Join Discord [``inveniosoftware``](https://discord.gg/8qatqBC)
-- Member of GitHub [inveniosoftware organisation](https://github.com/inveniosoftware/opensource/blob/master/repositories.yml) and the ``inveniordm`` and ``developers`` teams (ask`` @lnielsen``)
-- Mailing list project-inveniordm@cern.ch (ask ``@lnielsen``).
-- [ThisWeek](https://github.com/inveniosoftware/thisweek) digest is sent once a week on Discord #rdm-general channel.
+Additionally, you will want to make sure you are added to the [relevant GitHub teams](https://github.com/orgs/inveniosoftware/teams) depending on what modules you maintain or role you play by contacting current maintainers (`@maintainers` on Discord). Speaking of, your [Discord](https://discord.gg/8qatqBC) account should be appropriately classified to give you access to the relevant maintainer channels and include you in relevant targeted group-`@mentions` (e.g., `@devops-maintainers` if DevOps is one of your areas of expertise).
 
-### Development iterations
-
-We run **iterations of 6-8 weeks** and each iteration produces a new release. We use one sprint board per team to keep track of the current iteration.
-
-We use a [product roadmap](../community/roadmap.md) in GitHub to keep track of high-level features and plan the release.
-
-### Board workflow
-
-See [board workflow](board-workflow.md)
-
-### Iteration schedule
-
-The high-level sprint schedule usually looks like this:
-
-- Week 1: Kick-off and design week.
-- Week 2-5: Development
-- Week 6: Integration, QA, testing
-    - Feature lock
-    - Thursday: Release, deployment and announcement.
-    - Friday: Review, retrospective & triaging of stale issues.
-
-### Daily meetings
-
-You daily schedule looks like this:
-
-- *Standup:* daily at 14:15 CET on Discord #rdm-internal voice channel.
-
-## Developing with InvenioRDM
-
-### Set up your system
-
-See [Setting up your system](https://invenio.readthedocs.io/en/latest/getting-started/development-environment.html)
-
-### Tools
-
-Invenio-CLI is the primary tool you'll use for development. See the [CLI reference documentation](https://inveniordm.docs.cern.ch/reference/cli/). In particular, you'll need the following commands to install development versions of libraries in your InvenioRDM instance:
-
-```
-invenio-cli install ...
-invenio-cli assets build
-invenio-cli assets watch
-invenio-cli assets install
-invenio-cli assets watch-module
-```
-
-Above commands, works when you install development versions of modules into InvenioRDM (i.e. integration testing). Often, you'll work on a specific Invenio modules, these modules you'll usually work on in the following way:
-
-```
-cd ~/src/invenio-<amodule>
-mkvirtualenv <amodule>
-# postgresql,elasticsearch7 only needed for certain modules
-pip install -e ".[all,postgresql,elasticsearch7]"
-./run-tests.sh
-```
-
-Run tests uses ``docker-services-cli`` to boot up needed services (like database, cache and search engine). To run tests individually, you can use:
-
-```
-# Copy/paste the following line fro ./run-tests.sh
-eval "$(docker-services-cli up --db ${DB:-postgresql} --search ${ES:-elasticsearch} --mq ${CACHE:-redis} --env)"
-# Run single test:
-pytest tests/test_somemodule.py::test_sometestfunc -s
-```
+Don't forget to watch on GitHub the modules you oversee and pay attention to the [community PR board](https://github.com/orgs/inveniosoftware/projects/109/views/1).
 
 ## Design
 
-### Architects
+Experienced maintainers (sometimes referred as architects) and fellow core contributors are go-to resources when it comes to understanding the vision of the InvenioRDM project, the high-level architecture and the low-level internals. The architects are there to help you succeed in contributing, but also have a final say on all design choices made in InvenioRDM. This is to ensure a coherent product and coherent decisions. The [high-level architecture of InvenioRDM section](architecture/index.md) tries to lay out that foundational information, while the [internals section](internals/resource.md) details concrete code structures used in the project.
 
-Invenio has four principal architects. All architects have:
+### Request for Comments (RFCs)
 
-1. Previously designed and built at least one larger repository from scratch.
-2. Large knowledge of the existing codebase and vision of the project.
+[Requests For Comments](https://github.com/inveniosoftware/rfcs) also capture some of the design information of the project -especially for larger design work. They are more like working documents than a finished, enshrined page found in this documentation site. The documentation site disseminates the current results of the historic decisions made there.
 
-Architects are there to help you succeed in contributing, but also have a final say on all design choices made in Invenio (this is to ensure a coherent product and coherent decisions).
+RFCs are used to gather feedback and gain consensus from developers. They record the reasoning behind design decisions. However, they are not necessarily very detailed or precise, and they are not retrospectively edited to reflect the now current state of the architecture. There won't necessarily be a subsequent RFC to invalidate a prior one either as the project is fluid and some decisions are made following meetings or online discussions.
 
-### RFCs
+## Development
 
-All larger design work is subject to an RFC. [Invenio RFCs](https://github.com/inveniosoftware/rfcs) are a communication tool, to:
-
-- Coordinate the design process
-- Document design decisions
-- Produce consensus among Invenio stakeholders
-
-It's a collaborative process.
+Follow the approach outlined in the ["Contribute code" section](../community/code/process.md). Checkout source code and organize your environment for development as per the other pages in that section. Parts of the development process as a maintainer or core developer entails performing specialized operations like managing branches and releases or performing database migrations. These additional tasks are listed in the [Operation Tasks section](operations/release-management.md).

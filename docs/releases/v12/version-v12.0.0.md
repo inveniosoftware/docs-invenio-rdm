@@ -27,7 +27,7 @@ Usage statistics are displayed in the record landing page and record search:
 The landing page shows the *unique views/downloads* (it deduplicates events coming from the same source) by default.
 And only visits to the landing page count towards the record views.
 
-For more details about usage statistics, consult the [reference page](../../reference/statistics.md)
+For more details about usage statistics, consult the [explainer page](../../maintenance/internals/statistics.md)
 
 ### Record inclusion in multiple communities
 
@@ -151,6 +151,8 @@ Here is a quick summary of the myriad other improvements in this release:
 - Translations for v12 will be coming in v12.1 targeted for release in two months time from the release of v12.0
 - Sharing a secret link to a restricted record in a restricted community does not provide access to the record yet.
   Work on this is [tracked here](https://github.com/inveniosoftware/invenio-app-rdm/issues/2706).
+- For each user, only one record can have its storage quota increased via the administration panel, due to an overzealous `unique` constraint.
+  The fix (in [Invenio-RDM-Records PR#2037](https://github.com/inveniosoftware/invenio-rdm-records/pull/2037)) will not be backported to v12.
 
 ## Requirements
 

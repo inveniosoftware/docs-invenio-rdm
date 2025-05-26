@@ -24,7 +24,7 @@ Unless configured otherwise, there are two main classes of statistics indices:
 - **Aggregated events**: Aggregated statistics per record or file.
 
 Each of these indices is created on a **monthly basis** for both views and downloads.
-For more details, see the [related documentation](../../reference/statistics.md).
+For more details, see the [related documentation](../../maintenance/internals/statistics.md).
 
 **Examples of index naming**
 

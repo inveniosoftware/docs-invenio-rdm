@@ -145,6 +145,38 @@ types {
 
 ### TODO
 
+### New Index Template for Job Logs
+
+Replace `localhost:9200` and `__SEARCH_INDEX_PREFIX__ `with your instance values.
+
+Then run:
+```bash
+curl -X PUT "http://localhost:9200/_index_template/job-logs-v1.0.0" -H "Content-Type: application/json" -d '
+{
+  "index_patterns": ["__SEARCH_INDEX_PREFIX__job-logs*"],
+  "data_stream": {},
+  "template": {
+    "mappings": {
+      "properties": {
+        "@timestamp": { "type": "date" },
+        "level": { "type": "keyword" },
+        "message": { "type": "text" },
+        "module": { "type": "keyword" },
+        "function": { "type": "keyword" },
+        "line": { "type": "integer" },
+        "context": {
+          "type": "object",
+          "properties": {
+            "job_id": { "type": "keyword" },
+            "run_id": { "type": "keyword" }
+          },
+          "dynamic": true
+        }
+      }
+    }
+  }
+}'
+```
 
 ### Rebuild search indices
 

@@ -56,7 +56,7 @@ a {
     Full list of Invenio theme [overrides](https://github.com/inveniosoftware/invenio-theme/tree/master/invenio_theme/assets/semantic-ui/less/invenio_theme/theme).
 
 
-To know more about the philosophy behind theming see the [Theming section](../../develop/topics/theming.md).
+To know more about the philosophy behind theming see the [Theming section](../../maintenance/internals/theming.md).
 
 **Step 2** - Run the `invenio-cli assets build` command.
 

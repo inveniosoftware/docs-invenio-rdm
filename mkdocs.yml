@@ -111,17 +111,6 @@ nav:
         - Virtual environments: "develop/getting-started/virtualenvs.md"
         - Debugging: "develop/getting-started/debugging.md"
         - Getting help: "develop/getting-started/help.md"
-      - Topic guides:
-          # - Building REST APIs: develop/topics/rest.md
-          - Building resources: develop/topics/resource.md
-          - Building services: develop/topics/service.md
-          # - Building records: develop/topics/record.md
-          # - Building system fields: develop/topics/systemfield.md
-          - Building serializers: develop/topics/serializers.md
-          - Grouping atomic operations: develop/topics/uow.md
-          - Sanitize input data: develop/topics/validation.md
-          - Theming: develop/topics/theming.md
-          - Administration panel: develop/topics/administration_panel.md
       - How-to guides:
           - Create a new custom field: develop/howtos/custom_fields.md
           - Create custom code and views: develop/howtos/custom_code.md
@@ -136,53 +125,7 @@ nav:
           - Restrict access to pages: develop/howtos/restrict_access.md
           - Create and configure notifications: develop/howtos/notifications.md
           - Customize search index templates: develop/howtos/search_templates.md
-      - Architecture:
-          - Introduction: develop/architecture/index.md
-          - Infrastructure: develop/architecture/infrastructure.md
-          - Software: develop/architecture/software.md
-          - Runtime: develop/architecture/runtime.md
-          - Requests: develop/architecture/requests.md
-          - Communities: develop/architecture/communities.md
-          - Records: develop/architecture/records.md
-          - Event handling: develop/architecture/event_handling.md
-          - Notifications: develop/architecture/notifications.md
-          - Recommended reading: develop/architecture/reading.md
-      - Concepts:
-          - Optimistic concurrency control: develop/concepts/concurrency-control.md
-          - Database transaction management: develop/concepts/transactions.md
   - Deploy: deploy/index.md
-  - Reference:
-      - Overview: reference/index.md
-      - CLI: reference/cli.md
-      - Configuration: reference/configuration.md
-      - Metadata: reference/metadata.md
-      - Optional metadata: reference/metadata/optional_metadata.md
-      - OAI-PMH: reference/oai_pmh.md
-      - Export formats: reference/export_formats.md
-      - REST API:
-          - Overview: "reference/rest_api_index.md"
-          - Quickstart: "reference/rest_api_quickstart.md"
-          - Communities: "reference/rest_api_communities.md"
-          - Drafts and Records: "reference/rest_api_drafts_records.md"
-          - Groups: "reference/rest_api_groups.md"
-          - Members: "reference/rest_api_members.md"
-          - Requests: "reference/rest_api_requests.md"
-          - Users: "reference/rest_api_users.md"
-          - Reviews: "reference/rest_api_reviews.md"
-          - Vocabularies: "reference/rest_api_vocabularies.md"
-          - Names: "reference/rest_api_names.md"
-          - Funders: "reference/rest_api_funders.md"
-          - Awards: "reference/rest_api_awards.md"
-          - OAI-PMH Sets: "reference/rest_api_oaipmh_sets.md"
-          - Statistics: "reference/rest_api_statistics.md"
-      - Custom fields:
-          - UI widgets: "reference/custom_fields/widgets.md"
-      - Administration:
-          - Reference: "reference/administration_reference.md"
-      - File storage: "reference/file_storage.md"
-      - Usage statistics: "reference/statistics.md"
-      - Notifications: "reference/notifications.md"
-      - Searching: "reference/search.md"
 
   - Releases:
     - Overview: releases/index.md
@@ -260,16 +203,71 @@ nav:
     #   # Merge Sprintboard workflow: maintenance/board-workflow.md with above
     - Roadmap: community/roadmap.md
 
-  - Maintainers:
-      - Overview: maintenance/index.md
-      - Newcomers: maintenance/newcomers.md
-      - Sprintboard workflow: maintenance/board-workflow.md
-      - Release management: maintenance/release-management.md
-      - Modules on GitHub: maintenance/modules.md
-      - Branch management: maintenance/branch-management.md
-      - Demo site & docs: maintenance/demosite.md
-      - Docker images: maintenance/docker-images.md
-      - RFCs: maintenance/rfcs.md
+  - Maintain and develop InvenioRDM:
+    - Overview: maintenance/index.md
+    - New maintainers: maintenance/newcomers.md
+    - Modules on GitHub: maintenance/modules.md
+    - High-level architecture:
+      - Introduction: maintenance/architecture/index.md
+      - Infrastructure: maintenance/architecture/infrastructure.md
+      - Software: maintenance/architecture/software.md
+      - Runtime: maintenance/architecture/runtime.md
+      - Records: maintenance/architecture/records.md
+      - Communities: maintenance/architecture/communities.md
+      - Requests: maintenance/architecture/requests.md
+      - Event handling: maintenance/architecture/event_handling.md
+      - Notifications: maintenance/architecture/notifications.md
+      - Recommended reading: maintenance/architecture/reading.md
+    - Lower-level internals:
+      - Building resources: maintenance/internals/resource.md
+      - Building services: maintenance/internals/service.md
+      - Building serializers: maintenance/internals/serializers.md
+      - Sanitize input data: maintenance/internals/validation.md
+      - Grouping atomic operations: maintenance/internals/uow.md
+      - Theming: maintenance/internals/theming.md
+      - Usage statistics: maintenance/internals/statistics.md
+      - Optimistic concurrency control: maintenance/internals/concurrency-control.md
+      - Database transaction management: maintenance/internals/transactions.md
+      - Administration panel: maintenance/internals/administration_panel.md
+    - Operational tasks:
+      - Release management: maintenance/operations/release-management.md
+      - Branch management: maintenance/operations/branch-management.md
+      - Demo site & docs: maintenance/operations/demosite.md
+      - Docker images: maintenance/operations/docker-images.md
+
+  - Reference:
+      - Overview: reference/index.md
+      - CLI: reference/cli.md
+      - Configuration: reference/configuration.md
+      - Metadata: reference/metadata.md
+      - Optional metadata: reference/metadata/optional_metadata.md
+      - OAI-PMH: reference/oai_pmh.md
+      - Export formats: reference/export_formats.md
+      - REST API:
+          - Overview: "reference/rest_api_index.md"
+          - Quickstart: "reference/rest_api_quickstart.md"
+          - Communities: "reference/rest_api_communities.md"
+          - Drafts and Records: "reference/rest_api_drafts_records.md"
+          - Groups: "reference/rest_api_groups.md"
+          - Members: "reference/rest_api_members.md"
+          - Requests: "reference/rest_api_requests.md"
+          - Users: "reference/rest_api_users.md"
+          - Reviews: "reference/rest_api_reviews.md"
+          - Vocabularies: "reference/rest_api_vocabularies.md"
+          - Names: "reference/rest_api_names.md"
+          - Funders: "reference/rest_api_funders.md"
+          - Awards: "reference/rest_api_awards.md"
+          - OAI-PMH Sets: "reference/rest_api_oaipmh_sets.md"
+          - Statistics: "reference/rest_api_statistics.md"
+      - Custom fields:
+          - UI widgets: "reference/custom_fields/widgets.md"
+      - Administration:
+          - Reference: "reference/administration_reference.md"
+      - File storage: "reference/file_storage.md"
+      - Notifications: "reference/notifications.md"
+      - Searching: "reference/search.md"
+
+
 
 # Customization
 extra:

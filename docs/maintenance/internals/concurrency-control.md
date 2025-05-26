@@ -24,7 +24,7 @@ transaction B never commits.
 ### Read committed
 
 Under *read committed* isolation level (which is the default in PostgreSQL),
-then again transaction B in step 4 will wait until transaction A commits in
+transaction B in step 4 will again wait until transaction A commits in
 step 5, however transaction B will then try to update the record with the new
 value from transaction A.
 

@@ -1,16 +1,16 @@
 # Runtime architecture
 
-At its core Invenio is an application built on-top of the Flask web
-development framework, and fully understanding Invenio's architectural design
+At its core InvenioRDM is an application built on-top of the Flask web
+development framework, and fully understanding InvenioRDM's architectural design
 requires you to understand core concepts of Flask which will be covered in brief here.
 
 The Flask application is exposed via different *application interfaces*
 depending on if the application is running in a web server, CLI or job queue.
 
-Invenio adds a powerful *application factory* on top of Flask, which takes
-care of dynamically assembling an Invenio application from the many individual
-modules that make up Invenio, and which also allow you to easily extend
-Invenio with your own modules.
+InvenioRDM adds a powerful *application factory* on top of Flask, which takes
+care of dynamically assembling an InvenioRDM application from the many individual
+modules that make up InvenioRDM, and which also allows you to easily extend
+it with your own modules.
 
 ## Core concepts
 
@@ -28,7 +28,7 @@ def my_user_agent():
     return request.headers['User-Agent']
 
 # Extension
-class MyExtension(object):
+class MyExtension:
     def __init__(self, app=None):
         if app:
             self.init_app(app)
@@ -46,14 +46,14 @@ You can save above code in a file ``app.py`` and run the application:
 
 ```console
 $ pip install Flask
-$ export FLASK_APP=app.py flask run
+$ flask run
 ```
 
 ### Application and blueprint
 
-Invenio is a large application built up of many smaller individual modules. The
+InvenioRDM is a large application built up of many smaller individual modules. The
 way Flask allows you to build modular applications is via *blueprints*.
-In above example we have a small blueprint with just one *view*
+In the above example, we have a small blueprint with just one *view*
 (``my_user_agent``), which returns the browser's user agent sting.
 
 This blueprint is *registered* on the *Flask application*. This allows you
@@ -61,20 +61,19 @@ to reuse the blueprint in another Flask application.
 
 ### Flask extensions
 
-Like blueprints allow you to modularise your Flask application's views,
+As blueprints allow you to modularise your Flask application's views,
 Flask extensions allow you to modularise the initialization of your application
 that is not specific to views (e.g. providing database connectivity).
 
-Flask extensions are just objects like the one in the example above, which has
+A Flask extension is just an object like the one in the example above which has
 an ``init_app`` method.
 
 ### Application and request context
 
 Code in a Flask application can be executed in two "states":
 
-- *Application context*: when the application is e.g. being used via a CLI
-  or running in a job queue (i.e. not handling requests).
-- *Request context*: when the application is handling a request from a user.
+- *Application context*: when the application is not handling requests e.g., in a CLI or running in a job queue
+- *Request context*: when the application is handling a request from a user
 
 In the above example, the  code inside the view ``my_user_agent`` is executed
 during a request, and thus you can have access to the browser's user agent
@@ -87,7 +86,7 @@ make this thread safe.
 
 ## Interfaces: WSGI, CLI and Celery
 
-Overall the Flask application runs via three different application
+The Flask application runs via three different application
 interfaces:
 
 - **WSGI:** The frontend web server interfaces with Flask via Flask's WSGI
@@ -103,9 +102,9 @@ In each of the above interfaces, a Flask application needs to be created.
 A common pattern for large Flask applications is to move the application
 creation into a factory function, named an **application factory**.
 
-Invenio provides a powerful application factory for Flask which is capable of
+InvenioRDM provides a powerful application factory for Flask which is capable of
 dynamically assembling an application. In order to illustrate the basics of
-what the Invenio application factory does, have a look at the following
+what the InvenioRDM application factory does, have a look at the following
 example:
 
 ```python
@@ -133,68 +132,73 @@ def create_app():
 
 The example illustrates two blueprints, which are statically registered on the
 Flask application blueprint inside the application factory. It is essentially
-this part that the Invenio application factory takes care of for you. Invenio
-will automatically discover all your installed Invenio modules and register
+this part that the InvenioRDM application factory takes care of for you. InvenioRDM
+will automatically discover all your installed InvenioRDM modules and register
 them on your application.
 
 ### Assembly phases
 
-The Invenio application factory assembles your application in five phases:
+The InvenioRDM application factory assembles your application in five phases:
 
 1. **Application creation**: Besides creating the Flask application object,
    this phase will also ensure your instance folder exists, as well as route
    Python warnings through the Flask application logger.
-2. **Configuration loading**: In this phase your application will load your
+2. **Configuration loading**: In this phase, your application will load your
    instance configuration. This essentially sets all the configuration
-   variables for which you don't want to use the default values, e.g.  the
+   variables for which you don't want to use the default values, e.g., the
    database host configuration.
 3. **URL converter loading**: In this phase, the application will load any of
    your URL converters. This phase is usually only needed for some few specific
    cases.
-4. **Flask extensions loading**: In this phase all the Invenio modules which
+4. **Flask extensions loading**: In this phase all the InvenioRDM modules which
    provide Flask extensions will initialize the extension. Usually the
    extensions will provide default configuration values they need, unless the
    user already set them.
 5. **Blueprints loading**: After all extensions have been loaded, the factory
-   will end with registering all the blueprints provided by the Invenio modules
+   will end with registering all the blueprints provided by the InvenioRDM modules
    on the application.
+6. **URLs builder loading**: Now that the endpoints of the *current app* (UI or API) are loaded,
+   the endpoints and associated URLs of the other app (respectively API or UI) are registered
+   for the purpose of cross-app link generation.
+7. **Final app loading**: After everythin else is loaded, the factory
+   loads code dependent on having everything ready but the application not started.
 
 Understanding the above application assembly phases, what they do, and how you
-can plug into them is essential for fully mastering Invenio development.
+can plug into them is essential for fully mastering InvenioRDM development.
 
 !!! note
 
     **No loading order within a phase**
 
     It's very important to know that, within each phase, there is **no order**
-    in how the Invenio modules are loaded. Say, within the Flask extensions
+    in how the InvenioRDM modules are loaded. Say, within the Flask extensions
     loading phase, there's no way to specify that one extension has to be
     loaded before another extension.
 
-    You only have the order of the phases to work with, so e.g. Flask extensions are
+    You only have the order of the phases to work with, so e.g., Flask extensions are
     loaded before any blueprints are loaded.
 
 ### Module discovery
 
-In each of the application assembly phases, the Invenio factory automatically
-discovers your installed Invenio modules. This works via Python
-**entry points**. When you install the Python package for an Invenio module,
+In each of the application assembly phases, the InvenioRDM factory automatically
+discovers your installed InvenioRDM modules. This works via Python
+**entry point groups**. When you install the Python package for an InvenioRDM module,
 the package describes via entry points which Flask extensions, blueprints etc.
 it provides.
 
 ### WSGI: UI and REST
 
 Each of the application interfaces (WSGI, CLI, Celery) may need slightly
-different Flask applications. The Invenio application factory is in charge
-of assembling these applications, which is done through the five assembly
+different Flask applications. The InvenioRDM application factory is in charge
+of assembling these applications, which is done through the above assembly
 phases.
 
 The WSGI application is however also split up into two Flask applications:
 
 - **UI:** Flask application responsible for processing all user facing views.
-- **REST:** Flask application responsible for processing all REST API requests.
+- **API:** Flask application responsible for processing all REST API requests.
 
-The reason to split the frontend part of Invenio into two separate applications
+The reason to split the frontend part of InvenioRDM into two separate applications
 is partly
 
 - to be able to run the REST API on one domain (``api.example.org``) and the
@@ -208,14 +212,14 @@ application.
 
 ### Implementation
 
-The following Invenio modules are each responsible for implementing parts of the
-above application architecture, and it is highly advisable to dig deeper into
-these modules for a better understanding of the Invenio application
+The following InvenioRDM modules are each responsible for implementing parts of the
+above application assembly, and it is highly advisable to dig deeper into
+these modules for a better understanding of the InvenioRDM application
 architecture:
 
-- [Invenio-Base](https://invenio-base.readthedocs.io): Implements the Invenio
+- [InvenioRDM-Base](https://github.com/inveniosoftware/invenio-base): Implements the InvenioRDM
   application factory.
-- [Invenio-Config](https://invenio-config.readthedocs.io): Implements the
+- [InvenioRDM-Config](https://github.com/inveniosoftware/invenio-config): Implements the
   configuration loading phase.
-- [Invenio-App](https://invenio-app.readthedocs.io): Implements default
+- [InvenioRDM-App](https://github.com/inveniosoftware/invenio-app): Implements default
   applications for WSGI, CLI and Celery.
