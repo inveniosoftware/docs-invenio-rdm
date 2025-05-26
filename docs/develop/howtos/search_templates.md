@@ -104,7 +104,7 @@ To adjust the default number of shards across all indices created by Invenio, we
 
 We can place this in a JSON file somewhere in our instance's `site` folder. Although the general location is flexible, the file must be contained in a folder named `os-v2` and should be named for the index template it provides. In this case, since we are declaring a default index template, we can name it `default-v1.0.0.json`.
 
-This template can then be registered via the `invenio_search.index_templates` entry point in our instance's `site/setup.cfg` file.
+This template can then be registered via the `invenio_search.index_templates` entry point group in our instance's `site/setup.cfg` file (or in an external package's).
 
 ```yaml
 invenio_search.index_templates =
