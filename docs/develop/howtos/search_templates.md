@@ -23,7 +23,7 @@ PUT _template/template_1
 }
 ```
 
-This will configure all of our indices with names starting `example_instance` to use just one primary shard and one replica (2 shards in total) for each index.
+This will configure all of our indices with names starting by `example_instance` to use just one primary shard and one replica (2 shards in total) for each index.
 
 ### **New-style templates**
 
