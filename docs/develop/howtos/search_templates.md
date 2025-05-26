@@ -45,7 +45,7 @@ PUT _index_template/template_2
 }
 ```
 
-This template applies to indices matching the `example_instance` prefix, again configuring them to use *1 primary shard* and *1 replica*. But what if another index template also has a pattern that matches a given index name? The index `example_instance-records-records-v1.0.0`, for example, would match this template, but it would also match a template with the pattern `example_instance-records*`. The `priority` field allows us to determine which one will override the other. Since our `priority` here is `100`, it will take precedence over any template with a lower precedence number.
+This template applies to indices matching the `example_instance` prefix, again configuring them to use *1 primary shard* and *1 replica*. But what if another index template also has a pattern that matches a given index name? The index `example_instance-records-records-v1.0.0`, for example, would match this template, but it would also match a template with the pattern `example_instance-records*`. The `priority` field allows us to determine which one will override the other. Since our `priority` here is `100`, it will take precedence over any template with a lower `priority` than 100, thus establishing a precedence order.
 
 **Example of a new-style `_comment_template**
 
