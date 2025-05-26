@@ -126,9 +126,9 @@ example_instance/
         example_instance/
             index_templates/
                 default/
+                    __init__.py
                     os-v2/
                         default-v1.0.0.json
-                    __init__.py
 ```
 
 
