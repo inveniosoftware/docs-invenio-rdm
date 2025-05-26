@@ -23,7 +23,7 @@ PUT _template/template_1
 }
 ```
 
-This will configure all of our indices with names starting by `example_instance` to use just one primary shard and one replica (2 shards in total) for each index.
+This will configure all of our indices with names starting with `example_instance` to use just one primary shard and one replica (2 shards in total) for each index.
 
 ### **New-style templates**
 
@@ -46,6 +46,10 @@ PUT _index_template/template_2
 ```
 
 This template applies to indices matching the `example_instance` prefix, again configuring them to use *1 primary shard* and *1 replica*. But what if another index template also has a pattern that matches a given index name? The index `example_instance-records-records-v1.0.0`, for example, would match this template, but it would also match a template with the pattern `example_instance-records*`. The `priority` field allows us to determine which one will override the other. Since our `priority` here is `100`, it will take precedence over any template with a lower `priority` than 100, thus establishing a precedence order.
+
+!!! Note
+
+    When two templates have the same `priority` number, the templates will be applied *in the order they were created* (based on the template's timestamp on the OpenSearch node, created when the `PUT` request is made). This means that if the templates have any conflicting settings, the template that was created *last* will override templates with the same `priority` number that were created earlier. It is strongly advised to leave gaps between the `priority` numbers so that you can avoid having to use duplicate `priority` numbers in future and so keep the precedence order explicit.
 
 **Example of a new-style `_comment_template**
 
@@ -167,6 +171,7 @@ STATS_REGISTER_INDEX_TEMPLATES = True
 ```
 
 !!! info "Stats index templates must include mappings."
+
     When defining templates for stats indices, the new template must contain *the entire content* of the original template, including mappings and settings that you do not want to override. Unlike other search indices (which separate field mappings from the settings in an index template) the stats indices declare all of the index parameters in these template files. So our custom template must also include *all* of the necessary settings and mappings for the indices.
 
 ### Leveraging `__search_index_prefix__`
@@ -176,3 +181,7 @@ In both old- and new-style templates, you can make use of the placeholder `__sea
 ### Applying the custom templates
 
 Index templates are applied (sent to OpenSearch via the opensearchpy Python interface) during the setup stage of the search indices, before any data has actually been indexed. This can be done manually using the cli command `invenio index init` and it is done automatically during the service setup process for a new InvenioRDM instance.
+
+!!! Note
+
+    Some index settings (such as shard counts) can only be set when the index is created. So if you want to change the shard count for an existing index, you will need to delete the index and let InvenioRDM recreate it. Changes to some other settings may be made to existing indices. Consult the [OpenSearch documentation](https://docs.opensearch.org/docs/latest/im-plugin/index-templates/) for more information on which settings can be changed after the index is created. Field mappings *can* be changed by the addition of new fields, but the index will need to be reindexed before the added fields can be used. Existing fields cannot be removed or changed without recreating the index. Apart from the `invenio-stats` indices, though, field mappings for InvenioRDM indices are configured separately from any index templates. Changes to those field mappings should be made using the `invenio-search` module's mechanisms.
