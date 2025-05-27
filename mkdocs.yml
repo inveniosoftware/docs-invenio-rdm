@@ -124,6 +124,7 @@ nav:
           - Back up search indices: develop/howtos/backup_search_indices.md
           - Restrict access to pages: develop/howtos/restrict_access.md
           - Create and configure notifications: develop/howtos/notifications.md
+          - Customize search index templates: develop/howtos/search_templates.md
   - Deploy: deploy/index.md
 
   - Releases:
