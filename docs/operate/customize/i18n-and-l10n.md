@@ -131,7 +131,7 @@ via the `invenio.cfg`-file.
 ## Troubleshooting
 
 - There are English texts showing up in your user interface: If the application
-  cannot find a translation, it will fall back to English. You can help filling
+  cannot find a translation, it will fall back to English. You can help fill in
   these gaps by [becoming a translator](../../community/translations/translators-guide.md).
 - Strings appear in many places in your instance and different techniques are
   involved to handle them. We are working on documentation for translations of

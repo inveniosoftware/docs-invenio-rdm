@@ -227,7 +227,7 @@ The upload form will then look like below:
 
 ### Landing page
 
-In the record landing page, by default, the custom fields will be displayed in the *additional details* section at the bottom of the page. Each custom fields section correspond to a tab item, containing the configured fields. This can be disabled using the `hidden` attribute in the section's configuration.
+In the record landing page, by default, the custom fields will be displayed in the *additional details* section at the bottom of the page. Each custom fields section corresponds to a tab item, containing the configured fields. This can be disabled using the `hidden` attribute in the section's configuration.
 
 The additional details section:
 
