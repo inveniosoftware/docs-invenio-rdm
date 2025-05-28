@@ -59,73 +59,133 @@ nav:
           - Metadata-only records: "features/features-walk-through/metadata_only.md"
           - Moderation: "features/features-walk-through/moderation.md"
   - Install:
-      - Quick start: "install/index.md"
-      - System requirements: "install/requirements.md"
-      - Install CLI: "install/cli.md"
-      - Scaffold: "install/scaffold.md"
-      - Build, setup & run: "install/build-setup-run.md"
-      - Configure: "install/configuration.md"
-      - Use: "install/run.md"
-      - Migrate: "install/migrate.md"
-      - Destroy: "install/destroy.md"
-      - Troubleshooting: "install/troubleshoot.md"
-  - Customize:
-      - Overview: "customize/index.md"
-      - Look-and-feel:
-          - Overview: "customize/look-and-feel/index.md"
-          - Change logo: "customize/look-and-feel/logo.md"
-          - Change templates: "customize/look-and-feel/templates.md"
-          - Change theme: "customize/look-and-feel/theme.md"
-          - Change font: "customize/look-and-feel/font.md"
-      - Authentication: "customize/authentication.md"
-      - Sending emails: "customize/emails.md"
+    - Quick start: "install/index.md"
+    - System requirements: "install/requirements.md"
+    - Install CLI: "install/cli.md"
+    - Scaffold: "install/scaffold.md"
+    - Build, setup & run: "install/build-setup-run.md"
+    - Use: "install/run.md"
+    - Migrate: "install/migrate.md"
+    - Destroy: "install/destroy.md"
+    - Troubleshooting: "install/troubleshoot.md"
+    - Virtual environments: "install/virtualenvs.md"
+    - Debugging: "install/debugging.md"
+    - Getting help: "install/help.md"
+
+  - Operate an Instance:
+    - Overview: "operate/index.md"
+    - Deployment and other operations:
+      - Infrastructure: operate/ops/infrastructure.md
+      - Deploy: operate/ops/deploy.md
+      - Log: operate/ops/logging.md
+      - Back up search indices: operate/ops/backup_search_indices.md
+      - Redirect legacy routes: operate/ops/route_migration.md
+    - Customization philosophy: operate/customize/index.md
+    - Customize look-and-feel:
+      - Overview: "operate/customize/look-and-feel/index.md"
+      - Change logo: "operate/customize/look-and-feel/logo.md"
+      - Change templates: "operate/customize/look-and-feel/templates.md"
+      - Change theme: "operate/customize/look-and-feel/theme.md"
+      - Change font: "operate/customize/look-and-feel/font.md"
+      - Override React components: "operate/customize/look-and-feel/override_components.md"
+    - Customize metadata model:
+      - Enable metadata-only records: "operate/customize/metadata/metadata_only.md"
+      - Optional metadata fields:
+        - Include optional metadata fields: "operate/customize/metadata/optional_fields.md"
+        - List of optional metadata fields: operate/customize/metadata/optional_metadata.md
+      - Custom fields:
+        - Add field(s) to records: "operate/customize/metadata/custom_fields/records.md"
+        - Create new type of field: operate/customize/metadata/custom_fields/custom_fields.md
+        - Add field(s) to communities: "operate/customize/metadata/custom_fields/communities.md"
+        - UI widgets: "operate/customize/metadata/custom_fields/widgets.md"
+    - Customize vocabularies:
+        - Overview: "operate/customize/vocabularies/index.md"
+        - Resource types: "operate/customize/vocabularies/resource_types.md"
+        - Affiliations: "operate/customize/vocabularies/affiliations.md"
+        - Names: "operate/customize/vocabularies/names.md"
+        - Funding: "operate/customize/vocabularies/funding.md"
+        - Subjects: "operate/customize/vocabularies/subjects.md"
+    - Manage users: "operate/customize/users.md"
+    - Configure everything:
+      - Overview: "operate/customize/configuration.md"
+      - Authentication: "operate/customize/authentication.md"
+      - DOI registration: "operate/customize/dois.md"
+      - DNB URNs registration: "operate/customize/urns.md"
+      - Emails:
+        - Submission: "operate/customize/emails.md"
+        - Capture: operate/customize/dev_email.md
+      - Language(s) and locale(s): "operate/customize/i18n-and-l10n.md"
+      - Notifications:
+        - Overview: "operate/customize/notifications.md"
+        - Modify notifications: operate/customize/notifications_modify.md
+      - Restrict access to pages: operate/customize/restrict_access.md
       - Search:
-          - Change facets/sorting: "customize/search.md"
-      - Vocabularies:
-          - Overview: "customize/vocabularies/index.md"
-          - Resource types: "customize/vocabularies/resource_types.md"
-          - Affiliations: "customize/vocabularies/affiliations.md"
-          - Names: "customize/vocabularies/names.md"
-          - Funding: "customize/vocabularies/funding.md"
-          - Subjects: "customize/vocabularies/subjects.md"
-          - Users: "customize/vocabularies/users.md"
-      - Metadata:
-          - Optional metadata: "customize/metadata/optional_fields.md"
-          - Custom fields:
-            - Add fields to records: "customize/metadata/custom_fields/records.md"
-            - Add fields to communities: "customize/metadata/custom_fields/communities.md"
-      - Record landing page: "customize/record_landing_page.md"
-      - Static pages: "customize/static_pages.md"
-      - DOI registration: "customize/dois.md"
-      - Other PIDs integrations:
-          - DNB URNs: "customize/other-pids/urns.md"
-      - Storage: "customize/s3.md"
-      - Upload Limits: "customize/upload_limits.md"
-      - Metadata-only records: "customize/metadata_only.md"
-      - Logging: "customize/Logging.md"
-      - Internationalisation (i18n) and Localisation (l10n): "customize/i18n-and-l10n.md"
-      - Notifications: "customize/notifications.md"
-  - Develop:
-      - Overview: "develop/index.md"
-      - Getting Started:
-        - Virtual environments: "develop/getting-started/virtualenvs.md"
-        - Debugging: "develop/getting-started/debugging.md"
-        - Getting help: "develop/getting-started/help.md"
-      - How-to guides:
-          - Create a new custom field: develop/howtos/custom_fields.md
-          - Create custom code and views: develop/howtos/custom_code.md
-          - Add JavaScript: "develop/howtos/add_javascript.md"
-          - Override UI React components: develop/howtos/override_components.md
-          - Create search terms mappings: develop/howtos/search_terms_migration.md
-          - Create a database migration: develop/howtos/alembic.md
-          - Fix a vulnerability: develop/howtos/security-fix.md
-          - Test emails locally: develop/howtos/dev_email.md
-          - Migrate legacy routes: develop/howtos/route_migration.md
-          - Back up search indices: develop/howtos/backup_search_indices.md
-          - Restrict access to pages: develop/howtos/restrict_access.md
-          - Create and configure notifications: develop/howtos/notifications.md
-          - Customize search index templates: develop/howtos/search_templates.md
-  - Deploy: deploy/index.md
+        - Change facets/sorting: "operate/customize/search.md"
+        - Create search terms mappings: operate/customize/search_terms_migration.md
+        - Customize search index templates: develop/howtos/search_templates.md
+      - Static pages: "operate/customize/static_pages.md"
+      - S3 compatible storage: "operate/customize/s3.md"
+      - Upload limits: "operate/customize/upload_limits.md"
+    - Add custom code:
+      - Custom Python and JS code: operate/code/custom_code.md
+
+  - Join the Community:
+    - Overview: community/index.md
+    - Onboard: community/onboard.md
+    - Code of conduct: community/code-of-conduct.md
+    - Copyright policy: community/copyright-policy.md
+    - Contribute code:
+      - Development process: community/code/process.md
+      - Source code: community/code/source-code.md
+      - Package Development: "community/code/package-development.md"
+      - Pre-release Instance Development: "community/code/prerelease-instance-development.md"
+      - Fix a vulnerability: community/code/security-fix.md
+      - Coding style: community/code/code-style.md
+      - Best practices:
+          - Accessibility (a11y): community/code/best-practices/accessibility.md
+          - Commits, PRs & reviews: community/code/best-practices/commits.md
+          - CSS/JavaScript: community/code/best-practices/css-js.md
+          - React: community/code/best-practices/react.md
+          - User interface: community/code/best-practices/ui.md
+    - Contribute translations:
+      - community/translations/translators-guide.md
+      - community/translations/i18n.md
+    - Contribute documentation: community/documentation.md
+    - Community PR board: community/pr-community-board.md
+    #   # Merge Sprintboard workflow: maintenance/board-workflow.md with above
+    - Roadmap: community/roadmap.md
+
+  - Maintain and Develop InvenioRDM:
+    - Overview: maintenance/index.md
+    - New maintainers: maintenance/newcomers.md
+    - Modules on GitHub: maintenance/modules.md
+    - High-level architecture:
+      - Introduction: maintenance/architecture/index.md
+      - Software: maintenance/architecture/software.md
+      - Runtime: maintenance/architecture/runtime.md
+      - Records: maintenance/architecture/records.md
+      - Communities: maintenance/architecture/communities.md
+      - Requests: maintenance/architecture/requests.md
+      - Event handling: maintenance/architecture/event_handling.md
+      - Notifications: maintenance/architecture/notifications.md
+      - Recommended reading: maintenance/architecture/reading.md
+    - Lower-level internals:
+      - Building resources: maintenance/internals/resource.md
+      - Building services: maintenance/internals/service.md
+      - Building serializers: maintenance/internals/serializers.md
+      - Sanitize input data: maintenance/internals/validation.md
+      - Grouping atomic operations: maintenance/internals/uow.md
+      - Theming: maintenance/internals/theming.md
+      - Usage statistics: maintenance/internals/statistics.md
+      - Optimistic concurrency control: maintenance/internals/concurrency-control.md
+      - Database transaction management: maintenance/internals/transactions.md
+      - Create a database migration: maintenance/internals/alembic.md
+      - Administration panel: maintenance/internals/administration_panel.md
+    - Operational tasks:
+      - Release management: maintenance/operations/release-management.md
+      - Branch management: maintenance/operations/branch-management.md
+      - Demo site & docs: maintenance/operations/demosite.md
+      - Docker images: maintenance/operations/docker-images.md
 
   - Releases:
     - Overview: releases/index.md
@@ -178,69 +238,11 @@ nav:
       - Version v1.0:
         - Release Notes v1.0: releases/v1/version-v1.0.0.md
 
-  - Join the Community:
-    - Overview: community/index.md
-    - Onboard: community/onboard.md
-    - Code of conduct: community/code-of-conduct.md
-    - Copyright policy: community/copyright-policy.md
-    - Contribute code:
-      - Development process: community/code/process.md
-      - Source code: community/code/source-code.md
-      - Package Development: "community/code/package-development.md"
-      - Pre-release Instance Development: "community/code/prerelease-instance-development.md"
-      - Coding style: community/code/code-style.md
-      - Best practices:
-          - Accessibility (a11y): community/code/best-practices/accessibility.md
-          - Commits, PRs & reviews: community/code/best-practices/commits.md
-          - CSS/JavaScript: community/code/best-practices/css-js.md
-          - React: community/code/best-practices/react.md
-          - User interface: community/code/best-practices/ui.md
-    - Contribute translations:
-      - community/translations/translators-guide.md
-      - community/translations/i18n.md
-    - Contribute documentation: community/documentation.md
-    - Community PR board: community/pr-community-board.md
-    #   # Merge Sprintboard workflow: maintenance/board-workflow.md with above
-    - Roadmap: community/roadmap.md
-
-  - Maintain and develop InvenioRDM:
-    - Overview: maintenance/index.md
-    - New maintainers: maintenance/newcomers.md
-    - Modules on GitHub: maintenance/modules.md
-    - High-level architecture:
-      - Introduction: maintenance/architecture/index.md
-      - Infrastructure: maintenance/architecture/infrastructure.md
-      - Software: maintenance/architecture/software.md
-      - Runtime: maintenance/architecture/runtime.md
-      - Records: maintenance/architecture/records.md
-      - Communities: maintenance/architecture/communities.md
-      - Requests: maintenance/architecture/requests.md
-      - Event handling: maintenance/architecture/event_handling.md
-      - Notifications: maintenance/architecture/notifications.md
-      - Recommended reading: maintenance/architecture/reading.md
-    - Lower-level internals:
-      - Building resources: maintenance/internals/resource.md
-      - Building services: maintenance/internals/service.md
-      - Building serializers: maintenance/internals/serializers.md
-      - Sanitize input data: maintenance/internals/validation.md
-      - Grouping atomic operations: maintenance/internals/uow.md
-      - Theming: maintenance/internals/theming.md
-      - Usage statistics: maintenance/internals/statistics.md
-      - Optimistic concurrency control: maintenance/internals/concurrency-control.md
-      - Database transaction management: maintenance/internals/transactions.md
-      - Administration panel: maintenance/internals/administration_panel.md
-    - Operational tasks:
-      - Release management: maintenance/operations/release-management.md
-      - Branch management: maintenance/operations/branch-management.md
-      - Demo site & docs: maintenance/operations/demosite.md
-      - Docker images: maintenance/operations/docker-images.md
-
   - Reference:
       - Overview: reference/index.md
       - CLI: reference/cli.md
       - Configuration: reference/configuration.md
       - Metadata: reference/metadata.md
-      - Optional metadata: reference/metadata/optional_metadata.md
       - OAI-PMH: reference/oai_pmh.md
       - Export formats: reference/export_formats.md
       - REST API:
@@ -259,8 +261,6 @@ nav:
           - Awards: "reference/rest_api_awards.md"
           - OAI-PMH Sets: "reference/rest_api_oaipmh_sets.md"
           - Statistics: "reference/rest_api_statistics.md"
-      - Custom fields:
-          - UI widgets: "reference/custom_fields/widgets.md"
       - Administration:
           - Reference: "reference/administration_reference.md"
       - File storage: "reference/file_storage.md"

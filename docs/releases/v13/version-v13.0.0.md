@@ -20,7 +20,7 @@ to complete
 
 Explain about the new jobs feature, logging and ORCID/ROR jobs.
 
-Related [new doc page](../../customize/vocabularies/names.md#using-orcid-public-data-sync).
+Related [new doc page](../../operate/customize/vocabularies/names.md#using-orcid-public-data-sync).
 
 ### Search improvements
 
@@ -160,7 +160,7 @@ In order to increase discoverability, [FAIR signposting level 1](https://signpos
 
 Please note that for records having many authors, files, or licenses, FAIR signposting will fall back to level 2 only, in order to avoid generating excessively big HTTP response headers.
 
-However, since enabling FAIR signposting level 1 does increase the size of HTTP response headers, it is recommended to edit the `nginx` configuration and specify [`uwsgi_buffer_size`](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_buffer_size) with a higher limit than the default values. If you have enabled `uwsgi_buffering on;`, then [`uwsgi_buffers`](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_buffers) may also be adjusted. 
+However, since enabling FAIR signposting level 1 does increase the size of HTTP response headers, it is recommended to edit the `nginx` configuration and specify [`uwsgi_buffer_size`](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_buffer_size) with a higher limit than the default values. If you have enabled `uwsgi_buffering on;`, then [`uwsgi_buffers`](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_buffers) may also be adjusted.
 
 ```nginx
 server {
@@ -169,7 +169,7 @@ server {
    uwsgi_buffer_size 16k;
    # optional if uwsgi_buffering on;
    uwsgi_buffers 8 16k;
-   
+
    # ...
 }
 
