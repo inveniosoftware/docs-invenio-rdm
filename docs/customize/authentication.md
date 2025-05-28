@@ -1007,7 +1007,7 @@ Another possible scenario, not yet supported, could be to grant or restrict acce
 such as records or files.
 
 The support of groups is a feature  introduced in the release
-[v9.0](https://inveniordm.docs.cern.ch/releases/v9/version-v9.0.0/).
+[v9.0](../releases/v9/version-v9.0.0.md).
 
 When integrating groups in your InvenioRDM instance, you will have to:
 
