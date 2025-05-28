@@ -1,4 +1,4 @@
-# Users
+# Manage users
 
 Users are not a vocabulary *per se*, but they are loaded in the same fashion,
 through the application data folder.

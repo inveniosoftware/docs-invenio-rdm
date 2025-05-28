@@ -105,7 +105,7 @@ nav:
         - Names: "operate/customize/vocabularies/names.md"
         - Funding: "operate/customize/vocabularies/funding.md"
         - Subjects: "operate/customize/vocabularies/subjects.md"
-        - Users: "operate/customize/vocabularies/users.md"
+    - Manage users: "operate/customize/users.md"
     - Configure everything:
       - Overview: "operate/customize/configuration.md"
       - Authentication: "operate/customize/authentication.md"
