@@ -3,7 +3,7 @@
 You may want to import your existing records into your new InvenioRDM instance.
 How to export your data is highly dependent on your existing repository. As of now, InvenioRDM provides no tooling for this. However, to import the records into your instance, the REST API is the current easiest mechanism to do so.
 
-Beforehand, prepare your records to conform to the [REST API](../reference/rest_api_index.md).
+Beforehand, prepare your records to conform to the [REST API](../../reference/rest_api_index.md).
 
 Then you will want to POST to the API to create the records, but InvenioRDM rate limits the API usage. By default, we don't want our API to be abused or subject to denial-of-service attacks. For the period of time when records are being ingested, however, you will want to allow a greater request rate.
 

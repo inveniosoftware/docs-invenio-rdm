@@ -11,6 +11,7 @@ This guide is intended for developers that need to operate their own InvenioRDM 
 - [Log](./ops/logging.md)
 - [Back up search indices](./ops/backup_search_indices.md)
 - [Redirect legacy routes](./ops/route_migration.md)
+- [Migrate from another repository](./ops/migrate.md)
 
 ## Customization
 
@@ -27,3 +28,4 @@ This guide is intended for developers that need to operate their own InvenioRDM 
 ## Add custom code
 
 - [Custom Python & Javascript code](./code/custom_code.md)
+- [Debugging](./code/debugging.md)

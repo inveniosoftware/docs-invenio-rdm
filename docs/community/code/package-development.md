@@ -16,7 +16,7 @@ editable install of the Python package:
 !!! note
 
     ``mkvirtualenv`` is a tool provided by virtualenv-wrapper to manage Python
-    virtualenvs. See [Python virtual environments](../../install/virtualenvs.md)
+    virtualenvs. See [Python virtual environments](../../reference/virtualenvs.md)
 
 ```bash
 cd ~/src/invenio-app-rdm
