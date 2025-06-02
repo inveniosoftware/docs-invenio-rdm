@@ -58,19 +58,16 @@ nav:
           - Restricted records: "features/features-walk-through/restricted_records.md"
           - Metadata-only records: "features/features-walk-through/metadata_only.md"
           - Moderation: "features/features-walk-through/moderation.md"
+
   - Install:
-    - Quick start: "install/index.md"
+    - Overview: "install/index.md"
+    - Install the CLI: "install/cli.md"
     - System requirements: "install/requirements.md"
-    - Install CLI: "install/cli.md"
-    - Scaffold: "install/scaffold.md"
+    - Initialize: "install/initialize.md"
     - Build, setup & run: "install/build-setup-run.md"
-    - Use: "install/run.md"
-    - Migrate: "install/migrate.md"
-    - Destroy: "install/destroy.md"
-    - Troubleshooting: "install/troubleshoot.md"
-    - Virtual environments: "install/virtualenvs.md"
-    - Debugging: "install/debugging.md"
-    - Getting help: "install/help.md"
+    - Explore: "install/explore.md"
+    - Stop: "install/stop.md"
+    - Troubleshooting & help: "install/troubleshoot.md"
 
   - Operate an Instance:
     - Overview: "operate/index.md"
@@ -80,6 +77,7 @@ nav:
       - Log: operate/ops/logging.md
       - Back up search indices: operate/ops/backup_search_indices.md
       - Redirect legacy routes: operate/ops/route_migration.md
+      - Migrate from another repository: "operate/ops/migrate.md"
     - Customization philosophy: operate/customize/index.md
     - Customize look-and-feel:
       - Overview: "operate/customize/look-and-feel/index.md"
@@ -128,6 +126,7 @@ nav:
       - Upload limits: "operate/customize/upload_limits.md"
     - Add custom code:
       - Custom Python and JS code: operate/code/custom_code.md
+      - Debugging: "operate/code/debugging.md"
 
   - Join the Community:
     - Overview: community/index.md
@@ -267,7 +266,7 @@ nav:
       - File storage: "reference/file_storage.md"
       - Notifications: "reference/notifications.md"
       - Searching: "reference/search.md"
-
+      - Virtual environments: "reference/virtualenvs.md"
 
 
 # Customization
@@ -282,9 +281,10 @@ extra_css:
 markdown_extensions:
   - admonition
   - attr_list
+  - pymdownx.critic
+  - pymdownx.blocks.caption
   - pymdownx.highlight
   - pymdownx.superfences
-  - pymdownx.critic
   - pymdownx.tabbed:
       alternate_style: true
   - toc:
