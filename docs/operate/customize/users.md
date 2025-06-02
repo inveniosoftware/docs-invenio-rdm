@@ -73,18 +73,20 @@ db.session.commit()
 
 ## Adding users and roles
 
-You may need to add users or make permission changes after the users vocabulary has been loaded. To create an account, run:
+You may need to add users or make permission changes after the users vocabulary has been loaded.
+
+The following command creates an activated and confirmed user (assuming you have email verification enabled as is the default).
 
 ```shell
-pipenv run invenio users create email@domain.edu --active --confirm
+pipenv run invenio users create email@domain.edu --password <PASSWORD> --active --confirm
 ```
 
 This will automatically confirm the account. If you want to force the user to verify their email address, leave off the `--confirm` parameter.
 
-To give an account admin permissions, run:
+To give an account access to the administration panel:
 
 ```shell
-pipenv run invenio roles add <email> admin
+invenio access allow administration-access user <EMAIL>
 ```
 
 ## Confirm user
