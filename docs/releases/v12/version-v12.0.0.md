@@ -63,9 +63,9 @@ The administration panel now includes a "User management" section to deactivate,
 
 ### DOIs for concept records and no DOIs for restricted records
 
-![Concept DOI help-text](../../customize/img/concept_doi.png)
+![Concept DOI help-text](../../operate/customize/imgs/concept_doi.png)
 
-InvenioRDM now mints a concept DOI for every record by default, similar to what Zenodo has done for many years. This [can be configured](../../customize/dois.md#parent-or-concept-dois).
+InvenioRDM now mints a concept DOI for every record by default, similar to what Zenodo has done for many years. This [can be configured](../../operate/customize/dois.md#parent-or-concept-dois).
 
 Along with this update, restricted records will now stop minting a DOI upon publication thus keeping *private* records **truly private**.
 And if the visibility of a record becomes restricted after being public, a tombstone will be shown:
@@ -76,7 +76,7 @@ And if the visibility of a record becomes restricted after being public, a tombs
 
 ![Paused video preview](imgs/video_previewer.png)
 
-Audio and video previewers come by default. Beware that supporting these typically larger files may require some changes to an instance's [upload limits](../../customize/upload_limits.md) and using delegated file serving.
+Audio and video previewers come by default. Beware that supporting these typically larger files may require some changes to an instance's [upload limits](../../operate/customize/upload_limits.md) and using delegated file serving.
 
 Also, text (.txt) preview can be truncated after a specified number of bytes via the `PREVIEWER_TXT_MAX_BYTES` configuration variable.
 Text previewing has been made much more resilient thanks to that improvement, better encoding detection, and fault-tolerance to encoding misdetection.
@@ -115,12 +115,12 @@ Here is a quick summary of the myriad other improvements in this release:
 - Enable/disable restricted records at the instance-level via the `RDM_ALLOW_RESTRICTED_RECORDS` configuration variable
 - [New export formats](../../reference/export_formats.md) such as DACT-AP and GeoJSON
 - [Signposting](https://zenodo.org/doi/10.5281/zenodo.12554415) has been integrated in a record's API responses and using the `Accept: application/linkset+json` header for a `/api/records/<record_id>` call returns the Linkset.
-- [Optional metadata fields](../../reference/metadata/optional_metadata.md) that are easy to enable
+- [Optional metadata fields](../../operate/customize/metadata/optional_metadata.md) that are easy to enable
 - Improvements to the `invenio rdm rebuild-all-indices` command
 - Mathematical formulas in a deposit can be rendered on the landing page via
     - `THEME_MATHJAX_CDN = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"` and
     - adding `cdnjs.cloudflare.com` to  `APP_DEFAULT_SECURE_HEADERS` (updating content security policy headers)
-- Possibility to [add an entry to a controlled vocabulary](../../customize/vocabularies/index.md#addupdate-fixtures-command) via the CLI: `invenio rdm-records add-to-fixture`
+- Possibility to [add an entry to a controlled vocabulary](../../operate/customize/vocabularies/index.md#addupdate-fixtures-command) via the CLI: `invenio rdm-records add-to-fixture`
 - Addition of a proper handler for API permission errors that returns 403 when permission is denied
 - Datastreams can sync funders and affiliations. ROR and OpenAIRE are supported.
 - Fix for long affiliations' autocomplete crashing search

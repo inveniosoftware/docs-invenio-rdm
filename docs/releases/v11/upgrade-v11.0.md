@@ -118,12 +118,12 @@ invenio shell $(find $(pipenv --venv)/lib/*/site-packages/invenio_app_rdm -name 
 The parsing of the ROR dump used for the Funders vocabulary has
 been improved, adding the actual ROR identifier to the `identifiers` field.
 
-You can see how to update your data in the [Funders vocabulary section](../../customize/vocabularies/funding.md).
+You can see how to update your data in the [Funders vocabulary section](../../operate/customize/vocabularies/funding.md).
 
 ### Update `my-site` folder
 
 With InvenioRDM v11, the template to generate a new instance has been updated, adding more files and folders.
-It is now easier to add [translations](../../community/translations/translators-guide.md) and [custom code](../../develop/howtos/custom_code.md).
+It is now easier to add [translations](../../community/translations/translators-guide.md) and [custom code](../../operate/code/custom_code.md).
 
 To upgrade your running instance and have the same new files, the easiest way is to:
 

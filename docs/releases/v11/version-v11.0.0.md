@@ -21,12 +21,12 @@ Minting DOIs now requires to have the `publisher` field defined. Submitters will
 ### ROR for funders
 
 [ROR](https://ror.org) identifiers have been added under the `funders.identifiers` field in the funders vocabulary.
-You can read more about it in the [Funding](../../customize/vocabularies/funding.md#funders-ror) documentation page.
+You can read more about it in the [Funding](../../operate/customize/vocabularies/funding.md#funders-ror) documentation page.
 
 ### Static pages
 
 You can now add new static pages to your instance, for example an "About" or "Terms of Use" page.
-See the [static pages](../../customize/static_pages.md) customization section to learn how.
+See the [static pages](../../operate/customize/static_pages.md) customization section to learn how.
 
 ### Featured communities
 
@@ -40,30 +40,30 @@ You can try this feature out by changing the configuration variable `COMMUNITIES
 With InvenioRDM v11, you can now add your own custom code and views directly to your instance,
 without creating extra modules and adding them to the list of dependencies.
 
-Discover how by reading the dedicated [How-to](../../develop/howtos/custom_code.md).
+Discover how by reading the dedicated [How-to](../../operate/code/custom_code.md).
 
 ### Override landing page template
 
 The record landing page template can now be overridden by editing the configuration variable `APP_RDM_RECORD_LANDING_PAGE_TEMPLATE`.
-You can read more on how to customize template in the [dedicated guide](../../customize/look-and-feel/templates.md).
+You can read more on how to customize template in the [dedicated guide](../../operate/customize/look-and-feel/templates.md).
 
 ### Override upload form template
 
 The upload form template can now be overridden by editing the configuration variable `APP_RDM_DEPOSIT_FORM_TEMPLATE`.
-You can read more on how to customize template in the [dedicated guide](../../customize/look-and-feel/templates.md).
+You can read more on how to customize template in the [dedicated guide](../../operate/customize/look-and-feel/templates.md).
 
 ### URL redirection
 
 InvenioRDM now includes a redirector module. It allows an instance to define a mapping of URLs to redirect via a configuration variable.
 This is particularly useful when migrating from an old instance to InvenioRDM.
 
-See instructions on how to configure URL redirection in its [How-to](../../develop/howtos/route_migration.md).
+See instructions on how to configure URL redirection in its [How-to](../../operate/ops/route_migration.md).
 
 ### Search query parser
 
 Search fields and parameters may change overtime. You can now map legacy search terms into newer terms.
 
-See instruction on how to add search terms mappings in its [How-to](../../develop/howtos/search_terms_migration.md).
+See instruction on how to add search terms mappings in its [How-to](../../operate/customize/search_terms_migration.md).
 
 ### User visibility
 
@@ -78,7 +78,7 @@ This change only affects new accounts, already existing accounts will keep their
 
 ### Download all files
 
-You can now enable downloading of a single archive containing all of a record's uploaded files at once. Read more [here](../../customize/record_landing_page.md#download-all-files-button).
+You can now enable downloading of a single archive containing all of a record's uploaded files at once. Read more [here](../../operate/customize/configuration.md#download-all-files-button).
 
 ### Deployment
 
@@ -89,7 +89,7 @@ This new release introduces various changes to the official InvenioRDM Docker im
 
 [Helm charts](https://github.com/inveniosoftware/helm-invenio/) are now updated with the latest deployment recipes, configuration variables and secrets.
 
-We have also added a new [dedicated deployment guide](../../deploy/index.md) to this documentation to give an overview and some tips related to deploying InvenioRDM. This is a work in progress and will be improved taking into account the input from the InvenioRDM community.
+We have also added a new [dedicated deployment guide](../../operate/ops/deploy.md) to this documentation to give an overview and some tips related to deploying InvenioRDM. This is a work in progress and will be improved taking into account the input from the InvenioRDM community.
 
 ### CLI commands
 
@@ -142,9 +142,9 @@ for newly logged in users (users without an Invenio account yet):
 This is applied to all OAuth plugins, but **ORCID**: when logging in with ORCID, the e-mail is provided by the user
 and not retrieved from the authentication provider, and thus it requires the user to confirm the e-mail address.
 
-For more information on how to change this setting, see the [Auto-confirm user](../../customize/authentication.md#auto-confirm-user) section in the authentication documentation.
+For more information on how to change this setting, see the [Auto-confirm user](../../operate/customize/authentication.md#auto-confirm-user) section in the authentication documentation.
 
-You can also customize how user information is retrieved from the external provider. See the [Custom user info](../../customize/authentication.md#custom-user-info) section in the authentication documentation.
+You can also customize how user information is retrieved from the external provider. See the [Custom user info](../../operate/customize/authentication.md#custom-user-info) section in the authentication documentation.
 
 #### OpenAIRE OAI-PMH sets
 
@@ -186,7 +186,7 @@ InvenioRDM v11 supports:
 
 ## Questions?
 
-If you have questions related to these release notes, don't hesitate to jump on our chat and ask questions: [Getting help](../../develop/getting-started/help.md)
+If you have questions related to these release notes, don't hesitate to jump on our chat and ask questions: [Getting help](../../install/help.md)
 
 ## Credit
 

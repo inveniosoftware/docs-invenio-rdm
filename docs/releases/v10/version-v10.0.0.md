@@ -18,9 +18,9 @@ In addition to the many bugs fixed, this release introduces custom fields both f
 
 ### Custom Fields
 
-You can now add custom fields to [bibliographic records](../../customize/metadata/custom_fields/records.md) and [communities](../../customize/metadata/custom_fields/communities.md) data models. InvenioRDM supports a wide variety of field types and UI widgets: you can find the full list in the [custom fields](../../customize/metadata/custom_fields/records.md#reference) and the [UI widgets](../../reference/custom_fields/widgets.md) documentation pages.
+You can now add custom fields to [bibliographic records](../../operate/customize/metadata/custom_fields/records.md) and [communities](../../operate/customize/metadata/custom_fields/communities.md) data models. InvenioRDM supports a wide variety of field types and UI widgets: you can find the full list in the [custom fields](../../operate/customize/metadata/custom_fields/records.md#reference) and the [UI widgets](../../operate/customize/metadata/custom_fields/widgets.md) documentation pages.
 
-You can also extend the default components or implement your owns. To get more information, refer to the [custom fields development section](../../develop/howtos/custom_fields.md) in the documentation.
+You can also extend the default components or implement your owns. To get more information, refer to the [custom fields development section](../../operate/customize/metadata/custom_fields/custom_fields.md) in the documentation.
 
 #### Fields in the upload form
 
@@ -117,7 +117,7 @@ InvenioRDM v10.0 supports:
 
 ## Questions?
 
-If you have questions related to these release notes, don't hesitate to jump on our chat and ask questions: [Getting help](../../develop/getting-started/help.md)
+If you have questions related to these release notes, don't hesitate to jump on our chat and ask questions: [Getting help](../../install/help.md)
 
 ## Credit
 

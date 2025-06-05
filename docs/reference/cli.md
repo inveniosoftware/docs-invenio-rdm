@@ -452,7 +452,7 @@ Invenio app rdm commands.
 
 ### **`rdm pages`**
 
-see [Static pages](../customize/static_pages.md).
+see [Static pages](../operate/customize/static_pages.md).
 
 ### **`rdm pages create`**
 
@@ -483,4 +483,4 @@ if you don't specify services, The following services will be reindexed:
 
 Note that the users, groups, and members use bulk indexing and rely on celery running. They will not be reindexed if celery is not running.
 
-This command does not impact usage statistics indexes. You need to manually restore statistics indexes [from a backup](../develop/howtos/backup_search_indices.md).
+This command does not impact usage statistics indexes. You need to manually restore statistics indexes [from a backup](../operate/ops/backup_search_indices.md).

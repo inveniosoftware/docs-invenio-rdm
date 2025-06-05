@@ -3,7 +3,7 @@
 There are two different concepts when handling file storage in InvenioRDM. One is the
 backend, meaning the actual technology that is used to store it. For example, the local
 file system or S3. You can find more information about storage backends in the
-[customize](../customize/s3.md) section.
+[customize](../operate/customize/s3.md) section.
 
 Moreover, the origin or method used to transport the files is also important. In InvenioRDM
 there are three defined types.

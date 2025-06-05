@@ -40,7 +40,7 @@ When you create your API token you can also specify **scopes** that control what
 | ------------ | ----------------------------------------- |
 | `user:email` | Allows access to the user's email address |
 
-Bear in mind, `user:email` is the only scope that exists by default. If you require further customization, consider [customizing your authentication](../customize/authentication.md#oauth) and [delegating rights via scopes](https://invenio-oauth2server.readthedocs.io/en/latest/usage.html#delegating-rights-via-scopes).
+Bear in mind, `user:email` is the only scope that exists by default. If you require further customization, consider [customizing your authentication](../operate/customize/authentication.md#oauth) and [delegating rights via scopes](https://invenio-oauth2server.readthedocs.io/en/latest/usage.html#delegating-rights-via-scopes).
 
 ## General information
 
