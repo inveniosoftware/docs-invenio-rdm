@@ -66,7 +66,7 @@ another for program B each with a different version installed of package X.
 
 This means that a virtual environment has its own ``python`` and ``pip`` commands.
 
-![Graphical view of virtual environments and distributions](./img/venvs.svg)
+![Graphical view of virtual environments and distributions](./imgs/venvs.svg)
 
 ## Tools
 

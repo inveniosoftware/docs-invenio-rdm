@@ -1,39 +1,41 @@
-# Install CLI
+# Install the command line tool
 
-InvenioRDM comes with a CLI management tool called Invenio-CLI which is used to manage and work with your local installation.
+InvenioRDM is set up with a command line management tool, `invenio-cli`, which is used to manage and work with your local installation.
 
-You can install the Invenio CLI package named `invenio-cli`. The package is available on [PyPI](https://pypi.org/project/invenio-cli/). Use your favorite way to install a Python package:
+## Installation
 
-Via pip:
+`invenio-cli` is available on [PyPI](https://pypi.org/project/invenio-cli/). Use your favorite way to install it:
 
-```bash
-pip install invenio-cli
-```
+=== "pip"
 
-Via pipenv:
+    ```shell
+    pip install invenio-cli
+    ```
 
-```bash
-pipenv install invenio-cli
-```
+=== "uv"
 
-Via pipx:
+    ```shell
+    uv tool install invenio-cli
+    ```
 
-```bash
-pipx install invenio-cli
-```
+=== "pipx"
 
-To make sure you've installed successfully:
+    ```shell
+    pipx install invenio-cli
+    ```
+
+To make sure you've installed it successfully:
 
 ```bash
 invenio-cli --version
 ```
 
-You'll find the latest released version number on [PyPi](https://pypi.org/project/invenio-cli/).
+You'll find the latest released version number on [PyPi](https://pypi.org/project/invenio-cli/). Each new version of InvenioRDM is accompanied by a new version of `invenio-cli` if only to have it select the new version as the default when initializing a project.
 
-### Commands reference
+## Commands reference
 
 For a full reference of available commands, see the [CLI reference](../reference/cli.md)
 
 
 !!! tip "Shell tab completion"
-     Invenio-CLI has support for Shell tab completion of commands. See [Shell completion](../reference/cli.md#shell-completion).
+     `invenio-cli` has support for shell tab completion of commands. See [shell completion](../reference/cli.md#shell-completion).

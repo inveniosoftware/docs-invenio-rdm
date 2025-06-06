@@ -1,91 +1,136 @@
-# Installation
-
-**Intended audience**
-
-The guide is intended for system administrators and developers who want to try, customize or develop with InvenioRDM on their _local machine_.
+# Install
 
 **Scope**
 
-This guide covers how to install InvenioRDM locally on your machine, how to set up and configure your system for InvenioRDM.
+This guide covers how to set up an InvenioRDM instance locally on your development machine.
+How to host it in a production environment is the topic of the [deployment section](../operate/ops/deploy.md).
+
+## Overview
+
+Getting started with a new piece of software is often challenging. Getting all the requirements in place and familiarizing oneself with the underlying technologies is a lot of work. With web applications there are multiple separate applications that need to be orchestrated together (web server, database, cache, ...) which adds to the challenge. And all this upfront effort is often expended before the software can even be assessed for appropriateness!
+
+To help with this, InvenioRDM proposes multiple avenues to get you familiar with it in the most convenient way for you possible.
+
+### Try out the demo site: [https://inveniordm.web.cern.ch/](https://inveniordm.web.cern.ch/)
+
+This will give you a good sense of what InvenioRDM provides out of the box. It's the simplest way to see the software in action. You can even compare it to https://zenodo.org/ which also runs InvenioRDM. It will give you a sense for how it can be customized.
+
+### Preview InvenioRDM via local containers
+
+To run an InvenioRDM instance on your local machine without much of the ceremony involved in fulfilling requirements, you can try our *"preview"*, also known as *"containerized"*, installation. This "installation" containerizes the application itself and every service used by the instance (from the web server to the database) via Docker and combines them via Docker Compose in order to quickly give you a local setup to play with. It doubles as a preview of how you could setup InvenioRDM in a production environment. Note that the [deployment section](../operate/ops/deploy.md) provides more information about what to consider when that time comes. The shortcoming of this approach is that the isolation of Docker containers may prove to be cumbersome for customizations and local development.
+
+### Install InvenioRDM locally
+
+When you are ready to adopt InvenioRDM or want to truly customize and extend it to your needs, we recommend you follow the steps to install it locally. Often this installation is referred as the *"local development"* one. This approach will still containerize the services, but it will install the InvenioRDM application itself on your machine (in a virtual environment so most requirements will be isolated from your system). It is what most institutions go for once they need to work on their instance, and the command line tool we provide makes it straightforward to manage.
+
+Both the *preview* and *local development* installations use the `invenio-cli` tool to get up and running. A common workflow/arrangement is to use the *local development* installation on your local machine for, well, development, and use an equivalent of the *containerized preview* set up in production.
 
 ## Quick start
 
-#### [1. Install CLI tool](cli.md)
+Here is the most succinct outline of the steps to take to get started whether you take the *containerized preview* approach or the *local development* approach. The header of each section links to its expanded documentation. We highly recommend you take the scenic route and follow the expanded documentation as it covers common issues and their solutions, as well as variants and deeper explanations.
 
-Install the InvenioRDM CLI tool (see [reference](../reference/cli.md)), e.g. via [`pip`](https://pip.pypa.io/en/stable/):
+### [1. Install the CLI tool](cli.md)
 
-```shell
-pip install invenio-cli
-```
+Irrespective of *preview* or *development* installation, you will need this command line tool:
 
-#### [2. Check system requirements](requirements.md)
+=== "pip"
+
+    ```shell
+    pip install invenio-cli
+    ```
+
+=== "uv"
+
+    ```shell
+    uv tool install invenio-cli
+    ```
+
+=== "pipx"
+
+    ```shell
+    pipx install invenio-cli
+    ```
+
+### [2. Check system requirements](requirements.md)
+
+You can check if the proper requirements are installed via `invenio-cli`:
+
+=== "Local development"
+
+    ```shell
+    invenio-cli check-requirements --development
+    ```
+
+=== "Containerized preview"
+
+    ```shell
+    invenio-cli check-requirements
+    ```
 
 !!! info "Information on requirements"
 
     Please do read the [system requirements](requirements.md) section!
     There's important information related to supported versions.
 
-You can check if the proper requirements are installed via `invenio-cli`:
 
-```shell
-invenio-cli check-requirements
-```
+### [3. Initialize the instance's directory](initialize.md)
 
-#### [3. Scaffold project](scaffold.md)
+Scaffold your InvenioRDM instance. This is the same operation for *local development* as for *containerized preview*.
 
-Scaffold your InvenioRDM instance. Replace ``<version>`` with the version you want to install:
+=== "Latest release (default)"
 
-- latest release (for production systems): ``v12.0``
-- under development release (for feature previews): ``master``
+    ```shell
+    invenio-cli init rdm
+    ```
 
-```shell
-invenio-cli init rdm -c <version>
-# e.g:
-invenio-cli init rdm -c v12.0
-```
+=== "Specific version"
 
-You will be asked several questions. If in doubt, choose the default.
+    ```shell
+    invenio-cli init rdm -c <version>
+    # e.g:
+    invenio-cli init rdm -c v12.0
+    # for pre-release (InvenioRDM development branch)
+    invenio-cli init rdm -c master
+    ```
 
-
-#### [4. Build, setup and run](build-setup-run.md)
-
-Now that the scaffolding is complete, it is time to check the development requirements
-
-```shell
-cd my-site/
-invenio-cli check-requirements --development
-```
+You will be asked several questions and given default options. If in doubt, accept the default.
 
 
-You can run the main InvenioRDM application in two modes (choose one):
+### [4. Build, setup and run](build-setup-run.md)
 
-- Containerized application and services (good for a quick preview).
-- Local application with containerized services (good for developers or if you want to customize InvenioRDM).
+=== "Local development"
 
-**Containerized application**
+    ```shell
+    # Install Python and Javascript packages
+    invenio-cli install
+    # Set up containerized database, cache, OpenSearch, etc.
+    invenio-cli services setup
+    # Serve the application locally through a development server
+    invenio-cli run
+    ```
 
-```shell
-invenio-cli containers start --lock --build --setup
-```
+=== "Containerized preview"
 
-**Local application**
-
-```shell
-invenio-cli install
-invenio-cli services setup
-invenio-cli run
-```
+    ```shell
+    invenio-cli containers start --lock --build --setup
+    ```
 
 !!! warning "Linux: Managing Docker as a non-root user & Context Errors"
 
     If you encounter Docker errors running `invenio-cli services setup`, see our section on [Docker pre-requisites](./requirements.md#docker).
 
-#### [5. Explore InvenioRDM](run.md)
+### [5. Explore InvenioRDM](explore.md)
 
-Go and explore your InvenioRDM instance on:
+Go and explore your InvenioRDM instance!
 
-- Local: [https://127.0.0.1:5000](https://127.0.0.1:5000)
-- Container: [https://127.0.0.1](https://127.0.0.1)
+
+=== "Local development"
+
+    Visit [https://127.0.0.1:5000](https://127.0.0.1:5000)
+
+=== "Containerized preview"
+
+    Visit [https://127.0.0.1](https://127.0.0.1)
 
 !!! warning "Self-signed SSL certificate"
 
@@ -93,55 +138,33 @@ Go and explore your InvenioRDM instance on:
 
     All major browsers allow you to bypass the warning (not easily though). In Chrome/Edge you have to click in the browser window and type ``thisisunsafe``.
 
-To create a new administrator account:
-
-Depending on whether you are in a local or containerized setup, take note of the variations immediately following before stepping through the subsequently outlined steps.
-
-**Local application**
-
-In a local application context, precede the `invenio` commands by `pipenv run` (e.g., `pipenv run invenio users create <EMAIL> --password <PASSWORD> --active --confirm`).
-
-**Containerized application**
-In a fully containerized context, connect to a container first e.g. the web-api container: `docker exec -it my-site-web-api-1 /bin/bash`. Then run the commands from within the container as-is.
-
-**Steps**
-The following command creates an activated and confirmed user (assuming you have email verification enabled as is the default).
-
-```shell
-invenio users create <EMAIL> --password <PASSWORD> --active --confirm
-```
-
-Then, allow the user to access the administration panel:
-
-```shell
-invenio access allow administration-access user <EMAIL>
-```
-
-#### [6. Stop it](destroy.md)
+### [6. Stop it](stop.md)
 
 When you are done, you can stop your instance and optionally destroy the containers:
 
-**Containerized application**
+=== "Local development"
 
-To just stop the containers:
+    ```shell
+    # To stop the application server:
+    # in terminal running invenio-cli run
+    ^C [CTRL+C]
+    # ---
+    # To stop the service containers:
+    invenio-cli services stop
+    # ---
+    # To destroy the service containers
+    # (this will lose ALL data):
+    invenio-cli services destroy
+    ```
 
-```shell
-invenio-cli containers stop
-```
+=== "Containerized preview"
 
-To destroy them:
 
-```shell
-invenio-cli containers destroy
-```
-
-**Local application**
-
-```shell
-^C [CTRL+C]
-invenio-cli services stop
-```
-
-```shell
-invenio-cli services destroy
-```
+    ```shell
+    # To stop all containers:
+    invenio-cli containers stop
+    # ---
+    # To destroy all containers:
+    # (this will lose ALL data):
+    invenio-cli containers destroy
+    ```

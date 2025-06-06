@@ -1,18 +1,18 @@
-# Use InvenioRDM
+# Explore InvenioRDM
 
-!!! warning "Use the specified host and port"
-    Due to CSP, it is important that you use the host and port specified when
-    running the API calls. This means `localhost` and `127.0.0.1` are not
-    interchangable as they usually are. The default is `127.0.0.1:5000` for the
-    development installation and `127.0.0.1` for the containerized installation. Here we
-    show examples with the development installation.
+## Use your browser
 
-### Use your browser
+For the local development installation, navigate to [https://127.0.0.1:5000](https://127.0.0.1:5000). For the containerized preview, navigate to [https://127.0.0.1](https://127.0.0.1). Note that you might need to accept the SSL exception since it's using a test certificate. For the rest of this guide we assume a local development installation.
 
-Navigate to [https://127.0.0.1:5000](https://127.0.0.1:5000). Note that you might need to accept the SSL exception since it's using a test certificate.
 Below, we list a small subset of the common API calls. For more, see the [API reference section](../reference/rest_api_index.md).
 
-### List records
+!!! warning "Use the specified host and port"
+    Due to CSP, it is important that you use the correct host and port specified when
+    running the API calls. This means `localhost` and `127.0.0.1` are not
+    interchangable as they usually are. The default is `127.0.0.1:5000` for the
+    development installation and `127.0.0.1` for the containerized installation.
+
+## List records
 
 
 Let's see what is in the instance by querying the API. Using another terminal:
@@ -315,7 +315,7 @@ curl -k -XGET https://127.0.0.1:5000/api/records | python3 -m json.tool
 }
 ```
 
-#### Notes
+**Notes**
 
 - The output is shortened for readability and your records will be different because they are generated randomly.
 - You can use [jq](https://github.com/stedolan/jq) for color highlighting:
@@ -324,13 +324,13 @@ curl -k -XGET https://127.0.0.1:5000/api/records | python3 -m json.tool
 curl -k -XGET https://127.0.0.1:5000/api/records | jq .
 ```
 
-### Create records
+## Create records
 
 !!! info "Authentication required"
 
     All requests to the create-related REST API endpoints require authentication. To create a token, login to the application, click on your user  -> `Applications` -> `New token`, enter a name and click on `Create`. Copy the token, since it will not be displayed again.
 
-#### Create a draft
+### Create a draft
 
 You can create a new record **draft** using the API:
 
@@ -368,7 +368,7 @@ curl -k -XPOST -H "Content-Type: application/json" -H "Authorization: Bearer <TO
 }'
 ```
 
-#### Publish a draft
+### Publish a draft
 
 To publish it, you can take the `"publish"` link from the response:
 
@@ -394,7 +394,7 @@ and `POST` to it:
 curl -k -XPOST -H "Authorization: Bearer <TOKEN>" https://127.0.0.1:5000/api/records/jnmmp-51n47/draft/actions/publish
 ```
 
-### Get a record
+## Get a record
 
 To confirm the record is published, you can search for it:
 
@@ -402,19 +402,20 @@ To confirm the record is published, you can search for it:
 curl -k -XGET https://127.0.0.1:5000/api/records?q=Gladiator | python3 -m json.tool
 ```
 
-or access it directly using the id from the publish response (e.g. `90xv7-xwd20`):
+or access it directly using the id from the publish response (e.g., `90xv7-xwd20`):
 
 ``` bash
 curl -k -XGET https://127.0.0.1:5000/api/records/90xv7-xwd20 | python3 -m json.tool
 ```
 
-### Upload a file to a record
+## Upload a file to a record
 
 For demonstration purposes, we will attach this scientific photo to a record:
 
-![Very scientific picture of a shiba in autumn](img/jaycee-xie-unsplash-shiba.png)
-
+![Very scientific picture of a shiba in autumn](imgs/jaycee-xie-unsplash-shiba.png)
+/// caption
 Photo by <a href="https://unsplash.com/@jayceexie?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Jaycee Xie</a> on <a href="https://unsplash.com/@jayceexie?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>.
+///
 
 Save it as `leaf_shiba.png` in your current directory.
 
@@ -459,18 +460,6 @@ curl -k -XPOST -H "Authorization: Bearer <TOKEN>" https://127.0.0.1:5000/api/rec
 
 This file can then be previewed on the record page and even downloaded.
 
-## Explore the API
+## Consult the API
 
 To see what other API calls exist, go to the [API reference section](../reference/rest_api_index.md).
-
-## Stop it
-
-If you want to temporarily stop the instance, without losing the data that
-was generated you can use the `stop` command:
-
-```bash
-invenio-cli services stop
-```
-
-Check the [Cleanup section](./destroy.md) if you wish to remove every
-reference to InvenioRDM from Docker (containers, images, networks, etc.).
