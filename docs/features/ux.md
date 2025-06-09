@@ -3,7 +3,7 @@ hide:
   - toc
 template: features_sub.html
 image: ../images/responsive.png
-summary: "Finally a repository that your users will love! We have thought hard about user experience for everyone: end-users, curators, system administrators, and developers. Expect more of your repository!"
+summary: "Finally a repository that your users will love! We have thought hard about user experience for everyone: end-users, curators, system administrators, and developers. Expect more from your repository!"
 ---
 
 ## Simple and intuitive
@@ -37,4 +37,3 @@ Many users don't understand about licenses or open access, so we make it simple 
 ## Accessible and responsive design
 
 Our interface works well on both desktop, tablet or mobile and is tested against Web Content Accessibility Guidelines (WCAG) according to the level AA compliance.
-
