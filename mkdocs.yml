@@ -42,22 +42,22 @@ theme:
 
 nav:
   - Home: "index.md"
-  - Features:
-      - Overview: "features/index.md"
-      - Beautiful UX: "features/ux.md"
-      - Highly scalable: "features/scalable.md"
-      - Customizable: "features/customization.md"
-      - Interoperable: "features/interoperable.md"
-      - Powerful: "features/powerful.md"
-      - Secure: "features/secure.md"
-      - Features walk-through:
-          - Features overview: "features/features-walk-through/index.md"
-          - Site banners: "features/features-walk-through/banners.md"
-          - Notifications: "features/features-walk-through/notifications.md"
-          - Access requests: "features/features-walk-through/access_requests.md"
-          - Restricted records: "features/features-walk-through/restricted_records.md"
-          - Metadata-only records: "features/features-walk-through/metadata_only.md"
-          - Moderation: "features/features-walk-through/moderation.md"
+
+  - What is InvenioRDM?:
+    - Overview: "features/index.md"
+    - Beautiful UX: "features/ux.md"
+    - Highly scalable: "features/scalable.md"
+    - Customizable: "features/customization.md"
+    - Interoperable: "features/interoperable.md"
+    - Powerful: "features/powerful.md"
+    - Secure: "features/secure.md"
+
+  - Use:
+    - Overview: "use/index.md"
+    - Records: "use/records.md"
+    - Notifications: "use/notifications.md"
+    - Site banners: "use/banners.md"
+    - Moderation: "use/moderation.md"
 
   - Install:
     - Overview: "install/index.md"
@@ -288,3 +288,7 @@ markdown_extensions:
       alternate_style: true
   - toc:
       permalink: true
+
+plugins:
+  - glightbox:
+      zoomable: true
