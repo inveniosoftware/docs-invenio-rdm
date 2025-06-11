@@ -1,14 +1,6 @@
 # Metadata reference
 
-**Summary**
-
 The following document is a reference guide for the internal metadata schema of bibliographic records in InvenioRDM.
-
-**Intended audience**
-
-This guide is intended for advanced users, administrators and developers of InvenioRDM with significant prior experience.
-
-## Overview
 
 InvenioRDM's bibliographic records are stored as JSON documents in a structure
 that is aligned with DataCite's Metadata Schema v4.x with minor additions
@@ -18,10 +10,46 @@ and modifications.
 
     This document refers to Datacite schema properties for the reader's convenience (e.g., "*2. Creator* in DataCite"). The corresponding Datacite document can be found under <https://schema.datacite.org/>. The currently supported version is [v4.3](https://schema.datacite.org/meta/kernel-4.3).
 
-**Schema version**
+
+## Top-level fields
+
+|      Field      | Description                                                                        |
+| :-------------: | :--------------------------------------------------------------------------------- |
+|   ``$schema``   | JSONSchema version.                                                                |
+| ``id``, ``pid`` | Internal persistent identifier (`id`) and related operational information (`pid`). |
+|    ``pids``     | External persistent identifiers (DOIs, Handles, OAI-PMH identifiers).              |
+|   ``parent``    | Related parent information.                                                        |
+|   ``access``    | Access control information.                                                        |
+|  ``metadata``   | Descriptive metadata.                                                              |
+|    ``files``    | Associated files information.                                                      |
+|  ``tombstone``  | Tombstone information.                                                             |
+|   ``created``   | Database-level creation timestamp (UTC).                                           |
+|   ``updated``   | Database-level modification timestamp (UTC).                                       |
+
+Each of these keys will be explained below.
+
+A record thus looks like:
+
+```json
+{
+    "$schema": "...",
+    "id": "...",
+    "pid": { ... },
+    "pids" : { ... },
+    "parent": { ... },
+    "access" : { ... },
+    "metadata" : { ... },
+    "files" : { ... },
+    "tombstone" : { ... },
+    "created" : "...",
+    "updated" : "..."
+}
+```
+
+## $schema
 
 All records contain a schema definition in the top-level key ``$schema``. The value
-is a link to the internal JSONSchema which is being used to validate the structure of the record.
+is a link to the internal versioned JSONSchema used to validate the structure of the record.
 This field is fully system-managed.
 
 ```json
@@ -31,54 +59,9 @@ This field is fully system-managed.
 }
 ```
 
-**Top-level fields**
+## Internal PIDs: id, pid, parent.id
 
-Following is an overview of the top-level fields in a record:
-
-|     Field      | Description                                                                          |
-|:--------------:|:-------------------------------------------------------------------------------------|
-| ``id``/``pid`` | The internal persistent identifier for a specific version.                           |
-|   ``parent``   | The internal persistent identifier for all versions.                                 |
-|    ``pids``    | System-managed external persistent identifiers (DOIs, Handles, OAI-PMH identifiers). |
-|   ``access``   | Access control information.                                                          |
-|  ``metadata``  | Descriptive metadata for the resource.                                               |
-|   ``files``    | Associated files information.                                                        |
-| ``tombstone``  | Tombstone information.                                                               |
-
-Each of these keys will be explained below. Following is an example of how the
-top-level fields in a record look like:
-
-```json
-{
-    "$schema": "local://records/record-v1.0.0.json",
-    "id": "q5jr8-hny72",
-    "pid": { ... },
-    "pids" : { ... },
-    "parent": { ... },
-    "access" : { ... },
-    "metadata" : { ... },
-    "files" : { ... },
-    "tombstone" : { ... },
-}
-```
-
-**Database-level fields**
-
-In addition to the JSON document, the following fields are also stored for each
-record in the database table:
-
-- Creation timestamp (UTC).
-- Modification timestamp (UTC).
-
-When querying for a record, they are shown as `created` and `updated` in the top level of the record JSON.
-
-## System-managed persistent identifiers
-
-A key part of InvenioRDM is the management of persistent identifiers for records.
-A record always has an internal PID.
-
-### Internal PIDs
-
+A key part of InvenioRDM is the management of persistent identifiers (PID) for records.
 A record stores information about two internal PIDs:
 
 Specific version PID:
@@ -93,6 +76,9 @@ Concept version PID:
 |     Field     | Description                                 |
 |:-------------:|:--------------------------------------------|
 | ``parent.id`` | The value of the concept record identifier. |
+
+The `parent.id` is the identifier value that ties together all the different versions of a record
+(as a concept).
 
 Example:
 
@@ -111,23 +97,18 @@ Example:
 
 See [Parent](#parent) for details on the `parent` field.
 
-### External PIDs
+## External PIDs: pids
 
 External PIDs are persistent identifiers managed via [Invenio-PIDStore](https://invenio-pidstore.readthedocs.io) that may require integration
-with external registration services.
-
-Persistent identifiers are globally unique in the system, thus you cannot have two records
-with the same system-managed persistent identifier (see also [Metadata > Identifiers](#alternate-identifiers-0-n)).
-
-You can add a DOI that is not managed by InvenioRDM by using the provider `external`. You are not able to add `external` DOIs that have a prefix that is configured as part of a different PID provider.
-
-Only one identifier can be registered per system-defined scheme. Each identifier has the following subfields:
+with external registration services. Each PID scheme has the following subfields:
 
 |     Field      | Cardinality | Description                                                                      |
-|:--------------:|:-----------:|:---------------------------------------------------------------------------------|
+| :------------: | :---------: | :------------------------------------------------------------------------------- |
 | ``identifier`` |     (1)     | The identifier value.                                                            |
-|  ``provider``  |     (1)     | The provider identifier used internally by the system.                           |
+|  ``provider``  |     (1)     | The provider's identifier used internally by the system.                         |
 |   ``client``   |    (0-1)    | The client identifier used for connecting with an external registration service. |
+
+Example:
 
 ```json
 {
@@ -145,6 +126,14 @@ Only one identifier can be registered per system-defined scheme. Each identifier
   }
 }
 ```
+
+Persistent identifiers are globally unique in the system, thus you cannot have two records
+with the same system-managed persistent identifier, be it an internal or external identifier.
+See [Metadata > Identifiers](#alternate-identifiers-0-n) for storing persistent identifier
+references that are not uniquely constrained.
+
+You can add a DOI that is not managed by InvenioRDM by using the `"external"` value for the `provider` field.
+However, you cannot add `"external"` DOIs that have a prefix that is configured as part of a different PID provider.
 
 Other system-managed identifiers will also be recorded here such as the OAI id.
 
@@ -204,8 +193,6 @@ specific users can see the record/files. Only in the cases of `"record": "restri
 `"files": "restricted"` can an embargo be provided as input. However, once an embargo is
 lifted, the `embargo` section is kept for transparency.
 
-### Embargo
-
 The `embargo` field denotes when an embargo must be lifted, at which point the record
 is made publicly accessible. The `embargo` field has this structure:
 
@@ -234,9 +221,9 @@ provided to the REST API.
 
 ## Metadata
 
-The fields are listed below in the combined order of "required" and "appearance on the deposit page". So required fields are listed first and then other fields are listed in the order of their appearance on the deposit page.
+The fields are listed below in order of "appearance on the deposit page" (required to non-required).
 
-The cardinality of each field is expressed in between parenthesis on the title of each field's section.
+The cardinality of each field is expressed in between parentheses on the title of each field's section.
 Cardinality here indicates if the field is required by the REST API.
 
 The abbreviation `CV` stands for *Controlled Vocabulary*.
@@ -267,6 +254,49 @@ Example:
 
 Note that only the subtype (which is more specific) is displayed if it exists.
 
+### Title (1)
+
+A primary name or primary title by which a resource is known. May be the title of a dataset or the name of a piece of software. The primary title is used for display purposes throughout InvenioRDM.
+
+The field is compatible with *3. Title* in DataCite. Compared to DataCite, the field does not support specifying the language of the title.
+
+Example:
+
+```json
+{
+  "title": "InvenioRDM",
+}
+```
+
+### Publication date (1)
+
+The date when the resource was or will be made publicly available.
+
+The field is compatible *5. PublicationYear* in DataCite. In case of time intervals, the earliest date is used for DataCite.
+
+Format:
+
+The string must be formatted according to [Extended Date Time Format (EDTF)](http://loc.gov/standards/datetime/) Level 0. Only *"Date"* and *"Date Interval"* are supported. *"Date and Time"* is not supported. The following are examples of valid values:
+
+- Date:
+    - ``2020-11-10`` - a complete ISO8601 date.
+    - ``2020-11`` - a date with month precision
+    - ``2020`` - a date with year precision
+- Date Interval:
+    - ``1939/1945`` a date interval with year precision, beginning sometime in 1939 and ending sometime in 1945.
+    - ``1939-09-01/1945-09`` a date interval with day and month precision, beginning September 1st, 1939 and ending sometime in September 1945.
+
+The localization (L10N) of EDTF dates is based on the [skeletons](http://cldr.unicode.org/translation/date-time-1/date-time-patterns) defined by the [Unicode Common Locale Data Repository (CLDR)](http://cldr.unicode.org).
+
+
+Example:
+
+```json
+{
+  "publication_date": "2018/2020-09",
+}
+```
+
 ### Creators (1-n)
 
 The creators field registers those persons or organisations that should be credited for the resource described by the record. The list of persons or organisations in the creators field is used for generating citations, while the persons or organisations listed in the contributors field are not included in the generated citations.
@@ -284,7 +314,7 @@ Subfields:
 A `person_or_org` is described with the following subfields:
 
 |      Field      |                          Cardinality                          | Description                                                                                                  |
-|:---------------:|:-------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------|
+| :-------------: | :-----------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------- |
 |    ``type``     |                              (1)                              | The type of name. Either ``personal`` or ``organizational``.                                                 |
 | ``given_name``  | (1 if `type` is `personal` / 0 if `type` is `organizational`) | Given name(s).                                                                                               |
 | ``family_name`` | (1 if `type` is `personal` / 0 if `type` is `organizational`) | Family name.                                                                                                 |
@@ -355,49 +385,6 @@ Example:
       "name": "CERN",
     }]
   }],
-}
-```
-
-### Title (1)
-
-A primary name or primary title by which a resource is known. May be the title of a dataset or the name of a piece of software. The primary title is used for display purposes throughout InvenioRDM.
-
-The field is compatible with *3. Title* in DataCite. Compared to DataCite, the field does not support specifying the language of the title.
-
-Example:
-
-```json
-{
-  "title": "InvenioRDM",
-}
-```
-
-### Publication date (1)
-
-The date when the resource was or will be made publicly available.
-
-The field is compatible *5. PublicationYear* in DataCite. In case of time intervals, the earliest date is used for DataCite.
-
-Format:
-
-The string must be formatted according to [Extended Date Time Format (EDTF)](http://loc.gov/standards/datetime/) Level 0. Only *"Date"* and *"Date Interval"* are supported. *"Date and Time"* is not supported. The following are examples of valid values:
-
-- Date:
-    - ``2020-11-10`` - a complete ISO8601 date.
-    - ``2020-11`` - a date with month precision
-    - ``2020`` - a date with year precision
-- Date Interval:
-    - ``1939/1945`` a date interval with year precision, beginning sometime in 1939 and ending sometime in 1945.
-    - ``1939-09-01/1945-09`` a date interval with day and month precision, beginning September 1st, 1939 and ending sometime in September 1945.
-
-The localization (L10N) of EDTF dates is based on the [skeletons](http://cldr.unicode.org/translation/date-time-1/date-time-patterns) defined by the [Unicode Common Locale Data Repository (CLDR)](http://cldr.unicode.org).
-
-
-Example:
-
-```json
-{
-  "publication_date": "2018/2020-09",
 }
 ```
 

@@ -113,7 +113,7 @@ Here is a quick summary of the myriad other improvements in this release:
 
 - Enable/disable metadata-only records at the instance-level via the `RDM_ALLOW_METADATA_ONLY_RECORDS` configuration variable
 - Enable/disable restricted records at the instance-level via the `RDM_ALLOW_RESTRICTED_RECORDS` configuration variable
-- [New export formats](../../reference/export_formats.md) such as DACT-AP and GeoJSON
+- [New export formats](../../use/records.md#export-records-in-different-formats) such as DACT-AP and GeoJSON
 - [Signposting](https://zenodo.org/doi/10.5281/zenodo.12554415) has been integrated in a record's API responses and using the `Accept: application/linkset+json` header for a `/api/records/<record_id>` call returns the Linkset.
 - [Optional metadata fields](../../operate/customize/metadata/optional_metadata.md) that are easy to enable
 - Improvements to the `invenio rdm rebuild-all-indices` command

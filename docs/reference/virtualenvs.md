@@ -9,7 +9,7 @@ environments, the tools used to create them and terms such as:
 - ``python`` and ``pip``
 - ``virtualenv``, ``venv``, ``virtualenv-wrapper``, ``pipenv``, ``pyenv``.
 
-### Distributions
+## Distributions
 
 There exist several Python distributions:
 
@@ -21,11 +21,11 @@ There exist several Python distributions:
 Each distribution provides a *Python interpreter* that can execute Python
 programs (i.e. a distribution provides the ``python`` command).
 
-### Distribution version
+## Distribution version
 
 Each distribution supports multiple versions of the Python programming language e.g., Python 3.8 and Python 3.9.
 
-### Installation of a distribution
+## Installation of a distribution
 
 You can have one or more Python distributions installed at the computer at the
 same time. E.g. you can have CPython 3.7, 3.8, 3.9. Often, your operating system
@@ -39,7 +39,7 @@ to having **multiple ``python`` commands** in different paths (e.g.
 Pay attention to *symlinks and aliases*, e.g. ``python`` might be an alias
 for ``python3``.
 
-### Python distribution tools
+## Python distribution tools
 
 The most prime example of a Python distribution tool is ``pip``, which you use
 to install Python packages from the Python Package Index (PyPI).
@@ -51,7 +51,7 @@ package into that specific installation of a distribution.
 Thus in addition to having multiple ``python`` commands, you can have multiple
 ``pip`` commands that belongs to a distribution.
 
-### Virtual environments
+## Virtual environments
 
 A Python virtual environment is *created from a distribution installation*. It
 isolates the Python packages and commands installed.

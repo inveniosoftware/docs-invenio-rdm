@@ -1,6 +1,6 @@
 # OAI-PMH
 
-InvenioRDM allows to harvest the entire repository via the Open Archives Initiative Protocol for Metadata Harvesting (OAI-PMH). OAI-PMH is a widely used protocol for harvesting metadata and most popular repository software provide support for this protocol.
+An InvenioRDM repository can be harvested via the Open Archives Initiative Protocol for Metadata Harvesting (OAI-PMH). OAI-PMH is a widely used protocol for harvesting metadata and most popular repository software provide support for this protocol.
 
 Metadata and the data files may be either open access and subject to a license described in the metadata or closed access and not available for download.
 
