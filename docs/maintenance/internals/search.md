@@ -1,37 +1,6 @@
-# Searching in InvenioRDM
-_Introduced in InvenioRDM v13_
+# Search
 
-### InvenioRDM Suggest API
-
-The suggest API endpoint (`/api/{resource}?suggest={search_input}`) provides an interface for real-time search suggestions. It leverages OpenSearch's `multi_match` query to search across multiple fields within a specified index, returning relevant suggestions based on user input.
-
-#### Endpoint Structure
-
-**URL:** `/api/{resource}?suggest={search_input}`
-**Method:** GET
-
-Each index in InvenioRDM can have its own configuration to customize how the suggest API behaves. This includes defining which fields are searchable and other settings provided by the `multi_match` query API.
-
-## How to use suggest API?
-
-InvenioRDM's Suggest API is designed to provide search suggestions by using a `multi_match` query. It can be configured for all the indices using the `SuggestQueryParser` class that can be imported from `invenio-records-resources` module. The fields are analyzed using custom analyzers at index time which apply filters like `asciifolding` for accent search and `edge_ngram` for prefix search.
-
-Check the [official documentation](https://opensearch.org/docs/2.0/opensearch/ux/) and the [reference](#reference) section below for more context on the `edge_ngram` filter and custom analyzers.
-
-### When to Use the Suggest API
-
-- **Typo Tolerance & Auto-completion:** Helps correct typos (using `fuzziness` at search time analyzing) and completes partial inputs.
-- **Large, Diverse Datasets:** Useful for datasets with a wide variety of terms, like names or titles.
-- **Pre-query Optimization:** Reduces unnecessary searches by suggesting relevant terms.
-
-### When Not to Use the Suggest API
-
-- **Small or Specific Datasets:** Less beneficial for well-defined datasets.
-- **Performance Constraints:** Because the suggest API creates large amounts of tokens using the `edge_ngram` filter, it is important to observe how it affects the index size.
-  - A reasonable trade-off might involve an index size increase of up to 20-30% if it significantly improves search speed and relevance.
-  - A 10-20% improvement in response times might justify a moderate increase in index size.
-
-For more information check the [official documentation](https://www.elastic.co/guide/en/elasticsearch/reference/current/tune-for-disk-usage.html).
+The following summarizes key concepts about search in InvenioRDM. It both summarizes some of the documentation found in OpenSearch's own documentation and highlights how it relates to the internals of InvenioRDM.
 
 ## Key Considerations for Customizing Index Mappings
 
@@ -61,9 +30,7 @@ Tuning search where multiple fields are searched upon is essential to make sure 
 "name^80", "acronym^40", "title.*^20"
 ```
 
-## Reference
-
-### Analyzers
+## Analyzers
 
 Analyzers allow for searches to match documents which are not exact matches. For example, matching different cases, without accents, parts of words, mis-spellings, etc. Fundamentally all analyzers must contain one tokenizer. A tokenizer essentially splits an input search into parts. Additionally an analyzer may optionally have one or many character filters and/or token filters.
 
@@ -77,7 +44,7 @@ Analyzers can be applied to both the search input and when the document is index
 
 - [**Normalizers**](https://opensearch.org/docs/latest/analyzers/normalizers/) — Simpler and mainly used to improve the matching of keyword search. The `keyword` type is the simplest way in which data can be stored and by default works as an exact match search. Using a normalizer you can add, remove and alter the input into exactly one other token which is stored and searched for.
 
-### Character filters
+## Character filters
 
 Character filters take the stream of characters before tokenization and can add, remove or replace characters according to the rules and type of filter. There are 3 types - mapping filter, pattern replace filter and HTML stripping filter.
 
@@ -93,7 +60,7 @@ For our indices in InvenioRDM, we are currently using a custom pattern replace f
 }
 ```
 
-### Tokenizers and token filters
+## Tokenizers and token filters
 
 We are using the following tokenizers and token filters in some of our indices in InvenioRDM:
 

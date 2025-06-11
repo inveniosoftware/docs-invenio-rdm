@@ -1,6 +1,6 @@
-# Configuration reference
+# Record's landing page
 
-### ``RDM_CITATION_STYLES``
+## ``RDM_CITATION_STYLES``
 
 InvenioRDM has a configuration option called ``RDM_CITATION_STYLES`` which controls which citation styles will show up on the landing page:
 
@@ -14,7 +14,7 @@ RDM_CITATION_STYLES = [
 ]
 ```
 
-### ``RDM_DEFAULT_CITATION_STYLE``
+## ``RDM_DEFAULT_CITATION_STYLE``
 
 This option called ``RDM_DEFAULT_CITATION_STYLE`` controls which citation style will be the default one showing up on the landing page:
 
