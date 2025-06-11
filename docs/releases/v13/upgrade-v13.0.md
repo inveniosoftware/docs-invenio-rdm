@@ -205,6 +205,14 @@ rather than having indices registered directly in `Invenio-Search`. As such, the
 search indices for statistics are not affected by `invenio index destroy
 --yes-i-know` and are totally functional after the rebuild step.
 
+### Updated vocabularies
+
+InvenioRDM now supports ROR v2, and you should update your affiliations and
+funders vocabularies following the 
+instructions on the [affiliations](../../operate/customize/vocabularies/affiliations.md)
+and [funders](../../operate/customize/vocabularies/funding.md) documentation pages.
+
+
 ### New roles
 
 ### TODO
