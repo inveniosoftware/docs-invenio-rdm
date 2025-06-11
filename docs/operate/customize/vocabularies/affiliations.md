@@ -4,6 +4,42 @@ Affiliations are a specific type of vocabulary, which enables users to find affi
 for their records' creators and contributors. By using a vocabulary the affiliations are
 deduplicated and can use *search as you type* style suggesters.
 
+You need to configure your repository to import the [ROR](https://ror.org)
+affiliations dataset. The recommended approach depends on your version of
+InvenioRDM.
+
+!!! info "Loading time"
+    
+    The ROR vocabulary consists of over 100.000 records and with an ingestion
+    speed around 100-200 records/s it usually takes between around 8-15 minutes
+    to load the records.
+    
+    You can follow the progress via the RabbitMQ management interface
+    on [http://127.0.0.1:15672/](http://127.0.0.1:15672/) (guest/guest).
+
+** Version 13 and later **
+
+You can set up a job to import the ROR affiliations dataset directly by going
+to https://my-repository-url/administration/jobs
+
+Create a new job called "Load Affiliations" in the Default queue with task "Load ROR affiliations". Make
+sure to check the "active" checkbox and click the save button. 
+
+Then click the "Configure and run" button, select the "celery" queue, and put
+"1900-01-01" in the "Since" field. Click "Run now" and your affiliations will
+be loaded.
+
+You can also use the "Schedule job" button to download the latest version of
+the ROR vocabulary on a regular schedule.
+
+If you prefer to work on the command line, you can type
+
+```bash
+pipenv run invenio vocabularies import --vocabulary affiliations --origin ror-http
+```
+
+** Version 12 and earlier **
+
 In order to import the [ROR](https://ror.org) affiliations dataset you will need to add
 the file containing the dataset itself and then enable it in your instance's `app_data/vocabularies.yaml`
 file. For example:
@@ -27,16 +63,6 @@ from your instance's folder:
 invenio rdm-records fixtures
 ```
 
-!!! info "Loading time"
-
-    The ROR vocabulary consists of about 100.000 records and with an ingestion
-    speed around 100-200 records/s it usually takes between around 8-15 minutes
-    to load the records.
-
-    You can follow the progress via the RabbitMQ management interface
-    on [http://127.0.0.1:15672/](http://127.0.0.1:15672/) (guest/guest).
-
-
 !!! info "Fixtures currently do not support updates"
 
     This means that once they are created, modifying the file and re-running the above
@@ -45,7 +71,7 @@ invenio rdm-records fixtures
 
 _Introduced in InvenioRDM v12_
 
-From V12 onwards, the previous method has been simplified. You can now enable affiliations directly by specifying the data file in `app_data/vocabularies.yaml`:
+In V12, the previous method has been simplified. You can now enable affiliations directly by specifying the data file in `app_data/vocabularies.yaml`:
 
 ```yaml
 affiliations:
