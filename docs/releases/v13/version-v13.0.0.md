@@ -18,6 +18,17 @@ to complete
 
 ### Jobs and ORCID/ROR
 
+We have upgraded to ROR version 2.0 and enhanced the metadata to include
+organization aliases, status, types, locations, and acronym. It should be
+easier to find the correct organization or funder you're looking for.
+
+We have also enabled ROR updating using invenio-jobs, which lets you
+automatically load the funders or affiliations vocabulary from with the
+InvenioRDM administration panel. You can also schedule to update your
+vocabulary with new ROR releases on a regular schedule. You can find more
+instructions on the [affiliations](../../operate/customize/vocabularies/affiliations.md) 
+and [funders](../../operate/customize/vocabularies/funding.md) documentation pages.
+
 Explain about the new jobs feature, logging and ORCID/ROR jobs.
 
 Related [new doc page](../../operate/customize/vocabularies/names.md#using-orcid-public-data-sync).
