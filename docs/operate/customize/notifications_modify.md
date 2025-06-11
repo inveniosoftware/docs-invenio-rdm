@@ -187,7 +187,7 @@ Configuration values used in the `invenio-notifications` module can be overriden
 
 ### NOTIFICATION_BACKENDS
 
-This config variable allows to specify the available backends. For a detailed description on backends, checkout the respective [reference section](../../reference/notifications.md#backends).
+This config variable allows to specify the available backends. For a detailed description on backends, checkout the respective [reference section](../../maintenance/internals/notifications.md#backends).
 For instance, you can provide an implementation for your institution's preferred communication tool and send notifications via this backend.
 
 As an example, take the backend shown in [build your own backend](#notification-backend). Then you only have to specify it in the config variable (e.g. in `invenio.cfg`).

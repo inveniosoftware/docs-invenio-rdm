@@ -29,42 +29,58 @@ Following is an overview of the root-level commands in Invenio-CLI:
 | `translations`       | Extracts, initializes and compile message catalogs (i18n)                                     |  v1.0.12  |
 | `upgrade`            | Upgrades the current application to the specified InvenioRDM version                          |     -     |
 
-### Shell completion
+## Shell completion
 
-Invenio-CLI provides support for tab completion of commands and options for Bash, Zsh and Fish shells. You can install the shell completion
+Invenio-CLI provides support for tab completion of commands and options for Bash, Zsh and Fish shells.
 
-For Bash, add this to `~/.bashrc`:
+=== "Bash"
 
-    eval "$(_INVENIO_CLI_COMPLETE=source_bash invenio-cli)"
+    Add this to `~/.bashrc`:
 
-For Zsh, add this to `~/.zshrc`:
+        eval "$(_INVENIO_CLI_COMPLETE=source_bash invenio-cli)"
 
-    eval "$(_INVENIO_CLI_COMPLETE=source_zsh invenio-cli)"
+=== "Zsh"
 
-For Fish, add this to `~/.config/fish/completions/invenio-cli.fish`:
+    Add this to `~/.zshrc`:
 
-    eval (env _INVENIO_CLI_COMPLETE=source_fish invenio-cli)
+        eval "$(_INVENIO_CLI_COMPLETE=source_zsh invenio-cli)"
+
+=== "Fish"
+
+    Add this to `~/.config/fish/completions/invenio-cli.fish`:
+
+        eval (env _INVENIO_CLI_COMPLETE=source_fish invenio-cli)
 
 The above `eval` commands will invoke your application every time a shell is started.
 This may slow down shell startup time.
 
 Alternatively, create an activation script:
 
-For Bash:
+=== "Bash"
 
-    _INVENIO_CLI_COMPLETE=source_bash invenio-cli > invenio-cli-complete.sh
+    Do:
 
-For Zsh:
+        _INVENIO_CLI_COMPLETE=source_bash invenio-cli > invenio-cli-complete.sh
 
-    _INVENIO_CLI_COMPLETE=source_zsh invenio-cli > invenio-cli-complete.sh
+    Source the script instead of the `eval` command in `~/.bashrc`:
 
-In `.bashrc` or `.zshrc`, source the script instead of the `eval` command:
+        . /path/to/invenio-cli-complete.sh
 
-    . /path/to/invenio-cli-complete.sh
+=== "Zsh"
 
-For Fish, add the file to the completions directory:
+    Do:
 
-    _INVENIO_CLI_COMPLETE=source_fish invenio-cli > ~/.config/fish/completions/invenio-cli-complete.fish
+        _INVENIO_CLI_COMPLETE=source_zsh invenio-cli > invenio-cli-complete.sh
+
+    Source the script instead of the `eval` command in `~/.zshrc`:
+
+        . /path/to/invenio-cli-complete.sh
+
+=== "Fish"
+
+    Do:
+
+        _INVENIO_CLI_COMPLETE=source_fish invenio-cli > ~/.config/fish/completions/invenio-cli-complete.fish
 
 ## General commands
 

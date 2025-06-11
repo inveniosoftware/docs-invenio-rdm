@@ -116,7 +116,7 @@ class OaiPmhListView(AdminResourceListView):
     resource_name = "name"
 ```
 
-For the full attributes list and description visit the [reference docs](../../reference/administration_reference.md).
+For the full attributes list and description visit the [reference docs](./administration_reference.md).
 
 
 ##### Create view
@@ -152,7 +152,7 @@ class OaiPmhCreateView(AdminResourceCreateView):
 
 ```
 
-For the full attributes list and description visit the [reference docs](../../reference/administration_reference.md)
+For the full attributes list and description visit the [reference docs](./administration_reference.md)
 
 
 ##### Edit view
@@ -187,7 +187,7 @@ class OaiPmhEditView(AdminResourceEditView):
     }
 ```
 
-For the full attributes list and description visit the [reference docs](../../reference/administration_reference.md)
+For the full attributes list and description visit the [reference docs](./administration_reference.md)
 
 
 ##### Details view
@@ -232,7 +232,7 @@ class OaiPmhDetailView(AdminResourceDetailView):
     }
 ```
 
-For the full attributes list and description visit the [reference docs](../../reference/administration_reference.md)
+For the full attributes list and description visit the [reference docs](./administration_reference.md)
 
 ##### Views registration
 
@@ -289,7 +289,7 @@ invenio_administration.views =
     invenio_module_admin_custom_view = invenio_module.path.to.filename:MyCustomView
 ```
 
-For the full attributes list and description visit the [reference docs](../../reference/administration_reference.md)
+For the full attributes list and description visit the [reference docs](./administration_reference.md)
 
 ### Customisation: dashboard view
 

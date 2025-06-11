@@ -1,23 +1,20 @@
 # File storage
 
-There are two different concepts when handling file storage in InvenioRDM. One is the
-backend, meaning the actual technology that is used to store it. For example, the local
-file system or S3. You can find more information about storage backends in the
-[customize](../operate/customize/s3.md) section.
+Two different concepts are involved in the storing of files in InvenioRDM. One is the
+**backend**, meaning the actual technology that is used to store a file. For example, the local
+file system or [S3](../operate/customize/s3.md). The other concept is the **origin** ,
+also known as **method** used to transport the files. There are three such defined methods.
 
-Moreover, the origin or method used to transport the files is also important. In InvenioRDM
-there are three defined types.
-
-- Local, which represents the files that are managed by the InvenioRDM instance,
+- *Local*, which represents the files that are managed by the InvenioRDM instance,
 independently of the backend.
-- Fetch, these are files that are not managed by the instance but will be transported.
+- *Fetch*, these are files that are not immediately managed by the instance as they need to be downloaded first.
 This means that they will eventually become _local_ files.
-- Remote, these are represented by a reference to an external storage system. Since
+- *Remote*, these are represented by a reference to an external storage system. Since
 the files are not managed by the instance there is no possible way to guarantee their
-availability or integrity. At the moment this type of files are **not supported** by
+availability or integrity. At the moment this method is **not supported** by
 InvenioRDM.
 
-These file types are stored in the `storage_class` attribute of the file model, and
+These types of file storage origin/method are stored in the `storage_class` attribute of the file model, and
 represented by a one character encoding:
 
 |  Type  | Representation |
@@ -43,9 +40,9 @@ _Introduced in InvenioRDM v11_
 
     **Use it at your own risk!**
 
-Fetched files accept two more arguments than a local files on their
-[initialization](rest_api_drafts_records.md#start-draft-file-uploads): _storage\_class_, and
-_uri_:
+Fetched files accept two more arguments than local files in their
+[initialization](rest_api_drafts_records.md#start-draft-file-uploads): `storage_class`, and
+`uri`:
 
 **Parameters**
 

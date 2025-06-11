@@ -6,7 +6,7 @@ site_url: "https://inveniordm.docs.cern.ch"
 repo_url: "https://github.com/inveniosoftware/docs-invenio-rdm"
 
 # Copyright
-copyright: "Copyright &copy; 2019-2024 CERN, Northwestern University and contributors."
+copyright: "Copyright &copy; 2019-2025 CERN, Northwestern University and contributors."
 
 # Configuration
 theme:
@@ -112,6 +112,7 @@ nav:
       - Emails:
         - Submission: "operate/customize/emails.md"
         - Capture: operate/customize/dev_email.md
+      - Landing page: "operate/customize/landing_page.md"
       - Language(s) and locale(s): "operate/customize/i18n-and-l10n.md"
       - Notifications:
         - Overview: "operate/customize/notifications.md"
@@ -120,7 +121,7 @@ nav:
       - Search:
         - Change facets/sorting: "operate/customize/search.md"
         - Create search terms mappings: operate/customize/search_terms_migration.md
-        - Customize search index templates: develop/howtos/search_templates.md
+        - Customize search index templates: operate/customize/search_templates.md
       - Static pages: "operate/customize/static_pages.md"
       - S3 compatible storage: "operate/customize/s3.md"
       - Upload limits: "operate/customize/upload_limits.md"
@@ -175,11 +176,14 @@ nav:
       - Sanitize input data: maintenance/internals/validation.md
       - Grouping atomic operations: maintenance/internals/uow.md
       - Theming: maintenance/internals/theming.md
+      - Search: maintenance/internals/search.md
       - Usage statistics: maintenance/internals/statistics.md
       - Optimistic concurrency control: maintenance/internals/concurrency-control.md
       - Database transaction management: maintenance/internals/transactions.md
       - Create a database migration: maintenance/internals/alembic.md
       - Administration panel: maintenance/internals/administration_panel.md
+      - Administration views: maintenance/internals/administration_reference.md
+      - Notifications: maintenance/internals/notifications.md
     - Operational tasks:
       - Release management: maintenance/operations/release-management.md
       - Branch management: maintenance/operations/branch-management.md
@@ -191,81 +195,76 @@ nav:
     - Maintenance policy: releases/maintenance-policy.md
     - Upgrade policy: releases/upgrade-policy.md
     - Security policy: releases/security-policy.md
-    - Version v13.0:
+    - Version v13:
       - Release Notes v13.0: releases/v13/version-v13.0.0.md
       - Upgrade from v12 to v13: releases/v13/upgrade-v13.0.md
-    - Version v12.0:
+    - Version v12:
       - Release Notes v12.0: releases/v12/version-v12.0.0.md
       - Upgrade from v11 to v12: releases/v12/upgrade-v12.0.md
-    - Version v11.0 STS:
-      - Release Notes v11.0: releases/v11/version-v11.0.0.md
-      - Upgrade from v10 to v11: releases/v11/upgrade-v11.0.md
-    - Version v9.1 LTS:
-      - Release Notes v9.1: releases/v9/version-v9.1.0.md
-      - Release Notes v9.0: releases/v9/version-v9.0.0.md
-      - Migrate Docker images: releases/migrate-docker-images.md
-      - Migrate v9 to OpenSearch: releases/v9/migrate-opensearch-v9.md
-      - Upgrade from v8 to v9: releases/v9/upgrade-v9.0.md
     - Legacy Versions:
-      - Version v10.1:
+      - Version v11:
+        - Release Notes v11.0: releases/v11/version-v11.0.0.md
+        - Upgrade from v10 to v11: releases/v11/upgrade-v11.0.md
+      - Version v9:
+        - Release Notes v9.1: releases/v9/version-v9.1.0.md
+        - Release Notes v9.0: releases/v9/version-v9.0.0.md
+        - Migrate Docker images: releases/migrate-docker-images.md
+        - Migrate v9 to OpenSearch: releases/v9/migrate-opensearch-v9.md
+        - Upgrade from v8 to v9: releases/v9/upgrade-v9.0.md
+      - Version v10:
         - Release Notes v10.1: releases/v10/version-v10.1.0.md
         - Release Notes v10.0: releases/v10/version-v10.0.0.md
         - Upgrade from v9 to v10: releases/v10/upgrade-v10.0.md
         - Migrate Docker images: releases/migrate-docker-images.md
-      - Version v8.0:
+      - Version v8:
         - Release Notes v8.0: releases/v8/version-v8.0.0.md
         - Upgrade from v7 to v8: releases/v8/upgrade-v8.0.md
-      - Version v7.0:
+      - Version v7:
         - Release Notes v7.0: releases/v7/version-v7.0.0.md
         - Upgrade from v6 to v7: releases/v7/upgrade-v7.0.md
-      - Version v6.0.5:
+      - Version v6:
         - Release Notes v6.0.5: releases/v6/version-v6.0.5.md
         - Upgrade from v6.0.x to v6.0.5: releases/v6/upgrade-v6.0.5.md
         - Release Notes v6.0.0: releases/v6/version-v6.0.0.md
         - Upgrade from v4 to v6: releases/v6/upgrade-v6.0.md
-      - Version v5.0:
+      - Version v5:
         - Release Notes v5.0: releases/v5/version-v5.0.0.md
-      - Version v4.0:
+      - Version v4:
         - Release Notes v4.0: releases/v4/version-v4.0.0.md
         - Upgrade from v3 to v4: releases/v4/upgrade-v4.0.md
-      - Version v3.0:
+      - Version v3:
         - Release Notes v3.0: releases/v3/version-v3.0.0.md
         - Upgrade from v2 to v3: releases/v3/upgrade-v3.0.md
-      - Version v2.0:
+      - Version v2:
         - Release Notes v2.0: releases/v2/version-v2.0.0.md
         - Upgrade from v1 to v2: releases/v2/upgrade-v2.0.md
-      - Version v1.0:
+      - Version v1:
         - Release Notes v1.0: releases/v1/version-v1.0.0.md
 
   - Reference:
-      - Overview: reference/index.md
-      - CLI: reference/cli.md
-      - Configuration: reference/configuration.md
-      - Metadata: reference/metadata.md
-      - OAI-PMH: reference/oai_pmh.md
-      - Export formats: reference/export_formats.md
-      - REST API:
-          - Overview: "reference/rest_api_index.md"
-          - Quickstart: "reference/rest_api_quickstart.md"
-          - Communities: "reference/rest_api_communities.md"
-          - Drafts and Records: "reference/rest_api_drafts_records.md"
-          - Groups: "reference/rest_api_groups.md"
-          - Members: "reference/rest_api_members.md"
-          - Requests: "reference/rest_api_requests.md"
-          - Users: "reference/rest_api_users.md"
-          - Reviews: "reference/rest_api_reviews.md"
-          - Vocabularies: "reference/rest_api_vocabularies.md"
-          - Names: "reference/rest_api_names.md"
-          - Funders: "reference/rest_api_funders.md"
-          - Awards: "reference/rest_api_awards.md"
-          - OAI-PMH Sets: "reference/rest_api_oaipmh_sets.md"
-          - Statistics: "reference/rest_api_statistics.md"
-      - Administration:
-          - Reference: "reference/administration_reference.md"
+    - Overview: reference/index.md
+    - CLI: reference/cli.md
+    - Metadata: reference/metadata.md
+    - OAI-PMH: reference/oai_pmh.md
+    - REST API:
+      - Overview: "reference/rest_api_index.md"
+      - Quickstart: "reference/rest_api_quickstart.md"
+      - Awards: "reference/rest_api_awards.md"
+      - Communities: "reference/rest_api_communities.md"
+      - Drafts and Records: "reference/rest_api_drafts_records.md"
       - File storage: "reference/file_storage.md"
-      - Notifications: "reference/notifications.md"
-      - Searching: "reference/search.md"
-      - Virtual environments: "reference/virtualenvs.md"
+      - Funders: "reference/rest_api_funders.md"
+      - Groups: "reference/rest_api_groups.md"
+      - Members: "reference/rest_api_members.md"
+      - Names: "reference/rest_api_names.md"
+      - OAI-PMH Sets: "reference/rest_api_oaipmh_sets.md"
+      - Requests: "reference/rest_api_requests.md"
+      - Reviews: "reference/rest_api_reviews.md"
+      - Statistics: "reference/rest_api_statistics.md"
+      - Suggest: "reference/rest_api_suggest.md"
+      - Users: "reference/rest_api_users.md"
+      - Vocabularies: "reference/rest_api_vocabularies.md"
+    - Virtual environments: "reference/virtualenvs.md"
 
 
 # Customization
