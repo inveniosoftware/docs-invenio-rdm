@@ -119,6 +119,7 @@ nav:
         - Overview: "operate/customize/notifications.md"
         - Modify notifications: operate/customize/notifications_modify.md
       - Restrict access to pages: operate/customize/restrict_access.md
+      - Require a community to publish: "operate/customize/require_community.md"
       - Search:
         - Change facets/sorting: "operate/customize/search.md"
         - Create search terms mappings: operate/customize/search_terms_migration.md
