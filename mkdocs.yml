@@ -112,6 +112,7 @@ nav:
       - Emails:
         - Submission: "operate/customize/emails.md"
         - Capture: operate/customize/dev_email.md
+      - Jobs: "operate/customize/invenio_jobs_reference.md"
       - Landing page: "operate/customize/landing_page.md"
       - Language(s) and locale(s): "operate/customize/i18n-and-l10n.md"
       - Notifications:
