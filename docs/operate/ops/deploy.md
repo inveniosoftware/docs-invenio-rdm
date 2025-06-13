@@ -181,4 +181,4 @@ If the problem is in the InvenioRDM Python application, you can get more details
 in Sentry. Afterwards, you can try to reproduce it and debug in a local
 installation.
 
-For more information see the [how to debug section](../../install/debugging.md).
+For more information see the [how to debug section](../code/debugging.md).

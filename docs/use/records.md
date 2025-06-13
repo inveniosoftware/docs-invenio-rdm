@@ -1,4 +1,34 @@
-# Request access to restricted files of a record
+# Records
+
+**Audience**: End-users
+
+InvenioRDM gives you full control over your records.
+
+## Deposit metadata-only records
+
+A metadata-only record is a record that contains only descriptive metadata, and no associated files. These types of records can be useful in cases where the resource does not have a corresponding digital object or its files are hosted elsewhere.
+
+The site administrator can choose to enable or disable the creation of metadata-only records. For more on that, see [this section](../operate/customize/metadata/metadata_only.md).
+
+To mark a record as metadata-only, simply select the "Metadata-only record" checkbox when creating a new record:
+
+![Setting Metadata only](./imgs/records/meta_data_only.png)
+
+
+## Restrict records
+
+A record can be marked as restricted in order to restrict its access to specific users. This is useful for example to share a record with a colleague or team before making it public.
+
+### Setting a record to be restricted
+
+When creating or editing a record, click the "Restricted" checkbox under "Full record" in the "Visibility" section of the form to make the entire record -metadata and files- restricted:
+
+![Visibility Options](./imgs/records/visibility_options.png)
+
+To **only** make the files restricted, click the "Restricted" checkbox under "Files only" in the "Visibility" section.
+
+
+## Request access to restricted files of a record
 
 _Introduced in InvenioRDM v12_
 
@@ -8,17 +38,17 @@ This can be useful for record owners to manage access to restricted files of eac
 
 Note: accepted access requests grant to the requestor access to **all** versions of the record.
 
-## Enable access requests
+### Enable access requests
 
 As a record owner, you first need to allow accessing restricted files via a request:
 
 0. Create a record with restricted files
 
 1. Click on the "Share" button on the record landing page:
-![Share button](./img/access_request_share_button.png)
+![Share button](./imgs/records/access_request_share_button.png)
 
 2. Navigate to the "Settings" tab of the modal:
-![Access requests tab](./img/access_requests_tab.png)
+![Access requests tab](./imgs/records/access_requests_tab.png)
 
 3. Change the settings for the access requests:
 
@@ -27,18 +57,18 @@ As a record owner, you first need to allow accessing restricted files via a requ
     * Set access expiration date. This setting will be applied by default to all access requests. When reviewing an access request, you can set a different value.
 
 4. Save your changes
-![Access requests tab save](./img/access_requests_tab_save.png)
+![Access requests tab save](./imgs/records/access_requests_tab_save.png)
 
 Now both authenticated and anonymous users are able to **request** view access to your record’s files. You need to approve their request to grant them access to your record's files.
 
-## Request access to restricted files
+### Request access to restricted files
 
 As a user that would like to get access to restricted files of a record, it is necessary to **fill in the request form** appearing in the record landing page. This action creates and submits a new access request: the record's owner will be notificed, and the request will appear on their respectives dashboards.
 
-## Accepting/Declining the request
+### Accepting/Declining the request
 
 The submitter and the record's owner can find the newly created access request in "My dashboard" -> "Requests", and can exchange comments. The record's owner can define a new expiration date (changing the default settings) for this access request, accept or decline it:
-![Access request request page guest](./img/access_request_request_page_guest.png)
+![Access request request page guest](./imgs/records/access_request_request_page_guest.png)
 
 After accepting the request, the requestor will receive a notification by e-mail and will be able to access the restricted files:
-![Restricted files open to guest](./img/restricted_files_open_to_guest.png)
+![Restricted files open to guest](./imgs/records/restricted_files_open_to_guest.png)

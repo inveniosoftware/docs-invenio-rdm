@@ -41,25 +41,25 @@ You can include a record to multiple communities only **after** having published
 
 ### Powerful and reliable record access
 
-![Share button](../../features/features-walk-through/img/access_request_share_button.png)
+![Share button](../../use/imgs/records/access_request_share_button.png)
 
-[Giving and requesting access](../../features/features-walk-through/access_requests.md) to records have seen a complete overhaul in this release. Record owners or curators can share them directly with other users or with groups, as well as control whether, who and how access can be demanded.
+[Giving and requesting access](../../use/records.md#request-access-to-restricted-files-of-a-record) to records have seen a complete overhaul in this release. Record owners or curators can share them directly with other users or with groups, as well as control whether, who and how access can be demanded.
 
-![Share modal](../../features/features-walk-through/img/access_requests_tab.png)
+![Share modal](../../use/imgs/records/access_requests_tab.png)
 
 This provides flexible, yet reliable access control to the records of an instance and can even be done in bulk.
 
 ### Notifications
 
-![Notifications Setting Menu Entry](../../features/features-walk-through/img/notifications/menu.png)
+![Notifications Setting Menu Entry](../../use/imgs/notifications/menu.png)
 
-[A notification system](../../features/features-walk-through/notifications.md) has been introduced. Users can now receive email notifications depending on their preferences when they are involved in certain activities. For instance, inviting someone to a community will send an email to the invited party and send an email to the inviter when the invitee makes a decision.
+[A notification system](../../use/notifications.md) has been introduced. Users can now receive email notifications depending on their preferences when they are involved in certain activities. For instance, inviting someone to a community will send an email to the invited party and send an email to the inviter when the invitee makes a decision.
 
 ### Moderation of users and records
 
 ![The moderation actions](imgs/user_moderation.png)
 
-The administration panel now includes a "User management" section to deactivate, block and delete users, as well as undo all those actions. You can read more about [moderation here](../../features/features-walk-through/moderation.md/#moderation-of-users-and-records).
+The administration panel now includes a "User management" section to deactivate, block and delete users, as well as undo all those actions. You can read more about [moderation here](../../use/moderation.md#moderation-of-users-and-records).
 
 ### DOIs for concept records and no DOIs for restricted records
 

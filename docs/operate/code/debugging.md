@@ -11,46 +11,6 @@ To set a breakpoint place the following code:
 breakpoint()
 ```
 
-## VS Code Debugger
-
-To debug InvenioRDM using VS Code, configure the debugger with Flask settings:
-
-From your instance, create or edit `.vscode/launch.json`.
-Add the following configuration, see link for more information: [VS Code debugging](https://code.visualstudio.com/docs/python/debugging)
-
-```json
-// .vscode/launch.json
-{
-    "configurations": [
-        {
-            "name": "Invenio Debugger",
-            "type": "python",
-            "request": "launch",
-            "module": "flask",
-            "env": {
-                "FLASK_APP": "invenio_app.wsgi:application",
-                "FLASK_ENV": "development",
-                "FLASK_DEBUG": "1",
-                "WERKZEUG_RUN_MAIN": "watchdog"
-            },
-            "args": [
-                "run",
-                "--host",
-                "0.0.0.0",
-                "--cert",
-                "${workspaceFolder}/docker/nginx/test.crt",
-                "--key",
-                "${workspaceFolder}/docker/nginx/test.key"
-            ],
-            "jinja": true,
-            "justMyCode": false
-        }
-    ]
-}
-```
-
-Start debugging in VS Code by selecting Invenio Debugger in the debug panel and clicking Run.
-
 **Flask DebugToolbar**
 
 You can also install [Flask-DebugToolbar](https://flask-debugtoolbar.readthedocs.io/en/latest/):
@@ -133,7 +93,7 @@ function say(phrase) {
 
 **Note**: You can test the functionality above by copy/paste the code in your browser's console tab and run the `hello` function. You should see an output similar to:
 
-![Browser debugger output](./img/debugger_output.png)
+![Browser debugger output](./imgs/debugger_output.png)
 
 
 **console.log()**
@@ -160,4 +120,44 @@ function say(phrase) {
 - Go to your browser and open the debugger console.
 - Check the output of your log command:
 
-![Browser console log output](./img/console_log_output.png)
+![Browser console log output](./imgs/console_log_output.png)
+
+## VS Code Debugger
+
+To debug InvenioRDM using VS Code, configure the debugger with Flask settings:
+
+From your instance, create or edit `.vscode/launch.json`.
+Add the following configuration, see link for more information: [VS Code debugging](https://code.visualstudio.com/docs/python/debugging)
+
+```json
+// .vscode/launch.json
+{
+    "configurations": [
+        {
+            "name": "Invenio Debugger",
+            "type": "python",
+            "request": "launch",
+            "module": "flask",
+            "env": {
+                "FLASK_APP": "invenio_app.wsgi:application",
+                "FLASK_ENV": "development",
+                "FLASK_DEBUG": "1",
+                "WERKZEUG_RUN_MAIN": "watchdog"
+            },
+            "args": [
+                "run",
+                "--host",
+                "0.0.0.0",
+                "--cert",
+                "${workspaceFolder}/docker/nginx/test.crt",
+                "--key",
+                "${workspaceFolder}/docker/nginx/test.key"
+            ],
+            "jinja": true,
+            "justMyCode": false
+        }
+    ]
+}
+```
+
+Start debugging in VS Code by selecting Invenio Debugger in the debug panel and clicking Run.

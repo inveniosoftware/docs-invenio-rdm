@@ -6,6 +6,6 @@ template: features_base.html
 
 ---
 
-# Features
+# What is InvenioRDM?
 
 The turn-key research data management platform
