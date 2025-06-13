@@ -41,7 +41,7 @@ This nested field implements an imprint's metadata. It can be used to describe a
 - **isbn** `ISBN`(defined by [idutils](https://github.com/inveniosoftware/idutils/blob/10b05b702b06e93f02774426df59a217035b1cee/idutils/__init__.py#L400)): The book's International Standard Book Number. Applies if the imprint is a book.
 - **place** `String`: Location where the book (or report) was published.
 - **pages** `String`: The pages within the book or report. It can be a number or a range in any format.
-- **edition** `String`: The edition of a book or report. 
+- **edition** `String`: The edition of a book or report. (added in v13)
 
 ### Thesis
 
@@ -50,10 +50,10 @@ This field implements thesis metadata. A thesis supervisor can be found in the l
 **Metadata**
 
 - **university** `String`: Name of the awarding university.
-- **department** `String`: Department which awarded the thesis.
-- **type** `String`: The type of thesis (e.g. Masters, PhD, Engineers, Bachelors).
-- **date_submitted** `Date`: Date when the thesis was submitted.
-- **date_defended** `Date`: Date when the thesis was defended.
+- **department** `String`: Department which awarded the thesis. (added in v13)
+- **type** `String`: The type of thesis (e.g. Masters, PhD, Engineers, Bachelors). (added in v13)
+- **date_submitted** `Date`: Date when the thesis was submitted. (added in v13)
+- **date_defended** `Date`: Date when the thesis was defended. (added in v13)
 
 
 ## Meeting
