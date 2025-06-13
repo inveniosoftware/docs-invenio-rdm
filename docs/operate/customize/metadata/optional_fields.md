@@ -170,8 +170,8 @@ MEETING_CUSTOM_FIELDS_UI["hide_from_landing_page"] = True
 
 You'll need to initialize the field by typing `pipenv run invenio rdm-records custom-fields init`. Restart your instance, and you should see the fields appear in the deposit form like:
 
-![Optional field result (deposit form)](../imgs/custom_fields_example_deposit_form.png)
+![Optional field result (deposit form)](../imgs/pub_info_deposit_form.png)
 
 and the landing page should look like:
 
-![Optional field result (landing page)](../imgs/custom_fields_example_landing_page.png)
+![Optional field result (landing page)](../imgs/pub_info_landing_page.png)

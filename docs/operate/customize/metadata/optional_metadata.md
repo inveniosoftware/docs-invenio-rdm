@@ -17,7 +17,7 @@ This group of fields contains the metadata for "Journal", "Imprint" and "Thesis"
 
 ![Landing page](./imgs/pub_info_landing_page.png)
 
-Publishing information is typically displayed in the section "Details", on the right side bar, under "Published in", "Imprint", or "Awarding university".
+Publishing information is typically displayed in the section "Details", on the right side bar, under "Published in", "Imprint", or "Thesis".
 
 ### Journal
 
@@ -52,6 +52,9 @@ This field implements thesis metadata. A thesis supervisor can be found in the l
 - **university** `String`: Name of the awarding university.
 - **department** `String`: Department which awarded the thesis.
 - **type** `String`: The type of thesis (e.g. Masters, PhD, Engineers, Bachelors).
+- **date_submitted** `Date`: Date when the thesis was submitted.
+- **date_defended** `Date`: Date when the thesis was defended.
+
 
 ## Meeting
 
