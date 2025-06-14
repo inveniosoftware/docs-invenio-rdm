@@ -80,9 +80,15 @@ This is useful for:
 - Reviewing metadata edits before approving changes
 - Auditing updates across versions
 
-### Thesis
+### New Metadata Fields
 
-Anything to mention?
+These is a new field called copyright for copyright information
+
+These are new thesis metadata fields including department, type,
+date_submitted, date_defended. thesis:university had been moved to 
+university inside of the thesis:thesis section, alongside the other new fields.
+
+There is a new edition field under imprint.
 
 ### Requests sharing
 
