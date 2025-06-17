@@ -35,11 +35,3 @@ it is easier to configure alerts, notifications or scan reports and also GitHub 
 This section is a Work In Progress: the development of the Docker images building process is not yet completed.
 
 See: <https://github.com/inveniosoftware/docker-invenio/issues/68>
-
-To allow the CERN Registry to send notifications to Discord, we have a created a small web app to convert the payload and deployed on OpenShift:
-
-- GitHub repo: <https://github.com/inveniosoftware/alertabot>
-- OpenShift project: `invenio-alertabot.web.cern.ch`
-- Sentry: `InvenioRDM` project
-
-This project might be archived when the GitHub Action development is completed, as it will already cover the features provided by this webapp.
