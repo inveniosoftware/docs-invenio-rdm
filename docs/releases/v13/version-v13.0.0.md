@@ -14,7 +14,7 @@ _DATE_
 
 to complete
 
-*TODO*: the quota feature has not been documented. It should be added, with a screenshot of the admin panel.
+_TODO_: the quota feature has not been documented. It should be added, with a screenshot of the admin panel.
 
 ### Jobs and ORCID/ROR
 
@@ -172,6 +172,7 @@ server {
 
    # ...
 }
+```
 
 ### Miscellaneous additions
 
@@ -179,7 +180,7 @@ Here is a quick summary of the myriad other improvements in this release:
 
 - The creators' roles are now displayed [PR](https://github.com/inveniosoftware/invenio-app-rdm/pull/2795)
 - You can now see and show the version of InvenioAppRDM and any other module [Issue](https://github.com/inveniosoftware/invenio-app-rdm/issues/2838)
-    Change the config ADMINISTRATION_DISPLAY_VERSIONS = [("invenio-app-rdm", f"v{__version__}")] and append to the list the version you want to display.
+  Change the config ADMINISTRATION_DISPLAY_VERSIONS = [("invenio-app-rdm", f"v{__version__}")] and append to the list the version you want to display.
 - The users API endpoint is now protected, in order to access the list of users it's required to be logged in.
 - Custom awards: relaxed required fields (see [PR](https://github.com/inveniosoftware/invenio-vocabularies/pull/429))
 - ...and many more bug fixes!
