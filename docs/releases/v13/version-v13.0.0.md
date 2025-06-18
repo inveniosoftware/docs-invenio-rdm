@@ -79,7 +79,7 @@ Requirements:
 If you do not have a collection tree, start by creating one:
 
 ```python
-from invenio_rdm_records.collections.api import CollectionTree
+from invenio_collections.api import CollectionTree
 
 ctree = CollectionTree.create(
     title="Programs", order=10, community_id="<community_uuid>", slug="programs"
@@ -91,10 +91,10 @@ The `order` parameter controls the order that trees are rendered in the UI.
 Create a collection under `programs`:
 
 ```python
-from invenio_rdm_records.proxies import current_rdm_records
+from invenio_collections.proxies import current_collections
 from invenio_access.permissions import system_identity
 
-collections_service = current_rdm_records.collections_service
+collections_service = current_collections.service
 
 # Use another identity if needed
 identity = system_identity
