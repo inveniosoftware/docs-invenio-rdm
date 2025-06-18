@@ -44,229 +44,228 @@ nav:
   - Home: "index.md"
 
   - What is InvenioRDM?:
-    - Overview: "features/index.md"
-    - Beautiful UX: "features/ux.md"
-    - Highly scalable: "features/scalable.md"
-    - Customizable: "features/customization.md"
-    - Interoperable: "features/interoperable.md"
-    - Powerful: "features/powerful.md"
-    - Secure: "features/secure.md"
+      - Overview: "features/index.md"
+      - Beautiful UX: "features/ux.md"
+      - Highly scalable: "features/scalable.md"
+      - Customizable: "features/customization.md"
+      - Interoperable: "features/interoperable.md"
+      - Powerful: "features/powerful.md"
+      - Secure: "features/secure.md"
 
   - Use:
-    - Overview: "use/index.md"
-    - Records: "use/records.md"
-    - Notifications: "use/notifications.md"
-    - Site banners: "use/banners.md"
-    - Moderation: "use/moderation.md"
+      - Overview: "use/index.md"
+      - Records: "use/records.md"
+      - Notifications: "use/notifications.md"
+      - Site banners: "use/banners.md"
+      - Moderation: "use/moderation.md"
 
   - Install:
-    - Overview: "install/index.md"
-    - Install the CLI: "install/cli.md"
-    - System requirements: "install/requirements.md"
-    - Initialize: "install/initialize.md"
-    - Build, setup & run: "install/build-setup-run.md"
-    - Explore: "install/explore.md"
-    - Stop: "install/stop.md"
-    - Troubleshooting & help: "install/troubleshoot.md"
+      - Overview: "install/index.md"
+      - Install the CLI: "install/cli.md"
+      - System requirements: "install/requirements.md"
+      - Initialize: "install/initialize.md"
+      - Build, setup & run: "install/build-setup-run.md"
+      - Explore: "install/explore.md"
+      - Stop: "install/stop.md"
+      - Troubleshooting & help: "install/troubleshoot.md"
 
   - Operate an Instance:
-    - Overview: "operate/index.md"
-    - Deployment and other operations:
-      - Infrastructure: operate/ops/infrastructure.md
-      - Deploy: operate/ops/deploy.md
-      - Log: operate/ops/logging.md
-      - Back up search indices: operate/ops/backup_search_indices.md
-      - Redirect legacy routes: operate/ops/route_migration.md
-      - Migrate from another repository: "operate/ops/migrate.md"
-    - Customization philosophy: operate/customize/index.md
-    - Customize look-and-feel:
-      - Overview: "operate/customize/look-and-feel/index.md"
-      - Change logo: "operate/customize/look-and-feel/logo.md"
-      - Change templates: "operate/customize/look-and-feel/templates.md"
-      - Change theme: "operate/customize/look-and-feel/theme.md"
-      - Change font: "operate/customize/look-and-feel/font.md"
-      - Override React components: "operate/customize/look-and-feel/override_components.md"
-    - Customize metadata model:
-      - Enable metadata-only records: "operate/customize/metadata/metadata_only.md"
-      - Optional metadata fields:
-        - Include optional metadata fields: "operate/customize/metadata/optional_fields.md"
-        - List of optional metadata fields: operate/customize/metadata/optional_metadata.md
-      - Custom fields:
-        - Add field(s) to records: "operate/customize/metadata/custom_fields/records.md"
-        - Create new type of field: operate/customize/metadata/custom_fields/custom_fields.md
-        - Add field(s) to communities: "operate/customize/metadata/custom_fields/communities.md"
-        - UI widgets: "operate/customize/metadata/custom_fields/widgets.md"
-    - Customize vocabularies:
-        - Overview: "operate/customize/vocabularies/index.md"
-        - Resource types: "operate/customize/vocabularies/resource_types.md"
-        - Affiliations: "operate/customize/vocabularies/affiliations.md"
-        - Names: "operate/customize/vocabularies/names.md"
-        - Funding: "operate/customize/vocabularies/funding.md"
-        - Subjects: "operate/customize/vocabularies/subjects.md"
-    - Manage users: "operate/customize/users.md"
-    - Configure everything:
-      - Overview: "operate/customize/configuration.md"
-      - Authentication: "operate/customize/authentication.md"
-      - DOI registration: "operate/customize/dois.md"
-      - DNB URNs registration: "operate/customize/urns.md"
-      - Emails:
-        - Submission: "operate/customize/emails.md"
-        - Capture: operate/customize/dev_email.md
-      - Jobs: "operate/customize/invenio_jobs_reference.md"
-      - Landing page: "operate/customize/landing_page.md"
-      - Language(s) and locale(s): "operate/customize/i18n-and-l10n.md"
-      - Notifications:
-        - Overview: "operate/customize/notifications.md"
-        - Modify notifications: operate/customize/notifications_modify.md
-      - Restrict access to pages: operate/customize/restrict_access.md
-      - Search:
-        - Change facets/sorting: "operate/customize/search.md"
-        - Create search terms mappings: operate/customize/search_terms_migration.md
-        - Customize search index templates: operate/customize/search_templates.md
-      - Static pages: "operate/customize/static_pages.md"
-      - S3 compatible storage: "operate/customize/s3.md"
-      - Upload limits: "operate/customize/upload_limits.md"
-    - Add custom code:
-      - Custom Python and JS code: operate/code/custom_code.md
-      - Debugging: "operate/code/debugging.md"
+      - Overview: "operate/index.md"
+      - Deployment and other operations:
+          - Infrastructure: operate/ops/infrastructure.md
+          - Deploy: operate/ops/deploy.md
+          - Log: operate/ops/logging.md
+          - Back up search indices: operate/ops/backup_search_indices.md
+          - Redirect legacy routes: operate/ops/route_migration.md
+          - Migrate from another repository: "operate/ops/migrate.md"
+      - Customization philosophy: operate/customize/index.md
+      - Customize look-and-feel:
+          - Overview: "operate/customize/look-and-feel/index.md"
+          - Change logo: "operate/customize/look-and-feel/logo.md"
+          - Change templates: "operate/customize/look-and-feel/templates.md"
+          - Change theme: "operate/customize/look-and-feel/theme.md"
+          - Change font: "operate/customize/look-and-feel/font.md"
+          - Override React components: "operate/customize/look-and-feel/override_components.md"
+      - Customize metadata model:
+          - Enable metadata-only records: "operate/customize/metadata/metadata_only.md"
+          - Optional metadata fields:
+              - Include optional metadata fields: "operate/customize/metadata/optional_fields.md"
+              - List of optional metadata fields: operate/customize/metadata/optional_metadata.md
+          - Custom fields:
+              - Add field(s) to records: "operate/customize/metadata/custom_fields/records.md"
+              - Create new type of field: operate/customize/metadata/custom_fields/custom_fields.md
+              - Add field(s) to communities: "operate/customize/metadata/custom_fields/communities.md"
+              - UI widgets: "operate/customize/metadata/custom_fields/widgets.md"
+      - Customize vocabularies:
+          - Overview: "operate/customize/vocabularies/index.md"
+          - Resource types: "operate/customize/vocabularies/resource_types.md"
+          - Affiliations: "operate/customize/vocabularies/affiliations.md"
+          - Names: "operate/customize/vocabularies/names.md"
+          - Funding: "operate/customize/vocabularies/funding.md"
+          - Subjects: "operate/customize/vocabularies/subjects.md"
+      - Manage users: "operate/customize/users.md"
+      - Configure everything:
+          - Overview: "operate/customize/configuration.md"
+          - Authentication: "operate/customize/authentication.md"
+          - DOI registration: "operate/customize/dois.md"
+          - DNB URNs registration: "operate/customize/urns.md"
+          - Emails:
+              - Submission: "operate/customize/emails.md"
+              - Capture: operate/customize/dev_email.md
+          - Jobs: "operate/customize/invenio_jobs_reference.md"
+          - Landing page: "operate/customize/landing_page.md"
+          - Language(s) and locale(s): "operate/customize/i18n-and-l10n.md"
+          - Notifications:
+              - Overview: "operate/customize/notifications.md"
+              - Modify notifications: operate/customize/notifications_modify.md
+          - Restrict access to pages: operate/customize/restrict_access.md
+          - Search:
+              - Change facets/sorting: "operate/customize/search.md"
+              - Create search terms mappings: operate/customize/search_terms_migration.md
+              - Customize search index templates: operate/customize/search_templates.md
+          - Static pages: "operate/customize/static_pages.md"
+          - S3 compatible storage: "operate/customize/s3.md"
+          - Upload limits: "operate/customize/upload_limits.md"
+      - Add custom code:
+          - Custom Python and JS code: operate/code/custom_code.md
+          - Debugging: "operate/code/debugging.md"
 
   - Join the Community:
-    - Overview: community/index.md
-    - Onboard: community/onboard.md
-    - Code of conduct: community/code-of-conduct.md
-    - Copyright policy: community/copyright-policy.md
-    - Contribute code:
-      - Development process: community/code/process.md
-      - Source code: community/code/source-code.md
-      - Package Development: "community/code/package-development.md"
-      - Pre-release Instance Development: "community/code/prerelease-instance-development.md"
-      - Fix a vulnerability: community/code/security-fix.md
-      - Coding style: community/code/code-style.md
-      - Best practices:
-          - Accessibility (a11y): community/code/best-practices/accessibility.md
-          - Commits, PRs & reviews: community/code/best-practices/commits.md
-          - CSS/JavaScript: community/code/best-practices/css-js.md
-          - React: community/code/best-practices/react.md
-          - User interface: community/code/best-practices/ui.md
-    - Contribute translations:
-      - community/translations/translators-guide.md
-      - community/translations/i18n.md
-    - Contribute documentation: community/documentation.md
-    - Community PR board: community/pr-community-board.md
-    #   # Merge Sprintboard workflow: maintenance/board-workflow.md with above
-    - Roadmap: community/roadmap.md
+      - Overview: community/index.md
+      - Onboard: community/onboard.md
+      - Code of conduct: community/code-of-conduct.md
+      - Copyright policy: community/copyright-policy.md
+      - Contribute code:
+          - Development process: community/code/process.md
+          - Source code: community/code/source-code.md
+          - Package Development: "community/code/package-development.md"
+          - Pre-release Instance Development: "community/code/prerelease-instance-development.md"
+          - Fix a vulnerability: community/code/security-fix.md
+          - Coding style: community/code/code-style.md
+          - Best practices:
+              - Accessibility (a11y): community/code/best-practices/accessibility.md
+              - Commits, PRs & reviews: community/code/best-practices/commits.md
+              - CSS/JavaScript: community/code/best-practices/css-js.md
+              - React: community/code/best-practices/react.md
+              - User interface: community/code/best-practices/ui.md
+      - Contribute translations:
+          - community/translations/translators-guide.md
+          - community/translations/i18n.md
+      - Contribute documentation: community/documentation.md
+      - Community PR board: community/pr-community-board.md
+      #   # Merge Sprintboard workflow: maintenance/board-workflow.md with above
+      - Roadmap: community/roadmap.md
 
   - Maintain and Develop InvenioRDM:
-    - Overview: maintenance/index.md
-    - New maintainers: maintenance/newcomers.md
-    - Modules on GitHub: maintenance/modules.md
-    - High-level architecture:
-      - Introduction: maintenance/architecture/index.md
-      - Software: maintenance/architecture/software.md
-      - Runtime: maintenance/architecture/runtime.md
-      - Records: maintenance/architecture/records.md
-      - Communities: maintenance/architecture/communities.md
-      - Requests: maintenance/architecture/requests.md
-      - Event handling: maintenance/architecture/event_handling.md
-      - Notifications: maintenance/architecture/notifications.md
-      - Recommended reading: maintenance/architecture/reading.md
-    - Lower-level internals:
-      - Building resources: maintenance/internals/resource.md
-      - Building services: maintenance/internals/service.md
-      - Building serializers: maintenance/internals/serializers.md
-      - Sanitize input data: maintenance/internals/validation.md
-      - Grouping atomic operations: maintenance/internals/uow.md
-      - Theming: maintenance/internals/theming.md
-      - Search: maintenance/internals/search.md
-      - Usage statistics: maintenance/internals/statistics.md
-      - Optimistic concurrency control: maintenance/internals/concurrency-control.md
-      - Database transaction management: maintenance/internals/transactions.md
-      - Create a database migration: maintenance/internals/alembic.md
-      - Administration panel: maintenance/internals/administration_panel.md
-      - Administration views: maintenance/internals/administration_reference.md
-      - Notifications: maintenance/internals/notifications.md
-    - Operational tasks:
-      - Release management: maintenance/operations/release-management.md
-      - Branch management: maintenance/operations/branch-management.md
-      - Demo site & docs: maintenance/operations/demosite.md
-      - Docker images: maintenance/operations/docker-images.md
+      - Overview: maintenance/index.md
+      - New maintainers: maintenance/newcomers.md
+      - Modules on GitHub: maintenance/modules.md
+      - High-level architecture:
+          - Introduction: maintenance/architecture/index.md
+          - Software: maintenance/architecture/software.md
+          - Runtime: maintenance/architecture/runtime.md
+          - Records: maintenance/architecture/records.md
+          - Communities: maintenance/architecture/communities.md
+          - Requests: maintenance/architecture/requests.md
+          - Event handling: maintenance/architecture/event_handling.md
+          - Notifications: maintenance/architecture/notifications.md
+          - Recommended reading: maintenance/architecture/reading.md
+      - Lower-level internals:
+          - Building resources: maintenance/internals/resource.md
+          - Building services: maintenance/internals/service.md
+          - Building serializers: maintenance/internals/serializers.md
+          - Sanitize input data: maintenance/internals/validation.md
+          - Grouping atomic operations: maintenance/internals/uow.md
+          - Theming: maintenance/internals/theming.md
+          - Search: maintenance/internals/search.md
+          - Usage statistics: maintenance/internals/statistics.md
+          - Optimistic concurrency control: maintenance/internals/concurrency-control.md
+          - Database transaction management: maintenance/internals/transactions.md
+          - Create a database migration: maintenance/internals/alembic.md
+          - Administration panel: maintenance/internals/administration_panel.md
+          - Administration views: maintenance/internals/administration_reference.md
+          - Notifications: maintenance/internals/notifications.md
+      - Operational tasks:
+          - Release management: maintenance/operations/release-management.md
+          - Branch management: maintenance/operations/branch-management.md
+          - Demo site & docs: maintenance/operations/demosite.md
+          - Docker images: maintenance/operations/docker-images.md
 
   - Releases:
-    - Overview: releases/index.md
-    - Maintenance policy: releases/maintenance-policy.md
-    - Upgrade policy: releases/upgrade-policy.md
-    - Security policy: releases/security-policy.md
-    - Version v13:
-      - Release Notes v13.0: releases/v13/version-v13.0.0.md
-      - Upgrade from v12 to v13: releases/v13/upgrade-v13.0.md
-    - Version v12:
-      - Release Notes v12.0: releases/v12/version-v12.0.0.md
-      - Upgrade from v11 to v12: releases/v12/upgrade-v12.0.md
-    - Legacy Versions:
-      - Version v11:
-        - Release Notes v11.0: releases/v11/version-v11.0.0.md
-        - Upgrade from v10 to v11: releases/v11/upgrade-v11.0.md
-      - Version v9:
-        - Release Notes v9.1: releases/v9/version-v9.1.0.md
-        - Release Notes v9.0: releases/v9/version-v9.0.0.md
-        - Migrate Docker images: releases/migrate-docker-images.md
-        - Migrate v9 to OpenSearch: releases/v9/migrate-opensearch-v9.md
-        - Upgrade from v8 to v9: releases/v9/upgrade-v9.0.md
-      - Version v10:
-        - Release Notes v10.1: releases/v10/version-v10.1.0.md
-        - Release Notes v10.0: releases/v10/version-v10.0.0.md
-        - Upgrade from v9 to v10: releases/v10/upgrade-v10.0.md
-        - Migrate Docker images: releases/migrate-docker-images.md
-      - Version v8:
-        - Release Notes v8.0: releases/v8/version-v8.0.0.md
-        - Upgrade from v7 to v8: releases/v8/upgrade-v8.0.md
-      - Version v7:
-        - Release Notes v7.0: releases/v7/version-v7.0.0.md
-        - Upgrade from v6 to v7: releases/v7/upgrade-v7.0.md
-      - Version v6:
-        - Release Notes v6.0.5: releases/v6/version-v6.0.5.md
-        - Upgrade from v6.0.x to v6.0.5: releases/v6/upgrade-v6.0.5.md
-        - Release Notes v6.0.0: releases/v6/version-v6.0.0.md
-        - Upgrade from v4 to v6: releases/v6/upgrade-v6.0.md
-      - Version v5:
-        - Release Notes v5.0: releases/v5/version-v5.0.0.md
-      - Version v4:
-        - Release Notes v4.0: releases/v4/version-v4.0.0.md
-        - Upgrade from v3 to v4: releases/v4/upgrade-v4.0.md
-      - Version v3:
-        - Release Notes v3.0: releases/v3/version-v3.0.0.md
-        - Upgrade from v2 to v3: releases/v3/upgrade-v3.0.md
-      - Version v2:
-        - Release Notes v2.0: releases/v2/version-v2.0.0.md
-        - Upgrade from v1 to v2: releases/v2/upgrade-v2.0.md
-      - Version v1:
-        - Release Notes v1.0: releases/v1/version-v1.0.0.md
+      - Overview: releases/index.md
+      - Maintenance policy: releases/maintenance-policy.md
+      - Upgrade policy: releases/upgrade-policy.md
+      - Security policy: releases/security-policy.md
+      - Version v13:
+          - Release Notes v13.0: releases/v13/version-v13.0.0.md
+          - Upgrade from v12 to v13: releases/v13/upgrade-v13.0.md
+      - Version v12:
+          - Release Notes v12.0: releases/v12/version-v12.0.0.md
+          - Upgrade from v11 to v12: releases/v12/upgrade-v12.0.md
+      - Legacy Versions:
+          - Version v11:
+              - Release Notes v11.0: releases/v11/version-v11.0.0.md
+              - Upgrade from v10 to v11: releases/v11/upgrade-v11.0.md
+          - Version v9:
+              - Release Notes v9.1: releases/v9/version-v9.1.0.md
+              - Release Notes v9.0: releases/v9/version-v9.0.0.md
+              - Migrate Docker images: releases/migrate-docker-images.md
+              - Migrate v9 to OpenSearch: releases/v9/migrate-opensearch-v9.md
+              - Upgrade from v8 to v9: releases/v9/upgrade-v9.0.md
+          - Version v10:
+              - Release Notes v10.1: releases/v10/version-v10.1.0.md
+              - Release Notes v10.0: releases/v10/version-v10.0.0.md
+              - Upgrade from v9 to v10: releases/v10/upgrade-v10.0.md
+              - Migrate Docker images: releases/migrate-docker-images.md
+          - Version v8:
+              - Release Notes v8.0: releases/v8/version-v8.0.0.md
+              - Upgrade from v7 to v8: releases/v8/upgrade-v8.0.md
+          - Version v7:
+              - Release Notes v7.0: releases/v7/version-v7.0.0.md
+              - Upgrade from v6 to v7: releases/v7/upgrade-v7.0.md
+          - Version v6:
+              - Release Notes v6.0.5: releases/v6/version-v6.0.5.md
+              - Upgrade from v6.0.x to v6.0.5: releases/v6/upgrade-v6.0.5.md
+              - Release Notes v6.0.0: releases/v6/version-v6.0.0.md
+              - Upgrade from v4 to v6: releases/v6/upgrade-v6.0.md
+          - Version v5:
+              - Release Notes v5.0: releases/v5/version-v5.0.0.md
+          - Version v4:
+              - Release Notes v4.0: releases/v4/version-v4.0.0.md
+              - Upgrade from v3 to v4: releases/v4/upgrade-v4.0.md
+          - Version v3:
+              - Release Notes v3.0: releases/v3/version-v3.0.0.md
+              - Upgrade from v2 to v3: releases/v3/upgrade-v3.0.md
+          - Version v2:
+              - Release Notes v2.0: releases/v2/version-v2.0.0.md
+              - Upgrade from v1 to v2: releases/v2/upgrade-v2.0.md
+          - Version v1:
+              - Release Notes v1.0: releases/v1/version-v1.0.0.md
 
   - Reference:
-    - Overview: reference/index.md
-    - CLI: reference/cli.md
-    - Metadata: reference/metadata.md
-    - OAI-PMH: reference/oai_pmh.md
-    - REST API:
-      - Overview: "reference/rest_api_index.md"
-      - Quickstart: "reference/rest_api_quickstart.md"
-      - Awards: "reference/rest_api_awards.md"
-      - Communities: "reference/rest_api_communities.md"
-      - Drafts and Records: "reference/rest_api_drafts_records.md"
-      - File storage: "reference/file_storage.md"
-      - Funders: "reference/rest_api_funders.md"
-      - Groups: "reference/rest_api_groups.md"
-      - Members: "reference/rest_api_members.md"
-      - Names: "reference/rest_api_names.md"
-      - OAI-PMH Sets: "reference/rest_api_oaipmh_sets.md"
-      - Requests: "reference/rest_api_requests.md"
-      - Reviews: "reference/rest_api_reviews.md"
-      - Statistics: "reference/rest_api_statistics.md"
-      - Suggest: "reference/rest_api_suggest.md"
-      - Users: "reference/rest_api_users.md"
-      - Vocabularies: "reference/rest_api_vocabularies.md"
-    - Virtual environments: "reference/virtualenvs.md"
-
+      - Overview: reference/index.md
+      - CLI: reference/cli.md
+      - Metadata: reference/metadata.md
+      - OAI-PMH: reference/oai_pmh.md
+      - REST API:
+          - Overview: "reference/rest_api_index.md"
+          - Quickstart: "reference/rest_api_quickstart.md"
+          - Awards: "reference/rest_api_awards.md"
+          - Communities: "reference/rest_api_communities.md"
+          - Drafts and Records: "reference/rest_api_drafts_records.md"
+          - File storage: "reference/file_storage.md"
+          - Funders: "reference/rest_api_funders.md"
+          - Groups: "reference/rest_api_groups.md"
+          - Members: "reference/rest_api_members.md"
+          - Names: "reference/rest_api_names.md"
+          - OAI-PMH Sets: "reference/rest_api_oaipmh_sets.md"
+          - Requests: "reference/rest_api_requests.md"
+          - Reviews: "reference/rest_api_reviews.md"
+          - Statistics: "reference/rest_api_statistics.md"
+          - Suggest: "reference/rest_api_suggest.md"
+          - Users: "reference/rest_api_users.md"
+          - Vocabularies: "reference/rest_api_vocabularies.md"
+      - Virtual environments: "reference/virtualenvs.md"
 
 # Customization
 extra:
@@ -290,5 +289,6 @@ markdown_extensions:
       permalink: true
 
 plugins:
+  - search
   - glightbox:
       zoomable: true
