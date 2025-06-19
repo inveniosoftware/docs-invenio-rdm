@@ -41,7 +41,20 @@ Names listing endpoint is now restricted to authenticated users, names can be "u
 
 DOIs can now be configured as optional. Describe the feature.
 
-### Compare revisions
+### Admin panel
+
+New quality of life improvements include:
+
+* The default number of results of has been increased from 10 to 20 on all panels
+* Records and draft panel:
+    * More of the title is shown by default
+    * Improved display of files and stats information
+    * Fixed narrow viewport display, such as on mobile
+    * Owner now links to the ID in the user panel
+* User panel:
+    * ORCID and GitHub icons now link to the user's profile
+
+#### Compare revisions
 
 The **Compare Revisions** feature allows administrators to view differences between versions of a record from the administration panel.
 
@@ -182,10 +195,6 @@ An overview of all the collections can be found in the community browse page (if
 ### Helm charts
 
 To be announced?
-
-### Diff tool in the admin panel
-
-Explain and screenshot of the diff tool in the admin panel
 
 ### FAIR signposting level 1
 
