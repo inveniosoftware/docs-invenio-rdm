@@ -1,7 +1,8 @@
-# Manage users
+# Manage users and roles
 
-Users are not a vocabulary *per se*, but they are loaded in the same fashion,
-through the application data folder.
+## Add users via fixtures
+
+You can load a default set of users into your InvenioRDM system using fixtures, similar to how you manage vocabularies. This method relies on a `users.yaml` file located within your application's data folder.
 
 The file `users.yaml` contains a list of users to create, and is stored in the
 root of the `app_data` folder.
@@ -71,27 +72,60 @@ current_datastore.activate_user(user)
 db.session.commit()
 ```
 
-## Adding users and roles
+## Create users programmatically
 
-You may need to add users or make permission changes after the users vocabulary has been loaded.
+You might need to add users or modify their permissions after the initial user vocabulary has been loaded. You can achieve this using the InvenioRDM command-line interface.
 
-The following command creates an activated and confirmed user (assuming you have email verification enabled as is the default).
+Use the invenio users create command. The `--active` flag ensures the user can log in immediately, and `--confirm` confirms their email address (assuming email verification is enabled by default).
 
 ```shell
-pipenv run invenio users create email@domain.edu --password <PASSWORD> --active --confirm
+pipenv run invenio users create email@domain.edu --password <password> --active --confirm
 ```
 
-This will automatically confirm the account. If you want to force the user to verify their email address, leave off the `--confirm` parameter.
+This will automatically confirm the account. If you prefer the user to verify their email address themselves, omit the `--confirm` parameter:
 
-To give an account access to the administration panel:
+## Create and assign roles
+
+Roles are powerful mechanisms for managing permissions and granting access rights to users within InvenioRDM. They define what actions users can perform in the system. Users can hold multiple roles, and you can assign roles at different levels.
+
+To create a new role and assign it to a user, use the following commands:
 
 ```shell
-invenio access allow administration-access user <EMAIL>
+# Create a new role
+invenio roles create <role-name>
+
+# Assign role to a user
+invenio roles add user@example.org <role-name>
+```
+
+InvenioRDM pre-defines various `actions` that provide flexible access authorization. You can assign these actions directly to users or to roles.
+
+### Grant access to the administration panel
+
+To give an account access the Administration panel, you need to assign the `administration-access` action to a user or to a role.
+
+```shell
+invenio access allow administration-access user <e-mail>
+```
+
+Or, you can create a role for the action, and then assign the role to multiple users:
+
+```shell
+invenio roles create administration
+invenio access allow administration-access role administration
+```
+
+### Grant superuser rights
+
+To grant a user account superuser rights, allowing them to access anything and perform any action within the system, assign the `superuser-access` action:
+
+```shell
+invenio access allow superuser-access user <e-mail>
 ```
 
 ## Confirm user
 
-Only confirmed accounts can be logged in. You can confirm an account automatically upon creation using the `--confirm` parameter.
+Only confirmed accounts can log in to InvenioRDM. You can confirm an account automatically upon creation using the `--confirm` parameter.
 
 Alternatively you can confirm an account programmatically by opening a new shell using `pipenv run invenio shell` and
 running:
@@ -106,5 +140,4 @@ user = current_datastore.get_user("admin@inveniosoftware.org")
 confirm_user(user)
 db.session.commit()
 reindex_users([user.id])
-
 ```

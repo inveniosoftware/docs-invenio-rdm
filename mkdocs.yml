@@ -103,7 +103,7 @@ nav:
           - Names: "operate/customize/vocabularies/names.md"
           - Funding: "operate/customize/vocabularies/funding.md"
           - Subjects: "operate/customize/vocabularies/subjects.md"
-      - Manage users: "operate/customize/users.md"
+      - Manage users and roles: "operate/customize/users.md"
       - Configure everything:
           - Overview: "operate/customize/configuration.md"
           - Authentication: "operate/customize/authentication.md"
@@ -156,7 +156,7 @@ nav:
       #   # Merge Sprintboard workflow: maintenance/board-workflow.md with above
       - Roadmap: community/roadmap.md
 
-  - Maintain and Develop InvenioRDM:
+  - Maintain and Develop:
       - Overview: maintenance/index.md
       - New maintainers: maintenance/newcomers.md
       - Modules on GitHub: maintenance/modules.md
