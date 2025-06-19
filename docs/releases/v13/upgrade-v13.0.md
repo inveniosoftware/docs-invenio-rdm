@@ -46,7 +46,6 @@ One way would be to use [PyEnv](https://github.com/pyenv/pyenv).
 If you upgraded your python version, you should recreate your virtual environment before
 running `invenio-cli` or `pipenv` commands below.
 
-
 ### Upgrade InvenioRDM
 
 Python 3.9 or 3.11 or 3.12 is required to run InvenioRDM v12.
@@ -75,11 +74,13 @@ If you are using a docker image on your production instance this will be the
 option you choose.
 
 ##### Step 1
+
 - create a new virtual environment
 - activate your new virtual environment
 - install `invenio-cli` by `pip install invenio-cli`
 
 ##### Step 2
+
 Update the file `<my-site>/Pipfile`.
 
 ```diff
@@ -96,6 +97,7 @@ If you're using Sentry, update invenio-logging in `<my-site>/Pipfile` to
 ```
 
 ##### Step 3
+
 Update the `Pipfile.lock` file:
 
 ```bash
@@ -103,6 +105,7 @@ invenio-cli packages lock
 ```
 
 ##### Step 4
+
 Install InvenioRDM v13:
 
 ```bash
@@ -119,9 +122,7 @@ invenio alembic upgrade
 
 ### Data migration
 
-
 Execute the data migration:
-
 
 ### Configuration change for `nginx`
 
@@ -132,6 +133,7 @@ This can result in the MIME type being reported incorrectly, and thus being bloc
 Luckily, this can be simply fixed by adding a custom [`types`](https://nginx.org/en/docs/http/ngx_http_core_module.html#types) entry;
 e.g. in the `http` block in [`nginx.conf`](https://github.com/inveniosoftware/cookiecutter-invenio-rdm/blob/master/%7B%7Bcookiecutter.project_shortname%7D%7D/docker/nginx/nginx.conf)
 (cf. this [Cookiecutter PR](https://github.com/inveniosoftware/cookiecutter-invenio-rdm/pull/299)).
+
 ```nginx
 include       /etc/nginx/mime.types;
 default_type  application/octet-stream;
@@ -141,8 +143,6 @@ types {
 }
 ```
 
-
-
 ### TODO
 
 ### New Index Template for Job Logs
@@ -150,6 +150,7 @@ types {
 Replace `localhost:9200` and `__SEARCH_INDEX_PREFIX__ `with your instance values.
 
 Then run:
+
 ```bash
 curl -X PUT "http://localhost:9200/_index_template/job-logs-v1.0.0" -H "Content-Type: application/json" -d '
 {
@@ -181,6 +182,7 @@ curl -X PUT "http://localhost:9200/_index_template/job-logs-v1.0.0" -H "Content-
 ### Rebuild search indices
 
 TODO if not destroying and rebuiliding for names we need to update the mappings:
+
 ```bash
 invenio index update names-name-v2.0.0 --no-check
 ```
@@ -196,7 +198,7 @@ invenio rdm rebuild-all-indices
 ```
 
 From v12 onwards, record statistics will be stored in search indices rather than the
-database. These indices are created through some *index templates* machinery
+database. These indices are created through some _index templates_ machinery
 rather than having indices registered directly in `Invenio-Search`. As such, the
 search indices for statistics are not affected by `invenio index destroy
 --yes-i-know` and are totally functional after the rebuild step.
@@ -228,7 +230,20 @@ ADMINISTRATION_DISPLAY_VERSIONS = [
 
 ### TODO
 
-## OPEN PROBLEMS
+Document this error, or actually add it to the upgrade recipe
 
+```
+opensearchpy.exceptions.AuthorizationException: AuthorizationException(403, 'security_exception', 'no permissions for [cluster:admin/component_template/put] and User [name=inveniordm-qa, backend_roles=[], requestedTenant=null]')
+
+opensearchpy.exceptions.AuthorizationException: AuthorizationException(403, 'security_exception', 'no permissions for [indices:admin/index_template/put] and User [name=inveniordm-qa, backend_roles=[], requestedTenant=null]')
+```
+
+To solve it, grant permission to the user in OpenSearch cluster:
+Go to OpenSearch Dashboards -> Security -> Roles -> <instance name>, edit role and add:
+
+- `cluster:admin/component_template/put`
+- `indices:admin/index_template/put`
+
+## OPEN PROBLEMS
 
 ### TODO
