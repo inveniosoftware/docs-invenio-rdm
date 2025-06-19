@@ -28,6 +28,7 @@ Below is the list of InvenioRDM modules available on GitHub. This list can be us
 * `invenio-app` - [GitHub](https://github.com/inveniosoftware/invenio-app)
 * `invenio-app-rdm` - [GitHub](https://github.com/inveniosoftware/invenio-app-rdm)
 * `invenio-assets` - [GitHub](https://github.com/inveniosoftware/invenio-assets)
+* `invenio-audit-logs` - [GitHub](https://github.com/inveniosoftware/invenio-audit-logs)
 * `invenio-banners` - [GitHub](https://github.com/inveniosoftware/invenio-banners)
 * `invenio-base` - [GitHub](https://github.com/inveniosoftware/invenio-base)
 * `invenio-cache` - [GitHub](https://github.com/inveniosoftware/invenio-cache)
