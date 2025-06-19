@@ -79,6 +79,7 @@ nav:
           - Back up search indices: operate/ops/backup_search_indices.md
           - Redirect legacy routes: operate/ops/route_migration.md
           - Migrate from another repository: "operate/ops/migrate.md"
+          - Jobs/Automated Tasks: operate/ops/jobs.md
       - Customization philosophy: operate/customize/index.md
       - Customize look-and-feel:
           - Overview: "operate/customize/look-and-feel/index.md"
