@@ -35,13 +35,7 @@ Related [new doc page](../../operate/customize/vocabularies/names.md#using-orcid
 
 ### Search improvements
 
-Addition of a [`suggest` API](../../reference/rest_api_suggest.md).
-
-Easier to find records with accents or other non-standard characters, also searching by DOIs [PR](https://github.com/inveniosoftware/invenio-rdm-records/pull/1774)
-Users can be found with partial matches [PR](https://github.com/inveniosoftware/invenio-users-resources/pull/127)
-Searches like ` Universitatea "Dunărea de Jos” din Galați` now work [PR](https://github.com/inveniosoftware/invenio-app-rdm/issues/2761)
-
-BREAKING -> mapping changes, create new indices
+Both user and record search have been enhanced so there are better search results for common names, names with diacritics and partial matches. See [breaking changes](#breaking-changes) for notes about the mapping changes and the new indices.
 
 ### Names Vocabulary
 
