@@ -58,7 +58,8 @@ nav:
           - Export formats: "use/records/export-formats.md"
       - Communities: "use/communities.md"
       - Notifications: "use/notifications.md"
-      - Administration: "use/administration.md"  
+      - Audit logs: "use/audit-logs.md"
+      - Administration: "use/administration.md"
 
   - Install:
       - Overview: "install/index.md"
@@ -190,6 +191,7 @@ nav:
           - Administration panel: maintenance/internals/administration_panel.md
           - Administration views: maintenance/internals/administration_reference.md
           - Notifications: maintenance/internals/notifications.md
+          - Audit logs: maintenance/internals/audit-logs.md
       - Operational tasks:
           - Release management: maintenance/operations/release-management.md
           - Branch management: maintenance/operations/branch-management.md
