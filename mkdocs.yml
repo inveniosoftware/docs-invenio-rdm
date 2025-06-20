@@ -185,6 +185,7 @@ nav:
           - Administration panel: maintenance/internals/administration_panel.md
           - Administration views: maintenance/internals/administration_reference.md
           - Notifications: maintenance/internals/notifications.md
+          - System Fields: maintenance/internals/systemfield.md
       - Operational tasks:
           - Release management: maintenance/operations/release-management.md
           - Branch management: maintenance/operations/branch-management.md
