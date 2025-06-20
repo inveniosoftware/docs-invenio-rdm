@@ -124,6 +124,8 @@ If a Celery task logs via `current_app.logger`, and is invoked as a job, its log
 - Output can be inspected per run.
 - Failures and warnings are clearly highlighted.
 
+![alt text](./img/logs.png)
+
 ---
 
 ## Error Semantics
