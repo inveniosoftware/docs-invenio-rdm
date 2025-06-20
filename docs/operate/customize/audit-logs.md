@@ -26,6 +26,8 @@ You can also check the changes in the new version of the record via the administ
 
 You will be able to view all actions performed in your instance and query actions performed on resources.
 
+![Administration Panel](./imgs/audit-logs.png)
+
 ## Add new actions and work with other InvenioRDM resources
 
-It is possible to add new actions via entrypoints, [follow the guide on how to to add new actions](../maintenance/internals/audit-logs.md#how-to-add-new-actions)
+It is possible to add new actions via entrypoints, [follow the guide on how to to add new actions](/maintenance/internals/audit-logs#how-to-add-new-actions)

@@ -58,7 +58,6 @@ nav:
       - Notifications: "use/notifications.md"
       - Site banners: "use/banners.md"
       - Moderation: "use/moderation.md"
-      - Audit logs: "use/audit-logs.md"
 
   - Install:
       - Overview: "install/index.md"
@@ -107,6 +106,7 @@ nav:
       - Manage users: "operate/customize/users.md"
       - Configure everything:
           - Overview: "operate/customize/configuration.md"
+          - Audit logs: "operate/customize/audit-logs.md"
           - Authentication: "operate/customize/authentication.md"
           - DOI registration: "operate/customize/dois.md"
           - DNB URNs registration: "operate/customize/urns.md"

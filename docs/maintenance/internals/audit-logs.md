@@ -14,15 +14,12 @@ This guide is designed for developers working with InvenioRDM.
 
 The Audit logging feature provides a mechanism to track actions performed within the InvenioRDM framework. It integrates with the existing service layers, ensuring that the relevant operations are logged.
 
-## Storage
-
-Audit logs are stored in the database, leveraging the existing record storage mechanisms provided by Invenio. Each log entry is treated as a record, allowing for efficient querying and management.
-
-Additionally, audit logs are indexed in the econfigured search backend to support advanced search capabilities and fast retrieval. The indexing process is handled automatically through the Unit of Work (UoW) operations, ensuring that database and search indexes remain synchronized.
-
 ## Implementation
+InvenioRDM implements Audit logs as records, leveraging the framework's existing record management infrastructure. This approach ensures efficient querying, indexing, and management of log entries.
 
-InvenioRDM implements audit log entries as records, leveraging InvenioRDM's existing record management infrastructure. Consistency between storage backends, such as the database and the search backend, is maintained using the Unit of Work (UoW) pattern. This ensures that all operations on audit logs, including creation and indexing, are handled transactionally.
+### Storage
+
+To maintain consistency across storage backends, such as the database and the configured search backend (e.g., OpenSearch), the Unit of Work (UoW) pattern is used. This ensures that all operations, including creation, updates, and indexing, are handled transactionally, keeping the database and search indexes synchronized.
 
 ### Service Layer
 
@@ -30,21 +27,37 @@ The service layer provides the core functionality for managing audit logs, inclu
 
 ### Permissions
 
-Access to audit logs is controlled via the Invenio permissions system.
+Access to audit logs is controlled via the Invenio permissions system. Currently only the System User can create the audit log and administrators can read. The permissions can be updated in the permission policy class to extended, for example, providing read access to the logs to other user roles.
 
 ### Resource layer
 
 Additionally, the audit logs feature includes a resource layer that defines RESTful API endpoints. These endpoints allow users to search and retrieve audit log entries via URL routes, enabling seamless integration with external systems and user interfaces.
 
+**Key Endpoints:**
+
+- **Search Logs**: _GET_ `/api/audit-logs?q=abcd-1234`
+Allows users to perform a query over audit log entries.
+
+- **Retrieve Log Entry**: _GET_ `/api/audit-logs/<id>`
+Enables retrieval of a specific audit log entry by its unique identifier.
+
 ## Administration Panel
 
-The administration panel provides an interface for managing audit logs. Administrators can search, filter, and view log entries directly from the panel.
+The administration panel provides an interface for managing audit logs. Via the panel, Administrators can:
+
+- Search and filter logs
+- View log metadata
+- View changes made to the record
+
+![Administration Panel Audit Log Data](./img/audit-logs-json.png)
+
+![Administration Panel Record Changes](./img/audit-logs-changes.png)
 
 ## How to add new actions
 
 To add new actions to the audit logging system, follow these steps:
 
-1. **Define the Action**: Create a new class that inherits from `AuditLogAction` or a base class like `RecordBaseAuditLog`.
+1. **Define the Action**: Create a new class that inherits from `AuditLogAction`.
 Specify the id (action name), message_template, and optionally, the context and resource_type.
 
 ```python
@@ -58,7 +71,7 @@ class CustomActionAuditLog(AuditLogAction):
     context = [
         CustomContext(),
     ]
-    resource_type = "custom_resource
+    resource_type = "custom_resource"
 ```
 
 2. **Add Context (Optional)**
@@ -81,7 +94,7 @@ Ensure the new action class is registered in the appropriate entry point.
 
 ```cfg
 invenio_audit_logs.actions =
-    custom.action = your_module.actions.py:CustomActionAuditLog
+    custom.action = your_module.actions:CustomActionAuditLog
 
 ```
 
