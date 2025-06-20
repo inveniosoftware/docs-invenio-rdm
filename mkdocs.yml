@@ -115,7 +115,7 @@ nav:
           - Emails:
               - Submission: "operate/customize/emails.md"
               - Capture: operate/customize/dev_email.md
-          - Jobs: "operate/customize/invenio_jobs_reference.md"
+          - Jobs: "operate/customize/jobs.md"
           - Landing page: "operate/customize/landing_page.md"
           - Language(s) and locale(s): "operate/customize/i18n-and-l10n.md"
           - Notifications:
@@ -188,6 +188,7 @@ nav:
           - Administration panel: maintenance/internals/administration_panel.md
           - Administration views: maintenance/internals/administration_reference.md
           - Notifications: maintenance/internals/notifications.md
+          - Job system: maintenance/internals/jobs.md
       - Operational tasks:
           - Release management: maintenance/operations/release-management.md
           - Branch management: maintenance/operations/branch-management.md
