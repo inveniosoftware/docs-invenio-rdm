@@ -14,12 +14,15 @@ This guide is designed for developers working with InvenioRDM.
 
 The Audit logging feature provides a mechanism to track actions performed within the InvenioRDM framework. It integrates with the existing service layers, ensuring that the relevant operations are logged.
 
+For example, audit logs allow admins to track resource actions like creating/editing/deleting a draft and publishing a record.
+
 ## Implementation
+
 InvenioRDM implements Audit logs as records, leveraging the framework's existing record management infrastructure. This approach ensures efficient querying, indexing, and management of log entries.
 
 ### Storage
 
-To maintain consistency across storage backends, such as the database and the configured search backend (e.g., OpenSearch), the Unit of Work (UoW) pattern is used. This ensures that all operations, including creation, updates, and indexing, are handled transactionally, keeping the database and search indexes synchronized.
+The Unit of Work (UoW) pattern is used to maintain consistency across storage backends, such as the database and the configured search backend (e.g., OpenSearch). This ensures that all operations, including creation, updates, and indexing, are handled transactionally, keeping the database and search index synchronized.
 
 ### Service Layer
 
@@ -27,7 +30,7 @@ The service layer provides the core functionality for managing audit logs, inclu
 
 ### Permissions
 
-Access to audit logs is controlled via the Invenio permissions system. Currently only the System User can create the audit log and administrators can read. The permissions can be updated in the permission policy class to extended, for example, providing read access to the logs to other user roles.
+Access to audit logs is controlled via the Invenio permissions system. Currently only the System User can create audit logs and administrators can read them. The permissions can be updated in the permission policy class to, for example, provide read access to other user roles.
 
 ### Resource layer
 
@@ -53,9 +56,9 @@ The administration panel provides an interface for managing audit logs. Via the 
 
 ![Administration Panel Record Changes](./img/audit-logs-changes.png)
 
-## How to add new actions
+## How to track more actions
 
-To add new actions to the audit logging system, follow these steps:
+To track more actions on resources in InvenioRDM using audit logs, follow these steps to add new Auditing actions:
 
 1. **Define the Action**: Create a new class that inherits from `AuditLogAction`.
 Specify the id (action name), message_template, and optionally, the context and resource_type.
