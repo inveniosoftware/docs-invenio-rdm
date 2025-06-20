@@ -239,6 +239,7 @@ Here is a quick summary of the myriad other improvements in this release:
   - `JOBS_ADMINISTRATION_ENABLED`
 - Following the [latest COUNTER spec](https://www.countermetrics.org/code-of-practice/), the [list of robots and machines](https://github.com/inveniosoftware/counter-robots) have been updated to ensure the stats are counted on human usage.
 - ...and many more bug fixes!
+- Logging: The Flask root logger level has been set to `DEBUG`, enabling all log messages to pass through by default. Handlers are now responsible for filtering messages at the desired level, offering more flexibility for development and production environments.
 
 ## Breaking changes
 
