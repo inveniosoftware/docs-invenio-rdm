@@ -80,6 +80,9 @@ nav:
           - Back up search indices: operate/ops/backup_search_indices.md
           - Redirect legacy routes: operate/ops/route_migration.md
           - Migrate from another repository: "operate/ops/migrate.md"
+          - Jobs/Automated Tasks:
+            - Configure: operate/ops/jobs/configure.md 
+            - Create and run: operate/ops/jobs/create_and_run.md
       - Customization philosophy: operate/customize/index.md
       - Customize look-and-feel:
           - Overview: "operate/customize/look-and-feel/index.md"
@@ -115,7 +118,7 @@ nav:
           - Emails:
               - Submission: "operate/customize/emails.md"
               - Capture: operate/customize/dev_email.md
-          - Jobs: "operate/customize/invenio_jobs_reference.md"
+          - Jobs: "operate/customize/jobs.md"
           - Landing page: "operate/customize/landing_page.md"
           - Language(s) and locale(s): "operate/customize/i18n-and-l10n.md"
           - Notifications:
@@ -190,6 +193,7 @@ nav:
           - Administration panel: maintenance/internals/administration_panel.md
           - Administration views: maintenance/internals/administration_reference.md
           - Notifications: maintenance/internals/notifications.md
+          - Job system: maintenance/internals/jobs.md
       - Operational tasks:
           - Release management: maintenance/operations/release-management.md
           - Branch management: maintenance/operations/branch-management.md
