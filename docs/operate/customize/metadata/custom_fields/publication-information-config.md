@@ -36,4 +36,4 @@ RDM_CUSTOM_FIELDS_UI = {
 
 ```
 
-The values in publishing information fields will be displayed on the published records landing pages and require no additional configuration. 
+No additional configuration is needed to display the publishing information on the published records landing page.
