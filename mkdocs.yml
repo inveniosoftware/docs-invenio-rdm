@@ -202,6 +202,7 @@ nav:
           - Notifications: maintenance/internals/notifications.md
           - Audit logs: maintenance/internals/audit-logs.md
           - Job system: maintenance/internals/jobs.md
+          - System Fields: maintenance/internals/systemfield.md
       - Operational tasks:
           - Release management: maintenance/operations/release-management.md
           - Branch management: maintenance/operations/branch-management.md
