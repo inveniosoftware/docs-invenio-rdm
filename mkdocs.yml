@@ -108,7 +108,7 @@ nav:
           - Overview: "operate/customize/configuration.md"
           - Authentication: "operate/customize/authentication.md"
           - DOI registration: "operate/customize/dois.md"
-          - DNB URNs registration: "operate/customize/urns.md"
+          - URN registration: "operate/customize/urns.md"
           - Emails:
               - Submission: "operate/customize/emails.md"
               - Capture: operate/customize/dev_email.md

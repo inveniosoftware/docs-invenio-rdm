@@ -1,4 +1,4 @@
-# DNB URNs registration
+# DNB URN registration
 
 *Available since InvenioRDM v11*
 
@@ -6,7 +6,7 @@
 
     The URN registration feature requires that you have a contract with the [German National Library](https://wiki.dnb.de/display/URNSERVDOK/URN-Service+API). You will need to contact urn-support@dnb.de to get an account for the sandbox and the production REST-API.
 
-In order to register URN's with InvenioRDM, you need to two extra modules:
+In order to register [Uniform Resource Names](https://en.wikipedia.org/wiki/Uniform_Resource_Name) (URNs) with InvenioRDM, you need two extra modules:
 
 - [dnb-urn-service](https://pypi.org/project/dnb-urn-service/)
 - [invenio-dnb-urn](https://pypi.org/project/invenio-dnb-urn/)
@@ -215,7 +215,7 @@ RDM_CUSTOM_FIELDS_UI = [
 ]
 ```
 
-Init the new custom fields:
+Finally, initialize the new custom fields:
 
 ```shell
 pipenv run invenio rdm-records custom-fields init
