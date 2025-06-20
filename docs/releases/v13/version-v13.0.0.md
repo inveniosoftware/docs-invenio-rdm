@@ -222,6 +222,7 @@ Here is a quick summary of the myriad other improvements in this release:
   - `COMMUNITIES_ADMINISTRATION_DISABLED`
   - `USERS_RESOURCES_ADMINISTRATION_ENABLED`
   - `JOBS_ADMINISTRATION_ENABLED`
+- Following the [latest COUNTER spec](https://www.countermetrics.org/code-of-practice/), the [list of robots and machines](https://github.com/inveniosoftware/counter-robots) have been updated to ensure the stats are counted on human usage.
 - ...and many more bug fixes!
 
 ## Breaking changes
