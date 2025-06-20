@@ -216,6 +216,10 @@ The library has been restructured to use a configurable scheme system with a new
 
 See the [related documentation](../../operate/customize/metadata/custom_pids_schemes.md) how to add your own custom schemes.
 
+### Data model additions
+
+- Record: new `copyright` field, see its specifications [here](../../reference/metadata.md).
+
 ### Miscellaneous additions
 
 Here is a quick summary of the myriad other improvements in this release:
