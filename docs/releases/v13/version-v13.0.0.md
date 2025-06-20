@@ -92,7 +92,19 @@ When a record is shared, its inclusion requests will be also accessible. There i
 
 To be completed
 
-### Collections
+### Communities
+
+#### Themed communities
+
+Communities can now have their own theming with a custom font and colors, which apply to all community pages including records and requests. Below is an example of two themed communities on Zenodo.
+
+![A default community and two themed communities on Zenodo](imgs/themed-communities.png)
+
+Themed communities benefit from a custom homepage, defined via HTML template in `<instance>/templates/themes/<theme>/invenio_communities/details/home/index.html`.
+
+#### Subcommunities
+
+#### Collections
 
 Collections are a "big" feature added to v13.
 
