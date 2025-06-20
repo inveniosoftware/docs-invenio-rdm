@@ -48,7 +48,7 @@ The job system addresses these problems by introducing two core concepts:
 
 ### Scheduler Beat
 
-Scheduled and on-demand job execution requires a **custom scheduler beat**, which is expected to be implemented and deployed by the user. This beat is responsible for dispatching job runs, whether triggered manually or on a schedule.
+Scheduled and on-demand job execution requires a **custom scheduler beat**, which is expected to be implemented and deployed by the instance manager/developer. This beat is responsible for dispatching job runs, whether triggered manually or on a schedule.
 
 - This component is **not included by default**.
 - You must **manually implement and configure** this scheduler as part of your Celery infrastructure.
