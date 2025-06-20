@@ -81,7 +81,7 @@ nav:
           - Migrate from another repository: "operate/ops/migrate.md"
           - Jobs/Automated Tasks:
               - Configure: operate/ops/jobs/configure.md
-              - Create and Run: operate/ops/jobs/create_and_run.md
+              - Create and run: operate/ops/jobs/create_and_run.md
       - Customization philosophy: operate/customize/index.md
       - Customize look-and-feel:
           - Overview: "operate/customize/look-and-feel/index.md"
