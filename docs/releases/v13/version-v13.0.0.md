@@ -184,6 +184,7 @@ Here is a quick summary of the myriad other improvements in this release:
 - The users API endpoint is now protected, in order to access the list of users it's required to be logged in.
 - Custom awards: relaxed required fields (see [PR](https://github.com/inveniosoftware/invenio-vocabularies/pull/429))
 - ...and many more bug fixes!
+- Logging: The Flask root logger level has been set to `DEBUG`, enabling all log messages to pass through by default. Handlers are now responsible for filtering messages at the desired level, offering more flexibility for development and production environments.
 
 ## Breaking changes
 
