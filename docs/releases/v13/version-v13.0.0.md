@@ -59,90 +59,48 @@ To be completed
 
 ### Collections
 
-Collections are a "big" feature added to v13.
+### Collections
 
-!!!warning Collections require new database tables, therefore its migration recipes must be executed (`invenio db upgrade` or similar)
+Collections introduce a powerful new way to organize and curate records within your InvenioRDM instance. This major feature enables administrators and community managers to create dynamic, query-based groupings of records that automatically stay current as new content is added.
 
-A collection serves as a curated set of records that are grouped based on a specific filter or query, displayed on a dedicated page, introducing a new way of organizing records within a community. For instance, a collection can be defined within a community to highlight records sharing common attributes, like funding programs or specific categories.
+![Collection page displaying filtered Horizon 2020 records with clean interface and navigation](placeholder-collection-example.png)
 
-Collections are stored in the Database and each collection defines a search query string that is used to fetch each collection records. Find more information in the [RFC](https://github.com/inveniosoftware/rfcs/blob/master/rfcs/rdm-0079-collections.md).
+*Collections provide dedicated pages showing all records matching specific criteria, such as funding programs or research topics.*
 
-**How to create a collection for a community**
+**Key capabilities:**
 
-Currently collections are created using a python shell (`invenio shell`)
+- **Dynamic record grouping** - Create collections based on any metadata field using search queries
+- **Hierarchical organization** - Build nested collection structures using Collection Trees that inherit parent queries
+- **Community integration** - Scope collections to specific communities or make them globally available
+- **Automatic updates** - Collections automatically include new records matching their criteria
+- **Query inheritance** - Child collections combine their filters with parent collections using AND logic
 
-Requirements:
+**Hierarchical organization examples:**
 
-- A community.
-- A collection tree that acts as the "root" node of the collection.
+Create sophisticated organizational structures like:
+- EU funding programs (Horizon Europe → Open Access → Datasets)
+- Research fields (Natural Sciences → Physics → Astronomy)
+- Resource types with access levels and publication dates
 
-If you do not have a collection tree, start by creating one:
+![Collection tree browser showing expandable hierarchy of research topics and funding programs](placeholder-collection-browser.png)
 
-```python
-from invenio_collections.api import CollectionTree
+*The collection browser provides an organized view of all available collections within a community.*
 
-ctree = CollectionTree.create(
-    title="Programs", order=10, community_id="<community_uuid>", slug="programs"
-)
-```
+**Common use cases**
 
-The `order` parameter controls the order that trees are rendered in the UI.
+- Organize records by funding programs (Horizon 2020, NSF, institutional grants)
+- Group content by research disciplines using Fields of Science vocabulary
+- Create resource type collections (datasets, publications, software)
+- Build department or project-specific views
+- Highlight featured content or special collections
 
-Create a collection under `programs`:
+![Nested collection showing breadcrumb navigation from Natural Sciences to Physics to Astronomy](placeholder-nested-navigation.png)
 
-```python
-from invenio_collections.proxies import current_collections
-from invenio_access.permissions import system_identity
+*Nested collections show clear hierarchical relationships with breadcrumb navigation between levels.*
 
-collections_service = current_collections.service
+Collections integrate seamlessly with existing community features and are accessed through intuitive URLs. The feature is currently managed through Python shell commands, with a user interface planned for future releases.
 
-# Use another identity if needed
-identity = system_identity
-
-# Desired community ID
-community_id = "9d0d45ce-0ea9-424a-ab17-a72215b2e8c3"
-
-collection = collections_service.create(
-        identity,
-        community_id,
-        tree_slug="programs",
-        slug="h2020",
-        title="Horizon 2020",
-        query="metadata.funding.program:h2020",
-        order=10
-    )
-```
-
-For nested collections, the `add` service method can be used:
-
-```python
-
-h2020 = collections_service.read(
-    identity, community_id=community_id, tree_slug='programs', slug='h2020'
-)
-
-open_records = collections_service.add(
-        identity,
-        collection=h2020._collection,
-        slug="h-open-records",
-        title="Horizon 2020 (Open records)",
-        query="access.record:public",
-        order=20
-    )
-```
-
-All the service methods that create collections also implements the Unit of Work pattern, so it can used if transactional consistency is needed.
-
-The created collections can be accessed at:
-
-- https://127.0.0.1:5000/communities/<community_slug>/collections/h2020
-- https://127.0.0.1:5000/communities/<community_slug>/collections/h-open-records
-
-Adjust the URL and `community_slug` as needed.
-
-An overview of all the collections can be found in the community browse page (if enabled):
-
-- https://127.0.0.1:5000/communities/<community_slug>/browse
+Read more about the [Collections feature](../../operate/customize/collections.md).
 
 ### Helm charts
 
