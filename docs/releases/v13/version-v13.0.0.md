@@ -43,7 +43,42 @@ DOIs can now be configured as optional. Describe the feature.
 
 ### Compare revisions
 
-Administrators can compare revisions from the administration panel.
+The **Compare Revisions** feature allows administrators to view differences between versions of a record from the administration panel.
+
+From the **Records** list, click the **“Compare revisions…”** button in the _Actions_ column to open a side-by-side comparison window.
+
+![Records List – Compare Revisions](./imgs/records.png)
+
+#### How it works
+
+A modal window appears, allowing you to choose two versions to compare:
+
+![Compare Modal – Version Selection](./imgs/records-compare-select.png)
+
+Use the dropdown menus to select:
+
+- **From**: the earlier version
+- **To**: the later version
+
+Click **Compare** to see the changes.
+
+---
+
+The system then displays a **side-by-side diff view** showing changes in JSON format:
+
+![Compare Modal – Diff View](./imgs/records-compare.png)
+
+#### What you can do
+
+- Compare any two versions of a record
+- View changes in metadata fields
+- See added, removed, or changed values highlighted
+- Use the links to expand unchanged lines before/after the highlighted differences
+
+This is useful for:
+
+- Reviewing metadata edits before approving changes
+- Auditing updates across versions
 
 ### Thesis
 
