@@ -11,7 +11,7 @@ This guide walks developers through implementing a custom job in InvenioRDM usin
 - Python development environment set up with InvenioRDM.
 - Understanding of Celery tasks and entry points.
 - Access to an InvenioRDM instance with administrator rights.
-
+- A **custom Celery scheduler beat** process configured and running, which is required for executing both scheduled and manual jobs. See [Job System Configuration](../ops/jobs/configure.md) for setup instructions.
 ---
 
 ## 1. Define Your Celery Task
@@ -93,8 +93,8 @@ invenio_celery.tasks =
 invenio_jobs.jobs =
     update_expired_embargoes = mysite.jobs:UpdateEmbargoesJob
 ```
-
-> **Note (local development only):** If you're developing locally and have modified `setup.cfg`, remember to re-run `pip install -e ./site` so that entry point changes take effect.
+!!! tip
+    **Note (local development only):** If you're developing locally and have modified `setup.cfg`, remember to re-run `pip install -e ./site` so that entry point changes take effect.
 
 ---
 
@@ -127,7 +127,7 @@ raise TaskExecutionError("Processed 80%, 10 records failed.")
 ## Tips
 
 - Make your tasks **idempotent** if they might be run concurrently.
-- Jobs are stored in the DB and auditable.
+- Jobs and their runs are stored in the database, with status, arguments, and logs recorded for traceability.
 - Admins only: only superusers can run jobs.
 
 ---
