@@ -1,4 +1,36 @@
-# Jobs
+_added in v13.0.0_
+
+## Creating a Job
+
+!!! note "Info"
+    Creating a job will **not execute it**. It will only be executed when scheduled or run manually. If you already have an existing Job and want to run it, see [running a job](#TODO).
+
+1. Head to the administration interface and navigate to the "Jobs" section.
+
+    ![Jobs Tab on Admin Panel](./imgs/jobs-tab.jpg)
+
+2. Click the create button on the top right.
+
+    ![Highlighting Create Job Button](./imgs/create-button-jobs.jpg)
+
+3. Here, you can define a new job by specifying the following:
+    - **Name**: A descriptive name for the job.
+    - **Description**: A brief description/notes of what the job does.
+    - **Queue**: The Celery queue to which the job will be submitted. This is useful for categorizing jobs based on their priority or type.
+    - **Task**: Select the task from the available Jobs.
+    - **Active**: Whether the job is currently active or not. Inactive jobs will not be executed automatically even if scheduled but they can can be executed manually (refer TODO add manual run ref).
+    <figure markdown="span">
+        ![Create job form not filled](./imgs/create-form-job.jpg)
+        <figcaption>Create Job form</figcaption>
+    </figure>
+    <figure markdown="span">
+        ![Create job form filled with ROR example](./imgs/create-form-filled-job.jpg)
+        <figcaption>Create Job form filled</figcaption>
+    </figure>
+
+4. Once you have filled in the details, click `Save` to save the job. Now you should see the job in the Jobs list page.
+
+    ![Created job on job list page](./imgs/created-job.jpg)
 
 ## Running a Job
 
