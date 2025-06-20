@@ -179,6 +179,10 @@ An overview of all the collections can be found in the community browse page (if
 
 - https://127.0.0.1:5000/communities/<community_slug>/browse
 
+### Curation
+
+It is now possible to configure automated **checks** in your communities to provide instant feedback on draft review and record inclusion requests. Checks provide feedback to both the user and reviewer that submissions to your community are compliant with your curation policy. For example, you can enforce that submissions to your community must be preprints, funded by a specific grant or any other requirement on the metadata or files.
+
 ### Helm charts
 
 To be announced?
