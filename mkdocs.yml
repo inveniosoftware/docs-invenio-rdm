@@ -53,10 +53,10 @@ nav:
   - Use:
       - Overview: "use/index.md"
       - Records:
-          - Metadata & restrictions: "use/records/metadata.md"
-          - Request access: "use/records/request-access.md"
+          - Upload: "use/records/upload.md"
+          - Published record: "use/records/record.md"
           - Export formats: "use/records/export-formats.md"
-          - Publishing information: "use/records/custom-fields.md"
+      - Communities: "use/communities.md"
       - Notifications: "use/notifications.md"
       - Site banners: "use/banners.md"
       - Moderation: "use/moderation.md"
