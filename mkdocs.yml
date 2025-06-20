@@ -58,8 +58,7 @@ nav:
           - Export formats: "use/records/export-formats.md"
       - Communities: "use/communities.md"
       - Notifications: "use/notifications.md"
-      - Site banners: "use/banners.md"
-      - Moderation: "use/moderation.md"
+      - Administration: "use/administration.md"  
 
   - Install:
       - Overview: "install/index.md"
