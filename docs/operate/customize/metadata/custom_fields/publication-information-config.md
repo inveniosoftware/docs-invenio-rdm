@@ -1,4 +1,4 @@
-To add publishing information to your record metadata add the following in your `invenio.cfg` file: 
+To add publishing information to your record metadata, add the following in your `invenio.cfg` file: 
 
 ![Publishing info](./imgs/publishing-info.png)
 ```python
