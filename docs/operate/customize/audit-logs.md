@@ -4,7 +4,7 @@ _Introduced in InvenioRDM v13_
 
 **Audience**: Instance staff / Content managers / Site administrators
 
-InvenioRDM can store audit log events for record related actions performed by the end-users.
+InvenioRDM can store audit log events of actions performed by the end-users.
 
 In v13, InvenioRDM logs the following actions:
 
@@ -18,9 +18,9 @@ You will be able to view all actions performed in your instance and query action
 
 The feature can be enabled by setting the `AUDIT_LOGS_ENABLED` flag to `True`.
 
-## Adminstration panel
+## Administration panel
 
-When the audit logging feature is enabled, you will be able to see when a user created a draft and then published it as a record. Only site-administrators can access the logs via the adminstration panel (`<domain>/administration/audit-logs`).
+When the audit logging feature is enabled, you will be able to see when a user created a draft and then published it as a record. Only site-administrators can access the logs via the administration panel (`<domain>/administration/audit-logs`).
 
 You can also check the changes in the new version of the record via the administration panel.
 
@@ -28,6 +28,6 @@ You will be able to view all actions performed in your instance and query action
 
 ![Administration Panel](./imgs/audit-logs.png)
 
-## Add new actions and work with other InvenioRDM resources
+## Add new actions
 
-It is possible to add new actions via entrypoints, [follow the guide on how to to add new actions](/maintenance/internals/audit-logs#how-to-add-new-actions)
+You can extend the functionalities of audit logs by adding new actions. Follow [this guide](../../maintenance/internals/audit-logs.md#how-to-add-new-actions) to learn how.

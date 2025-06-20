@@ -39,10 +39,10 @@ Additionally, the audit logs feature includes a resource layer that defines REST
 **Key Endpoints:**
 
 - **Search Logs**: _GET_ `/api/audit-logs?q=abcd-1234`
-Allows users to perform a query over audit log entries.
+  Allows users to perform a query over audit log entries.
 
 - **Retrieve Log Entry**: _GET_ `/api/audit-logs/<id>`
-Enables retrieval of a specific audit log entry by its unique identifier.
+  Enables retrieval of a specific audit log entry by its unique identifier.
 
 ## Administration Panel
 
@@ -58,10 +58,10 @@ The administration panel provides an interface for managing audit logs. Via the 
 
 ## How to track more actions
 
-To track more actions on resources in InvenioRDM using audit logs, follow these steps to add new Auditing actions:
+To track more actions on resources in InvenioRDM using audit logs, follow these steps to add new actions:
 
-1. **Define the Action**: Create a new class that inherits from `AuditLogAction`.
-Specify the id (action name), message_template, and optionally, the context and resource_type.
+1. **Define the action**: Create a new class that inherits from `AuditLogAction`.
+   Specify the id (action name), message_template, and optionally, the context and resource_type.
 
 ```python
 from invenio_audit_logs.services import AuditLogAction
