@@ -18,7 +18,7 @@ Once you save your record as a draft for the first time, you gain access to addi
 
 A metadata-only record is a record that contains only descriptive metadata, and no associated files. These types of records can be useful in cases where the resource does not have a corresponding digital object or its files are hosted elsewhere.
 
-The site administrator can choose to enable or disable the creation of metadata-only records. For more on that, see [this section](../operate/customize/metadata/metadata_only.md).
+The site administrator can choose to enable or disable the creation of metadata-only records. For more on that, see [this section](../../operate/customize/metadata/metadata_only.md).
 
 To mark a record as metadata-only, simply select the "Metadata-only record" checkbox when creating a new record:
 
@@ -34,7 +34,7 @@ When creating or editing a record, click the "Restricted" checkbox under "Full r
 
 To **only** make the files restricted, click the "Restricted" checkbox under "Files only" in the "Visibility" section.
 
-For a deeper understanding of the high-level architecture behind records, **refer to the dedicated documentation page** located [here](../maintenance/architecture/records.md).
+For a deeper understanding of the high-level architecture behind records, **refer to the dedicated documentation page** located [here](../../maintenance/architecture/records.md).
 
 ## Add-on metadata fields
 

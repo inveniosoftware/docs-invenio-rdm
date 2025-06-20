@@ -63,4 +63,4 @@ From there, use the "**Submit to community**" link to select additional communit
 
 ![Include record modal](../imgs/records/include-multiple-communities-modal.jpg)
 
-For a deeper understanding of the high-level architecture behind requests, **refer to the dedicated documentation page** located [here](../maintenance/architecture/requests.md).
+For a deeper understanding of the high-level architecture behind requests, **refer to the dedicated documentation page** located [here](../../maintenance/architecture/requests.md).
