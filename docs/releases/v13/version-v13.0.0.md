@@ -174,6 +174,10 @@ server {
 }
 ```
 
+### Data model additions
+
+- Record: copyright field, [specification available here](../../reference/metadata.md), requires reindexing upon the version upgrade
+
 ### Miscellaneous additions
 
 Here is a quick summary of the myriad other improvements in this release:
