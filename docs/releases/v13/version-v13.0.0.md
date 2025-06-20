@@ -209,6 +209,10 @@ server {
 }
 ```
 
+### Data model additions
+
+- Record: copyright field, [specification available here](../../reference/metadata.md), requires reindexing upon the version upgrade
+
 ### Custom schemes for persistent identifiers
 
 The Invenio [idutils](https://github.com/inveniosoftware/idutils) module handles validation and normalization of persistent identifiers used in scholarly communication, and existing customizations may be affected by changes in v13.
