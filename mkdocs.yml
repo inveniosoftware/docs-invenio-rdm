@@ -111,6 +111,7 @@ nav:
           - Overview: "operate/customize/configuration.md"
           - Audit logs: "operate/customize/audit-logs.md"
           - Authentication: "operate/customize/authentication.md"
+          - Curation checks: "operate/customize/curation-checks.md"
           - DOI registration: "operate/customize/dois.md"
           - DNB URNs registration: "operate/customize/urns.md"
           - Emails:
@@ -173,6 +174,7 @@ nav:
           - Records: maintenance/architecture/records.md
           - Communities: maintenance/architecture/communities.md
           - Requests: maintenance/architecture/requests.md
+          - Curation: maintenance/architecture/curation.md
           - Event handling: maintenance/architecture/event_handling.md
           - Notifications: maintenance/architecture/notifications.md
           - Recommended reading: maintenance/architecture/reading.md
