@@ -262,6 +262,7 @@ nav:
           - Invenio-cli commands: reference/cli.md
           - Invenio commands: reference/cli_invenio.md
       - Metadata: reference/metadata.md
+      - Checks config schema: reference/checks_config.md
       - OAI-PMH: reference/oai_pmh.md
       - REST API:
           - Overview: "reference/rest_api_index.md"
