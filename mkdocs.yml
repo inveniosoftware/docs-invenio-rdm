@@ -250,21 +250,6 @@ nav:
       - REST API:
           - Overview: "reference/rest_api_index.md"
           - Quickstart: "reference/rest_api_quickstart.md"
-          - Awards: "reference/rest_api_awards.md"
-          - Communities: "reference/rest_api_communities.md"
-          - Drafts and Records: "reference/rest_api_drafts_records.md"
-          - File storage: "reference/file_storage.md"
-          - Funders: "reference/rest_api_funders.md"
-          - Groups: "reference/rest_api_groups.md"
-          - Members: "reference/rest_api_members.md"
-          - Names: "reference/rest_api_names.md"
-          - OAI-PMH Sets: "reference/rest_api_oaipmh_sets.md"
-          - Requests: "reference/rest_api_requests.md"
-          - Reviews: "reference/rest_api_reviews.md"
-          - Statistics: "reference/rest_api_statistics.md"
-          - Suggest: "reference/rest_api_suggest.md"
-          - Users: "reference/rest_api_users.md"
-          - Vocabularies: "reference/rest_api_vocabularies.md"
       - Virtual environments: "reference/virtualenvs.md"
 
 # Customization
