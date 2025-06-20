@@ -132,92 +132,33 @@ Having subcommunities also enables the **Browse** page, which lists all the subc
 
 #### Collections
 
-Collections are a "big" feature added to v13.
+Collections introduce a powerful new way to organize and curate records within your InvenioRDM instance. This major feature enables administrators to create dynamic, query-based groupings of records that automatically stay current as new content is added.
 
-!!! warning
+![Collection page displaying filtered Mathematics records under a nested subject hierarchy](imgs/collection-page.png)
+/// caption
+Collections provide dedicated pages showing all records matching specific criteria.
+///
 
-    Collections require new database tables, therefore its migration recipes must be executed (`invenio db upgrade` or similar).
+**Hierarchical organization**
 
-A collection serves as a curated set of records that are grouped based on a specific filter or query, displayed on a dedicated page, introducing a new way of organizing records within a community. For instance, a collection can be defined within a community to highlight records sharing common attributes, like funding programs or specific categories.
+Collections allow you to define hierarchical groupings of records, enabling users to browse content by subject, resource type, funding program, or any other metadata field.
 
-Collections are stored in the Database and each collection defines a search query string that is used to fetch each collection records. Find more information in the [RFC](https://github.com/inveniosoftware/rfcs/blob/master/rfcs/rdm-0079-collections.md).
+![Community "Browse" tab showing hierachical collections based on subjects](imgs/collection-browse.png)
+/// caption
+The collection browser provides an organized view of all available collections within a community.
+///
 
-**How to create a collection for a community**
+**Common use cases**
 
-Currently collections are created using a python shell (`invenio shell`)
+- Group content by research disciplines using hierarchical vocabulary
+- Organize historical records by publication date
+- Organize records by funding programs (Horizon 2020, NSF, institutional grants)
+- Create resource type collections (datasets, publications, software)
+- Highlight featured content or special collections
 
-Requirements:
+Collections integrate seamlessly with existing community features and are accessed through intuitive URLs. The feature is currently managed through Python shell commands, with an administrator user interface planned for future releases.
 
-- A community.
-- A collection tree that acts as the "root" node of the collection.
-
-If you do not have a collection tree, start by creating one:
-
-```python
-from invenio_collections.api import CollectionTree
-
-ctree = CollectionTree.create(
-    title="Programs", order=10, community_id="<community_uuid>", slug="programs"
-)
-```
-
-The `order` parameter controls the order that trees are rendered in the UI.
-
-Create a collection under `programs`:
-
-```python
-from invenio_collections.proxies import current_collections
-from invenio_access.permissions import system_identity
-
-collections_service = current_collections.service
-
-# Use another identity if needed
-identity = system_identity
-
-# Desired community ID
-community_id = "9d0d45ce-0ea9-424a-ab17-a72215b2e8c3"
-
-collection = collections_service.create(
-        identity,
-        community_id,
-        tree_slug="programs",
-        slug="h2020",
-        title="Horizon 2020",
-        query="metadata.funding.program:h2020",
-        order=10
-    )
-```
-
-For nested collections, the `add` service method can be used:
-
-```python
-
-h2020 = collections_service.read(
-    identity, community_id=community_id, tree_slug='programs', slug='h2020'
-)
-
-open_records = collections_service.add(
-        identity,
-        collection=h2020._collection,
-        slug="h-open-records",
-        title="Horizon 2020 (Open records)",
-        query="access.record:public",
-        order=20
-    )
-```
-
-All the service methods that create collections also implements the Unit of Work pattern, so it can used if transactional consistency is needed.
-
-The created collections can be accessed at:
-
-- https://127.0.0.1:5000/communities/<community_slug>/collections/h2020
-- https://127.0.0.1:5000/communities/<community_slug>/collections/h-open-records
-
-Adjust the URL and `community_slug` as needed.
-
-An overview of all the collections can be found in the community browse page (if enabled):
-
-- https://127.0.0.1:5000/communities/<community_slug>/browse
+Read more about the [Collections feature](../../operate/customize/collections.md).
 
 ### Curation
 

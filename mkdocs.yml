@@ -116,6 +116,7 @@ nav:
           - Audit logs: "operate/customize/audit-logs.md"
           - Authentication: "operate/customize/authentication.md"
           - Curation checks: "operate/customize/curation-checks.md"
+          - Collections: "operate/customize/collections.md"
           - DOI registration: "operate/customize/dois.md"
           - DNB URN registration: "operate/customize/dnb_urns.md"
           - Emails:
