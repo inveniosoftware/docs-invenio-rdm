@@ -63,7 +63,7 @@ Ensure your deployment includes this scheduler beat logic if you intend to use t
 
 ### Job and Run Data Examples
 
-Below are realistic examples of how Jobs and Runs are stored in the system.
+Examples of how Jobs and Runs are stored in the system:
 
 #### Job (Database Record)
 
