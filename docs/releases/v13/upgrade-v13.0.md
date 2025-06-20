@@ -187,6 +187,8 @@ TODO if not destroying and rebuiliding for names we need to update the mappings:
 invenio index update names-name-v2.0.0 --no-check
 ```
 
+TODO: this is also required to create the mapping for the new `copyright` field.
+
 ```bash
 invenio index destroy --yes-i-know
 invenio index init
