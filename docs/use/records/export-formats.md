@@ -1,4 +1,4 @@
-## Export records in different formats
+# Export records in different formats
 
 _Introduced in v12.0.0_
 
@@ -75,6 +75,7 @@ The DCAT-AP data model is based on the Dublin Core metadata elements and include
 Here is a link to the DCAT-AP data model (format) documentation: https://joinup.ec.europa.eu/collection/semantic-interoperability-community-semic/solution/dcat-application-profile-data-portals-europe.
 
 To export a record to DCAT-AP format, use the`application/dcat+xml` MIME type:
+
 ```shell
 GET /api/records/ HTTP/1.1
 Host: inveniordm.web.cern.ch

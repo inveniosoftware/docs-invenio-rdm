@@ -183,6 +183,10 @@ Here is a quick summary of the myriad other improvements in this release:
   Change the config ADMINISTRATION_DISPLAY_VERSIONS = [("invenio-app-rdm", f"v{__version__}")] and append to the list the version you want to display.
 - The users API endpoint is now protected, in order to access the list of users it's required to be logged in.
 - Custom awards: relaxed required fields (see [PR](https://github.com/inveniosoftware/invenio-vocabularies/pull/429))
+- The configuration flags that control the visibility of menu items in the administration panel have been removed, and they are now visible by default. You can remove such flags from your configuration file (if existing) or leave them there, they will have no effect. Removed flags:
+  - `COMMUNITIES_ADMINISTRATION_DISABLED`
+  - `USERS_RESOURCES_ADMINISTRATION_ENABLED`
+  - `JOBS_ADMINISTRATION_ENABLED`
 - ...and many more bug fixes!
 
 ## Breaking changes
