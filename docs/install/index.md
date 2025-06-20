@@ -55,17 +55,9 @@ Irrespective of *preview* or *development* installation, you will need this comm
 
 You can check if the proper requirements are installed via `invenio-cli`:
 
-=== "Local development"
-
-    ```shell
-    invenio-cli check-requirements --development
-    ```
-
-=== "Containerized preview"
-
-    ```shell
-    invenio-cli check-requirements
-    ```
+```shell
+invenio-cli check-requirements
+```
 
 !!! info "Information on requirements"
 
@@ -94,6 +86,23 @@ Scaffold your InvenioRDM instance. This is the same operation for *local develop
     ```
 
 You will be asked several questions and given default options. If in doubt, accept the default.
+
+Once the initialization is complete, navigate into your new instance directory:
+
+```shell
+cd my-site/
+```
+
+!!! tip
+    Replace `my-site/` with the directory name you chose during `invenio-cli init`.
+
+
+If you're preparing for local development, you can now check all development requirements:
+
+```shell
+invenio-cli check-requirements --development
+```
+> See the [system requirements](requirements.md) section if you haven’t already.
 
 
 ### [4. Build, setup and run](build-setup-run.md)
