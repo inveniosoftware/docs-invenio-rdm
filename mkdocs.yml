@@ -18,8 +18,6 @@ theme:
       scheme: default
       primary: custom
       accent: custom
-      extra_css:
-        - stylesheets/extra.css
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
@@ -54,10 +52,13 @@ nav:
 
   - Use:
       - Overview: "use/index.md"
-      - Records: "use/records.md"
+      - Records:
+          - Upload: "use/records/upload.md"
+          - Published record: "use/records/record.md"
+          - Export formats: "use/records/export-formats.md"
+      - Communities: "use/communities.md"
       - Notifications: "use/notifications.md"
-      - Site banners: "use/banners.md"
-      - Moderation: "use/moderation.md"
+      - Administration: "use/administration.md"
 
   - Install:
       - Overview: "install/index.md"
@@ -96,6 +97,8 @@ nav:
               - Create new type of field: operate/customize/metadata/custom_fields/custom_fields.md
               - Add field(s) to communities: "operate/customize/metadata/custom_fields/communities.md"
               - UI widgets: "operate/customize/metadata/custom_fields/widgets.md"
+              - Publishing information: "operate/customize/metadata/custom_fields/publication-information-config.md"
+          - Custom PIDs schemes: "operate/customize/metadata/custom_pids_schemes.md"
       - Customize vocabularies:
           - Overview: "operate/customize/vocabularies/index.md"
           - Resource types: "operate/customize/vocabularies/resource_types.md"
@@ -106,6 +109,7 @@ nav:
       - Manage users and roles: "operate/customize/users.md"
       - Configure everything:
           - Overview: "operate/customize/configuration.md"
+          - Audit logs: "operate/customize/audit-logs.md"
           - Authentication: "operate/customize/authentication.md"
           - DOI registration: "operate/customize/dois.md"
           - DNB URNs registration: "operate/customize/urns.md"
@@ -118,6 +122,8 @@ nav:
           - Notifications:
               - Overview: "operate/customize/notifications.md"
               - Modify notifications: operate/customize/notifications_modify.md
+          - Require a community to publish: "operate/customize/require_community.md"
+          - Restrict community creation: "operate/customize/restrict_community_creation.md"
           - Restrict access to pages: operate/customize/restrict_access.md
           - Search:
               - Change facets/sorting: "operate/customize/search.md"
@@ -185,6 +191,7 @@ nav:
           - Administration panel: maintenance/internals/administration_panel.md
           - Administration views: maintenance/internals/administration_reference.md
           - Notifications: maintenance/internals/notifications.md
+          - Audit logs: maintenance/internals/audit-logs.md
       - Operational tasks:
           - Release management: maintenance/operations/release-management.md
           - Branch management: maintenance/operations/branch-management.md
@@ -244,7 +251,9 @@ nav:
 
   - Reference:
       - Overview: reference/index.md
-      - CLI: reference/cli.md
+      - CLI:
+        - Invenio-cli commands: reference/cli.md
+        - Invenio commands: reference/cli_invenio.md
       - Metadata: reference/metadata.md
       - OAI-PMH: reference/oai_pmh.md
       - REST API:

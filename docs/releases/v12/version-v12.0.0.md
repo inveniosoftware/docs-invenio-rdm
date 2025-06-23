@@ -24,7 +24,7 @@ Usage statistics are displayed in the record landing page and record search:
 
 ![Statistics on the record landing page](imgs/stats-landing-page.png)
 
-The landing page shows the *unique views/downloads* (it deduplicates events coming from the same source) by default.
+The landing page shows the _unique views/downloads_ (it deduplicates events coming from the same source) by default.
 And only visits to the landing page count towards the record views.
 
 For more details about usage statistics, consult the [explainer page](../../maintenance/internals/statistics.md)
@@ -43,7 +43,7 @@ You can include a record to multiple communities only **after** having published
 
 ![Share button](../../use/imgs/records/access_request_share_button.png)
 
-[Giving and requesting access](../../use/records.md#request-access-to-restricted-files-of-a-record) to records have seen a complete overhaul in this release. Record owners or curators can share them directly with other users or with groups, as well as control whether, who and how access can be demanded.
+[Giving and requesting access](../../use/records/record.md#request-access-to-restricted-files) to records have seen a complete overhaul in this release. Record owners or curators can share them directly with other users or with groups, as well as control whether, who and how access can be demanded.
 
 ![Share modal](../../use/imgs/records/access_requests_tab.png)
 
@@ -59,7 +59,7 @@ This provides flexible, yet reliable access control to the records of an instanc
 
 ![The moderation actions](imgs/user_moderation.png)
 
-The administration panel now includes a "User management" section to deactivate, block and delete users, as well as undo all those actions. You can read more about [moderation here](../../use/moderation.md#moderation-of-users-and-records).
+The administration panel now includes a "User management" section to deactivate, block and delete users, as well as undo all those actions. You can read more about [moderation here](../../use/administration.md#moderation-of-users-and-records).
 
 ### DOIs for concept records and no DOIs for restricted records
 
@@ -67,7 +67,7 @@ The administration panel now includes a "User management" section to deactivate,
 
 InvenioRDM now mints a concept DOI for every record by default, similar to what Zenodo has done for many years. This [can be configured](../../operate/customize/dois.md#parent-or-concept-dois).
 
-Along with this update, restricted records will now stop minting a DOI upon publication thus keeping *private* records **truly private**.
+Along with this update, restricted records will now stop minting a DOI upon publication thus keeping _private_ records **truly private**.
 And if the visibility of a record becomes restricted after being public, a tombstone will be shown:
 
 ![Tombstone for public record turned restricted](imgs/tombstone_for_privatized.png)
@@ -113,13 +113,13 @@ Here is a quick summary of the myriad other improvements in this release:
 
 - Enable/disable metadata-only records at the instance-level via the `RDM_ALLOW_METADATA_ONLY_RECORDS` configuration variable
 - Enable/disable restricted records at the instance-level via the `RDM_ALLOW_RESTRICTED_RECORDS` configuration variable
-- [New export formats](../../use/records.md#export-records-in-different-formats) such as DACT-AP and GeoJSON
+- [New export formats](../../use/records/export-formats.md) such as DACT-AP and GeoJSON
 - [Signposting](https://zenodo.org/doi/10.5281/zenodo.12554415) has been integrated in a record's API responses and using the `Accept: application/linkset+json` header for a `/api/records/<record_id>` call returns the Linkset.
 - [Optional metadata fields](../../operate/customize/metadata/optional_metadata.md) that are easy to enable
 - Improvements to the `invenio rdm rebuild-all-indices` command
 - Mathematical formulas in a deposit can be rendered on the landing page via
-    - `THEME_MATHJAX_CDN = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"` and
-    - adding `cdnjs.cloudflare.com` to  `APP_DEFAULT_SECURE_HEADERS` (updating content security policy headers)
+  - `THEME_MATHJAX_CDN = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"` and
+  - adding `cdnjs.cloudflare.com` to `APP_DEFAULT_SECURE_HEADERS` (updating content security policy headers)
 - Possibility to [add an entry to a controlled vocabulary](../../operate/customize/vocabularies/index.md#addupdate-fixtures-command) via the CLI: `invenio rdm-records add-to-fixture`
 - Addition of a proper handler for API permission errors that returns 403 when permission is denied
 - Datastreams can sync funders and affiliations. ROR and OpenAIRE are supported.
@@ -136,14 +136,14 @@ Here is a quick summary of the myriad other improvements in this release:
 
 - See the [Requirements section](#requirements) below for what underlying requirements are now necessary
 - The [react-invenio-deposit module](https://github.com/inveniosoftware/react-invenio-deposit) has been moved to [invenio-rdm-records](https://github.com/inveniosoftware/invenio-rdm-records)
-    - Any imports should be replaced: `import { ... } from "react-invenio-deposit"` -> `import { ... } from "@js/invenio_rdm_records"`
+  - Any imports should be replaced: `import { ... } from "react-invenio-deposit"` -> `import { ... } from "@js/invenio_rdm_records"`
 - Some `Overridable` React component ids may have changed. Verify that your overridden components load
 - The `/access/users` API URL has been renamed to `/access/grants` to manage access grants
 - Persistent identifiers have a new required `is_enabled` parameter, which enables better customization
 - `MarshmallowJSONSerializer`, `XMLSerializer`, `SerializerMixin` have been removed from flask-resources
 - Although not immediately breaking, the [`subject_nested` facet](https://github.com/inveniosoftware/invenio-rdm-records/blob/master/invenio_rdm_records/services/facets.py#L87) is deprecated in favor of [`subject_combined`](https://github.com/inveniosoftware/invenio-rdm-records/blob/master/invenio_rdm_records/services/facets.py#L103) to provide proper nested subject aggregation
 - The Python module `flask_babelex` has been replaced by `invenio_i18n`
-    - Any imports should be replaced: `from flask_babelex import lazy_gettext as _` -> `from invenio_i18n import lazy_gettext as _`
+  - Any imports should be replaced: `from flask_babelex import lazy_gettext as _` -> `from invenio_i18n import lazy_gettext as _`
 - The cardinality of the Drafts and Records Metadata/REST API field `parent.access.owned_by` changed from `(1-n)` (an array of objects) to `(1)` (a single object).
 
 ## Limitations and known issues

@@ -533,7 +533,17 @@ Example:
     "title": {"en": "Creative Commons Attribution 4.0 International"},
     "description": {"en": "The Creative Commons Attribution license allows re-distribution and re-use of a licensed work on the condition that the creator is appropriately credited."},
     "link": "https://creativecommons.org/licenses/by/4.0/"
-  }],
+  }]
+}
+```
+
+### Copyright (0-1)
+
+The copyright field allows authors or depositors to specify a copyright statement for the record. This field is free-text and typically includes the copyright symbol (©), year, and rights holder (e.g., “© 2025 The Authors”). It is intended to provide a human-readable declaration of ownership for the uploaded resource and complements the structured license information. This field is optional and can be used in addition to or independently from the license metadata. It is displayed to users to increase clarity about intellectual property ownership.
+
+```json
+{
+  "copyright": "© 2025 The Authors"
 }
 ```
 

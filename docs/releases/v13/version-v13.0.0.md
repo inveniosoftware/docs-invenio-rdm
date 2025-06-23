@@ -43,7 +43,42 @@ DOIs can now be configured as optional. Describe the feature.
 
 ### Compare revisions
 
-Administrators can compare revisions from the administration panel.
+The **Compare Revisions** feature allows administrators to view differences between versions of a record from the administration panel.
+
+From the **Records** list, click the **“Compare revisions…”** button in the _Actions_ column to open a side-by-side comparison window.
+
+![Records List – Compare Revisions](./imgs/records.png)
+
+#### How it works
+
+A modal window appears, allowing you to choose two versions to compare:
+
+![Compare Modal – Version Selection](./imgs/records-compare-select.png)
+
+Use the dropdown menus to select:
+
+- **From**: the earlier version
+- **To**: the later version
+
+Click **Compare** to see the changes.
+
+---
+
+The system then displays a **side-by-side diff view** showing changes in JSON format:
+
+![Compare Modal – Diff View](./imgs/records-compare.png)
+
+#### What you can do
+
+- Compare any two versions of a record
+- View changes in metadata fields
+- See added, removed, or changed values highlighted
+- Use the links to expand unchanged lines before/after the highlighted differences
+
+This is useful for:
+
+- Reviewing metadata edits before approving changes
+- Auditing updates across versions
 
 ### Thesis
 
@@ -174,6 +209,21 @@ server {
 }
 ```
 
+### Data model additions
+
+- Record: copyright field, [specification available here](../../reference/metadata.md), requires reindexing upon the version upgrade
+
+### Custom schemes for persistent identifiers
+
+The Invenio [idutils](https://github.com/inveniosoftware/idutils) module handles validation and normalization of persistent identifiers used in scholarly communication, and existing customizations may be affected by changes in v13.
+The library has been restructured to use a configurable scheme system with a new entrypoint mechanism for registering custom identifier schemes.
+
+See the [related documentation](../../operate/customize/metadata/custom_pids_schemes.md) how to add your own custom schemes.
+
+### Data model additions
+
+- Record: new `copyright` field, see its specifications [here](../../reference/metadata.md).
+
 ### Miscellaneous additions
 
 Here is a quick summary of the myriad other improvements in this release:
@@ -183,11 +233,17 @@ Here is a quick summary of the myriad other improvements in this release:
   Change the config ADMINISTRATION_DISPLAY_VERSIONS = [("invenio-app-rdm", f"v{__version__}")] and append to the list the version you want to display.
 - The users API endpoint is now protected, in order to access the list of users it's required to be logged in.
 - Custom awards: relaxed required fields (see [PR](https://github.com/inveniosoftware/invenio-vocabularies/pull/429))
+- The configuration flags that control the visibility of menu items in the administration panel have been removed, and they are now visible by default. You can remove such flags from your configuration file (if existing) or leave them there, they will have no effect. Removed flags:
+  - `COMMUNITIES_ADMINISTRATION_DISABLED`
+  - `USERS_RESOURCES_ADMINISTRATION_ENABLED`
+  - `JOBS_ADMINISTRATION_ENABLED`
+- Following the [latest COUNTER spec](https://www.countermetrics.org/code-of-practice/), the [list of robots and machines](https://github.com/inveniosoftware/counter-robots) have been updated to ensure the stats are counted on human usage.
 - ...and many more bug fixes!
+- Logging: The Flask root logger level has been set to `DEBUG`, enabling all log messages to pass through by default. Handlers are now responsible for filtering messages at the desired level, offering more flexibility for development and production environments.
 
 ## Breaking changes
 
-- fill me in
+- Direct imports of identifier schemes (e.g., from idutils.isbn import normalize_isbn) are now deprecated and will be removed in future versions. If you have custom code that directly imports scheme modules, you'll need to update it to use the new API.
 
 ## Limitations and known issues
 

@@ -75,7 +75,7 @@ A new file ``Pipfile.lock`` has now been created with the locked dependencies.
 
 Next, follow the *local development* option or *containerized preview* option according to your preferred installation method.
 
-## Local development option
+## Option 1: Local development
 
 The local install is good for developers or if you like to customize InvenioRDM as it avoids the waiting time for building a new Docker image. For instance, changing the layout will be much faster with a local install.
 
@@ -165,7 +165,7 @@ Go and explore your InvenioRDM instance at [https://127.0.0.1:5000](https://127.
 !!! warning "Visit 127.0.0.1, not localhost"
     Due to Content Security Policy (CSP) headers it is important that you use ``127.0.0.1``, and not ``localhost``.
 
-## Containerized preview option
+## Option 2: Containerized preview
 
 The container install is good for a quick preview, or if you don't want all dependencies locally. It is not good for development or for customizing your instance, as it requires you to rebuild the Docker image for every change which can be time consuming.
 
