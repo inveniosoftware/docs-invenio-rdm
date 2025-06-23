@@ -15,14 +15,16 @@ The steps listed in this article require an existing local installation of Inven
     In case you have an InvenioRDM installation older than v12, you can gradually upgrade
     to v12 and afterwards continue from here.
 
+!!! read through the whole upgrade steps before upgrading
+
 ## Upgrade Steps
 
 Make sure you have the latest `invenio-cli` installed. For InvenioRDM v13, it
-should be v1.5.0+
+should be v1.7.0+
 
 ```bash
 $ invenio-cli --version
-invenio-cli, version 1.5.0
+invenio-cli, version 1.7.0
 ```
 
 !!! info "Virtual environments"
@@ -50,17 +52,20 @@ running `invenio-cli` or `pipenv` commands below.
 
 Python 3.9 or 3.11 or 3.12 is required to run InvenioRDM v12.
 
+Note: endoflife of python3.9 will be 31. October 2025. There will be no
+python3.9 related updates done after that date.
+
 There are two options to upgrade your system:
 
 #### Upgrade option 1: In-place
 
 This approach upgrades the dependencies in place. Your virtual environment for the
-v11 version will be gone afterwards.
+v12 version will be gone afterwards.
 
 ```bash
 cd <my-site>
 
-# Upgrade to InvenioRDM v12
+# Upgrade to InvenioRDM v13
 invenio-cli packages update 13.0.0
 
 # Re-build assets
@@ -69,7 +74,7 @@ invenio-cli assets build
 
 #### Upgrade option 2: New virtual environment
 
-This approach will create a new virtual environment and leaves the v11 one as-is.
+This approach will create a new virtual environment and leaves the v12 one as-is.
 If you are using a docker image on your production instance this will be the
 option you choose.
 
@@ -124,6 +129,11 @@ invenio alembic upgrade
 
 Execute the data migration:
 
+```bash
+invenio shell $(find $(pipenv --venv)/lib/*/site-packages/invenio_app_rdm -name migrate_12_0_to_13_0.py)
+```
+
+
 ### Configuration change for `nginx`
 
 The new PDF file previewer is based on `pdfjs-dist` v4, which uses ECMAScript modules (`.mjs`) over CommonJS files (`.js`).
@@ -143,7 +153,25 @@ types {
 }
 ```
 
-### TODO
+### if you plan to use `APP_RDM_DEPOSIT_NG_FILES_UI_ENABLED`
+
+you have to add following
+
+```
+        "script-src": [
+            "'self'", "blob:", "'wasm-unsafe-eval'"  # for WASM-based workers, e.g. hash-wasm
+        ],
+```
+
+in the `invenio.cfg` file to the
+
+```
+APP_DEFAULT_SECURE_HEADERS = {
+    "content_security_policy": {}
+}
+```
+
+configuration.
 
 ### New Index Template for Job Logs
 
@@ -181,21 +209,11 @@ curl -X PUT "http://localhost:9200/_index_template/job-logs-v1.0.0" -H "Content-
 
 ### Rebuild search indices
 
-TODO if not destroying and rebuiliding for names we need to update the mappings:
-
-```bash
-invenio index update names-name-v2.0.0 --no-check
-```
-
-TODO: this is also required to create the mapping for the new `copyright` field.
+#### full rebuild
 
 ```bash
 invenio index destroy --yes-i-know
 invenio index init
-# if you have records custom fields
-invenio rdm-records custom-fields init
-# if you have communities custom fields
-invenio communities custom-fields init
 invenio rdm rebuild-all-indices
 ```
 
@@ -204,6 +222,17 @@ database. These indices are created through some _index templates_ machinery
 rather than having indices registered directly in `Invenio-Search`. As such, the
 search indices for statistics are not affected by `invenio index destroy
 --yes-i-know` and are totally functional after the rebuild step.
+
+#### possible live update
+
+CHECK if that works
+```bash
+invenio index update names-name-v2.0.0 --no-check
+```
+
+TODO: this is also required to create the mapping for the new `copyright` field.
+
+
 
 ### Updated vocabularies
 
@@ -230,8 +259,8 @@ server {
 ```
 
 ### New roles
+nothing yet
 
-### TODO
 
 ### New configuration variables
 
@@ -243,20 +272,26 @@ ADMINISTRATION_DISPLAY_VERSIONS = [
 ]
 ```
 
+### Changed configuration variables
+
+- change from `APP_ALLOWED_HOSTS` to `TRUSTED_HOSTS` due flask >= 3
+
+
 ## Big Changes
 
 - feature: invenio jobs module, periodic tasks administration panel
 - feature: invenio vocabularies entries deprecation
 - improvement: search mappings and analyzers to improve performance
 - OpenSearch min version now required v2.12 due to breaking changes in `geo-shape` fields, see issue [here](https://github.com/inveniosoftware/invenio-rdm-records/issues/1807) and related OpenSearch issue and comment [here](https://github.com/opensearch-project/OpenSearch/issues/10958#issuecomment-2037882756).
-- change from `APP_ALLOWED_HOSTS` to `TRUSTED_HOSTS` due flask >= 3
 - dashboard: `shared_with_me` drafts and requests. See [issue[(https://github.com/inveniosoftware/docs-invenio-rdm/blob/master/docs/releases/v13/upgrade-v13.0.md)
 - custom fields: thesis subfields renamed (TODO: migration recipe)
 - custom fields: meeting url changed to identifiers subfield (TODO: migration recipe)
-
-### TODO
+- experimental: using uv (instead of pipenv), rspack (instead of webpack) and pnpm (instead of npm)
 
 Document this error, or actually add it to the upgrade recipe
+
+
+## OPEN PROBLEMS
 
 ```
 opensearchpy.exceptions.AuthorizationException: AuthorizationException(403, 'security_exception', 'no permissions for [cluster:admin/component_template/put] and User [name=inveniordm-qa, backend_roles=[], requestedTenant=null]')
@@ -270,6 +305,6 @@ Go to OpenSearch Dashboards -> Security -> Roles -> <instance name>, edit role a
 - `cluster:admin/component_template/put`
 - `indices:admin/index_template/put`
 
-## OPEN PROBLEMS
 
-### TODO
+## OPEN PROBLEMS
+nothing yet
