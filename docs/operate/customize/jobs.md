@@ -31,6 +31,17 @@ def update_expired_embargoes(since=None, **kwargs):
     reindex_records(records)
 ```
 
+
+### Error Handling and Logging
+
+- Use `current_app.logger` for logs visible in the UI.
+- Raise `TaskExecutionPartialError` to mark a job as partially successful.
+
+```python
+from invenio_jobs.errors import TaskExecutionPartialError
+raise TaskExecutionPartialError("Processed 80%, 10 records failed.")
+```
+
 ---
 
 ## 2. Create a Job Class
@@ -109,18 +120,6 @@ Once your instance is restarted:
     - Choose the queue (a default queue should exist if jobs are enabled).
 - After saving, you can trigger the job immediately or schedule it.
 - You can also inspect previous runs and access detailed logs.
-
----
-
-## Error Handling and Logging
-
-- Use `current_app.logger` for structured logs visible in the UI.
-- Raise `TaskExecutionError` to mark a job as partially successful.
-
-```python
-from invenio_jobs.errors import TaskExecutionError
-raise TaskExecutionError("Processed 80%, 10 records failed.")
-```
 
 ---
 
