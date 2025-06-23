@@ -99,6 +99,7 @@ nav:
               - Add field(s) to communities: "operate/customize/metadata/custom_fields/communities.md"
               - UI widgets: "operate/customize/metadata/custom_fields/widgets.md"
               - Publishing information: "operate/customize/metadata/custom_fields/publication-information-config.md"
+          - Custom PIDs schemes: "operate/customize/metadata/custom_pids_schemes.md"
       - Customize vocabularies:
           - Overview: "operate/customize/vocabularies/index.md"
           - Resource types: "operate/customize/vocabularies/resource_types.md"

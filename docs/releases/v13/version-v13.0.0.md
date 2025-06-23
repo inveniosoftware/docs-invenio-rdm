@@ -209,38 +209,12 @@ server {
 }
 ```
 
-### Custom schemes to register and validate persistent identifiers
+### Custom schemes for persistent identifiers
 
-The IDUtils library handles validation and normalization of persistent identifiers used in scholarly communication, and existing customizations may be affected by changes in v13. 
+The Invenio [idutils](https://github.com/inveniosoftware/idutils) module handles validation and normalization of persistent identifiers used in scholarly communication, and existing customizations may be affected by changes in v13.
+The library has been restructured to use a configurable scheme system with a new entrypoint mechanism for registering custom identifier schemes.
 
-The library has been restructured to use a configurable scheme system with a new entrypoint mechanism for registering custom identifier schemes. 
-
-In order to define your own custom schemes you can use the following entrypoint to register them:
-
-\`\`\`python
-    [options.entry_points]
-    idutils.custom_schemes =
-        my_new_scheme = my_module.get_scheme_config_func
-\`\`\`
-
-Have a look at the [existing scheme functions](https://github.com/inveniosoftware/idutils/tree/master/idutils) for reference.
-The entry point ``'my_new_scheme = my_module.get_scheme_config_func'`` defines an entry point named ``my_new_scheme`` pointing to the function ``my_module.get_scheme_config_func`` which returns the config for your new registered scheme.
-
-That function must return a dictionary with the following format:
-
-```python
-    def get_scheme_config_func():
-        return {
-            "validator": lambda value: True else False,
-            "normalizer": lambda value: normalized_value,
-            "filter": ["list_of_schemes_to_filter_out"],
-            "url_generator": lambda scheme, normalized_pid: "normalized_url",
-        }
-```
-
-Each key is optional and if not provided a default value is used (defined in the `idutils.ext._set_default_custom_scheme_config()` function).
-
-!!! info "You can only add new schemes but not override existing ones."
+See the [related documentation](../../operate/customize/metadata/custom_pids_schemes.md) how to add your own custom schemes.
 
 ### Miscellaneous additions
 
