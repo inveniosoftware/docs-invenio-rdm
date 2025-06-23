@@ -4,7 +4,7 @@ This page provides a usage overview of the InvenioRDM administration panel.
 
 **Audience**: Instance staff / Content Managers / Administrators
 
-The administration panel is a feature in InvenioRDM introduced in v10 that provides a graphical user interface for managing users and records. It is designed to be used by administrators and superusers to moderate the content of the repository.
+The administration panel is a feature in InvenioRDM introduced in v10 that provides a graphical user interface for managing your instance. It is designed to be used by administrators and superusers of the repository.
 For more technical details you can read the [developer guide to the InvenioRDM administration panel](../maintenance/internals/administration_panel.md), detailing its programmatic interface and usage.
 
 **As an administrator** you can access the administration panel at `/administration`. This is also available through the user menu in the top right corner of your instance:
@@ -13,7 +13,7 @@ For more technical details you can read the [developer guide to the InvenioRDM a
 
 ## Communities
 
-The **Communities** section in the administration panel lets you see and manage the communities you have access to.
+The **Communities** section in the administration panel lets you see and manage communities.
 
 ![Communities Admin UI](./imgs/administration/communities.png)
 
@@ -25,10 +25,10 @@ You can:
 - **Sort** by newest or oldest.
 - **Take actions** like deleting or featuring a community.
 
-!!! tip
-    For more details on communities, see [Communities](../../maintenance/architecture/communities).
-    
-    For API usage, see [Communities REST API](/../../reference/rest_api_communities).
+!!! info
+
+    For more details on communities, see [Communities](../maintenance/architecture/communities.md).
+    For API usage, see [Communities REST API](../reference/rest_api_communities.md).
 
 ## Logs
 
@@ -36,8 +36,7 @@ You can:
 
 _Introduced in InvenioRDM v13_
 
-
-The **Audit Logs** page provides actions taken in the system. As an administrator you can track user activity and understand recent changes across the repository.
+The **Audit Logs** page provides actions taken in the system. As an administrator, you can keep track of recent changes across the repository.
 
 ![Audit Logs](./imgs/administration/logs.png)
 
@@ -52,8 +51,9 @@ You can filter by:
 - Resource type (e.g. records)
 - Action type (e.g. draft.edit, record.publish)
 
-!!! tip
-    If you want to configure or extend audit logging, see [Audit Logs](../../operate/customize/audit-logs).
+!!! info
+
+    If you want to configure or extend audit logging, see [Audit Logs](../operate/customize/audit-logs).
 
 ## Records & files
 
@@ -67,11 +67,12 @@ You can:
 
 - Review draft records and their details
 - Filter by access status, publication status, resource type, or file type
-- Activate, deactivate, or block a draft
 - Set quotas for each draft
+- Activate, Deactivate or Block the user owning the record
 
 !!! info
-    For API usage, see [Drafts](../../reference/rest_api_drafts_records/#drafts).
+
+    For API usage, see [Drafts](../reference/rest_api_drafts_records.md#drafts).
 
 ### Records
 
@@ -83,15 +84,16 @@ You can:
 
 - View records that are published, deleted, or scheduled for purge
 - Filter records by access status, file type, or resource type
-- Delete, activate, or configure individual records
-- Compare different versions of a record
-    
-    _Introduced in InvenioRDM v13_
-    
-    ![Compare revisions](./imgs/administration/records-compare.png)
+- Delete records and compare different versions
+- Activate, Deactivate or Block the user owning the record
+
+  _Introduced in InvenioRDM v13_
+
+  ![Compare revisions](./imgs/administration/records-compare.png)
 
 !!! info
-    For API usage, see [Records](../../reference/rest_api_drafts_records/#records).
+
+    For API usage, see [Records](../reference/rest_api_drafts_records.md#records).
 
 ## Site Management
 
@@ -105,13 +107,14 @@ You can:
 
 - View existing OAI-PMH sets and their search queries
 - Edit or delete existing sets
-- Create new sets  
+- Create new sets
+
   ![Create OAI-PMH Set](./imgs/administration/create-oai-pmh.png)
 
 !!! info
-    For API usage, see [REST API – OAI-PMH Sets](../../reference/rest_api_oaipmh_sets/).
 
-    For details, see [OAI-PMH](../../reference/oai_pmh/).
+    For API usage, see [REST API – OAI-PMH Sets](../reference/rest_api_oaipmh_sets.md).
+    For details, see [OAI-PMH](../reference/oai_pmh.md).
 
 ### Pages
 
@@ -125,11 +128,13 @@ You can:
 - Edit existing page content, titles, language and description.
 
 !!! info
-    To learn how to customize static pages, see [Static Pages](../../operate/customize/static_pages/).
+
+    To learn how to customize static pages, see [Static Pages](../operate/customize/static_pages.md).
 
 ### Domains
 
-The **Domains** section allows you to manage domain entries associated with your site.
+The **Domains** section allows you to **manage and configure approved email domains** for your InvenioRDM instance.
+These domains are particularly useful for **content moderation**, when moderation features are enabled. For example, you can configure your system to automatically verify and approve content uploaded by users whose email addresses originate from an approved domain.
 
 You can:
 
@@ -138,6 +143,10 @@ You can:
 - Create, edit, or delete domain entries
 
 ![Domains](./imgs/administration/domains.png)
+
+!!! info
+
+    You can read more about [below](#moderation-of-users-and-records).
 
 ### Banners
 
@@ -200,9 +209,9 @@ You can:
 ![Vocabulary Types](./imgs/administration/vocabulary-types.png)
 
 !!! info
-    To customize vocabularies, see [Customize Vocabularies](../../operate/customize/vocabularies).
 
-    For API usage, see [Vocabulary REST API](/../../reference/rest_api_vocabularies).
+    To customize vocabularies, see [Customize Vocabularies](../operate/customize/vocabularies/index.md).
+    For API usage, see [Vocabulary REST API](../reference/rest_api_vocabularies.md).
 
 ## User Management
 
@@ -224,7 +233,8 @@ invenio access allow administration-moderation role administration-moderation
 You can assign this role to users to permit access to moderation tools.
 
 !!! info
-    See [Create and assign roles](../../operate/customize/users/#create-and-assign-roles) for more information on managing user roles.
+
+    See [Create and assign roles](../operate/customize/users.md#create-and-assign-roles) for more information on managing user roles.
 
 #### User states and moderation actions
 
@@ -241,6 +251,6 @@ The administration panel now includes a "User management" section to deactivate,
 - **Blocked users**: Cannot sign in anymore, but their records remain visible.
 - **Deleted users**: Their records are removed from public view and replaced with a tombstone page indicating the user has been deleted.
 
-Records can also be deleted (with a grace period for appeal or undoing) which empowers administrators to enforce institutional policies and fight spam. This leaves a [tombstone page](../reference/metadata.md#tombstone) in place of the record landing page. See the [Concept DOIs section](../operate/customize/dois.md#doi-registration) for a screenshot.
+Records can also be deleted (with a grace period for appeal or undoing) which empowers administrators to enforce institutional policies and fight spam. This leaves a [tombstone page](../reference/metadata.md#tombstone) in place of the record landing page.
 
 Associated JSON APIs (e.g. `/api/domains`) have been added. Bulk versions of these are in the works.

@@ -59,7 +59,7 @@ This provides flexible, yet reliable access control to the records of an instanc
 
 ![The moderation actions](imgs/user_moderation.png)
 
-The administration panel now includes a "User management" section to deactivate, block and delete users, as well as undo all those actions. You can read more about [moderation here](../../use/moderation.md#moderation-of-users-and-records).
+The administration panel now includes a "User management" section to deactivate, block and delete users, as well as undo all those actions. You can read more about [moderation here](../../use/administration.md#moderation-of-users-and-records).
 
 ### DOIs for concept records and no DOIs for restricted records
 
