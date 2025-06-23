@@ -4,7 +4,7 @@ This documentation explains the schema and configuration format for creating met
 
 ## Overview
 
-The system provides a flexible way to define validation rules for record metadata using JSON stored in the database. Rules can check individual fields, compare values, and validate lists of items with complex conditions. This schema provides a powerful way to define complex validation logic while remaining human-readable and maintainable.
+The system provides a flexible way to define validation rules for record metadata using JSON stored in the database. Rules can check individual fields, compare values, and validate lists of items with complex conditions. This schema provides a powerful way to define complex validation logic while staying human-readable and maintainable.
 
 ## Rule Configuration
 
@@ -30,13 +30,15 @@ A rule configuration is a dictionary with the following structure:
 }
 ```
 
-This object is stored in the `params` section of the check_config in the database.
+This object is stored in the `params` section of the `CheckConfig` model in the database.
 
 ## Expression Types
 
+In order to describe the rules which make up a check or condition, we have created a grammar of **expressions** which can be composed in JSON. An expression is a structured, logical unit which can 1. contain expressions and 2. be evaluated. It can be thought of as how you might compose an Excel cell formula, where each cell reference or function is an expression. We start from the most basic expression, the `field.`
+
 ### 1. Field Expression
 
-Accesses a fiel, or nested field, from the metadata using dot notation, returning that value to the check.
+Accesses a field from the metadata using dot notation, returning that value.
 
 ```python
 {
@@ -127,6 +129,8 @@ Here's a complete example showing multiple rules with different expression types
             "id": "license:exists",
             "level": "error",
             "title": "Record license",
+            "message": "Licenses are required.",
+            "description": "All submissions must specify the licensing terms.",
             "checks": [
                 {
                     "path": "metadata.rights",
@@ -134,14 +138,21 @@ Here's a complete example showing multiple rules with different expression types
                     "operator": "exists",
                     "predicate": {}
                 }
-            ],
-            "message": "Licenses are required.",
-            "description": "All submissions must specify the licensing terms."
+            ]
         },
         {
             "id": "creators:identifier",
             "level": "info",
             "title": "Creator Identifiers",
+            "message": "Affiliations are recommended for all creators",
+            "description": "All creators should have a persistent identifier (e.g. an ORCID)",
+            "condition": {
+                "path": "metadata.creators",
+                "type": "list",
+                "operator": "exists",
+                "predicate": {
+                }
+            },
             "checks": [
                 {
                     "path": "metadata.creators",
@@ -167,17 +178,37 @@ Here's a complete example showing multiple rules with different expression types
                         ]
                     }
                 }
-            ],
-            "message": "Affiliations are recommended for all creators (e.g. an ORCID)",
-            "condition": {
-                "path": "metadata.creators",
-                "type": "list",
-                "operator": "exists",
-                "predicate": {
-                }
-            },
-            "description": "All creators should have a persistent identifier (e.g. an ORCID)"
+            ]
         },
     ]
 }
+```
+
+If these checks fail for a draft or record, the following error messages will be returned in the draft
+
+```javascript
+ "errors": [
+    {
+        "field": "metadata.rights",
+        "messages": [
+            "Licenses are required."
+        ],
+        "description": "All submissions must specify the licensing terms.",
+        "severity": "error",
+        "context": {
+            "community": "<community-uuid>"
+        }
+    },
+    {
+        "field": "metadata.creators",
+        "messages": [
+            "Affiliations are recommended for all creators"
+        ],
+        "description": "All creators should have a persistent identifier (e.g. an ORCID)",
+        "severity": "info",
+        "context": {
+            "community": "<community-uuid>"
+        }
+    },
+],
 ```
