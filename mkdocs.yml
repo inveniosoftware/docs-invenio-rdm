@@ -58,7 +58,6 @@ nav:
           - Export formats: "use/records/export-formats.md"
       - Communities: "use/communities.md"
       - Notifications: "use/notifications.md"
-      - Audit logs: "use/audit-logs.md"
       - Administration: "use/administration.md"
 
   - Install:
