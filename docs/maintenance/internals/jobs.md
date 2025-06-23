@@ -119,12 +119,33 @@ The job system lifecycle covers the flow from job definition to execution tracki
 
 ## Logging & Auditability
 
-If a Celery task logs via `current_app.logger`, and is invoked as a job, its logs are captured and stored with the run metadata. These logs are shown in the admin UI. All logs are stored in OpenSearch and displayed via the job run UI and API.
+When a job is run, a context object is initialized and passed down automatically to the executing Celery task. This context is used to capture logs that are specific to that job run.
 
-- Output can be inspected per run.
-- Failures and warnings are clearly highlighted.
+To log within a job, developers simply use:
 
-![alt text](./img/logs.png)
+```python
+from flask import current_app
+
+current_app.logger.info("Starting embargo lift...")
+current_app.logger.warning("Some records could not be updated.")
+current_app.logger.error("Failed to reindex embargoed record.")
+```
+
+No additional configuration is required — as long as the task is declared and triggered as a registered Job, the logging context is handled automatically. A custom logging handler within the job system detects and stores these logs in OpenSearch under the associated run.
+
+### Log Levels
+
+The following log levels are supported and captured:
+
+- `DEBUG` – for verbose internal flow details.
+- `INFO` – for normal progress updates (recommended default).
+- `WARNING` – for recoverable problems or anomalies.
+- `ERROR` – for failures that do not abort the task.
+- `CRITICAL` – for unrecoverable issues that likely cause failure.
+
+### Accessing Logs
+
+- Logs are linked to a specific Job Run and are persisted in OpenSearch.
 
 ---
 
@@ -133,10 +154,10 @@ If a Celery task logs via `current_app.logger`, and is invoked as a job, its log
 Jobs can complete with three outcomes:
 
 - ✅ Success (task completes with no exceptions).
-- ⚠️ Partial Success (`TaskExecutionError`).
+- ⚠️ Partial Success (`TaskExecutionPartialError`).
 - ❌ Failure (any other exception).
 
-Use `TaskExecutionError` when the task completes but with non-fatal issues (e.g., partial data processed).
+Use `TaskExecutionPartialError` when the task completes but with non-fatal issues (e.g., partial data processed).
 
 ---
 
@@ -147,8 +168,11 @@ Jobs can be:
 - Run immediately from the UI.
 - Scheduled with CRON or interval-based configurations via the admin panel.
 
-**Note:** There is no built-in concurrency lock. If the same job is triggered twice in parallel, both will run. Developers must ensure idempotency in task logic if required.
+!!! danger "No Concurrency Control"
 
+    There is no built-in mechanism to prevent a job from being executed multiple times concurrently. If a job is triggered again while a previous run is still active (manually or by schedule), both runs will proceed in parallel.
+
+    Developers are responsible for ensuring that the underlying Celery task is **idempotent** and safe to run concurrently, especially when modifying shared data or external systems.
 ---
 
 ## Security Model
@@ -174,9 +198,3 @@ Developers can:
 - No retry strategy at the job system level (rely on Celery’s retry mechanism).
 - No multi-tenant separation of job visibility or logs.
 - No CLI utilities for job introspection (UI/API only).
-
----
-
-## Summary
-
-The InvenioRDM job system builds a maintainable foundation for robust background task orchestration. It offers developers powerful abstractions and gives administrators operational transparency and control, all integrated cleanly into the platform's UI and API.
