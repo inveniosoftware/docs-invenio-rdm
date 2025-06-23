@@ -104,6 +104,14 @@ Themed communities benefit from a custom homepage, defined via HTML template in 
 
 #### Subcommunities
 
+It is now possible to create heirarchical relationships between communities, allowing for departments, subject areas and other structures to be represented via related communities. Records from the "child" community are automatically indexed in the "parent" community, allowing all the records of the children to be browsed in the parents. The communities are also bidirectionally linked so that it is easy to navigate between both.
+
+Having subcommunities also enables the **Browse** page, which lists all the subcommunities and collections (see below) of that community.
+
+!!! note
+
+    Currently communities can only have one level of heirarchy (i.e., no grand-child communities) and communities can only have one parent community. The former restriction would be more easily overridden in your instance if required.
+
 #### Collections
 
 Collections are a "big" feature added to v13.
