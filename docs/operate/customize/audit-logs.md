@@ -30,4 +30,4 @@ You will be able to view all actions performed in your instance and query action
 
 ## Add new actions
 
-You can extend the functionalities of audit logs by adding new actions. Follow [this guide](../../maintenance/internals/audit-logs.md#how-to-add-new-actions) to learn how.
+You can extend the functionalities of audit logs by adding new actions. Follow [this guide](../../maintenance/internals/audit-logs.md#how-to-track-more-actions) to learn how.

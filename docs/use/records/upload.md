@@ -82,7 +82,7 @@ Once the fields are filled and the record is published, publishing information w
 
 ![Landing page publishing information](../imgs/records/publishing-info-landing-page.png)
 
-In order to add those fields to record metadata of your instance follow this [guide](../../operate/customize/metadata/custom_fields/publication-information-config.md).
+In order to add those fields to record metadata of your instance follow this [guide](../../operate/customize/metadata/optional_fields.md).
 
 ## Submit to a community
 
