@@ -56,7 +56,7 @@ Fill this section if your upload was published in a scholarly journal.
 - ISSN: The journal’s International Standard Serial Number (e.g., 2077-9550).
 - Volume: The volume in which the article appeared (e.g., 645).
 - Issue: The issue number (e.g., 7).
-- Page range or article number: Enter either the page range (e.g., 15–23) or article identifier (e.g., A29).
+- Page range or article number: Enter either the page range (e.g., 15-23) or article identifier (e.g., A29).
 
 📖 Imprint (for books, chapters, or reports)
 
@@ -64,7 +64,7 @@ Use this if your upload is part of a book or report (e.g., a chapter, contributi
 
 - Book or report title: Title of the larger work your submission is part of (e.g., Handbook of Bioethics).
 - Place: The city and country where the book/report was published (e.g., Oxford, United Kingdom).
-- Pagination: Specific page numbers or page range (e.g., 15–23 or 158).
+- Pagination: Specific page numbers or page range (e.g., 15-23 or 158).
 - ISBN: The book’s International Standard Book Number (e.g., 0-06-251587-X).
 - Edition: The edition number, if applicable (e.g., 3 for third edition).
 
