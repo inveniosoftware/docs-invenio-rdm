@@ -31,7 +31,7 @@ Check for the existing [languages](https://www.transifex.com/inveniosoftware/inv
 
 - **If your desired language is not on the list**, click **Request language** and search for the language you need.
   ![transifex request language](img/transifex-request-language.png)
-  – Ping the team again on Discord so they can approve the request.
+  - Ping the team again on Discord so they can approve the request.
 - **If your desired language already exists**, choose the language and click **Join team**.
   ![transifex join team](img/transifex-join-team.png)
 

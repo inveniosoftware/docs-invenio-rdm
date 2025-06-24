@@ -113,7 +113,7 @@ You can:
 
 !!! info
 
-    For API usage, see [REST API – OAI-PMH Sets](../reference/rest_api_oaipmh_sets.md).
+    For API usage, see [REST API - OAI-PMH Sets](../reference/rest_api_oaipmh_sets.md).
     For details, see [OAI-PMH](../reference/oai_pmh.md).
 
 ### Pages

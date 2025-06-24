@@ -15,9 +15,9 @@ InvenioRDM adheres to the [Web Content Accessibility Guidelines (WCAG) 2.1 AA](h
 Content and functionality should be Perceivable, Operable, Understandable, and Robust for all.  (POUR is the mnemonic.)
 
 - **Perceivable**
-The user can perceive the site – either see it, hear it, or feel it (in the case of haptics or braille.)
+The user can perceive the site - either see it, hear it, or feel it (in the case of haptics or braille.)
 - **Operable**
-The user can operate and control the interface using their chosen technologies – be it desktop browser with mouse and keyboard, mobile touchscreen device, screen reader, keyboard only, switches.
+The user can operate and control the interface using their chosen technologies - be it desktop browser with mouse and keyboard, mobile touchscreen device, screen reader, keyboard only, switches.
 - **Understandable**
 The user can understand the site, because it is consistent, both internally and with common design patterns. It is appropriate to the audience in its voice and tone.
 - **Robust**
