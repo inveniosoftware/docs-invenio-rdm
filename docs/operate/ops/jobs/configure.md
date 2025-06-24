@@ -10,7 +10,7 @@ JOBS_ADMINISTRATION_ENABLED=True
 ```
 
 ### Scheduler
-Invenio Job System uses a custom celery task scheduler which requires you to run a separate - celery beat. You can run the custom beat in a separate container/shell by running:
+The Invenio job system uses a custom celery task scheduler which requires a separate celery beat. You can run the custom beat in a separate container/shell like so:
 
 ```bash
 celery -A invenio_app.celery beat --scheduler invenio_jobs.services.scheduler:RunScheduler
