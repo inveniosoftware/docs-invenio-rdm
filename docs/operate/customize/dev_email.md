@@ -50,7 +50,7 @@ code src/my-site/invenio.cfg
 ```
 
 ```python
-# Allow e-mails to be sent.
+# Allow e-mails to be sent
 MAIL_SUPPRESS_SEND = False
 
 # Configured SMTP server's host

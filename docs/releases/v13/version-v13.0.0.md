@@ -41,44 +41,38 @@ Names listing endpoint is now restricted to authenticated users, names can be "u
 
 DOIs can now be configured as optional. Describe the feature.
 
-### Compare revisions
+### Admin panel
 
-The **Compare Revisions** feature allows administrators to view differences between versions of a record from the administration panel.
+New quality of life improvements include:
 
-From the **Records** list, click the **“Compare revisions…”** button in the _Actions_ column to open a side-by-side comparison window.
+* The default number of results of has been increased from 10 to 20 on all panels
+* Records and draft panel:
+    * More of the title is shown by default
+    * Improved display of files and stats information
+    * Fixed narrow viewport display, such as on mobile
+    * Owner now links to the ID in the user panel
+* User panel:
+    * ORCID and GitHub icons now link to the user's profile
+
+#### Compare revisions
+
+The Compare Revisions feature allows administrators to audit record updates and follow changes over time.
+
+From the **Records** list, click the **“Compare revisions…”** button in the _Actions_ column to open a side-by-side comparison window:
 
 ![Records List – Compare Revisions](./imgs/records.png)
 
-#### How it works
-
-A modal window appears, allowing you to choose two versions to compare:
+A modal window appears, allowing you to choose two revisions to compare:
 
 ![Compare Modal – Version Selection](./imgs/records-compare-select.png)
 
-Use the dropdown menus to select:
-
-- **From**: the earlier version
-- **To**: the later version
-
-Click **Compare** to see the changes.
-
----
-
-The system then displays a **side-by-side diff view** showing changes in JSON format:
+The changes are then displayed in a JSON **side-by-side diff** view:
 
 ![Compare Modal – Diff View](./imgs/records-compare.png)
 
-#### What you can do
+!!! info "Revisions VS versions"
 
-- Compare any two versions of a record
-- View changes in metadata fields
-- See added, removed, or changed values highlighted
-- Use the links to expand unchanged lines before/after the highlighted differences
-
-This is useful for:
-
-- Reviewing metadata edits before approving changes
-- Auditing updates across versions
+    This feature allows admins to compare revisions, not versions. A revision is the result of editing a record, where each published edit creates a new revision. A new version is a different record which is semantically linked to the previous record. At this time it is not possible to compare different records, including versions. 
 
 ### Thesis
 
@@ -182,10 +176,6 @@ An overview of all the collections can be found in the community browse page (if
 ### Helm charts
 
 To be announced?
-
-### Diff tool in the admin panel
-
-Explain and screenshot of the diff tool in the admin panel
 
 ### FAIR signposting level 1
 
