@@ -62,7 +62,7 @@ in the configured index **templates**.
 ### Event aggregations
 
 While using all the raw usage events to calculate the statistics is possible,
-it can be very expensive - especially when this is a frequent operation.
+it can be very expensive — especially when this is a frequent operation.
 So to save some calculations, the raw events are periodically consolidated
 into intermediate **aggregations** that can be used for querying statistics rather than
 the raw events.
