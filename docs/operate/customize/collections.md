@@ -4,7 +4,7 @@ Collections provide a powerful way to curate and organize records within your In
 
 ## Overview
 
-Collections are dynamic, query-based groupings of records that automatically include all records matching a specified search filter. They enable you to:
+Collections are dynamic query-based groupings of records that automatically include all records matching a specified search filter. They enable you to:
 
 - **Organize records thematically** - Group records by subject, resource type, funding program, or any metadata field
 - **Create hierarchical structures** - Build nested collections to guide users in browsing records
@@ -12,16 +12,20 @@ Collections are dynamic, query-based groupings of records that automatically inc
 
 Each collection is stored in the database with a search query string that dynamically fetches matching records. This approach ensures collections stay current as new records are added to your repository.
 
-!!! info "Architecture Details"
-    For technical implementation details, see [RFC0079](https://github.com/inveniosoftware/rfcs/blob/master/rfcs/rdm-0079-collections.md).
+Collections **cannot** be used to apply access restrictions or permission-based control over their contained records. Instead, use [Communities](../../use/communities.md) for managing access and edit permissions over records.
 
 ## Configuration
 
-To enable displaying the communities "Browse" tab in your InvenioRDM instance, add to your `invenio.cfg`:
+To enable displaying the communities "Browse" menu entry in your InvenioRDM instance, add to your `invenio.cfg`:
 
 ```python
 COMMUNITIES_SHOW_BROWSE_MENU_ENTRY = True
 ```
+
+Additionally, for any communities that you want to setup collections, you need to configure them to allow sub-communities via the `children.allow` setting.
+
+!!! bug "Requirement on enabled sub-communities"
+    Having a community with `children.allow: true` is a limitation of the current "Browse" menu entry implementation in InvenioRDM v13. This will be patched to allow communities that might only have collections (and not sub-communities enabled) to still display the "Browse" menu entry.
 
 ## Managing Collections
 
@@ -36,10 +40,7 @@ Collections are organized within **Collection Trees** - hierarchical structures 
 Before creating collections, you need:
 
 1. **Access to Python shell** - Collections are currently managed via `invenio shell`
-2. **A community with sub-communities enabled** - Collections can be scoped to communities, so you need at least one community. That community must have `children.allow: true` set, which allows it to have sub-communities (and thus display the "Browse" tab).
-
-!!! bug "Requirement on enabled sub-communities"
-    Having a community with `children.allow: true` is a limitation of the current "Browse" tab implementation in InvenioRDM v13. This will be patched to allow communities that might only have collections (and not sub-communities enabled) to still display the "Browse" tab.
+2. **A community with sub-communities enabled** - At present, collections are scoped to communities, so you need at least one community. Additionally, to display the "Browse" tab, that community must have `children.allow: true` set.
 
 !!! warning "Administration UI for Collections"
     The administration UI for managing collections is not yet available in InvenioRDM v13. Collections are currently managed programmatically via the Python shell.
@@ -80,8 +81,9 @@ natural_sciences_col = collections_service.create(
     slug="natural-sciences",  # URL slug for the collection
     title="Natural Sciences",  # Displayed title
     query='metadata.subjects.subject:"Natural Sciences"',  # Search filter
-    order=10  # Display order within the tree (lower numbers appear first)
+    order=10,  # Display order within the tree (lower numbers appear first)
 )
+# Create another collection under the same tree for the "Social Sciences" subject
 social_sciences_col = collections_service.create(
     system_identity,
     COMMUNITY_ID,
@@ -89,7 +91,7 @@ social_sciences_col = collections_service.create(
     slug="social-sciences",
     title="Social Sciences",
     query='metadata.subjects.subject:"Social Sciences"',
-    order=20
+    order=20,
 )
 ```
 
@@ -101,10 +103,10 @@ Add two sub-collections to the "Natural Sciences" top-level collection:
 math_col = collections_service.add(
     system_identity,
     collection=natural_sciences_col._collection,
-    slug="mathematics",
-    title="Mathematics",
-    query='metadata.subjects.subject:"Mathematics"',
-    order=10
+    slug="mathematics",  # URL slug for the sub-collection
+    title="Mathematics",  # Displayed title
+    query='metadata.subjects.subject:"Mathematics"',  # Search filter (will be combined with the parent collection's)
+    order=10,  # Display order within the parent collection (lower numbers appear first)
 )
 compsci_col = collections_service.add(
     system_identity,
@@ -112,11 +114,11 @@ compsci_col = collections_service.add(
     slug="computer-science",
     title="Computer and Information Sciences",
     query='metadata.subjects.subject:"Computer and Information Sciences"',
-    order=20
+    order=20,
 )
 ```
 
-You now have a collection tree with the following structure:
+You now have a Collection Tree inside the community with the following structure:
 
 - Subjects (tree)
     - Natural Sciences (query: `metadata.subjects.subject:"Natural Sciences"`)
@@ -124,13 +126,28 @@ You now have a collection tree with the following structure:
         - Computer and Information Sciences (query: `metadata.subjects.subject:"Computer and Information Sciences"`)
     - Social Sciences (query: `metadata.subjects.subject:"Social Sciences"`)
 
+### Collections hierarchy
+
+Communities can hold multiple Collection Trees, where each of them can hold collections of different levels of nesting.
+
+There is no limitation in the number of nesting levels for collections. We recommend though that you make reasonable use of them to organize your content effectively, keeping in mind the user experience of navigating and discovering content.
+
+Here is an example diagram, of what a community with two collection trees might look like:
+
+![Diagram demonstrating a community with two Collection Trees and different levels of collection nesting using "Subjects" and "Funding Programs" hierarchies](imgs/collections-diagram.png)
+/// caption
+Communities can hold multiple Collection Trees, each of them organizing collections of different nesting levels.
+///
+
 ### Collections query inheritance
 
-Nested collections automatically inherit their parent's search criteria, combining queries with the `AND` boolean operator. Child collections show only records that match both their own query and all parent queries.
+Community-scoped collections include records that are part of the community.
 
-!!! example "Example Subjects Hierarhy"
+Nested collections automatically inherit their parent's search criteria, combining queries with the `AND` boolean operator. Child collections show only records that match both their own query and all parent queries. This means that as you go down the hierarchy, the search criteria for record results become more narrow.
 
-    Given the following collection hierarchy:
+!!! example "Example query inheritance in a "Subjects" hierarchy"
+
+    Given the following collection hierarchy inside a tree:
 
     - Research Fields
         - Natural Sciences (query: `metadata.subjects.subject:"Natural sciences"`)
@@ -146,6 +163,11 @@ Nested collections automatically inherit their parent's search criteria, combini
     - **Physical Sciences**: `metadata.subjects.subject:"Natural sciences" AND metadata.subjects.subject:"Physical sciences"`
     - **Psychology**: `metadata.subjects.subject:"Social sciences" AND metadata.subjects.subject:"Psychology"`
 
+    If the "Subjects" collection tree is part of a community, then the effective queries also contain a filter for including records that are part of the community (i.e. `parent.communities.ids:<community_id>`).
+
+!!! info "Architecture Details"
+    For more technical implementation details, see [RFC0079](https://github.com/inveniosoftware/rfcs/blob/master/rfcs/rdm-0079-collections.md).
+
 ## Accessing Collections
 
 !!! note "TODO: Move to Use > Communities section of docs"
@@ -156,7 +178,7 @@ Once created, individual collections are accessible through dedicated pages that
 
 ### Community "Browse" page
 
-Communities with configured collections, feature a browse page that provides an overview of all available collection trees and their contained collections hierarchy, along with the total number of records contained within each collection level. This serves as the main entry point for users to discover and navigate collections within a community.
+Communities with configured collections, feature a browse page that provides an overview of all available Collection Trees and their contained Collections hierarchy, along with the total number of records contained within each collection level. This serves as the main entry point for users to discover and navigate collections within a community.
 
 ![Community browse page showing multiple collection tree hierarchies](imgs/collection-browse.png)
 /// caption
