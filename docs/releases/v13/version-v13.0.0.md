@@ -47,13 +47,13 @@ The **Compare Revisions** feature allows administrators to view differences betw
 
 From the **Records** list, click the **“Compare revisions…”** button in the _Actions_ column to open a side-by-side comparison window.
 
-![Records List - Compare Revisions](./imgs/records.png)
+![Records List: Compare Revisions](./imgs/records.png)
 
 #### How it works
 
 A modal window appears, allowing you to choose two versions to compare:
 
-![Compare Modal - Version Selection](./imgs/records-compare-select.png)
+![Compare Modal: Version Selection](./imgs/records-compare-select.png)
 
 Use the dropdown menus to select:
 
@@ -66,7 +66,7 @@ Click **Compare** to see the changes.
 
 The system then displays a **side-by-side diff view** showing changes in JSON format:
 
-![Compare Modal - Diff View](./imgs/records-compare.png)
+![Compare Modal: Diff View](./imgs/records-compare.png)
 
 #### What you can do
 
