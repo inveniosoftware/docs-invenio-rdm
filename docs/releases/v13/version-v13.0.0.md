@@ -26,7 +26,7 @@ Related [new doc page](../../operate/customize/vocabularies/names.md#using-orcid
 
 Both user and record search have been enhanced to return more accurate results for common names/titles, partial matches (even with typos) and names/titles with accents or diacritics.
 	
-Creators, affiliations and funders autocomplete search has been enhanced so suggestions appear faster and better match what you type.
+Creators, affiliations and funders autocomplete search has been enhanced so that suggestions appear faster and better match what you type.
 
 See [breaking changes](#breaking-changes) for notes about the mapping changes and the new indices.
 
