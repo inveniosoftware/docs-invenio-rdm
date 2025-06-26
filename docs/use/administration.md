@@ -28,7 +28,7 @@ You can:
 !!! info
 
     For more details on communities, see [Communities](../maintenance/architecture/communities.md).
-    For API usage, see [Communities REST API](../reference/rest_api_communities.md).
+    For API usage, see the [REST API for Communities](../reference/rest_api_communities.md).
 
 ## Logs
 
@@ -113,8 +113,8 @@ You can:
 
 !!! info
 
-    For API usage, see [REST API - OAI-PMH Sets](../reference/rest_api_oaipmh_sets.md).
     For details, see [OAI-PMH](../reference/oai_pmh.md).
+    For API usage, see the [REST API for OAI-PMH Sets](../reference/rest_api_oaipmh_sets.md).
 
 ### Pages
 
@@ -211,7 +211,7 @@ You can:
 !!! info
 
     To customize vocabularies, see [Customize Vocabularies](../operate/customize/vocabularies/index.md).
-    For API usage, see [Vocabulary REST API](../reference/rest_api_vocabularies.md).
+    For API usage, see the [REST API for Vocabularies](../reference/rest_api_vocabularies.md).
 
 ## User Management
 
