@@ -1,4 +1,4 @@
-# DNB URN registration
+# Deutsche National Bibliothek (DNB) URN registration
 
 *Updated for InvenioRDM v13*
 
@@ -6,7 +6,7 @@
 
     The URN registration feature requires that you have a contract with the [German National Library](https://wiki.dnb.de/display/URNSERVDOK/URN-Service+API). You will need to contact urn-support@dnb.de to get an account for the sandbox and the production REST-API.
 
-In order to register URN's with InvenioRDM, you need to install the additional module [invenio-pidstore-extra](https://pypi.org/project/invenio-pidstore-extra/).
+In order to register [Uniform Resource Names](https://en.wikipedia.org/wiki/Uniform_Resource_Name) (URNs) with InvenioRDM, you need to install the additional module [invenio-pidstore-extra](https://pypi.org/project/invenio-pidstore-extra/).
 
 If you're interested in the source code, you will find it [here](https://github.com/ulbmuenster/invenio-pidstore-extra).
 
@@ -25,7 +25,7 @@ The module implements a thin wrapper around the [Rest-API](https://wiki.dnb.de/d
     ```diff
     dependencies = [
     ...
-    +   "invenio-pidstore-extra >= 0.2.0",
+    +   "invenio-pidstore-extra >= 0.2.0,<1.0.0",
     ]
     ```
 
@@ -46,7 +46,7 @@ And next:
     invenio-cli install
     ```
 
-## Configure the URN PID provider
+## Configure the DNB URN PID provider
 
 !!! tip "DNB sandbox replacement"
 

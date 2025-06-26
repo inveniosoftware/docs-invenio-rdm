@@ -112,7 +112,7 @@ nav:
           - Audit logs: "operate/customize/audit-logs.md"
           - Authentication: "operate/customize/authentication.md"
           - DOI registration: "operate/customize/dois.md"
-          - DNB URNs registration: "operate/customize/urns.md"
+          - DNB URN registration: "operate/customize/dnb_urns.md"
           - Emails:
               - Submission: "operate/customize/emails.md"
               - Capture: operate/customize/dev_email.md
