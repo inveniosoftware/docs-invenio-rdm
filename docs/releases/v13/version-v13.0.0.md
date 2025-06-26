@@ -150,7 +150,7 @@ The collection browser provides an organized view of all available collections w
 
 **Common use cases**
 
-- Group content by research disciplines using hierarchical vocabulary
+- Group content by research disciplines using a hierarchical vocabulary
 - Organize historical records by publication date
 - Organize records by funding programs (Horizon 2020, NSF, institutional grants)
 - Create resource type collections (datasets, publications, software)
