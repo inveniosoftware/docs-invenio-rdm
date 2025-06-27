@@ -82,9 +82,11 @@ This is useful for:
 
 ### New Metadata Fields
 
-These is a new field called copyright for copyright information
+There is a new field called copyright for copyright information, [specification
+available here](../../reference/metadata.md). This field will require
+reindexing upon the version upgrade.
 
-These are new thesis metadata fields including department, type,
+There are new thesis metadata fields including department, type,
 date_submitted, date_defended. thesis:university had been moved to 
 university inside of the thesis:thesis section, alongside the other new fields.
 
@@ -215,20 +217,12 @@ server {
 }
 ```
 
-### Data model additions
-
-- Record: copyright field, [specification available here](../../reference/metadata.md), requires reindexing upon the version upgrade
-
 ### Custom schemes for persistent identifiers
 
 The Invenio [idutils](https://github.com/inveniosoftware/idutils) module handles validation and normalization of persistent identifiers used in scholarly communication, and existing customizations may be affected by changes in v13.
 The library has been restructured to use a configurable scheme system with a new entrypoint mechanism for registering custom identifier schemes.
 
 See the [related documentation](../../operate/customize/metadata/custom_pids_schemes.md) how to add your own custom schemes.
-
-### Data model additions
-
-- Record: new `copyright` field, see its specifications [here](../../reference/metadata.md).
 
 ### Miscellaneous additions
 
