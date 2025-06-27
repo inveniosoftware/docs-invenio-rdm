@@ -46,3 +46,11 @@ Publication dates and other dates support the EDTF format for recording imprecis
 ## Identifier detection and validation
 
 InvenioRDM comes with support for automatic detection and validation for a large number of persistent identifier schemes (i.e. less typing and clicking for end-users).
+
+## Signposting support
+
+[FAIR signposting](https://signposting.org/FAIR/) is built-in to InvenioRDM. Level 2 is always on in order to support large number of related entities. Level 1 can be opted-in (with restrictions on number of related entities) to support clients that aren't capable of parsing level 2 signposting.
+
+## Automatic sitemaps
+
+[Sitemaps](https://sitemaps.org/) are standardized listings of all public pages in your site. They are discoverable in InvenioRDM's `robots.txt` file and/or can be given to a search engine's search console directly. Both sitemap indices and sitemaps themselves are generated automatically to ensure your instance's public pages — however many there are — are findable. Moreover, the sitemaps can be enhanced to your liking with additional metadata supported by different services.
