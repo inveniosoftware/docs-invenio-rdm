@@ -131,6 +131,7 @@ nav:
           - Static pages: "operate/customize/static_pages.md"
           - S3 compatible storage: "operate/customize/s3.md"
           - Upload limits: "operate/customize/upload_limits.md"
+          - Sitemaps: "operate/customize/sitemaps.md"
       - Add custom code:
           - Custom Python and JS code: operate/code/custom_code.md
           - Debugging: "operate/code/debugging.md"
