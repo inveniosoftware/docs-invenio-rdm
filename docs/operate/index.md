@@ -23,7 +23,7 @@ This guide is intended for developers that need to operate their own InvenioRDM 
 ## Configure everything
 
 - [Overview](./customize/configuration.md)
-- From [Authentication](./customize/authentication.md) to [Upload limits](./customize/upload_limits.md)
+- From [Authentication](./customize/authentication.md) to [Upload limits](customize/file-uploads/upload_limits.md)
 
 ## Add custom code
 
