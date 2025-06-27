@@ -76,7 +76,7 @@ And if the visibility of a record becomes restricted after being public, a tombs
 
 ![Paused video preview](imgs/video_previewer.png)
 
-Audio and video previewers come by default. Beware that supporting these typically larger files may require some changes to an instance's [upload limits](../../operate/customize/upload_limits.md) and using delegated file serving.
+Audio and video previewers come by default. Beware that supporting these typically larger files may require some changes to an instance's [upload limits](../../operate/customize/file-uploads/upload_limits.md) and using delegated file serving.
 
 Also, text (.txt) preview can be truncated after a specified number of bytes via the `PREVIEWER_TXT_MAX_BYTES` configuration variable.
 Text previewing has been made much more resilient thanks to that improvement, better encoding detection, and fault-tolerance to encoding misdetection.
