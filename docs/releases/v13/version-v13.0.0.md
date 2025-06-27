@@ -189,9 +189,9 @@ Explain and screenshot of the diff tool in the admin panel
 
 ### FAIR signposting level 1
 
-[FAIR signposting level 2](https://signposting.org/FAIR/#level2) is already enabled by default since v12. The response header of each record's landing page includes a `Link` HTTP response header pointing to a JSON-based linkset which contains the FAIR signposting information.
-
 In order to increase discoverability, [FAIR signposting level 1](https://signposting.org/FAIR/#level1) can be enabled with the configuration flag `APP_RDM_RECORD_LANDING_PAGE_FAIR_SIGNPOSTING_LEVEL_1_ENABLED = True`. Once enabled, FAIR signposting information will be directly included in the `Link` HTTP response header.
+
+[FAIR signposting level 2](https://signposting.org/FAIR/#level2) was already enabled by default since v12. The response header of each record's landing page includes a `Link` header pointing to a JSON-based linkset which contains the FAIR signposting information.
 
 Please note that for records having many authors, files, or licenses, FAIR signposting will fall back to level 2 only, in order to avoid generating excessively big HTTP response headers.
 
@@ -238,8 +238,9 @@ Here is a quick summary of the myriad other improvements in this release:
   - `USERS_RESOURCES_ADMINISTRATION_ENABLED`
   - `JOBS_ADMINISTRATION_ENABLED`
 - Following the [latest COUNTER spec](https://www.countermetrics.org/code-of-practice/), the [list of robots and machines](https://github.com/inveniosoftware/counter-robots) have been updated to ensure the stats are counted on human usage.
-- ...and many more bug fixes!
 - Logging: The Flask root logger level has been set to `DEBUG`, enabling all log messages to pass through by default. Handlers are now responsible for filtering messages at the desired level, offering more flexibility for development and production environments.
+- [Sitemaps](../../operate/customize/sitemaps.md) are now generated for search engines and other crawlers to discover and index important content (records and communities by default, but customizable). Sitemaps are even automatically linked in your `robots.txt` for ease of discoverability by machine agents.
+- ...and many more bug fixes!
 
 ## Breaking changes
 
