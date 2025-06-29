@@ -28,7 +28,7 @@ APP_RDM_DEPOSIT_FORM_QUOTA = {
 
 While the above mentioned configuration would already prevent the backend from accepting files that are too large, an additional layer of defense can be added by configuring `nginx` to reject client requests above a certain size.
 
-This can be achieved by setting the `client_max_size_body` for the REST API file content endpoint (`location ~ /api/records/.+/draft/files/.+/content`) to a desired value, e.g. `75G`.
+This can be achieved by setting the `client_max_size_body` for the REST API file content endpoint (`location ~ /api/records/.+/draft/files/.+/content(/[0-9]+)?/?$`) to a desired value, e.g. `75G`.
 The relevant file for this configuration on a default cookiecutter installation is [`docker/nginx/conf.d/default.conf`](https://github.com/inveniosoftware/cookiecutter-invenio-rdm/blob/master/%7B%7Bcookiecutter.project_shortname%7D%7D/docker/nginx/conf.d/default.conf#L118).
 
 

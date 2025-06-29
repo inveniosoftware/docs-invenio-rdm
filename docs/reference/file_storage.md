@@ -2,7 +2,7 @@
 
 Two different concepts are involved in the storing of files in InvenioRDM. One is the
 **backend**, meaning the actual technology that is used to store a file. For example, the local
-file system or [S3](../operate/customize/s3.md). The other concept is the **origin** ,
+file system or [S3](../operate/customize/file-uploads/s3.md). The other concept is the **origin** ,
 also known as **method** used to transport the files. There are three such defined methods.
 
 - *Local*, which represents the files that are managed by the InvenioRDM instance,
