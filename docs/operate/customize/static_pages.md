@@ -34,11 +34,11 @@ app_data/
 
 The template file content is what will be imported in the database and rendered to the user when navigating to the page's URL.
 
-_Introduced in InvenioRDM v12_
-
 ## Register Pages
 
-InvenioRDM now allows for dynamic registration of static pages through configuration. after doing the steps above, Add the `APP_RDM_PAGES` variable to your `invenio.cfg` to map the page identifiers to URLs, this enables the application to serve these pages dynamically, For example:
+_Introduced in InvenioRDM v12_
+
+InvenioRDM now allows for dynamic registration of static pages through configuration. After doing the steps above, Add the `APP_RDM_PAGES` variable to your `invenio.cfg` to map the page identifiers to URLs, this enables the application to serve these pages dynamically, For example:
 
 ```py
 APP_RDM_PAGES = {
@@ -67,7 +67,7 @@ For updating existing templates:
 pipenv run invenio rdm pages create --force
 ```
 
-This will wipe out all previously created static pages and load them again. I.e. it will delete the templates you have removed from your `pages.yaml` and update the existing templates with the changes you have made, if any.
+This will wipe out all previously created static pages and load them again. In other words, it will delete the templates you have removed from your `pages.yaml` and update the existing templates with the changes you have made, if any.
 
 ## Changing the base template
 
@@ -89,7 +89,7 @@ templates
 └── my_site/my_custom_base_template.html
 ```
 
-After making this change, you'll have to restart your instance and run
+After making this change, you will have to restart your instance and run
 
 ```bash
 pipenv run invenio rdm pages create --force
@@ -131,7 +131,7 @@ Now we can go to our custom page again and see the content displayed on the page
 
 Your custom template will be an extension of the base template [defined in `invenio-app-rdm`](https://github.com/inveniosoftware/invenio-app-rdm/blob/9f1ba6a646362ff80de6b0c9cd092209e9190c44/invenio_app_rdm/theme/templates/semantic-ui/invenio_app_rdm/default_static_page.html). If you want to create your own base template, you can do it by setting the following variables in your `invenio.cfg` file:
 
-```
+```py
 PAGES_DEFAULT_TEMPLATE = "my_site/my_custom_base_template.html"
 
 PAGES_TEMPLATES = [
