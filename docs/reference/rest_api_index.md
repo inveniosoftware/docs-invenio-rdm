@@ -53,6 +53,7 @@ instance in the following [repository](https://github.com/inveniosoftware/docs-i
 
 Timestamps are in UTC and formatted according to [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601).
 
+
 ### Pretty print JSON
 
 If you are exploring the API via a browser, you can have the JSON formatted by
@@ -63,3 +64,15 @@ adding ``prettyprint=1`` in the query string.
 ```http
 GET /api/records?prettyprint=1 HTTP/1.1
 ```
+
+### Full OpenAPI Specification
+
+The complete OpenAPI schema for InvenioRDM’s REST API is available at:
+
+👉 [https://inveniosoftware.github.io/invenio-openapi/](https://inveniosoftware.github.io/invenio-openapi/)
+
+You can use this for:
+
+- Exploring all endpoints
+- Generating client libraries
+- Validating request/response formats
