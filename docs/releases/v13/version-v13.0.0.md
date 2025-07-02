@@ -23,7 +23,7 @@ organization aliases, status, types, locations, and acronym. It should be
 easier to find the correct organization or funder you're looking for.
 
 We have also enabled ROR updating using invenio-jobs, which lets you
-automatically load the funders or affiliations vocabulary from with the
+automatically load the funders or affiliations vocabulary from the
 InvenioRDM administration panel. You can also schedule to update your
 vocabulary with new ROR releases on a regular schedule. You can find more
 instructions on the [affiliations](../../operate/customize/vocabularies/affiliations.md) 

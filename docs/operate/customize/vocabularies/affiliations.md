@@ -10,7 +10,7 @@ InvenioRDM.
 
 !!! info "Loading time"
     
-    The ROR vocabulary consists of over 100.000 records and with an ingestion
+    The ROR vocabulary consists of over 100,000 records and with an ingestion
     speed around 100-200 records/s it usually takes between around 8-15 minutes
     to load the records.
     
