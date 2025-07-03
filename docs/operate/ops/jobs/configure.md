@@ -1,4 +1,4 @@
-_added in v13.0.0_
+_Introduced in InvenioRDM v13_
 
 ## Configuring the Job System
 

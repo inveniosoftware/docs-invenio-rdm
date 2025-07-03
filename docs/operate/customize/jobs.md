@@ -1,8 +1,8 @@
-# How to Create a Custom Job in InvenioRDM
+# How to create a new job
 
-_Added in v13.0.0_
+_Introduced in InvenioRDM v13_
 
-This guide walks developers through implementing a custom job in InvenioRDM using the `invenio-jobs` system. Jobs are asynchronous tasks that can be triggered from the admin UI or REST API. They run using Celery and support logging, argument validation, and result tracking.
+This guide walks developers through implementing a new job using the engine provided by the `invenio-jobs` module. Jobs are asynchronous tasks that can be triggered from the admin UI or REST API. They run using Celery and support logging, argument validation, and result tracking.
 
 ---
 
@@ -12,7 +12,6 @@ This guide walks developers through implementing a custom job in InvenioRDM usin
 - Understanding of Celery tasks and entry points.
 - Access to an InvenioRDM instance with administrator rights.
 - A **custom Celery scheduler beat** process configured and running, which is required for executing both scheduled and manual jobs. See [Job System Configuration](../ops/jobs/configure.md) for setup instructions.
----
 
 ## 1. Define Your Celery Task
 
@@ -31,7 +30,6 @@ def update_expired_embargoes(since=None, **kwargs):
     reindex_records(records)
 ```
 
-
 ### Error Handling and Logging
 
 - Use `current_app.logger` for logs visible in the UI.
@@ -42,11 +40,10 @@ from invenio_jobs.errors import TaskExecutionPartialError
 raise TaskExecutionPartialError("Processed 80%, 10 records failed.")
 ```
 
----
-
 ## 2. Create a Job Class
 
-Use `JobType` to define a job that wraps your task. You can inherit directly or use the `create()` helper.
+Use `JobType` to define a job that wraps your task. This crucial step ensures that your task appears as an selectable option when you choose what job to run within the UI.
+You can inherit directly or use the `create()` helper.
 
 ```python
 from invenio_jobs.jobs import JobType
@@ -90,8 +87,6 @@ class UpdateEmbargoesJob(JobType):
         }
 ```
 
----
-
 ## 3. Register Your Job and Task
 
 In your `setup.cfg`, register the task and job using entry points:
@@ -105,9 +100,8 @@ invenio_jobs.jobs =
     update_expired_embargoes = mysite.jobs:UpdateEmbargoesJob
 ```
 !!! tip
-    **Note (local development only):** If you're developing locally and have modified `setup.cfg`, remember to re-run `pip install -e ./site` so that entry point changes take effect.
 
----
+    **Note (local development only):** If you're developing locally and have modified `setup.cfg`, remember to re-run `pipenv run pip install -e ./site` so that entry point changes take effect.
 
 ## 4. Run and Monitor Jobs
 
@@ -121,20 +115,9 @@ Once your instance is restarted:
 - After saving, you can trigger the job immediately or schedule it.
 - You can also inspect previous runs and access detailed logs.
 
----
-
 ## Tips
 
 - Make your tasks **idempotent** if they might be run concurrently.
 - Jobs and their runs are stored in the database, with status, arguments, and logs recorded for traceability.
 - Admins only: only superusers can run jobs.
-
----
-
-## Next Steps
-
 - See [Job system design](../../maintenance/internals/jobs.md) for an explanation of how the system works internally.
-
----
-
-_Enjoy the power of async background tasks with full control!_

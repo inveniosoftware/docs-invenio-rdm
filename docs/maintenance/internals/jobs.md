@@ -1,6 +1,6 @@
 # Job System Design
 
-_Added in v13.0.0_
+_Introduced in InvenioRDM v13_
 
 The InvenioRDM job system introduces a robust, extensible mechanism for running and managing asynchronous background tasks. Built on top of Celery, it provides administrators with full visibility, auditability, and control over long-running or scheduled tasks via the admin UI or REST API.
 
@@ -57,7 +57,8 @@ Scheduled and on-demand job execution requires a **custom scheduler beat**, whic
 Ensure your deployment includes this scheduler beat logic if you intend to use the job system in production.
 
 !!! note "Info"
-    Guide to deploy a custom beat scheduler [here](../../../operate/ops/jobs/configure).
+
+    Guide to deploy a custom beat scheduler [here](../../operate//ops/jobs/configure.md).
 
 ---
 

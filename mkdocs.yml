@@ -80,6 +80,7 @@ nav:
           - Redirect legacy routes: operate/ops/route_migration.md
           - Migrate from another repository: "operate/ops/migrate.md"
           - Jobs/Automated Tasks:
+              - Jobs: operate/ops/jobs/jobs.md
               - Configure: operate/ops/jobs/configure.md
               - Create and run: operate/ops/jobs/create_and_run.md
       - Customization philosophy: operate/customize/index.md
