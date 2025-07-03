@@ -52,22 +52,22 @@ Names listing endpoint is now restricted to authenticated users, names can be "u
 
 DOIs can now be configured as optional. Describe the feature.
 
-### Admin panel
+### Administration panel
 
-New quality of life improvements include:
+You'll find several new improvements in the administration panel:
 
-* The default number of results of has been increased from 10 to 20 on all panels
-* Records and draft panel:
-    * More of the title is shown by default
-    * Improved display of files and stats information
-    * Fixed narrow viewport display, such as on mobile
-    * Owner now links to the ID in the user panel
-* User panel:
-    * ORCID and GitHub icons now link to the user's profile
+- The default number of results of has been increased from 10 to 20 on all panels
+- Records and draft panel:
+    - More of the title is shown by default
+    - Improved display of files and stats information
+    - Fixed narrow viewport display, such as on mobile
+    - Owner now links to the ID in the user panel
+- User panel:
+    - ORCID and GitHub icons now link to the user's profile
 
 #### Compare revisions
 
-The Compare Revisions feature allows administrators to audit record updates and follow changes over time.
+The new `Compare Revisions` feature allows administrators to audit record updates and follow changes over time.
 
 From the **Records** list, click the **“Compare revisions…”** button in the _Actions_ column to open a side-by-side comparison window:
 
@@ -83,7 +83,7 @@ The changes are then displayed in a JSON **side-by-side diff** view:
 
 !!! info "Revisions VS versions"
 
-    This feature allows admins to compare revisions, not versions. A revision is the result of editing a record, where each published edit creates a new revision. A new version is a different record which is semantically linked to the previous record. At this time it is not possible to compare different records, including versions. 
+    This feature allows admins to compare revisions, not versions. A revision is the result of editing a record, where each published edit creates a new revision. A new version is a different record which is semantically linked to the previous record. At this time it is not possible to compare different records, including versions.
 
 ### New Metadata Fields
 
