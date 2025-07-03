@@ -26,7 +26,7 @@ We have also enabled ROR updating using invenio-jobs, which lets you
 automatically load the funders or affiliations vocabulary from the
 InvenioRDM administration panel. You can also schedule to update your
 vocabulary with new ROR releases on a regular schedule. You can find more
-instructions on the [affiliations](../../operate/customize/vocabularies/affiliations.md) 
+instructions on the [affiliations](../../operate/customize/vocabularies/affiliations.md)
 and [funders](../../operate/customize/vocabularies/funding.md) documentation pages.
 
 Explain about the new jobs feature, logging and ORCID/ROR jobs.
@@ -98,7 +98,7 @@ available here](../../reference/metadata.md). This field will require
 reindexing upon the version upgrade.
 
 There are new thesis metadata fields including department, type,
-date_submitted, date_defended. thesis:university had been moved to 
+date_submitted, date_defended. thesis:university had been moved to
 university inside of the thesis:thesis section, alongside the other new fields.
 
 There is a new edition field under imprint.
@@ -125,17 +125,19 @@ Themed communities benefit from a custom homepage, defined via HTML template in 
 
 It is now possible to create hierarchical relationships between communities, allowing for departments, subject areas and other structures to be represented via related communities. Records from the "child" community are automatically indexed in the "parent" community, allowing all the records of the children to be browsed in the parents. The communities are also bidirectionally linked so that it is easy to navigate between both.
 
-Having subcommunities also enables the **Browse** page, which lists all the subcommunities and collections (see below) of that community.
+Having subcommunities also enables the **Browse** page, which lists all the subcommunities and [collections](#collections) of that community.
 
 !!! note
 
-    Currently communities can only have one level of hierarchy (i.e., no grand-child communities) and communities can only have one parent community. The former restriction would be more easily overridden in your instance if required.
+    Currently communities can only have one level of hierarchy (i.e., no grand-child communities) and communities can only have one parent community.
 
 #### Collections
 
 Collections are a "big" feature added to v13.
 
-!!!warning Collections require new database tables, therefore its migration recipes must be executed (`invenio db upgrade` or similar)
+!!! warning
+
+    Collections require new database tables, therefore its migration recipes must be executed (`invenio db upgrade` or similar).
 
 A collection serves as a curated set of records that are grouped based on a specific filter or query, displayed on a dedicated page, introducing a new way of organizing records within a community. For instance, a collection can be defined within a community to highlight records sharing common attributes, like funding programs or specific categories.
 
