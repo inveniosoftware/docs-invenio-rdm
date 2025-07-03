@@ -115,6 +115,10 @@ nav:
           - Emails:
               - Submission: "operate/customize/emails.md"
               - Capture: operate/customize/dev_email.md
+          - File uploads:
+              - Files uploaders: "operate/customize/file-uploads/uploader.md"
+              - S3 compatible storage: "operate/customize/file-uploads/s3.md"
+              - Upload limits: "operate/customize/file-uploads/upload_limits.md"
           - Jobs: "operate/customize/invenio_jobs_reference.md"
           - Landing page: "operate/customize/landing_page.md"
           - Language(s) and locale(s): "operate/customize/i18n-and-l10n.md"
@@ -129,10 +133,6 @@ nav:
               - Create search terms mappings: operate/customize/search_terms_migration.md
               - Customize search index templates: operate/customize/search_templates.md
           - Static pages: "operate/customize/static_pages.md"
-          - File uploads:
-            - S3 compatible storage: "operate/customize/file-uploads/s3.md"
-            - Upload limits: "operate/customize/file-uploads/upload_limits.md"
-            - Uploader UI: "operate/customize/file-uploads/uploader.md"
       - Add custom code:
           - Custom Python and JS code: operate/code/custom_code.md
           - Debugging: "operate/code/debugging.md"
@@ -253,8 +253,8 @@ nav:
   - Reference:
       - Overview: reference/index.md
       - CLI:
-        - Invenio-cli commands: reference/cli.md
-        - Invenio commands: reference/cli_invenio.md
+          - Invenio-cli commands: reference/cli.md
+          - Invenio commands: reference/cli_invenio.md
       - Metadata: reference/metadata.md
       - OAI-PMH: reference/oai_pmh.md
       - REST API:
