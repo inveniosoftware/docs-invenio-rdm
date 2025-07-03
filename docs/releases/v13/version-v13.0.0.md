@@ -109,7 +109,9 @@ When a record is shared, its inclusion requests will be also accessible. There i
 
 ### Audit logs
 
-To be completed
+InvenioRDM now comes with a new audit logs feature. See the [related documentation here](../../operate/customize/audit-logs.md).
+
+![Administration Panel](../../operate/customize/imgs/audit-logs.png)
 
 ### Communities
 
@@ -223,10 +225,6 @@ An overview of all the collections can be found in the community browse page (if
 ### Helm charts
 
 To be announced?
-
-### Diff tool in the admin panel
-
-Explain and screenshot of the diff tool in the admin panel
 
 ### FAIR signposting level 1
 
