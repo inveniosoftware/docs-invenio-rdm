@@ -34,6 +34,18 @@ app_data/
 
 The template file content is what will be imported in the database and rendered to the user when navigating to the page's URL.
 
+_Introduced in InvenioRDM v13_
+
+If you have configured additional languages via the setting `I18N_LANGUAGES` you may now also add a translated version of your page, too:
+
+```bash
+app_data/
+└── pages
+    └──my_custom_page.html.<lng>
+```
+
+Where `<lng>` is any of the languages you defined. If you don't add a translated page, the original template file content will be imported in the database instead.
+
 ## Register Pages
 
 _Introduced in InvenioRDM v12_
