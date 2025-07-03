@@ -36,6 +36,18 @@ The template file content is what will be imported in the database and rendered 
 
 _Introduced in InvenioRDM v12_
 
+If you have configured additional languages via the setting `I18N_LANGUAGES` you may now also add a translated version of your page, too:
+
+```bash
+app_data/
+└── pages
+    └──my_custom_page.html.<lng>
+```
+
+Where `<lng>` is any of the languages you defined. If you don't add a translated page the original template file content will be imported in the database instead.
+
+_New in InvenioRDM v13_
+
 ## Register Pages
 
 InvenioRDM now allows for dynamic registration of static pages through configuration. after doing the steps above, Add the `APP_RDM_PAGES` variable to your `invenio.cfg` to map the page identifiers to URLs, this enables the application to serve these pages dynamically, For example:
