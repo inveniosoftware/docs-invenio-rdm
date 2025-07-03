@@ -18,6 +18,11 @@ _TODO_: the quota feature has not been documented. It should be added, with a sc
 
 ### Jobs and ORCID/ROR
 
+TODO
+**Document the introduction of jobs and link it to the doc. Document in the upgrade notes to add the new scheduler for jobs**
+
+
+
 We have upgraded to ROR version 2.0 and enhanced the metadata to include
 organization aliases, status, types, locations, and acronym. It should be
 easier to find the correct organization or funder you're looking for.
@@ -36,7 +41,7 @@ Related [new doc page](../../operate/customize/vocabularies/names.md#using-orcid
 ### Search improvements
 
 Both user and record search have been enhanced to return more accurate results for common names/titles, partial matches (even with typos) and names/titles with accents or diacritics.
-	
+
 Creators, affiliations and funders autocomplete search has been enhanced so that suggestions appear faster and better match what you type.
 
 See [breaking changes](#breaking-changes) for notes about the mapping changes and the new indices.

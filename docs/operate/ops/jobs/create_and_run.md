@@ -1,8 +1,9 @@
-_added in v13.0.0_
+_Introduced in InvenioRDM v13_
 
 ## Creating a Job
 
 !!! note "Info"
+
     Creating a job will **not execute it**. It will only be executed when scheduled or run manually. If you already have an existing Job and want to run it, see [running a job](#running-a-job).
 
 1. Head to the administration interface and navigate to the "Jobs" section.
@@ -65,15 +66,7 @@ When creating a new run, you'll need to configure several key parameters in the 
 
 #### Advanced Configuration
 
-This section defines the job’s workflow using JSON. It consists of three key parts:
-
-- **Readers:** Specify how and where the job reads input data, including file patterns or sources.
-
-- **Transformers:** Define the processing or transformation steps applied to the data after reading.
-
-- **Writers:** Determine the output destination and how the processed data is saved.
-
-Each component lets you customize the job’s data flow to suit your specific needs.
+This section explains how to define your job's workflow directly using JSON, bypassing the UI form. You should use this method for advanced configurations when you need more powerful and granular control over your job's input parameters and have a clear understanding of its setup.
 
 ##### Custom Arguments
 
