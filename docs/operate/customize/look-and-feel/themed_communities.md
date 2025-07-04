@@ -1,14 +1,16 @@
+#Themed communities
+
 _Introduced in InvenioRDM v13_
 
-Branded Communities allow individual communities on the Invenio platform to have custom visual identities while preserving the overall repository brand. This feature is particularly useful for communities who want their presence on InvenioRDM to reflect their brand identity. Each branded community can customize:
+Themed Communities allow individual communities on the InvenioRDM platform to have custom visual identities while preserving the overall repository brand. This feature is particularly useful for communities who want their presence on InvenioRDM to reflect their brand identity. Each themed community can customize:
 
-- Visual styles
-- Override layout
-- Custom static assets and pages
+- Customize visual styles
+- Override layouts
+- Have custom static assets and pages
 
 This document describes how theming and branding can be applied to individual communities in InvenioRDM.
 
-## How to set up a branded community
+## How to set up a themed community
 
 ### **Step 1: Branding Configuration**
 
@@ -49,7 +51,7 @@ service.update(system_identity, "horizon", {**horizon.data, **horizon_theme})
 
 #### For the Community Homepage
 
-All the branded communities have a homepage. To customize the homepage for a branded community with an identifier `horizon`, place your custom template at:
+All the themed communities have a homepage. To customize the homepage for a themed community with an identifier `horizon`, place your custom template at:
 
 ```
 templates/themes/horizon
@@ -86,7 +88,7 @@ templates/themes/horizon
 {%- endblock page_body %}
 ```
 
-![Branded Community Homepage](imgs/branded_community_homepage.png)
+![Themed Community Homepage](imgs/themed_community_homepage.png)
 
 !!! tip
 
@@ -119,7 +121,7 @@ templates/themes/horizon
 
 ### **Step 3: Add Static Pages (Optional)**
 
-Branded communities can also have fully themed static pages.
+Themed communities can also have fully themed static pages.
 
 !!! note
 
