@@ -1,11 +1,11 @@
 # Require community for record publication
 
-Institutional policies may require all published records to belong to at least one community. InvenioRDM enforces this requirement through the `RDM_RECORD_ALWAYS_IN_COMMUNITY` configuration parameter.
+Institutional policies may require all published records to belong to at least one community. InvenioRDM enforces this requirement through the `RDM_COMMUNITY_REQUIRED_TO_PUBLISH` configuration parameter.
 To activate this feature, open your `invenio.cfg` and add:
 
 ```python
 # Require community membership for all published records
-RDM_RECORD_ALWAYS_IN_COMMUNITY = True
+RDM_COMMUNITY_REQUIRED_TO_PUBLISH = True
 ```
 
 Default State: Disabled `False`
@@ -26,7 +26,7 @@ Only users with specific privileges (by default, administrators with `superuser`
 
 ### Granting Community Creation Rights
 
-When enabling `RDM_RECORD_ALWAYS_IN_COMMUNITY`, note that community creation permissions remain separate. By default, anyone can create communities. Institutions have different requirements for who can create communities, and InvenioRDM provides flexible configuration. Below is one example approach using custom roles to restrict community creation to a specific role, such as "community-curator".
+When enabling `RDM_COMMUNITY_REQUIRED_TO_PUBLISH`, note that community creation permissions remain separate. By default, anyone can create communities. Institutions have different requirements for who can create communities, and InvenioRDM provides flexible configuration. Below is one example approach using custom roles to restrict community creation to a specific role, such as "community-curator".
 To implement this, follow these steps:
 
 1- Create permission generators:
@@ -76,7 +76,7 @@ class CustomCommunitiesPermissionPolicy(CommunityPermissionPolicy):
 
 ```python
 # Enable community requirement
-RDM_RECORD_ALWAYS_IN_COMMUNITY = True
+RDM_COMMUNITY_REQUIRED_TO_PUBLISH = True
 
 from yourmodule.permissions import CustomCommunitiesPermissionPolicy
 # Apply custom permissions
