@@ -75,7 +75,7 @@ class UpdateEmbargoesJob(JobType):
 
     @classmethod
     def build_task_arguments(cls, job_obj, since=None, **kwargs):
-        return {"since": str(since)}
+        return {"since": since}
 ```
 
 To include custom fields in the admin form, define a Marshmallow schema:
@@ -101,7 +101,7 @@ class UpdateEmbargoesJob(JobType):
     @classmethod
     def build_task_arguments(cls, job_obj, since=None, dry_run=False, **kwargs):
         return {
-            "since": str(since) if since else None,
+            "since": since,
             "dry_run": dry_run
         }
 ```
