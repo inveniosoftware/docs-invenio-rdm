@@ -31,3 +31,10 @@ Learn how to write and contribute technical documentation.
 - Read documents out loud (to yourself).
 - Ask for review.
 - When using MkDocs, run the live server and verify that the page renders correctly (e.g. code snippets).
+
+## External locations to update
+
+When updating the documentation, you may move content and pages around that some modules of the InvenioRDM project link to. You will need to update those links to point to the moved pages. In particular, verify if your changes affect the links listed in these locations:
+
+- the [default InvenioRDM frontpage](https://github.com/inveniosoftware/invenio-app-rdm/blob/master/invenio_app_rdm/theme/templates/semantic-ui/invenio_app_rdm/intro_section.html) shown after a fresh install
+- the [inveniosoftware.org site](https://github.com/inveniosoftware/inveniosoftware.org) that positions InvenioRDM within the wider Invenio universe
