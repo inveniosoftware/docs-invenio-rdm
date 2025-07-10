@@ -1,10 +1,10 @@
-# System Fields
+# System fields
 
 ## Overview
 
-SystemFields is a powerful abstraction layer in InvenioRDM that provides managed access to record data through Python descriptors. It bridges the gap between the raw JSON dictionary structure of records and object-oriented Python interfaces, enabling sophisticated data management, validation, and integration with related objects.
+System fields are a powerful abstraction layer in InvenioRDM that provide managed access to record data through Python descriptors. They bridge the gap between the raw JSON dictionary structure of records and object-oriented Python interfaces, enabling sophisticated data management, validation, and integration with related objects.
 
-At its core, SystemFields transforms simple attribute access (`record.title`) into complex operations that can involve:
+At its core, System fields transform simple attribute access (`record.title`) into complex operations that can involve:
 
 - Data validation and transformation
 - Integration with external services and databases
@@ -14,19 +14,17 @@ At its core, SystemFields transforms simple attribute access (`record.title`) in
 
 ## Architecture and core concepts
 
-### The Foundation
-
 Every system field inherits from `SystemField`, which implements Python's descriptor protocol (`__get__`, `__set__`, `__set_name__`). This allows fields to intercept attribute access and customize behavior:
 
 ```python
 class MyRecord(Record, SystemFieldsMixin):
     title = ConstantField('metadata.title', 'Default Title')
 
-# When you access record.title, SystemField.__get__ is called
-# When you set record.title = "New Title", SystemField.__set__ is called
+# record.title calls ConstantField.__get__
+# record.title = "New Title" calls ConstantField.__set__
 ```
 
-### SystemFields Mixin and Metaclass
+### Mixin and Metaclass
 
 The `SystemFieldsMixin` uses the `SystemFieldsMeta` metaclass to automatically:
 
@@ -69,11 +67,13 @@ SystemFields hook into the record lifecycle through the extension system:
 ### Why Choose SystemFields Over Alternatives
 
 **Advantages:**
+
 - **Transparent Integration**: Fields look like normal Python attributes
 - **Lifecycle Hooks**: Automatic integration with record operations
 - **Caching Built-in**: Automatic caching mechanisms available
 
 **Trade-offs:**
+
 - **Complexity**: Adds abstraction layers
 - **Performance Overhead**: Descriptor calls have overhead
 - **Debugging Difficulty**: Magic behavior can be hard to trace
@@ -84,15 +84,16 @@ SystemFields hook into the record lifecycle through the extension system:
 ### Basic custom field example
 
 ```python
-from invenio_records.systemfields import SystemField
-
+from invenio_records.api import Record
+from invenio_records.systemfields import SystemField, SystemFieldsMixin
 class UppercaseField(SystemField):
     """A field that automatically converts values to uppercase."""
 
     def __get__(self, record, owner=None):
         if record is None:
-            return self  # Class access
+            return self  # Class-level access
 
+        # instance-level access
         # Get value from record dictionary
         value = self.get_dictkey(record)
         return value.upper() if value else None
@@ -102,19 +103,23 @@ class UppercaseField(SystemField):
             # Store lowercase in record, display uppercase
             self.set_dictkey(record, value.lower(), create_if_missing=True)
 
-# Usage in the your API class
+# Usage in the API class
 class MyRecord(Record, SystemFieldsMixin):
     title = UppercaseField('metadata.title')
 
 record = MyRecord({'metadata': {'title': 'hello world'}})
+print(MyRecord.title)  # <__main__.UppercaseField object at 0x7b9a3ec49fd0>
 print(record.title)  # "HELLO WORLD"
 record.title = "New Title"
-print(record['metadata']['title'])  # "new title"
+print(record['metadata']['title']) # "new title"
 ```
 
 ### Advanced Field with Lifecycle Hooks
 
 ```python
+from invenio_records.api import Record
+from invenio_records.systemfields import SystemField, SystemFieldsMixin
+
 class TimestampField(SystemField):
     """A field that tracks creation and modification times."""
 
@@ -160,7 +165,7 @@ record = MyRecord({})  # Automatically sets created/modified
 
 ## Relations
 
-Relations are specialized SystemFields that manage connections between records and external entities (other records, database models, APIs, etc.).
+Relations are specialized SystemFields that manage connections between records and other entities (other records, database models, APIs, etc.).
 
 ### Basic Relation Concepts
 
@@ -698,4 +703,4 @@ When designing SystemFields, consider:
 - Error handling and debugging
 - Testing strategies
 
-By following these patterns and best practices, you can create robust, maintainable SystemFields that enhance your InvenioRDM instance's capabilities while maintaining clean, readable code.
+By following these patterns and best practices, you can create robust, maintainable System fields that enhance InvenioRDM's capabilities while maintaining clean, readable code.
