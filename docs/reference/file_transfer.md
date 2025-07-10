@@ -1,4 +1,4 @@
-# File storage
+# File transfer
 
 Two different concepts are involved in the storing of files in InvenioRDM. One is the
 **backend**, meaning the actual technology that is used to store a file. For example, the local
@@ -9,7 +9,7 @@ also known as **method** used to transport the files. There are three such defin
 independently of the backend.
 - *Fetch*, these are files that are not immediately managed by the instance as they need to be downloaded first.
 This means that they will eventually become _local_ files.
-- *Multipart*, these are files that are uploaded in parts. User can upload parts
+- *Multipart*, these are files that are uploaded in parts. Users can upload parts
 in parallel or can retransmit each part if the upload fails, for example due to
 network errors. After upload, the parts are assembled into a single file and the
 file becomes a _local_ file.
@@ -127,7 +127,7 @@ to `L`. The status can be checked using the _files_ url (`/api/records/{id}/draf
 Note, until all the files have been transferred (i.e. their status is `completed`) the
 record cannot be published.
 
-More over, while files are being transferred requests to the `content` and `commit`
+Moreover, while files are being transferred requests to the `content` and `commit`
 endpoints are not allowed (disabled).
 
 ### Error handling
@@ -222,7 +222,7 @@ by following the returned URL. Therefore, you must ensure:
 1. **Network Access**: The file’s URL is reachable from the user’s network.
 2. **No Sensitive Data**: The URL does not include any sensitive information (such as tokens).
 
-By default, Invenio refuses references to external files. Files can only be referenced
+By default, InvenioRDM refuses references to external files. Files can only be referenced
 from a “trusted domains” list, which you can configure in your `invenio.cfg` file:
 
 ```python
