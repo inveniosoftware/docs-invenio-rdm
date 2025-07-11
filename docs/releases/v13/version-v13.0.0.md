@@ -1,8 +1,8 @@
 # InvenioRDM v13.0
 
-_Draft_
-
 _DATE_
+
+We're happy to announce the release of InvenioRDM v13.0! Version 13 will be maintained until at least 6 months following the next release. Visit our maintenance policy page to learn more.
 
 ## Try it
 
@@ -11,49 +11,37 @@ _DATE_
 - [Installation instructions](../../install/index.md)
 
 ## What's new?
+Our latest release, v13, is here, and it's packed with an incredible array of new features and major improvements. We're diving straight into the highlights, then wrapping up with a comprehensive list of all the other valuable enhancements.
 
-to complete
+### Audit logs
+InvenioRDM now comes with a new audit logs feature. See the [related documentation here](../../operate/customize/audit-logs.md).
 
-_TODO_: the quota feature has not been documented. It should be added, with a screenshot of the admin panel.
+![Administration Panel](../../operate/customize/imgs/audit-logs.png)
 
-### Jobs and ORCID/ROR
+### Jobs
+This release introduces a new Jobs feature, providing a comprehensive way to manage asynchronous tasks via the UI or REST API. Jobs are triggered via the admin UI or REST API, run using Celery, and support logging, argument validation, and result tracking. See the related documentation [here](../../operate/ops/jobs/jobs.md).
 
-TODO
-**Document the introduction of jobs and link it to the doc. Document in the upgrade notes to add the new scheduler for jobs**
+#### ORCID and ROR integrations
+You can now setup jobs to automatically and recurrently fetch ORCID and ROR latest databases.
 
+For ORCID, read more on the [names vocabulary](../../operate/customize/vocabularies/names.md#using-orcid-public-data-sync) documentation page.
 
-
-We have upgraded to ROR version 2.0 and enhanced the metadata to include
-organization aliases, status, types, locations, and acronym. It should be
-easier to find the correct organization or funder you're looking for.
-
-We have also enabled ROR updating using invenio-jobs, which lets you
-automatically load the funders or affiliations vocabulary from the
-InvenioRDM administration panel. You can also schedule to update your
-vocabulary with new ROR releases on a regular schedule. You can find more
-instructions on the [affiliations](../../operate/customize/vocabularies/affiliations.md)
-and [funders](../../operate/customize/vocabularies/funding.md) documentation pages.
-
-Explain about the new jobs feature, logging and ORCID/ROR jobs.
-
-Related [new doc page](../../operate/customize/vocabularies/names.md#using-orcid-public-data-sync).
-
-### Search improvements
-
-Both user and record search have been enhanced to return more accurate results for common names/titles, partial matches (even with typos) and names/titles with accents or diacritics.
-
-Creators, affiliations and funders autocomplete search has been enhanced so that suggestions appear faster and better match what you type.
-
-See [breaking changes](#breaking-changes) for notes about the mapping changes and the new indices.
-
-### Names Vocabulary
-
-TODO
-Names listing endpoint is now restricted to authenticated users, names can be "unlisted" not showing anymore in the search result for non-admin users
+With the ROR job, you can automatically load funders or affiliations vocabulary from the InvenioRDM administration panel, and schedule updates with new ROR releases. Instructions can be found on the [affiliations vocabulary](../../operate/customize/vocabularies/affiliations.md) documentation page.
+We have also upgraded the integration with ROR to version 2.0 and enhanced the metadata to include organization aliases, status, types, locations, and acronyms, making it easier to find the correct organization or funders.
 
 ### Optional DOI
+You can now let users to choose if they need a DOI or not when uploading. See how to configure it in the [related documentation](../../operate/customize/dois.md#optional-dois).
 
-DOIs can now be configured as optional. Describe the feature.
+![Optional DOIs](../../operate/customize/imgs/optional-dois.jpg)
+
+### Search improvements
+Both users and records search have been enhanced to return more accurate results for common names/titles, partial matches (even with typos) and names/titles with accents or diacritics.
+
+Creators, affiliations and funders autocompletion has been improved so that suggestions appear faster and better match what you type.
+
+!!! warning
+    This change requires the re-creation of the search cluster mappings for some of the indices. See [breaking changes](#breaking-changes) for more informations.
+
 
 ### Administration panel
 
@@ -104,11 +92,7 @@ There is a new edition field under imprint.
 
 When a record is shared, its inclusion requests will be also accessible. There is a new filter in the My Dashboard to show the records shared with me.
 
-### Audit logs
 
-InvenioRDM now comes with a new audit logs feature. See the [related documentation here](../../operate/customize/audit-logs.md).
-
-![Administration Panel](../../operate/customize/imgs/audit-logs.png)
 
 ### Communities
 

@@ -9,21 +9,22 @@ affiliations dataset. The recommended approach depends on your version of
 InvenioRDM.
 
 !!! info "Loading time"
-    
+
     The ROR vocabulary consists of over 100,000 records and with an ingestion
     speed around 100-200 records/s it usually takes between around 8-15 minutes
     to load the records.
-    
-    You can follow the progress via the RabbitMQ management interface
-    on [http://127.0.0.1:15672/](http://127.0.0.1:15672/) (guest/guest).
 
-** Version 13 and later **
+    You can follow the progress connecting to the RabbitMQ management web interface.
+
+## Import using a job
+
+_Introduced in InvenioRDM v13_
 
 You can set up a job to import the ROR affiliations dataset directly by going
-to https://my-repository-url/administration/jobs
+to the Administration panel, Jobs.
 
 Create a new job called "Load Affiliations" in the Default queue with task "Load ROR affiliations". Make
-sure to check the "active" checkbox and click the save button. 
+sure to check the "active" checkbox and click the save button.
 
 Then click the "Configure and run" button, select the "celery" queue, and put
 "1900-01-01" in the "Since" field. Click "Run now" and your affiliations will
@@ -35,10 +36,12 @@ the ROR vocabulary on a regular schedule.
 If you prefer to work on the command line, you can type
 
 ```bash
-pipenv run invenio vocabularies import --vocabulary affiliations --origin ror-http
+pipenv run invenio vocabularies import \
+  --vocabulary affiliations \
+  --origin ror-http
 ```
 
-** Version 12 and earlier **
+## Manual import
 
 In order to import the [ROR](https://ror.org) affiliations dataset you will need to add
 the file containing the dataset itself and then enable it in your instance's `app_data/vocabularies.yaml`
@@ -71,7 +74,7 @@ invenio rdm-records fixtures
 
 _Introduced in InvenioRDM v12_
 
-In V12, the previous method has been simplified. You can now enable affiliations directly by specifying the data file in `app_data/vocabularies.yaml`:
+In v12, the previous method has been simplified. You can now enable affiliations directly by specifying the data file in `app_data/vocabularies.yaml`:
 
 ```yaml
 affiliations:

@@ -1,6 +1,6 @@
 # Export records in different formats
 
-_Introduced in v12.0.0_
+_Introduced in InvenioRDM v12_
 
 InvenioRDM provides various record serialisation formats to let users easily export bibliographic records in a machine-readable way (to transfer them to different systems for instance). These formats adhere to widely used metadata standards such as DataCite, Dublin Core, BibTeX, ...
 

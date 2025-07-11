@@ -91,7 +91,6 @@ invenio.cfg:
 RDM_PARENT_PERSISTENT_IDENTIFIERS={}
 ```
 
-
 #### OAI-PMH
 
 The OAI-PMH server's metadata format ``oai_datacite`` that allows you to harvest record from InvenioRDM in DataCite XML needs to be configured with your DataCite data center symbol. This is only required if you want your records to be harvestable in DataCite XML format.
@@ -108,12 +107,12 @@ By default, InvenioRDM allows versioning for any DOI type - internally or extern
 RDM_ALLOW_EXTERNAL_DOI_VERSIONING = False
 ```
 
-#### Configuring DOI Behavior
+### Configuring DOI Behavior
 
-You can change how DOIs work in InvenioRDM by adding modified configuration variables to `invenio.cfg`. For example, if you want to make DOIs *optional* you can add the following block to invenio.cfg
+You can change how DOIs work in InvenioRDM by adding to your `invenio.cfg`:
 
 ```python
-RDM_PERSISTENT_IDENTIFIERS = {
+INVENIO_RDM_PERSISTENT_IDENTIFIERS = {
     # DOI automatically removed if DATACITE_ENABLED is False.
     "doi": {
         "providers": ["datacite", "external"],
@@ -133,6 +132,68 @@ RDM_PERSISTENT_IDENTIFIERS = {
 ```
 You [can view the default configuration in invenio-rdm-records](https://github.com/inveniosoftware/invenio-rdm-records/blob/e64dd0b81757a391584e63d162d5e6caf6780637/invenio_rdm_records/config.py#L322)
 
-## Known issues
+### Optional DOIs
+
+_Introduced in InvenioRDM v13_
+
+You can configure InvenioRDM to allow users to choose whether or not to register a DOI when uploading a record.
+
+![Optional DOIs](imgs/optional-dois.jpg)
+
+To enable this feature, configure the following in your `invenio.cfg`:
+
+```python
+### Do not require DOIs for record and parent
+RDM_PERSISTENT_IDENTIFIERS["doi"]["required"] = False
+RDM_PARENT_PERSISTENT_IDENTIFIERS["doi"]["required"] = False
+RDM_PERSISTENT_IDENTIFIERS["doi"]["ui"]["default_selected"] = "not_needed"  # "yes", "no" or "not_needed"
+```
+
+With this option enabled, users can decide whether or not to request a DOI for their record. However, managing different versions of a record with and without DOIs can introduce complexities. Ideally, once a DOI is registered for a record, all subsequent versions should also have a DOI to avoid resolving to a version with a DOI, and creating confusion.
+
+The default behavior in InvenioRDM enforces this principle. Nevertheless, you can customize the behavior in two ways.
+
+**1. Basic**
+
+Provide your rules between records' versions by setting the config variable `INVENIO_OPTIONAL_DOI_TRANSITIONS`. The rules are evaluated each time a draft is saved, or on publish. This config expect rules defined in the format *from*/*to* states: given the DOI state in the previous record's version (*from*), it defines what are the allowed states for the current draft (*to*).
+
+```
+{
+    <from>: {
+        "allowed_providers": [<to>, <to>, ...],
+        "message": invalid state msg
+    }
+
+}
+```
+
+*from*/*to* possible values:
+
+    - `datacite` (or other provider): in the current draft, the user selected to register a DOI with the provider. The provider name must be configured in the DOI configuration above in this documentation.
+    - `external`: in the current draft, the user selected an external DOI.
+    - `not_needed`: in the current draft, the user selected that a DOI is not needed.
+
+In the following example, you will define that when the previous record version has a DOI registered with DataCite, then the current draft must have the same. The user cannot input an external DOI or select that it is not needed.
+
+```python
+INVENIO_OPTIONAL_DOI_TRANSITIONS = {
+    "datacite": {
+        "allowed_providers": ["datacite"],
+        "message": "<error message if the user selected a DOI option that is not in the allowed_providers field above>",
+    },
+    ...
+}
+```
+
+**2. Advanced**
+
+Assign your custom function to `INVENIO_RDM_OPTIONAL_DOI_VALIDATOR = my_function`. The custom function will be called on each save or publish of a draft.
+
+```python
+def validate_optional_doi(draft, previous_published_record, errors=None, transitions_config=None):
+    ...
+```
+
+## Limitations
 
 - **Restricted records:** Once a DOI is created, it cannot be fully removed from DataCite. Starting with v12, InvenioRDM will not register DOIs for restricted records. It will also hide a DOI from the DataCite Search if a record is changed from public to restricted. However that DOI will still resolve and metadata may be available to DataCite members.
