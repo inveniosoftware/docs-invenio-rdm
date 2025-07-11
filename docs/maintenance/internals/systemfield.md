@@ -44,42 +44,41 @@ SystemFields hook into the record lifecycle through the extension system:
 - `pre_delete` / `post_delete`: Record deletion
 - `pre_revert` / `post_revert`: Record version reversion
 
-### When to Use SystemFields
+### When to use
 
-**Use SystemFields when you need to:**
+You can explore implementing a `SystemField` when you need to:
 
-1. **Integrate with External Systems**: Connect record fields to databases, APIs, or services
-2. **Add Validation Logic**: Implement complex validation that goes beyond JSON schema
-3. **Manage Related Objects**: Handle relationships between records and other entities
-4. **Optimize Performance**: Implement caching, denormalization, or lazy loading
-5. **Enforce Business Rules**: Add custom logic that must run during record operations
-6. **Provide Clean APIs**: Hide complexity behind simple attribute access
+1. **Integrate with external systems**: connect record fields to databases, APIs, or services.
+2. **Add validation logic**: implement complex validation that goes beyond JSON schema.
+3. **Manage related objects**: handle relationships between records and other entities.
+4. **Optimize performance**: implement caching, denormalization, or lazy loading.
+5. **Enforce business rules**: add custom logic that must run during record operations.
+6. **Provide clean APIs**: hide complexity behind simple attribute access.
 
-### When NOT to Use SystemFields
+### When NOT to use
 
-**Avoid SystemFields when:**
+Avoid implementing a `SystemField` when:
 
-1. **Simple Data Storage**: For basic key-value storage, use the record dictionary directly
-2. **Performance Critical Paths**: The descriptor overhead may impact performance
-3. **Temporary Calculations**: For ephemeral data that doesn't need persistence
-4. **External Processing**: When data transformation happens outside the record lifecycle
+1. **Simple data storage**: for basic key-value storage, use the record dictionary directly.
+2. **Performance critical paths**: the descriptor overhead may impact performance.
+3. **External processing**: When data transformation happens outside the record lifecycle.
 
-### Why Choose SystemFields Over Alternatives
+### Advantages and trade-offs
 
 **Advantages:**
 
-- **Transparent Integration**: Fields look like normal Python attributes
-- **Lifecycle Hooks**: Automatic integration with record operations
-- **Caching Built-in**: Automatic caching mechanisms available
+- **Transparent integration**: fields look like normal Python attributes.
+- **Lifecycle hooks**: automatic integration with record operations.
+- **Caching built-in**: automatic caching mechanisms available.
 
 **Trade-offs:**
 
-- **Complexity**: Adds abstraction layers
-- **Performance Overhead**: Descriptor calls have overhead
-- **Debugging Difficulty**: Magic behavior can be hard to trace
-- **Learning Curve**: Requires understanding of descriptors and metaclasses
+- **Complexity**: adds abstraction layers.
+- **Performance overhead**: descriptor calls have overhead.
+- **Debugging difficulty**: magic behavior can be hard to trace.
+- **Learning curve**: requires understanding of descriptors and metaclasses.
 
-## Building your own SystemField
+## Building your own System field
 
 ### Basic custom field example
 
@@ -114,7 +113,7 @@ record.title = "New Title"
 print(record['metadata']['title']) # "new title"
 ```
 
-### Advanced Field with Lifecycle Hooks
+### Advanced field with lifecycle hooks
 
 ```python
 from invenio_records.api import Record
@@ -165,18 +164,18 @@ record = MyRecord({})  # Automatically sets created/modified
 
 ## Relations
 
-Relations are specialized SystemFields that manage connections between records and other entities (other records, database models, APIs, etc.).
+Relations are specialized system fields that manage connections between records and other entities (other records, database models, APIs, etc.).
 
-### Basic Relation Concepts
+### Basic relation concepts
 
 Relations consist of several components:
 
-- **RelationsField**: The main system field that manages multiple relations
-- **Relation Classes**: Define how to resolve and validate specific relation types
-- **Result Classes**: Handle the returned values when accessing relations
-- **Mapping Class**: Provides the interface for managing relations on a record
+- **RelationsField**: the main system field that manages multiple relations.
+- **Relation Classes**: define how to resolve and validate specific relation types.
+- **Result Classes**: handle the returned values when accessing relations.
+- **Mapping Class**: provides the interface for managing relations on a record.
 
-### Primary Key Relations (PKRelation)
+### Primary key relations (PKRelation)
 
 ```python
 from invenio_records.systemfields.relations import RelationsField, PKRelation
@@ -201,7 +200,7 @@ creator = article.relations.creator()  # Returns User record instance
 article.relations.parent = parent_article  # Set relation
 ```
 
-### List Relations for Multiple Connections
+### List relations for multiple connections
 
 ```python
 from invenio_records.systemfields.relations import PKListRelation
@@ -226,7 +225,7 @@ for author in article.relations.authors():  # Iterate resolved records
     print(author.name)
 ```
 
-### Custom Relations
+### Custom relations
 
 You can create custom relation types for specific integration needs:
 
@@ -269,13 +268,13 @@ class ArticleRecord(Record, SystemFieldsMixin):
     )
 ```
 
-## Performance Optimization Strategies
+## Performance optimization strategies
 
 ### Caching
 
-SystemFields provide built-in caching mechanisms to avoid repeated expensive operations:
+System fields provide built-in caching mechanisms to avoid repeated expensive operations:
 
-#### Field-Level Caching
+#### Field-level caching
 
 ```python
 class ExpensiveField(SystemField):
@@ -302,7 +301,7 @@ class ExpensiveField(SystemField):
         return f"Computed value for {record.id}"
 ```
 
-#### Relation Caching
+#### Relation caching
 
 Relations automatically cache resolved objects to avoid repeated database queries:
 
@@ -314,7 +313,7 @@ author = article.relations.creator()
 same_author = article.relations.creator()  # No database query
 ```
 
-### Denormalization for Performance
+### Denormalization for performance
 
 Denormalization stores computed or related data directly in the record for fast access:
 
@@ -343,7 +342,7 @@ class DenormalizedRelation(SystemField):
             record['metadata']['creator'] = {'id': creator_id}
 ```
 
-### Handling Stale Data
+### Handling stale data
 
 When using denormalization, you need strategies to handle stale data:
 
@@ -373,11 +372,11 @@ def reindex_stale_records():
                 record.commit()
 ```
 
-## JSON vs Python: Data Format Considerations
+## JSON vs Python: data format considerations
 
-### JSON Storage Format
+### JSON storage format
 
-SystemFields ultimately store data in the record's JSON dictionary. Consider how your field's data will be serialized:
+System fields can store data in the record's JSON dictionary when the `pre_commit` hook is correctly implemented. In such case, consider how your field's data will be serialized:
 
 ```python
 class DateField(SystemField):
@@ -407,7 +406,7 @@ class DateField(SystemField):
                 raise ValueError("Date must be datetime object or ISO string")
 ```
 
-### Handling Complex Objects
+### Handling complex objects
 
 For complex objects that don't serialize naturally to JSON:
 
@@ -444,9 +443,9 @@ class GeolocationField(SystemField):
                 raise ValueError("Value must be GeoPoint instance")
 ```
 
-## Idempotence and Data Consistency
+## Idempotence and data consistency
 
-SystemFields are designed to be idempotent - running the same operation multiple times should produce the same result:
+System fields are designed to be idempotent - running the same operation multiple times should produce the same result:
 
 ```python
 class IdempotentComputedField(SystemField):
@@ -496,9 +495,9 @@ class IdempotentComputedField(SystemField):
         return title.lower().replace(' ', '_')
 ```
 
-## Record Lifecycle Hooks Deep Dive
+## Record lifecycle hooks deep dive
 
-Understanding when each lifecycle hook is called is crucial for proper SystemField implementation:
+Understanding when each lifecycle hook is called is crucial for proper system field implementation:
 
 ### Initialization Hooks
 
@@ -516,7 +515,7 @@ class InitializationField(SystemField):
             self.__set__(record, field_data)
 ```
 
-### Serialization Hooks
+### Serialization hooks
 
 ```python
 class SerializationField(SystemField):
@@ -543,7 +542,7 @@ class SerializationField(SystemField):
             raise ValueError("Title is required")
 ```
 
-### Database Hooks
+### Database hooks
 
 ```python
 class CustomModelField(SystemField):
@@ -582,9 +581,9 @@ class CustomModelField(SystemField):
         self.remove_from_index(record)
 ```
 
-## Advanced Patterns and Best Practices
+## Advanced patterns
 
-### Field Composition
+### Field composition
 
 Combine multiple fields for complex behavior:
 
@@ -617,9 +616,9 @@ class CompositeMetadataField(SystemField):
             # Handle tags through relations field...
 ```
 
-### Validation Integration
+### Validation integration
 
-Integrate SystemFields with record validation:
+Integrate system fields with record validation:
 
 ```python
 class ValidatedField(SystemField):
@@ -652,7 +651,7 @@ class UserRecord(Record, SystemFieldsMixin):
     email = ValidatedField('metadata.email', validators=[validate_email])
 ```
 
-### Error Handling
+## Error handling
 
 Implement robust error handling in your fields:
 
@@ -687,7 +686,7 @@ class RobustField(SystemField):
 
 ## Conclusion
 
-SystemFields provide a powerful abstraction for managing complex record behavior in InvenioRDM. They enable:
+System fields provide a powerful abstraction for managing complex record behavior in InvenioRDM. They enable:
 
 - Clean separation between data storage and business logic
 - Automatic integration with record lifecycle events
@@ -695,7 +694,7 @@ SystemFields provide a powerful abstraction for managing complex record behavior
 - Type safety and validation
 - Integration with external systems and services
 
-When designing SystemFields, consider:
+When designing system fields, consider:
 
 - The JSON serialization format
 - Performance implications of your operations
@@ -703,4 +702,4 @@ When designing SystemFields, consider:
 - Error handling and debugging
 - Testing strategies
 
-By following these patterns and best practices, you can create robust, maintainable System fields that enhance InvenioRDM's capabilities while maintaining clean, readable code.
+By following these patterns and best practices, you can create robust, maintainable system fields that enhance InvenioRDM's capabilities while maintaining clean, readable code.
