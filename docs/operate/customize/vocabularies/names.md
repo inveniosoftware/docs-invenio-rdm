@@ -121,13 +121,19 @@ invenio vocabularies import \
   --origin /path/to/ORCID_2021_10_summaries.tar.gz
 ```
 
-### Using ORCiD Public Data Sync
+### Using ORCID Public Data Sync
 
 *Introduced in InvenioRDM v13*
 
+Instead of waiting for the yearly ORCID public dataset mentioned above, [ORCID premium members](https://info.orcid.org/membership/) can also access the ORCID data on demand using the Public Data Sync process.
+
+#### ORCID Public Data Sync credentials
+
+First, you should store the credentials to access the ORCID Public Data Sync in the environment variables `INVENIO_VOCABULARIES_ORCID_ACCESS_KEY` and `INVENIO_VOCABULARIES_ORCID_SECRET_KEY`.
+
 #### Installing Required Dependencies
 
-First, you should install the required `s3fs` dependency. This can be achieved by adding the following to the `Pipfile` in your instance:
+Then, you should install the required `s3fs` dependency. This can be achieved by adding the following to the `Pipfile` in your instance:
 
 ```toml
 [packages]
@@ -136,9 +142,9 @@ invenio-vocabularies = {extras = ["s3fs"]}
 ...
 ```
 
-#### Configuring ORCiD Public Data Sync
+#### Configuring ORCID Public Data Sync
 
-InvenioRDM supports loading names using the ORCiD Public Data Sync. To set this up, you need to create a definition file named `names-orcid.yaml` with the following content:
+InvenioRDM supports loading names using the ORCID Public Data Sync. To set this up, you need to create a definition file named `names-orcid.yaml` with the following content:
 
 ```yaml
 names:
@@ -189,6 +195,7 @@ names:
   batch_size: 1000
   write_many: true
 ```
+
 #### Running the Import Command
 
 To run an import using the names-orcid.yaml file, use the vocabularies import command as shown below:
