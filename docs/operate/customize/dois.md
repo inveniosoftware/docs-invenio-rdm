@@ -147,7 +147,7 @@ RDM_PERSISTENT_IDENTIFIERS = {
     },
 }
 ```
-You [can view the default configuration in invenio-rdm-records](https://github.com/inveniosoftware/invenio-rdm-records/blob/7869cb3242a7feb311f97b633af095edeff4de76/invenio_rdm_records/config.py#L393C1-L410C2)
+You [can view the default configuration for `RDM_PERSISTENT_IDENTIFIERS` in invenio-rdm-records](https://github.com/inveniosoftware/invenio-rdm-records/blob/master/invenio_rdm_records/config.py)
 
 ### Optional DOI User Interface and Advanced Configuration
 
