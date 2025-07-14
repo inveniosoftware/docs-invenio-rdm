@@ -1,6 +1,6 @@
 # Statistics
 
-_Introduced in InvenioRDM v12_
+_Introduced in v12_
 
 Query for one or multiple statistics.
 

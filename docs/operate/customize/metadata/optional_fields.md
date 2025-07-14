@@ -1,6 +1,6 @@
 # Include optional metadata fields
 
-_Introduced in InvenioRDM v12_
+_Introduced in v12_
 
 InvenioRDM comes with a base [metadata schema](../../../reference/metadata.md), which is used for every record in the system and includes many common fields. InvenioRDM also includes *optional* metadata fields, which can be activated by an administrator. These fields may not be applicable to every instance, but if they are applicable we recommend you use them instead of creating your own custom fields.
 
@@ -8,7 +8,7 @@ The current optional fields are:
 
 - Journal (Publication)
 - Imprint (Book, Chapter or Report)
-- Thesis (_introduced in InvenionRDM v13_)
+- Thesis (_introduced in v13_)
 - Meeting (Conference)
 - Software (CodeMeta)
 

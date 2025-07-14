@@ -71,7 +71,7 @@ DATACITE_FORMAT = "{prefix}/inveniordm.{id}"
 
 #### Parent or Concept DOIs
 
-_Introduced in InvenioRDM v12_
+_Introduced in v12_
 
 By default InvenioRDM will create two DOIs when an initial record is
 published, and create one DOI each time a new version of the record is
@@ -134,7 +134,7 @@ You [can view the default configuration in invenio-rdm-records](https://github.c
 
 ### DOIs on demand
 
-_Introduced in InvenioRDM v13_
+_Introduced in v13_
 
 You can configure InvenioRDM to allow users to choose whether or not to register a DOI when uploading a record.
 

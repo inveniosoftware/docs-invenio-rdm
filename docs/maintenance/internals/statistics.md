@@ -1,6 +1,6 @@
 # Usage statistics
 
-_Introduced in InvenioRDM v12_
+_Introduced in v12_
 
 The record usage statistics in InvenioRDM are implemented with the
 [`Invenio-Stats`](https://invenio-stats.readthedocs.io/en/latest/) module and they are

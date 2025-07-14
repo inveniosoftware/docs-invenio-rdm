@@ -17,7 +17,7 @@ Another behind the scenes note, `invenio-cli services setup` calls `pipenv run i
 
 ## Add/Update Fixtures Command
 
-_Introduced in InvenioRDM v12_
+_Introduced in v12_
 
 To add or update a vocabulary fixture:
 

@@ -1,6 +1,6 @@
 # Job System Design
 
-_Introduced in InvenioRDM v13_
+_Introduced in v13_
 
 The InvenioRDM job system introduces a robust, extensible mechanism for running and managing asynchronous background tasks. Built on top of Celery, it provides administrators with full visibility, auditability, and control over long-running or scheduled tasks via the admin UI or REST API.
 

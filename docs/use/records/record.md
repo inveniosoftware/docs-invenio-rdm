@@ -8,7 +8,7 @@ Once you upload a record, it is immediately published and accessible to users. O
 
 ## Request access to restricted files
 
-_Introduced in InvenioRDM v12_
+_Introduced in v12_
 
 You can allow authenticated and non-authenticated (guest) users to request access to view the restricted files of a public record. Access can be set to expire on a specific date as well as never expire.
 
@@ -53,7 +53,7 @@ After accepting the request, the requestor will receive a notification by e-mail
 
 ## Include in multiple communities
 
-_Introduced in InvenioRDM v12_
+_Introduced in v12_
 
 A record can be **included in multiple communities**. To manage which communities your record is included in, navigate to the **"Communities" menu** on the record's landing page.
 

@@ -1,6 +1,6 @@
 # Notifications
 
-_Introduced in InvenioRDM v12_
+_Introduced in v12_
 
 The notification system in InvenioRDM is provided via the [`invenio-notifications`](https://github.com/inveniosoftware/invenio-notifications) module.
 

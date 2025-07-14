@@ -1,6 +1,6 @@
 # Notifications
 
-_Introduced in InvenioRDM v12_
+_Introduced in v12_
 
 **Audience**: End-users
 

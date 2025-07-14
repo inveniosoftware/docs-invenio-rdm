@@ -22,7 +22,7 @@ mechanism.
 
 ## Enhanced File Uploader (Uppy)
 
-_Introduced in InvenioRDM v13_
+_Introduced in v13_
 
 ![upload_form_uppy_files_ui.png](../imgs/upload_form_uppy_files_ui.png)
 

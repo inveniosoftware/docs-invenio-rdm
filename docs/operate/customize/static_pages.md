@@ -1,6 +1,6 @@
 # Static pages
 
-_Introduced in InvenioRDM v11_
+_Introduced in v11_
 
 InvenioRDM supports an easy "out-of-the-box" way of creating static pages, basically web pages for which the HTML content is stored in the database.
 And you can change them using the administration panel in v12.
@@ -34,7 +34,7 @@ app_data/
 
 The template file content is what will be imported in the database and rendered to the user when navigating to the page's URL.
 
-_Introduced in InvenioRDM v13_
+_Introduced in v13_
 
 If you have configured additional languages via the setting `I18N_LANGUAGES` you may now also add a translated version of your page, too:
 
@@ -48,7 +48,7 @@ Where `<lng>` is any of the languages you defined. If you don't add a translated
 
 ## Register Pages
 
-_Introduced in InvenioRDM v12_
+_Introduced in v12_
 
 InvenioRDM now allows for dynamic registration of static pages through configuration. After doing the steps above, Add the `APP_RDM_PAGES` variable to your `invenio.cfg` to map the page identifiers to URLs, this enables the application to serve these pages dynamically, For example:
 
@@ -109,7 +109,7 @@ pipenv run invenio rdm pages create --force
 
 ## Edit pages
 
-_Introduced in InvenioRDM v12_
+_Introduced in v12_
 
 Now that your custom page is configured, you can access it from the path you defined in the first step, in our case `/my-custom-page`. Since we didn't add any content yet, what you will see is an empty page with only a title.
 
@@ -167,7 +167,7 @@ pipenv run invenio rdm pages create --force
 
 ## Static Pages Content HTML Sanitization
 
-_Introduced in InvenioRDM v12_
+_Introduced in v12_
 
 InvenioRDM version 12 introduces enhanced HTML sanitization for static pages content. This update provides greater security and integrity of the content.
 The changes involve extending the list of allowed HTML tags and attributes for static page content.

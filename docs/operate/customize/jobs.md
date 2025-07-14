@@ -1,6 +1,6 @@
 # How to create a new job
 
-_Introduced in InvenioRDM v13_
+_Introduced in v13_
 
 This guide walks developers through implementing a new job using the engine provided by the `invenio-jobs` module. Jobs are asynchronous tasks that can be triggered from the admin UI or REST API. They run using Celery and support logging, argument validation, and result tracking.
 

@@ -1,6 +1,6 @@
 # Audit logs
 
-_Introduced in InvenioRDM v13_
+_Introduced in v13_
 
 ## Summary
 

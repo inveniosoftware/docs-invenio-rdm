@@ -34,7 +34,7 @@ You can:
 
 ### Audit Logs
 
-_Introduced in InvenioRDM v13_
+_Introduced in v13_
 
 The **Audit Logs** page provides actions taken in the system. As an administrator, you can keep track of recent changes across the repository.
 
@@ -87,7 +87,7 @@ You can:
 - Delete records and compare different versions
 - Activate, Deactivate or Block the user owning the record
 
-  _Introduced in InvenioRDM v13_
+  _Introduced in v13_
 
   ![Compare revisions](./imgs/administration/records-compare.png)
 
@@ -217,7 +217,7 @@ You can:
 
 ### Moderation of users and records
 
-_Introduced in InvenioRDM v12_
+_Introduced in v12_
 
 ![The User Management](imgs/user-management.png){ loading=lazy }
 

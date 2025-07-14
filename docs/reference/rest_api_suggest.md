@@ -1,5 +1,5 @@
 # Suggest API
-_Introduced in InvenioRDM v13_
+_Introduced in v13_
 
 The `suggest` API endpoint (`/api/{resource}?suggest={search_input}`) provides an interface for real-time search suggestions. It leverages OpenSearch's `multi_match` query to search across multiple fields within a specified index, returning relevant suggestions based on user input.
 

@@ -1,6 +1,6 @@
 # UI widgets
 
-_Introduced in InvenioRDM v10_
+_Introduced in v10_
 
 The following document is a reference guide for all the React UI widgets available for custom fields.
 

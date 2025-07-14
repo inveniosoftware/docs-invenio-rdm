@@ -1,6 +1,6 @@
 # Curation checks
 
-_Introduced in InvenioRDM v13_
+_Introduced in v13_
 
 !!! warning
     This feature currently lacks a user-friendly interface for easy configuration and require manual setup.

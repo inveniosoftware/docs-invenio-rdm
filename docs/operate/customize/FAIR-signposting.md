@@ -6,7 +6,7 @@ For more information, see [the official documentation](https://signposting.org/)
 
 ## Level 1
 
-_Introduced in InvenioRDM v13_
+_Introduced in v13_
 
 In order to increase discoverability, [FAIR Signposting level 1](https://signposting.org/FAIR/#level1) can be enabled in your `invenio.cfg`:
 

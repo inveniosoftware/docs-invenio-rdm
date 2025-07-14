@@ -1,6 +1,6 @@
 # Jobs
 
-_Introduced in InvenioRDM v13_
+_Introduced in v13_
 
 A powerful asynchronous tasks management interface called `Jobs`, giving administrators control over background tasks directly from the administration interface.
 

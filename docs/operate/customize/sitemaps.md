@@ -1,6 +1,6 @@
 # Sitemaps
 
-_Introduced in InvenioRDM v13_
+_Introduced in v13_
 
 [Sitemaps](https://sitemaps.org/) are a longstanding way to layout the pages of a website in a format that a search engine (or other such crawler) can efficiently parse and, in turn, serve as search results. They make your instance's content directly available to search engines even if no other pages on the web have linked to them yet and can even enhance your standing in a search engine's offerings.
 

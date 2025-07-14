@@ -1,4 +1,4 @@
-_Introduced in InvenioRDM v13_
+_Introduced in v13_
 
 Collections provide a powerful way to curate and organize records within your InvenioRDM instance. They define sets of records based on search filters and can be organized hierarchically to create meaningful groupings of content.
 

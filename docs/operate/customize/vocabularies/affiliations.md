@@ -18,7 +18,7 @@ InvenioRDM.
 
 ## Import using a job
 
-_Introduced in InvenioRDM v13_
+_Introduced in v13_
 
 You can set up a job to import the ROR affiliations dataset directly by going
 to the Administration panel, Jobs.
@@ -72,7 +72,7 @@ invenio rdm-records fixtures
     command will have no effect. So make sure you have the correct configuration before
     running the `fixtures` command.
 
-_Introduced in InvenioRDM v12_
+_Introduced in v12_
 
 In v12, the previous method has been simplified. You can now enable affiliations directly by specifying the data file in `app_data/vocabularies.yaml`:
 

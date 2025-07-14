@@ -1,6 +1,6 @@
 #Themed communities
 
-_Introduced in InvenioRDM v13_
+_Introduced in v13_
 
 Themed Communities allow individual communities on the InvenioRDM platform to have custom visual identities while preserving the overall repository brand. This feature is particularly useful for communities who want their presence on InvenioRDM to reflect their brand identity. Each themed community can customize:
 

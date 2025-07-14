@@ -1,6 +1,6 @@
 # Custom schemes for persistent identifiers
 
-_Introduced in InvenioRDM v13_
+_Introduced in v13_
 
 InvenioRDM allows you to extend the list of existing schemes to detect and validate persistent identifiers and add your owns.
 
