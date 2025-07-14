@@ -122,6 +122,7 @@ nav:
           - Emails:
               - Submission: "operate/customize/emails.md"
               - Capture: operate/customize/dev_email.md
+          - FAIR Signposting: "operate/customize/FAIR-signposting.md"
           - File uploads:
               - Files uploaders: "operate/customize/file-uploads/uploader.md"
               - S3 compatible storage: "operate/customize/file-uploads/s3.md"

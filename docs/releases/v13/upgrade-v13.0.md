@@ -213,6 +213,22 @@ instructions on the [affiliations](../../operate/customize/vocabularies/affiliat
 and [funders](../../operate/customize/vocabularies/funding.md) documentation pages.
 
 
+### FAIR signposting level 1
+
+However, since enabling FAIR signposting level 1 does increase the size of HTTP response headers, it is recommended to edit the `nginx` configuration and specify [`uwsgi_buffer_size`](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_buffer_size) with a higher limit than the default values. If you have enabled `uwsgi_buffering on;`, then [`uwsgi_buffers`](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_buffers) may also be adjusted.
+
+```nginx
+server {
+   # ...
+   # Allow for larger HTTP response headers for FAIR signposting level 1 support
+   uwsgi_buffer_size 16k;
+   # optional if uwsgi_buffering on;
+   uwsgi_buffers 8 16k;
+
+   # ...
+}
+```
+
 ### New roles
 
 ### TODO

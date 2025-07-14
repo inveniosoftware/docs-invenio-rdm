@@ -1,8 +1,18 @@
 # Curation checks
 
-_Introduced in v13_
+_Introduced in InvenioRDM v13_
+
+!!! warning
+    This feature currently lacks a user-friendly interface for easy configuration and require manual setup.
 
 > For the mental model of how checks are structured conceptually, refer to the [Maintain and Develop](../../maintenance/architecture/curation.md) documentation.
+
+This is an example of the curation checks enabled in Zenodo:
+
+![Curation checks enabled in Zenodo](imgs/curation-checks-zenodo.jpg)
+/// caption
+Curation checks in Zenodo's EU Open Research Repository
+///
 
 ## Enabling checks
 
@@ -19,10 +29,6 @@ CHECKS_ENABLED = True
 ```
 
 ## Configuring checks
-
-!!! warning "Community settings for checks"
-    The UI for managing checks is not yet available in InvenioRDM
-    v13. Checks are currently managed programmatically via the Python shell.
 
 Checks are added to a community like so:
 

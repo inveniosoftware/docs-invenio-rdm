@@ -107,12 +107,12 @@ By default, InvenioRDM allows versioning for any DOI type - internally or extern
 RDM_ALLOW_EXTERNAL_DOI_VERSIONING = False
 ```
 
-### Configuring DOI Behavior
+### Configuring DOI behavior
 
 You can change how DOIs work in InvenioRDM by adding to your `invenio.cfg`:
 
 ```python
-INVENIO_RDM_PERSISTENT_IDENTIFIERS = {
+RDM_PERSISTENT_IDENTIFIERS = {
     # DOI automatically removed if DATACITE_ENABLED is False.
     "doi": {
         "providers": ["datacite", "external"],
@@ -132,13 +132,13 @@ INVENIO_RDM_PERSISTENT_IDENTIFIERS = {
 ```
 You [can view the default configuration in invenio-rdm-records](https://github.com/inveniosoftware/invenio-rdm-records/blob/e64dd0b81757a391584e63d162d5e6caf6780637/invenio_rdm_records/config.py#L322)
 
-### Optional DOIs
+### DOIs on demand
 
 _Introduced in InvenioRDM v13_
 
 You can configure InvenioRDM to allow users to choose whether or not to register a DOI when uploading a record.
 
-![Optional DOIs](imgs/optional-dois.jpg)
+![DOIs on demand](imgs/dois-on-demand.jpg)
 
 To enable this feature, configure the following in your `invenio.cfg`:
 
@@ -173,10 +173,10 @@ Provide your rules between records' versions by setting the config variable `INV
     - `external`: in the current draft, the user selected an external DOI.
     - `not_needed`: in the current draft, the user selected that a DOI is not needed.
 
-In the following example, you will define that when the previous record version has a DOI registered with DataCite, then the current draft must have the same. The user cannot input an external DOI or select that it is not needed.
+As an example, in your `invenio.cfg`, you can define that when the previous record version has a DOI registered with DataCite, then the current draft must have the same. The user cannot input an external DOI or select that it is not needed.
 
 ```python
-INVENIO_OPTIONAL_DOI_TRANSITIONS = {
+OPTIONAL_DOI_TRANSITIONS = {
     "datacite": {
         "allowed_providers": ["datacite"],
         "message": "<error message if the user selected a DOI option that is not in the allowed_providers field above>",
@@ -187,12 +187,14 @@ INVENIO_OPTIONAL_DOI_TRANSITIONS = {
 
 **2. Advanced**
 
-Assign your custom function to `INVENIO_RDM_OPTIONAL_DOI_VALIDATOR = my_function`. The custom function will be called on each save or publish of a draft.
+Assign your custom function to `RDM_OPTIONAL_DOI_VALIDATOR = my_function`. The custom function will be called on each save or publish of a draft.
 
 ```python
 def validate_optional_doi(draft, previous_published_record, errors=None, transitions_config=None):
     ...
 ```
+
+You can find an example [here](https://github.com/CERNDocumentServer/cds-rdm/blob/4d7400111dd29d6d38f29534c5044d0b57f0bd20/site/cds_rdm/pids.py#L15) on how to develop a custom validation.
 
 ## Limitations
 

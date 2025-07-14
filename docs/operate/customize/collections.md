@@ -1,6 +1,9 @@
-_Introduced in v13_
+_Introduced in InvenioRDM v13_
 
 Collections provide a powerful way to curate and organize records within your InvenioRDM instance. They define sets of records based on search filters and can be organized hierarchically to create meaningful groupings of content.
+
+!!! warning
+    This features currently lacks a user-friendly interface for easy configuration and require manual setup.
 
 ## Overview
 
@@ -22,10 +25,10 @@ To enable displaying the communities "Browse" menu entry in your InvenioRDM inst
 COMMUNITIES_SHOW_BROWSE_MENU_ENTRY = True
 ```
 
-Additionally, for any communities that you want to setup collections, you need to configure them to allow sub-communities via the `children.allow` setting.
+Additionally, for any communities that you want to setup collections, you need to configure them to allow subcommunities via the `children.allow` setting.
 
-!!! bug "Requirement on enabled sub-communities"
-    Having a community with `children.allow: true` is a limitation of the current "Browse" menu entry implementation in InvenioRDM v13. This will be patched to allow communities that might only have collections (and not sub-communities enabled) to still display the "Browse" menu entry.
+!!! bug "Requirement on enabled subcommunities"
+    Having a community with `children.allow: true` is a limitation of the current "Browse" menu entry implementation in InvenioRDM v13. This will be patched to allow communities that might only have collections (and not subcommunities enabled) to still display the "Browse" menu entry.
 
 ## Managing Collections
 
@@ -40,7 +43,7 @@ Collections are organized within **Collection Trees** - hierarchical structures 
 Before creating collections, you need:
 
 1. **Access to Python shell** - Collections are currently managed via `invenio shell`
-2. **A community with sub-communities enabled** - At present, collections are scoped to communities, so you need at least one community. Additionally, to display the "Browse" tab, that community must have `children.allow: true` set.
+2. **A community with subcommunities enabled** - At present, collections are scoped to communities, so you need at least one community. Additionally, to display the "Browse" tab, that community must have `children.allow: true` set.
 
 !!! warning "Administration UI for Collections"
     The administration UI for managing collections is not yet available in InvenioRDM v13. Collections are currently managed programmatically via the Python shell.

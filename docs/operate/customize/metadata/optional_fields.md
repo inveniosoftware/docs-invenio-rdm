@@ -8,7 +8,7 @@ The current optional fields are:
 
 - Journal (Publication)
 - Imprint (Book, Chapter or Report)
-- Thesis
+- Thesis (_introduced in InvenionRDM v13_)
 - Meeting (Conference)
 - Software (CodeMeta)
 

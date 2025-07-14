@@ -10,6 +10,9 @@ Themed Communities allow individual communities on the InvenioRDM platform to ha
 
 This document describes how theming and branding can be applied to individual communities in InvenioRDM.
 
+!!! warning
+    This feature currently lacks a user-friendly interface for easy configuration and require manual setup.
+
 ## How to set up a themed community
 
 ### **Step 1: Branding Configuration**
@@ -17,7 +20,6 @@ This document describes how theming and branding can be applied to individual co
 A community's theme is configured via the `theme` field in its metadata. For a community with a identifier `horizon`, we can set up the theme by running the following script in `invenio shell`:
 
 !!! tip
-
     You can customize the **"theme"** in accordance with your community brand guidelines
 
 ```python
@@ -91,7 +93,6 @@ templates/themes/horizon
 ![Themed Community Homepage](imgs/themed_community_homepage.png)
 
 !!! tip
-
     You can also override:
 
     - Community
@@ -124,7 +125,6 @@ templates/themes/horizon
 Themed communities can also have fully themed static pages.
 
 !!! note
-
     The default template to be used is `invenio_communities/default_static_page.html`
 
 In order to add a new static page see [Static pages](../static_pages.md).
