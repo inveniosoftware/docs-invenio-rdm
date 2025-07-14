@@ -69,6 +69,21 @@ DATACITE_FORMAT = "{prefix}/inveniordm.{id}"
     [Cool DOIs](https://doi.org/10.5438/55e5-t5c0) and why it might not be a
     good idea.
 
+#### OAI-PMH
+
+The OAI-PMH server's metadata format ``oai_datacite`` that allows you to harvest record from InvenioRDM in DataCite XML needs to be configured with your DataCite data center symbol. This is only required if you want your records to be harvestable in DataCite XML format.
+
+```python
+DATACITE_DATACENTER_SYMBOL = "CERN.INVENIORDM"
+```
+
+### Versioning and externally managed DOI
+
+By default, InvenioRDM allows versioning for any DOI type - internally or externally managed. Internally managed DOI is a DOI which is given thanks to InvenioRDM feature which allows us to configure the DOI registration on DataCite (check #Enable DOI registration). The external DOIs are not minted by our instance and in some cases repository manager decides to disallow versioning of records identified by external DOI. To disable versioning for external DOIs you need to set:
+
+```python
+RDM_ALLOW_EXTERNAL_DOI_VERSIONING = False
+
 #### Parent or Concept DOIs
 
 _Introduced in v12_
@@ -91,27 +106,20 @@ invenio.cfg:
 RDM_PARENT_PERSISTENT_IDENTIFIERS={}
 ```
 
-#### OAI-PMH
-
-The OAI-PMH server's metadata format ``oai_datacite`` that allows you to harvest record from InvenioRDM in DataCite XML needs to be configured with your DataCite data center symbol. This is only required if you want your records to be harvestable in DataCite XML format.
-
-```python
-DATACITE_DATACENTER_SYMBOL = "CERN.INVENIORDM"
-```
-
-### Versioning and externally managed DOI
-
-By default, InvenioRDM allows versioning for any DOI type - internally or externally managed. Internally managed DOI is a DOI which is given thanks to InvenioRDM feature which allows us to configure the DOI registration on DataCite (check #Enable DOI registration). The external DOIs are not minted by our instance and in some cases repository manager decides to disallow versioning of records identified by external DOI. To disable versioning for external DOIs you need to set:
-
-```python
-RDM_ALLOW_EXTERNAL_DOI_VERSIONING = False
-```
+You will also need to make DOIs optional by following the configutation
+instructions below.
 
 ### Configuring DOI behavior
 
 You can change how DOIs work in InvenioRDM by adding to your `invenio.cfg`:
 
 ```python
+<<<<<<< HEAD
+=======
+from idutils import is_doi, normalize_doi
+from invenio_rdm_records.services.pids import providers
+
+>>>>>>> 744e443 (dois: update to have a fully working optional parent doi workflow)
 RDM_PERSISTENT_IDENTIFIERS = {
     # DOI automatically removed if DATACITE_ENABLED is False.
     "doi": {
@@ -121,6 +129,7 @@ RDM_PERSISTENT_IDENTIFIERS = {
         "validator": idutils.is_doi,
         "normalizer": idutils.normalize_doi,
         "is_enabled": providers.DataCitePIDProvider.is_enabled,
+        "ui": {"default_selected": "yes"},  # "yes", "no" or "not_needed"
     },
     "oai": {
         "providers": ["oai"],
@@ -130,24 +139,19 @@ RDM_PERSISTENT_IDENTIFIERS = {
     },
 }
 ```
-You [can view the default configuration in invenio-rdm-records](https://github.com/inveniosoftware/invenio-rdm-records/blob/e64dd0b81757a391584e63d162d5e6caf6780637/invenio_rdm_records/config.py#L322)
+You [can view the default configuration in invenio-rdm-records](https://github.com/inveniosoftware/invenio-rdm-records/blob/7869cb3242a7feb311f97b633af095edeff4de76/invenio_rdm_records/config.py#L393C1-L410C2)
 
-### DOIs on demand
+### Optional DOI User Interface and Advanced Configuration
 
 _Introduced in v13_
 
-You can configure InvenioRDM to allow users to choose whether or not to register a DOI when uploading a record.
+InvenioRDM now includes a user interface to allow users to choose whether or not to register a DOI when uploading a record.
 
 ![DOIs on demand](imgs/dois-on-demand.jpg)
 
-To enable this feature, configure the following in your `invenio.cfg`:
-
-```python
-### Do not require DOIs for record and parent
-RDM_PERSISTENT_IDENTIFIERS["doi"]["required"] = False
-RDM_PARENT_PERSISTENT_IDENTIFIERS["doi"]["required"] = False
-RDM_PERSISTENT_IDENTIFIERS["doi"]["ui"]["default_selected"] = "not_needed"  # "yes", "no" or "not_needed"
-```
+This will display when both main and parent DOIs are configured as
+optional. You can also set the default button selection with the
+"doi" "ui" "default_selected" option, which can be "yes", "no" or "not_needed"
 
 With this option enabled, users can decide whether or not to request a DOI for their record. However, managing different versions of a record with and without DOIs can introduce complexities. Ideally, once a DOI is registered for a record, all subsequent versions should also have a DOI to avoid resolving to a version with a DOI, and creating confusion.
 
