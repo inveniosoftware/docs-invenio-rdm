@@ -150,9 +150,9 @@ _Note that search mapping updates are needed. Also, you would need to reindex th
 We have introduced new metadata fields that will allow you to capture more useful information when uploading:
 
 - A dedicated **copyright** field is now available, ensuring clear and comprehensive copyright information.
-- We've added new add-on **thesis metadata fields**. We've also reorganized the thesis section, grouping thesis fields together. See [here](../../operate/customize/metadata/optional_fields.md) how to enable them.
-- The **edition** field has been introduced under the add-on `imprint` set of fields, providing a way to specify the edition of the book.
-- 
+- We've added new **thesis** add-on set of fields. We've also reorganized the thesis section, grouping thesis fields together. See [here](../../operate/customize/metadata/optional_fields.md) how to enable them.
+- The **edition** field has been introduced under the `imprint` add-on set of fields, providing a way to specify the edition of the book.
+- A new **identifiers** field, composed of `id` and `scheme`, has been added to the `meeting` add-on set of fields.
 
 ### Requests sharing
 When a record is shared, the review request is now also accessible. We have introduced a new search filter in `My Dashboard`, to easily find records shared with me.
@@ -175,7 +175,7 @@ Here is a quick summary of the myriad other improvements in this release:
 - The creators' roles are now displayed in the record's landing page:
   ![Creators roles](imgs/creators-roles.jpg)
 - You can now optionally display the installed version of InvenioRDM and any other module in the bottom left corner of the administration panel:
-  ![Creators roles](imgs/inveniordm-version.jpg)
+  ![InvenioRDM Version label](imgs/inveniordm-version.jpg)
   By default, the released version will be displayed. You can customize it by changing in your `invenio.cfg`:
   ```python
   ADMINISTRATION_DISPLAY_VERSIONS = [
@@ -194,7 +194,7 @@ Here is a quick summary of the myriad other improvements in this release:
 - Logging: the Flask root logger level has been changed from `undefined` to `DEBUG`. This enables all log messages to pass through by default, instead of being blocked. If you have implemented custom logging handlers, ensure that you have defined the logging level and verify your logging verbosity in deployed environments to avoid excessive logs.
 - The issue related to storage quota per record for a given user has been solved. You can now define different storage quotas per record.
 - InvenioRDM v13 introduces the `generator` HTML `meta` tag to identify the repository technology. This is used by services like [OpenDOAR](https://opendoar.ac.uk/) to correctly catalog open access repositories.
-  The generator string will be `InvenioRDM v13.0`. You can change it in your `invenio.cfg` by overriding the variable `THEME_GENERATOR` or setting to `None` to disable it.
+  The generator string will be `InvenioRDM v13.0`. You can change it in your `invenio.cfg` by overriding the variable `THEME_GENERATOR` or setting it to `None` to disable the meta tag.
 - MathJax: when enabled, it will now render mathematical formulas also in the landing page citation box, search results and request's comments pages.
 - ...and many more bug fixes!
 
