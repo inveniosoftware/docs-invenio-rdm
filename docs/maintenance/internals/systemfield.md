@@ -170,10 +170,10 @@ Relations are specialized system fields that manage connections between records 
 
 Relations consist of several components:
 
-- **RelationsField**: the main system field that manages multiple relations.
-- **Relation Classes**: define how to resolve and validate specific relation types.
+- **Relation Fields**: like `RelationsField`, `MultiRelationsField` manage multiple relation definitions on a record, acting as a container for individual relation configurations and providing the interface for accessing relations.
+- **Mapping Classes**: provides the interface for attribute access for managing relations on a record.
+- **Relation Classes**: like `PKRelation`, `ListRelation` define how to resolve and validate specific relation types.
 - **Result Classes**: handle the returned values when accessing relations.
-- **Mapping Class**: provides the interface for managing relations on a record.
 
 ### Primary key relations (PKRelation)
 
@@ -196,6 +196,7 @@ class ArticleRecord(Record, SystemFieldsMixin):
 
 # Usage
 article = ArticleRecord({'metadata': {'creator_id': 'user123'}})
+# article.relations is an instance of `RelationsMapping` class
 creator = article.relations.creator()  # Returns User record instance
 article.relations.parent = parent_article  # Set relation
 ```
@@ -221,7 +222,7 @@ class ArticleRecord(Record, SystemFieldsMixin):
 
 # Usage
 article.relations.authors = [user1, user2, user3]  # Set multiple
-for author in article.relations.authors():  # Iterate resolved records
+for author in article.relations.authors():  # Iterate resolved records, an instance of `RelationListResult` class
     print(author.name)
 ```
 
@@ -443,58 +444,6 @@ class GeolocationField(SystemField):
                 raise ValueError("Value must be GeoPoint instance")
 ```
 
-## Idempotence and data consistency
-
-System fields are designed to be idempotent - running the same operation multiple times should produce the same result:
-
-```python
-class IdempotentComputedField(SystemField):
-    """Field that computes values idempotently."""
-
-    def __get__(self, record, owner=None):
-        if record is None:
-            return self
-
-        # Check if value is already computed and valid
-        computed_data = record.get('_computed', {})
-        if self.attr_name in computed_data:
-            stored_hash = computed_data[self.attr_name]['hash']
-            current_hash = self._compute_input_hash(record)
-
-            if stored_hash == current_hash:
-                # Data hasn't changed, return cached result
-                return computed_data[self.attr_name]['value']
-
-        # Compute new value
-        value = self._compute_value(record)
-
-        # Store with hash for future idempotence checks
-        record.setdefault('_computed', {})[self.attr_name] = {
-            'value': value,
-            'hash': self._compute_input_hash(record)
-        }
-
-        return value
-
-    def _compute_input_hash(self, record):
-        """Hash the input data used for computation."""
-
-        # Hash relevant fields that affect the computation
-        relevant_data = {
-            'title': record.get('metadata', {}).get('title'),
-            'authors': record.get('metadata', {}).get('authors', [])
-        }
-
-        data_str = json.dumps(relevant_data, sort_keys=True)
-        return hashlib.md5(data_str.encode()).hexdigest()
-
-    def _compute_value(self, record):
-        """Perform the actual computation."""
-        # Example: compute a search-friendly version of the title
-        title = record.get('metadata', {}).get('title', '')
-        return title.lower().replace(' ', '_')
-```
-
 ## Record lifecycle hooks deep dive
 
 Understanding when each lifecycle hook is called is crucial for proper system field implementation:
@@ -703,3 +652,38 @@ When designing system fields, consider:
 - Testing strategies
 
 By following these patterns and best practices, you can create robust, maintainable system fields that enhance InvenioRDM's capabilities while maintaining clean, readable code.
+
+## Best practices
+
+!!! note "Idempotence and data consistency"
+    While system fields are intended to be idempotent, there is no strict enforcement of this principle. Developers are advised to design their implementations to respect idempotence and ensure data consistency.
+
+    ```python
+    class IdempotentComputedField(SystemField):
+        """Field that computes values idempotently."""
+
+        def __get__(self, record, owner=None):
+            if record is None:
+                return self
+
+            # Check if value is already computed and valid
+            computed_data = record.get('_computed', {})
+            if self.attr_name in computed_data:
+                stored_hash = computed_data[self.attr_name]['hash']
+                current_hash = self._compute_input_hash(record)
+
+                if stored_hash == current_hash:
+                    # Data hasn't changed, return cached result
+                    return computed_data[self.attr_name]['value']
+
+            # Compute new value
+            value = self._compute_value(record)
+
+            # Store with hash for future idempotence checks
+            record.setdefault('_computed', {})[self.attr_name] = {
+                'value': value,
+                'hash': self._compute_input_hash(record)
+            }
+
+            return value
+    ```
