@@ -125,6 +125,11 @@ Under the hood, the Invenio [idutils](https://github.com/inveniosoftware/idutils
 ### FAIR Signposting
 With v13, you can now enable support for FAIR Signposting level 1 and 2. See [the related documentation](../../operate/customize/FAIR-signposting.md) for more information.
 
+### Files uploader & S3-compatible storage
+The new file uploader, powered by Uppy (disabled by default), delivers a faster, more intuitive, and modern file upload experience. It also enables advanced features such as **multipart file transfers** with **S3-compatible** storage backends.
+
+Learn more about [file uploaders](../../operate/customize/file-uploads/uploader.md), [S3-compatible storage](../../operate/customize/file-uploads/s3.md), and [file transfers](../../reference/file_transfer.md)
+
 ### Jobs
 This release introduces a new Jobs feature, providing a comprehensive way to manage asynchronous tasks via the UI or REST API. Jobs are triggered via the admin UI or REST API, run using Celery, and support logging, argument validation, and result tracking. See the related documentation [here](../../operate/ops/jobs/jobs.md).
 
@@ -153,6 +158,9 @@ We have introduced new metadata fields that will allow you to capture more usefu
 - We've added new **thesis** add-on set of fields. We've also reorganized the thesis section, grouping thesis fields together. See [here](../../operate/customize/metadata/optional_fields.md) how to enable them.
 - The **edition** field has been introduced under the `imprint` add-on set of fields, providing a way to specify the edition of the book.
 - A new **identifiers** field, composed of `id` and `scheme`, has been added to the `meeting` add-on set of fields.
+
+### PDF preview upgrade
+The v13 release features an upgraded PDF previewer, now powered by [PDF.js v4](https://github.com/mozilla/pdf.js). This update resolves previous issues with failed previews for certain PDF files, providing a more reliable and seamless viewing experience.
 
 ### Requests sharing
 When a record is shared, the review request is now also accessible. We have introduced a new search filter in `My Dashboard`, to easily find records shared with me.
@@ -199,14 +207,15 @@ Here is a quick summary of the myriad other improvements in this release:
 - ...and many more bug fixes!
 
 ## Breaking changes
-- Due to the enhanced data model and search indices, it is required to re-create the search mappings for Subjects, Awards, Records _(including percolators)_, Drafts and Communities.
+- The upgrade of the PDF previewer requires a small change to the webserver configuration. See the [upgrade guide](upgrade-v13.0.md) for more information.
+- The new search improvements and the enhanced subjects and awards features require the recreation of the search mappings for Subjects, Awards, Records _(including percolators)_, Drafts and Communities.  See the [upgrade guide](upgrade-v13.0.md) for more information.
 - Direct Python imports of identifier schemes (e.g., `from idutils.isbn import normalize_isbn`) are now deprecated and will be removed in future versions. If you have custom code that directly imports scheme modules, you'll need to update it to use the new API.
 
 ## Requirements
 
 InvenioRDM v13 supports:
 
-- Python 3.9, 3.11 and 3.12
+- Python 3.9 (end of life October 2025), 3.11 and 3.12
 - Node.js 18+
 - PostgreSQL 12+
 - OpenSearch v2

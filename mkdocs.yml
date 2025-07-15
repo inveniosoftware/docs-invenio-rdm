@@ -123,8 +123,9 @@ nav:
               - Submission: "operate/customize/emails.md"
               - Capture: operate/customize/dev_email.md
           - FAIR Signposting: "operate/customize/FAIR-signposting.md"
-          - File uploads:
+          - File uploads & storage:
               - Files uploaders: "operate/customize/file-uploads/uploader.md"
+              - Local storage: "operate/customize/file-uploads/local.md"
               - S3 compatible storage: "operate/customize/file-uploads/s3.md"
               - Upload limits: "operate/customize/file-uploads/upload_limits.md"
           - Jobs: "operate/customize/jobs.md"
