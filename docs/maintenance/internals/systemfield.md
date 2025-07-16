@@ -171,7 +171,7 @@ Relations are specialized system fields that manage connections between records 
 Relations consist of several components:
 
 - **Relation Fields**: like `RelationsField`, `MultiRelationsField` manage multiple relation definitions on a record, acting as a container for individual relation configurations and providing the interface for accessing relations.
-- **Mapping Classes**: provides the interface for attribute access for managing relations on a record.
+- **Mapping Classes**: provide the interface for attribute access for managing relations on a record.
 - **Relation Classes**: like `PKRelation`, `ListRelation` define how to resolve and validate specific relation types.
 - **Result Classes**: handle the returned values when accessing relations.
 
