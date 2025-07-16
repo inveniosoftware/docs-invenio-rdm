@@ -65,7 +65,7 @@ The administration panel now includes a "User management" section to deactivate,
 
 ![Concept DOI help-text](../../operate/customize/imgs/concept_doi.png)
 
-InvenioRDM now mints a concept DOI for every record by default, similar to what Zenodo has done for many years. This [can be configured](../../operate/customize/dois.md#parent-or-concept-dois).
+InvenioRDM now mints a concept DOI for every record by default, similar to what Zenodo has done for many years. This [can be configured](../../operate/customize/dois.md).
 
 Along with this update, restricted records will now stop minting a DOI upon publication thus keeping _private_ records **truly private**.
 And if the visibility of a record becomes restricted after being public, a tombstone will be shown:

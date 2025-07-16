@@ -117,6 +117,7 @@ nav:
           - Authentication: "operate/customize/authentication.md"
           - Curation checks: "operate/customize/curation-checks.md"
           - Collections: "operate/customize/collections.md"
+          - Compliance info when publishing: "operate/customize/compliance_info.md"
           - DOI registration: "operate/customize/dois.md"
           - DNB URN registration: "operate/customize/dnb_urns.md"
           - Emails:
@@ -135,7 +136,6 @@ nav:
               - Overview: "operate/customize/notifications.md"
               - Modify notifications: operate/customize/notifications_modify.md
           - Require a community to publish: "operate/customize/require_community.md"
-          - Add extra checkboxes when publishing: "operate/customize/extra_checkbox.md"
           - Restrict community creation: "operate/customize/restrict_community_creation.md"
           - Restrict access to pages: operate/customize/restrict_access.md
           - Search:

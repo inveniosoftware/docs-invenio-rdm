@@ -108,8 +108,15 @@ Curation checks in Zenodo's EU Open Research Repository
 
 Read the detailed documentation for [Curation checks](../../operate/customize/curation-checks.md).
 
+### Customizable compliance info when publishing
+You can now fully customize the compliance information and checkboxes that users must acknowledge when publishing a record. This makes it easy to tailor the publishing workflow to your organization's policies or legal requirements.
+
+![Publish modal with extra checkbox](../../operate/customize/imgs/compliance_checkboxes.png)
+
+See the configuration options in the [related documentation](../../operate/customize/compliance_info.md).
+
 ### DOIs on demand
-You can now let users to choose if they need a DOI or not when uploading. See how to configure it in the [related documentation](../../operate/customize/dois.md#dois-on-demand).
+You can now let users to choose if they need a DOI or not when uploading. See how to configure it in the [related documentation](../../operate/customize/dois.md#optional-doi-user-interface-and-advanced-configuration).
 
 ![DOIs on demand](../../operate/customize/imgs/dois-on-demand.jpg)
 
