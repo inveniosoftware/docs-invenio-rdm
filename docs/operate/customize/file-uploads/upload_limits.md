@@ -15,14 +15,53 @@ However, the total size of all files deposited with a single record cannot excee
 
 **Note** that the Flask configuration option `MAX_CONTENT_LENGTH` is only applied for multi-part form uploads (e.g. community logos), but not for the files deposited with records.
 
-For the InvenioRDM deposit form, restrictions are available for the total number of files and total file size (in decimal bytes). These are set by the `APP_RDM_DEPOSIT_FORM_QUOTA` variable which can be configured in `invenio.cfg`. For example, if you want to restrict users to a maximum upload of 30 GB and 100 files, you would add:
 
-```
+## Limiting File Uploads
+
+Limiting the maximum size for file uploads and number of files is critical to avoid abuse (e.g., filling up storage or uploading too many files). InvenioRDM already ships with sensible limits (10 GB per file and 10 GB total per bucket) that work for most deployments. Adjust these if your use case requires stricter or looser limits.
+
+### Configuration
+
+#### Frontend (Deposit Form)
+Controls how much the user interface allows users to upload which can be configured in `invenio.cfg`:
+
+```py
 APP_RDM_DEPOSIT_FORM_QUOTA = {
     "maxFiles": 100,
     "maxStorage": 30*10**9,
 }
 ```
+
+#### Backend (File Storage & Record Quotas)
+
+Controls enforcement at the storage and API level:
+
+```py
+# Regular record files
+RDM_FILES_DEFAULT_QUOTA_SIZE = 30 * 10**9
+"""Max total storage per record 30 GB"""
+
+RDM_FILES_DEFAULT_MAX_FILE_SIZE = 10 * 10**9
+"""Max size per file 10 GB"""
+
+# Files REST layer (bucket quota)
+FILES_REST_DEFAULT_QUOTA_SIZE = 30 * 10**9
+"""Bucket total storage 30 GB"""
+
+FILES_REST_DEFAULT_MAX_FILE_SIZE = 10 * 10**9
+"""Bucket max file size 10 GB"""
+```
+
+### Quota lookup priority
+
+For new record depositions, the quota enforcement follows this priority:
+
+1. User-specific quota – If a quota is set for a given user, it takes precedence over all other limits.
+2. `RDM_FILES_DEFAULT_QUOTA_SIZE` – If no user quota, the default record quota is applied.
+3. `FILES_REST_DEFAULT_QUOTA_SIZE` – If the record quota is not set, the bucket quota acts as a fallback.
+4. `APP_RDM_DEPOSIT_FORM_QUOTA` – Only enforced by the frontend to prevent users from exceeding limits during upload while using the deposition form.
+
+For existing drafts, the quota applied is the one that was active when the draft record was created. Updating configs won't retroactively apply.
 
 ## Nginx
 
