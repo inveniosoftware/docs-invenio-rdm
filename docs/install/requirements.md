@@ -18,7 +18,6 @@ InvenioRDM depends on the following requirements to be installed on your local s
     - In case that `invenio-cli` (and other commands installed via `pip`) cannot be found after installing, you may have to update your `$PATH` to include the install directory (e.g. `PATH="$PATH:$HOME/.local/bin"` on Linux).
 
 - [Docker](https://docs.docker.com/) 20.10.10+
-- [Docker-Compose](https://docs.docker.com/compose/) 1.17.0+
 
 For running and building the application locally you will also need:
 
