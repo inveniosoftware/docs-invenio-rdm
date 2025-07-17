@@ -140,7 +140,10 @@ class CustomSubmissionBuilder(CommunityInclusionSubmittedNotificationBuilder):
 This builder can now be specified (e.g. in `invenio.cfg`):
 
 ```py
+from invenio_app_rdm.config import NOTIFICATIONS_BUILDERS
+
 NOTIFICATIONS_BUILDERS = {
+    **NOTIFICATIONS_BUILDERS, # Keep all other builders
     CustomSubmissionBuilder.type: CustomSubmissionBuilder,
 }
 ```
