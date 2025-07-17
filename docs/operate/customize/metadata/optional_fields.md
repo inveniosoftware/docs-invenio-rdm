@@ -12,7 +12,7 @@ The current optional fields are:
 - Meeting (Conference)
 - Software (CodeMeta)
 
-You can see more details about each field group in [the metadata documentation](../../../use/records/custom-fields.md)
+You can see more details about each field group in [the metadata documentation](../../../reference/metadata.md#custom-fields).
 
 Metadata fields in InvenioRDM are defined by three configuration variables:
 

@@ -6,9 +6,9 @@ InvenioRDM's bibliographic records are stored as JSON documents in a structure
 that is aligned with DataCite's Metadata Schema v4.x with minor additions
 and modifications.
 
-!!! info "Datacite references"
+!!! info "DataCite references"
 
-    This document refers to Datacite schema properties for the reader's convenience (e.g., "*2. Creator* in DataCite"). The corresponding Datacite document can be found under <https://schema.datacite.org/>. The currently supported version is [v4.3](https://schema.datacite.org/meta/kernel-4.3).
+    This document refers to DataCite schema properties for the reader's convenience (e.g., "*2. Creator* in DataCite"). The corresponding DataCite document can be found under <https://schema.datacite.org/>. The currently supported version is [v4.3](https://schema.datacite.org/meta/kernel-4.3).
 
 
 ## Top-level fields
@@ -21,6 +21,7 @@ and modifications.
 |   ``parent``    | Related parent information.                                                        |
 |   ``access``    | Access control information.                                                        |
 |  ``metadata``   | Descriptive metadata.                                                              |
+|  ``custom_fields``   | Descriptive metadata extensions.                                                              |
 |    ``files``    | Associated files information.                                                      |
 |  ``tombstone``  | Tombstone information.                                                             |
 |   ``created``   | Database-level creation timestamp (UTC).                                           |
@@ -39,6 +40,7 @@ A record thus looks like:
     "parent": { ... },
     "access" : { ... },
     "metadata" : { ... },
+    "custom_fields" : { ... },
     "files" : { ... },
     "tombstone" : { ... },
     "created" : "...",
@@ -232,9 +234,9 @@ The abbreviation `CV` stands for *Controlled Vocabulary*.
 
 The type of the resource described by the record. The resource type must be selected from a controlled vocabulary which can be customized by each InvenioRDM instance.
 
-When interfacing with Datacite, this field is converted to a format compatible with *10. Resource Type*  (i.e. ``type`` and ``subtype``). DataCite allows free text for the subtype, however InvenioRDM requires this to come from a customizable controlled vocabulary.
+When interfacing with DataCite, this field is converted to a format compatible with *10. Resource Type*  (i.e. ``type`` and ``subtype``). DataCite allows free text for the subtype, however InvenioRDM requires this to come from a customizable controlled vocabulary.
 
-The resource type vocabulary also defines mappings to other vocabularies than Datacite such as Schema.org, Citation Style Language, BibTeX, and OpenAIRE. These mappings are very important for the correct generation of citations due to how different types are being interpreted by reference management systems.
+The resource type vocabulary also defines mappings to other vocabularies than DataCite such as Schema.org, Citation Style Language, BibTeX, and OpenAIRE. These mappings are very important for the correct generation of citations due to how different types are being interpreted by reference management systems.
 
 Subfields:
 
@@ -503,7 +505,7 @@ Example:
 
 Rights management statement for the resource.
 
-When interfacing with Datacite, this field is converted to be compatible with *16. Rights*.
+When interfacing with DataCite, this field is converted to be compatible with *16. Rights*.
 
 The rights field is intended to primarily be linked to a customizable vocabulary
 of licenses (defaults [SPDX](https://spdx.org/licenses/)). It should however also be possible to provide
@@ -844,7 +846,7 @@ Example:
 
 Technical format of the resource.
 
-This field is compatible with *14. Format* in Datacite.
+This field is compatible with *14. Format* in DataCite.
 
 Example:
 
@@ -1011,6 +1013,68 @@ Example:
   }]
 }
 ```
+
+## Custom fields
+Custom fields are the recommended way to extend the internal data model to fit your specific needs.
+In addition to supporting your own custom extensions, InvenioRDM provides a set of ready-to-use add-on fields—implemented via custom fields—that can be enabled without advanced configuration.
+
+See the [related documentation](../operate/customize/metadata/optional_fields.md) on how to enable them.
+
+### Journal
+Describe the scholarly journal in which the article was published.
+
+|    Field   | Description                                                                   |
+|:----------:|:------------------------------------------------------------------------------|
+| ``title``  | The full name of the journal (e.g., Journal of Environmental Studies).        |
+| ``issn``   | The journal's International Standard Serial Number (e.g., 2077-9550).         |
+| ``volume`` | The volume in which the article appeared (e.g., 645).                         |
+| ``issue``  | The issue number (e.g., 7).                                                   |
+| ``pages``  | Enter either the page range (e.g., 15-23) or article identifier (e.g., A29).  |
+
+### Imprint
+Describe publications that are part of a book or report, such as chapters, contributions, or institutional publications.
+
+|    Field      | Description                                                                                |
+|:-------------:|:-------------------------------------------------------------------------------------------|
+| ``title``     |  Title of the larger work your submission is part of (e.g., Handbook of Bioethics).        |
+| ``place``     |  The city and country where the book/report was published (e.g., Oxford, United Kingdom).  |
+| ``pages``     |  Specific page numbers or page range (e.g., 15-23 or 158).                                 |
+| ``isbn``      |  The book's International Standard Book Number (e.g., 0-06-251587-X).                      |
+| ``edition``   |  The edition number, if applicable (e.g., 3 for third edition).                            |
+
+### Thesis
+Describe a bachelor's, master's, or doctoral thesis, including details such as the awarding university, department, thesis type, and key dates.
+
+|        Field        | Description                                                                         |
+|:-------------------:|:------------------------------------------------------------------------------------|
+| ``university``      | Full name of the institution that granted the degree (e.g., University of Geneva).  |
+| ``department``      | Name of the faculty or department (e.g., Department of Computer Science).           |
+| ``type``            | The level of the thesis (e.g., PhD, Masters, Bachelors).                            |
+| ``date_submitted``  | The date the thesis was officially submitted (format: YYYY-MM-DD).                  |
+| ``date_defended``   | The date the thesis was defended (format: YYYY-MM-DD).                              |
+
+### Meeting
+Use this field to describe a meeting or conference.
+
+|        Field      | Description                                              |
+|:-----------------:|:---------------------------------------------------------|
+| ``title``         | Meeting or conference title.                             |
+| ``acronym``       | Acronym that represents the conference.                  |
+| ``dates``         | Dates when the meeting took place.                       |
+| ``place``         | Location where the meeting took place.                   |
+| ``session``       | Session within the meeting or conference.                |
+| ``session_part``  | Part within the session.                                 |
+| ``url``           | Link of the conference website.                          |
+| ``identifiers``   | Meeting identifiers, a list of identifier/scheme pairs.  |
+
+### CodeMeta
+This group of fields contains metadata to describe a software record based on the [CodeMeta standard](https://codemeta.github.io/index.html).
+
+|        Field              | Description                                 |
+|:-------------------------:|:--------------------------------------------|
+| ``codeRepository``        | `URL`: Link to the repository where the related code is located (e.g. Github).               |
+| ``programmingLanguage``   | `Vocabulary`: Name of the programming language used to develop the software from the [vocabulary](https://github.com/inveniosoftware/invenio-rdm-records/blob/e64dd0b81757a391584e63d162d5e6caf6780637/invenio_rdm_records/fixtures/data/vocabularies/contrib/codemeta/programming_languages.yaml).     |
+| ``developmentStatus``     | `Vocabulary`: Description of the development status (e.g. "Active"). Uses a controlled vocabulary defined in [repostatus](http://www.repostatus.org/).          |
 
 ## Files
 
