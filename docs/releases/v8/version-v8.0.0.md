@@ -192,7 +192,7 @@ InvenioRDM will be shipped with an upgrade guide and data migrations. However, i
 
 ## Questions?
 
-If you have questions related to these release notes, don't hesitate to jump on our chat and ask questions: [Getting help](../../install/help.md)
+If you have questions related to these release notes, don't hesitate to jump on our chat and ask questions: [Getting help](../../install/troubleshoot.md#getting-help)
 
 ## Credit
 

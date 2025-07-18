@@ -35,7 +35,7 @@ At the moment, the easiest way to understand how to identify if the component th
 
 You can then find the component in the InvenioRDM modules source code, searching it in your local development environment or using the search feature in GitHub in the [inveniosoftware organization](https://github.com/search?q=org%3Ainveniosoftware+FileUploaderToolbar&type=code).
 
-You can always [ask for help](../../../install/help.md)!
+You can always [ask for help](../../../install/troubleshoot.md#getting-help)!
 
 ### Find the React Overridable ID
 

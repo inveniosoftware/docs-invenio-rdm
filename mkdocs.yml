@@ -132,8 +132,8 @@ nav:
               - Overview: "operate/customize/notifications.md"
               - Modify notifications: operate/customize/notifications_modify.md
           - Require a community to publish: "operate/customize/require_community.md"
-          - Restrict community creation: "operate/customize/restrict_community_creation.md"
           - Restrict access to pages: operate/customize/restrict_access.md
+          - Restrict community creation: "operate/customize/restrict_community_creation.md"
           - Search:
               - Change facets/sorting: "operate/customize/search.md"
               - Create search terms mappings: operate/customize/search_terms_migration.md
@@ -185,23 +185,23 @@ nav:
           - Notifications: maintenance/architecture/notifications.md
           - Recommended reading: maintenance/architecture/reading.md
       - Lower-level internals:
+          - Administration panel: maintenance/internals/administration_panel.md
+          - Administration views: maintenance/internals/administration_reference.md
+          - Audit logs: maintenance/internals/audit-logs.md
           - Building resources: maintenance/internals/resource.md
           - Building services: maintenance/internals/service.md
           - Building serializers: maintenance/internals/serializers.md
-          - Sanitize input data: maintenance/internals/validation.md
-          - Grouping atomic operations: maintenance/internals/uow.md
-          - Theming: maintenance/internals/theming.md
-          - Search: maintenance/internals/search.md
-          - Usage statistics: maintenance/internals/statistics.md
-          - Optimistic concurrency control: maintenance/internals/concurrency-control.md
-          - Database transaction management: maintenance/internals/transactions.md
           - Create a database migration: maintenance/internals/alembic.md
-          - Administration panel: maintenance/internals/administration_panel.md
-          - Administration views: maintenance/internals/administration_reference.md
-          - Notifications: maintenance/internals/notifications.md
-          - Audit logs: maintenance/internals/audit-logs.md
+          - Database transaction management: maintenance/internals/transactions.md
+          - Grouping atomic operations: maintenance/internals/uow.md
           - Job system: maintenance/internals/jobs.md
+          - Notifications: maintenance/internals/notifications.md
+          - Optimistic concurrency control: maintenance/internals/concurrency-control.md
+          - Sanitize input data: maintenance/internals/validation.md
+          - Search: maintenance/internals/search.md
           - System Fields: maintenance/internals/systemfield.md
+          - Theming: maintenance/internals/theming.md
+          - Usage statistics: maintenance/internals/statistics.md
       - Operational tasks:
           - Release management: maintenance/operations/release-management.md
           - Branch management: maintenance/operations/branch-management.md

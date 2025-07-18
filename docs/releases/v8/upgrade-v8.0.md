@@ -41,7 +41,7 @@ pipenv run invenio shell $(find $(pipenv --venv)/lib/*/site-packages/invenio_app
 ```
 
 If errors are encountered during the migration, they will be reported and the changes will be rolled back.
-In this case, the errors need to be fixed before attempting the upgrade again - if these errors seem too cryptic, don't be afraid to ask for [help](../../install/help.md)!
+In this case, the errors need to be fixed before attempting the upgrade again - if these errors seem too cryptic, don't be afraid to ask for [help](../../install/troubleshoot.md#getting-help)!
 
 
 ### Elasticsearch
