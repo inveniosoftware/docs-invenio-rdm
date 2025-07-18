@@ -173,7 +173,15 @@ APP_DEFAULT_SECURE_HEADERS = {
 
 configuration.
 
-### New Index Template for Job Logs
+### Jobs
+
+#### New worker beat scheduler
+
+```
+celery -A invenio_app.celery beat --scheduler invenio_jobs.services.scheduler:RunScheduler
+```
+
+#### New Index Template for Job Logs
 
 Replace `localhost:9200` and `__SEARCH_INDEX_PREFIX__ `with your instance values.
 

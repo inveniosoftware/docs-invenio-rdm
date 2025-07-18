@@ -138,7 +138,7 @@ The new file uploader, powered by Uppy (disabled by default), delivers a faster,
 Learn more about [file uploaders](../../operate/customize/file-uploads/uploader.md), [S3-compatible storage](../../operate/customize/file-uploads/s3.md), and [file transfers](../../reference/file_transfer.md)
 
 ### Jobs
-This release introduces a new Jobs feature, providing a comprehensive way to manage asynchronous tasks via the UI or REST API. Jobs are triggered via the admin UI or REST API, run using Celery, and support logging, argument validation, and result tracking. See the related documentation [here](../../operate/ops/jobs/jobs.md).
+This release introduces a new Jobs feature, providing a comprehensive way to manage asynchronous tasks via the UI or REST API. Jobs are triggered via the admin UI or REST API, run using Celery, and support logging, argument validation, and result tracking. See the related documentation [here](../../use/administration.md#jobs).
 
 #### ORCID and ROR integrations
 You can now setup jobs to automatically and recurrently fetch ORCID and ROR latest databases.

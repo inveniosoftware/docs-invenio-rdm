@@ -56,9 +56,8 @@ Scheduled and on-demand job execution requires a **custom scheduler beat**, whic
 
 Ensure your deployment includes this scheduler beat logic if you intend to use the job system in production.
 
-!!! note "Info"
-
-    Guide to deploy a custom beat scheduler [here](../../operate//ops/jobs/configure.md).
+!!! note
+    Guide to deploy a custom beat scheduler [here](../../operate/customize/jobs.md).
 
 ---
 

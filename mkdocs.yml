@@ -75,14 +75,10 @@ nav:
       - Deployment and other operations:
           - Infrastructure: operate/ops/infrastructure.md
           - Deploy: operate/ops/deploy.md
-          - Log: operate/ops/logging.md
+          - Logs: operate/ops/logging.md
           - Back up search indices: operate/ops/backup_search_indices.md
           - Redirect legacy routes: operate/ops/route_migration.md
           - Migrate from another repository: "operate/ops/migrate.md"
-          - Jobs/Automated Tasks:
-              - Jobs: operate/ops/jobs/jobs.md
-              - Configure: operate/ops/jobs/configure.md
-              - Create and run: operate/ops/jobs/create_and_run.md
       - Customization philosophy: operate/customize/index.md
       - Customize look-and-feel:
           - Overview: "operate/customize/look-and-feel/index.md"
@@ -129,7 +125,7 @@ nav:
               - Local storage: "operate/customize/file-uploads/local.md"
               - S3 compatible storage: "operate/customize/file-uploads/s3.md"
               - Upload limits: "operate/customize/file-uploads/upload_limits.md"
-          - Jobs: "operate/customize/jobs.md"
+          - Jobs/Automated tasks: "operate/customize/jobs.md"
           - Landing page: "operate/customize/landing_page.md"
           - Language(s) and locale(s): "operate/customize/i18n-and-l10n.md"
           - Notifications:
