@@ -53,7 +53,7 @@ You can filter by:
 
 !!! info
 
-    If you want to configure or extend audit logging, see [Audit Logs](../operate/customize/audit-logs.md).
+    If you want to configure or extend audit logging, see [configuration guide](../operate/customize/audit-logs.md).
 
 ## Records & files
 
