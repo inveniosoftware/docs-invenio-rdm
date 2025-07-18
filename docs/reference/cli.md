@@ -266,7 +266,7 @@ This command:
 **Options**
 
 - `-f`, `--force` Force recreation of database tables, Elasticsearch indexes and queues.
-- `-n`, `--no-demo-data` Disable the creation of demo data.
+- `-N`, `--no-demo-data` Disable the creation of demo data.
 - `--stop-services` Stop containers after setup.
 - `-s`, `--services` / `-n`, `--no-services` Boot up or not the containerized services. Defaults to boot them up.
 
@@ -386,7 +386,7 @@ By default this command will build and boot all the containerized services (see 
 **Options**
 
 - `-f`, `--force` Force recreation of database tables, Elasticsearch indices and queues.
-- `-n`, `--no-demo-data` Disable the creation of demo data.
+- `-N`, `--no-demo-data` Disable the creation of demo data.
 - `--stop-services` Stop containers after setup.
 - `-s`, `--services` / `-n`, `--no-services` Boot up or not the containerized services. Defaults to boot them up.
 
