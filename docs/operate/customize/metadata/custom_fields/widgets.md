@@ -43,10 +43,6 @@ An input field for a single string value.
 />
 ```
 
-### Props
-
-No additional props.
-
 ## NumberInput
 
 An input field for numbers e.g. integers, float etc.
@@ -63,10 +59,6 @@ An input field for numbers e.g. integers, float etc.
   required={true}
 />
 ```
-
-### Props
-
-No additional props.
 
 ## MultiInput
 
@@ -86,7 +78,7 @@ An input field for multiple string values.
 />
 ```
 
-### Props
+### Additional props
 
 - **additionLabel** `String` _optional_: The label to show when a user is adding a new value.
 
@@ -111,7 +103,7 @@ A rich input field for HTML text, with a WYSIWYG editor.
 />
 ```
 
-### Props
+### Additional props
 
 - **editorConfig** `Object` _optional_: The config to pass to the underlying HTML WYSIWYG editor as described in the [CKEditor configuration](https://ckeditor.com/docs/ckeditor5/latest/api/module_core_editor_editorconfig-EditorConfig.html) page.
 
@@ -130,10 +122,6 @@ An input field for multi line text.
   required={false}
 />
 ```
-
-### Props
-
-No additional props.
 
 ## Dropdown
 
@@ -155,7 +143,7 @@ A dropdown field that renders the complete list of possible options, where the u
 />
 ```
 
-### Props
+### Additional props
 
 - **search** `Boolean` _optional_: Define if the user should be able to search in the current available options.
 
@@ -184,7 +172,7 @@ A dropdown field that allows the user to search for values, connected to the RES
 />
 ```
 
-### Props
+### Additional props
 
 - **autocompleteFrom** `String` _required_: The endpoint from which the component should fetch options. This will point to your vocabulary endpoint e.g. `/api/vocabularies/myvocabulary`.
 
@@ -211,7 +199,7 @@ A field for boolean values. It displays 2 checkboxes for each corresponding valu
 />
 ```
 
-### Props
+### Additional props
 
 - **trueLabel** `String` _required_: The label for the element's display when the value is `true`. This is used whenever the `true` value should be displayed e.g. upload form, landing page etc.
 
