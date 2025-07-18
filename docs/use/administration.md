@@ -87,13 +87,28 @@ You can:
 - Delete records and compare different versions
 - Activate, Deactivate or Block the user owning the record
 
-  _Introduced in v13_
-
-  ![Compare revisions](./imgs/administration/records-compare.png)
-
 !!! info
-
     For API usage, see [Records](../reference/rest_api_drafts_records.md#records).
+
+_Introduced in v13_
+
+#### Compare revisions
+The `Compare Revisions` feature allows administrators to audit record updates and follow changes over time.
+From the **Records** list in the Administration panel, click the **Compare revisions...** button in the _Actions_ column to open a side-by-side comparison window:
+
+![Records List: Compare Revisions](./imgs/administration/records-compare.png)
+
+A modal window appears, allowing you to choose two revisions to compare:
+
+![Compare Modal: Version Selection](./imgs/administration/records-compare-select.png)
+
+The changes are then displayed in a JSON **side-by-side diff** view:
+
+![Compare Modal: Diff View](./imgs/administration/records-compare-diff.png)
+
+!!! info "Revisions VS versions"
+
+    This feature allows admins to compare revisions, not versions. A revision is the result of editing a record, where each published edit creates a new revision. A new version is a different record which is semantically linked to the previous record. At this time it is not possible to compare different records, including versions.
 
 ## Site Management
 

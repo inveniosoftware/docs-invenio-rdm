@@ -27,21 +27,10 @@ You'll find several new improvements in the administration panel:
 
 #### Compare revisions
 The new `Compare Revisions` feature allows administrators to audit record updates and follow changes over time.
-From the **Records** list in the Administration panel, click the **Compare revisions...** button in the _Actions_ column to open a side-by-side comparison window:
 
-![Records List: Compare Revisions](./imgs/records.png)
+![Compare Modal: Diff View](../../use/imgs/administration/records-compare-diff.png)
 
-A modal window appears, allowing you to choose two revisions to compare:
-
-![Compare Modal: Version Selection](./imgs/records-compare-select.png)
-
-The changes are then displayed in a JSON **side-by-side diff** view:
-
-![Compare Modal: Diff View](./imgs/records-compare.png)
-
-!!! info "Revisions VS versions"
-
-    This feature allows admins to compare revisions, not versions. A revision is the result of editing a record, where each published edit creates a new revision. A new version is a different record which is semantically linked to the previous record. At this time it is not possible to compare different records, including versions.
+You can learn how to compare records' revisions [here](../../use/administration.md#compare-revisions).
 
 ### Audit logs
 InvenioRDM now comes with a new audit logs feature. See the [related documentation here](../../operate/customize/audit-logs.md).
