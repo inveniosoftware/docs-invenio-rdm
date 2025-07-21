@@ -27,22 +27,6 @@ represented by a one character encoding:
 | Multipart  |       M        |
 | Remote     |       R        |
 
-Example of selecting transfer type on file creation:
-
-```http
-POST /api/records/{id}/draft/files
-Content-Type: application/json
-
-[{
-    "key": "dataset.zip",
-    "transfer": {
-      "type": "F",
-      "url": "https://example.org/files/dataset.zip?token=<auth token>"
-    }
-    "metadata": {...}
-}]
-```
-
 ## Local files (L)
 
 Local files are managed as defined in the
