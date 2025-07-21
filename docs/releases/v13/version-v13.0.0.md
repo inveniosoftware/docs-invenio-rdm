@@ -176,6 +176,9 @@ See the [related documentation](../../operate/customize/sitemaps.md) to learn ho
 ### Miscellaneous additions
 Here is a quick summary of the myriad other improvements in this release:
 
+- A convenient "Copy" button has been added next to the DOI (when enabled) and export formats, allowing users to instantly copy these values to their clipboard with a single click without manually selecting or exporting the content:
+  ![Copy button for DOI](imgs/copy-button-doi.jpg)
+  ![Copy button export](imgs/copy-button-export.jpg)
 - The creators' roles are now displayed in the record's landing page:
   ![Creators roles](imgs/creators-roles.jpg)
 - You can now optionally display the installed version of InvenioRDM and any other module in the bottom left corner of the administration panel:
