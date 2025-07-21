@@ -2,7 +2,7 @@
 
 _2025-07-21_
 
-We're happy to announce the release of InvenioRDM v13.0! Version 13 will be maintained until at least 6 months following the next release. Visit our maintenance policy page to learn more.
+We're happy to announce the release of InvenioRDM v13.0, the open-source repository platform for research data management, institutional repositories, and digital assets management! Version 13 will be maintained until at least 6 months following the next release. Visit our [maintenance policy page](../maintenance-policy.md) to learn more.
 
 ## Try it
 
@@ -33,7 +33,8 @@ The new `Compare Revisions` feature allows administrators to audit record update
 You can learn how to compare records' revisions [here](../../use/administration.md#compare-revisions).
 
 ### Audit logs
-InvenioRDM now comes with a new audit logs feature. See the [related documentation here](../../operate/customize/audit-logs.md).
+InvenioRDM now comes with a [new audit logs feature](../../operate/customize/audit-logs.md) which allows administrators to track the history of actions surrounding a record such as creation, edits and publication.
+
 
 ![Administration Panel](../../operate/customize/imgs/audit-logs.png)
 
@@ -48,7 +49,7 @@ Communities can now have their own theming with a custom font and colors, which 
 
 ![A default community and two themed communities on Zenodo](imgs/themed-communities.png)
 
-Themed communities benefit from a custom homepage, defined by changing its HTML template.
+Themed communities can have a custom homepage defined by overriding the default community homepage template.
 
 Read more about the [themes communities feature](../../operate/customize/look-and-feel/themed_communities.md).
 
@@ -68,7 +69,8 @@ Collections introduce a powerful new way to organize and curate records within y
 Collections provide dedicated pages showing all records matching specific criteria.
 ///
 
-**Hierarchical organization**
+*Hierarchical organization*
+
 Collections allow you to define hierarchical groupings of records, enabling users to browse content by subject, resource type, funding program, or any other metadata field.
 
 ![Community "Browse" tab showing hierachical collections based on subjects](imgs/collection-browse.png)
@@ -76,7 +78,8 @@ Collections allow you to define hierarchical groupings of records, enabling user
 The collection browser provides an organized view of all available collections within a community.
 ///
 
-**Common use cases**
+*Common use cases*
+
 - Group content by research disciplines using a hierarchical vocabulary
 - Organize historical records by publication date
 - Organize records by funding programs (Horizon 2020, NSF, institutional grants)
@@ -97,12 +100,18 @@ Curation checks in Zenodo's EU Open Research Repository
 
 Read the detailed documentation for [Curation checks](../../operate/customize/curation-checks.md).
 
-### Customizable compliance info when publishing
+### Customizable compliance information when publishing
 You can now fully customize the compliance information and checkboxes that users must acknowledge when publishing a record. This makes it easy to tailor the publishing workflow to your organization's policies or legal requirements.
 
 ![Publish modal with extra checkbox](../../operate/customize/imgs/compliance_checkboxes.png)
 
 See the configuration options in the [related documentation](../../operate/customize/compliance_info.md).
+
+### Dashboard
+
+We have introduced a new search filter in `My Dashboard`, to easily find records and requests shared with you.
+
+![Shared with me](./imgs/my-dashboard-shared-with-me.jpg)
 
 ### DOIs on demand
 You can now let users to choose if they need a DOI or not when uploading. See how to configure it in the [related documentation](../../operate/customize/dois.md#optional-doi-user-interface-and-advanced-configuration).
@@ -110,16 +119,16 @@ You can now let users to choose if they need a DOI or not when uploading. See ho
 ![DOIs on demand](../../operate/customize/imgs/dois-on-demand.jpg)
 
 ### Extra PIDs schemes
-InvenioRDM v13 allows you to extend the list of existing schemes for persistent identifiers to detect, validate and add support for your owns.
+InvenioRDM v13 allows you to extend the list of existing persistent identifier schemes to detect, validate and support any additional ones you want.
 
 ![Extra PID schemes](../../operate/customize/metadata/imgs/custom_pids_schemes.jpg)
 
-See the [related documentation](../../operate/customize/metadata/custom_pids_schemes.md) how to add your own custom schemes.
+See the [related documentation](../../operate/customize/metadata/custom_pids_schemes.md) for how to add your own custom schemes.
 
 Under the hood, the Invenio [idutils](https://github.com/inveniosoftware/idutils) module handles validation and normalization of persistent identifiers used in scholarly communication, and existing customizations may be affected by changes in v13. The module has been restructured to use a configurable scheme system with a new entrypoint mechanism for registering your own identifier schemes.
 
 ### FAIR Signposting
-With v13, you can now enable support for FAIR Signposting level 1 and 2. See [the related documentation](../../operate/customize/FAIR-signposting.md) for more information.
+With v13, you can now enable [support for FAIR Signposting level 1](../../operate/customize/FAIR-signposting.md) in addition to the automatically enabled level 2 in order to increase the discoverability and citability of your repository's content.
 
 ### Files uploader & S3-compatible storage
 The new file uploader, powered by Uppy (disabled by default), delivers a faster, more intuitive, and modern file upload experience. It also enables advanced features such as **multipart file transfers** with **S3-compatible** storage backends.
@@ -130,11 +139,11 @@ Learn more about [file uploaders](../../operate/customize/file-uploads/uploader.
 This release introduces a new Jobs feature, providing a comprehensive way to manage asynchronous tasks via the UI or REST API. Jobs are triggered via the admin UI or REST API, run using Celery, and support logging, argument validation, and result tracking. See the related documentation [here](../../use/administration.md#jobs).
 
 #### ORCID and ROR integrations
-You can now setup jobs to automatically and recurrently fetch ORCID and ROR latest databases.
+You can automatically and recurrently fetch and ingest the latest ORCID and ROR data by creating a job.
 
 For ORCID, read more on the [names vocabulary](../../operate/customize/vocabularies/names.md#using-orcid-public-data-sync) documentation page.
 
-With the ROR job, you can automatically load funders or affiliations vocabulary from the InvenioRDM administration panel, and schedule updates with new ROR releases. Instructions can be found on the [affiliations vocabulary](../../operate/customize/vocabularies/affiliations.md) documentation page.
+With the ROR job, you can automatically load the affiliations or funders vocabulary from the InvenioRDM administration panel, and schedule updates with new ROR releases. Instructions can be found on the [affiliations](../../operate/customize/vocabularies/affiliations.md) and [funding](../../operate/customize/vocabularies/funding.md) documentation pages respectively.
 We have also upgraded the integration with ROR to version 2.0 and enhanced the metadata to include organization aliases, status, types, locations, and acronyms, making it easier to find the correct organization or funders.
 
 #### EuroSciVoc subjects
@@ -151,17 +160,12 @@ _Note that search mapping updates are needed. Also, you would need to reindex th
 We have introduced new metadata fields that will allow you to capture more useful information when uploading:
 
 - A dedicated **copyright** field is now available, ensuring clear and comprehensive copyright information.
-- We've added new **thesis** add-on set of fields. We've also reorganized the thesis section, grouping thesis fields together. See [here](../../operate/customize/metadata/optional_fields.md) how to enable them.
-- The **edition** field has been introduced under the `imprint` add-on set of fields, providing a way to specify the edition of the book.
-- A new **identifiers** field, composed of `id` and `scheme`, has been added to the `meeting` add-on set of fields.
+- We've added a new **Thesis** set of optional metadata fields. We've also reorganized the thesis section, grouping thesis fields together. See [here](../../operate/customize/metadata/optional_fields.md) for how to enable them.
+- The **edition** field has been introduced under the **Imprint** set of optional metadata fields, providing a way to specify the edition of a book.
+- A new **identifiers** field, composed of `id` and `scheme`, has been added to the **Meeting** set of optional metadata fields.
 
 ### PDF preview upgrade
 The v13 release features an upgraded PDF previewer, now powered by [PDF.js v4](https://github.com/mozilla/pdf.js). This update resolves previous issues with failed previews for certain PDF files, providing a more reliable and seamless viewing experience.
-
-### Requests sharing
-When a record is shared, the review request is now also accessible. We have introduced a new search filter in `My Dashboard`, to easily find records shared with me.
-
-![Shared with me](./imgs/my-dashboard-shared-with-me.jpg)
 
 ### Search improvements
 Both users and records search have been enhanced to return more accurate results for common names/titles, partial matches (even with typos) and names/titles with accents or diacritics.
@@ -169,12 +173,12 @@ Both users and records search have been enhanced to return more accurate results
 Creators, affiliations and funders autocompletion has been improved so that suggestions appear faster and better match what you type.
 
 ### Sitemaps
-InvenioRDM v13 introduces the automatic generation of sitemaps to help search engines and other crawlers discovering and indexing your repository's content. Sitemaps are even automatically linked in your `robots.txt`.
+InvenioRDM v13 introduces the automatic generation of sitemaps to help search engines and other crawlers discover and index your repository's content. Sitemaps are even automatically linked in your `robots.txt`.
 
-See the [related documentation](../../operate/customize/sitemaps.md) to learn how to configure it.
+See the [related documentation](../../operate/customize/sitemaps.md) to learn how to configure their generation.
 
 ### Miscellaneous additions
-Here is a quick summary of the myriad other improvements in this release:
+Here is a quick summary of the myriad of other improvements in this release:
 
 - A convenient "Copy" button has been added next to the DOI (when enabled) and export formats, allowing users to instantly copy these values to their clipboard with a single click without manually selecting or exporting the content:
   ![Copy button for DOI](imgs/copy-button-doi.jpg)
@@ -200,22 +204,25 @@ Here is a quick summary of the myriad other improvements in this release:
 - Following the [latest COUNTER spec](https://www.countermetrics.org/code-of-practice/), the [list of robots and machines](https://github.com/inveniosoftware/counter-robots) have been updated to ensure the stats are counted on human usage.
 - Logging: the Flask root logger level has been changed from `undefined` to `DEBUG`. This enables all log messages to pass through by default, instead of being blocked. If you have implemented custom logging handlers, ensure that you have defined the logging level and verify your logging verbosity in deployed environments to avoid excessive logs.
 - The issue related to storage quota per record for a given user has been solved. You can now define different storage quotas per record.
-- InvenioRDM v13 introduces the `generator` HTML `meta` tag to identify the repository technology. This is used by services like [OpenDOAR](https://opendoar.ac.uk/) to correctly catalog open access repositories.
-  The generator string will be `InvenioRDM v13.0`. You can change it in your `invenio.cfg` by overriding the variable `THEME_GENERATOR` or setting it to `None` to disable the meta tag.
 - MathJax: when enabled, it will now render mathematical formulas also in the landing page citation box, search results and request's comments pages.
+- Easier link generation: it's now possible to use `from invenio_base import invenio_url_for` to generate API links in the UI application and vice versa. When configuring services, `from invenio_records_resources.services import EndpointLink` now replaces `Link` which establishes a single source of truth for links.
 - ...and many more bug fixes!
 
-### Experimental
+## Experimental additions
 InvenioRDM v13 introduces experimental support for a modern development toolchain, including [uv](https://github.com/astral-sh/uv) (as a replacement for pipenv), [Rspack](https://www.rspack.dev/) (as a replacement for webpack), and [pnpm](https://pnpm.io/) (as a replacement for npm). These tools significantly improve the developer and system administration experience by offering faster installs, better performance, and more efficient workflows.
 
 These tools are **disabled by default** and will be tested further in the coming months. If you are interested in trying them out and providing feedback, please get in touch with the [maintainers team](https://github.com/orgs/inveniosoftware/teams/core-maintainers).
+
+## Deprecations
+- Direct Python imports of identifier schemes (e.g., `from idutils.isbn import normalize_isbn`) are now deprecated and will be removed in future versions. If you have custom code that directly imports scheme modules, you'll need to update it to use the new API.
+- Usage of `invenio_records_resources.services.Link` is deprecated in favor of `invenio_records_resources.services.EndpointLink` for InvenioRDM links and `invenio_records_resources.services.ExternalLink` for external third-party links. `Link` will be removed in a future major InvenioRDM release.
 
 ## Breaking changes
 - The minimum required OpenSearch version is now **v2.12**. This change is necessary due to a bug in earlier OpenSearch versions that affects the handling of `geo-shape` fields introduced in InvenioRDM v13. See the [upgrade guide](upgrade-v13.0.md#opensearch-version) for more information.
 - The new search improvements and the enhanced subjects and awards features require the recreation of the search mappings for Subjects, Awards, Records _(including percolators)_, Drafts and Communities. See the [upgrade guide](upgrade-v13.0.md#rebuild-search-indices) for more information.
 - The integration with the new ROR schema v2 requires to re-import both the affiliations and funders vocabularies. See the [upgrade guide](upgrade-v13.0.md#updated-affiliations-and-funders) for more information.
-- The upgrade of the PDF previewer requires a small change to the webserver configuration. See the [upgrade guide](upgrade-v13.0.md) for more information.
-- Direct Python imports of identifier schemes (e.g., `from idutils.isbn import normalize_isbn`) are now deprecated and will be removed in future versions. If you have custom code that directly imports scheme modules, you'll need to update it to use the new API.
+- The upgrade of the PDF previewer requires a small change to the webserver configuration. See the [upgrade guide](upgrade-v13.0.md#updated-pdf-previewer) for more information.
+
 
 ## Requirements
 
@@ -243,7 +250,7 @@ The development work of this impressive release wouldn't have been possible with
 - Alex Ioannidis
 - Alzbeta Pokorna
 - Anika Churilova
-- Austin
+- Austin Sharp
 - Brian Kelly
 - Carlin MacKenzie
 - Christoph Ladurner
@@ -254,7 +261,6 @@ The development work of this impressive release wouldn't have been possible with
 - ducica
 - Eduard Nitu
 - Emil Dandanell Agerschou
-- enitu
 - Eric Newman
 - Eric Phetteplace
 - Esteban J. G. Gabancho
@@ -262,8 +268,6 @@ The development work of this impressive release wouldn't have been possible with
 - Felipe Carlos
 - Florian Gantner
 - Furkan Kalkan
-- furkankalkan
-- Gantner, Florian Klaus
 - Guillaume Viger
 - Hrafn Malmquist
 - Ian W. Scott
@@ -276,7 +280,6 @@ The development work of this impressive release wouldn't have been possible with
 - Martin Fenner
 - Martin Obersteiner
 - Matt Carson
-- Max
 - Maximilian Moser
 - mb-wali
 - Michael Groh
@@ -288,15 +291,11 @@ The development work of this impressive release wouldn't have been possible with
 - Pablo Saiz
 - Pablo Tamarit
 - Panna Liptak
-- phette23
-- psaiz
-- rekt-hard
 - roll
 - Saksham Arora
 - Sam Arbid
 - Sarah Wiechers
 - Tom Morrell
-- utnapischtim
 - Werner Greßhoff
 - Will Riley
 - Yash Lamba

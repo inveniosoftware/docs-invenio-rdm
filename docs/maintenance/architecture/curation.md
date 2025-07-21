@@ -1,5 +1,7 @@
 # Curation checks
 
+_Introduced in v13_
+
 **Intended audience**
 
 This guide is intended for maintainers and developers of InvenioRDM itself.

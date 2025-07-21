@@ -77,7 +77,7 @@ DATACITE_FORMAT = "{prefix}/inveniordm.{id}"
 #### OAI-PMH
 
 The OAI-PMH server's metadata format ``oai_datacite`` that allows your records
-to be harvested in DataCite XML needs to be configured with your DataCite data 
+to be harvested in DataCite XML needs to be configured with your DataCite data
 center symbol. This is only required if you want your records to be harvestable in DataCite XML format.
 
 ```python
@@ -86,14 +86,15 @@ DATACITE_DATACENTER_SYMBOL = "CERN.INVENIORDM"
 
 ### Versioning and externally managed DOI
 
-By default, InvenioRDM allows versioning for any DOI type - internally or externally managed. 
-Internally managed DOIs are DOIs registered by your instance and minted on Datacite. 
-External DOIs are DOIs already minted and simply passed to your instance. 
-As such, having an internally managed DOI for the next version of a record with an external DOI may not be desired. 
+By default, InvenioRDM allows versioning for any DOI type - internally or externally managed.
+Internally managed DOIs are DOIs registered by your instance and minted on Datacite.
+External DOIs are DOIs already minted and simply passed to your instance.
+As such, having an internally managed DOI for the next version of a record with an external DOI may not be desired.
 To disable versioning for external DOIs you need to set
 
 ```python
 RDM_ALLOW_EXTERNAL_DOI_VERSIONING = False
+```
 
 #### Parent or Concept DOIs
 
