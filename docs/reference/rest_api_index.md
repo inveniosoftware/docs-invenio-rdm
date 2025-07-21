@@ -63,3 +63,15 @@ adding ``prettyprint=1`` in the query string.
 ```http
 GET /api/records?prettyprint=1 HTTP/1.1
 ```
+
+### OpenAPI specification
+
+The complete OpenAPI schema for InvenioRDM's REST API is available at:
+
+👉 [https://inveniosoftware.github.io/invenio-openapi/](https://inveniosoftware.github.io/invenio-openapi/)
+
+You can use this for:
+
+- Exploring all endpoints
+- Generating client libraries
+- Validating request/response formats
