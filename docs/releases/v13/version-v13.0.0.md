@@ -205,6 +205,11 @@ Here is a quick summary of the myriad other improvements in this release:
 - MathJax: when enabled, it will now render mathematical formulas also in the landing page citation box, search results and request's comments pages.
 - ...and many more bug fixes!
 
+### Experimental
+InvenioRDM v13 introduces experimental support for a modern development toolchain, including [uv](https://github.com/astral-sh/uv) (as a replacement for pipenv), [Rspack](https://www.rspack.dev/) (as a replacement for webpack), and [pnpm](https://pnpm.io/) (as a replacement for npm). These tools significantly improve the developer and system administration experience by offering faster installs, better performance, and more efficient workflows.
+
+These tools are **disabled by default** and will be tested further in the coming months. If you are interested in trying them out and providing feedback, please get in touch with the [maintainers team](https://github.com/orgs/inveniosoftware/teams/core-maintainers).
+
 ## Breaking changes
 - The minimum required OpenSearch version is now **v2.12**. This change is necessary due to a bug in earlier OpenSearch versions that affects the handling of `geo-shape` fields introduced in InvenioRDM v13. See the [upgrade guide](upgrade-v13.0.md#opensearch-version) for more information.
 - The new search improvements and the enhanced subjects and awards features require the recreation of the search mappings for Subjects, Awards, Records _(including percolators)_, Drafts and Communities. See the [upgrade guide](upgrade-v13.0.md#rebuild-search-indices) for more information.
