@@ -26,22 +26,6 @@ invenio-cli, version 1.8.0
     In case you are not inside a virtual environment, make sure that you prefix each `invenio`
     command with `pipenv run`.
 
-**Local development**
-
-Changing the Python version in your development environment highly
-depends on your setup, so we won't cover it here.
-One way would be to use [PyEnv](https://github.com/pyenv/pyenv).
-
-!!! warning "Risk of losing data"
-
-    Your virtual environment folder a.k.a., `venv` folder, may contain uploaded files. If you kept the default
-    location, it is in `<venv folder>/var/instance/data`. If you need to keep those files,
-    make sure you copy them over to the new `venv` folder in the same location.
-    The command `invenio files location list` shows the file upload location.
-
-If you upgraded your python version, you should recreate your virtual environment before
-running `invenio-cli` or `pipenv` commands below.
-
 ### Upgrade InvenioRDM
 
 #### Requirements
@@ -74,6 +58,13 @@ invenio-cli assets build
 This approach will create a new virtual environment and leaves the v12 one as-is.
 If you are using a docker image on your production instance this will be the
 option you choose.
+
+!!! warning "Risk of losing data"
+
+    Your virtual environment folder a.k.a., `venv` folder, may contain uploaded files. If you kept the default
+    location, it is in `<venv folder>/var/instance/data`. If you need to keep those files,
+    make sure you copy them over to the new `venv` folder in the same location.
+    The command `invenio files location list` shows the file upload location.
 
 ##### Step 1
 
@@ -194,7 +185,7 @@ If you choose to delete and re-create your search cluster as part of the upgrade
 Be sure to repeat the [Rebuild search indices](#rebuild-search-indices) step to ensure your system is fully functional.
 
 #### Jobs
-The new Jobs feature uses a custom celery task scheduler which requires a separate celery beat. See the [related documentation](../../operate/customize/jobs.md#scheduler) on how to add it or [this change](https://github.com/inveniosoftware/cookiecutter-invenio-rdm/pull/314) in the InvenioRDM boilerplate for reference.
+The new Jobs feature uses a custom celery task scheduler which requires a separate celery beat. See the [related documentation](../../operate/customize/jobs.md#scheduler) or [the scheduler service](https://github.com/inveniosoftware/cookiecutter-invenio-rdm/blob/ff6c652091d56e7a8aa0a90487f91352f70c4e33/%7B%7Bcookiecutter.project_shortname%7D%7D/docker-compose.full.yml) in the InvenioRDM boilerplate for how to add it.
 
 !!! note
     Be sure to run this additional Celery beat scheduler in your production or deployed environments. Without it, scheduled and on-demand jobs will not be executed.
@@ -217,10 +208,17 @@ To resolve this, simply add a custom [`types`](https://nginx.org/en/docs/http/ng
 
 ### Optional changes
 
-#### Deprecated configurations
+#### Deprecations
+
+*`APP_ALLOWED_HOSTS`*
+
 With the upgrade to Flask version 3, the configuration variable `APP_ALLOWED_HOSTS` has been renamed to `TRUSTED_HOSTS`. The value remains unchanged.
 You should review your `invenio.cfg`, environment variables, and deployment configuration for any occurrences of the old variable name.
-It is recommended to update all references to `TRUSTED_HOSTS` to avoid deprecation warnings in the console.
+It is recommended to update all references to `TRUSTED_HOSTS` to avoid deprecation warnings in the console and prepare for its eventual complete removal.
+
+*`invenio_records_resources.services.Link`*
+
+Usage of `invenio_records_resources.services.Link` is deprecated in favor of `invenio_records_resources.services.EndpointLink` for InvenioRDM links and `invenio_records_resources.services.ExternalLink` for external third-party links. Replace instances of `Link` in your custom code, if any, appropriately. `Link` will be removed in a future major InvenioRDM release.
 
 #### Display versions in administration panel
 As described in the [release notes](./version-v13.0.0.md#miscellaneous-additions), you can now display the versions of your installed modules directly in the Administration panel.

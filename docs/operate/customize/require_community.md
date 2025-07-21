@@ -1,5 +1,7 @@
 # Require community for record publication
 
+_Introduced in v13_
+
 Institutional policies may require all published records to belong to at least one community. InvenioRDM enforces this requirement through the `RDM_COMMUNITY_REQUIRED_TO_PUBLISH` configuration parameter.
 To activate this feature, open your `invenio.cfg` and add:
 

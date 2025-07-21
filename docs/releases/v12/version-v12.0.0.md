@@ -130,6 +130,7 @@ Here is a quick summary of the myriad other improvements in this release:
 - Great improvements in bulk serialization performance
 - The communities REST endpoint accepts both UUID and slug in the URL
 - Many new configuration variables (e.g., `COMMUNITIES_SEARCH_SORT_BY_VERIFIED`) to tune your instance
+- The new `generator` HTML `meta` tag identifies the repository technology. This is used by services like [OpenDOAR](https://opendoar.ac.uk/) to correctly catalog open access repositories.
 - ...and many more bug fixes!
 
 ## Breaking changes

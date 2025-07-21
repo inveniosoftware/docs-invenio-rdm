@@ -94,6 +94,7 @@ To disable versioning for external DOIs you need to set
 
 ```python
 RDM_ALLOW_EXTERNAL_DOI_VERSIONING = False
+```
 
 #### Parent or Concept DOIs
 
