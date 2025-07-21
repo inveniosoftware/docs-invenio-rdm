@@ -1,30 +1,24 @@
 # Upgrading from v12 to v13.0
 
-!!! warning "THIS RECIPE IS A WORK IN PROGRESS"
-
 ## Prerequisites
 
 The steps listed in this article require an existing local installation of InvenioRDM v12.
 
 !!! warning "Backup"
 
-    Always backup your database and files before you try to perform an upgrade.
+    Always backup your database, statistics indices and files before you try to perform an upgrade.
 
 !!! info "Older Versions"
-
-    In case you have an InvenioRDM installation older than v12, you can gradually upgrade
-    to v12 and afterwards continue from here.
-
-!!! read through the whole upgrade steps before upgrading
+    If your InvenioRDM installation is older than v12, you must first upgrade to v12 before proceeding with the steps in this guide.
 
 ## Upgrade Steps
 
-Make sure you have the latest `invenio-cli` installed. For InvenioRDM v13, it
-should be v1.7.0+
+Make sure you have the latest `invenio-cli` installed. For InvenioRDM v13,
+it should be v1.7.0+.
 
 ```bash
 $ invenio-cli --version
-invenio-cli, version 1.7.0
+invenio-cli, version 1.7.2
 ```
 
 !!! info "Virtual environments"
@@ -50,17 +44,20 @@ running `invenio-cli` or `pipenv` commands below.
 
 ### Upgrade InvenioRDM
 
-Python 3.9 or 3.11 or 3.12 is required to run InvenioRDM v12.
+#### Requirements
+Python 3.9 or 3.11 or 3.12 is required to run InvenioRDM v13.
 
-Note: endoflife of python3.9 will be 31. October 2025. There will be no
-python3.9 related updates done after that date.
+!!! info "Python 3.9 end-of-life"
+    Official support for Python 3.9 will end on October 31, 2025.
+    See the [official Python version status page](https://devguide.python.org/versions/) for more information.
+    Future releases of InvenioRDM will require a more recent Python version.
 
-There are two options to upgrade your system:
+The minimum required OpenSearch version is now **v2.12**. See [below](#opensearch-version) on how to upgrade older versions.
 
 #### Upgrade option 1: In-place
-
-This approach upgrades the dependencies in place. Your virtual environment for the
-v12 version will be gone afterwards.
+This approach upgrades the dependencies in place. At the end of the process,
+your virtual environment for the v12 version will be completely replaced
+with the v13 environment and dependencies.
 
 ```bash
 cd <my-site>
@@ -94,7 +91,7 @@ Update the file `<my-site>/Pipfile`.
 +++invenio-app-rdm = {extras = [...], version = "~=13.0.0"}
 ```
 
-If you're using Sentry, update invenio-logging in `<my-site>/Pipfile` to
+If you're using [Sentry](https://sentry.io) (tool for monitoring or error tracking), update invenio-logging in `<my-site>/Pipfile` to
 
 ```diff
 ---invenio-logging = {extras = ["sentry_sdk"], version = "~=2.0"}
@@ -133,186 +130,113 @@ Execute the data migration:
 invenio shell $(find $(pipenv --venv)/lib/*/site-packages/invenio_app_rdm -name migrate_12_0_to_13_0.py)
 ```
 
-
-### Configuration change for `nginx`
-
-The new PDF file previewer is based on `pdfjs-dist` v4, which uses ECMAScript modules (`.mjs`) over CommonJS files (`.js`).
-These files are not registered in the [default configuration](https://github.com/nginx/nginx/blob/master/conf/mime.types#L8) for `nginx`.
-This can result in the MIME type being reported incorrectly, and thus being blocked by the browser, leading to a broken PDF preview.
-
-Luckily, this can be simply fixed by adding a custom [`types`](https://nginx.org/en/docs/http/ngx_http_core_module.html#types) entry;
-e.g. in the `http` block in [`nginx.conf`](https://github.com/inveniosoftware/cookiecutter-invenio-rdm/blob/master/%7B%7Bcookiecutter.project_shortname%7D%7D/docker/nginx/nginx.conf)
-(cf. this [Cookiecutter PR](https://github.com/inveniosoftware/cookiecutter-invenio-rdm/pull/299)).
-
-```nginx
-include       /etc/nginx/mime.types;
-default_type  application/octet-stream;
-types {
-    # Tell nginx that ECMAScript modules are also JS
-    application/javascript js mjs;
-}
-```
-
-### if you plan to use `APP_RDM_DEPOSIT_NG_FILES_UI_ENABLED`
-
-you have to add following
-
-```
-        "script-src": [
-            "'self'", "blob:", "'wasm-unsafe-eval'"  # for WASM-based workers, e.g. hash-wasm
-        ],
-```
-
-in the `invenio.cfg` file to the
-
-```
-APP_DEFAULT_SECURE_HEADERS = {
-    "content_security_policy": {}
-}
-```
-
-configuration.
-
-### Jobs
-
-#### New worker beat scheduler
-
-```
-celery -A invenio_app.celery beat --scheduler invenio_jobs.services.scheduler:RunScheduler
-```
-
-#### New Index Template for Job Logs
-
-Replace `localhost:9200` and `__SEARCH_INDEX_PREFIX__ `with your instance values.
-
-Then run:
-
-```bash
-curl -X PUT "http://localhost:9200/_index_template/job-logs-v1.0.0" -H "Content-Type: application/json" -d '
-{
-  "index_patterns": ["__SEARCH_INDEX_PREFIX__job-logs*"],
-  "data_stream": {},
-  "template": {
-    "mappings": {
-      "properties": {
-        "@timestamp": { "type": "date" },
-        "level": { "type": "keyword" },
-        "message": { "type": "text" },
-        "module": { "type": "keyword" },
-        "function": { "type": "keyword" },
-        "line": { "type": "integer" },
-        "context": {
-          "type": "object",
-          "properties": {
-            "job_id": { "type": "keyword" },
-            "run_id": { "type": "keyword" }
-          },
-          "dynamic": true
-        }
-      }
-    }
-  }
-}'
-```
-
 ### Rebuild search indices
-
-#### full rebuild
 
 ```bash
 invenio index destroy --yes-i-know
 invenio index init
+# if you have records custom fields
+invenio rdm-records custom-fields init
+# if you have communities custom fields
+invenio communities custom-fields init
 invenio rdm rebuild-all-indices
 ```
 
-From v12 onwards, record statistics will be stored in search indices rather than the
-database. These indices are created through some _index templates_ machinery
-rather than having indices registered directly in `Invenio-Search`. As such, the
-search indices for statistics are not affected by `invenio index destroy
---yes-i-know` and are totally functional after the rebuild step.
+From v12 onwards, search indices for statistics (record's views and downloads) are not
+affected by `invenio index destroy --yes-i-know` and are totally functional after the rebuild step.
 
-#### possible live update
+!!! info "Permission issue"
+    If you encounter an error similar to this when indexing:
+    ```
+    opensearchpy.exceptions.AuthorizationException: AuthorizationException(403, 'security_exception', 'no permissions for [cluster:admin/component_template/put] and User [name=<my-name>, backend_roles=[], requestedTenant=null]')
+    opensearchpy.exceptions.AuthorizationException: AuthorizationException(403, 'security_exception', 'no permissions for [indices:admin/index_template/put] and User [name=<my-name>, backend_roles=[], requestedTenant=null]')
+    ```
+    This means your OpenSearch user does not have sufficient permissions to create or update index templates.
+    To resolve this, grant the necessary permissions to your user in the OpenSearch cluster:
+      1. Go to **OpenSearch Dashboards** -> **Security** -> **Roles** -> *<your role name>*.
+      2. Edit the role and add the following cluster and index permissions:
+         - `cluster:admin/component_template/put`
+         - `indices:admin/index_template/put`
 
-CHECK if that works
+### Updated affiliations and funders
+InvenioRDM now integrates the updated schema version v2 of ROR (see [announcement here](https://ror.org/blog/2024-04-15-announcing-ror-v2/)). This new version introduces additional fields and improvements, so you will need to re-import both the affiliations and funders vocabularies to ensure your data is up to date.
+
+To re-import, you can either set up a job or perform the import manually via the CLI. Please follow the instructions in the [affiliations](../../operate/customize/vocabularies/affiliations.md) and [funders](../../operate/customize/vocabularies/funding.md) documentation pages for detailed steps.
+
+## Infrastructure/configuration changes
+
+### Required changes
+
+#### OpenSearch version
+The minimum required OpenSearch version is now **v2.12**. This change is necessary due to a bug in earlier OpenSearch versions that affects the handling of `geo-shape` fields introduced in InvenioRDM v13.
+For more details, see the related [InvenioRDM issue](https://github.com/inveniosoftware/invenio-rdm-records/issues/1807) and the [OpenSearch issue and discussion](https://github.com/opensearch-project/OpenSearch/issues/10958#issuecomment-2037882756).
+
+To check the current version, connect to the OpenSearch Dashboard with your browser or run the following CLI command:
+
 ```bash
-invenio index update names-name-v2.0.0 --no-check
-```
-
-TODO: this is also required to create the mapping for the new `copyright` field.
-
-
-
-### Updated vocabularies
-
-InvenioRDM now supports ROR v2, and you should update your affiliations and
-funders vocabularies following the
-instructions on the [affiliations](../../operate/customize/vocabularies/affiliations.md)
-and [funders](../../operate/customize/vocabularies/funding.md) documentation pages.
-
-
-### FAIR signposting level 1
-
-However, since enabling FAIR signposting level 1 does increase the size of HTTP response headers, it is recommended to edit the `nginx` configuration and specify [`uwsgi_buffer_size`](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_buffer_size) with a higher limit than the default values. If you have enabled `uwsgi_buffering on;`, then [`uwsgi_buffers`](https://nginx.org/en/docs/http/ngx_http_uwsgi_module.html#uwsgi_buffers) may also be adjusted.
-
-```nginx
-server {
-   # ...
-   # Allow for larger HTTP response headers for FAIR signposting level 1 support
-   uwsgi_buffer_size 16k;
-   # optional if uwsgi_buffering on;
-   uwsgi_buffers 8 16k;
-
-   # ...
+$ curl -X GET "http://localhost:9200"
+{
+  ...
+  "version" : {
+    "distribution" : "opensearch",
+    "number" : "2.17.1",
+    ...
+  },
+  ...
 }
 ```
 
-### New roles
-nothing yet
+Add `-u <username>:<password>` if you require authentication, or `-k` to ignore SSL certificate warnings.
 
+Please refer to the official [OpenSearch upgrade documentation](https://docs.opensearch.org/docs/latest/install-and-configure/upgrade-opensearch/index/).
+If you choose to delete and re-create your search cluster as part of the upgrade, remember to **back up and restore your statistics indices** (see [how to do this here](../../maintenance/internals/statistics.md)).
+Be sure to repeat the [Rebuild search indices](#rebuild-search-indices) step to ensure your system is fully functional.
 
-### New configuration variables
+#### Jobs
+The new Jobs feature uses a custom celery task scheduler which requires a separate celery beat. See the [related documentation](../../operate/customize/jobs.md#scheduler) on how to add it or [this change](https://github.com/inveniosoftware/cookiecutter-invenio-rdm/pull/314) in the InvenioRDM boilerplate for reference.
 
-```bash
+!!! note
+    Be sure to run this additional Celery beat scheduler in your production or deployed environments. Without it, scheduled and on-demand jobs will not be executed.
+
+#### Updated PDF previewer
+The updated PDF file previewer (PDF.js v4) now uses ECMAScript modules (`.mjs`) instead of CommonJS files (`.js`). By default, the `nginx` web server does not recognize `.mjs` files in its [default MIME types configuration](https://github.com/nginx/nginx/blob/master/conf/mime.types#L8). As a result, the MIME type may be reported incorrectly, causing browsers to block the file and resulting in broken PDF previews.
+
+To resolve this, simply add a custom [`types`](https://nginx.org/en/docs/http/ngx_http_core_module.html#types) entry in your `nginx.conf` (for example, in the `http` block). See [this change](https://github.com/inveniosoftware/cookiecutter-invenio-rdm/pull/299) in the InvenioRDM boilerplate for reference.
+
+```diff
+  ...
+  include       /etc/nginx/mime.types;
+  default_type  application/octet-stream;
++ types {
++     # Ensure nginx treats ECMAScript modules as JavaScript
++     application/javascript js mjs;
++ }
+  ...
+```
+
+### Optional changes
+
+#### Deprecated configurations
+With the upgrade to Flask version 3, the configuration variable `APP_ALLOWED_HOSTS` has been renamed to `TRUSTED_HOSTS`. The value remains unchanged.
+You should review your `invenio.cfg`, environment variables, and deployment configuration for any occurrences of the old variable name.
+It is recommended to update all references to `TRUSTED_HOSTS` to avoid deprecation warnings in the console.
+
+#### Display versions in administration panel
+As described in the [release notes](./version-v13.0.0.md#miscellaneous-additions), you can now display the versions of your installed modules directly in the Administration panel.
+To enable this feature, add the following to your `invenio.cfg`:
+
+```python
 from invenio_app_rdm import __version__
 ADMINISTRATION_DISPLAY_VERSIONS = [
     ("invenio-app-rdm", f"v{__version__}"),
-    ("{{ cookiecutter.project_shortname }}", "v1.0.0"),
+    ("<my module name>",
 ]
 ```
 
-### Changed configuration variables
+#### FAIR signposting level 1
+If you have enabled FAIR Signposting, ensure that you have updated your web server configuration as required. See the [documentation here](../../operate/customize/FAIR-signposting.md#level-1) for detailed instructions.
 
-- change from `APP_ALLOWED_HOSTS` to `TRUSTED_HOSTS` due flask >= 3
+Failing to apply these changes may result in errors when accessing certain records.
 
-
-## Big Changes
-
-- feature: invenio jobs module, periodic tasks administration panel
-- feature: invenio vocabularies entries deprecation
-- improvement: search mappings and analyzers to improve performance
-- OpenSearch min version now required v2.12 due to breaking changes in `geo-shape` fields, see issue [here](https://github.com/inveniosoftware/invenio-rdm-records/issues/1807) and related OpenSearch issue and comment [here](https://github.com/opensearch-project/OpenSearch/issues/10958#issuecomment-2037882756).
-- dashboard: `shared_with_me` drafts and requests. See [issue[(https://github.com/inveniosoftware/docs-invenio-rdm/blob/master/docs/releases/v13/upgrade-v13.0.md)
-- custom fields: thesis subfields renamed (TODO: migration recipe)
-- custom fields: meeting url changed to identifiers subfield (TODO: migration recipe)
-- experimental: using uv (instead of pipenv), rspack (instead of webpack) and pnpm (instead of npm)
-
-Document this error, or actually add it to the upgrade recipe
-
-
-## OPEN PROBLEMS
-
-```
-opensearchpy.exceptions.AuthorizationException: AuthorizationException(403, 'security_exception', 'no permissions for [cluster:admin/component_template/put] and User [name=inveniordm-qa, backend_roles=[], requestedTenant=null]')
-
-opensearchpy.exceptions.AuthorizationException: AuthorizationException(403, 'security_exception', 'no permissions for [indices:admin/index_template/put] and User [name=inveniordm-qa, backend_roles=[], requestedTenant=null]')
-```
-
-To solve it, grant permission to the user in OpenSearch cluster:
-Go to OpenSearch Dashboards -> Security -> Roles -> <instance name>, edit role and add:
-
-- `cluster:admin/component_template/put`
-- `indices:admin/index_template/put`
-
-
-## OPEN PROBLEMS
-nothing yet
+#### Enhanced File Uploader (Uppy)
+If you plan to use the new Uppy file uploader, ensure that your Content Security Policy (CSP) settings are updated in your `invenio.cfg` as described in the [enhanced file uploader documentation](../../operate/customize/file-uploads/uploader.md#enhanced-file-uploader-uppy). Failing to update your CSP rules may prevent the uploader from functioning correctly.

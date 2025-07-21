@@ -20,7 +20,7 @@ celery -A invenio_app.celery beat --scheduler invenio_jobs.services.scheduler:Ru
 ```
 
 !!! note
-    Be sure to run this additional Celery beat scheduler in your production or deployed environment. Without it, scheduled and on-demand jobs will not be executed.
+    Be sure to run this additional Celery beat scheduler in your production or deployed environments. Without it, scheduled and on-demand jobs will not be executed.
 
 ## How to create a new job
 This guide walks developers through implementing a new job using the engine provided by the `invenio-jobs` module. Jobs are asynchronous tasks that can be triggered from the admin UI or REST API. They run using Celery and support logging, argument validation, and result tracking.

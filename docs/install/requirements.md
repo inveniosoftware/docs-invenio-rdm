@@ -38,7 +38,7 @@ For running and building the application locally you will also need:
 InvenioRDM depends on the following services. During the installation we start these services in containers, but you could as well use externally hosted services for them:
 
 - Databases: PostgreSQL 12+
-- Search: OpenSearch (2.0+)
+- Search: OpenSearch (2.12+)
 - Cache: Redis, memcached
 - Message broker: RabbitMQ, Redis
 - Storage systems: Network storage, S3, XRootD, and more

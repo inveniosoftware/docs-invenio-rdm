@@ -206,8 +206,10 @@ Here is a quick summary of the myriad other improvements in this release:
 - ...and many more bug fixes!
 
 ## Breaking changes
+- The minimum required OpenSearch version is now **v2.12**. This change is necessary due to a bug in earlier OpenSearch versions that affects the handling of `geo-shape` fields introduced in InvenioRDM v13. See the [upgrade guide](upgrade-v13.0.md#opensearch-version) for more information.
+- The new search improvements and the enhanced subjects and awards features require the recreation of the search mappings for Subjects, Awards, Records _(including percolators)_, Drafts and Communities. See the [upgrade guide](upgrade-v13.0.md#rebuild-search-indices) for more information.
+- The integration with the new ROR schema v2 requires to re-import both the affiliations and funders vocabularies. See the [upgrade guide](upgrade-v13.0.md#updated-affiliations-and-funders) for more information.
 - The upgrade of the PDF previewer requires a small change to the webserver configuration. See the [upgrade guide](upgrade-v13.0.md) for more information.
-- The new search improvements and the enhanced subjects and awards features require the recreation of the search mappings for Subjects, Awards, Records _(including percolators)_, Drafts and Communities.  See the [upgrade guide](upgrade-v13.0.md) for more information.
 - Direct Python imports of identifier schemes (e.g., `from idutils.isbn import normalize_isbn`) are now deprecated and will be removed in future versions. If you have custom code that directly imports scheme modules, you'll need to update it to use the new API.
 
 ## Requirements
@@ -217,7 +219,7 @@ InvenioRDM v13 supports:
 - Python 3.9 (end of life October 2025), 3.11 and 3.12
 - Node.js 18+
 - PostgreSQL 12+
-- OpenSearch v2
+- OpenSearch v2.12+
 
 ## Upgrading to v13.0
 
