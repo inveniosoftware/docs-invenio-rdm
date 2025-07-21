@@ -14,11 +14,11 @@ The steps listed in this article require an existing local installation of Inven
 ## Upgrade Steps
 
 Make sure you have the latest `invenio-cli` installed. For InvenioRDM v13,
-it should be v1.7.0+.
+it should be v1.8.0+.
 
 ```bash
 $ invenio-cli --version
-invenio-cli, version 1.7.2
+invenio-cli, version 1.8.0
 ```
 
 !!! info "Virtual environments"
