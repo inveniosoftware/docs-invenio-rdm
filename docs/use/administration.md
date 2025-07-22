@@ -52,8 +52,7 @@ You can filter by:
 - Action type (e.g. draft.edit, record.publish)
 
 !!! info
-
-    If you want to configure or extend audit logging, see [configuration guide](../operate/customize/audit-logs.md).
+    If you want to enable, configure or extend audit logging, see [configuration guide](../operate/customize/audit-logs.md).
 
 ## Records & files
 

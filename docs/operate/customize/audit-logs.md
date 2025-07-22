@@ -16,12 +16,17 @@ This is the list of actions:
 
 You will be able to view all actions performed in your instance and query actions performed on resources.
 
-The feature can be enabled by setting the `AUDIT_LOGS_ENABLED` flag to `True`.
-
 You can learn about its internals [here](../../maintenance/internals/audit-logs.md).
 
-## Add your actions
+## Enabling audit logs
+To enable audit logs, you need to set the following configuration in your `invenio.cfg`:
 
+```python
+# Enable the feature flag
+AUDIT_LOGS_ENABLED = True
+```
+
+## Add your actions
 To track more actions on resources in InvenioRDM using audit logs, follow these steps to add new actions:
 
 ### 1. Define the action
