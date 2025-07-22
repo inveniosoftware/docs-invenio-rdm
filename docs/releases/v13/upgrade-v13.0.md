@@ -241,3 +241,18 @@ Failing to apply these changes may result in errors when accessing certain recor
 
 #### Enhanced File Uploader (Uppy)
 If you plan to use the new Uppy file uploader, ensure that your Content Security Policy (CSP) settings are updated in your `invenio.cfg` as described in the [enhanced file uploader documentation](../../operate/customize/file-uploads/uploader.md#enhanced-file-uploader-uppy). Failing to update your CSP rules may prevent the uploader from functioning correctly.
+
+#### New configuration variables
+
+These are the new configuration variables introduced in this release. Make sure that you read the related documentation before enabling them. Add them to your `invenio.cfg` as needed:
+
+```python
+# Enable FAIR Signposting
+APP_RDM_RECORD_LANDING_PAGE_FAIR_SIGNPOSTING_LEVEL_1_ENABLED = True
+# Enable Audit Logs
+AUDIT_LOGS_ENABLED = True
+# Manual setup required: enable Curation Checks
+CHECKS_ENABLED = True
+# Experiments: enable the new Uppy file uploader
+APP_RDM_DEPOSIT_NG_FILES_UI_ENABLED = True
+```

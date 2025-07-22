@@ -124,7 +124,7 @@ With v13, you can now enable support for FAIR Signposting level 1 and 2. See [th
 ### Files uploader & S3-compatible storage
 The new file uploader, powered by Uppy (disabled by default), delivers a faster, more intuitive, and modern file upload experience. It also enables advanced features such as **multipart file transfers** with **S3-compatible** storage backends.
 
-Learn more about [file uploaders](../../operate/customize/file-uploads/uploader.md), [S3-compatible storage](../../operate/customize/file-uploads/s3.md), and [file transfers](../../reference/file_transfer.md)
+Learn more about [file uploaders](../../operate/customize/file-uploads/uploader.md), [S3-compatible storage](../../operate/customize/file-uploads/s3.md), and [file transfers](../../reference/file_transfer.md).
 
 ### Jobs
 This release introduces a new Jobs feature, providing a comprehensive way to manage asynchronous tasks via the UI or REST API. Jobs are triggered via the admin UI or REST API, run using Celery, and support logging, argument validation, and result tracking. See the related documentation [here](../../use/administration.md#jobs).

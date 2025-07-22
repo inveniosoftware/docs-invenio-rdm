@@ -172,10 +172,11 @@ invenio domains create spammer
 
 ### New configuration variables
 
-```bash
-COMMUNITIES_IDENTITIES_CACHE_REDIS_URL = "URI_TO_REDIS"
-USERS_RESOURCES_ADMINISTRATION_ENABLED = True
-THEME_SITENAME = "Project name for header and UI"
+These are the new configuration variables introduced in this release. Add them to your `invenio.cfg` as needed:
+
+```python
+COMMUNITIES_IDENTITIES_CACHE_REDIS_URL = "URI_TO_REDIS"  # Redis URL for caching community identities
+USERS_RESOURCES_ADMINISTRATION_ENABLED = True            # Enables the users administration panel
 ```
 
 ## Big Changes

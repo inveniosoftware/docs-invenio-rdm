@@ -77,7 +77,7 @@ DATACITE_FORMAT = "{prefix}/inveniordm.{id}"
 #### OAI-PMH
 
 The OAI-PMH server's metadata format ``oai_datacite`` that allows your records
-to be harvested in DataCite XML needs to be configured with your DataCite data 
+to be harvested in DataCite XML needs to be configured with your DataCite data
 center symbol. This is only required if you want your records to be harvestable in DataCite XML format.
 
 ```python
@@ -86,10 +86,10 @@ DATACITE_DATACENTER_SYMBOL = "CERN.INVENIORDM"
 
 ### Versioning and externally managed DOI
 
-By default, InvenioRDM allows versioning for any DOI type - internally or externally managed. 
-Internally managed DOIs are DOIs registered by your instance and minted on Datacite. 
-External DOIs are DOIs already minted and simply passed to your instance. 
-As such, having an internally managed DOI for the next version of a record with an external DOI may not be desired. 
+By default, InvenioRDM allows versioning for any DOI type - internally or externally managed.
+Internally managed DOIs are DOIs registered by your instance and minted on Datacite.
+External DOIs are DOIs already minted and simply passed to your instance.
+As such, having an internally managed DOI for the next version of a record with an external DOI may not be desired.
 To disable versioning for external DOIs you need to set
 
 ```python
@@ -147,7 +147,7 @@ RDM_PERSISTENT_IDENTIFIERS = {
     },
 }
 ```
-You [can view the default configuration for `RDM_PERSISTENT_IDENTIFIERS` in invenio-rdm-records](https://github.com/inveniosoftware/invenio-rdm-records/blob/master/invenio_rdm_records/config.py)
+You [can inspect here](https://github.com/inveniosoftware/invenio-rdm-records/blob/master/invenio_rdm_records/config.py#L393) the default configuration for `RDM_PERSISTENT_IDENTIFIERS`.
 
 ### Optional DOI User Interface and Advanced Configuration
 
@@ -159,7 +159,31 @@ InvenioRDM now includes a user interface to allow users to choose whether or not
 
 This will display when both main and parent DOIs are configured as
 optional. You can also set the default button selection with the
-"doi" "ui" "default_selected" option, which can be "yes", "no" or "not_needed"
+"doi" "ui" "default_selected" option, which can be "yes", "no" or "not_needed". In your `invenio.cfg`, change:
+
+```diff
+ RDM_PARENT_PERSISTENT_IDENTIFIERS = {
+     ...
+     "doi": {
+         ...
+-        "required": True,
++        "required": False,
+         ...
+     },
+     ...
+ }
+ RDM_PERSISTENT_IDENTIFIERS = {
+     ...
+     "doi": {
+         ...
+-        "required": True,
++        "required": False,
+         ...
+         "ui": {"default_selected": "yes"},  # "yes", "no" or "not_needed"
+     },
+     ...
+ }
+```
 
 With this option enabled, users can decide whether or not to request a DOI for their record. However, managing different versions of a record with and without DOIs can introduce complexities. Ideally, once a DOI is registered for a record, all subsequent versions should also have a DOI to avoid resolving to a version with a DOI, and creating confusion.
 
