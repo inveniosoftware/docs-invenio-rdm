@@ -79,15 +79,16 @@ option you choose.
 
 - create a new virtual environment
 - activate your new virtual environment
-- install `invenio-cli` by `pip install invenio-cli`
+- install `invenio-cli` by running `pip install invenio-cli`
 
 ##### Step 2
 
-Update the file `<my-site>/Pipfile`.
+Update the `<my-site>/Pipfile` by changing the `version` of `invenio-app-rdm` to `~=13.0.0` and removing the unnecessary `postgresql` extra
+(it is already installed by default and will trigger a warning if left in the file):
 
 ```diff
 [packages]
----invenio-app-rdm = {extras = [...], version = "~=12.0.0"}
+---invenio-app-rdm = {extras = [..., "postgresql"], version = "~=12.0.0"}
 +++invenio-app-rdm = {extras = [...], version = "~=13.0.0"}
 ```
 
