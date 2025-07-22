@@ -251,8 +251,8 @@ These are the new configuration variables introduced in this release. Make sure 
 APP_RDM_RECORD_LANDING_PAGE_FAIR_SIGNPOSTING_LEVEL_1_ENABLED = True
 # Enable Audit Logs
 AUDIT_LOGS_ENABLED = True
-# Manual setup required: enable Curation Checks
+# Enable Curation Checks (manual setup required)
 CHECKS_ENABLED = True
-# Experiments: enable the new Uppy file uploader
+# Enable the new Uppy file uploader (experimental feature)
 APP_RDM_DEPOSIT_NG_FILES_UI_ENABLED = True
 ```
