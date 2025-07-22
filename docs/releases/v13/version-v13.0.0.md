@@ -1,6 +1,6 @@
 # InvenioRDM v13.0
 
-_2025-07-21_
+_2025-07-23_
 
 We're happy to announce the release of InvenioRDM v13.0, the open-source repository platform for research data management, institutional repositories, and digital assets management! Version 13 will be maintained until at least 6 months following the next release. Visit our [maintenance policy page](../maintenance-policy.md) to learn more.
 
