@@ -39,7 +39,13 @@ You can always [ask for help](../../../install/troubleshoot.md#getting-help)!
 
 ### Find the React Overridable ID
 
-The React component's overridable id for the '`Metadata-only record`' checkbox component is `ReactInvenioDeposit.FileUploaderToolbar.MetadataOnlyToggle.container`. It can be found in the [react-invenio-deposit](https://github.com/inveniosoftware/react-invenio-deposit/blob/040b698967e7fee14ac7fe466e49f883efbe8c47/src/lib/components/FileUploader/FileUploaderToolbar.js#L55) module.
+The easiest way to to find the ID of an overridable component is to use `react-overridable`'s built-in developer tool.
+Simply open a browser console on your local instance and call the global function `reactOverridableEnableDevMode()`.
+Now, any overridable element you hover your pointer over will display a small tag showing its ID.
+
+![Metadata-only checkbox overridable ID in an overlay](./imgs/metadata_id_overlay.png)
+
+The React component's overridable ID for the '`Metadata-only record`' checkbox component is `ReactInvenioDeposit.FileUploaderToolbar.MetadataOnlyToggle.container`. It can be found in the [react-invenio-deposit](https://github.com/inveniosoftware/react-invenio-deposit/blob/040b698967e7fee14ac7fe466e49f883efbe8c47/src/lib/components/FileUploader/FileUploaderToolbar.js#L55) module.
 
 ### The mapping file
 
