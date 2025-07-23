@@ -107,6 +107,21 @@ Install InvenioRDM v12:
 invenio-cli install
 ```
 
+### Activate the virtual environment
+
+Before running any `invenio` commands, activate your virtual environment shell:
+
+```bash
+$ invenio-cli shell
+Launching subshell in virtual environment...
+source <path to virtualenvs>/bin/activate
+```
+
+This step ensures that all subsequent commands use the correct Python environment and installed dependencies.
+
+!!! note
+    If you are upgrading in an environment that does not use a Python virtualenv, you can skip this step.
+
 ### Database migration
 
 Execute the database migration:

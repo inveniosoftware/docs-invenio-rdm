@@ -48,7 +48,8 @@ cd <my-site>
 
 # Upgrade to InvenioRDM v13
 invenio-cli packages update 13.0.0
-
+# The old `invenio-admin` dependencies has been removed and must be uninstalled
+pipenv run pip uninstall -y invenio-admin
 # Re-build assets
 invenio-cli assets build
 ```
@@ -105,6 +106,21 @@ Install InvenioRDM v13:
 ```bash
 invenio-cli install
 ```
+
+### Activate the virtual environment
+
+Before running any `invenio` commands, activate your virtual environment shell:
+
+```bash
+$ invenio-cli shell
+Launching subshell in virtual environment...
+source <path to virtualenvs>/bin/activate
+```
+
+This step ensures that all subsequent commands use the correct Python environment and installed dependencies.
+
+!!! note
+    If you are upgrading in an environment that does not use a Python virtualenv, you can skip this step.
 
 ### Database migration
 
@@ -187,8 +203,8 @@ Be sure to repeat the [Rebuild search indices](#rebuild-search-indices) step to 
 #### Jobs
 The new Jobs feature uses a custom celery task scheduler which requires a separate celery beat. See the [related documentation](../../operate/customize/jobs.md#scheduler) or [the scheduler service](https://github.com/inveniosoftware/cookiecutter-invenio-rdm/blob/ff6c652091d56e7a8aa0a90487f91352f70c4e33/%7B%7Bcookiecutter.project_shortname%7D%7D/docker-compose.full.yml) in the InvenioRDM boilerplate for how to add it.
 
-!!! note
-    Be sure to run this additional Celery beat scheduler in your production or deployed environments. Without it, scheduled and on-demand jobs will not be executed.
+!!! warning
+    Be sure to run this additional Celery beat scheduler in **your Docker Compose, any deployed and production environments**. Without it, scheduled and on-demand jobs will not be executed.
 
 #### Updated PDF previewer
 The updated PDF file previewer (PDF.js v4) now uses ECMAScript modules (`.mjs`) instead of CommonJS files (`.js`). By default, the `nginx` web server does not recognize `.mjs` files in its [default MIME types configuration](https://github.com/nginx/nginx/blob/master/conf/mime.types#L8). As a result, the MIME type may be reported incorrectly, causing browsers to block the file and resulting in broken PDF previews.
