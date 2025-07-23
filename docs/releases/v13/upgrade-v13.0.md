@@ -14,11 +14,11 @@ The steps listed in this article require an existing local installation of Inven
 ## Upgrade Steps
 
 Make sure you have the latest `invenio-cli` installed. For InvenioRDM v13,
-it should be v1.8.0+.
+it should be v1.9.0+.
 
 ```bash
 $ invenio-cli --version
-invenio-cli, version 1.8.0
+invenio-cli, version 1.9.0
 ```
 
 !!! info "Virtual environments"
@@ -48,7 +48,7 @@ cd <my-site>
 
 # Upgrade to InvenioRDM v13
 invenio-cli packages update 13.0.0
-# The old `invenio-admin` dependencies has been removed and must be uninstalled
+# The old `invenio-admin` dependency has been removed and must be uninstalled
 pipenv run pip uninstall -y invenio-admin
 # Re-build assets
 invenio-cli assets build
