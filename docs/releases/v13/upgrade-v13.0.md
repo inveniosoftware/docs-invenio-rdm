@@ -163,6 +163,7 @@ affected by `invenio index destroy --yes-i-know` and are totally functional afte
     ```
     This means your OpenSearch user does not have sufficient permissions to create or update index templates.
     To resolve this, grant the necessary permissions to your user in the OpenSearch cluster:
+
       1. Go to **OpenSearch Dashboards** -> **Security** -> **Roles** -> *<your role name>*.
       2. Edit the role and add the following cluster and index permissions:
          - `cluster:admin/component_template/put`
