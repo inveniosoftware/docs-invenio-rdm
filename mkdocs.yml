@@ -37,6 +37,7 @@ theme:
     - navigation.tabs
     - navigation.footer
     - content.code.copy
+    - content.code.annotate
 
 nav:
   - Home: "index.md"
@@ -216,6 +217,7 @@ nav:
       - Version v13:
           - Release Notes v13.0: releases/v13/version-v13.0.0.md
           - Upgrade from v12 to v13: releases/v13/upgrade-v13.0.md
+          - Upgrade from Pipenv to uv: releases/uv-upgrade.md
       - Version v12:
           - Release Notes v12.0: releases/v12/version-v12.0.0.md
           - Upgrade from v11 to v12: releases/v12/upgrade-v12.0.md
@@ -299,8 +301,10 @@ markdown_extensions:
   - admonition
   - attr_list
   - pymdownx.critic
+  - pymdownx.details
   - pymdownx.blocks.caption
   - pymdownx.highlight
+  - pymdownx.inlinehilite
   - pymdownx.superfences
   - pymdownx.tabbed:
       alternate_style: true
