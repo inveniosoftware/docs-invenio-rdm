@@ -84,11 +84,11 @@ Update the `<my-site>/Pipfile` by changing the `version` of `invenio-app-rdm` to
 +++invenio-app-rdm = {extras = [...], version = "~=13.0.0"}
 ```
 
-If you're using [Sentry](https://sentry.io) (tool for monitoring or error tracking), update invenio-logging in `<my-site>/Pipfile` to
+If you're using [Sentry](https://sentry.io) (tool for monitoring or error tracking), update the dependency in `<my-site>/Pipfile` to:
 
 ```diff
 ---invenio-logging = {extras = ["sentry_sdk"], version = "~=2.0"}
-+++invenio-logging = {extras = ["sentry"]}
++++sentry-sdk = {extras = ["flask"], version = ">=1.0.0,<2.0.0"}
 ```
 
 ##### Step 3
