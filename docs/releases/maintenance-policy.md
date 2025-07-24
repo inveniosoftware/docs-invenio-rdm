@@ -20,13 +20,13 @@ We may make exceptions to this policy for serious security bugs.
 
 Following is an overview of future end of life (EOL) dates for recent releases:
 
-| Release | Date                   | Maintained | Until                                              |
-| ------- | ---------------------- | ---------- | -------------------------------------------------- |
-| v13     | 2025-08-01 (tentative) | ✅         | next release + 6 months                            |
-| v12     | 2024-08-01             | ✅         | 2026-02-01                                         |
-| v11 STS | 2023-01-26             | ❌         | 2024-08-01                                         |
-| v10 STS | 2022-10-10             | ❌         | 2023-01-26                                         |
-| v9 LTS  | 2022-05-24             | ❌         | 2025-02-01                                         |
-| v6 LTS  | 2021-08-05             | ❌         | 2022-12-31                                         |
+| Release | Date       | Maintained | Until                         |
+| ------- | ---------- | ---------- | ----------------------------- |
+| v13     | 2025-07-23 | ✅         | next major release + 6 months |
+| v12     | 2024-08-01 | ✅         | 2026-01-24                    |
+| v11 STS | 2023-01-26 | ❌         | 2024-08-01                    |
+| v10 STS | 2022-10-10 | ❌         | 2023-01-26                    |
+| v9 LTS  | 2022-05-24 | ❌         | 2025-02-01                    |
+| v6 LTS  | 2021-08-05 | ❌         | 2022-12-31                    |
 
 If your version is not listed, then it is not maintained anymore.
