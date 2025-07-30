@@ -123,7 +123,9 @@ instructions below.
 
 ### Configuring DOI behavior
 
-You can change how DOIs work in InvenioRDM by adding to your `invenio.cfg`:
+You can change how DOIs work in InvenioRDM by configuring variables in
+`invenio.cfg`. For example, adding this configuration block in v13 will
+make DOIs optional:
 
 ```python
 from idutils import is_doi, normalize_doi
