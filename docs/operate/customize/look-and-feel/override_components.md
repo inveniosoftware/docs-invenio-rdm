@@ -41,7 +41,8 @@ You can always [ask for help](../../../install/troubleshoot.md#getting-help)!
 
 The easiest way to to find the ID of an overridable component is to use `react-overridable`'s built-in developer tool.
 Simply open a browser console on your local instance and call the global function `reactOverridableEnableDevMode()`.
-Now, any overridable element you hover your pointer over will display a small tag showing its ID.
+All overridable components will display a small red overlay tag showing their ID.
+You can click a tag to copy its ID to your clipboard.
 
 ![Metadata-only checkbox overridable ID in an overlay](./imgs/metadata_id_overlay.png)
 
