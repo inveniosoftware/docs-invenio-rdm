@@ -42,8 +42,21 @@ With the above examples in mind, a request ...
 
 - is created by someone who can cancel it
 - is received by someone who can accept or decline it
+- may have reviewers assigned to provide feedback and recommendations
 - may require clarifications (i.e. a conversation) between the creator of the request and the recipient(s)
 - may expire after a certain amount of time
+
+### Reviewers in Requests
+
+Reviewers are optional participants in the request process who can be assigned to provide expert opinion, feedback, or recommendations. Unlike the receiver who makes the final decision to accept or decline the request, reviewers serve as consultants or advisors.
+
+Key characteristics of reviewers:
+- Can be individual users or groups
+- Multiple reviewers can be assigned to a single request
+- Do not have direct authority to accept or decline the request
+- Provide input through comments and feedback in the request timeline
+- Can be added or removed throughout the request lifecycle
+- Have specific permissions to view and comment on the request
 
 ## Entities
 
@@ -53,14 +66,16 @@ The key entities in the data model:
 - Request actions associated to a given request type.
 - Request events and comments
 - Entity references
+- Reviewers (optional entities that can provide feedback and recommendations)
 
 ## Properties
 
-A request has four key properties:
+A request has five key properties:
 
 - **Creator** - the entity creating request
 - **Topic** - the entity the request is about
 - **Receiver** - the entity the request is addressed to
+- **Reviewers** - optional entities assigned to review and provide input on the request
 - **Status** - the state a request is in
 
 ## Statuses
@@ -108,7 +123,7 @@ Note, we do not allow updating closed requests.
 
 ## Entity references
 
-Entity references is an abstraction that allows any type of creator, topic and
+Entity references is an abstraction that allows any type of creator, topic, reviewer and
 receiver to be modelled.
 
 Technically it's just a type and persistent identifier. Below is an example of
@@ -140,7 +155,7 @@ user have access to.
 An entity grant is a combination of:
 
 - Prefix - The prefix qualifies the grant within the record (e.g. ``creator``,
-  ``receiver``, ``read``, ``write``).
+  ``receiver``, ``reviewers``, ``read``, ``write``).
 - Permission need - Entity reference as a permission need (e.g ``UserNeed(1)``).
 
 *Permission needs* are just tuples. Below you find examples of permission
@@ -156,6 +171,7 @@ into a token that we can use for querying:
 Examples for entity grant tokens:
 
 - ``creator.user.1`` - expresses that the creator.user.1 is granted access.
+- ``reviewers.group.review-board`` - expresses that the group review board is granted access.
 - ``receiver.community.123.manager`` - expresses that the community 123
   managers are granted access.
 

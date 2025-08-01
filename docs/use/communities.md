@@ -126,4 +126,6 @@ In the **Requests** tab, you can view all requests for your community. It allows
 
 The request page provides a dedicated space for communication. You can **have a conversation with the submitter** directly within the request, and you can **accept or decline the inclusion request** based on your community's curation policies.
 
-You can find the high-level architecture documentation for communities [here](../maintenance/architecture/communities.md).
+When a submission requires expert input or peer review, you can **assign reviewers** to give specific users or groups access to evaluate the request. This allows you to share the request with external experts, collaborators outside your community, or community members who normally wouldn't have access (such as readers). Reviewers can provide feedback on the research publication draft or assess whether a record meets your community's inclusion criteria. They participate in the request conversation and share their expertise to help you make an informed curation decision, while you retain the final authority to accept or decline the request.
+
+You can find the high-level architecture documentation for communities [here](../maintenance/architecture/communities.md) and configuration options for requests and reviewers [here](../operate/customize/requests.md).
