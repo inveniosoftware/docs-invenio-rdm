@@ -46,7 +46,7 @@ You can click a tag to copy its ID to your clipboard.
 
 ![Metadata-only checkbox overridable ID in an overlay](./imgs/metadata_id_overlay.png)
 
-The React component's overridable ID for the '`Metadata-only record`' checkbox component is `ReactInvenioDeposit.FileUploaderToolbar.MetadataOnlyToggle.container`. It can be found in the [react-invenio-deposit](https://github.com/inveniosoftware/react-invenio-deposit/blob/040b698967e7fee14ac7fe466e49f883efbe8c47/src/lib/components/FileUploader/FileUploaderToolbar.js#L55) module.
+The React component's overridable ID for the '`Metadata-only record`' checkbox component is `ReactInvenioDeposit.FileUploaderToolbar.MetadataOnlyToggle.container`. It can be found in the [`invenio-rdm-records`](https://github.com/inveniosoftware/invenio-rdm-records/blob/dd72962b713f07b81699f7d5c9a8a673d585466a/invenio_rdm_records/assets/semantic-ui/js/invenio_rdm_records/src/deposit/fields/FileUploader/FileUploaderToolbar.js#L56) module.
 
 ### The mapping file
 
