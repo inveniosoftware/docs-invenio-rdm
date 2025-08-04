@@ -56,8 +56,8 @@ service.update(system_identity, "horizon", {**horizon.data, **horizon_theme})
 All the themed communities have a homepage. To customize the homepage for a themed community with an identifier `horizon`, place your custom template at:
 
 ```
-templates/themes/horizon
-└── invenio_communities/details/home/index.html
+templates/
+└── themes/horizon/invenio_communities/details/home/index.html
 ```
 
 ##### Example template:
@@ -104,27 +104,23 @@ templates/themes/horizon
 
 #### For the Header
 
-To override the header, copy the base template from **invenio-communities**:
-
-Default template location in **invenio-communities**:
+To override the header, copy the [base header template](https://github.com/inveniosoftware/invenio-communities/blob/master/invenio_communities/templates/semantic-ui/invenio_communities/details/header.html) from **Invenio-Communities**:
 
 ```
-invenio_communities/templates/semantic-ui
-└── /invenio_communities/details/header.html
+invenio_communities/templates/semantic-ui/invenio_communities/details/header.html
 ```
 
-Override in your instance:
+Paste it into your instance's directory:
 
 ```
-templates/themes/horizon
-└── invenio_communities/details/header.html
+templates/
+└── themes/horizon/invenio_communities/details/header.html
 ```
+
+And edit it to your liking.
+
 
 ### **Step 3: Add Static Pages (Optional)**
 
 Themed communities can also have fully themed static pages.
-
-!!! note
-    The default template to be used is `invenio_communities/default_static_page.html`
-
 In order to add a new static page see [Static pages](../static_pages.md).
