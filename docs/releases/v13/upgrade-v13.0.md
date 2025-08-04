@@ -173,6 +173,7 @@ affected by `invenio index destroy --yes-i-know` and are totally functional afte
 InvenioRDM now integrates the updated schema version v2 of ROR (see [announcement here](https://ror.org/blog/2024-04-15-announcing-ror-v2/)). This new version introduces additional fields and improvements, so you will need to re-import both the affiliations and funders vocabularies to ensure your data is up to date.
 
 To re-import, you can either set up a job or perform the import manually via the CLI. Please follow the instructions in the [affiliations](../../operate/customize/vocabularies/affiliations.md) and [funders](../../operate/customize/vocabularies/funding.md) documentation pages for detailed steps.
+Since these imports use external data sources, local overrides via `{funders,affiliations}.yml` in your instance's `app_data/` aren't needed anymore and can be discarded.
 
 ## Infrastructure/configuration changes
 
