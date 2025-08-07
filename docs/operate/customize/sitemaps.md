@@ -12,7 +12,7 @@ The relevant sitemaps-related links for your instance are found (at the root of 
 
 - **Sitemap indices**: `/sitemap_index_<int:page>.xml`
 - **Sitemaps**: `/sitemap_<int:page>.xml`
-- **Root sitemap**: `/sitemap.xml`
+- **Root sitemap**: `/sitemap.xml` (if `SITEMAP_ROOT_VIEW_ENABLED = True`)
 
 `<int:page>` is zero-indexed.
 

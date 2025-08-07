@@ -59,7 +59,7 @@ the ROR vocabulary on a regular schedule.
 If you prefer to work on the command line, you can type
 
 ```bash
-pipenv run invenio vocabularies import --vocabulary funders --origin ror-http
+pipenv run invenio vocabularies update --vocabulary funders --origin ror-http
 ```
 
 ** Version 12 and earlier **
