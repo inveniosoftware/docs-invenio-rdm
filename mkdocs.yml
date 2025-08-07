@@ -138,6 +138,7 @@ nav:
               - Change facets/sorting: "operate/customize/search.md"
               - Create search terms mappings: operate/customize/search_terms_migration.md
               - Customize search index templates: operate/customize/search_templates.md
+          - Sitemaps: "operate/customize/sitemaps.md"
           - Static pages: "operate/customize/static_pages.md"
       - Add custom code:
           - Custom Python and JS code: operate/code/custom_code.md
