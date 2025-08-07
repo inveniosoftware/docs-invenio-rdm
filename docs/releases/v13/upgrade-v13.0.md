@@ -143,7 +143,7 @@ invenio shell $(find $(pipenv --venv)/lib/*/site-packages/invenio_app_rdm -name 
 ```bash
 invenio index destroy --yes-i-know
 search_prefix=$(invenio shell -c "print(app.config['SEARCH_INDEX_PREFIX'])")
-invenio index delete --force --yes-i-know "${search_prefix}rdmrecords-records-record-v6.0.0-percolators"
+invenio index delete --force --yes-i-know "${search_prefix}rdmrecords-records-record-*-percolators"
 invenio index init
 # if you have records custom fields
 invenio rdm-records custom-fields init
