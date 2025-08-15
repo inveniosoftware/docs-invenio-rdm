@@ -185,6 +185,7 @@ Here is a quick summary of the myriad of other improvements in this release:
   ![Copy button export](imgs/copy-button-export.jpg)
 - The creators' roles are now displayed in the record's landing page:
   ![Creators roles](imgs/creators-roles.jpg)
+- Admin users can no longer perform destructive actions on their own account (block, deactivate, restore, activate, impersonate, approve), avoiding accidental lockouts.
 - You can now optionally display the installed version of InvenioRDM and any other module in the bottom left corner of the administration panel:
   ![InvenioRDM Version label](imgs/inveniordm-version.jpg)
   By default, the released version will be displayed. You can customize it by changing in your `invenio.cfg`:
