@@ -10,6 +10,8 @@ InvenioRDM requires users to confirm compliance both when submitting a record fo
 In your `mapping.js`, parametrize the your UI components by adding a new `extraCheckboxes` parameter in the following format:
 
 ```javascript
+import React from "react";
+import { i18next } from "@translations/invenio_app_rdm/i18next";
 import { PublishModal } from "@js/invenio_rdm_records";
 import { parametrize } from "react-overridable";
 
@@ -37,6 +39,7 @@ export const overriddenComponents = {
 You can also show information messages before and after the compliance checkboxes section. In your `mapping.js`, define:
 
 ```javascript
+import React from "react";
 import { i18next } from "@translations/invenio_rdm_records/i18next";
 import { SubmitReviewModal } from "@js/invenio_rdm_records";
 import { parametrize } from "react-overridable";
@@ -51,8 +54,8 @@ const LegalDisclaimer = () => (
 );
 
 const parameters = {
-  beforeContent: <p className="text-sm mb-2">Please review before continuing:</p>,
-  afterContent: <LegalDisclaimer />,
+  beforeContent: () => <p className="text-sm mb-2">Please review before continuing:</p>,
+  afterContent: () => <LegalDisclaimer />,
 };
 
 const SubmitReviewModalComponent = parametrize(SubmitReviewModal, parameters);
