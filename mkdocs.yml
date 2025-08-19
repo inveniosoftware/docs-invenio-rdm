@@ -121,6 +121,7 @@ nav:
               - Capture: operate/customize/dev_email.md
           - FAIR Signposting: "operate/customize/FAIR-signposting.md"
           - File uploads & storage:
+              - Files and versioning: "operate/customize/file-uploads/files-and-versioning.md" 
               - Files uploaders: "operate/customize/file-uploads/uploader.md"
               - Local storage: "operate/customize/file-uploads/local.md"
               - S3 compatible storage: "operate/customize/file-uploads/s3.md"
@@ -167,7 +168,6 @@ nav:
           - community/translations/i18n.md
       - Contribute documentation: community/documentation.md
       - Community PR board: community/pr-community-board.md
-      #   # Merge Sprintboard workflow: maintenance/board-workflow.md with above
       - Roadmap: community/roadmap.md
 
   - Maintain and Develop:
