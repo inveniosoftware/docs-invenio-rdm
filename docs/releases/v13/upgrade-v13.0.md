@@ -145,11 +145,17 @@ invenio index destroy --yes-i-know
 search_prefix=$(invenio shell -c "print(app.config['SEARCH_INDEX_PREFIX'])")
 invenio index delete --force --yes-i-know "${search_prefix}rdmrecords-records-record-*-percolators"
 invenio index init
+
 # if you have records custom fields
 invenio rdm-records custom-fields init
+
 # if you have communities custom fields
 invenio communities custom-fields init
 invenio rdm rebuild-all-indices
+
+# add the missing "is_machine" mapping to the current month's record-view events index (necessary if the index got initialized with v12)
+search_host=$(invenio shell -c "host = app.config['SEARCH_HOSTS'][0]; print(f'{host['host']}:{host['port']}')")
+curl http://${search_host}/${search_prefix}events-stats-record-view-$(date +%Y-%m)/_mapping -X PUT -H 'content-type: application/json' -d '{"properties": {"is_machine": {"type": "boolean"}}}'
 ```
 
 From v12 onwards, search indices for statistics (record's views and downloads) are not
