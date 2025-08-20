@@ -240,6 +240,10 @@ It is recommended to update all references to `TRUSTED_HOSTS` to avoid deprecati
 
 Usage of `invenio_records_resources.services.Link` is deprecated in favor of `invenio_records_resources.services.EndpointLink` for InvenioRDM links and `invenio_records_resources.services.ExternalLink` for external third-party links. Replace instances of `Link` in your custom code, if any, appropriately. `Link` will be removed in a future major InvenioRDM release.
 
+*`APP_RDM_DEPOSIT_FORM_PUBLISH_MODAL_EXTRA`*
+
+Usage of the configuration `APP_RDM_DEPOSIT_FORM_PUBLISH_MODAL_EXTRA` is deprecated and will be removed in a future major InvenioRDM release. [Override](../../operate/customize/look-and-feel/override_components.md) the modal component with your own [customized compliance information](../../operate/customize/compliance_info.md) instead.
+
 #### Display versions in administration panel
 As described in the [release notes](./version-v13.0.0.md#miscellaneous-additions), you can now display the versions of your installed modules directly in the Administration panel.
 To enable this feature, add the following to your `invenio.cfg`:
