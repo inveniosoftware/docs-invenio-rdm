@@ -217,6 +217,7 @@ These tools are **disabled by default** and will be tested further in the coming
 ## Deprecations
 - Direct Python imports of identifier schemes (e.g., `from idutils.isbn import normalize_isbn`) are now deprecated and will be removed in future versions. If you have custom code that directly imports scheme modules, you'll need to update it to use the new API.
 - Usage of `invenio_records_resources.services.Link` is deprecated in favor of `invenio_records_resources.services.EndpointLink` for InvenioRDM links and `invenio_records_resources.services.ExternalLink` for external third-party links. `Link` will be removed in a future major InvenioRDM release.
+- Usage of the configuration `APP_RDM_DEPOSIT_FORM_PUBLISH_MODAL_EXTRA` is deprecated and will be removed in a future major InvenioRDM release. [Override](../../operate/customize/look-and-feel/override_components.md) the modal component with your own [customized compliance information](../../operate/customize/compliance_info.md) instead.
 
 ## Breaking changes
 - The minimum required OpenSearch version is now **v2.12**. This change is necessary due to a bug in earlier OpenSearch versions that affects the handling of `geo-shape` fields introduced in InvenioRDM v13. See the [upgrade guide](upgrade-v13.0.md#opensearch-version) for more information.
