@@ -46,18 +46,6 @@ With the above examples in mind, a request ...
 - may require clarifications (i.e. a conversation) between the creator of the request and the recipient(s)
 - may expire after a certain amount of time
 
-### Reviewers in Requests
-
-Reviewers are optional participants in the request process who can be assigned to provide expert opinion, feedback, or recommendations. Unlike the receiver who makes the final decision to accept or decline the request, reviewers serve as consultants or advisors.
-
-Key characteristics of reviewers:
-- Can be individual users or groups
-- Multiple reviewers can be assigned to a single request
-- Do not have direct authority to accept or decline the request
-- Provide input through comments and feedback in the request timeline
-- Can be added or removed throughout the request lifecycle
-- Have specific permissions to view and comment on the request
-
 ## Entities
 
 The key entities in the data model:
@@ -66,7 +54,6 @@ The key entities in the data model:
 - Request actions associated to a given request type.
 - Request events and comments
 - Entity references
-- Reviewers (optional entities that can provide feedback and recommendations)
 
 ## Properties
 
@@ -99,6 +86,19 @@ In addition, the following meta states exists:
 
 Note that the *deleted* state is not implemented directly in the code, as the request is completely
 removed from the database in this case.
+
+
+## Reviewers in requests
+
+Reviewers are optional participants in a request process. They provide expert opinions, feedback, or recommendations but cannot make the final decision to accept or decline the request. That responsibility lies solely with the receiver.
+
+Key characteristics of reviewers:
+- Can be individual users or groups
+- Multiple reviewers can be assigned to a single request
+- Do not have direct authority to accept or decline the request
+- Provide input through comments and feedback in the request timeline
+- Can be added or removed throughout the request lifecycle
+- Have specific permissions to view and comment on the request
 
 ## Actions
 

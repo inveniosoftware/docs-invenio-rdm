@@ -1,21 +1,21 @@
 # Requests
 
-_Introduced in InvenioRDM v14_
+_Introduced in v14_
 
 Configure the requests system in InvenioRDM, including the reviewers feature for enhanced review workflows.
 
-## Reviewers Configuration
+## Reviewers configuration
 
-The reviewers feature enables assignment of external experts, collaborators, or community members to provide feedback on requests without granting them decision-making authority.
+The reviewers feature enables assignment of external experts, collaborators, or community members to provide feedback on requests without granting them the possibility of accepting or declining a request.
 
-### Enable/Disable Reviewers
+### Enable/Disable reviewers
 
 ```python
 # Enable the reviewers feature (default: True)
 REQUESTS_REVIEWERS_ENABLED = True
 ```
 
-### Reviewer Limits
+### Reviewer limits
 
 Control the maximum number of reviewers that can be assigned to a single request. This helps manage workflow complexity and ensures review processes remain manageable.
 
@@ -27,18 +27,19 @@ REQUESTS_REVIEWERS_MAX_NUMBER = 5
 - **Purpose**: Prevents overwhelming requests with too many reviewers
 - **Considerations**: Balance between comprehensive review and manageable workflow
 
-### Group Reviewers
+### Group reviewers
 
-Enable the assignment of user groups as reviewers, allowing entire teams or committees to be assigned to review requests collectively.
+Enable the assignment of user groups as reviewers, allowing entire teams or committees to be assigned to review requests collectively. If you allow
+groups to be defined in your instance, i.e.
 
 ```python
 # Enable assignment of groups as reviewers (requires invenio-users-resources)
 USERS_RESOURCES_GROUPS_ENABLED = True
 ```
+then you will be able to use them as request reviewers.
 
-- **Requirements**: Requires the `invenio-users-resources` module to be installed and configured
 - **Use cases**: 
-  - Institutional Review Boards (IRBs)
+  - Institutional Review Boards
   - Editorial committees
   - Subject matter expert panels
   - Department review teams
@@ -59,13 +60,13 @@ Reviewers can view the request, participate in conversations, and provide recomm
 
 ## Permissions
 
-Reviewer assignment requires appropriate community permissions:
+By default, reviewers can be added or removed by community members with roles:
 - **Owners** and **managers** can assign/remove reviewers
-- **Curators** can assign/remove reviewers (if configured)
-- **Reviewers** can view and comment on assigned requests
-- **Readers** cannot assign reviewers but can be assigned as reviewers
+- **Curators** can assign/remove reviewers
 
-## Related Configuration
+Community members with the role: *Readers** cannot assign reviewers but can be assigned as reviewers.
+
+## Related configuration
 
 See also:
 - [Communities](../../use/communities.md#requests) - User guide for requests and reviewers
