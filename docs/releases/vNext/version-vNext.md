@@ -22,6 +22,8 @@ and digital assets management! Version Next will be maintained until at least 6 
 ### Miscellaneous additions
 Here is a quick summary of the myriad of other improvements in this release:
 
+- Admin panel Jobs: Added a "Delete" action to the Jobs list so admins can remove jobs directly from the UI.
+
 ## Deprecations
 
 
