@@ -13,11 +13,13 @@ JOBS_ADMINISTRATION_ENABLED=True
 ```
 
 ## Scheduler
-The Invenio job system uses a custom celery task scheduler which requires a separate celery beat. You can run the custom beat in a separate container/shell like so:
+The Invenio job system uses a custom Celery task scheduler which requires a separate Celery beat. You can run the custom beat in a separate container or shell like so:
 
 ```bash
-celery -A invenio_app.celery beat --scheduler invenio_jobs.services.scheduler:RunScheduler
+celery -A invenio_app.celery beat -l INFO --scheduler invenio_jobs.services.scheduler:RunScheduler 
 ```
+
+The `-l INFO` flag sets the logging level to `INFO`. You can adjust the logging level (e.g., `DEBUG`, `WARNING`, `ERROR`) based on your needs, and the logs will reflect the level you set.
 
 !!! note
     Be sure to run this additional Celery beat scheduler in your production or deployed environments. Without it, scheduled and on-demand jobs will not be executed.
