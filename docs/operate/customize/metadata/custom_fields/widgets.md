@@ -13,18 +13,20 @@ These props are applicable to all widgets. In the reference below, only props ad
 - **label** `String` _required_: The label for the element's display. This is used whenever the field should be displayed e.g. upload form, landing page etc.
 
 - **labelIcon** `String` _optional_: The optional icon that your field might have. The value should be one of the [Semantic UI icons](https://react.semantic-ui.com/elements/icon/).
-    - Previously known as **icon**.
 
 - **placeholder** `String`: The placeholder for the element's display. You should fill this in with an example value.
 
 - **helpText** `String` _required_: The description for the element's display. You should provide useful information on how the users should fill this field in.
-    - Previously known as **description**.
 
 - **required** `Boolean` _optional_: Define if the field should be required i.e. display the `*` symbol.
 
 - **disabled** `Boolean` _optional_: Define if the field should be displayed as disabled thus no input can be filled.
 
 - **hidden** `Boolean` _optional_: Define if the field should be hidden completely. Hiding a field will still retain any value that it already contained.
+
+!!! warning "Deprecated `icon` and `description` fields"
+
+    To improve consistency with the fields in the deposit form, the `icon` prop has been renamed to `labelIcon` and `description` has been renamed to `helpText`. The functionality of these props is unchanged and the old names will continue working for now, albeit with a deprecation notice.
 
 ## Input
 
