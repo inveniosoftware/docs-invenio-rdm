@@ -28,6 +28,36 @@ These props are applicable to all widgets. In the reference below, only props ad
 
     To improve consistency with the fields in the deposit form, the `icon` prop has been renamed to `labelIcon` and `description` has been renamed to `helpText`. The functionality of these props is unchanged and the old names will continue working for now, albeit with a deprecation notice.
 
+## Dynamic behaviour
+
+While controlling the static prop values via the [`RDM_CUSTOM_FIELDS_UI` config value](records.md#upload-deposit-form) is relatively straightforward, it doesn't allow
+you to specify dynamic behaviour, such as showing/hiding the field only in specific cases, or using a different `helpText` depending on the resource type.
+
+This can instead be done using the `dynamicParametrize` function.
+For more details on its usage, [see the documentation on overriding React components](../../look-and-feel/override_components.md#dynamic).
+
+The ID of the overridable is the internal name of your custom field (e.g. `cern:experiment`).
+You can override any of the props listed on this page (except `fieldPath`), depending on the specific widget.
+
+For example, to make the `cern:experiment` field only be shown for thesis records:
+
+```javascript
+// my-rdm-instance/assets/js/invenio_app_rdm/overridableRegistry/mapping.js
+
+import { dynamicParametrize, Input } from "react-invenio-forms"
+
+export const overriddenComponents = {
+  "cern:experiment": dynamicParametrize(
+    Input,
+    ({ formValues }) => {
+      return {
+        hidden: formValues.metadata.resource_type !== "thesis"
+      }
+    }
+  )
+}
+```
+
 ## Input
 
 An input field for a single string value.
