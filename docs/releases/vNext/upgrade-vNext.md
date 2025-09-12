@@ -172,9 +172,21 @@ affected by `invenio index destroy --yes-i-know` and are totally functional afte
 
 ### Required changes
 
+#### Overridable IDs in the deposit form
+
+To improve consistency in naming conventions and structure, some IDs of Overridables in the deposit form have been modified. If you are overriding any of these components, you will need to change the ID in your mapping file to reflect these modifications.
+
+The full list of ID changes [can be found here](https://github.com/inveniosoftware/invenio-rdm-records/pull/2101/files#diff-ff3c479edefad986d2fe6fe7ead575a46b086e3bbcf0ccc86d85efc4a4c63c79).
+
+If you are not overriding any of these components, you do not need to change anything.
+
 ### Optional changes
 
 #### Deprecations
+
+##### Custom field widget prop names
+
+Many [custom field widgets](../../operate/customize/metadata/custom_fields/widgets.md) used the `icon` and `description` props, which have now been deprecated and replaced with `labelIcon` and `helpText` respectively. This is to improve consistency with the naming of the built-in fields used in the deposit form and thereby avoid confusion. The old names will continue to function for now, but we recommend updating to the new names where applicable.
 
 #### New configuration variables
 
