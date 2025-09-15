@@ -45,7 +45,7 @@ If you're struggling, you can always [ask for help](../../../install/troubleshoo
 
 ## 2. Find or create the mapping file
 
-In new InvenioRDM installations at v11 or above, a near-empty file named `mapping.js` is available at the following path in your `assets` folder:
+In InvenioRDM v11 or above installations, a file named `mapping.js` is available at the following path in your `assets` folder:
 
 ```terminal
 ├── assets
@@ -55,7 +55,7 @@ In new InvenioRDM installations at v11 or above, a near-empty file named `mappin
 |   |   |   |   ├── mapping.js
 ```
 
-For existing installations, you will have to create it. It is a very simple file:
+For installations prior to v11, you will have to create it. It is a very simple file:
 
 ```javascript
 export const overriddenComponents = {};
@@ -71,7 +71,7 @@ The override can be specified in one of three ways, depending on your use case a
 - a 'dynamic' override of the props based on the form's state
 - completely replacing a component with a custom one
 
-### a. Statically override a component's props
+### Statically override a component's props
 
 You can use the `parametrize` function built into `react-overridable`, into which you need to pass the component you wish to override and an object containing your props.
 These props will be 'merged' with the existing props, with yours taking precedence over existing ones of the same name.
@@ -93,7 +93,7 @@ export const overriddenComponents = {
 }
 ```
 
-### b. Dynamically override a component's props
+### Dynamically override a component's props
 
 To implement more complex functionality in the deposit form, you can override the props of components by using a custom function.
 This allows you to express a range of behaviours:
@@ -129,7 +129,7 @@ The callback function is currently passed an object as its single argument, cont
 - `formValues`: the raw values of the entire deposit form as given by Formik. The majority of field values are under the `metadata` key.
 - `existingProps`: the props passed to the element before your override.
 
-### c. Fully replace a component
+### Fully replace a component
 
 To fully replace a component with your custom one, first create the component definition within your instance's source code.
 For example:
