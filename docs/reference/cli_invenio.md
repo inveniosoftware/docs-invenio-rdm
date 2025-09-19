@@ -201,49 +201,6 @@ Manage events queue.
 
 Invenio app RDM commands.
 
-| Command             | Description                                    |
-| :------------------ | :--------------------------------------------- |
-| fixtures            | Create the fixtures.                           |
-| pages               | Static pages.                                  |
-| rebuild-all-indices | Schedule reindexing of (all) items for search. |
-
-### **`rdm pages`**
-
-see [Static pages](../operate/customize/static_pages.md).
-
-### **`rdm pages create`**
-
-**Options**
-
-- `-f`, `--force` Creates static pages.
-
-### **`rdm fixtures`**
-
-Create the fixtures.
-
-### **`rdm rebuild-all-indices`**
-
-Reindex all services with optional selecting and ordering.
-
-**Options**
-
-- `-o`, `--order` Comma-separated list of services to reindex in the specified order. If not provided, all services will be reindexed.
-  e.g.:
-
-```bash
-invenio rdm rebuild-all-indices -o users,communities,records,requests,request_events
-```
-
-if you don't specify services, The following services will be reindexed:
-
-`users, groups, domains, communities, members, records, record-media-files, affiliations, awards, funders, names, subjects, vocabularies, requests, request_events, oaipmh-server`
-
-Note that the users, groups, and members use bulk indexing and rely on celery running. They will not be reindexed if celery is not running.
-
-This command does not impact usage statistics indexes. You need to manually restore statistics indexes [from a backup](../operate/ops/backup_search_indices.md).
-
-## `invenio rdm` commands
-
 | Command             | Description                                                                         |
 | :------------------ | :---------------------------------------------------------------------------------- |
 | fixtures            | Create the fixtures.                                                                |
