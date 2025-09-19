@@ -215,7 +215,7 @@ Create the fixtures.
 
 see [Static pages](../operate/customize/static_pages.md).
 
-### **`rdm pages create`**
+#### **`rdm pages create`**
 
 **Options**
 
