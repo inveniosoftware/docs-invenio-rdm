@@ -5,13 +5,6 @@ _Introduced in v13_
 
 A job is a wrapper around a `Celery` task that can be scheduled, run on demand, and managed via the administration interface. You can also monitor the execution status of each job, run history, and logs.
 
-## Enable jobs
-To enable the job system, you need to set the following configuration in your `invenio.cfg` file:
-
-```bash
-JOBS_ADMINISTRATION_ENABLED=True
-```
-
 ## Scheduler
 The Invenio job system uses a custom Celery task scheduler which requires a separate Celery beat. You can run the custom beat in a separate container or shell like so:
 
