@@ -132,6 +132,7 @@ nav:
           - Notifications:
               - Overview: "operate/customize/notifications.md"
               - Modify notifications: operate/customize/notifications_modify.md
+          - Record deletion: operate/customize/record_deletion.md
           - Require a community to publish: "operate/customize/require_community.md"
           - Restrict access to pages: operate/customize/restrict_access.md
           - Restrict community creation: "operate/customize/restrict_community_creation.md"
