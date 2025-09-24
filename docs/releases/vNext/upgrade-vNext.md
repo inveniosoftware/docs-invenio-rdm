@@ -47,6 +47,61 @@ Python 3.9 or 3.11 or 3.12 is required to run InvenioRDM v13.
 
 The minimum required OpenSearch version is now **v2.12**. See [below](#opensearch-version) on how to upgrade older versions.
 
+#### Record Deletion
+
+To start using the new Record Deletion feature, one needs to go through the following steps during deployment:
+
+1. Update mappings and removal reasons vocabulary using new code in a terminal
+    - Update mappings
+        - Records and drafts have a `tombstone.deletion_policy` (optional) field
+            - `invenio index update --no-check rdmrecords-records-record-v7.0.0`
+            - `invenio index update --no-check rdmrecords-drafts-draft-v6.0.0`
+        - Update OAI-PMH precolators index for records (see [recipe below](#oai-pmh-percolator-mapping-update))
+        - Update request mappings to add the `last_reply` and `last_activity_at` fields
+            - `invenio index update --no-check requests-request-v1.0.0`
+    - Apply the [`invenio_request@1759321170` alembic migration](https://github.com/inveniosoftware/invenio-requests/blob/master/invenio_requests/alembic/1759321170_add_index_to_request_events_request_id_.py)
+        - `invenio alembic upgrade invenio_requests@1759321170` (or just `invenio alembic upgrade` if you're doing a full upgrade)
+    - Update removal reasons vocabulary to add `request-deletion` tags
+        - `invenio rdm-records add-to-fixture removalreasons`
+3. Deploy code to the rest of web and workers
+4. Reindex all requests to populate the `last_reply` and `last_activity_at` fields
+    - `invenio rdm-records rebuild-all-indices --order requests`
+
+##### OAI-PMH percolator mapping update
+
+!!! note "Should become a CLI command"
+
+    Running this part as a script is a temporary solution until it can be integrated
+    into an `invenio` CLI command.
+
+```python
+from flask import current_app
+from invenio_access.permissions import system_identity
+from invenio_oaiserver.percolator import _build_percolator_index_name
+from invenio_rdm_records.proxies import current_rdm_records
+from invenio_search.proxies import current_search_client
+from invenio_search.utils import build_alias_name
+
+index = current_app.config["OAISERVER_RECORD_INDEX"]
+percolator_index = _build_percolator_index_name(index)
+record_index = build_alias_name(index)
+
+# Fetch the mapping from the "live" index (this will include custom fields)
+record_mapping = current_search_client.indices.get_mapping(index=record_index)
+assert len(record_mapping) == 1
+percolator_mappings = list(record_mapping.values())[0]["mappings"]
+
+# Update the mapping
+current_search_client.indices.put_mapping(
+    index=percolator_index,
+    body=percolator_mappings,
+)
+
+# Reindex all percolator queries from OAISets
+oaipmh_service = current_rdm_records.oaipmh_server_service
+oaipmh_service.rebuild_index(identity=system_identity)
+```
+
 #### Upgrade option 1: In-place
 This approach upgrades the dependencies in place. At the end of the process,
 your virtual environment for the v13 version will be completely replaced

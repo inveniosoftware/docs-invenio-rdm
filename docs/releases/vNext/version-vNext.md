@@ -17,7 +17,11 @@ and digital assets management! Version Next will be maintained until at least 6 
 
 ## What's new?
 
-### New feature
+### Record deletion
+
+You can now allow users to delete, or request deletion of, their own records in accordance with any required criteria you may have. When enabled the default behaviour is that records can be deleted by their owners within 30 days of publication and record owners can request deletion outside this period. Deletion requests are visible within the admin panel and the user's request dashboard.
+
+This feature is also highly customisable! You can introduce deletion policies based on the resource type, community role, file type or any other criteria you require. Additionally, you can prevent extraneous record deletion by adding a deletion checklist. This allows you to suggest how the user can fix the problem in the correct way instead of deleting the record.
 
 #### New Web Archive previewer
 
