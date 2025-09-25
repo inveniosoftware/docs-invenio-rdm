@@ -2,7 +2,7 @@
 
 _Introduced in vNext_
 
-Records can be deleted through the admin panel, but this feature allows records to be deleted by users themselves. Specifically, you can choose whether and under which criteria that records can be immediately deleted and user's ability to request deletion.
+Records could always be deleted through the admin panel, but this feature allows records to be deleted by users themselves. Specifically, you can choose whether and under which criteria that records can be immediately deleted and user's ability to request deletion.
 
 ## Enable
 
@@ -39,7 +39,7 @@ Perhaps you:
 * Have an internal process which you would prefer users use rather than deleting records. For example, replacing the file for a user via email instead of deleting the record.
 * Have introduced a new feature that the user might not be familiar with. For example, DOIs are now optional in your instance and can be changed by editing the record.
 
-For all these cases, you can redirect the user by defining a checklist which will be present to the user the alternative behaviour. 
+For all these cases, you can redirect the user by defining a checklist which will present the correct behaviour to the user. 
 
 ```python
 RDM_IMMEDIATE_RECORD_DELETION_CHECKLIST = [
@@ -60,3 +60,7 @@ RDM_IMMEDIATE_RECORD_DELETION_CHECKLIST = [
 
 RDM_REQUEST_RECORD_DELETION_CHECKLIST = []
 ```
+
+Which will be rendered like so:
+
+![Deletion modal displaying the behaviour of the checklist](imgs/deletion-checklist.jpg)
