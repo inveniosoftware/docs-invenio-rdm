@@ -2,7 +2,7 @@
 
 _2020-0-0_
 
-This is a work-in-progress document to enable InvenioRDM developers to track 
+This is a work-in-progress document to enable InvenioRDM developers to track
 new features that will be included in the next release.
 
 We're happy to announce the release of InvenioRDM vNext, the open-source
@@ -20,9 +20,11 @@ and digital assets management! Version Next will be maintained until at least 6 
 ### New feature
 
 ### Miscellaneous additions
+
 Here is a quick summary of the myriad of other improvements in this release:
 
 - Admin panel Jobs: Added a "Delete" action to the Jobs list so admins can remove jobs directly from the UI.
+- A new configuration variable, `RDM_RECORDS_RELATED_IDENTIFIERS_SCHEMES`, enables configuring identifier schemes specifically for related identifiers, defaulting to `RDM_RECORDS_IDENTIFIERS_SCHEMES` when not defined.
 
 ## Deprecations
 
@@ -52,4 +54,3 @@ If you have questions related to these release notes, don't hesitate to jump on 
 ## Credit
 
 The development work of this impressive release wouldn't have been possible without the help of these great people (name or GitHub handle, alphabetically sorted):
-
