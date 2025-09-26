@@ -17,8 +17,8 @@ InvenioRDM v13.
     Always backup your database, statistics indices and files before you try to perform an upgrade.
 
 !!! info "Older Versions"
-    If your InvenioRDM installation is older than v13, you must first upgrade
-    to v13 before proceeding with the steps in this guide.
+If your InvenioRDM installation is older than v13, you must first upgrade
+to v13 before proceeding with the steps in this guide.
 
 ## Upgrade Steps
 
@@ -38,16 +38,18 @@ invenio-cli, version 1.9.0
 ### Upgrade InvenioRDM
 
 #### Requirements
+
 Python 3.9 or 3.11 or 3.12 is required to run InvenioRDM v13.
 
 !!! info "Python 3.9 end-of-life"
-    Official support for Python 3.9 will end on October 31, 2025.
-    See the [official Python version status page](https://devguide.python.org/versions/) for more information.
-    Future releases of InvenioRDM will require a more recent Python version.
+Official support for Python 3.9 will end on October 31, 2025.
+See the [official Python version status page](https://devguide.python.org/versions/) for more information.
+Future releases of InvenioRDM will require a more recent Python version.
 
 The minimum required OpenSearch version is now **v2.12**. See [below](#opensearch-version) on how to upgrade older versions.
 
 #### Upgrade option 1: In-place
+
 This approach upgrades the dependencies in place. At the end of the process,
 your virtual environment for the v13 version will be completely replaced
 with the vNext environment and dependencies.
@@ -121,7 +123,7 @@ source <path to virtualenvs>/bin/activate
 This step ensures that all subsequent commands use the correct Python environment and installed dependencies.
 
 !!! note
-    If you are upgrading in an environment that does not use a Python virtualenv, you can skip this step.
+If you are upgrading in an environment that does not use a Python virtualenv, you can skip this step.
 
 ### Database migration
 
@@ -155,13 +157,11 @@ From v12 onwards, search indices for statistics (record's views and downloads) a
 affected by `invenio index destroy --yes-i-know` and are totally functional after the rebuild step.
 
 !!! info "Permission issue"
-    If you encounter an error similar to this when indexing:
-    ```
-    opensearchpy.exceptions.AuthorizationException: AuthorizationException(403, 'security_exception', 'no permissions for [cluster:admin/component_template/put] and User [name=<my-name>, backend_roles=[], requestedTenant=null]')
-    opensearchpy.exceptions.AuthorizationException: AuthorizationException(403, 'security_exception', 'no permissions for [indices:admin/index_template/put] and User [name=<my-name>, backend_roles=[], requestedTenant=null]')
-    ```
-    This means your OpenSearch user does not have sufficient permissions to create or update index templates.
-    To resolve this, grant the necessary permissions to your user in the OpenSearch cluster:
+If you encounter an error similar to this when indexing:
+`opensearchpy.exceptions.AuthorizationException: AuthorizationException(403, 'security_exception', 'no permissions for [cluster:admin/component_template/put] and User [name=<my-name>, backend_roles=[], requestedTenant=null]')
+    opensearchpy.exceptions.AuthorizationException: AuthorizationException(403, 'security_exception', 'no permissions for [indices:admin/index_template/put] and User [name=<my-name>, backend_roles=[], requestedTenant=null]')`
+This means your OpenSearch user does not have sufficient permissions to create or update index templates.
+To resolve this, grant the necessary permissions to your user in the OpenSearch cluster:
 
       1. Go to **OpenSearch Dashboards** -> **Security** -> **Roles** -> *<your role name>*.
       2. Edit the role and add the following cluster and index permissions:
@@ -192,3 +192,6 @@ Many [custom field widgets](../../operate/customize/metadata/custom_fields/widge
 
 These are the new configuration variables introduced in this release. Make sure that you read the related documentation before enabling them. Add them to your `invenio.cfg` as needed:
 
+##### Related Identifiers
+
+Backend and frontend functionality has been extended to cover related identifiers. The new `RDM_RECORDS_RELATED_IDENTIFIERS_SCHEMES` setting defines which schemes can be used (defaulting to `RDM_RECORDS_IDENTIFIERS_SCHEMES`). Validation rules, vocabularies in the UI, and scheme label resolution have been updated to ensure identifiers and related identifiers are handled consistently.
