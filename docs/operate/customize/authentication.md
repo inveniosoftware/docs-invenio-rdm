@@ -1043,10 +1043,9 @@ Below, you can find **an example** of how you can add a `RoleNeed` on login.
 !!! warning "Use at your own risk"
     The integration of groups is not fully tested yet and the code below is just an example of a possible implementation.
 
-Assuming you're implementing a custom
-[OAuth plugin](https://inveniordm.docs.cern.ch/customize/authentication/#new-oauth-plugins),
+Assuming you're implementing a custom [OAuth plugin](#new-oauth-plugins),
 the fetching of user groups can happen after having fetched user information with the
-[`signup_handler.info`](https://inveniordm.docs.cern.ch/customize/authentication/#allowdeny-user-login) handler.
+[`signup_handler.info`](#allowdeny-user-login) handler.
 
 ```python
 def info_handler(remote, resp):
