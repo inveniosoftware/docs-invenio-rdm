@@ -13,7 +13,7 @@
 | `slug`     | string | body     | Required, url-compatible, max 100 char. The identifier of the community that will be used in the community's URL. |                                                  |
 | `metadata` | object | body     | [Metadata](#community-metadata) of the community.                                                                 |
 
-### Community access
+#### Community access
 
 | Name            | Type   | Location | Description                                                                                                                                                          |
 |-----------------|--------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -23,7 +23,7 @@
 | `record_policy` | string | body     | Required, one of `"open"` or `"closed"`. Can community's members submit a record to the community without a review (open), or a review is always necessary (closed)? |
 | `review_policy` | string | body     | Optional, one of `"closed"`, `"open"`, or `"members"`. If `"closed"` (default), all submissions must be reviewed. If `"open"`, Curators/Managers/Owners can publish directly. If `"members"`, all community members can publish directly. |
 
-### Community metadata
+#### Community metadata
 
 | Name              | Type   | Location | Description                                                                                                       |
 |-------------------|--------|----------|-------------------------------------------------------------------------------------------------------------------|
