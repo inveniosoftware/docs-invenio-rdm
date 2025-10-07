@@ -19,7 +19,9 @@
 |-----------------|--------|----------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `visibility`    | string | body     | Required, one of `"public"` or `"restricted"`. Visible by the public or restricted to those who have access.                                                         |
 | `member_policy` | string | body     | Required, one of `"open"` or `"closed"`. Can people request to be part of the community (open) or not (closed)?                                                      |
+| `members_visibility` | string | body | Optional, one of `"public"` or `"restricted"`. If `"public"` (default), members who have set their visibility to public are visible to anyone. Otherwise, members are only visible to other members. |
 | `record_policy` | string | body     | Required, one of `"open"` or `"closed"`. Can community's members submit a record to the community without a review (open), or a review is always necessary (closed)? |
+| `review_policy` | string | body     | Optional, one of `"closed"`, `"open"`, or `"members"`. If `"closed"` (default), all submissions must be reviewed. If `"open"`, Curators/Managers/Owners can publish directly. If `"members"`, all community members can publish directly. |
 
 ### Community metadata
 
