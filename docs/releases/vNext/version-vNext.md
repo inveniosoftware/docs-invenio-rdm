@@ -2,7 +2,7 @@
 
 _2020-0-0_
 
-This is a work-in-progress document to enable InvenioRDM developers to track 
+This is a work-in-progress document to enable InvenioRDM developers to track
 new features that will be included in the next release.
 
 We're happy to announce the release of InvenioRDM vNext, the open-source
@@ -18,6 +18,10 @@ and digital assets management! Version Next will be maintained until at least 6 
 ## What's new?
 
 ### New feature
+
+#### New Web Archive previewer
+
+https://github.com/inveniosoftware/invenio-previewer/pull/224
 
 ### Miscellaneous additions
 Here is a quick summary of the myriad of other improvements in this release:
