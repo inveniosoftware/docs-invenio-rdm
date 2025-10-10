@@ -32,8 +32,7 @@ Check for the existing [languages](https://app.transifex.com/inveniosoftware/inv
 - **If your desired language is not on the list**, click **Request language** and search for the language you need.
   ![transifex request language](img/transifex-request-language.png)
   - Ping the team again on Discord so they can approve the request.
-- **If your desired language already exists**, choose the language and click **Join team**.
-  ![transifex join team](img/transifex-join-team.png)
+- **If your desired language already exists**, choose the language and click [Join team](https://help.transifex.com/en/articles/6248698-getting-started-as-a-translator#h_48ba92e523)
 
 ## Step 4 - Learn about your translation team
 
