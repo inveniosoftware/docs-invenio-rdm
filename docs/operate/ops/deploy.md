@@ -52,7 +52,7 @@ You could also keep going down in the layers to get more and more control of
 your deployment, for example, using bare metal machines. However, that is out of the
 scope of this documentation.
 
-!!! warning "Docker compose is not recommended"
+!!! warning "Default Docker Compose configuration is not recommended"
     The provided docker-compose files in InvenioRDM can give you a good idea of what
     you need to deploy, including the underlying services.
 
@@ -60,7 +60,10 @@ scope of this documentation.
     it requires knowledge and experience on how to run it reliably, safely stores
     files with backups, managing software and infrastructure upgrades, understand
     potential performance limitations (a single machine probably might not handle all
-    your traffic and it would be a single point of failure), etc.
+    your traffic and it would be a single point of failure), etc. More importantly,
+    there are critical [network security aspects](https://docs.docker.com/engine/network/packet-filtering-firewalls/)
+    to take into account when exposing services using Docker containers that require
+    special attention to avoid exposing your infrastructure to the internet.
 
     **Use at your own risk.**
 
