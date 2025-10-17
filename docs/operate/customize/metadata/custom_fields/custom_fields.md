@@ -173,13 +173,24 @@ Finally, we need to add the new field to the `RDM_CUSTOM_FIELDS` and `RDM_CUSTOM
 RDM_CUSTOM_FIELDS = [
     ExperimentsCF(name="experiments")
 ]
+```
 
+Each field can then be configured using the following properties:
+
+- `field` - The name of the custom field.
+- `template` - The jinja template used to render a field in the landing page.
+- `ui_widget` - The React form component to be used for the field.
+- `props` - Parameters to be injected in the React component.
+- `landing_page_search_attr` - Optional field to specify which value inside the vocabulary should be used for search links on the landing page.
+
+```python
 RDM_CUSTOM_FIELDS_UI = [{
     "section": "CERN Experiments",
     "fields": [{
         "field": "experiments",
         "ui_widget": "Experiments",
         "template": "experiments.html",
+        "landing_page_search_attr": "id",
         "props": {
             "label": _("Experiments"),
             "title": {
