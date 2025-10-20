@@ -181,7 +181,7 @@ Each field can then be configured using the following properties:
 - `template` - The jinja template used to render a field in the landing page.
 - `ui_widget` - The React form component to be used for the field.
 - `props` - Parameters to be injected in the React component.
-- `landing_page_search_attr` - Optional field to specify which value inside the vocabulary should be used for search links on the landing page.
+- `landing_page_search_attr` - Optional field to specify which value inside the vocabulary should be used for composing search links on the landing page (to search for all records containing this vocabulary value).
 
 ```python
 RDM_CUSTOM_FIELDS_UI = [{
