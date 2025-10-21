@@ -30,10 +30,12 @@ This feature is also [highly customisable](../../operate/customize/record_deleti
 https://github.com/inveniosoftware/invenio-previewer/pull/224
 
 ### Miscellaneous additions
+
 Here is a quick summary of the myriad of other improvements in this release:
 
 - Admin panel Jobs: Added a "Delete" action to the Jobs list so admins can remove jobs directly from the UI.
 - Temporarily pinned `bcrypt<5.0.0` due to compatibility issues ([flask-security-fork#82](https://github.com/inveniosoftware/flask-security-fork/pull/82)). Will be lifted in a future release.
+- A new configuration variable, `RDM_RECORDS_RELATED_IDENTIFIERS_SCHEMES`, enables configuring identifier schemes specifically for related identifiers, defaulting to `RDM_RECORDS_IDENTIFIERS_SCHEMES` when not defined.
 
 ## Deprecations
 
@@ -63,4 +65,3 @@ If you have questions related to these release notes, don't hesitate to jump on 
 ## Credit
 
 The development work of this impressive release wouldn't have been possible without the help of these great people (name or GitHub handle, alphabetically sorted):
-
