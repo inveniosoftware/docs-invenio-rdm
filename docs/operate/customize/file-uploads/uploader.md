@@ -89,4 +89,23 @@ You can choose which uploader to use by toggling the `APP_RDM_DEPOSIT_NG_FILES_U
     }
     ```
 
+    Furthermore, when using S3 compatible storage backend make sure the CORS (Cross-Origin Resource Sharing) of your S3 storage are adjusted as follows:
+    ```
+    [
+        {
+            "AllowedHeaders": [
+                "*"
+            ],
+            "AllowedMethods": [
+                "GET",
+                "PUT"
+            ],
+            "AllowedOrigins": [
+                "*"
+            ],
+            "ExposeHeaders": []
+        }
+    ]
+    ```
+
 Restart your site after changing the configuration to ensure the new UI is properly loaded.
