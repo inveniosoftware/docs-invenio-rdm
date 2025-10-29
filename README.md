@@ -6,9 +6,10 @@ This is the source of InvenioRDM user documentation web site. You can view the d
 
 ## Running
 
+Install [uv](https://docs.astral.sh/uv/getting-started/installation/), then run:
+
 ```console
-$ mkvirtualenv docs-invenio-rdm
-$ pip install -r requirements.txt
-$ mkdocs serve
+$ uv sync
+$ uv run mkdocs serve
 $ firefox http://127.0.0.1:8000
 ```

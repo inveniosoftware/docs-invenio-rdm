@@ -1,7 +1,10 @@
-variables:
-  MKDOCS_VERSION: '1.6.1'
-  MATERIAL_VERSION: '9.6.14'
-
 include:
-  - project: 'authoring/documentation/mkdocs-ci'
-    file: 'mkdocs-gitlab-pages.gitlab-ci.yml'
+  - project: "authoring/documentation/mkdocs-ci"
+    file: "mkdocs-gitlab-pages.gitlab-ci.yml"
+
+validation:
+  script:
+    - apt update && apt install -y git
+    - pip install --no-cache-dir uv
+    - uv sync
+    - mkdocs build -d public
