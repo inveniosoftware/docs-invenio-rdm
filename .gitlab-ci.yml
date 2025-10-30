@@ -1,10 +1,15 @@
+.build-with-uv: &build-with-uv
+  - apt update && apt install -y git
+  - pip install --no-cache-dir uv
+  - uv sync
+  - mkdocs build -d public
+
 include:
   - project: "authoring/documentation/mkdocs-ci"
     file: "mkdocs-gitlab-pages.gitlab-ci.yml"
 
 validation:
-  script:
-    - apt update && apt install -y git
-    - pip install --no-cache-dir uv
-    - uv sync
-    - mkdocs build -d public
+  script: *build-with-uv
+
+pages:
+  script: *build-with-uv
