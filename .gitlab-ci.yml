@@ -2,7 +2,7 @@
   - apt update && apt install -y git
   - pip install --no-cache-dir uv
   - uv sync
-  - mkdocs build -d public
+  - uv run mkdocs build -d public
 
 include:
   - project: "authoring/documentation/mkdocs-ci"
