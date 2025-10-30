@@ -34,7 +34,7 @@ While controlling the static prop values via the [`RDM_CUSTOM_FIELDS_UI` config 
 you to specify dynamic behaviour, such as showing/hiding the field only in specific cases, or using a different `helpText` depending on the resource type.
 
 This can instead be done using the `dynamicParametrize` function.
-For more details on its usage, [see the documentation on overriding React components](../../look-and-feel/override_components.md#dynamic).
+For more details on its usage, [see the documentation on overriding React components](../../look-and-feel/override_components.md).
 
 The ID of the overridable is the internal name of your custom field (e.g. `cern:experiment`).
 You can override any of the props listed on this page (except `fieldPath`), depending on the specific widget.
