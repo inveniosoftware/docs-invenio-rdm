@@ -41,6 +41,20 @@ RDM_IMMEDIATE_FILE_MODIFICATION_ENABLED = False
 
 Additionally in a similar way to the new record deletion feature, you can also allow users to modify the files of published records in line with your defined policies. By adding the relevant policy, the files can be unlocked by the owner of the record within 30 days and the edits published within 45 days (giving them at least 15 days to upload and publish their changes). See the [relevant documentation](../../operate/customize/file_modification.md) to see how to enable this behaviour.
 
+### Request commenting enhancements
+
+We've introduced a number of exciting new features to improve the commenting experience on requests, which are currently used across InvenioRDM
+for a range of purposes such as community record submission.
+
+#### Deep links
+
+You can now copy a link to a comment directly, allowing for easy and precise sharing.
+When opened, the link will take the user to the comment and highlight it, regardless of which page it's on.
+
+To use deep links, simply click the "Copy link" button on a comment:
+
+![Comment with the "copy link" button](imgs/comment-deep-link.png)
+
 #### New Web Archive previewer
 
 https://github.com/inveniosoftware/invenio-previewer/pull/224
