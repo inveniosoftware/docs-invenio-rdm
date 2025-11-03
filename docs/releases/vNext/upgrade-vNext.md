@@ -101,6 +101,16 @@ oaipmh_service = current_rdm_records.oaipmh_server_service
 oaipmh_service.rebuild_index(identity=system_identity)
 ```
 
+#### OAuth client changes
+
+The `extra_data` column of the `oauthclient_remoteaccount` table, storing remote-specific user information as required by various integrations, has been migrated from the `JSON` type to the `JSONB` type (only on PostgreSQL databases).
+This gives significant performance improvements when running certain queries.
+An automated Alembic migration is included and will be executed when you run the [database migration](#database-migration) step below.
+
+However, if your `oauthclient_remoteaccount` table has more than ~50k rows and you are unable to take the system offline offline for an update, this operation could overload your database and create a lock lasting several minutes, due to the need to individually transform every row.
+To avoid issues in such cases, we recommend instead running the migration manually.
+Please follow [the upgrade guide](https://invenio-oauthclient.readthedocs.io/en/latest/upgrading.html#v6-0-0).
+
 #### Upgrade option 1: In-place
 
 This approach upgrades the dependencies in place. At the end of the process,
