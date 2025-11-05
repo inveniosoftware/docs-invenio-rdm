@@ -12,6 +12,8 @@ _Introduced in v12_
 
 You can allow authenticated and non-authenticated (guest) users to request access to view the restricted files of a public record. Access can be set to expire on a specific date as well as never expire.
 
+ An instance operator can require an expiration date by enabling the `RDM_RECORDS_REQUIRE_SECRET_LINKS_EXPIRATION = True` instance setting.
+
 This can be useful for record owners to manage access to restricted files of each record. For unauthorized users, it gives the possibility to request access to the files.
 
 Note: accepted access requests grant to the requestor access to **all** versions of the record.
