@@ -341,7 +341,7 @@ curl -k -XPOST -H "Content-Type: application/json" -H "Authorization: Bearer <TO
     "files": "public"
   },
   "files": {
-    "enabled": true
+    "enabled": false
   },
   "metadata": {
     "creators": [
@@ -360,6 +360,7 @@ curl -k -XPOST -H "Content-Type: application/json" -H "Authorization: Bearer <TO
       }
     ],
     "publication_date": "2020-06-01",
+    "publisher": "My instance",
     "resource_type": {
       "id": "image-photo"
     },
@@ -381,6 +382,7 @@ To publish it, you can take the `"publish"` link from the response:
   "latest_html": "https://127.0.0.1:5000/records/jnmmp-51n47/latest",
   "record": "https://127.0.0.1:5000/api/records/jnmmp-51n47",
   "record_html": "https://127.0.0.1:5000/records/jnmmp-51n47",
+  // vvvvvvvv this one vvvvvvvv
   "publish": "https://127.0.0.1:5000/api/records/jnmmp-51n47/draft/actions/publish",
   "versions": "https://127.0.0.1:5000/api/records/jnmmp-51n47/versions",
   "access_links": "https://127.0.0.1:5000/api/records/jnmmp-51n47/access/links",
@@ -419,11 +421,15 @@ Photo by <a href="https://unsplash.com/@jayceexie?utm_source=unsplash&amp;utm_me
 
 Save it as `leaf_shiba.png` in your current directory.
 
-**First**, we need to work with a draft, so we create one as per above:
+**First**, we need to work with a draft, so we create one as per above with the difference that we enable files this time:
 
 ```bash
 curl -k -XPOST -H "Content-Type: application/json" -H "Authorization: Bearer <TOKEN>" https://127.0.0.1:5000/api/records -d '{
-    ...
+  ...
+  "files": {
+    "enabled": true
+  },
+  ...
 }'
 ```
 
