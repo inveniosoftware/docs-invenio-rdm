@@ -46,8 +46,6 @@ Official support for Python 3.9 will end on October 31, 2025.
 See the [official Python version status page](https://devguide.python.org/versions/) for more information.
 Future releases of InvenioRDM will require a more recent Python version.
 
-The minimum required OpenSearch version is now **v2.12**. See [below](#opensearch-version) on how to upgrade older versions.
-
 #### Record Deletion
 
 To start using the new Record Deletion feature, one needs to go through the following steps during deployment:
