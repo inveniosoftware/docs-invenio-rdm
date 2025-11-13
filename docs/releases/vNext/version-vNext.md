@@ -19,11 +19,27 @@ and digital assets management! Version Next will be maintained until at least 6 
 
 ### Record deletion
 
-You can now allow users to delete, or request deletion of, their own records in accordance with any required criteria you may have. When enabled the default behaviour is that records can be deleted by their owners within 30 days of publication and record owners can request deletion outside this period. Deletion requests are visible within the admin panel and the user's request dashboard.
+You can now allow users to delete, or request deletion of, their own records in accordance with any required criteria you may have. When enabled, the default behaviour is that records can be deleted by their owners within 30 days of publication and record owners can request deletion outside this period. Deletion requests are visible within the admin panel and the user's request dashboard.
 
 ![Modal to immediately delete a record](imgs/deletion-modal.png)
 
 This feature is also [highly customisable](../../operate/customize/record_deletion.md)! You can introduce deletion policies based on the resource type, community role, file type or any other criteria you require. Additionally, you can prevent extraneous record deletion by adding a deletion checklist. This allows you to suggest how the user can fix the problem in the correct way instead of deleting the record.
+
+### File modification
+
+Admins can now edit the files of all records by default. To do so, simply edit the record and then unlock the files by completing the "Edit published files" modal. The files are then unlocked for you (or anyone with manage permissions) to add, remove or exchange files. Finally the draft can be published by an admin.
+
+![Showing the flow to edit the files of a record](imgs/file-modification.png)
+
+If you would like to disable file modification for all users including admins, add the following to your `invenio.cfg`.
+
+```
+RDM_IMMEDIATE_FILE_MODIFICATION_ENABLED = False
+```
+
+#### User file modification
+
+Additionally in a similar way to the new record deletion feature, you can also allow users to modify the files of published records in line with your defined policies. By adding the relevant policy, the files can be unlocked by the owner of the record within 30 days and the edits published within 45 days (giving them at least 15 days to upload and publish their changes). See the [relevant documentation](../../operate/customize/file_modification.md) to see how to enable this behaviour.
 
 #### New Web Archive previewer
 
