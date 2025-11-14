@@ -104,16 +104,16 @@ This allows you to express a range of behaviours:
 - showing certain fields only when a specific community is selected
 - etc.
 
-For this, you can use the `dynamicParametrize` function in `react-invenio-forms`, which behaves similarly to `parametrize`.
+For this, you can use the `parametrizeWithFormContext` function in `react-invenio-forms`, which behaves similarly to `parametrize`.
 The callback you pass will be evaluated whenever the form state changes, and the object you return will override the props
 passed to the component.
 
 ```javascript
-import { dynamicParametrize } from "react-invenio-forms"
+import { parametrizeWithFormContext } from "react-invenio-forms"
 import { RelatedWorksField } from "@js/invenio_rdm_records"
 
 export const overriddenComponents = {
-  "InvenioRdmRecords.DepositForm.TitlesField": dynamicParametrize(
+  "InvenioRdmRecords.DepositForm.TitlesField": parametrizeWithFormContext(
     TitlesField,
     ({ formValues }) => {
       return {
@@ -216,14 +216,14 @@ export const overriddenComponents = {
 
 The expression `() => null` above is defining an "empty" component, thus removing it from the deposit form.
 
-To dynamically only show the field when the `image` resource type is selected, you can use the `dynamicParametrize` function.
+To dynamically only show the field when the `image` resource type is selected, you can use the `parametrizeWithFormContext` function.
 
 ```javascript
-import { dynamicParametrize } from "react-invenio-forms"
+import { parametrizeWithFormContext } from "react-invenio-forms"
 import { RelatedWorksField } from "@js/invenio_rdm_records"
 
 export const overriddenComponents = {
-  "InvenioRdmRecords.DepositForm.RelatedWorksField": dynamicParametrize(
+  "InvenioRdmRecords.DepositForm.RelatedWorksField": parametrizeWithFormContext(
     TitlesField,
     ({ formValues }) => {
       return {

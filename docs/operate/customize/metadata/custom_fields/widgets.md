@@ -33,7 +33,7 @@ These props are applicable to all widgets. In the reference below, only props ad
 While controlling the static prop values via the [`RDM_CUSTOM_FIELDS_UI` config value](records.md#upload-deposit-form) is relatively straightforward, it doesn't allow
 you to specify dynamic behaviour, such as showing/hiding the field only in specific cases, or using a different `helpText` depending on the resource type.
 
-This can instead be done using the `dynamicParametrize` function.
+This can instead be done using the `parametrizeWithFormContext` function.
 For more details on its usage, [see the documentation on overriding React components](../../look-and-feel/override_components.md).
 
 The ID of the overridable is the internal name of your custom field (e.g. `cern:experiment`).
@@ -44,10 +44,10 @@ For example, to make the `cern:experiment` field only be shown for thesis record
 ```javascript
 // my-rdm-instance/assets/js/invenio_app_rdm/overridableRegistry/mapping.js
 
-import { dynamicParametrize, Input } from "react-invenio-forms"
+import { parametrizeWithFormContext, Input } from "react-invenio-forms"
 
 export const overriddenComponents = {
-  "cern:experiment": dynamicParametrize(
+  "cern:experiment": parametrizeWithFormContext(
     Input,
     ({ formValues }) => {
       return {
