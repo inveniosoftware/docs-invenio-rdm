@@ -39,6 +39,6 @@ jobs:
         run: uv run mkdocs build --clean --strict -v
 
       - name: Check links
-        uses: untitaker/hyperlink@0.1.44
+        uses: untitaker/hyperlink@0.2.0
         with:
           args: site/ --sources docs/
