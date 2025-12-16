@@ -263,6 +263,10 @@ else:
     click.secho(f"⚠ Warning: {final_pending} documents still pending", fg="yellow")
 ```
 
+### Invenio Jobs Edit arguments
+To use the new edit arguments of a job feature, there is a need to apply the [`invenio_jobs@1757597048` alembic migration](https://github.com/inveniosoftware/invenio-jobs/pull/110/changes#diff-b84187fef205a8a3512a7a379ab20e96b18948a29f555bbbd57aa735514b9551), or just `invenio alembic upgrade` if you're doing a full upgrade.
+This should add the new `run_args` column to the `jobs_job` table where the final arguments of the Job will be stored, if edited. 
+
 #### Upgrade option 1: In-place
 
 This approach upgrades the dependencies in place. At the end of the process,
