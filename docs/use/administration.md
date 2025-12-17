@@ -335,6 +335,31 @@ Once your job is created and active, click on **Schedule** to configure the timi
 
 After clicking **Save**, the job will be scheduled. The first run will occur within the first 5 minutes, and subsequent runs will follow the schedule you specified.
 
+#### Job Notifications
+
+Jobs can send email notifications to configured recipients when runs complete with specific statuses. This feature enables administrators and librarians to be automatically informed about the outcome of scheduled or manually triggered jobs.
+
+##### Configuration
+
+When creating or editing a job, you can configure:
+
+- **Notification emails**: One or more email addresses that should receive notifications
+- **Notification statuses**: Which run statuses should trigger notifications (e.g., SUCCESS, FAILED, PARTIAL_SUCCESS)
+
+Notifications are sent automatically when a job run reaches one of the configured statuses, whether the job was triggered manually or by a schedule.
+
+The notification emails include:
+
+- A user-friendly summary of what happened with the job
+- The final status (with color coding)
+- A direct link to view the full run details in the admin panel
+- Collapsible technical details for debugging
+- For partial successes, a summary showing successful vs. failed operations
+
+!!! info
+
+    To customize notification email templates, see [Job Email Templates](../operate/customize/jobs.md#email-notification-templates).
+
 ## User Management
 
 ### Moderation of users and records
