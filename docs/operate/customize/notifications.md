@@ -6,6 +6,7 @@ Specifically, we are going to have a look at templates and the following variabl
 
 - [NOTIFICATIONS_BACKENDS](#notifications_backends)
 - [NOTIFICATIONS_BUILDERS](#notifications_builders)
+- [NOTIFICATIONS_GROUP_EMAIL_DOMAIN](#notifications_group_email_domain)
 
 ## Templates
 
@@ -147,3 +148,27 @@ NOTIFICATIONS_BUILDERS = {
     CustomSubmissionBuilder.type: CustomSubmissionBuilder,
 }
 ```
+
+## NOTIFICATIONS_GROUP_EMAIL_DOMAIN
+
+This configuration variable enables the system to convert group names into valid email addresses by appending a domain suffix. This is particularly useful when groups don't have explicit email fields configured.
+
+When a recipient is a group and has no `email` or `email_hidden` field, the group's name will be used as the email address with this domain appended.
+
+**Default value:** `None` (disabled)
+
+**Example configuration:**
+
+```python
+# Set the domain for group email addresses
+NOTIFICATIONS_GROUP_EMAIL_DOMAIN = "cern.ch"
+```
+
+With this configuration, a group named `physics-team` would receive notifications at `physics-team@cern.ch`.
+
+**Behavior:**
+
+- If the group already has an `email` or `email_hidden` field set, those will be used instead
+- If the group name already contains `@`, it will be used as-is
+- If `NOTIFICATIONS_GROUP_EMAIL_DOMAIN` is not set (or set to `None`), groups without explicit email fields will use their name as-is for backward compatibility
+
