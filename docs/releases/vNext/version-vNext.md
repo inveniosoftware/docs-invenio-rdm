@@ -37,6 +37,33 @@ We've added a few small but crucial improvements to the [invenio-oauthclient](ht
 
 - The `extra_data` column of the `oauthclient_remoteaccount` table is now stored in the more efficient `JSONB` type when using PostgreSQL, improving the performance and flexibility of queries ([invenio-oauthclient#360](https://github.com/inveniosoftware/invenio-oauthclient/pull/360)).
 
+### Job notifications
+
+Jobs can now send email notifications to configured recipients when runs complete with specific statuses. This feature enables administrators and librarians to be automatically informed about the outcome of scheduled or manually triggered jobs.
+
+#### Configuration
+
+When creating or editing a job in the admin panel, you can configure:
+
+- **Notification emails**: One or more email addresses that should receive notifications
+- **Notification statuses**: Which run statuses should trigger notifications (e.g., SUCCESS, FAILED, PARTIAL_SUCCESS)
+
+Notifications are sent automatically when a job run reaches one of the configured statuses, whether the job was triggered manually or by a schedule.
+
+#### Email templates
+
+The notification emails include:
+- A user-friendly summary of what happened with the job
+- The final status (with color coding)
+- A direct link to view the full run details in the admin panel
+- Collapsible technical details for debugging
+- For partial successes, a summary showing successful vs. failed operations
+
+The email templates use Jinja2 and can be customized by overriding the templates in your instance:
+- `invenio_jobs/emails/base.html` - Base email template with header and footer
+- `invenio_jobs/emails/run_notification.html` - HTML email body
+- `invenio_jobs/emails/run_notification.txt` - Plain text email body
+
 ### Miscellaneous additions
 
 Here is a quick summary of the myriad of other improvements in this release:
