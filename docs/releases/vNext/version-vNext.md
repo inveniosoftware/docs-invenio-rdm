@@ -37,6 +37,12 @@ We've added a few small but crucial improvements to the [invenio-oauthclient](ht
 
 - The `extra_data` column of the `oauthclient_remoteaccount` table is now stored in the more efficient `JSONB` type when using PostgreSQL, improving the performance and flexibility of queries ([invenio-oauthclient#360](https://github.com/inveniosoftware/invenio-oauthclient/pull/360)).
 
+### Job notifications
+
+Jobs can now send email notifications to configured recipients when runs complete with specific statuses. This enables administrators and librarians to be automatically informed about the outcome of scheduled or manually triggered jobs.
+
+See [Job Notifications](../../use/administration.md#job-notifications) for configuration details and [Email Notification Templates](../../operate/customize/jobs.md#email-notification-templates) for customization options.
+
 ### Miscellaneous additions
 
 Here is a quick summary of the myriad of other improvements in this release:
