@@ -46,7 +46,7 @@ Here is a quick summary of the myriad of other improvements in this release:
 - A new configuration variable, `RDM_RECORDS_RELATED_IDENTIFIERS_SCHEMES`, enables configuring identifier schemes specifically for related identifiers, defaulting to `RDM_RECORDS_IDENTIFIERS_SCHEMES` when not defined.
 - Deposit form: label/help text changes for Authors and Contributors: https://github.com/inveniosoftware/invenio-app-rdm/issues/3197
 - A new configuration variable, `RDM_RECORDS_REQUIRE_SECRET_LINKS_EXPIRATION`, controls whether an expiration date must be set for access links and secret links. Defaults to `FALSE` when not defined.
-- Add support of wikidata identifiers. 
+- Add support for Wikidata identifiers (QIDs) for creators and contributors of records and their affiliations. 
 
 ## Deprecations
 
