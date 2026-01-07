@@ -6,7 +6,7 @@ Find here important resources for onboarding.
 
 ## For everyone
 * Mailing list (self-subscribe): <https://lists.e-infra.cz/wws/info/project-inveniordm>
-* Telecon schedule 2025: [Google Docs](https://docs.google.com/document/d/1KWvDoVN0hx4jG5wfm4BF322Gyf06dLNuvrAvrbXL9Mc)
+* Telecon schedule 2026: [Google Docs](https://docs.google.com/document/d/10-A6EuSGnHVadXca5K2e0xeU_dtrj0LC6VjMpGwGtBs)
 * Chat on Discord: <https://discord.com/invite/8qatqBC>
 * Discussion forum on Discourse: <https://invenio-talk.web.cern.ch>
 * Blog: <https://inveniosoftware.org/blog/>
