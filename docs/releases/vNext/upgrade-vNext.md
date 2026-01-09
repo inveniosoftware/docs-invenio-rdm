@@ -55,7 +55,7 @@ To start using the new Record Deletion feature, one needs to go through the foll
      - Records and drafts have a `tombstone.deletion_policy` (optional) field
        - `invenio index update --no-check rdmrecords-records-record-v7.0.0`
        - `invenio index update --no-check rdmrecords-drafts-draft-v6.0.0`
-     - Update OAI-PMH precolators index for records (see [recipe below](#oai-pmh-percolator-mapping-update))
+     - Update OAI-PMH percolators index for records (see [recipe below](#oai-pmh-percolator-mapping-update))
      - Update request mappings to add the `last_reply` and `last_activity_at` fields
        - `invenio index update --no-check requests-request-v1.0.0`
    - Apply the [`invenio_request@1759321170` alembic migration](https://github.com/inveniosoftware/invenio-requests/blob/master/invenio_requests/alembic/1759321170_add_index_to_request_events_request_id_.py)
@@ -110,6 +110,158 @@ An automated Alembic migration is included and will be executed when you run the
 However, if your `oauthclient_remoteaccount` table has more than ~50k rows and you are unable to take the system offline offline for an update, this operation could overload your database and create a lock lasting several minutes, due to the need to individually transform every row.
 To avoid issues in such cases, we recommend instead running the migration manually.
 Please follow [the upgrade guide](https://invenio-oauthclient.readthedocs.io/en/latest/upgrading.html#v6-0-0).
+
+#### Commenting features
+
+The new commenting features require the below steps to be completed:
+
+1. Update mappings for `requests` and `requestevents` using new code in a terminal:
+    - Update request mappings to add the `last_reply.parent_id` and `is_locked` fields
+      - `invenio index update --no-check requests-request-v1.0.0`
+    - Update requestevents mapping to add the `parent_child` and `parent_id` fields
+      - `invenio index update --no-check requestevents-requestevent-v1.0.0`
+2. Update all comment request events in the live index by running the [recipe below](#comment-event-update) 
+3. Deploy code to the rest of web and workers
+
+##### Comment events update
+
+You will need to run the code below against the live index **before the new code is deployed**. The script is updating all requestevents documents of type comment to mark them as "parent". This is required so that the `join` relationship queries succeed (the request timeline will be broken otherwise!!!). The script exits when all comments are updated. After deployment of the new code you might need to rerun it to fix the delta-comments created between the last run of the script and the deployment of the new code.
+
+```python
+import time
+from datetime import datetime
+
+import click
+from invenio_search import current_search_client
+from invenio_search.api import build_alias_name
+from invenio_requests.records.api import RequestEvent
+
+
+click.secho("Starting parent_child field migration for parent comments...", fg="green")
+
+# Poll interval in seconds to recheck remaining comments without tagged as parents
+poll_interval = 10
+
+# Get the OpenSearch client and index name
+index_name = build_alias_name(RequestEvent.index._name)
+
+click.echo(f"Target index: {index_name}")
+
+# Capture migration start timestamp
+migration_start_time = datetime.utcnow().isoformat()
+click.echo(f"Migration timestamp: {migration_start_time}")
+
+# Query for documents that need updating (created before migration, without parent_child field)
+def get_pending_count():
+    """Get count of documents that still need updating."""
+    return current_search_client.count(
+        index=index_name,
+        body={
+            "query": {
+                "bool": {
+                    "must": [
+                        # Created before migration started
+                        {"range": {"created": {"lt": migration_start_time}}},
+                    ],
+                    "must_not": [
+                        # Has parent_id (is a child)
+                        {"exists": {"field": "parent_id"}},
+                        # Already has parent_child field
+                        {"exists": {"field": "parent_child"}},
+                    ],
+                }
+            }
+        },
+    )
+
+# Initial count
+initial_count_response = get_pending_count()
+initial_count = initial_count_response["count"]
+
+click.echo(f"\nFound {initial_count} parent comments to update")
+
+# Trigger the update (async with wait_for_completion=False)
+click.echo("\nTriggering update_by_query...")
+update_response = current_search_client.update_by_query(
+    index=index_name,
+    body={
+        "query": {
+            "bool": {
+                "must": [
+                    # Created before migration started
+                    {"range": {"created": {"lt": migration_start_time}}},
+                ],
+                "must_not": [
+                    # Has parent_id (is a child)
+                    {"exists": {"field": "parent_id"}},
+                    # Already has parent_child field
+                    {"exists": {"field": "parent_child"}},
+                ],
+            }
+        },
+        "script": {
+            "source": "ctx._source.parent_child = ['name': 'parent']",
+            "lang": "painless",
+        },
+    },
+    wait_for_completion=False,
+    refresh=True,
+)
+
+task_id = update_response.get("task")
+if task_id:
+    click.echo(f"Task ID: {task_id}")
+
+click.echo(f"\nPolling cluster every {poll_interval}s until completion...")
+click.echo("(Checking for documents created before {})".format(migration_start_time))
+
+# Poll until all documents are updated
+total_updated = 0
+poll_count = 0
+
+with click.progressbar(
+    length=initial_count,
+    label="Migrating parent comments",
+    show_eta=True,
+) as bar:
+    bar.update(0)
+
+    while True and initial_count != 0:
+        poll_count += 1
+        time.sleep(poll_interval)
+
+        # Check how many documents still need updating
+        pending_response = get_pending_count()
+        pending_count = pending_response["count"]
+
+        # Calculate how many have been updated
+        updated_since_last = (initial_count - total_updated) - pending_count
+        if updated_since_last > 0:
+            bar.update(updated_since_last)
+            total_updated += updated_since_last
+
+        # Check if we're done
+        if pending_count == 0:
+            # Make sure we update to 100%
+            remaining = initial_count - total_updated
+            if remaining > 0:
+                bar.update(remaining)
+            break
+
+        # Progress update every 10 polls
+        if poll_count % 10 == 0:
+            click.echo(f"\nStill processing... {pending_count} documents remaining")
+
+click.secho(f"\n✓ Migration complete!", fg="green")
+click.echo(f"Total updated: {initial_count} parent comments")
+
+# Final verification
+final_pending = get_pending_count()["count"]
+if final_pending == 0:
+    click.secho("✓ Verification passed: All documents updated", fg="green")
+else:
+    click.secho(f"⚠ Warning: {final_pending} documents still pending", fg="yellow")
+```
 
 #### Upgrade option 1: In-place
 
@@ -259,3 +411,10 @@ These are the new configuration variables introduced in this release. Make sure 
 ##### Related Identifiers
 
 Backend and frontend functionality has been extended to cover related identifiers. The new `RDM_RECORDS_RELATED_IDENTIFIERS_SCHEMES` setting defines which schemes can be used (defaulting to `RDM_RECORDS_IDENTIFIERS_SCHEMES`). Validation rules, vocabularies in the UI, and scheme label resolution have been updated to ensure identifiers and related identifiers are handled consistently.
+
+##### Comment replies preview
+
+The new feature of allowing replies to comments available in all requests introduces a new config variable `REQUESTS_COMMENT_PREVIEW_LIMIT`, limiting the number of retrieved indexed documents when comments have many replies.
+##### Locking/Unlocking a request's conversation
+
+The new feature of allowing locking/unlocking a request's conversation is controlled via a feature flag config variable `REQUESTS_LOCKING_ENABLED`.
