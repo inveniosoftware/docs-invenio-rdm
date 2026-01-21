@@ -458,6 +458,26 @@ Since `pkg-resources` has been deprecated and removed from pypi and the
 dependency `fs` has not been updated anymore we decided to reimplement the
 interface in `invenio-files-rest`.
 
+### fixed warnings
+
+- DeprecationWarning: es_clear fixture is deprecated, use es_search instead.
+- DeprecationWarning: The 'warn' method is deprecated, use 'warning' instead
+- DeprecationWarning: The 'record_to_index' function is no longer expected to return a tuple
+- DeprecationWarning: get_user method is deprecated, user get_user_by_email/get_user_by_id
+- LegacyAPIWarning: The Query.get() method is considered legacy
+- PytestCollectionWarning: cannot collect test class 'TestNAME' because it has a __init__ constructor
+- FutureWarning: Truth-testing of elements was a source of confusion
+- SyntaxWarning: "\d" is an invalid escape sequence
+- ChangedInMarshmallow4Warning: 'Field' should not be instantiated. Use 'fields.Raw' or another field subclass instead.
+- RemovedInMarshmallow4Warning: The 'default' argument to fields is deprecated. Use 'dump_default' instead.
+- RemovedInMarshmallow4Warning: The 'missing' argument to fields is deprecated. Use 'load_default' instead.
+- Warning: JSONSCHEMAS_HOST is set to localhost
+- PendingDeprecationWarning:  Schema().dump().data and Schema().dump().errors as well as Schema().load().data and Schema().loads().dataattributes are deprecated in marshmallow v3.x.
+- DeprecationWarning: refresolver
+- SAWarning: his declarative base already contains a class with the same class name and module name
+- PytestMockWarning: Mocks returned by pytest-mock do not need to be used as context managers.
+
+
 
 
 ### Optional changes
