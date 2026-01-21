@@ -57,8 +57,6 @@ affiliations:
       data-file: vocabularies/affiliations_ror.yaml
 ```
 
-The `affiliations_ror.yaml` file can be downloaded from [here](https://github.com/inveniosoftware/cookiecutter-invenio-rdm/raw/master/%7B%7Bcookiecutter.project_shortname%7D%7D/app_data/vocabularies/affiliations_ror.yaml).
-
 Afterwards you will need to import the affiliations. To do so, run the following command
 from your instance's folder:
 
