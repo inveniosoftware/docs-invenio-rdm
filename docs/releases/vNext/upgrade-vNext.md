@@ -116,11 +116,11 @@ Please follow [the upgrade guide](https://invenio-oauthclient.readthedocs.io/en/
 The new commenting features require the below steps to be completed:
 
 1. Update mappings for `requests` and `requestevents` using new code in a terminal:
-    - Update request mappings to add the `last_reply.parent_id` and `is_locked` fields
-      - `invenio index update --no-check requests-request-v1.0.0`
-    - Update requestevents mapping to add the `parent_child` and `parent_id` fields
-      - `invenio index update --no-check requestevents-requestevent-v1.0.0`
-2. Update all comment request events in the live index by running the [recipe below](#comment-event-update) 
+   - Update request mappings to add the `last_reply.parent_id` and `is_locked` fields
+     - `invenio index update --no-check requests-request-v1.0.0`
+   - Update requestevents mapping to add the `parent_child` and `parent_id` fields
+     - `invenio index update --no-check requestevents-requestevent-v1.0.0`
+2. Update all comment request events in the live index by running the [recipe below](#comment-event-update)
 3. Deploy code to the rest of web and workers
 
 ##### Comment events update
@@ -373,9 +373,9 @@ affected by `invenio index destroy --yes-i-know` and are totally functional afte
 
 !!! info "Permission issue"
 If you encounter an error similar to this when indexing:
-`    opensearchpy.exceptions.AuthorizationException: AuthorizationException(403, 'security_exception', 'no permissions for [cluster:admin/component_template/put] and User [name=<my-name>, backend_roles=[], requestedTenant=null]')
+` opensearchpy.exceptions.AuthorizationException: AuthorizationException(403, 'security_exception', 'no permissions for [cluster:admin/component_template/put] and User [name=<my-name>, backend_roles=[], requestedTenant=null]')
     opensearchpy.exceptions.AuthorizationException: AuthorizationException(403, 'security_exception', 'no permissions for [indices:admin/index_template/put] and User [name=<my-name>, backend_roles=[], requestedTenant=null]')
-   `
+`
 This means your OpenSearch user does not have sufficient permissions to create or update index templates.
 To resolve this, grant the necessary permissions to your user in the OpenSearch cluster:
 
@@ -412,9 +412,16 @@ These are the new configuration variables introduced in this release. Make sure 
 
 Backend and frontend functionality has been extended to cover related identifiers. The new `RDM_RECORDS_RELATED_IDENTIFIERS_SCHEMES` setting defines which schemes can be used (defaulting to `RDM_RECORDS_IDENTIFIERS_SCHEMES`). Validation rules, vocabularies in the UI, and scheme label resolution have been updated to ensure identifiers and related identifiers are handled consistently.
 
+##### HTTP User-Agent handling
+
+Outbound HTTP requests performed by invenio-vocabularies datastream readers (e.g. OpenAIRE, ROR) now use a centralized HTTP User-Agent helper (`invenio_user_agent`).
+
+No action is required for existing installations. Deployments may optionally review or customize the `SITE_HOSTNAME` and `SITE_UI_URL` configuration values to control the User-Agent string sent to external services.
+
 ##### Comment replies preview
 
 The new feature of allowing replies to comments available in all requests introduces a new config variable `REQUESTS_COMMENT_PREVIEW_LIMIT`, limiting the number of retrieved indexed documents when comments have many replies.
+
 ##### Locking/Unlocking a request's conversation
 
 The new feature of allowing locking/unlocking a request's conversation is controlled via a feature flag config variable `REQUESTS_LOCKING_ENABLED`.
