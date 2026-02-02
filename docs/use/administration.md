@@ -2,8 +2,6 @@
 
 This page provides a usage overview of the InvenioRDM administration panel.
 
-**Audience**: Instance staff / Content Managers / Administrators
-
 The administration panel is a feature in InvenioRDM introduced in v10 that provides a graphical user interface for managing your instance. It is designed to be used by administrators and superusers of the repository.
 For more technical details you can read the [developer guide to the InvenioRDM administration panel](../maintenance/internals/administration_panel.md), detailing its programmatic interface and usage.
 
