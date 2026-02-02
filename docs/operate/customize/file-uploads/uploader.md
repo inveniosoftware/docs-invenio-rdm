@@ -1,7 +1,7 @@
 # Files uploaders
 
 In InvenioRDM, records can have file uploads attached to it. The file uploader interface is
-available from the [**upload form**](../../../use/records/upload.md).
+available from the [**upload form**](../../../use/records.md).
 
 ## Default file uploader
 

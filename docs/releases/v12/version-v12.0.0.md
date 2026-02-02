@@ -43,7 +43,7 @@ You can include a record to multiple communities only **after** having published
 
 ![Share button](../../use/imgs/records/access_request_share_button.png)
 
-[Giving and requesting access](../../use/records/record.md#request-access-to-restricted-files) to records have seen a complete overhaul in this release. Record owners or curators can share them directly with other users or with groups, as well as control whether, who and how access can be demanded.
+[Giving and requesting access](../../use/records.md#request-access-to-restricted-files) to records have seen a complete overhaul in this release. Record owners or curators can share them directly with other users or with groups, as well as control whether, who and how access can be demanded.
 
 ![Share modal](../../use/imgs/records/access_requests_tab.png)
 
@@ -113,7 +113,7 @@ Here is a quick summary of the myriad other improvements in this release:
 
 - Enable/disable metadata-only records at the instance-level via the `RDM_ALLOW_METADATA_ONLY_RECORDS` configuration variable
 - Enable/disable restricted records at the instance-level via the `RDM_ALLOW_RESTRICTED_RECORDS` configuration variable
-- [New export formats](../../use/records/export-formats.md) such as DACT-AP and GeoJSON
+- [New export formats](../../use/records.md) such as DACT-AP and GeoJSON
 - [Signposting](https://zenodo.org/doi/10.5281/zenodo.12554415) has been integrated in a record's API responses and using the `Accept: application/linkset+json` header for a `/api/records/<record_id>` call returns the Linkset.
 - [Optional metadata fields](../../operate/customize/metadata/optional_fields.md) that are easy to enable
 - Improvements to the `invenio rdm rebuild-all-indices` command
