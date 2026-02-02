@@ -1,7 +1,5 @@
 # Administration
 
-This page provides a usage overview of the InvenioRDM administration panel.
-
 The administration panel is a feature in InvenioRDM introduced in v10 that provides a graphical user interface for managing your instance. It is designed to be used by administrators and superusers of the repository.
 For more technical details you can read the [developer guide to the InvenioRDM administration panel](../maintenance/internals/administration_panel.md), detailing its programmatic interface and usage.
 
@@ -28,48 +26,7 @@ You can:
     For more details on communities, see [Communities](../maintenance/architecture/communities.md).
     For API usage, see the [REST API for Communities](../reference/rest_api_communities.md).
 
-## Logs
-
-### Audit Logs
-
-_Introduced in v13_
-
-The **Audit Logs** page provides actions taken in the system. As an administrator, you can keep track of recent changes across the repository.
-
-![Audit Logs](./imgs/administration/logs.png)
-
-You can:
-
-- See a list of actions like creating, editing, or publishing records
-- Check who performed each action and when
-- Open detailed logs or compare changes
-
-You can filter by:
-
-- Resource type (e.g. records)
-- Action type (e.g. draft.edit, record.publish)
-
-!!! info
-    If you want to enable, configure or extend audit logging, see [configuration guide](../operate/customize/audit-logs.md).
-
-## Records & files
-
-### Drafts
-
-The **Drafts** page allows you to view and manage records that have not yet been published.
-
-![Drafts](./imgs/administration/drafts.png)
-
-You can:
-
-- Review draft records and their details
-- Filter by access status, publication status, resource type, or file type
-- Set quotas for each draft
-- Activate, Deactivate or Block the user owning the record
-
-!!! info
-
-    For API usage, see [Drafts](../reference/rest_api_drafts_records.md#drafts).
+## Deposits
 
 ### Records
 
@@ -106,6 +63,47 @@ The changes are then displayed in a JSON **side-by-side diff** view:
 !!! info "Revisions VS versions"
 
     This feature allows admins to compare revisions, not versions. A revision is the result of editing a record, where each published edit creates a new revision. A new version is a different record which is semantically linked to the previous record. At this time it is not possible to compare different records, including versions.
+
+### Drafts
+
+The **Drafts** page allows you to view and manage records that have not yet been published.
+
+![Drafts](./imgs/administration/drafts.png)
+
+You can:
+
+- Review draft records and their details
+- Filter by access status, publication status, resource type, or file type
+- Set quotas for each draft
+- Activate, Deactivate or Block the user owning the record
+
+!!! info
+
+    For API usage, see [Drafts](../reference/rest_api_drafts_records.md#drafts).
+
+## Logs
+
+### Audit Logs
+
+_Introduced in v13_
+
+The **Audit Logs** page provides actions taken in the system. As an administrator, you can keep track of recent changes across the repository.
+
+![Audit Logs](./imgs/administration/logs.png)
+
+You can:
+
+- See a list of actions like creating, editing, or publishing records
+- Check who performed each action and when
+- Open detailed logs or compare changes
+
+You can filter by:
+
+- Resource type (e.g. records)
+- Action type (e.g. draft.edit, record.publish)
+
+!!! info
+    If you want to enable, configure or extend audit logging, see [configuration guide](../operate/customize/audit-logs.md).
 
 ## Site Management
 
