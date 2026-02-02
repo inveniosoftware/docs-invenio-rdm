@@ -52,10 +52,7 @@ nav:
 
   - Use:
       - Overview: "use/index.md"
-      - Records:
-          - Upload: "use/records/upload.md"
-          - Published record: "use/records/record.md"
-          - Export formats: "use/records/export-formats.md"
+      - Records: "use/records.md"
       - Communities: "use/communities.md"
       - Requests: "use/requests.md"
       - Notifications: "use/notifications.md"
