@@ -57,6 +57,7 @@ nav:
           - Published record: "use/records/record.md"
           - Export formats: "use/records/export-formats.md"
       - Communities: "use/communities.md"
+      - Requests: "use/requests.md"
       - Notifications: "use/notifications.md"
       - Administration: "use/administration.md"
 
