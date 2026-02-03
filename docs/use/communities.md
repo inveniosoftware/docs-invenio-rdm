@@ -2,7 +2,7 @@
 
 ## What is a Community?
 
-In InvenioRDM, a **Community** is your dedicated space to organize, highlight, and manage a collection of records. It acts as a **collaborative hub** within the InvenioRDM platform, bringing together content connected by a shared theme, project, or institutional purpose.
+In InvenioRDM, a **Community** is your dedicated space to organize, highlight, and manage a collection of [records](records.md). It acts as a **collaborative hub** within the InvenioRDM platform, bringing together content connected by a shared theme, project, or institutional purpose.
 
 As a community manager, communities enable you to:
 
@@ -79,7 +79,7 @@ This setting controls who can publish records directly to your community without
 
 !!! tip
 
-    If you allow publishing without a review, InvenioRDM will still create a review request. This request is automatically accepted without sending a notification.
+    If you allow publishing without a review, InvenioRDM will still create a review [request](requests.md). This request is automatically accepted without sending a [notification](notifications.md).
 
 #### Records submission policy
 
@@ -114,13 +114,13 @@ You can invite new members to collaborate in your community. The search autocomp
 - **Manager**: Can manage other members, curate records, and view restricted records.
 - **Owner**: Has full administrative access to the entire community, including all settings and permissions.
 
-This operation will create an invitation request and the user will receive an e-mail notification. Once approved, the user will become a member. Be aware that **groups will be immediately added**, without request or notification.
+This operation will create an invitation request and the user will receive an e-mail [notification](notifications.md). Once approved, the user will become a member. Be aware that **groups will be immediately added**, without request or notification.
 
 ![Community invite](imgs/communities/community-invite.jpg)
 
 ## Requests
 
-In the **Requests** tab, you can view all requests for your community. It allows you to manage both draft reviews and inclusion requests, and any other kind of request.
+In the **Requests** tab, you can view all [requests](./requests.md) for your community. It allows you to manage both draft reviews and inclusion requests, and any other kind of request.
 
 ![Community requests](imgs/communities/community-requests.jpg)
 

@@ -68,7 +68,7 @@ In order to add those fields to record metadata of your instance follow this [gu
 
 ### Submit to a community
 
-When you are uploading a new record, you have the option to select a community for submission. If you choose a community, the "Publish" button will automatically change to "Submit for review."
+When you are uploading a new record, you have the option to select a [community](communities.md) for submission. If you choose a community, the "Publish" button will automatically change to "Submit for review."
 
 ![Upload to a community](imgs/records/upload-community.jpg)
 
@@ -91,7 +91,7 @@ From there, use the "**Submit to community**" link to select additional communit
 
 ![Include record modal](imgs/records/include-multiple-communities-modal.jpg)
 
-For a deeper understanding of the high-level architecture behind requests, **refer to the dedicated documentation page** located [here](../maintenance/architecture/requests.md).
+For a deeper understanding of the high-level architecture behind [requests](requests.md), **refer to the dedicated [documentation page](../maintenance/architecture/requests.md)**.
 
 ## Request access to restricted files
 
@@ -137,7 +137,7 @@ As a user that would like to get access to restricted files of a record, it is n
 The submitter and the record's owner can find the newly created access request in "My dashboard" -> "Requests", and can exchange comments. The record's owner can define a new expiration date (changing the default settings) for this access request, accept or decline it:
 ![Access request request page guest](imgs/records/access_request_request_page_guest.png)
 
-After accepting the request, the requestor will receive a notification by e-mail and will be able to access the restricted files:
+After accepting the request, the requestor will receive a [notification](notifications.md) by e-mail and will be able to access the restricted files:
 ![Restricted files open to guest](imgs/records/restricted_files_open_to_guest.png)
 
 ## Export in different formats
