@@ -9,7 +9,7 @@ For more technical details you can read the [developer guide to the InvenioRDM a
 
 ## Communities
 
-The **Communities** section in the administration panel lets you see and manage communities.
+The **Communities** section in the administration panel lets you see and manage [communities](communities.md).
 
 ![Communities Admin UI](./imgs/administration/communities.png)
 
@@ -30,7 +30,7 @@ You can:
 
 ### Records
 
-The **Records** page provides access to all published records you can manage.
+The **Records** page provides access to all published [records](records.md) you can manage.
 
 ![Records](./imgs/administration/records.png)
 
