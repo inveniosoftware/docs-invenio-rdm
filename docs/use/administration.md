@@ -44,9 +44,11 @@ You can:
 !!! info
     For API usage, see [Records](../reference/rest_api_drafts_records.md#records).
 
-_Introduced in v13_
 
 #### Compare revisions
+
+_Introduced in v13_
+
 The `Compare Revisions` feature allows administrators to audit record updates and follow changes over time.
 From the **Records** list in the Administration panel, click the **Compare revisions...** button in the _Actions_ column to open a side-by-side comparison window:
 

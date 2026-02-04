@@ -30,3 +30,7 @@ is insufficient for your needs, you can fully customize the permission system (e
 ## Persistent identifiers
 
 InvenioRDM comes with support for registering Digital Object Identifiers (DOIs) via DataCite. If you prefer another scheme or e.g. supporting multiple persistent identifiers, then InvenioRDM allows you to extend it with your own persistent identifier plugins.
+
+### Custom metadata fields
+
+InvenioRDM offers add-on metadata fields for specific publication types, including [journals](../reference/metadata.md#journal), [imprints](../reference/metadata.md#imprint), [theses](../reference/metadata.md#thesis), [meetings](../reference/metadata.md#meeting)and [software](../reference/metadata.md#codemeta). Once [configured](../operate/customize/metadata/optional_fields.md), these fields seamless integrate with both the deposit form and the record landing page.

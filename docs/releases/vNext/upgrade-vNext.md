@@ -120,7 +120,7 @@ The new commenting features require the below steps to be completed:
      - `invenio index update --no-check requests-request-v1.0.0`
    - Update requestevents mapping to add the `parent_child` and `parent_id` fields
      - `invenio index update --no-check requestevents-requestevent-v1.0.0`
-2. Update all comment request events in the live index by running the [recipe below](#comment-event-update)
+2. Update all comment request events in the live index by running the [recipe below](#comment-events-update)
 3. Deploy code to the rest of web and workers
 
 ##### Comment events update
