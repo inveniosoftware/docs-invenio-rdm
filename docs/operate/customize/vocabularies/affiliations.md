@@ -27,7 +27,7 @@ Create a new job called "Load Affiliations" in the Default queue with task "Load
 sure to check the "active" checkbox and click the save button.
 
 Then click the "Configure and run" button, select the "celery" queue, and put
-"1900-01-01" in the "Since" field. Click "Run now" and your affiliations will
+"1900-01-01T01:01:01+00:00" in the "Since" field. Click "Run now" and your affiliations will
 be loaded.
 
 You can also use the "Schedule job" button to download the latest version of
