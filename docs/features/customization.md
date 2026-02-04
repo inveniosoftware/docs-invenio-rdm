@@ -33,4 +33,4 @@ InvenioRDM comes with support for registering Digital Object Identifiers (DOIs) 
 
 ### Custom metadata fields
 
-InvenioRDM offers add-on metadata fields for specific publication types, including [journals](../reference/metadata.md#journal), [imprints](../reference/metadata.md#imprint), [theses](../reference/metadata.md#thesis), [meetings](../reference/metadata.md#meeting)and [software](../reference/metadata.md#codemeta). Once [configured](../operate/customize/metadata/optional_fields.md), these fields seamless integrate with both the deposit form and the record landing page.
+InvenioRDM offers add-on metadata fields for specific publication types, including [journals](../reference/metadata.md#journal), [imprints](../reference/metadata.md#imprint), [theses](../reference/metadata.md#thesis), [meetings](../reference/metadata.md#meeting)and [software](../reference/metadata.md#codemeta). Once [configured](../operate/customize/metadata/optional_fields.md), these fields integrate seamlessly  with both the deposit form and the record landing page.
