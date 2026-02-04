@@ -8,12 +8,13 @@ In InvenioRDM, a **record** is a published digital artefact described with metad
 - A list of **files with integrated previews**.
 - Other valuable details like **statistics, versions, or communities**.
 
-## Creating a Record
+## Create a Record
 
 You can deposit new records into InvenioRDM by using the **upload form**. To begin, click the "**New upload**" button or link.
 
 This action will open the **deposit form page**, where you can:
 
+- **Choose a community (if any)** for submission
 - **Select the files** you wish to upload.
 - **Fill in the necessary metadata information** about your record.
 - **Define access restrictions** to control who can view and access your content.
@@ -44,28 +45,6 @@ When creating or editing a record, click the "Restricted" checkbox under "Full r
 
 To **only** make the files restricted, click the "Restricted" checkbox under "Files only" in the "Visibility" section.
 
-For a deeper understanding of the high-level architecture behind records, **refer to the dedicated documentation page** located [here](../maintenance/architecture/records.md).
-
-### Add-on metadata fields
-
-InvenioRDM offers **add-on metadata fields** that are not enabled by default. To utilize these, you will need to **add them to your configuration**. These specialized fields are designed for specific publication types, including:
-
-- [Journal](../reference/metadata.md#journal): describe a scholarly journal.
-- [Imprint](../reference/metadata.md#imprint): describe chapters and contributions of a book or a report.
-- [Thesis](../reference/metadata.md#thesis): describe a dissertation.
-- [Meeting](../reference/metadata.md#meeting): describe a meeting or a conference.
-- [CodeMeta](../reference/metadata.md#codemeta): set of fields to describe software.
-
-These add-on fields are particularly valuable for institutions like **universities, research institutes, and repositories** that manage diverse scholarly outputs.
-
-![Publishing info](imgs/records/publishing-info.png)
-
-Once the fields are filled and the record is published, publishing information will be displayed on the record landing page on the right side panel, as follows:
-
-![Landing page publishing information](imgs/records/publishing-info-landing-page.png)
-
-In order to add those fields to record metadata of your instance follow this [guide](../operate/customize/metadata/optional_fields.md).
-
 ### Submit to a community
 
 When you are uploading a new record, you have the option to select a [community](communities.md) for submission. If you choose a community, the "Publish" button will automatically change to "Submit for review."
@@ -87,23 +66,17 @@ A record can be **included in multiple communities**. To manage which communitie
 
 ![Include record](imgs/records/include-multiple-communities.jpg)
 
-From there, use the "**Submit to community**" link to select additional communities where you would like your record to be added.
+From there, use the "**Submit to community**" option to select additional communities where you would like your record to be added.
 
 ![Include record modal](imgs/records/include-multiple-communities-modal.jpg)
-
-For a deeper understanding of the high-level architecture behind [requests](requests.md), **refer to the dedicated [documentation page](../maintenance/architecture/requests.md)**.
 
 ## Request access to restricted files
 
 _Introduced in v12_
 
-You can allow authenticated and non-authenticated (guest) users to request access to view the restricted files of a public record. Access can be set to expire on a specific date as well as never expire.
+You can allow authenticated and non-authenticated (guest) users to request access to view the restricted files of a public record. Access can be set to expire on a specific date as well as never expire. Depending on your instance, access can be optionally temporary or not.
 
- An instance operator can require an expiration date by enabling the `RDM_RECORDS_REQUIRE_SECRET_LINKS_EXPIRATION = True` instance setting.
-
-This can be useful for record owners to manage access to restricted files of each record. For unauthorized users, it gives the possibility to request access to the files.
-
-Note: accepted access requests grant to the requestor access to **all** versions of the record.
+Note: accepted access requests grant to the requester access to **all** versions of the record.
 
 ### Enable access requests
 
@@ -119,9 +92,9 @@ As a record owner, you first need to allow accessing restricted files via a requ
 
 3. Change the settings for the access requests:
 
-   - Allow authenticated or/and unauthenticated users to request access to restricted files of your record.
-   - Accept conditions. Provide a message that will be visible to the users in the request form (see screenshot below)
-   - Set access expiration date. This setting will be applied by default to all access requests. When reviewing an access request, you can set a different value.
+    - Allow authenticated or/and unauthenticated users to request access to restricted files of your record.
+    - Accept conditions. Provide a message that will be visible to the users in the request form (see screenshot below)
+    - Set access expiration date. This setting will be applied by default to all access requests. When reviewing an access request, you can set a different value.
 
 4. Save your changes
    ![Access requests tab save](imgs/records/access_requests_tab_save.png)
@@ -130,21 +103,21 @@ Now both authenticated and anonymous users are able to **request** view access t
 
 ### Request access to restricted files
 
-As a user that would like to get access to restricted files of a record, it is necessary to **fill in the request form** appearing in the record landing page. This action creates and submits a new access request: the record's owner will be notified, and the request will appear on their respective dashboards.
+As a user that would like to get access to restricted files of a record, it is necessary to **fill in the request form** appearing in the record landing page. This action creates and submits a new access request: the record's owner will be notified, and the request will appear on their respective dashboards. If the requester has changed their mind they can cancel the request from their dashboard.
 
 ### Accepting/Declining the request
 
 The submitter and the record's owner can find the newly created access request in "My dashboard" -> "Requests", and can exchange comments. The record's owner can define a new expiration date (changing the default settings) for this access request, accept or decline it:
 ![Access request request page guest](imgs/records/access_request_request_page_guest.png)
 
-After accepting the request, the requestor will receive a [notification](notifications.md) by e-mail and will be able to access the restricted files:
+After accepting the request, the requester will receive a [notification](notifications.md) by e-mail and will be able to access the restricted files:
 ![Restricted files open to guest](imgs/records/restricted_files_open_to_guest.png)
 
 ## Export in different formats
 
 _Introduced in v12_
 
-InvenioRDM provides various record serialisation formats to let users easily export bibliographic records in a machine-readable way (to transfer them to different systems for instance). These formats adhere to widely used metadata standards such as DataCite, Dublin Core, BibTeX, ...
+InvenioRDM provides various record serialization formats to let users easily export bibliographic records in a machine-readable way (to transfer them to different systems for instance). These formats adhere to widely used metadata standards such as DataCite, Dublin Core, BibTeX, ...
 
 By providing a range of export formats, InvenioRDM empowers users to share and exchange metadata records with other systems in a format that is compatible with their respective standards. This makes it easier to ensure that metadata records are accurate, complete, and consistent across different systems.
 
