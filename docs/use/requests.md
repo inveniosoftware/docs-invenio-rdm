@@ -14,7 +14,7 @@ In InvenioRDM, requests allow users to manage many different use cases themselve
  
 *Membership*
 
-* Membership request — to join a community as a member
+<!-- * Membership request — to join a community as a member -->
 * Member invitation — to invite a member to join your community
 
 *Subcommunity*
@@ -79,15 +79,12 @@ Alternatively, to quote a part of a comment, highlight the text you wish to quot
 
 #### Auto-saved drafts
 
-Your new comment drafts are automatically saved as you type.
-The draft is saved locally in your browser and is **not** synchronised to your account.
-This means your draft will not show up on a different device or browser.
-It can also be lost if you're using a browser in a temporary session on a kiosk computer or if you clear your browser's storage.
+Your new comment drafts are automatically saved as you type, preventing loss of your comments if you accidentally navigate away from the page.
 
-The comment draft is also **not deleted when you log out of your account**, and will show up once you log in again.
-It isn't user-specific, so any other user on the same computer and browser will see your draft.
-If you're using a shared computer, make sure to delete drafts or [clear your browser storage](https://www.aboutcookies.org/how-to-manage-and-delete-cookies) after you are done.
-In-progress edits to existing comments are not saved.
+##### Limitations
+The draft is saved locally in your browser and is **not** synchronised to your account.
+This means your draft will not show up on a different device or browser, and can be lost if you clear your browser's storage.
+Additionally, in-progress edits to existing comments are not saved.
 
 !!! Warning
     Don't rely on auto-saving for storing drafts of long comments over an extended period of time.
@@ -107,7 +104,7 @@ When clicked, the full rich text editor will appear, and you can use all the sam
 ### Sharing a link to a comment
 
 When dealing with requests that have a particularly large number of comments, it can be useful to share a link to a specific comment rather than the entire request.
-This way, the recipient will always be taken to the exact comment you intended and that it will be clearly highlighted to them.
+This way, the recipient will always be taken to the exact comment you intended and it will be clearly highlighted to them.
 
 To copy a link to a comment, click the action menu (the 3 horizontal dots) and select "Copy link":
 
@@ -115,7 +112,7 @@ To copy a link to a comment, click the action menu (the 3 horizontal dots) and s
 
 The link will be copied to your clipboard.
 Unauthenticated users might not be able to open the link; it's important that the recipient has access to the request.
-For example, they must be a member of the community, the submitter of the record, or manually added to the request as a reviewer.
+For example, they must be a member of the community with the permission to see requests, the submitter of the record, or manually added to the request as a reviewer.
 Copying a link does not change the access restrictions of the request.
 
 ### Editing or deleting a comment
@@ -144,14 +141,13 @@ When a conversation is locked or unlocked, an event appears in the conversation 
 - Existing comments cannot be edited
 - Existing comments can still be deleted
 
-<!-- TODO: add a link to the community permissions docs once we have written them -->
-Community curators (and above) can unlock the conversation at any time.
-
 To lock a conversation, click the "Lock conversation" button in the right-hand sidebar:
 
 ![The bottom part of the sidebar with the "Lock conversation" button visible](imgs/requests/lock_conversation.png)
 
 To unlock, click the "Unlock conversation" button.
+Community curators (and above) can unlock the conversation at any time.
+<!-- TODO: add a link to the community permissions docs once we have written them -->
 
 Locking and unlocking create an event visible to all viewers in the conversation timeline:
 
