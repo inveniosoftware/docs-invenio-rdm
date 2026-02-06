@@ -15,9 +15,14 @@ For more details, check out the [Transifex Getting Started Guide](https://docs.t
 
 ## Step 2 - Join the inveniosoftware team
 
+!!! Danger "Required Discord introduction"
+    To process language and team-join requests, first introduce yourself in [Discord translations channel](https://discord.gg/Ya7qSG43Br) and include your Transifex username, target language(s), and the organization you represent.
+    Requests that do not include this information are not reviewed.
+
+
 1. **Introduce yourself on Discord first**
 
-    Post your Transifex username and target language(s) in [Discord `#rdm-translations`](https://discord.gg/Ya7qSG43Br). A member of the team will confirm they can vouch for you.
+    Post your Transifex username, target language(s), **and the organization you work with** in [Discord `#rdm-translations`](https://discord.gg/Ya7qSG43Br). A member of the team will confirm they can vouch for you.
 
 2. Ask to join the inveniosoftware team: <https://www.transifex.com/inveniosoftware/invenio/dashboard/>.
 
