@@ -25,7 +25,22 @@ You can now allow users to delete, or request deletion of, their own records in 
 
 This feature is also [highly customisable](../../operate/customize/record_deletion.md)! You can introduce deletion policies based on the resource type, community role, file type or any other criteria you require. Additionally, you can prevent extraneous record deletion by adding a deletion checklist. This allows you to suggest how the user can fix the problem in the correct way instead of deleting the record.
 
-#### New Web Archive previewer
+### Request commenting enhancements
+
+We've introduced a number of exciting new features to improve the commenting experience on requests, which are currently used across InvenioRDM
+for a range of purposes such as community record submission.
+
+#### Deep links
+
+You can now copy a link to a comment directly, allowing for easy and precise sharing.
+When opened, the link will take the user to the comment and highlight it, regardless of which page it's on.
+
+To use deep links, simply click the "Copy link" button on a comment:
+
+![Comment with the "copy link" button](imgs/comment-deep-link.png)
+
+
+### New Web Archive previewer
 
 https://github.com/inveniosoftware/invenio-previewer/pull/224
 
