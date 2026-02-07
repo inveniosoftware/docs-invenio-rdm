@@ -26,6 +26,29 @@ You can:
     For more details on communities, see [Communities](../maintenance/architecture/communities.md).
     For API usage, see the [REST API for Communities](../reference/rest_api_communities.md).
 
+_Introduced in v14._
+
+## Users & roles
+
+You can now manage **roles (groups)** directly from the administration panel.
+
+- **List and search** roles at `/administration/roles` with sorting (A–Z, Z–A,
+  managed first/last) and a facet to filter managed vs unmanaged roles.
+- **Create** new roles, providing a unique name and optional description. Names
+  must start with a letter and only contain letters, numbers, hyphens or
+  underscores (max 80 characters).
+- **Edit** or **delete** existing roles from their detail page.
+  edits/deletes via the UI and the REST API. This is configurable with `USERS_RESOURCES_PROTECTED_GROUP_NAMES`.
+  `administration-moderation`, and `superuser-access` are shielded from admin
+  edits/deletes via the UI and the REST API. This is configurable with `USERS_RESOURCES_PROTECTED_GROUP_NAMES`.
+
+Navigation is restricted to users who have access to user administration
+(`administration` + `administration-moderation` roles or superusers). Unauthorized
+access attempts receive a 403 error.
+
+!!! note
+    Unmanaged roles can only be edited by the system.
+
 ## Deposits
 
 ### Records
