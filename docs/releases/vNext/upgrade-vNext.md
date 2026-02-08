@@ -352,6 +352,9 @@ invenio alembic upgrade
 
 Execute the data migration:
 
+TODO: `publication-disseration` has to be added to the vocabulary first. either
+with a `vocabulary_service.create` or with some another step.
+
 ```bash
 invenio shell $(find $(pipenv --venv)/lib/*/site-packages/invenio_app_rdm -name migrate_13_0_to_Next.py)
 ```
@@ -395,6 +398,87 @@ To improve consistency in naming conventions and structure, some IDs of Overrida
 The full list of ID changes [can be found here](https://github.com/inveniosoftware/invenio-rdm-records/pull/2101/files#diff-ff3c479edefad986d2fe6fe7ead575a46b086e3bbcf0ccc86d85efc4a4c63c79).
 
 If you are not overriding any of these components, you do not need to change anything.
+
+#### Marshmallow Context Deprecation
+
+Marshmallow has deprecated `self.context` in `marshmallow<4.0.0` and will remove
+it with `marshmallow>=4.0.0`. Until now we don't go to `marshmallow>=4.0.0`,
+there would be further work necessary, because there are backwards incompatible
+changes coming in with the n ew version.
+
+The changes are split into 4 groups and they are:
+
+the first group is fixed by creating the `ContextVar` `context_schema` in
+`marshmallow_utils.context`
+
+- `max_number`
+- `identity`
+- `field_permission_check`
+- `request`
+- `object_version_id`
+- `bucket`
+- `multipart`
+
+the second group is fixed by moving the parameter into the constructor of the Schema
+
+- `doi_all_version`
+- `is_parent`
+- `record_dict`
+
+the third group is fixed by changing the parameter to a class property
+
+- `object_key` (`= "ui"`)
+
+the fourth group is kept in `self.context` because it never reaches the
+marshmallow level, so it doesn't produce a `DeprecationWarning`
+
+- `is_self`
+
+#### utcnow DeprecationWarning
+
+the usage of `datetime.datetime.utcnow` is deprecated. InvenioRDM replaces it
+with `datetime.datetime.now(datetime.timezone.utc)`. This means, we go from a
+utc unaware datetime to a utc aware datetime.
+
+This change includes the database, where the `db.DateTime` columns are changed
+to `db.UTCDateTime` columns.
+
+invenio-stats changes the format from `strict_date_hour_minute_second` to
+`strict_date_optional_time` in `file-download-v1.json` and
+`record-view-v1.json`. The aggregation templates are already on
+`strict_date_optional_time`. If third party packages are implementing their own
+statistics they have to update the format too, otherwise the validation would
+fail. To migrate you can do it offline, by deleting the index and recreating the
+index (with invenio commands), which adds the new templates to opensearch,
+otherwise remove the old template and add the new one by hand.
+
+#### fs
+
+Since `pkg-resources` has been deprecated and removed from pypi and the
+dependency `fs` has not been updated anymore we decided to reimplement the
+interface in `invenio-files-rest`.
+
+### fixed warnings
+
+- DeprecationWarning: es_clear fixture is deprecated, use es_search instead.
+- DeprecationWarning: The 'warn' method is deprecated, use 'warning' instead
+- DeprecationWarning: The 'record_to_index' function is no longer expected to return a tuple
+- DeprecationWarning: get_user method is deprecated, user get_user_by_email/get_user_by_id
+- LegacyAPIWarning: The Query.get() method is considered legacy
+- PytestCollectionWarning: cannot collect test class 'TestNAME' because it has a __init__ constructor
+- FutureWarning: Truth-testing of elements was a source of confusion
+- SyntaxWarning: "\d" is an invalid escape sequence
+- ChangedInMarshmallow4Warning: 'Field' should not be instantiated. Use 'fields.Raw' or another field subclass instead.
+- RemovedInMarshmallow4Warning: The 'default' argument to fields is deprecated. Use 'dump_default' instead.
+- RemovedInMarshmallow4Warning: The 'missing' argument to fields is deprecated. Use 'load_default' instead.
+- Warning: JSONSCHEMAS_HOST is set to localhost
+- PendingDeprecationWarning:  Schema().dump().data and Schema().dump().errors as well as Schema().load().data and Schema().loads().dataattributes are deprecated in marshmallow v3.x.
+- DeprecationWarning: refresolver
+- SAWarning: his declarative base already contains a class with the same class name and module name
+- PytestMockWarning: Mocks returned by pytest-mock do not need to be used as context managers.
+
+
+
 
 ### Optional changes
 
