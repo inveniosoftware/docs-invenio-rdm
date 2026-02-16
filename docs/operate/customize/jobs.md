@@ -135,3 +135,66 @@ Once your instance is restarted:
 - Jobs and their runs are stored in the database, with status, arguments, and logs recorded for traceability.
 - Admins only: only superusers can run jobs.
 - See [Job system design](../../maintenance/internals/jobs.md) for an explanation of how the system works internally.
+
+## Email Notification Templates
+
+Job notification emails use Jinja2 templates that can be customized to match your instance's branding and requirements. The templates are designed to be user-friendly and provide clear information about job execution outcomes.
+
+### Available Templates
+
+The notification system uses three templates:
+
+- `invenio_jobs/emails/base.html` - Base email template with header and footer
+- `invenio_jobs/emails/run_notification.html` - HTML email body for job run notifications
+- `invenio_jobs/emails/run_notification.txt` - Plain text email body for job run notifications
+
+### Customizing Templates
+
+To customize the email templates for your instance, override them in your instance's templates directory:
+
+1. Create the templates directory structure in your instance:
+   ```bash
+   mkdir -p templates/semantic-ui/invenio_jobs/emails
+   ```
+
+2. Copy the templates you want to customize from the `invenio-jobs` module to your instance templates directory.
+
+3. Modify the templates to match your instance's branding, adding custom styling, logos, or additional information as needed.
+
+### Template Context
+
+The notification templates receive the following context variables:
+
+- `job` - The Job object containing job metadata (name, description, etc.)
+- `run` - The JobRun object with execution details (status, started_at, finished_at, etc.)
+- `config` - Application configuration for accessing site settings
+- `admin_url` - Direct link to view the run details in the admin panel
+
+### Example Customization
+
+Here's an example of how to customize the HTML notification template:
+
+```html+jinja
+{% extends "invenio_jobs/emails/base.html" %}
+
+{% block content %}
+<div style="padding: 20px;">
+  <h2>Job Run Notification: {{ job.title }}</h2>
+
+  <p>The job "{{ job.title }}" has completed with status:
+    <strong style="color: {% if run.status == 'SUCCESS' %}green{% else %}red{% endif %};">
+      {{ run.status }}
+    </strong>
+  </p>
+
+  <p>Started: {{ run.started_at }}</p>
+  <p>Finished: {{ run.finished_at }}</p>
+
+  <p><a href="{{ admin_url }}">View full details in admin panel</a></p>
+</div>
+{% endblock %}
+```
+
+!!! info
+
+    For information on how to configure job notifications, see [Job Notifications](../../use/administration.md#job-notifications).
