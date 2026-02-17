@@ -17,6 +17,17 @@ and digital assets management! Version Next will be maintained until at least 6 
 
 ## What's new?
 
+### Administration panel: users and roles
+
+In v14, the administration panel adds users/roles improvements, including
+role-aware views and groups CRUD support.
+
+!!! Danger "v14 upgrade impact"
+    Access checks now resolve roles by **role id** (not role name).
+    If you previously relied on role **names** for access control, you must
+    migrate all existing logic and related references to role ids after
+    upgrading to v14, or access behavior may break.
+
 ### Record deletion
 
 You can now allow users to delete, or request deletion of, their own records in accordance with any required criteria you may have. When enabled the default behaviour is that records can be deleted by their owners within 30 days of publication and record owners can request deletion outside this period. Deletion requests are visible within the admin panel and the user's request dashboard.
