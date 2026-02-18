@@ -73,10 +73,6 @@ export const overriddenComponents = {
 };
 ```
 
-Second, the message which is returned to the user when they have run out of time to publish is defined via your config:
+Second, the message which is returned to the user when they have run out of time to publish can be overriden via changing the [translation](../../community/translations/i18n.md). The default message is:
 
-```
-RDM_FILE_MODIFICATION_VALIDATION_ERROR_MESSAGE = _(
-    "File modification grace period has passed. Please discard this draft to make any changes."
-)
-```
+> "File modification grace period has passed. Please discard this draft to make any changes."
