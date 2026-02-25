@@ -88,7 +88,7 @@ If you're using [Sentry](https://sentry.io) (tool for monitoring or error tracki
 
 ```diff
 ---invenio-logging = {extras = ["sentry_sdk"], version = "~=2.0"}
-+++sentry-sdk = {extras = ["flask"], version = ">=1.0.0,<2.0.0"}
++++invenio-logging = {extras = ["sentry"]}
 ```
 
 ##### Step 3
