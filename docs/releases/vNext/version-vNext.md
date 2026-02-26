@@ -58,6 +58,7 @@ Here is a quick summary of the myriad of other improvements in this release:
 - Overridables in the deposit form have been modified to improve consistency in structure and naming conventions. This has involved renaming the IDs of several `<Overridable>`s, but none have been removed. If you are using these IDs to override components, please see [the full list of updates](https://github.com/inveniosoftware/invenio-rdm-records/pull/2101/files#diff-ff3c479edefad986d2fe6fe7ead575a46b086e3bbcf0ccc86d85efc4a4c63c79) and change your IDs accordingly.
 
 - The changes to [invenio-oauthclient](https://github.com/inveniosoftware/invenio-oauthclient) include automated database migrations that will run smoothly for most instances. However, if your `oauthclient_remoteaccount` table has more than ~50k rows and you are unable to take your system offline for the upgrade, please instead [follow the manual steps](./upgrade-vNext.md#oauth-client-changes).
+- The default value for `WSGI_PROXIES` has been removed from Invenio-App-RDM in [PR 3284](https://github.com/inveniosoftware/invenio-app-rdm/pull/3284); instead `PROXYFIX_CONFIG` should be configured (cf. the [cookiecutter](https://github.com/inveniosoftware/cookiecutter-invenio-rdm/blob/83bb37436980ab8998a80fa0429e7d09f01f45f2/%7B%7Bcookiecutter.project_shortname%7D%7D/docker-services.yml#L24))
 
 ## Requirements
 
