@@ -118,6 +118,7 @@ nav:
               - Submission: "operate/customize/emails.md"
               - Capture: operate/customize/dev_email.md
           - FAIR Signposting: "operate/customize/FAIR-signposting.md"
+          - File modification: "operate/customize/file_modification.md"
           - File uploads & storage:
               - Files and versioning: "operate/customize/file-uploads/files-and-versioning.md" 
               - Files uploaders: "operate/customize/file-uploads/uploader.md"
