@@ -1014,9 +1014,9 @@ Example:
 }
 ```
 
-## Custom fields
-Custom fields are the recommended way to extend the internal data model to fit your specific needs.
-In addition to supporting your own custom extensions, InvenioRDM provides a set of ready-to-use add-on fields—implemented via custom fields—that can be enabled without advanced configuration.
+## Optional custom fields
+[Custom fields](../operate/customize/metadata/custom_fields/records/#declaring-custom-fields) are the recommended way to extend the internal data model to fit your specific needs.
+In addition to supporting your own custom extensions, InvenioRDM provides a set of ready-to-use add-on optional custom fields that can be enabled without advanced configuration.
 
 See the [related documentation](../operate/customize/metadata/optional_fields.md) on how to enable them.
 
