@@ -101,6 +101,66 @@ oaipmh_service = current_rdm_records.oaipmh_server_service
 oaipmh_service.rebuild_index(identity=system_identity)
 ```
 
+#### Job Logs Index Template Update
+
+The job logs datastream index template has been updated to explicitly map two new context fields used for task tracking:
+
+- `task_id` — unique identifier for the Celery task that produced the log
+- `parent_task_id` — identifier of the parent task (null for root tasks, set for subtasks)
+
+Because the datastream index has `"dynamic": true` on the `context` object, existing indexed logs are unaffected. However, to ensure the new fields are properly mapped in future write indices, you need to:
+
+1. **Update the index template** — add the two new fields under `mappings.properties.context.properties` of the `<PREFIX>-job-logs-v1.0.0` template.
+
+    Via the OpenSearch Dashboards UI: navigate to **Index Management → Templates**, find the template and edit it.
+
+    Or via curl:
+
+    ```bash
+    curl -X POST "http://<OPENSEARCH_HOST>/_index_template/<PREFIX>-job-logs-v1.0.0" \
+      -H "Content-Type: application/json" \
+      -d '{
+        "index_patterns": ["<PREFIX>-job-logs*"],
+        "data_stream": {},
+        "template": {
+          "mappings": {
+            "properties": {
+              "@timestamp": { "type": "date" },
+              "level": { "type": "keyword" },
+              "message": { "type": "text" },
+              "module": { "type": "keyword" },
+              "function": { "type": "keyword" },
+              "line": { "type": "integer" },
+              "context": {
+                "type": "object",
+                "properties": {
+                  "job_id": { "type": "keyword" },
+                  "run_id": { "type": "keyword" },
+                  "identity_id": { "type": "keyword" },
+                  "task_id": { "type": "keyword" },
+                  "parent_task_id": { "type": "keyword" }
+                },
+                "dynamic": true
+              }
+            }
+          }
+        }
+      }'
+    ```
+
+2. **Trigger a rollover of the datastream** — this creates a new backing index using the updated template, cleanly separating old and new log documents.
+
+    Via the OpenSearch Dashboards UI: navigate to **Index Management → Data Streams**, find the `<PREFIX>-job-logs` datastream, click **Actions** (top right) and select **Roll over**.
+
+    Or via curl:
+
+    ```bash
+    curl -X POST "http://<OPENSEARCH_HOST>/<PREFIX>-job-logs/_rollover"
+    ```
+
+!!! note
+    The template update is done in the **Index Templates** section and the rollover in the **Data Streams** section of the OpenSearch Dashboards UI.
+
 #### OAuth client changes
 
 The `extra_data` column of the `oauthclient_remoteaccount` table, storing remote-specific user information as required by various integrations, has been migrated from the `JSON` type to the `JSONB` type (only on PostgreSQL databases).
