@@ -3,6 +3,48 @@
 The administration panel is a feature in InvenioRDM introduced in v10 that provides a graphical user interface for managing your instance. It is designed to be used by administrators and superusers of the repository.
 For more technical details you can read the [developer guide to the InvenioRDM administration panel](../maintenance/internals/administration_panel.md), detailing its programmatic interface and usage.
 
+## Access control
+
+Access to the administration panel is controlled by two Invenio actions:
+
+| Action | Controls |
+|--------|----------|
+| `admin-view` | Visibility of the **"Administration"** link in the user menu and access to the dashboard |
+| `administration-access` | Access to **individual admin views** (records, users, OAI-PMH sets, etc.) |
+
+### Granting full administrator access
+
+To give a role full access to the administration panel and all its views, grant both actions:
+
+```shell
+invenio roles create administration
+invenio access allow admin-view role administration
+invenio access allow administration-access role administration
+```
+
+Then assign the role to a user:
+
+```shell
+invenio roles add <email> administration
+```
+
+### Granting access to specific views only
+
+You can grant a role access to the administration panel entry point without giving it access to all admin views. This is useful for roles that only need access to certain sections (e.g. a curator role that only manages specific resources):
+
+```shell
+invenio roles create curator
+invenio access allow admin-view role curator
+```
+
+Individual admin views can then be restricted to specific roles by overriding the `permission` attribute on the view class. See the [developer guide](../maintenance/internals/administration_panel.md) for details.
+
+!!! info
+
+    See [Create and assign roles](../operate/customize/users.md#create-and-assign-roles) for more information on managing user roles.
+
+---
+
 **As an administrator** you can access the administration panel at `/administration`. This is also available through the user menu in the top right corner of your instance:
 
 ![User Menu Admin](./imgs/banners/user_menu_admin.png)

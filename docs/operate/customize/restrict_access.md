@@ -11,7 +11,7 @@ While most features in InvenioRDM are guarded by configurable permission policie
 For these exceptions, as well as extra precautions generally, it can be beneficial to restrict access on an `nginx` level.
 
 !!! info "Current exceptions"
-    At the time of writing, one of these exceptions is the administration panel which has a hard-coded check for the `administration-access` action.
+    At the time of writing, one of these exceptions is the administration panel. Access to the panel entry point is controlled by the `admin-view` action, and access to individual admin views by the `administration-access` action. See [Administration access control](../../use/administration.md#access-control) for details on granting these actions to roles.
 
 An access restriction based on the client's IP address can be put into place via the `nginx` configuration, e.g. by adding nested `location` directives in the existing configuration:
 
