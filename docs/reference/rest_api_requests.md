@@ -601,7 +601,8 @@ Content-Type: application/json
         "created_by": {"user": "1"},
         "id": "{comment_id}",
         "links": {
-          "self": "{scheme+hostname}/api/requests/{rquest_id}/comments/{comment_id}"
+          "self": "{scheme+hostname}/api/requests/{request_id}/comments/{comment_id}"
+          "self_html": "{scheme+hostname}/me/requests/{request_id}#commentevent-{comment_id}"
         },
         "payload": {
           "content": "I would use these subject terms to align this record and the other one with others in the community.",
@@ -615,6 +616,8 @@ Content-Type: application/json
     ],
     "total": 2
   },
+  "sortBy": "oldest",
+  "page": 1,
   "links": {
     "self": "{scheme+hostname}/api/requests/{request_id}/timeline?page=1&size=25&sort=oldest"
   }
@@ -624,3 +627,68 @@ Content-Type: application/json
 !!! info "Advanced timeline search"
 
     The timeline endpoint can be searched, sorted, filtered, paginated etc., like any other InvenioRDM search endpoint.
+
+### Get the timeline focused on a specific event
+
+`GET /api/requests/{request_id}/timeline_focused?focus_event_id={event_id}`
+
+Same as above, except the page containing the specified event is returned.
+If the event is not found or does not belong to the request, the first page of events is instead returned.
+The page number used is returned as the `"page"` key of the response.
+
+The `"self_html"` link of the returned items is a pagination-aware deep link that causes the event to be scrolled to and highlighted
+when the request page is opened (only if the event is of type `CommentEventType`).
+
+The events are always sorted oldest-to-newest.
+
+**Parameters**
+
+| Name                    | Type    | Location | Description                                                                          |
+| ----------------------- | ------  | -------- | ------------------------------------------------------------------------------------ |
+| `request_id` &nbsp;     | string  | path     | The request's public identifier.                                                     |
+| `focus_event_id` &nbsp; | string  | query    | The events's public identifier.                                                      |
+| `size`                  | integer | query    | Specify number of items in the results page (default: 10).                           |
+| `accept`                | string  | header   | - `application/json` (default)<br />- `application/vnd.inveniordm.v1+json` (not yet) |
+
+**Request**
+
+```http
+GET /api/requests/{request_id}/timeline_focused?focus_event_id={event_id} HTTP/1.1
+```
+
+**Response**
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "hits": {
+    "hits": [
+      {
+        "created": "2020-11-27 10:52:23.945755",
+        "created_by": {"user": "1"},
+        "id": "{comment_id}",
+        "links": {
+          "self": "{scheme+hostname}/api/requests/{request_id}/comments/{comment_id}"
+          "self_html": "{scheme+hostname}/me/requests/{request_id}#commentevent-{comment_id}"
+        },
+        "payload": {
+          "content": "I would use these subject terms to align this record and the other one with others in the community.",
+          "format": "html"
+        },
+        "revision_id": 2,
+        "type": "C",
+        "updated": "2020-11-27 10:55:23.969244",
+      },
+      ...
+    ],
+    "total": 2
+  },
+  "sortBy": "oldest",
+  "page": 1,
+  "links": {
+    "self": "{scheme+hostname}/api/requests/{request_id}/timeline?page=1&size=25&sort=oldest"
+  }
+}
+```
