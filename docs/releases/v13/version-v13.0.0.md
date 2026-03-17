@@ -205,7 +205,7 @@ Here is a quick summary of the myriad of other improvements in this release:
 - Following the [latest COUNTER spec](https://www.countermetrics.org/code-of-practice/), the [list of robots and machines](https://github.com/inveniosoftware/counter-robots) have been updated to ensure the stats are counted on human usage.
 - Logging: the Flask root logger level has been changed from `undefined` to `DEBUG`. This enables all log messages to pass through by default, instead of being blocked. If you have implemented custom logging handlers, ensure that you have defined the logging level and verify your logging verbosity in deployed environments to avoid excessive logs.
 - The issue related to storage quota per record for a given user has been solved. You can now define different storage quotas per record.
-- MathJax: when enabled, it will now render mathematical formulas also in the landing page citation box, search results and request's comments pages.
+- MathJax: when enabled, it will now render mathematical formulas also in the landing page citation box, search results and request's comments pages. See [Mathematical formulas (MathJax)](../../operate/customize/configuration.md#mathematical-formulas-mathjax) for configuration details.
 - Easier link generation: it's now possible to use `from invenio_base import invenio_url_for` to generate API links in the UI application and vice versa. When configuring services, `from invenio_records_resources.services import EndpointLink` now replaces `Link` which establishes a single source of truth for links.
 - ...and many more bug fixes!
 
