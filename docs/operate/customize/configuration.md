@@ -108,6 +108,19 @@ APP_DEFAULT_SECURE_HEADERS = {
 }
 ```
 
+### Mathematical formulas (MathJax)
+
+To render mathematical formulas on record landing pages, configure MathJax in your `invenio.cfg`:
+
+```python
+THEME_MATHJAX_CDN = (
+    "//cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js"
+    "?config=TeX-AMS-MML_HTMLorMML"
+)
+```
+
+Since MathJax is loaded from a CDN, make sure your Content Security Policy allows `cdnjs.cloudflare.com` in `APP_DEFAULT_SECURE_HEADERS`.
+
 ### Citation styles
 
 InvenioRDM supports citations styles defined in the [CSL 1.0.1 specifications](https://docs.citationstyles.org/en/v1.0.1/specification.html). You can find the list of all possible citation styles [here](https://github.com/citation-style-language/styles/tree/v1.0.1).
