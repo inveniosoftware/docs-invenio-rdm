@@ -214,7 +214,42 @@ invenio shell $(find $(dirname $(dirname $(uv python find)))/lib/*/site-packages
 # if using pipenv
 invenio shell $(find $(pipenv --venv)/lib/*/site-packages/invenio_app_rdm -name migrate_13_to_14.py)
 ```
-TODO: create migrate_13_to_14.py script
+
+#### Change resource type `publication-thesis` to `publication-dissertation`
+
+!!! info "**Does this migration step apply to me?**"
+    - **Yes**: You are using `publication-thesis` as a resource type (e.g., because you are using the default resource types) AND you want to use `publication-dissertation` instead.
+    - **No**: You are not using `publication-thesis` as a resource type.
+
+*Steps to follow if you want to migrate to `publication-dissertation`:*
+
+1. If you are using a customized list of resource types in `<my_instance>/app_data/vocabularies/resource_types.yaml`, then:
+    - set `title.<lang>` to "Thesis" (in appropriate language) for entry with `id` equal to `publication-dissertation`
+    - remove the entry with `id` equal to `publication-thesis`
+
+    If you didn't customize resource types, you can skip this step.
+
+2. Apply the resource types title change.
+    - `invenio rdm-records add-to-fixture resourcetypes`
+    - Note that this will change the title, but will not delete the `publication-thesis` from your data stores. Deletion is done in step 4.
+
+3. Run the publication dissertation migration script:
+
+    ```shell
+    # if using uv
+    invenio shell $(find $(dirname $(dirname $(uv python find)))/lib/*/site-packages/invenio_app_rdm -name migrate_13_0_to_14.py) --migrate-theses
+    # if using pipenv
+    invenio shell $(find $(pipenv --venv)/lib/*/site-packages/invenio_app_rdm -name migrate_13_0_to_14.py) --migrate-theses
+    ```
+
+4. Delete `publication-thesis` vocabulary via invenio shell:
+
+    ```python
+    from invenio_vocabularies.proxies import current_service as vocabulary_service
+    vocabulary_service.delete(system_identity, ('resourcetypes', 'publication-thesis'))
+    ```
+
+
 
 #### OAuth client changes
 
