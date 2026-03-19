@@ -192,6 +192,7 @@ nav:
           - Building services: maintenance/internals/service.md
           - Building serializers: maintenance/internals/serializers.md
           - Create a database migration: maintenance/internals/alembic.md
+          - Profiler: maintenance/internals/profiler.md
           - Database transaction management: maintenance/internals/transactions.md
           - Grouping atomic operations: maintenance/internals/uow.md
           - Job system: maintenance/internals/jobs.md
