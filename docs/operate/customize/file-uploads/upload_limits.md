@@ -6,12 +6,12 @@ Limiting the maximum size for file uploads can be desirable for a few reasons, e
 ## Invenio Configuration
 
 `Invenio-Files-REST` provides some [configuration values](https://invenio-files-rest.readthedocs.io/en/latest/configuration.html) that are relevant for limiting file uploads.
-The most relevant ones are `FILES_REST_DEFAULT_MAX_FILE_SIZE` which limits the maximum size for *each* uploaded file (in bytes) and `FILES_REST_DEFAULT_QUOTA_SIZE` which limits the maximum overall size of *all* files uploaded per record (also in bytes).
+The most relevant ones are `RDM_FILES_DEFAULT_MAX_FILE_SIZE` which limits the maximum size for *each* uploaded file (in bytes) and `RDM_FILES_DEFAULT_QUOTA_SIZE` which limits the maximum overall size of *all* files uploaded per record (also in bytes).
 
-For instance, consider the case that the maximum file size is set to 10GiB, and the default quota is set to 30GiB.
-Then, the user can upload several files with a maximum size of 10GiB each.
-The user could upload 3 files with 10GiB each, or several smaller ones, or anything in between.
-However, the total size of all files deposited with a single record cannot exceed 30GiB.
+For instance, consider the case that the maximum file size is set to 10 GiB, and the default quota is set to 30 GiB.
+Then, the user can upload several files with a maximum size of 10 GiB each.
+The user could upload 3 files with 10 GiB each, or several smaller ones, or anything in between.
+However, the total size of all files deposited with a single record cannot exceed 30 GiB.
 
 **Note** that the Flask configuration option `MAX_CONTENT_LENGTH` is only applied for multi-part form uploads (e.g. community logos), but not for the files deposited with records.
 
@@ -21,16 +21,6 @@ However, the total size of all files deposited with a single record cannot excee
 Limiting the maximum size for file uploads and number of files is critical to avoid abuse (e.g., filling up storage or uploading too many files). InvenioRDM already ships with sensible limits (10 GB per file and 10 GB total per bucket) that work for most deployments. Adjust these if your use case requires stricter or looser limits.
 
 ### Configuration
-
-#### Frontend (Deposit Form)
-Controls how much the user interface allows users to upload which can be configured in `invenio.cfg`:
-
-```py
-APP_RDM_DEPOSIT_FORM_QUOTA = {
-    "maxFiles": 100,
-    "maxStorage": 30*10**9,
-}
-```
 
 #### Backend (File Storage & Record Quotas)
 
@@ -43,13 +33,16 @@ RDM_FILES_DEFAULT_QUOTA_SIZE = 30 * 10**9
 
 RDM_FILES_DEFAULT_MAX_FILE_SIZE = 10 * 10**9
 """Max size per file 10 GB"""
+```
 
-# Files REST layer (bucket quota)
-FILES_REST_DEFAULT_QUOTA_SIZE = 30 * 10**9
-"""Bucket total storage 30 GB"""
+#### Frontend (Deposit Form)
+Controls how much the user interface allows users to upload which can be configured in `invenio.cfg`:
 
-FILES_REST_DEFAULT_MAX_FILE_SIZE = 10 * 10**9
-"""Bucket max file size 10 GB"""
+```py
+APP_RDM_DEPOSIT_FORM_QUOTA = {
+    "maxFiles": 100,
+    "maxStorage": RDM_FILES_DEFAULT_QUOTA_SIZE,
+}
 ```
 
 ### Quota lookup priority
