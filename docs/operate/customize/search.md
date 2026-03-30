@@ -2,6 +2,7 @@
 
 InvenioRDM comes out of the box with facets for:
 
+- Publication date (Histogram with publication years, slider and default search filters)
 - Access status (Open, Embargoed, Restricted or Metadata-only)
 - Is published (Published, Unpublished)
 - Languages
@@ -109,3 +110,41 @@ The sort option is defined by:
 - ``title`` - The title displayed in the user interface.
 - ``fields`` - The search index fields to perform the sorting on (multiple
   fields allowed.)
+
+### Customize publication date facet
+
+By default, some optional filters are enabled.
+
+```js
+<RangeFacet
+    title={agg.title}
+    agg={agg}
+    rangeSeparator={agg.separator || ".."}
+    // optional
+    defaultRanges={[
+        { label: i18next.t("Last 1 year"), type: "years", value: 1 },
+        { label: i18next.t("Last 5 years"), type: "years", value: 5 },
+        { label: i18next.t("Last 6 months"), type: "months", value: 6 },
+    ]}
+    enableCustomRange={true}
+    dateRangeToLabel={i18next.t("to")}
+    customDatesLabel={i18next.t("Custom Dates")}
+    datePlaceholders={{ YYYY: i18next.t("YYYY"), MM: i18next.t("MM"), DD: i18next.t("DD") }}
+/>
+```
+
+If you want to configure or disable optional filters, you can parameterize them in your instance:
+
+```js
+import { RangeFacet } from "react-searchkit";
+import { parametrize } from "react-overridable";
+
+export const parameters = {
+  defaultRanges: [],
+  enableCustomRange: false,
+};
+
+export const MyRDMRangeFacet = parametrize(RangeFacet, parameters);
+```
+
+For more information about the facet, see the [RangeFacet documentation](https://inveniosoftware.github.io/react-searchkit/docs/components/range-facet).
