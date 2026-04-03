@@ -444,6 +444,21 @@ To resolve this, grant the necessary permissions to your user in the OpenSearch 
          - `cluster:admin/component_template/put`
          - `indices:admin/index_template/put`
 
+### Update vocabularies
+
+A number of out-of-the-box vocabularies have been enhanced with terms from the DataCite 4.4-4.7 releases, as well as other mapping improvements and translations. In order to update these in your repository, you'll need to reload their fixtures with `invenio rdm-records add-to-fixture <vocabulary fixture>`. The `<vocabulary fixture>` for vocabularies that have updates are:
+
+- datetypes
+- descriptiontypes
+- licenses
+- relationtypes
+- resourcetypes
+- contributorsroles
+- creatorsroles
+- titletypes
+
+If you've customized any of these vocabularies for your instance, you'll need to merge changes from the [source files in invenio-rdm-records](https://github.com/inveniosoftware/invenio-rdm-records/tree/master/invenio_rdm_records/fixtures/data/vocabularies) into the custom vocabulary files in your instance before running the `add-to-fixture` command.
+
 ## Infrastructure/configuration changes
 
 ### Required changes
