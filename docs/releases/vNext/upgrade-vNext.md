@@ -446,7 +446,7 @@ To resolve this, grant the necessary permissions to your user in the OpenSearch 
 
 ### Update vocabularies
 
-A number of vocabularies have been enhanced with terms from the DataCite 4.4-4.7 releases, as well as other mapping improvements and translations. In order to update the vocabularies in your repository, you'll need to reload the fixtures with a command such as `invenio rdm-records add-to-fixture contributorsroles`. Vocabularies that have updates include:
+A number of out-of-the-box vocabularies have been enhanced with terms from the DataCite 4.4-4.7 releases, as well as other mapping improvements and translations. In order to update these in your repository, you'll need to reload their fixtures with `invenio rdm-records add-to-fixture <vocabulary fixture>`. The `<vocabulary fixture>` for vocabularies that have updates are:
 
 - datetypes
 - descriptiontypes
