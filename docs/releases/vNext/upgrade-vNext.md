@@ -323,6 +323,18 @@ else:
     click.secho(f"⚠ Warning: {final_pending} documents still pending", fg="yellow")
 ```
 
+#### Update the indices for Members and Archived member requests
+
+The optional feature to allow users to request membership to communities was introduced in this release. **Even if the feature is not enabled**, it does impact the indices used to store members and archived member requests (including invitations). The following commands **must** be run to update those indices no matter if the feature is enabled or not.
+
+```console
+# Update the mappings
+invenio index update communitymembers-members-member-v1.0.0 --no-check
+invenio index update communitymembers-archivedinvitations-archivedinvitation-v1.0.0 --no-check
+```
+
+Reindexing is not needed however, so those are the only steps necessary.
+
 #### Upgrade option 1: In-place
 
 This approach upgrades the dependencies in place. At the end of the process,
