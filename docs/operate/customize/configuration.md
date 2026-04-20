@@ -68,13 +68,15 @@ TRUSTED_HOSTS = ['www.example.org']
 
 Failing to properly configure this variable will cause the error `Bad Request Host x.x.x.x is not trusted.` when starting the web app.
 
-### ``WSGI_PROXIES``
+### ``PROXYFIX_CONFIG``
 
 Invenio is commonly used with both a load balancer and a web server in front of the application server. The load balancer and web server both work as proxies, which means that the clients remote address usually gets added in the X-Forwarded-For HTTP header. Invenio will automatically extract the clients IP address from the HTTP header, however to prevent clients from doing IP spoofing you need to specify exactly how many proxies you have in front of you application server:
 
 ```
-WSGI_PROXIES = 2
+PROXYFIX_CONFIG={'x_for': 1, 'x_proto': 1}
 ```
+
+You can find out more about the configuration options in [invenio-base](https://github.com/inveniosoftware/invenio-base/blob/f868e5e91cef7a6d4c7edfdb76669443484da331/invenio_base/wsgi.py#L62)
 
 ### Secret keys
 
