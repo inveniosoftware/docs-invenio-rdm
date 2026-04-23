@@ -19,6 +19,19 @@ Checks provide a way to run automated verification on draft review requests and 
 
 Checks, as designed, cannot be run on a draft without both a community and a request.
 
+The diagram below illustrates the relationship between the different concepts for one example community.
+
+![A tree diagram showing the relationship between check configs, runs, results and rule results](./img/checks.svg)
+
+Communities can have multiple CheckConfigs, for different types of checks, and each time a check is run on a record it creates a CheckRun. As such, when a record is submitted to a community with checks enabled, there will be N new CheckRuns (where N = number of CheckConfigs).
+
+Each CheckRun has a CheckResult, which can contain the results for many rules within it. Below is an example of the display of a CheckResult in the Checks tab of a request
+
+![The UI displays the Check Configs and the Rule Results](./img/checks_ui.jpg)
+/// caption
+Curation checks in Zenodo's EU Open Research Repository
+///
+
 ## Check Config
 
 A check config defines the parameters for a check in a community. Note that each [type of check](#check-component) requires a separate config so there can be multiple per community. See the [Operate an Instance](../../operate/customize/curation-checks.md) documentation for usage details.
