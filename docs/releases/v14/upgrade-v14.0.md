@@ -562,5 +562,43 @@ The new feature of allowing replies to comments available in all requests introd
 
 The new feature of allowing locking/unlocking a request's conversation is controlled via a feature flag config variable `REQUESTS_LOCKING_ENABLED`.
 
+### Modern toolchain (uv, pnpm, rspack)
+
+The modern build toolchain introduced experimentally in v13 is now stable. The three tools are independent, so you can adopt any subset of them.
+
+#### uv (Python package manager)
+
+Switch from `pipenv` to [`uv`](https://github.com/astral-sh/uv). See the dedicated [Pipenv-to-uv migration guide](../uv-upgrade.md), which includes a helper script that converts `Pipfile` to `pyproject.toml`, updates the `site/` package, and adjusts `.invenio` (`python_package_manager = uv`).
+
+#### pnpm (JavaScript package manager)
+
+Switch from `npm` to [`pnpm`](https://pnpm.io/). Requires Node.js ≥18.12 (pnpm 10). In your instance's `.invenio` file:
+
+```ini
+[cli]
+javascript_package_manager = pnpm
+```
+
+Then generate the lockfile with `invenio-cli assets lock` and commit the resulting `pnpm-lock.yaml` and `package.json` at the project root. Re-run `assets lock` whenever JS dependencies change.
+
+#### Rspack (asset bundler)
+
+Switch from `webpack` to [`Rspack`](https://www.rspack.dev/). In your `invenio.cfg`:
+
+```python
+WEBPACKEXT_PROJECT = "invenio_assets.webpack:rspack_project"
+WEBPACKEXT_NPM_PKG_CLS = "pynpm:PNPMPackage"  # only when also using pnpm
+```
+
+The second flag tells `flask-webpackext` which `pynpm` class to use when invoking the package manager, so set it whenever you also enable pnpm.
+
+#### Container builds
+
+When building production Docker images with the modern toolchain:
+
+- Ensure the image has Node.js ≥18.12 and `pnpm` installed (the `inveniosoftware/almalinux:1` base image ships Node 16, so switch its `nodejs` module stream to `22` and install `pnpm` via `npm install -g pnpm@<version>`).
+- For best layer-cache reuse, run `pnpm install --frozen-lockfile --shamefully-hoist` in its own layer, fed only by `package.json` + `pnpm-lock.yaml`, placed above any layer that copies frequently-changing source.
+- The `--shamefully-hoist` flag must match the one `pynpm.PNPMPackage` forces during `invenio webpack install`; otherwise the second install will purge `node_modules` because of a layout mismatch.
+
 
 That's it, you have upgraded to InvenioRDM v14!

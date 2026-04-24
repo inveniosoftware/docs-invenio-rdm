@@ -152,6 +152,16 @@ These new features allow:
 
 See the [ZIP and other container files configuration guide](../../operate/customize/file-uploads/zip-and-container-files.md) for how to enable the feature and tune its behavior, and the [REST API reference](../../reference/rest_api_drafts_records.md#container-files) for the new API endpoints.
 
+### Modern toolchain
+
+The modern build toolchain introduced as experimental in v13 is now considered stable and ready for adoption:
+
+- **[uv](https://github.com/astral-sh/uv)** in place of `pipenv` for Python dependency management.
+- **[pnpm](https://pnpm.io/)** in place of `npm` for JavaScript dependency management, with faster installs and a disk-efficient content-addressable store.
+- **[Rspack](https://www.rspack.dev/)** in place of `webpack` for asset bundling, with Rust-based builds that are much faster and drop-in compatible with the existing Invenio asset pipeline.
+
+Each tool is opt-in independently. See the [upgrade guide](./upgrade-v14.0.md#modern-toolchain-uv-pnpm-rspack) for how to enable them.
+
 ### Miscellaneous additions
 
 Here is a quick summary of the other improvements in this release:
