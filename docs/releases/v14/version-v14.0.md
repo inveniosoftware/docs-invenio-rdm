@@ -194,6 +194,16 @@ The integration now also supports selecting a target community when enabling a r
 The new module is an optional dependency and must be installed and configured.
 See [the documentation](../../operate/customize/code_archival.md) for more details.
 
+### Modern toolchain
+
+The modern build toolchain introduced as experimental in v13 is now considered stable and ready for adoption:
+
+- **[uv](https://github.com/astral-sh/uv)** in place of `pipenv` for Python dependency management.
+- **[pnpm](https://pnpm.io/)** in place of `npm` for JavaScript dependency management, with faster installs and a disk-efficient content-addressable store.
+- **[Rspack](https://www.rspack.dev/)** in place of `webpack` for asset bundling, with Rust-based builds that are much faster and drop-in compatible with the existing Invenio asset pipeline.
+
+Each tool is opt-in independently. See the [upgrade guide](./upgrade-v14.0.md) for how to enable each of them.
+
 ### Miscellaneous additions
 
 Here is a quick summary of the other improvements in this release:

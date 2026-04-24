@@ -20,8 +20,7 @@ The throughline of this article is a sequential series of steps to execute. We h
 
 Although not strictly necessary for this upgrade, we highly encourage you to switch to [uv](https://docs.astral.sh/uv/) from [pipenv](https://pipenv.pypa.io/) for your Python package and project manager, for improvements in speed, ergonomics, and [security](https://docs.astral.sh/uv/concepts/resolution/#dependency-cooldowns). Future releases will only document steps using `uv` commands and may remove support for `pipenv`.
 
-TODO: Insert link to uv upgrade documentation from https://github.com/inveniosoftware/docs-invenio-rdm/pull/843
-
+See the dedicated [Pipenv-to-uv migration guide](../uv-upgrade.md), which includes a helper script that converts your `Pipfile` to `pyproject.toml`, updates the `site/` package, and adjusts `.invenio` (`python_package_manager = uv`).
 
 ## Switch to supported Python version — required if not already done
 
@@ -89,7 +88,25 @@ javascript_package_manager = pnpm
 
 You could remove the line altogether since pnpm is the new default if that line is not present.
 
-That's it, faster javascript package resolutions are yours now!
+Generate the lockfile with `invenio-cli assets lock` and commit the resulting `pnpm-lock.yaml` and `package.json` at the project root. Re-run `assets lock` whenever your JavaScript dependencies change.
+
+That's it, faster JavaScript package resolutions are yours now!
+
+!!! info "Building production Docker images with pnpm"
+
+    - Ensure the image has Node.js ≥18.12 and `pnpm` installed (the `inveniosoftware/almalinux:1` base image ships Node 16, so switch its `nodejs` module stream to `22` and install `pnpm` via `npm install -g pnpm@<version>`).
+    - For best layer-cache reuse, run `pnpm install --frozen-lockfile --shamefully-hoist` in its own layer, fed only by `package.json` + `pnpm-lock.yaml`, placed above any layer that copies frequently-changing source.
+
+## Switch from webpack to Rspack — optional but recommended
+
+Switch from `webpack` to [Rspack](https://www.rspack.dev/) for asset bundling. Its Rust-based builds are much faster and drop-in compatible with the existing Invenio asset pipeline. In your `invenio.cfg`:
+
+```python
+WEBPACKEXT_PROJECT = "invenio_assets.webpack:rspack_project"
+WEBPACKEXT_NPM_PKG_CLS = "pynpm:PNPMPackage"  # only when also using pnpm
+```
+
+The second flag tells `flask-webpackext` which `pynpm` class to use when invoking the package manager, so set it whenever you also enable pnpm.
 
 ## Upgrade to InvenioRDM v14 proper — required
 
@@ -582,6 +599,5 @@ This is only necessary if your instance was actively using `invenio-github` (wit
 you want to keep the existing data.
 
 See also the [documentation on how to configure the new module](../../operate/customize/code_archival.md).
-
 
 That's it, you have upgraded to InvenioRDM v14!
