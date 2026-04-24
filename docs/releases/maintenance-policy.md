@@ -23,7 +23,7 @@ Following is an overview of future end of life (EOL) dates for recent releases:
 | Release | Date       | Maintained | Until                         |
 | ------- | ---------- | ---------- | ----------------------------- |
 | v13     | 2025-07-23 | ✅         | next major release + 6 months |
-| v12     | 2024-08-01 | ✅         | 2026-01-24                    |
+| v12     | 2024-08-01 | ❌         | 2026-01-24                    |
 | v11 STS | 2023-01-26 | ❌         | 2024-08-01                    |
 | v10 STS | 2022-10-10 | ❌         | 2023-01-26                    |
 | v9 LTS  | 2022-05-24 | ❌         | 2025-02-01                    |
