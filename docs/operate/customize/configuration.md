@@ -76,7 +76,7 @@ Invenio is commonly used with both a load balancer and a web server in front of 
 PROXYFIX_CONFIG={'x_for': 1, 'x_proto': 1}
 ```
 
-You can find out more about the configuration options in [invenio-base](https://github.com/inveniosoftware/invenio-base/blob/f868e5e91cef7a6d4c7edfdb76669443484da331/invenio_base/wsgi.py#L62)
+You can find out more about the configuration options in [invenio-base](https://github.com/inveniosoftware/invenio-base/blob/f868e5e91cef7a6d4c7edfdb76669443484da331/invenio_base/wsgi.py)
 
 ### Secret keys
 
