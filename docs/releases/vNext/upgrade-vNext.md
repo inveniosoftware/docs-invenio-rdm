@@ -475,6 +475,16 @@ If you've customized any of these vocabularies for your instance, you'll need to
 
 ### Required changes
 
+When running `invenio-cli run` with `--host`/`--port` passed on the command line or host/port defined in `.invenio.private`, it used to be that those values would override `SITE_UI_URL` and `SITE_API_URL`. This is no longer the case in order to allow for listening on a host/port (defined by passed host and port) different than the host/port used to generate the URLs. This is a common situation when listening on 0.0.0.0 and using the exact IP or fully qualified domain name for URL generation. As such you need to provide the appropriate `SITE_UI_URL` and `SITE_API_URL` values for your environment which typically means:
+
+```diff
+-SITE_UI_URL = "https://127.0.0.1"
++SITE_UI_URL = "https://127.0.0.1:5000"
+
+-SITE_API_URL = "https://127.0.0.1/api"
++SITE_API_URL = "https://127.0.0.1:5000/api"
+```
+
 #### Overridable IDs in the deposit form
 
 To improve consistency in naming conventions and structure, some IDs of Overridables in the deposit form have been modified. If you are overriding any of these components, you will need to change the ID in your mapping file to reflect these modifications.
