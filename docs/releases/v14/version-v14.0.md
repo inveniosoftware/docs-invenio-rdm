@@ -82,6 +82,16 @@ Jobs can now send email notifications to configured recipients when runs complet
 
 See [Job Notifications](../../use/administration.md#job-notifications) for usage details and [Email Notification Templates](../../operate/customize/jobs.md#email-notification-templates) for customization options.
 
+### Membership requests
+
+Users can now request to become members of communities. This feature is opt-in per community and feature-gated at the instance level.
+
+![Request membership](../../use/imgs/communities/community-request-membership.png)
+
+It should lessen the administrative burden of inviting new users and further let them self-organize around their interests.
+
+Enabling the feature is just a matter of turning on a [configuration variable](../../reference/settings.md#membership-requests). See these links for [how to enable it on a per community basis](../../use/communities.md#membership-policy) and what the [usage flow](../../use/communities.md#members) is like.
+
 ### Miscellaneous additions
 
 Here is a quick summary of the other improvements in this release:
