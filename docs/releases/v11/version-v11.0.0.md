@@ -78,7 +78,7 @@ This change only affects new accounts, already existing accounts will keep their
 
 ### Download all files
 
-You can now enable downloading of a single archive containing all of a record's uploaded files at once. Read more [here](../../operate/customize/configuration.md#download-all-files-button).
+You can now enable downloading of a single archive containing all of a record's uploaded files at once. Read more [here](../../reference/settings.md#download-all-files-button).
 
 ### Deployment
 

@@ -289,6 +289,7 @@ nav:
           - Suggest: "reference/rest_api_suggest.md"
           - Users: "reference/rest_api_users.md"
           - Vocabularies: "reference/rest_api_vocabularies.md"
+      - Configuration settings: "reference/settings.md"
       - Virtual environments: "reference/virtualenvs.md"
 
 # Customization

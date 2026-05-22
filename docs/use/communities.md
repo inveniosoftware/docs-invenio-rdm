@@ -63,6 +63,13 @@ This setting determines who can see the list of members within your community.
 - **Public**: Members who have chosen to set their individual profile visibility to "public" will be visible to anyone. Members with "hidden" visibility will only be visible to other members of the community.
 - **Members-only**: Only other members of your community can view the list of members. No member information will be publicly displayed.
 
+#### Membership Policy
+
+This setting determines if authenticated users can request to join your community. It will only be available if your instance [enabled the feature](../reference/settings.md#membership-requests).
+
+- **Open**: Any authenticated user can request to join your community. This is only possible if your community has a **Public** visibility.
+- **Closed**: No one can request to join your community. Members can only be added by invitation. This is the default for newly created communities.
+
 ![Community settings Privileges](imgs/communities/community-settings-privileges.jpg)
 
 ### Submission Policy
@@ -137,6 +144,15 @@ You can invite new members to collaborate in your community. The search autocomp
 This operation will create an invitation request and the user will receive an e-mail [notification](notifications.md). Once approved, the user will become a member. Be aware that **groups will be immediately added**, without request or notification.
 
 ![Community invite](imgs/communities/community-invite.jpg)
+
+If your community's [membership policy](#membership-policy) is **Open**, users may request to join your community.
+
+![Request membership button](imgs/communities/community-request-membership.png)
+
+These requests will notify the owners and managers of the community. If you have one of those roles, you can then assess (accept/decline) the requests in the dedicated "Membership requests" section that lists them or on the request page itself like any other request. The requester may cancel the request on their end too.
+
+![Assess membership requests](imgs/communities/community-list-membership-requests.png)
+
 
 ## Requests
 
