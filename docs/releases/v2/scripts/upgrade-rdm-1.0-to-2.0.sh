@@ -1,11 +1,7 @@
 #!/usr/bin/env bash
-# -*- coding: utf-8 -*-
-#
-# Copyright (C) 2021 CERN.
-# Copyright (C) 2021 TU Wien.
-#
-# Invenio App RDM is free software; you can redistribute it and/or modify it
-# under the terms of the MIT License; see LICENSE file for more details.
+# SPDX-FileCopyrightText: 2021 CERN.
+# SPDX-FileCopyrightText: 2021 TU Wien.
+# SPDX-License-Identifier: MIT
 #
 # This script is intended to automate the process for upgrading an
 # Invenio-RDM v1.0 instance to v2.0.
