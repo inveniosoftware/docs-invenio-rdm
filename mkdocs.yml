@@ -141,6 +141,7 @@ nav:
               - Customize search index templates: operate/customize/search_templates.md
           - Sitemaps: "operate/customize/sitemaps.md"
           - Static pages: "operate/customize/static_pages.md"
+          - Subcommunities: "operate/customize/subcommunities.md"
       - Add custom code:
           - Custom Python and JS code: operate/code/custom_code.md
           - Debugging: "operate/code/debugging.md"

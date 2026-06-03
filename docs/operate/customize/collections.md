@@ -263,7 +263,7 @@ Once created, individual collections are accessible through dedicated pages that
 
 ### Community "Browse" page
 
-Communities with configured collections, feature a browse page that provides an overview of all available Collection Trees and their contained Collections hierarchy, along with the total number of records contained within each collection level. This serves as the main entry point for users to discover and navigate collections within a community.
+Communities with configured collections, feature a browse page that provides an overview of all available Collection Trees and their contained Collections hierarchy, along with the total number of records contained within each collection level. This serves as the main entry point for users to discover and navigate collections within a community. The same Browse page also lists the community's [subcommunities](subcommunities.md).
 
 ![Community browse page showing multiple collection tree hierarchies](imgs/collection-browse.png)
 /// caption
