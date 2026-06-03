@@ -126,6 +126,28 @@ Community owners can manage collections through the community settings interface
 
 For more details on collections, including configuration options and programmatic management, see the [Collections documentation](../operate/customize/collections.md).
 
+## Subcommunities
+
+_Introduced in InvenioRDM v13_
+
+A community can be linked as a **subcommunity** of another community, so that a parent community groups related communities under it. A university community, for example, can have one subcommunity per department.
+
+You can ask to have your community added as a subcommunity of a parent, as long as the parent has been set up to accept subcommunities. From the parent community, open its **Create subcommunity** page and either pick one of your existing communities or create a new one.
+
+![Subcommunity request form with a community selected](imgs/communities/subcommunity-create-request.png)
+
+Submitting the form creates a request to the parent community. If you own both the community and the parent, it is accepted right away. Otherwise the parent's owners or managers review it in their **Requests** tab, where they can discuss it with you before accepting or declining, the same way they handle [inclusion requests](#requests).
+
+![Pending subcommunity requests in a parent community's Requests tab, with accept and decline controls](imgs/communities/subcommunity-request-review.png)
+
+Once accepted, the subcommunity appears on the parent community's **Browse** page.
+
+![Subcommunities listed on a community's Browse page](imgs/communities/subcommunities-browse.png)
+
+Once two communities are linked, records added to the subcommunity are automatically added to the parent community, so they show up in the parent's records as well.
+
+Enabling a community to accept subcommunities, customizing what happens when a request is accepted, and unlinking a subcommunity are administrator tasks, and are covered in the [Subcommunities documentation](../operate/customize/subcommunities.md).
+
 ## Members
 
 The **Members** tab in your community's navigation allows you to view and manage all individuals and groups associated with your community. You can see their roles, visibility settings, and when they joined.
