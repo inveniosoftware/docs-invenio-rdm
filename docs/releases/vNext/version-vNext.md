@@ -39,9 +39,9 @@ RDM_IMMEDIATE_FILE_MODIFICATION_ENABLED = False
 
 #### User file modification
 
-Additionally in a similar way to the new record deletion feature, you can also allow users to modify the files of published records in line with your defined policies. By adding the relevant policy, the files can be unlocked by the owner of the record within 30 days and the edits published within 45 days (giving them at least 15 days to upload and publish their changes). See the [relevant documentation](../../operate/customize/file_modification.md) to see how to enable this behaviour.
+In a similar way to the new record deletion feature, you can also allow users to modify the files of published records in line with your defined policies. By adding the relevant policy, the files can be unlocked by the owner of the record within 30 days and the edits published within 45 days (giving them at least 15 days to upload and publish their changes). See the [relevant documentation](../../operate/customize/file_modification.md) to see how to enable this behaviour.
 
-#### New Web Archive previewer
+### Web archive previewer
 
 https://github.com/inveniosoftware/invenio-previewer/pull/224
 
