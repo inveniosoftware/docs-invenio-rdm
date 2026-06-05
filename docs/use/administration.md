@@ -343,7 +343,7 @@ There are two ways to run a job:
 2. **Schedule and Run (Automatic):** Set up a recurring schedule and let the job run automatically based on that.
 
 <figure>
-  <img src="../imgs/administration/jobs-actions.png" alt="Jobs Actions" width="600" class="screenshot" />
+  <img src="./imgs/administration/jobs-actions.png" alt="Jobs Actions" width="600" class="screenshot" />
 </figure>
 
 After each run, check the logs and output to confirm that the job executed successfully.
