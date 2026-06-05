@@ -59,6 +59,16 @@ This feature is also [highly customizable](../../operate/customize/record_deleti
 
 You can also allow users to modify the files of published records in line with your defined policies. By adding the relevant policy, the files can be unlocked by the owner of the record within 30 days (default) of initial publication and the edits published within 45 days (default), thus giving them at least 15 days to upload and publish their changes. See the [relevant documentation](../../operate/customize/file_modification.md) to see how to enable this behavior.
 
+#### Quota increase
+
+You can now specify a default amount of extra quota which users can spread across their records, allowing them to selectively use a budget of quota for extra large records. There is a new section added to the deposit form which provides an intuitive interface to manage the extra quota:
+
+![Manage storage area of the deposit form showing increasing quota by 110 GB](imgs/manage-storage.jpg)
+
+Additionally users can view the extra quota which they have used across their records in the new Storage page in their settings.
+
+![Storage settings page showing the 110 GB quota assigned to our record](imgs/storage-settings.jpg)
+
 ### File modification
 
 Admins can now edit the files of all versions by default. To do so, simply edit the record and then unlock the files by completing the "Edit published files" modal. The files are then unlocked for you (or anyone with manage permissions) to add, remove or exchange files. Finally the draft can be published by an admin.
