@@ -1,7 +1,7 @@
 /*
  SPDX-FileCopyrightText: 2018-2024 CERN.
  SPDX-FileCopyrightText: 2018-2024 Northwestern University.
- SPDX-FileCopyrightText: 2022-2024 KTH Royal Institute of Technology.
+ SPDX-FileCopyrightText: 2022-2026 KTH Royal Institute of Technology.
  SPDX-License-Identifier: MIT
 */
 /* Color variables
@@ -17,9 +17,18 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/templates/assets/st
 }
 
 [data-md-color-scheme='default'] {
+    --md-default-fg-color: #000000de;
+    --md-default-fg-color--light: #0000008a;
+    --md-default-fg-color--lighter: #00000052;
+    --md-default-fg-color--lightest: #00000012;
     --md-primary-fg-color: var(--color-gray);
     --md-primary-fg-color--light: var(--color-invenio);
     --md-primary-fg-color--dark: var(--color-dark-blue);
+    --md-footer-fg-color: var(--color-white);
+    --md-footer-fg-color--light: rgba(255, 255, 255, 0.85);
+    --md-footer-fg-color--lighter: rgba(255, 255, 255, 0.7);
+    --md-footer-bg-color: var(--color-invenio);
+    --md-footer-bg-color--dark: var(--color-invenio);
     --gradient-header: linear-gradient(
         90deg,
         var(--color-invenio),
@@ -86,6 +95,47 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/templates/assets/st
     body[data-md-color-scheme] .md-main {
         background-color: var(--color-white);
     }
+}
+
+[data-md-color-scheme='default'] .md-footer a {
+    text-decoration: none;
+}
+
+[data-md-color-scheme='default'] .md-footer,
+[data-md-color-scheme='default'] .md-footer-meta,
+[data-md-color-scheme='default'] .md-footer a,
+[data-md-color-scheme='default'] .md-footer .md-social__link {
+    color: var(--color-white) !important;
+}
+
+[data-md-color-scheme='default'] .md-copyright {
+    color: var(--md-footer-fg-color--lighter) !important;
+}
+
+[data-md-color-scheme='default'] .md-copyright__highlight {
+    color: var(--md-footer-fg-color--light) !important;
+}
+
+[data-md-color-scheme='default'] .md-footer-meta.md-typeset a:not(:focus, :hover) {
+    color: var(--md-footer-fg-color--light) !important;
+}
+
+[data-md-color-scheme='default'] .md-tabs__item--active {
+    border-bottom-color: var(--color-white);
+}
+
+[data-md-color-scheme='default'] .md-search__button {
+    background-color: rgba(255, 255, 255, 0.16);
+    color: var(--color-white);
+}
+
+[data-md-color-scheme='default'] .md-search__button:before {
+    background-color: currentcolor;
+}
+
+[data-md-color-scheme='default'] .md-search__button:after {
+    background: rgba(255, 255, 255, 0.2);
+    color: currentcolor;
 }
 
 /* Dark mode */
@@ -183,6 +233,123 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/templates/assets/st
     word-break: normal;
 }
 
+.md-typeset {
+    font-size: 0.8rem;
+    letter-spacing: normal;
+    line-height: 1.6;
+}
+
+.md-typeset h1 {
+    color: var(--md-default-fg-color--light);
+    font-size: 2em;
+    line-height: 1.3;
+}
+
+.md-typeset.header h1,
+.md-typeset.rdm-hero h1 {
+    color: var(--color-white);
+}
+
+.md-typeset h1,
+.md-typeset h2 {
+    font-weight: 300;
+    letter-spacing: -0.01em;
+}
+
+.md-typeset h2 {
+    font-size: 1.5625em;
+}
+
+.md-typeset h3 {
+    font-weight: 400;
+    letter-spacing: -0.01em;
+}
+
+.md-typeset a {
+    text-decoration: none;
+}
+
+.md-content__inner {
+    padding-top: 0.6rem;
+}
+
+@media screen and (min-width: 76.25em) {
+    .md-sidebar {
+        padding: 1.2rem 0;
+    }
+
+    .md-nav__list {
+        gap: 0;
+    }
+
+    [dir='ltr'] .md-nav__list .md-nav__list {
+        margin-left: 0;
+    }
+
+    [dir='rtl'] .md-nav__list .md-nav__list {
+        margin-right: 0;
+    }
+
+    .md-nav__link {
+        background: transparent;
+        border-radius: 0;
+        gap: 0.4rem;
+        margin: 0.625em 0 0;
+        padding: 0;
+    }
+
+    .md-nav__link:hover,
+    .md-nav--primary .md-nav__link:hover:not(.md-nav__link--active) {
+        background: transparent;
+        color: var(--md-accent-fg-color);
+    }
+
+    .md-nav__link svg {
+        opacity: 1;
+    }
+
+    .md-nav__link .md-ellipsis {
+        flex-grow: initial;
+    }
+
+    .md-nav--primary {
+        margin: 0;
+    }
+
+    .md-nav--secondary .md-nav__link {
+        margin-right: 0.4rem;
+        padding: 0.2rem 0.6rem;
+    }
+
+    .md-nav__item .md-nav__link--active {
+        background: transparent;
+        color: var(--md-typeset-a-color);
+        font-weight: inherit;
+    }
+
+    .md-nav__item--section {
+        margin: 1.25em 0;
+    }
+
+    .md-nav__item--section > .md-nav__link,
+    .md-nav__item--section > .md-nav__link--active,
+    .md-nav__item--section > .md-nav__link > .md-nav__link--active {
+        font-weight: 700;
+    }
+
+    .md-nav__item--section > .md-nav__link[for] {
+        color: var(--md-default-fg-color--light);
+    }
+
+    .md-nav__item--section:first-child {
+        margin-top: 1.25em;
+    }
+
+    .md-nav--lifted > .md-nav__list > .md-nav__item--active > .md-nav {
+        margin-top: 0;
+    }
+}
+
 .md-typeset .md-button.md-button--primary {
     background-color: var(--color-white);
     border-color: var(--color-white);
@@ -202,6 +369,16 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/templates/assets/st
 .rdm-toc {
     display: flex;
     justify-content: center;
+}
+
+.md-typeset .rdm-toc a {
+    box-shadow: none;
+    text-decoration: none !important;
+}
+
+.md-typeset .rdm-toc a:hover,
+.md-typeset .rdm-toc a:focus {
+    box-shadow: none;
 }
 
 .rdm-toc-item.level1 {
