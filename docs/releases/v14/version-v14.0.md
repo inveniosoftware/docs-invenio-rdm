@@ -27,7 +27,11 @@ role-aware views and groups CRUD support.
     migrate all existing logic and related references to role ids after
     upgrading to v14, or access behavior may break.
 
-### Record deletion
+### Empowering users with self-service
+
+This release includes three new features which allow users to handle tasks which previously required an administrator to accomplish: deleting their records, modifying files of their records and increasing the storage quota for their drafts. All three of these features are opt in, and can be customized to suit your instance's needs.
+
+#### Record deletion
 
 You can now allow users to delete, or request deletion of, their own records in accordance with any required criteria you may have. When enabled, the default behavior is that records can be deleted by their owners within 30 days of publication and record owners can request deletion outside this period. Deletion requests are visible within the admin panel and the user's request dashboard.
 
@@ -37,6 +41,10 @@ Modal to immediately delete a record
 ///
 
 This feature is also [highly customizable](../../operate/customize/record_deletion.md)! You can introduce deletion policies based on the resource type, community role, file type or any other criteria you require. Additionally, you can prevent extraneous record deletion by adding a deletion checklist. This allows you to suggest how the user can fix the problem in the correct way instead of deleting the record.
+
+#### User file modification
+
+You can also allow users to modify the files of published records in line with your defined policies. By adding the relevant policy, the files can be unlocked by the owner of the record within 30 days (default) of initial publication and the edits published within 45 days (default), thus giving them at least 15 days to upload and publish their changes. See the [relevant documentation](../../operate/customize/file_modification.md) to see how to enable this behavior.
 
 ### File modification
 
@@ -49,10 +57,6 @@ If you would like to disable file modification for all users including admins, a
 ```
 RDM_IMMEDIATE_FILE_MODIFICATION_ENABLED = False
 ```
-
-#### User file modification
-
-Additionally in a similar way to the new record deletion feature, you can also allow users to modify the files of published records in line with your defined policies. By adding the relevant policy, the files can be unlocked by the owner of the record within 30 days (default) of initial publication and the edits published within 45 days (default) thus giving them at least 15 days to upload and publish their changes. See the [relevant documentation](../../operate/customize/file_modification.md) to see how to enable this behavior.
 
 ### Request commenting enhancements
 
