@@ -10,6 +10,12 @@ Install [uv](https://docs.astral.sh/uv/getting-started/installation/), then run:
 
 ```console
 $ uv sync
-$ uv run mkdocs serve
+$ uv run zensical serve
 $ firefox http://127.0.0.1:8000
+```
+
+To build the static site locally:
+
+```console
+$ uv run zensical build --clean
 ```
