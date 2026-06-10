@@ -39,7 +39,7 @@ You can now specify a default amount of extra quota which users can spread acros
 
 ![Manage storage area of the deposit form showing increasing quota by 110 GB](imgs/manage-storage.jpg)
 
-Additionally users can view the extra quota which they have used across their records in the new Storage page in their settings.
+Additionally users can view the extra quota which they have used across their records in the new storage page in their settings.
 
 ![Storage settings page showing the 110 GB quota assigned to our record](imgs/storage-settings.jpg)
 

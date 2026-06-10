@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg width="285.83mm" height="146.45mm" version="1.1" viewBox="0 0 1080.3 553.53" xmlns="http://www.w3.org/2000/svg">
+ <g transform="translate(-11.185 -68.143)">
+  <g fill="#000000" font-family="Arial" font-size="37.333px" letter-spacing="-1px" stroke-width=".017773" text-anchor="middle">
+   <text x="458.24564" y="113.69641" text-align="center" style="line-height:1;paint-order:markers stroke fill;text-decoration-color:#000000;white-space:pre" xml:space="preserve"><tspan x="457.74564" y="113.69641">Default Record Quota</tspan></text>
+   <text x="421.36301" y="166.56822" text-align="center" style="line-height:1;paint-order:markers stroke fill;text-decoration-color:#000000;white-space:pre" xml:space="preserve"><tspan x="420.86301" y="166.56822">Additional Quota</tspan></text>
+   <text x="401.61737" y="238.26208" text-align="center" style="line-height:1;paint-order:markers stroke fill;text-decoration-color:#000000;white-space:pre" xml:space="preserve"><tspan x="401.11737" y="238.26208">User 1</tspan></text>
+   <text x="770.97699" y="238.26208" text-align="center" style="line-height:1;paint-order:markers stroke fill;text-decoration-color:#000000;white-space:pre" xml:space="preserve"><tspan x="770.47699" y="238.26208">User 3</tspan></text>
+   <text x="967.65466" y="238.26208" text-align="center" style="line-height:1;paint-order:markers stroke fill;text-decoration-color:#000000;white-space:pre" xml:space="preserve"><tspan x="967.15466" y="238.26208">User 4</tspan></text>
+   <text x="587.35138" y="238.26208" text-align="center" style="line-height:1;paint-order:markers stroke fill;text-decoration-color:#000000;white-space:pre" xml:space="preserve"><tspan x="586.85138" y="238.26208">User 2</tspan></text>
+   <text x="229.35219" y="435.22107" text-align="center" style="line-height:1;paint-order:markers stroke fill;text-decoration-color:#000000;white-space:pre" xml:space="preserve"><tspan x="228.85219" y="435.22107">Records</tspan></text>
+  </g>
+  <g transform="translate(260.94 44.632)" stroke-width=".0097236">
+   <rect x="397.17" y="46.492" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+   <rect x="425.52" y="46.493" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+  </g>
+  <g transform="translate(-18.897 211.81)" stroke-width=".0097236">
+   <rect x="397.17" y="46.492" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+   <rect x="425.52" y="46.493" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+  </g>
+  <g fill="#eee" stroke-width=".087233">
+   <rect x="312.13" y="346.43" width="760.47" height="37.795" style="paint-order:markers stroke fill"/>
+   <rect x="312.13" y="422.02" width="760.47" height="37.795" style="paint-order:markers stroke fill"/>
+   <rect x="312.13" y="497.61" width="760.47" height="37.795" style="paint-order:markers stroke fill"/>
+  </g>
+  <g transform="translate(4.4104 18.897)">
+   <rect x="317.17" y="299.34" width="18.898" height="18.898" stroke-width=".0097236" style="paint-order:markers stroke fill"/>
+   <rect x="317.17" y="374.78" width="18.898" height="18.898" stroke-width=".0097236" style="paint-order:markers stroke fill"/>
+   <rect x="317.17" y="336.98" width="9.4488" height="18.898" stroke-width=".0068757" style="paint-order:markers stroke fill"/>
+   <g stroke-width=".0097236">
+    <rect x="317.17" y="412.57" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+    <rect x="317.17" y="450.37" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+    <rect x="345.52" y="450.37" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+    <rect x="317.17" y="488.16" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+   </g>
+   <rect x="345.85" y="488.16" width="9.4488" height="18.898" stroke-width=".0068757" style="paint-order:markers stroke fill"/>
+  </g>
+  <g transform="translate(167.08 211.81)" stroke-width=".0097236">
+   <rect x="397.17" y="46.492" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+   <rect x="425.52" y="46.493" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+  </g>
+  <g transform="translate(-39.306 18.897)" stroke-width=".0097236">
+   <rect x="1012.7" y="239.4" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+   <rect x="1041" y="239.4" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+   <rect x="956" y="239.4" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+   <rect x="984.35" y="239.4" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+  </g>
+  <g transform="translate(-31.71 18.897)" stroke-width=".0097236">
+   <rect x="750.92" y="239.4" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+   <rect x="779.27" y="239.4" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+   <rect x="807.62" y="239.4" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+   <rect x="835.96" y="239.4" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+  </g>
+  <g transform="translate(260.94 23.711)" fill="#1a87bc" stroke-width=".0097236">
+   <rect x="397.17" y="120.29" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+   <rect x="453.87" y="120.29" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+   <rect x="425.52" y="120.29" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+   <rect x="510.56" y="120.29" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+   <rect x="482.21" y="120.29" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+   <rect x="538.9" y="120.29" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+  </g>
+  <g stroke-linecap="round">
+   <path d="m1024.8 297.92h-938.46" fill="none" stroke="#d5d5d5" stroke-width="3.5434" style="paint-order:markers stroke fill"/>
+   <path d="m862.84 204.05v396.91" fill="none" stroke="#d5d5d5" stroke-width="3.6376" style="paint-order:markers stroke fill"/>
+   <text x="239.21085" y="274.04767" fill="#000000" font-family="Arial" font-size="24px" letter-spacing="-1px" stroke-width="3.7795" text-align="center" text-anchor="middle" style="line-height:1;paint-order:markers stroke fill;text-decoration-color:#000000;white-space:pre" xml:space="preserve"><tspan x="238.71085" y="274.04767">User quota</tspan></text>
+   <text x="166.21513" y="590.01904" fill="#000000" font-family="Arial" font-size="24px" letter-spacing="-1px" stroke-width="3.7795" text-align="center" text-anchor="middle" style="line-height:1;paint-order:markers stroke fill;text-decoration-color:#000000;white-space:pre" xml:space="preserve"><tspan x="165.71515" y="590.01904">Remaining additional quota</tspan></text>
+  </g>
+  <g transform="translate(0 23.2)">
+   <g transform="translate(-75.59 430.81)" fill="#1a87bc" stroke-width=".0097236">
+    <rect x="397.17" y="120.29" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+    <rect x="453.87" y="120.29" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+    <rect x="425.52" y="120.29" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+    <rect x="510.56" y="120.29" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+    <rect x="482.21" y="120.29" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+    <rect x="538.9" y="120.29" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+   </g>
+  </g>
+  <g transform="translate(-29.401 22.569)" fill="#1a87bc" stroke-width=".0097236">
+   <rect x="579.48" y="551.73" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+   <rect x="636.17" y="551.73" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+   <rect x="607.83" y="551.73" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+  </g>
+  <g transform="translate(-41.11 21.384)">
+   <g transform="translate(334.81 432.62)" fill="#1a87bc" stroke-width=".0097236">
+    <rect x="397.17" y="120.29" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+    <rect x="453.87" y="120.29" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+    <rect x="425.52" y="120.29" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+    <rect x="510.56" y="120.29" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+    <rect x="482.21" y="120.29" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+    <rect x="538.9" y="120.29" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+   </g>
+  </g>
+  <g transform="translate(0 18.897)">
+   <g fill="#1a87bc">
+    <rect x="565.23" y="336.98" width="18.898" height="18.898" stroke-width=".0097236" style="paint-order:markers stroke fill"/>
+    <rect x="565.23" y="374.78" width="9.4488" height="18.898" stroke-width=".0068757" style="paint-order:markers stroke fill"/>
+    <rect x="565.23" y="450.37" width="9.4488" height="18.898" stroke-width=".0068757" style="paint-order:markers stroke fill"/>
+    <rect x="593.57" y="336.98" width="18.898" height="18.898" stroke-width=".0097236" style="paint-order:markers stroke fill"/>
+   </g>
+   <g>
+    <g stroke-width=".0097236">
+     <rect x="508.54" y="297.55" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+     <rect x="508.54" y="374.78" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+     <rect x="508.54" y="412.57" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+     <rect x="508.54" y="450.37" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+     <rect x="536.88" y="450.37" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+     <rect x="508.54" y="336.98" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+     <rect x="536.88" y="336.98" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+     <rect x="536.88" y="374.78" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+     <rect x="508.54" y="488.16" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+    </g>
+    <rect x="536.88" y="488.16" width="9.4488" height="18.898" stroke-width=".0068757" style="paint-order:markers stroke fill"/>
+   </g>
+  </g>
+  <g transform="translate(55.717 18.897)">
+   <g fill="#1a87bc">
+    <rect x="960.19" y="450.37" width="9.4488" height="18.898" stroke-width=".0068757" style="paint-order:markers stroke fill"/>
+    <g stroke-width=".0097236">
+     <rect x="931.84" y="336.98" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+     <rect x="988.54" y="336.98" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+     <rect x="960.19" y="336.98" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+     <rect x="931.84" y="450.37" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+    </g>
+   </g>
+   <g>
+    <g stroke-width=".0097236">
+     <rect x="818.46" y="336.98" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+     <rect x="846.8" y="336.98" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+     <rect x="875.15" y="336.98" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+     <rect x="903.5" y="336.98" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+     <rect x="846.8" y="374.78" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+    </g>
+    <rect x="875.15" y="374.78" width="9.4488" height="18.898" stroke-width=".0068757" style="paint-order:markers stroke fill"/>
+    <rect x="846.8" y="488.16" width="9.4488" height="18.898" stroke-width=".0068757" style="paint-order:markers stroke fill"/>
+    <g stroke-width=".0097236">
+     <rect x="818.46" y="299.19" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+     <rect x="818.46" y="374.78" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+     <rect x="818.46" y="412.57" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+     <rect x="818.46" y="450.37" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+     <rect x="846.8" y="450.37" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+     <rect x="818.46" y="488.16" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+     <rect x="875.15" y="450.37" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+     <rect x="903.5" y="450.37" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+    </g>
+   </g>
+  </g>
+  <g transform="translate(-34.904 18.897)">
+   <g stroke-width=".0097236">
+    <rect x="723.88" y="336.98" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+    <rect x="752.23" y="336.98" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+    <rect x="780.57" y="336.98" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+    <rect x="808.92" y="336.98" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+    <rect x="752.23" y="374.78" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+   </g>
+   <g stroke-width=".0068757">
+    <rect x="780.57" y="374.78" width="9.4488" height="18.898" style="paint-order:markers stroke fill"/>
+    <rect x="752.23" y="488.16" width="9.4488" height="18.898" style="paint-order:markers stroke fill"/>
+    <rect x="780.57" y="450.37" width="9.4488" height="18.898" style="paint-order:markers stroke fill"/>
+   </g>
+   <g stroke-width=".0097236">
+    <rect x="723.88" y="299.19" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+    <rect x="723.88" y="374.78" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+    <rect x="723.88" y="412.57" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+    <rect x="723.88" y="450.37" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+    <rect x="752.23" y="450.37" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+    <rect x="723.88" y="488.16" width="18.898" height="18.898" style="paint-order:markers stroke fill"/>
+   </g>
+  </g>
+  <g transform="translate(-11.562 24.303)" fill="#1a87bc">
+   <rect x="961.33" y="549.99" width="18.898" height="18.898" stroke-width=".0097236" style="paint-order:markers stroke fill"/>
+   <rect x="989.67" y="549.99" width="9.4488" height="18.898" stroke-width=".0068757" style="paint-order:markers stroke fill"/>
+  </g>
+  <path d="m679.53 204.05v396.91" fill="none" stroke="#d5d5d5" stroke-linecap="round" stroke-width="3.6376" style="paint-order:markers stroke fill"/>
+  <path d="m496.22 204.05v396.91" fill="none" stroke="#d5d5d5" stroke-linecap="round" stroke-width="3.6376" style="paint-order:markers stroke fill"/>
+ </g>
+</svg>
