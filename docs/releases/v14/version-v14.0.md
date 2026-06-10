@@ -61,11 +61,15 @@ You can also allow users to modify the files of published records in line with y
 
 #### Quota increase
 
-You can now specify a default amount of extra quota which users can spread across their records, allowing them to selectively use a budget of quota for extra large records. There is a new section added to the deposit form which provides an intuitive interface to manage the extra quota:
+You can now specify a default amount of extra quota which users can spread across their records, allowing them to selectively use a budget of quota for extra large records.
+
+![Diagram showing how a user's additional quota is shared as a budget across their records](imgs/quota.svg)
+
+There is a new section added to the deposit form which provides an intuitive interface to manage the extra quota:
 
 ![Manage storage area of the deposit form showing increasing quota by 110 GB](imgs/manage-storage.jpg)
 
-Additionally users can view the extra quota which they have used across their records in the new Storage page in their settings.
+Additionally users can view the extra quota which they have used across their records in the new storage page in their settings.
 
 ![Storage settings page showing the 110 GB quota assigned to our record](imgs/storage-settings.jpg)
 
