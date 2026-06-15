@@ -143,7 +143,7 @@ These are all carry-overs from the previous release:
 
 **Deposit form**
 
-- Validation error messages: The form validation error messages are not displaying correctly. Labels are system names, and sometimes [Object (Object)] is displayed for errors.
+- Validation error messages: The form validation error messages are not displaying correctly. Labels are system names, and sometimes `[Object (Object)]` is displayed for errors.
 
 - Missing files: If files are missing to be uploaded, the publish button is disabled, but there is no feedback to the end-user that files are missing.
 

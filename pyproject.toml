@@ -1,11 +1,11 @@
 [project]
 name = "docs-invenio-rdm"
-version = "0.1.0"
+version = "0.2.0"
 description = "InvenioRDM docs"
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.14"
 dependencies = [
-    "mkdocs>=1.6.1",
+    "zensical>=0.0.32",
     "mkdocs-glightbox>=0.5.2",
-    "mkdocs-material>=9.6.22",
 ]
+
