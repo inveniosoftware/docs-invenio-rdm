@@ -1014,11 +1014,9 @@ Example:
 }
 ```
 
-## Optional custom fields
-[Custom fields](../operate/customize/metadata/custom_fields/records/#declaring-custom-fields) are the recommended way to extend the internal data model to fit your specific needs.
-In addition to supporting your own custom extensions, InvenioRDM provides a set of ready-to-use add-on optional custom fields that can be enabled without advanced configuration.
+## Optional fields
 
-See the [related documentation](../operate/customize/metadata/optional_fields.md) on how to enable them.
+InvenioRDM provides a set of ready-to-use add-on optional fields that can be enabled without advanced configuration. Those fields are grouped is Journal, Imprint, Thesis, Meeting, and Codemeta bundles. See the [related documentation](../operate/customize/metadata/optional_fields.md) on how to enable them.
 
 ### Journal
 Describe the scholarly journal in which the article was published.
@@ -1075,6 +1073,10 @@ This group of fields contains metadata to describe a software record based on th
 | ``codeRepository``        | `URL`: Link to the repository where the related code is located (e.g. Github).               |
 | ``programmingLanguage``   | `Vocabulary`: Name of the programming language used to develop the software from the [vocabulary](https://github.com/inveniosoftware/invenio-rdm-records/blob/e64dd0b81757a391584e63d162d5e6caf6780637/invenio_rdm_records/fixtures/data/vocabularies/contrib/codemeta/programming_languages.yaml).     |
 | ``developmentStatus``     | `Vocabulary`: Description of the development status (e.g. "Active"). Uses a controlled vocabulary defined in [repostatus](http://www.repostatus.org/).          |
+
+## Custom Fields
+
+If the optional fields don't cover the metadata you need, it's possible to extend the internal data model to fit your specific needs by creating your own custom fields in your instance. See the [related documentation](../operate/customize/metadata/custom_fields/records.md) on how to do so.
 
 ## Files
 
