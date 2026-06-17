@@ -93,6 +93,7 @@ removed from the database in this case.
 Reviewers are optional participants in a request process. They provide expert opinions, feedback, or recommendations but cannot make the final decision to accept or decline the request. That responsibility lies solely with the receiver.
 
 Key characteristics of reviewers:
+
 - Can be individual users or groups
 - Multiple reviewers can be assigned to a single request
 - Do not have direct authority to accept or decline the request

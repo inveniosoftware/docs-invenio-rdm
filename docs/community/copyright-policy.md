@@ -22,13 +22,13 @@ GPL or AGPL.
 Copyright statements must be included in:
 
 - ``LICENSE`` file in the root of the repository.
-- Headers of all source code files.
+- Headers of all source code files following the [SPDX specification](https://spdx.github.io/spdx-spec/v2.3/file-tags/).
 
-Each copyright holder must have their own copyright statement::
+Each copyright holder must have their own copyright statement in the files they contributed to, e.g.:
 
 ```
-Copyright (C) 2015-2018 CERN
-Copyright (C) 2017 TIND
+# SPDX-FileCopyrightText: 2015-2018 CERN
+# SPDX-FileCopyrightText: 2017 TIND
 ```
 
 **Copyright holders**

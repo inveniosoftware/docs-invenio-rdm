@@ -99,6 +99,26 @@ The **Pages** section allows you to create and edit custom content pages for you
 
 ![Community settings Pages](imgs/communities/community-settings-pages.jpg)
 
+### Collections
+
+_Introduced in InvenioRDM v14_
+
+The **Collections** section allows you to organize your community's records into curated collections based on search filters. Collections help users browse and discover records through meaningful thematic groupings.
+
+Community owners can manage collections through the community settings interface:
+
+1. Navigate to your community's settings page
+2. Click on the **Collections** tab in the left sidebar
+3. Use the interface to:
+    - Create new sections (collection trees).
+    - Add collections within sections.
+    - Create nested child collections.
+    - Edit collection queries and metadata.
+    - Reorder collections via drag-and-drop.
+    - Delete collections and sections.
+
+For more details on collections, including configuration options and programmatic management, see the [Collections documentation](../operate/customize/collections.md).
+
 ## Members
 
 The **Members** tab in your community's navigation allows you to view and manage all individuals and groups associated with your community. You can see their roles, visibility settings, and when they joined.

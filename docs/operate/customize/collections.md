@@ -2,8 +2,7 @@ _Introduced in v13_
 
 Collections provide a powerful way to curate and organize records within your InvenioRDM instance. They define sets of records based on search filters and can be organized hierarchically to create meaningful groupings of content.
 
-!!! warning
-    This features currently lacks a user-friendly interface for easy configuration and require manual setup.
+_Updated in v14: Added user interface for collections management in community settings._
 
 ## Overview
 
@@ -19,34 +18,117 @@ Collections **cannot** be used to apply access restrictions or permission-based 
 
 ## Configuration
 
+### Display Settings
+
 To enable displaying the communities "Browse" menu entry in your InvenioRDM instance, add to your `invenio.cfg`:
 
 ```python
 COMMUNITIES_SHOW_BROWSE_MENU_ENTRY = True
 ```
 
-Additionally, for any communities that you want to setup collections, you need to configure them to allow subcommunities via the `children.allow` setting.
+### Collection Hierarchy Limits
 
-!!! bug "Requirement on enabled subcommunities"
-    Having a community with `children.allow: true` is a limitation of the current "Browse" menu entry implementation in InvenioRDM v13. This will be patched to allow communities that might only have collections (and not subcommunities enabled) to still display the "Browse" menu entry.
+You can configure limits for collection hierarchies to maintain good user experience and system performance:
+
+```python
+# Maximum depth for collection hierarchies (default: 1)
+# Depth 0 = root collections
+# Depth 1 = children of root
+# Depth 2 = grandchildren
+# Setting this to 1 allows 2 levels: root + children only
+COMMUNITIES_COLLECTIONS_MAX_DEPTH = 1
+
+# Maximum number of collection trees per community (default: 10)
+# Set to 0 for unlimited trees
+COMMUNITIES_COLLECTIONS_MAX_TREES = 10
+
+# Maximum number of collections per tree (default: 100)
+# This counts all collections in a tree, regardless of depth
+# Set to 0 for unlimited collections
+COMMUNITIES_COLLECTIONS_MAX_COLLECTIONS_PER_TREE = 100
+```
+
+### Access Control
+
+By default, collections can be managed by **community owners** in the settings tab of the community.
+
+#### Permission Customization
+
+You can customize who can manage collections by overriding the permission policy in your instance.
+
+Create or update your custom permission policy (e.g., `my_site/permissions.py`):
+
+```python
+from invenio_communities.permissions import CommunityPermissionPolicy
+from invenio_communities.generators import CommunityOwners
+from invenio_records_permissions.generators import SystemProcess
+
+class MyCommunitiesPermissionPolicy(CommunityPermissionPolicy):
+    """Custom communities permission policy."""
+
+    # Override collections management permissions
+    can_manage_collections = [
+        CommunityOwners(),
+        SystemProcess()
+    ]
+```
+
+Then configure your instance to use the custom policy in `invenio.cfg`:
+
+```python
+from my_site.permissions import MyCommunitiesPermissionPolicy
+
+COMMUNITIES_PERMISSION_POLICY = MyCommunitiesPermissionPolicy
+```
+
+#### Customizing Collection Management Permissions for Specific Communities
+
+You can use the `IfCommunitySlug` generator to apply a different collection management permission to specific communities across your instance based on a community's slug. For example, to block collections management for a community with slug `physics`:
+
+```python
+from invenio_communities.permissions import CommunityPermissionPolicy
+from invenio_communities.generators import (
+    CommunityOwners,
+    IfCommunitySlug,
+)
+from invenio_records_permissions.generators import Disable, SystemProcess
+
+class MyCommunitiesPermissionPolicy(CommunityPermissionPolicy):
+    """Custom communities permission policy."""
+
+    can_manage_collections = [
+        # Block collections for 'physics' community, allow for others
+        IfCommunitySlug(
+            slugs=['physics'],  # Community slugs to match
+            then_=[Disable()],  # Block everyone for 'physics'
+            else_=[CommunityOwners()],  # Allow for others
+        ),
+        SystemProcess(),  # System always has access
+    ]
+```
+
+Then configure your instance to use the custom policy in `invenio.cfg`:
+
+```python
+from my_site.permissions import MyCommunitiesPermissionPolicy
+
+COMMUNITIES_PERMISSION_POLICY = MyCommunitiesPermissionPolicy
+```
+
 
 ## Managing Collections
 
-Collections are organized within **Collection Trees** - hierarchical structures that allow you to create logical groupings and nested relationships. Collection trees serve as the root containers for your collections and can be:
+Collections are organized within **Collection Trees** (also called **Sections**) - hierarchical structures that allow you to create logical groupings and nested relationships. Collection trees serve as the root containers for your collections and can be:
 
 - **Community-specific** - Scoped to records of a particular community
 - **Global** - Scoped across records of your entire instance
 
 !!! info "Global collections"
-    Global collections display is not yet implemented in InvenioRDM v13.
+    Global collections display is not yet implemented in InvenioRDM.
 
-Before creating collections, you need:
+### Managing Collections Programmatically
 
-1. **Access to Python shell** - Collections are currently managed via `invenio shell`
-2. **A community with subcommunities enabled** - At present, collections are scoped to communities, so you need at least one community. Additionally, to display the "Browse" tab, that community must have `children.allow: true` set.
-
-!!! warning "Administration UI for Collections"
-    The administration UI for managing collections is not yet available in InvenioRDM v13. Collections are currently managed programmatically via the Python shell.
+You can also manage collections programmatically via the Python shell or custom scripts. This is useful for bulk operations or automated setup.
 
 ### Create a Collection Tree
 
