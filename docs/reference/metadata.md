@@ -1016,7 +1016,7 @@ Example:
 
 ## Optional fields
 
-InvenioRDM provides a set of ready-to-use add-on optional fields that can be enabled without advanced configuration. Those fields are grouped is Journal, Imprint, Thesis, Meeting, and Codemeta bundles. See the [related documentation](../operate/customize/metadata/optional_fields.md) on how to enable them.
+InvenioRDM provides a set of ready-to-use add-on optional fields that can be enabled without advanced configuration. Those fields are grouped in Journal, Imprint, Thesis, Meeting, and CodeMeta bundles. See the [related documentation](../operate/customize/metadata/optional_fields.md) on how to enable them.
 
 ### Journal
 Describe the scholarly journal in which the article was published.
@@ -1076,7 +1076,7 @@ This group of fields contains metadata to describe a software record based on th
 
 ## Custom Fields
 
-If the optional fields don't cover the metadata you need, it's possible to extend the internal data model to fit your specific needs by creating your own custom fields in your instance. See the [related documentation](../operate/customize/metadata/custom_fields/records.md) on how to do so.
+If the optional fields don't cover the metadata you need, it's possible to extend the internal data model by creating your own custom fields in your instance. See the [related documentation](../operate/customize/metadata/custom_fields/records.md) on how to do so.
 
 ## Files
 
