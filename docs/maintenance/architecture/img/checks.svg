@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg width="415.72mm" height="175.9mm" version="1.1" viewBox="0 0 415.72 175.9" xmlns="http://www.w3.org/2000/svg">
+ <defs>
+  <marker id="Triangle" overflow="visible" markerHeight="0.5" markerWidth="0.5" orient="auto-start-reverse" preserveAspectRatio="xMidYMid" viewBox="0 0 1 1">
+   <path transform="scale(.5)" d="m5.77 0-8.65 5v-10z" fill="context-stroke" fill-rule="evenodd" stroke="context-stroke" stroke-width="1pt"/>
+  </marker>
+  <marker id="Triangle-6" overflow="visible" markerHeight="0.5" markerWidth="0.5" orient="auto-start-reverse" preserveAspectRatio="xMidYMid" viewBox="0 0 1 1">
+   <path transform="scale(.5)" d="m5.77 0-8.65 5v-10z" fill="context-stroke" fill-rule="evenodd" stroke="context-stroke" stroke-width="1pt"/>
+  </marker>
+  <marker id="Triangle-0" overflow="visible" markerHeight="0.5" markerWidth="0.5" orient="auto-start-reverse" preserveAspectRatio="xMidYMid" viewBox="0 0 1 1">
+   <path transform="scale(.5)" d="m5.77 0-8.65 5v-10z" fill="context-stroke" fill-rule="evenodd" stroke="context-stroke" stroke-width="1pt"/>
+  </marker>
+  <marker id="Triangle-7" overflow="visible" markerHeight="0.5" markerWidth="0.5" orient="auto-start-reverse" preserveAspectRatio="xMidYMid" viewBox="0 0 1 1">
+   <path transform="scale(.5)" d="m5.77 0-8.65 5v-10z" fill="context-stroke" fill-rule="evenodd" stroke="context-stroke" stroke-width="1pt"/>
+  </marker>
+  <marker id="Triangle-7-1" overflow="visible" markerHeight="0.5" markerWidth="0.5" orient="auto-start-reverse" preserveAspectRatio="xMidYMid" viewBox="0 0 1 1">
+   <path transform="scale(.5)" d="m5.77 0-8.65 5v-10z" fill="context-stroke" fill-rule="evenodd" stroke="context-stroke" stroke-width="1pt"/>
+  </marker>
+  <marker id="Triangle-7-2" overflow="visible" markerHeight="0.5" markerWidth="0.5" orient="auto-start-reverse" preserveAspectRatio="xMidYMid" viewBox="0 0 1 1">
+   <path transform="scale(.5)" d="m5.77 0-8.65 5v-10z" fill="context-stroke" fill-rule="evenodd" stroke="context-stroke" stroke-width="1pt"/>
+  </marker>
+  <marker id="Triangle-7-4" overflow="visible" markerHeight="0.5" markerWidth="0.5" orient="auto-start-reverse" preserveAspectRatio="xMidYMid" viewBox="0 0 1 1">
+   <path transform="scale(.5)" d="m5.77 0-8.65 5v-10z" fill="context-stroke" fill-rule="evenodd" stroke="context-stroke" stroke-width="1pt"/>
+  </marker>
+  <marker id="Triangle-7-2-9" overflow="visible" markerHeight="0.5" markerWidth="0.5" orient="auto-start-reverse" preserveAspectRatio="xMidYMid" viewBox="0 0 1 1">
+   <path transform="scale(.5)" d="m5.77 0-8.65 5v-10z" fill="context-stroke" fill-rule="evenodd" stroke="context-stroke" stroke-width="1pt"/>
+  </marker>
+  <marker id="Triangle-7-4-1" overflow="visible" markerHeight="0.5" markerWidth="0.5" orient="auto-start-reverse" preserveAspectRatio="xMidYMid" viewBox="0 0 1 1">
+   <path transform="scale(.5)" d="m5.77 0-8.65 5v-10z" fill="context-stroke" fill-rule="evenodd" stroke="context-stroke" stroke-width="1pt"/>
+  </marker>
+  <marker id="Triangle-7-4-8" overflow="visible" markerHeight="0.5" markerWidth="0.5" orient="auto-start-reverse" preserveAspectRatio="xMidYMid" viewBox="0 0 1 1">
+   <path transform="scale(.5)" d="m5.77 0-8.65 5v-10z" fill="context-stroke" fill-rule="evenodd" stroke="context-stroke" stroke-width="1pt"/>
+  </marker>
+  <marker id="Triangle-7-4-8-4" overflow="visible" markerHeight="0.5" markerWidth="0.5" orient="auto-start-reverse" preserveAspectRatio="xMidYMid" viewBox="0 0 1 1">
+   <path transform="scale(.5)" d="m5.77 0-8.65 5v-10z" fill="context-stroke" fill-rule="evenodd" stroke="context-stroke" stroke-width="1pt"/>
+  </marker>
+  <marker id="Triangle-7-4-8-3" overflow="visible" markerHeight="0.5" markerWidth="0.5" orient="auto-start-reverse" preserveAspectRatio="xMidYMid" viewBox="0 0 1 1">
+   <path transform="scale(.5)" d="m5.77 0-8.65 5v-10z" fill="context-stroke" fill-rule="evenodd" stroke="context-stroke" stroke-width="1pt"/>
+  </marker>
+  <marker id="Triangle-7-2-0" overflow="visible" markerHeight="0.5" markerWidth="0.5" orient="auto-start-reverse" preserveAspectRatio="xMidYMid" viewBox="0 0 1 1">
+   <path transform="scale(.5)" d="m5.77 0-8.65 5v-10z" fill="context-stroke" fill-rule="evenodd" stroke="context-stroke" stroke-width="1pt"/>
+  </marker>
+  <marker id="Triangle-7-2-6" overflow="visible" markerHeight="0.5" markerWidth="0.5" orient="auto-start-reverse" preserveAspectRatio="xMidYMid" viewBox="0 0 1 1">
+   <path transform="scale(.5)" d="m5.77 0-8.65 5v-10z" fill="context-stroke" fill-rule="evenodd" stroke="context-stroke" stroke-width="1pt"/>
+  </marker>
+  <marker id="Triangle-7-2-06" overflow="visible" markerHeight="0.5" markerWidth="0.5" orient="auto-start-reverse" preserveAspectRatio="xMidYMid" viewBox="0 0 1 1">
+   <path transform="scale(.5)" d="m5.77 0-8.65 5v-10z" fill="context-stroke" fill-rule="evenodd" stroke="context-stroke" stroke-width="1pt"/>
+  </marker>
+  <marker id="Triangle-7-2-6-3" overflow="visible" markerHeight="0.5" markerWidth="0.5" orient="auto-start-reverse" preserveAspectRatio="xMidYMid" viewBox="0 0 1 1">
+   <path transform="scale(.5)" d="m5.77 0-8.65 5v-10z" fill="context-stroke" fill-rule="evenodd" stroke="context-stroke" stroke-width="1pt"/>
+  </marker>
+  <marker id="Triangle-7-2-6-3-7" overflow="visible" markerHeight="0.5" markerWidth="0.5" orient="auto-start-reverse" preserveAspectRatio="xMidYMid" viewBox="0 0 1 1">
+   <path transform="scale(.5)" d="m5.77 0-8.65 5v-10z" fill="context-stroke" fill-rule="evenodd" stroke="context-stroke" stroke-width="1pt"/>
+  </marker>
+  <marker id="Triangle-7-2-6-3-7-5" overflow="visible" markerHeight="0.5" markerWidth="0.5" orient="auto-start-reverse" preserveAspectRatio="xMidYMid" viewBox="0 0 1 1">
+   <path transform="scale(.5)" d="m5.77 0-8.65 5v-10z" fill="context-stroke" fill-rule="evenodd" stroke="context-stroke" stroke-width="1pt"/>
+  </marker>
+  <marker id="Triangle-7-2-6-3-1" overflow="visible" markerHeight="0.5" markerWidth="0.5" orient="auto-start-reverse" preserveAspectRatio="xMidYMid" viewBox="0 0 1 1">
+   <path transform="scale(.5)" d="m5.77 0-8.65 5v-10z" fill="context-stroke" fill-rule="evenodd" stroke="context-stroke" stroke-width="1pt"/>
+  </marker>
+  <marker id="Triangle-7-2-2" overflow="visible" markerHeight="0.5" markerWidth="0.5" orient="auto-start-reverse" preserveAspectRatio="xMidYMid" viewBox="0 0 1 1">
+   <path transform="scale(.5)" d="m5.77 0-8.65 5v-10z" fill="context-stroke" fill-rule="evenodd" stroke="context-stroke" stroke-width="1pt"/>
+  </marker>
+  <marker id="Triangle-7-2-6-5" overflow="visible" markerHeight="0.5" markerWidth="0.5" orient="auto-start-reverse" preserveAspectRatio="xMidYMid" viewBox="0 0 1 1">
+   <path transform="scale(.5)" d="m5.77 0-8.65 5v-10z" fill="context-stroke" fill-rule="evenodd" stroke="context-stroke" stroke-width="1pt"/>
+  </marker>
+  <marker id="Triangle-7-2-6-3-9" overflow="visible" markerHeight="0.5" markerWidth="0.5" orient="auto-start-reverse" preserveAspectRatio="xMidYMid" viewBox="0 0 1 1">
+   <path transform="scale(.5)" d="m5.77 0-8.65 5v-10z" fill="context-stroke" fill-rule="evenodd" stroke="context-stroke" stroke-width="1pt"/>
+  </marker>
+  <marker id="Triangle-7-2-6-3-7-3" overflow="visible" markerHeight="0.5" markerWidth="0.5" orient="auto-start-reverse" preserveAspectRatio="xMidYMid" viewBox="0 0 1 1">
+   <path transform="scale(.5)" d="m5.77 0-8.65 5v-10z" fill="context-stroke" fill-rule="evenodd" stroke="context-stroke" stroke-width="1pt"/>
+  </marker>
+ </defs>
+ <g transform="translate(52.734 -53.352)">
+  <rect x="-52.734" y="53.259" width="415.72" height="175.93" fill="#fff"/>
+  <text x="215.93417" y="71.051102" fill="#ffffff" font-family="'-apple-system', BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="7.0556px" letter-spacing="-.26458px" stroke-width="1.7" style="line-height:0.9;text-decoration-color:#000000;white-space:pre" xml:space="preserve"><tspan x="215.93417" y="71.051102" fill="#000000" font-family="'-apple-system', BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="7.0556px" stroke-width="1.7">Community</tspan></text>
+  <g font-family="'-apple-system', BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="7.0556px" letter-spacing="-.26458px" stroke-width="1.7">
+   <text x="71.010643" y="112.29119" fill="#000000" style="line-height:0.9;text-decoration-color:#000000;white-space:pre" xml:space="preserve"><tspan x="71.010643" y="112.29119" font-family="'-apple-system', BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="7.0556px" stroke-width="1.7">CheckConfig(MetadataCheck)</tspan></text>
+   <text x="185.464" y="112.29119" fill="#b8b8b8" style="line-height:0.9;text-decoration-color:#000000;white-space:pre" xml:space="preserve"><tspan x="185.464" y="112.29119" fill="#b8b8b8" font-family="'-apple-system', BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="7.0556px" stroke-width="1.7">CheckConfig(FileFormatsCheck)</tspan></text>
+   <text x="303.98978" y="112.29119" fill="#b8b8b8" style="line-height:0.9;text-decoration-color:#000000;white-space:pre" xml:space="preserve"><tspan x="303.98978" y="112.29119" fill="#b8b8b8" font-family="'-apple-system', BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="7.0556px" stroke-width="1.7">CheckConfig(...)</tspan></text>
+   <text x="25.050148" y="146.73499" fill="#000000" style="line-height:0.9;text-decoration-color:#000000;white-space:pre" xml:space="preserve"><tspan x="25.050148" y="146.73499" font-family="'-apple-system', BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="7.0556px" stroke-width="1.7">CheckRun</tspan></text>
+   <text x="99.390663" y="146.73499" fill="#b8b8b8" style="line-height:0.9;text-decoration-color:#000000;white-space:pre" xml:space="preserve"><tspan x="99.390663" y="146.73499" fill="#b8b8b8" font-family="'-apple-system', BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="7.0556px" stroke-width="1.7">CheckRun</tspan></text>
+   <text x="217.35907" y="146.73499" fill="#b8b8b8" style="line-height:0.9;text-decoration-color:#000000;white-space:pre" xml:space="preserve"><tspan x="217.35907" y="146.73499" fill="#b8b8b8" font-family="'-apple-system', BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="7.0556px" stroke-width="1.7">CheckRun</tspan></text>
+   <text x="21.383064" y="177.45467" fill="#000000" style="line-height:0.9;text-decoration-color:#000000;white-space:pre" xml:space="preserve"><tspan x="21.383064" y="177.45467" font-family="'-apple-system', BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="7.0556px" stroke-width="1.7">CheckResult</tspan></text>
+   <text x="96.111633" y="177.45467" fill="#b8b8b8" style="line-height:0.9;text-decoration-color:#000000;white-space:pre" xml:space="preserve"><tspan x="96.111633" y="177.45467" fill="#b8b8b8" font-family="'-apple-system', BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="7.0556px" stroke-width="1.7">CheckResult</tspan></text>
+   <text x="214.08002" y="177.45467" fill="#b8b8b8" style="line-height:0.9;text-decoration-color:#000000;white-space:pre" xml:space="preserve"><tspan x="214.08002" y="177.45467" fill="#b8b8b8" font-family="'-apple-system', BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="7.0556px" stroke-width="1.7">CheckResult</tspan></text>
+  </g>
+  <g fill="#000000" font-family="'-apple-system', BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="7.0556px" letter-spacing="-.26458px" stroke-width="1.7">
+   <text x="-40.854286" y="216.60898" style="line-height:0.9;text-decoration-color:#000000;white-space:pre" xml:space="preserve"><tspan x="-40.854286" y="216.60898" font-family="'-apple-system', BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="7.0556px" stroke-width="1.7">RuleResult</tspan></text>
+   <text x="24.548058" y="216.60898" style="line-height:0.9;text-decoration-color:#000000;white-space:pre" xml:space="preserve"><tspan x="24.548058" y="216.60898" font-family="'-apple-system', BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="7.0556px" stroke-width="1.7">RuleResult</tspan></text>
+   <text x="85.440269" y="216.60898" style="line-height:0.9;text-decoration-color:#000000;white-space:pre" xml:space="preserve"><tspan x="85.440269" y="216.60898" font-family="'-apple-system', BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="7.0556px" stroke-width="1.7">RuleResult</tspan></text>
+  </g>
+  <g stroke-width="1.7">
+   <path d="m114.86 148.81v18.438" fill="#b8b8b8" marker-end="url(#Triangle-7-1)" stroke="#b9b9b9"/>
+   <path d="m41.026 148.81-0.02822 18.438" fill="#b5b5b5" fill-opacity=".81176" marker-end="url(#Triangle-7-4-8)" stroke="#000"/>
+   <path d="m232.8 148.81 0.0256 18.438" fill="#b8b8b8" marker-end="url(#Triangle-7-2)" stroke="#b9b9b9"/>
+  </g>
+  <g fill="#b5b5b5" fill-opacity=".81176" stroke="#000" stroke-width="1.7">
+   <path d="m41.026 179.3-64.181 28.175" marker-end="url(#Triangle-0)"/>
+   <path d="m41.026 179.3v28.175" marker-end="url(#Triangle-7-4-8-4)"/>
+   <path d="m41.026 179.3 58.817 28.175" marker-end="url(#Triangle-7-4-8-3)"/>
+  </g>
+  <g transform="translate(-1.1397)" fill="#b8b8b8" stroke="#b9b9b9" stroke-width="1.3978">
+   <path d="m233.97 181.95v8.7837" marker-end="url(#Triangle-7-2-6)"/>
+   <path d="m230.3 181.2-9.2895 8.8466" marker-end="url(#Triangle-7-2-6-3)"/>
+   <path d="m237.63 181.26 9.2895 8.8466" marker-end="url(#Triangle-7-2-6-3-7)"/>
+  </g>
+  <g fill="#b8b8b8" stroke-width="1.7">
+   <text x="308.74982" y="146.73499" font-family="'-apple-system', BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="7.0556px" letter-spacing="-.26458px" style="line-height:0.9;text-decoration-color:#000000;white-space:pre" xml:space="preserve"><tspan x="308.74982" y="146.73499" fill="#b8b8b8" font-family="'-apple-system', BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="7.0556px" stroke-width="1.7">CheckRun</tspan></text>
+   <text x="305.47076" y="177.45467" font-family="'-apple-system', BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="7.0556px" letter-spacing="-.26458px" style="line-height:0.9;text-decoration-color:#000000;white-space:pre" xml:space="preserve"><tspan x="305.47076" y="177.45467" fill="#b8b8b8" font-family="'-apple-system', BlinkMacSystemFont, Helvetica, Arial, sans-serif" font-size="7.0556px" stroke-width="1.7">CheckResult</tspan></text>
+   <path d="m324.2 148.81 0.0256 18.438" marker-end="url(#Triangle-7-2-2)" stroke="#b9b9b9"/>
+  </g>
+  <g transform="translate(11.576)" fill="#b8b8b8" stroke="#b9b9b9" stroke-width="1.3978">
+   <path d="m312.64 181.95v8.7837" marker-end="url(#Triangle-7-2-6-5)"/>
+   <path d="m308.98 181.2-9.2895 8.8466" marker-end="url(#Triangle-7-2-6-3-9)"/>
+   <path d="m316.31 181.26 9.2895 8.8466" marker-end="url(#Triangle-7-2-6-3-7-3)"/>
+  </g>
+  <g transform="translate(-13.175)" fill="#b8b8b8" stroke="#b9b9b9">
+   <path d="m128.03 180.98v10.074" marker-end="url(#Triangle-7-2-0)" stroke-width="1.4379"/>
+   <path d="m124.37 180.81-9.2895 8.8466" marker-end="url(#Triangle-7-2-6-3-1)" stroke-width="1.3978"/>
+   <path d="m131.7 180.87 9.2895 8.8466" marker-end="url(#Triangle-7-2-6-3-7-5)" stroke-width="1.3978"/>
+  </g>
+  <path d="m114.84 114.81 0.0255 22.719" fill="#b8b8b8" marker-end="url(#Triangle-7)" stroke="#b9b9b9" stroke-width="1.7"/>
+  <path d="m114.84 114.81-66.772 22.719" fill="#b5b5b5" fill-opacity=".81176" marker-end="url(#Triangle-6)" stroke="#000" stroke-width="1.7"/>
+  <g fill="#b8b8b8" stroke="#b9b9b9" stroke-width="1.7">
+   <path d="m324.22 114.81v22.719" marker-end="url(#Triangle-7-2-06)"/>
+   <path d="m232.83 114.81v22.719" marker-end="url(#Triangle-7-2-9)"/>
+   <path d="m232.83 73.494v27.725" marker-end="url(#Triangle-7-4)"/>
+   <path d="m233.97 73.494 77.033 29.725" marker-end="url(#Triangle-7-4-1)"/>
+  </g>
+  <path d="m233.97 73.494-82.162 29.725" fill="#b5b5b5" fill-opacity=".81176" marker-end="url(#Triangle)" stroke="#000" stroke-width="1.7"/>
+ </g>
+</svg>
