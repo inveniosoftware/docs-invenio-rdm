@@ -46,6 +46,22 @@ Official support for Python 3.9 will end on October 31, 2025.
 See the [official Python version status page](https://devguide.python.org/versions/) for more information.
 Future releases of InvenioRDM will require a more recent Python version.
 
+### Fix thesis resource type
+
+1. Update the resource type in `vocabularies/resource_types.yaml` by updating the label for `publication-dissertation` to "Thesis" and then run:
+```python
+invenio rdm-records add-to-fixture resourcetypes
+```
+
+2. Run the data migration script in [#data-migration](#data-migration) section.
+
+3. Delete `publication-thesis` vocabulary:
+
+```sh
+from invenio_vocabularies.proxies import current_service as vocabulary_service
+vocabulary_service.delete(system_identity, ('resourcetypes', 'publication-thesis'))
+```
+
 #### Record Deletion
 
 To start using the new Record Deletion feature, one needs to go through the following steps during deployment:
