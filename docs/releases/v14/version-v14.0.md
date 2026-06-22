@@ -105,6 +105,12 @@ It should lessen the administrative burden of inviting new users and further let
 
 Enabling the feature is just a matter of turning on a [configuration variable](../../reference/settings.md#membership-requests). See these links for [how to enable it on a per community basis](../../use/communities.md#membership-policy) and what the [usage flow](../../use/communities.md#members) is like.
 
+### User role management
+
+Administrators can now manage user roles directly from the administration panel. See [User Role Management](../../use/administration.md#user-role-management-ui) for details.
+
+![Manage user roles dropdown menu](../../use/imgs/administration/manage-user-roles-dropdow-menu.png)
+
 ### Miscellaneous additions
 
 Here is a quick summary of the other improvements in this release:
