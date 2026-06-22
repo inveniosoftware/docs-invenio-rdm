@@ -217,3 +217,154 @@ ETag: "L#f06292"
     </text>
   </svg>
 ```
+
+### User Group Management
+
+Group management allows administrators to assign or remove roles from a user.
+
+#### Get group assignments for a user
+
+```http
+GET /api/users/{id}/groups HTTP/1.1
+Accept: application/json
+```
+
+Retrieves the current groups assigned to a user and, if authorized, a list of available groups that can be assigned.
+
+**Parameters**
+
+| Name     | Type   | Location | Description                          |
+| -------- | ------ | -------- | ------------------------------------ |
+| `id`     | string | path     | The user identifier.                 |
+| `accept` | string | header   | - `application/json`                |
+
+**Response**
+
+```json
+{
+    "available_groups": [
+        {
+            "description": null,
+            "id": "administration",
+            "is_managed": true,
+            "name": "administration"
+        },
+        ...
+    ],
+    "groups": [
+        {
+            "id": "employee",
+            "name": "employee"
+        },
+        {
+            "id": "moderator",
+            "name": "moderator"
+        }
+    ],
+    "total": 2
+}
+```
+
+#### Add groups to a user
+
+```http
+POST /api/users/{id}/groups HTTP/1.1
+Content-Type: application/json
+
+{
+  "groups": ["employee", "it-dep"]
+}
+```
+
+Adds one or more group roles to a user. This operation is additive and does not remove existing assignments.
+
+**Parameters**
+
+| Name     | Type   | Location | Description                          |
+| -------- | ------ | -------- | ------------------------------------ |
+| `groups` | array  | body     | A list of group IDs or names to add. |
+| `id`     | string | path     | The user identifier.                 |
+
+**Response**
+
+```json
+{
+    "added": [
+        "it-dep"
+    ],
+    "groups": [
+        "employee",
+        "it-dep",
+        "moderator"
+    ],
+    "removed": []
+}
+
+```
+
+#### Set groups for a user
+
+```http
+PUT /api/users/{id}/groups HTTP/1.1
+Content-Type: application/json
+
+{
+  "groups": ["employee"]
+}
+```
+
+Replaces the current group assignments of a user with the provided list.
+
+**Parameters**
+
+| Name     | Type   | Location | Description                          |
+| -------- | ------ | -------- | ------------------------------------ |
+| `groups` | array  | body     | A list of group IDs or names to set. |
+
+**Response*
+
+```json
+{
+    "added": [],
+    "groups": [
+        "employee",
+    ],
+    "removed": [
+        "it-dep",
+        "moderator"
+    ]
+}
+
+```
+
+#### Remove groups from a user
+
+```http
+DELETE /api/users/{id}/groups HTTP/1.1
+Content-Type: application/json
+
+{
+  "groups": ["it-dep"]
+}
+```
+
+Removes one or more group roles from a user. This operation is destructive for the specified roles and does not affect other assignments.
+
+**Parameters**
+
+| Name     | Type   | Location | Description                          |
+| -------- | ------ | -------- | ------------------------------------ |
+| `groups` | array  | body     | A list of group IDs or names to remove. |
+
+**Response**
+
+```json
+{
+    "added": [],
+    "groups": [],
+    "removed": [
+        "it-dep"
+    ]
+}
+
+```
