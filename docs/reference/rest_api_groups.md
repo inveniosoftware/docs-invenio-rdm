@@ -13,10 +13,10 @@ Query and manage groups (roles).
 
 ### Managed vs unmanaged groups
 
-- **Managed groups**: Created via the admin UI or REST API and fully
-  controllable by admin users with administration moderation permission (e.g.
-  administrators and superusers). They support the usual CRUD operations unless
-  their names are protected (e.g. `admin`, `superuser-access`).
+- **Managed groups**: Created via the admin UI or REST API and controllable by
+  admin users with administration moderation permission. Their descriptions can
+  be edited and they can be deleted unless their names are protected (e.g.
+  `admin`, `superuser-access`). Role names cannot be renamed.
 - **Unmanaged groups**: Typically synced or created by the system (for example
   through identity providers). They are readable by authenticated users but are
   not editable through the REST API or admin UI unless you are a superuser.
@@ -56,37 +56,44 @@ Content-Type: application/json
     "hits": {
         "hits": [
             {
-                "id": "admin",
-                "created": "2026-02-04T09:29:59.790372+00:00",
-                "updated": "2026-02-04T09:30:23.892939+00:00",
+                "id": "administration",
+                "created": "2026-06-18T15:07:21.680309+00:00",
+                "updated": "2026-06-18T15:07:29.249298+00:00",
                 "links": {
-                    "self": "https://127.0.0.1:5000/api/groups/admin",
-                    "avatar": "https://127.0.0.1:5000/api/groups/admin/avatar.svg"
+                    "self": "https://127.0.0.1:5000/api/groups/administration",
+                    "avatar": "https://127.0.0.1:5000/api/groups/administration/avatar.svg"
                 },
-                "revision_id": 1770197423,
-                "name": "admin",
+                "revision_id": 1781795249,
+                "name": "administration",
                 "description": null,
                 "is_managed": true
-            }
+            },
+            ...
         ],
-        "total": 1
+        "total": 13
     },
     "aggregations": {
         "is_managed": {
             "buckets": [
                 {
+                    "key": "false",
+                    "doc_count": 8,
+                    "label": "Unmanaged",
+                    "is_selected": false
+                },
+                {
                     "key": "true",
-                    "doc_count": 1,
+                    "doc_count": 3,
                     "label": "Managed",
-                    "is_selected": true
+                    "is_selected": false
                 }
             ],
             "label": "Management state"
         }
     },
-    "sortBy": "managed",
+    "sortBy": "name",
     "links": {
-        "self": "https://127.0.0.1:5000/api/groups?is_managed=true&page=1&q=admin&size=20&sort=managed"
+        "self": "https://127.0.0.1:5000/api/groups?page=1&size=20&sort=name"
     }
 }
 ```
@@ -102,7 +109,7 @@ visible to user administrators or superusers.
 
 | Name     | Type   | Location | Description |
 |----------|--------|----------|-------------|
-| `id`     | string | path     | The group identifier (UUID). |
+| `id`     | string | path     | The group identifier. |
 | `accept` | string | header   | - `application/json` |
 
 **Errors**
@@ -123,16 +130,16 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-    "id": "bbe66a83-6925-44b9-80e6-eba824b5c9e7",
-    "created": "2026-02-04T10:17:11.029064+00:00",
-    "updated": "2026-02-04T10:17:11.029082+00:00",
+    "id": "administration",
+    "created": "2026-06-18T15:07:21.680309+00:00",
+    "updated": "2026-06-18T15:07:29.249298+00:00",
     "links": {
-        "self": "https://127.0.0.1:5000/api/groups/bbe66a83-6925-44b9-80e6-eba824b5c9e7",
-        "avatar": "https://127.0.0.1:5000/api/groups/bbe66a83-6925-44b9-80e6-eba824b5c9e7/avatar.svg"
+        "self": "https://127.0.0.1:5000/api/groups/administration",
+        "avatar": "https://127.0.0.1:5000/api/groups/administration/avatar.svg"
     },
-    "revision_id": 1770200231,
-    "name": "data-stewards",
-    "description": "Local data steward team",
+    "revision_id": 1781795249,
+    "name": "administration",
+    "description": "Description for the administration group",
     "is_managed": true
 }
 ```
@@ -145,9 +152,13 @@ Content-Type: application/json
 
 | Name           | Type   | Location | Description |
 |----------------|--------|----------|-------------|
-| `name`         | string | body     | Required. Must start with a letter and contain only letters, numbers, hyphens or underscores (max 80 chars). |
+| `name`         | string | body     | Required. Must start with a letter and contain only letters, numbers, hyphens or underscores (max 80 chars). Case-sensitive. |
 | `description`  | string | body     | Optional. Max 255 chars. |
 | `accept`       | string | header   | - `application/json` |
+
+!!! warning
+
+    The passed `name` is immutable once created. Choose it carefully.
 
 **Errors**
 
@@ -162,7 +173,7 @@ Content-Type: application/json
 
 {
   "name": "data-stewards",
-  "description": "Local data steward team"
+  "description": "managed group data-stewards"
 }
 ```
 
@@ -173,16 +184,16 @@ HTTP/1.1 201 CREATED
 Content-Type: application/json
 
 {
-    "id": "bbe66a83-6925-44b9-80e6-eba824b5c9e7",
-    "created": "2026-02-04T10:17:11.029064+00:00",
-    "updated": "2026-02-04T10:17:11.029082+00:00",
+    "id": "data-stewards",
+    "created": "2026-06-18T15:51:06.066920+00:00",
+    "updated": "2026-06-18T15:51:06.066948+00:00",
     "links": {
-        "self": "https://127.0.0.1:5000/api/groups/bbe66a83-6925-44b9-80e6-eba824b5c9e7",
-        "avatar": "https://127.0.0.1:5000/api/groups/bbe66a83-6925-44b9-80e6-eba824b5c9e7/avatar.svg"
+        "self": "https://127.0.0.1:5000/api/groups/data-stewards",
+        "avatar": "https://127.0.0.1:5000/api/groups/data-stewards/avatar.svg"
     },
-    "revision_id": 1770200231,
+    "revision_id": 1781797866,
     "name": "data-stewards",
-    "description": "Local data steward team",
+    "description": "managed group data-stewards",
     "is_managed": true
 }
 ```
@@ -195,8 +206,6 @@ Content-Type: application/json
 
 | Name          | Type   | Location | Description |
 |---------------|--------|----------|-------------|
-| `id`          | string | path     | The group identifier (UUID). |
-| `name`        | string | body     | Optional. Must satisfy the same pattern as creation. |
 | `description` | string | body     | Optional. Max 255 chars. |
 | `accept`      | string | header   | - `application/json` |
 
@@ -208,7 +217,7 @@ Content-Type: application/json
 **Request**
 
 ```http
-PUT /api/groups/bbe66a83-6925-44b9-80e6-eba824b5c9e7 HTTP/1.1
+PUT /api/groups/data-stewards HTTP/1.1
 Content-Type: application/json
 
 {
@@ -223,14 +232,14 @@ HTTP/1.1 200 OK
 Content-Type: application/json
 
 {
-    "id": "bbe66a83-6925-44b9-80e6-eba824b5c9e7",
-    "created": "2026-02-04T10:17:11.029064+00:00",
-    "updated": "2026-02-04T10:26:45.322262+00:00",
+    "id": "data-stewards",
+    "created": "2026-06-18T15:51:06.066920+00:00",
+    "updated": "2026-06-18T15:52:39.486704+00:00",
     "links": {
-        "self": "https://127.0.0.1:5000/api/groups/bbe66a83-6925-44b9-80e6-eba824b5c9e7",
-        "avatar": "https://127.0.0.1:5000/api/groups/bbe66a83-6925-44b9-80e6-eba824b5c9e7/avatar.svg"
+        "self": "https://127.0.0.1:5000/api/groups/data-stewards",
+        "avatar": "https://127.0.0.1:5000/api/groups/data-stewards/avatar.svg"
     },
-    "revision_id": 1770200805,
+    "revision_id": 1781797959,
     "name": "data-stewards",
     "description": "Updated description",
     "is_managed": true
@@ -245,7 +254,7 @@ Content-Type: application/json
 
 | Name     | Type   | Location | Description |
 |----------|--------|----------|-------------|
-| `id`     | string | path     | The group identifier (UUID). |
+| `id`     | string | path     | The group identifier. |
 | `accept` | string | header   | - `application/json` |
 
 **Errors**
@@ -255,7 +264,7 @@ Content-Type: application/json
 **Request**
 
 ```http
-DELETE /api/groups/2d3b5de5-5d64-4f9d-9c4c-2fd70047f90a HTTP/1.1
+DELETE /api/groups/data-stewards HTTP/1.1
 ```
 
 **Response**
@@ -272,7 +281,7 @@ HTTP/1.1 204 No Content
 
 | Name | Type   | Location | Description |
 |------|--------|----------|-------------|
-| `id` | string | path     | The group identifier (UUID). |
+| `id` | string | path     | The group identifier. |
 
 **Errors**
 
@@ -295,9 +304,9 @@ ETag: "L#f06292"
 ...
 
  <svg width="256" height="256" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="125" cy="125" r="125" fill="#f06292" stroke="grey" />
+    <circle cx="125" cy="125" r="125" fill="#e91e63" stroke="grey" />
     <text x="48%" y="53%" dominant-baseline="middle" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="125" fill="#f9f9f9" stroke="grey" stroke-width="2">
-            L
+            D
     </text>
   </svg>
 ```
@@ -305,8 +314,10 @@ ETag: "L#f06292"
 ### Permissions and protected names
 
 - Only identities with the user management action permission (e.g. user with
-  `administration-moderation` role) or the system process can create, update, or delete managed
-  groups.
+  `administration-moderation` role) or the system process can create, update, or
+  delete managed groups.
+- Group identifiers and names are kept aligned. Names cannot be renamed after
+  creation; update requests can change the description only.
 - Some identifiers are protected (e.g. `admin`, `superuser-access`,
   `administration`, `administration-moderation`) and cannot be created or
   modified via the REST API. They can only be changed by system processes.
