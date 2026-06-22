@@ -462,6 +462,43 @@ The administration panel now includes a "User management" section to deactivate,
 - **Blocked users**: Cannot sign in anymore, but their records remain visible.
 - **Deleted users**: Their records are removed from public view and replaced with a tombstone page indicating the user has been deleted.
 
-Records can also be deleted (with a grace period for appeal or undoing) which empowers administrators to enforce institutional policies and fight spam. This leaves a [tombstone page](../reference/metadata.md#tombstone) in place of the record landing page.
+WRecords can also be deleted (with a grace period for appeal or undoing) which empowers administrators to enforce institutional policies and fight spam. This leaves a [tombstone page](../reference/metadata.md#tombstone) in place of the record landing page.
 
 Associated JSON APIs (e.g. `/api/domains`) have been added. Bulk versions of these are in the works.
+
+### User Role Management (UI)
+
+_Introduced in v14_
+
+<figure>
+  <img src="../imgs/administration/manage-user-roles-modal.png" alt="manage user roles modal" />
+</figure>
+
+Administrators can manage user roles directly through the administration panel. This provides a visual interface for assigning and removing roles from users.
+
+To manage a user's roles as an administrator:
+
+!!! note
+    You cannot manage your own roles through the UI. To change your own roles, contact another administrator or use the CLI.
+
+1.  Navigate to the **Users** section in the Administration panel.
+2.  Open the dropdown menu of a specific user and click on **"Manage roles"** in the dropdown menu
+    <figure>
+    <img src="../imgs/administration/manage-user-roles-dropdow-menu.png" alt="manage user roles dropdown menu" />
+    </figure>
+3.  A modal window will appear where you can see currently assigned roles and select from available roles to assign or remove them using the provided interface.
+4.  You can optionally select multiple roles at once and flip the toggle to assign or remove unmanaged roles "usually granted via oauth or other external identity providers"
+    Once done, click the "Save" button to apply the changes.
+    <figure>
+    <img src="../imgs/administration/manage-user-roles-unmanaged-roles.png" alt="manage user roles unmanaged roles" />
+    </figure>
+5.  Confirm the changes in the confirmation dialog and click "Save" again to finalize the role updates.
+    <figure>
+    <img src="../imgs/administration/manage-user-roles-confirm-action.png" alt="manage user roles confirm action" />
+    </figure>
+
+!!! info "Permissions"
+
+    Managing user roles requires the `administration` AND `administration-moderation` permissions or superuser access.
+
+For the api usage, see the [REST API for User Roles](../reference/rest_api_users.md).

@@ -84,6 +84,12 @@ Jobs can now send email notifications to configured recipients when runs complet
 
 See [Job Notifications](../../use/administration.md#job-notifications) for configuration details and [Email Notification Templates](../../operate/customize/jobs.md#email-notification-templates) for customization options.
 
+### User role management
+
+Administrators can now manage user roles directly from the administration panel. See [User Role Management](../../use/administration.md#user-role-management-ui) for details.
+
+![Manage user roles dropdown menu](../../use/imgs/administration/manage-user-roles-dropdow-menu.png)
+
 ### Miscellaneous additions
 
 Here is a quick summary of the myriad of other improvements in this release:
