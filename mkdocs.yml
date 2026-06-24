@@ -120,7 +120,7 @@ nav:
           - FAIR Signposting: "operate/customize/FAIR-signposting.md"
           - File modification: "operate/customize/file_modification.md"
           - File uploads & storage:
-              - Files and versioning: "operate/customize/file-uploads/files-and-versioning.md" 
+              - Files and versioning: "operate/customize/file-uploads/files-and-versioning.md"
               - Files uploaders: "operate/customize/file-uploads/uploader.md"
               - Local storage: "operate/customize/file-uploads/local.md"
               - S3 compatible storage: "operate/customize/file-uploads/s3.md"
@@ -214,14 +214,17 @@ nav:
       - Maintenance policy: releases/maintenance-policy.md
       - Upgrade policy: releases/upgrade-policy.md
       - Security policy: releases/security-policy.md
+      - Version v14:
+          - Release Notes v14.0: releases/v14/version-v14.0.md
+          - Upgrade from v13 to v14: releases/v14/upgrade-v14.0.md
       - Version v13:
           - Release Notes v13.1: releases/v13/version-v13.1.0.md
           - Release Notes v13.0: releases/v13/version-v13.0.0.md
           - Upgrade from v12 to v13: releases/v13/upgrade-v13.0.md
-      - Version v12:
-          - Release Notes v12.0: releases/v12/version-v12.0.0.md
-          - Upgrade from v11 to v12: releases/v12/upgrade-v12.0.md
       - Legacy Versions:
+          - Version v12:
+              - Release Notes v12.0: releases/v12/version-v12.0.0.md
+              - Upgrade from v11 to v12: releases/v12/upgrade-v12.0.md
           - Version v11:
               - Release Notes v11.0: releases/v11/version-v11.0.0.md
               - Upgrade from v10 to v11: releases/v11/upgrade-v11.0.md
