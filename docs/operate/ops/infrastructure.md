@@ -1,167 +1,143 @@
 # Infrastructure architecture
 
-This guide provides a general overview of the InvenioRDM infrastructure
-architecture. It is not meant to be a comprehensive guide for each subsystem.
+This guide provides a high-level overview of the InvenioRDM infrastructure architecture.
+For detailed subsystem documentation, refer to the official documentation of each component.
 
-Over all, the InvenioRDM infrastructure follows a pretty standard web application
-infrastructure. It consists of:
+InvenioRDM follows a standard web application infrastructure pattern. A typical production deployment consists of:
 
-- **(optional) Load balancers:** HAProxy, Nginx or others
-- **Web servers:** Nginx, Apache or others
-- **Application servers:** UWSGI, Gunicorn or mod_wsgi
-- **Distributed task queue:** Celery
-- **Database:** PostgreSQL
-- **Search engine:** OpenSearch v2
-- **Message queue:** RabbitMQ, Redis or Amazon SQS
-- **Cache system:** Redis or Memcache
-- **Storage system:** Local, S3, XRootD, WebDAV and more
+- **(Optional) Load balancer:** [HAProxy](https://www.haproxy.com)
+- **Web server (reverse proxy):** [Nginx](https://nginx.org)
+- **Application web nodes:** [uWSGI](https://uwsgi-docs.readthedocs.io/en/latest/) running the InvenioRDM Python application
+- **Application worker nodes:** [Celery](https://docs.celeryq.dev) daemon running the InvenioRDM Python application for background tasks
+- **Database:** [PostgreSQL](https://www.postgresql.org)
+- **Search engine:** [OpenSearch](https://opensearch.org)
+- **Message queue:** [RabbitMQ](https://www.rabbitmq.com)
+- **Cache system:** [Redis](https://redis.io/)
+- **Storage system:** Local filesystem, S3, XRootD, WebDAV, and more
 
 ![Infrastructure architecture](imgs/infrastructure.png)
 
+The application web nodes and worker nodes run **exactly the same InvenioRDM application and codebase**.
+For consistency, inject the same configuration variables into both.
+
 ## Request handling
 
-A client making a request to InvenioRDM will usually first hit a load balancer.
-For high availability you can have more load balancers and balance traffic
-between them with e.g. DNS load balancing.
+Client requests to InvenioRDM typically first reach a load balancer (when deployed).
+For high availability, you can deploy multiple load balancers and distribute traffic between them using DNS load balancing.
 
 ## Load balancer
 
 **Request types**
 
-The load balancer usually (if it supports SSL termination) allows you to split
-traffic into three categories of requests:
+A load balancer with SSL termination capability can categorize traffic into three request types:
 
-- static files requests: e.g. JavaScript assets
-- application requests: e.g. search queries
-- record files requests: e.g. downloading very large files
+- **Static file requests:** JavaScript assets, CSS, images
+- **Application requests:** API calls, search queries
+- **Record file requests:** Large file downloads
 
-This way you can dimension the number of connection slots between different types
-of requests according to available resources. For instance a static file
-request can usually be served extremely efficiently, while an application request
-usually takes longer and requires more memory.
+Categorizing requests allows you to allocate connection slots based on available resources.
+Static files can be served very efficiently, while application requests require more memory and processing time.
 
-Similarly, downloading a very large file depends on the client's available bandwidth
-and can thus take up a connection slot for a significant amount time. If your
-storage system supports it, InvenioRDM allows you to completely offload
-the serving of large files to your storage system (e.g. S3).
+Large file downloads depend on client bandwidth and can occupy connection slots for extended periods.
+If your storage system supports it, InvenioRDM can offload serving large files directly to the storage system (e.g., S3).
 
-All in all, the primary job of the load balancer is to manage traffic to your
-servers according to available resources. For instance, during traffic floods
-the load balancer takes care of queue requests to the web servers.
-
-**Backup pages**
-
-A load balancer can also direct traffic to a static backup site in case your
-main web server is down. This is useful in order to communicate with users
-during major incidents.
+The load balancer's primary role is traffic management according to available resources.
+During traffic surges, it queues requests to prevent overloading the web servers.
 
 ## Web servers
 
-The load balancer proxies traffic to one of several web servers. A web
-server's primary job is to manage the connections to your application server.
-A web server like Apache or Nginx is usually much better than an application
-server at managing connections. Also, you can use the web server to configure
-limits on specific parts of your application, so that for instance you can
-upload a 1TB file on the Files REST API, but not on the search REST API.
+The load balancer proxies traffic to one or more web servers.
+By default, InvenioRDM uses [Nginx](https://nginx.org) as a reverse proxy, which:
+
+- Forwards backend requests to application servers (e.g., API endpoints like `/api/records`)
+- Serves static assets directly with optional caching
+- Blocks malicious requests by IP address or User Agent
+- Configures rate-limiting for bots and search engines
+
+For all available configuration options, see the official Nginx documentation.
 
 ## Application servers
 
-The web server proxies traffic usually (but not necessarily) to a single
-application server running on the same machine. The application server
-is responsible for handling the application requests. InvenioRDM is a Python
-application, and thus makes use of the WSGI standard. There exists several
-application servers capable of running WSGI python application, e.g. Gunicorn,
-uWSGI and mod_wsgi.
+The application server handles all application requests.
+As a Python application, InvenioRDM uses the WSGI standard.
+While multiple WSGI-compatible servers exist, InvenioRDM defaults to [uWSGI](https://uwsgi-docs.readthedocs.io/en/latest/).
 
 ## Storing records
 
-InvenioRDM stores records as JSON documents in an SQL database. Most modern SQL
-databases today have a JSON type, that can efficiently store JSON documents in
-a binary format.
+InvenioRDM stores records as JSON documents in an SQL database.
+Most modern SQL databases support a JSON type for efficient binary storage of JSON documents.
+By default, InvenioRDM uses [PostgreSQL](https://www.postgresql.org).
 
 **Transactional databases**
 
-The primary reason for using an SQL database is that it provides transactions
-which are very important as data consistency is of utmost
-importance. Also, database servers can handle very large amounts of data
-as long as they are scaled and configured properly. Last but not least, they
-are usually highly reliable as compared to some NoSQL solutions.
+SQL databases provide transactions, which are critical for data consistency.
+They can handle large datasets when properly scaled and configured.
+Compared to many NoSQL solutions, SQL databases also offer high reliability.
 
 **Primary key lookups**
 
-Most access from InvenioRDM to the database is via primary key lookups, which
-are usually very efficient. Search queries and the like are all
-sent to the search engine cluster which can provide much better performance
-than a database.
+Most InvenioRDM database access uses primary key lookups, which are highly efficient.
+Complex search queries are handled by the search engine cluster, which provides better performance than direct database queries.
 
 ## Search and indexing
 
-InvenioRDM uses OpenSearch as its underlying search engine since OpenSearch
-is fully JSON-based, and thus fits well with storing records internally
-in the database as JSON documents.
-
-OpenSearch, furthermore, is highly scalable and provides very powerful search
-and aggregation capabilities. You can for instance make geospatial queries with
-OpenSearch.
+InvenioRDM uses [OpenSearch](https://opensearch.org) as its search engine.
+As a fully JSON-based system, it integrates seamlessly with records stored as JSON documents in the database.
+OpenSearch is highly scalable and provides powerful search and aggregation capabilities, including geospatial queries.
 
 **Direct indexing**
 
-InvenioRDM has the option to directly index a record in OpenSearch when
-handling a request, and thus make the record immediately available for
-searches.
+InvenioRDM can index records directly in OpenSearch while handling a request,
+making them immediately available for searches.
 
 **Bulk indexing**
 
-In addition to direct indexing, InvenioRDM can also do bulk indexing which is
-significantly more efficient when indexing large number of records. The bulk
-indexing works by the application sending a message to the message queue, and
-at regular intervals a background job will consume the queue and index the
-records. Also, several bulk indexing jobs can run concurrently at the same time
-on multiple worker nodes and thus you can achieve very high indexing rates
-during bulk indexing.
+For large datasets, InvenioRDM supports bulk indexing, which is significantly more efficient.
+The application sends a message to the message queue, and at regular intervals,
+a background job consumes the queue and indexes the records.
+Multiple bulk indexing jobs can run concurrently on different worker nodes,
+enabling very high indexing throughput.
 
 ## Background processing
 
-InvenioRDM relies on an application called Celery for distributed background
-processing. In order for an application server to reply faster to a request,
-it can offload some tasks to asynchronous jobs. It works by the application
-sending a message to the message queue (e.g. RabbitMQ), which several Celery
-worker nodes continuously consume tasks from.
+InvenioRDM uses [Celery](https://docs.celeryq.dev) for distributed background processing.
+To enable faster response times, the application can offload tasks to asynchronous jobs.
+The application sends a message to the message queue (e.g., RabbitMQ), which Celery worker nodes continuously consume.
 
-For example a background task can be sending an email or
-registering a DOI.
+Examples of background tasks include sending emails or registering DOIs.
 
 **Multiple queues**
 
-The background processing supports multiple queues and advanced
-workflows. You could for instance have a low priority queue that constantly
-runs X number of file integrity checks per day, and another normal queue
-for other tasks like DOI registration.
+Celery supports multiple queues and advanced workflows.
+For example, you could have a low-priority queue for periodic file integrity checks,
+and a normal-priority queue for tasks like DOI registration.
 
-**Cronjobs and retries**
+**Scheduled jobs and retries**
 
-Celery also supports running jobs at scheduled intervals as well as
-retrying tasks in case they fail (e.g. if a remote service is temporarily down).
+Celery supports scheduled jobs (cron-like functionality) and automatic retries
+if tasks fail (e.g., when a remote service is temporarily unavailable).
 
 ## Caching and temporary storage
-InvenioRDM uses an in-memory cache like Redis or Memcache for fast temporary
-storage. For example the cache is used for:
+
+InvenioRDM uses an in-memory cache for fast temporary storage.
+By default, it uses [Redis](https://redis.io/).
+
+Common use cases for caching include:
 
 - User session storage
-- Results from background jobs
-- Caching rendered pages
+- Background job results
+- Rendered page caching
 
 ## Storing files
 
-InvenioRDM comes with a default object storage REST API to expose files.
-Underneath the hood, InvenioRDM can however store files in multiple different
-storage systems due to a simple storage abstraction layer. Also, it is possible
-to completely by-pass the InvenioRDM object storage and directly use another
-storage system like S3. In this case, you just have to be careful to manage
-access correctly on the external system.
+InvenioRDM provides a default object storage REST API for file access.
+Through its storage abstraction layer, it can store files in multiple storage systems:
+Local filesystem, S3, XRootD, WebDAV, and more.
+
+You can also bypass InvenioRDM's object storage entirely and use external storage systems like S3 directly.
+In this case, ensure you manage access permissions correctly on the external system.
 
 **Multiple storage systems**
 
-One strength of InvenioRDM is that you can store files on multiple systems at the
-same time. This is useful if you need to use multiple systems or
-do live migration from one system to another.
+InvenioRDM supports storing files on multiple systems simultaneously.
+This is useful when using multiple storage backends or performing live migrations between systems.
