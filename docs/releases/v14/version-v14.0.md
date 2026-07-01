@@ -131,7 +131,7 @@ See the [ZIP and other container files configuration guide](../../operate/custom
 
 Here is a quick summary of the other improvements in this release:
 
-- Admin panel Jobs: Addition of a "Delete" action to the Jobs list so admins can remove jobs directly from the UI.
+- Admin panel Jobs: Addition of a [Delete action](../../use/administration.md#deleting-a-job) to the Jobs list so admins can remove jobs directly from the UI.
 - Temporarily pinned `bcrypt<5.0.0` due to compatibility issues ([flask-security-fork#82](https://github.com/inveniosoftware/flask-security-fork/pull/82)). Will be lifted in a future release.
 - A new configuration variable, `RDM_RECORDS_RELATED_IDENTIFIERS_SCHEMES`, enables configuring identifier schemes specifically for related identifiers, defaulting to `RDM_RECORDS_IDENTIFIERS_SCHEMES` when not defined.
 - Deposit form: "Creators" label was changed to "Authors" to clarify that they appear in citations.
