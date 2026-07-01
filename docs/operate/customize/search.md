@@ -2,6 +2,7 @@
 
 InvenioRDM comes out of the box with facets for:
 
+- Publication date
 - Access status (Open, Embargoed, Restricted or Metadata-only)
 - Is published (Published, Unpublished)
 - Languages
@@ -39,9 +40,9 @@ For instance:
 
 ```python
 RDM_SEARCH = {
-    # Supported values: access_status, is_published, language, resource_type,
-    # subject, subject_nested, file_type
-    "facets": ["access_status", "file_type", "resource_type"],
+    # Supported values: publication_date, access_status, is_published,
+    # language, resource_type, subject, subject_nested, file_type
+    "facets": ["publication_date", "access_status", "file_type", "resource_type"],
 
     # Supported values: bestmatch, newest, oldest, version, updated-desc,
     # updated-asc, mostviewed, mostdownloaded
@@ -64,6 +65,53 @@ Each variable has two keys:
   default sort option used with a query. The second element is the default sort
   option used with an empty query. The sort fields must have been defined in
   ``RDM_SORT_OPTIONS`` (defined in [invenio-rdm-records](https://github.com/inveniosoftware/invenio-rdm-records/blob/master/invenio_rdm_records/config.py)).
+
+**Configure date range facets**
+
+InvenioRDM supports date range facets rendered as a histogram with a range
+slider. The built-in ``publication_date`` facet can be enabled by adding it to
+the ``facets`` list in ``RDM_SEARCH`` or ``RDM_SEARCH_DRAFTS``.
+
+<figure>
+  <img src="../imgs/publication-date-range-facet.png" alt="Publication date range facet" width="400" />
+</figure>
+
+To add a custom date range facet, register a ``DateFacet`` in ``RDM_FACETS``
+and mark the UI configuration with ``"type": "date"``:
+
+```python
+from invenio_i18n import lazy_gettext as _
+from invenio_records_resources.services.records.facets import DateFacet
+from invenio_rdm_records.config import RDM_FACETS
+
+RDM_FACETS = {
+    **RDM_FACETS,
+    "created_date": {
+        "facet": DateFacet(
+            field="created",
+            label=_("Created"),
+            interval="month",
+            separator="..",
+        ),
+        "ui": {
+            "field": "created",
+            "type": "date",
+            "separator": "..",
+        },
+    },
+}
+
+RDM_SEARCH = {
+    "facets": ["created_date", "publication_date", "access_status"],
+    "sort": ["bestmatch", "newest", "oldest"],
+}
+```
+
+In this configuration:
+
+- ``facet`` defines how the date buckets are aggregated.
+- ``ui`` defines how the facet is rendered in the search sidebar.
+- ``separator`` should match in both places.
 
 
 **Defining a new sort option**
