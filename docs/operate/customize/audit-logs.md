@@ -6,13 +6,14 @@ _Introduced in v13_
 
 InvenioRDM can store audit log events of actions performed by the end-users.
 
-This is the list of actions:
+Currently, the following audit log actions are supported out of the box:
 
-- Creating a draft
-- Updating a draft
+- Creating/updating/deleting a draft
 - Publishing a record
-- Deleting a draft
 - Creating a new version of a record
+- Adding/Removing a file to a draft
+- Adding/updating/deleting the access settings of a record/draft
+- Adding/updating/deleting a secret link for sharing a record/draft
 
 You will be able to view all actions performed in your instance and query actions performed on resources.
 
@@ -32,7 +33,14 @@ To track more actions on resources in InvenioRDM using audit logs, follow these 
 ### 1. Define the action
 
 Create a new class that inherits from `AuditLogAction`.
-Specify the id (action name), message_template, and optionally, the context and resource_type.
+Define your action by specifying:
+
+- **id**: A unique name that identifies the action.
+- **context** (optional): A list of context resolver classes to resolve additional information for the log entry.
+- **resource_type** (optional): The type of resource the action affects (like "record" or "draft").
+- **metadata_schema** (optional): A custom marshmallow schema describing any additional fields to store in the audit log entry.
+
+These attributes help your log entry capture just the right information for your needs.
 
 ```python
 from invenio_audit_logs.services import AuditLogAction
@@ -46,6 +54,12 @@ class CustomActionAuditLog(AuditLogAction):
         CustomContext(),
     ]
     resource_type = "custom_resource"
+    metadata_schema = {
+        "custom_audit_metadata": fields.Nested(
+            CustomAuditMetadataSchema,
+            required=True,
+        ),
+    }
 ```
 
 ### 2. Add context (optional)
@@ -84,3 +98,17 @@ uow.register(AuditLogOp(CustomActionAuditLog.build(identity, resource_id, ...)))
 ```
 
 By following these steps, you can extend the audit logging system to include custom actions tailored to your instance's needs.
+
+## Opt out of certain actions
+
+If you want to not log certain actions, you can set the following configuration in your `invenio.cfg`:
+
+```python
+AUDIT_LOGS_DISABLED_ACTIONS = {"draft.edit"}
+```
+
+To find all the available actions, check the entry points in the `invenio_audit_logs.actions` group.
+```python
+>>> from invenio_base.utils import entry_points
+>>> [ep.name for ep in entry_points(group="invenio_audit_logs.actions")]
+```
