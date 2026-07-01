@@ -113,8 +113,6 @@ The sort option is defined by:
 
 ### Configure date range facets
 
-### Configure date range facets
-
 _Introduced in v14_
 
 slider. The built-in ``publication_date`` facet is defined in
