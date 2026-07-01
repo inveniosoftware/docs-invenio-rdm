@@ -61,6 +61,10 @@ With the profiler extra installed:
 4. Interact with your site as usual. The profiler collects data for each request while the session is active.
 5. Return to `/profiler/` to view and manage collected sessions and their reports.
 
+![Profiler UI screenshot](./img/profiler.png)
+
+![SQL profiling screenshot](./img/sql-profiling.png)
+
 ## Search profiling
 
 Search profiling intercepts trace logs from the OpenSearch or Elasticsearch Python client. InvenioRDM defaults to `opensearchpy.trace`.
