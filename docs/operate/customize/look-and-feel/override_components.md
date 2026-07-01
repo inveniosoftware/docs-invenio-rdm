@@ -1,6 +1,6 @@
 # How to override UI React components
 
-*Introduced in InvenioRDM v11*
+_Introduced in v11_
 
 This documentation is targeted at developers who want to customize specific UI React components in an instance.
 For this guide, we assume that you are familiar with React and JavaScript.
@@ -18,7 +18,7 @@ For this guide, we assume that you are familiar with React and JavaScript.
 The UI of InvenioRDM is composed of classic HTML web pages for mostly static content, and React web apps for very dynamic content to enhance the user experience.
 While a [dedicated guide](./templates.md) describes how to override HTML web pages (Jinja templates), this guide focus on how to override React components.
 
-InvenioRDM uses the React library [`react-overridable`](https://github.com/indico/react-overridable). 
+InvenioRDM uses the React library [`react-overridable`](https://github.com/indico/react-overridable).
 The library provides a mechanism to mark React components as "overridable" by ID, which is implemented for many components across the InvenioRDM codebase.
 Developers can define a mapping which is then applied when each React component is rendered.
 
@@ -187,7 +187,7 @@ The following props may be overriden on all built-in fields:
 - `helpText`: a small optional text generally shown below the field, providing additional context to the user
 - `placeholder`: same as the [HTML attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Attributes/placeholder)
 
-Additionally, the following props may be overriden on fields that are not mandatory. 
+Additionally, the following props may be overriden on fields that are not mandatory.
 At the moment, this is all fields except Resource Type, Title, Publication Date, and Creatibutors.
 
 - `hidden`: if `true`, the field is not rendered at all
@@ -197,7 +197,7 @@ At the moment, this is all fields except Resource Type, Title, Publication Date,
 - `required`: if `true`, shows a red asterisk in the field label
     - This does not affect the form validation model on the frontend or the backend, and is purely a stylistic setting.
 
-Many fields have their own props in addition to these. 
+Many fields have their own props in addition to these.
 Please [view the source code](https://github.com/inveniosoftware/invenio-rdm-records/tree/master/invenio_rdm_records/assets/semantic-ui/js/invenio_rdm_records/src/deposit/fields) for more details.
 
 ## Examples

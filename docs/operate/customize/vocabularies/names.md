@@ -123,7 +123,7 @@ invenio vocabularies import \
 
 ### Using ORCID Public Data Sync
 
-*Introduced in InvenioRDM v13*
+_Introduced in v13_
 
 Instead of waiting for the yearly ORCID public dataset mentioned above, [ORCID premium members](https://info.orcid.org/membership/) can also access the ORCID data on demand using the Public Data Sync process.
 

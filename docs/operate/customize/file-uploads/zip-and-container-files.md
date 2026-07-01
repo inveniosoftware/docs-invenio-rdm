@@ -1,22 +1,22 @@
 # ZIP and container files
 
-_Introduced in InvenioRDM v14_
+_Introduced in v14_
 
-InvenioRDM v14 adds support for ZIP archives as **container files**: record files whose internal structure the 
-system understands and can expose. Users can browse the contents of a ZIP directly in the record landing page, 
+InvenioRDM v14 adds support for ZIP archives as **container files**: record files whose internal structure the
+system understands and can expose. Users can browse the contents of a ZIP directly in the record landing page,
 preview individual files inside the archive, and download specific files or folders without retrieving the entire archive.
 
 ![ZIP file preview](../imgs/container-file-formats.png)
 
-The feature is designed to be extensible. Additional container formats can be supported by implementing the 
-`FileExtractor` interface and registering the handler for the relevant extension. See the 
-[architecture documentation](../../../maintenance/architecture/records.md#container-files) for an overview of how the 
+The feature is designed to be extensible. Additional container formats can be supported by implementing the
+`FileExtractor` interface and registering the handler for the relevant extension. See the
+[architecture documentation](../../../maintenance/architecture/records.md#container-files) for an overview of how the
 component model works.
 
 ## Enabling the ZIP previewer
 
-By default, ZIP files are treated as opaque binary blobs and offered only for download. To enable container browsing 
-and in-UI preview, replace the original `zip` previewer with `previewable_zip` in your `PREVIEWER_PREFERENCE` list in 
+By default, ZIP files are treated as opaque binary blobs and offered only for download. To enable container browsing
+and in-UI preview, replace the original `zip` previewer with `previewable_zip` in your `PREVIEWER_PREFERENCE` list in
 `invenio.cfg`:
 
 ```python
@@ -42,11 +42,11 @@ rather than offering a plain download link.
 
 ## Configuring previews inside archives
 
-A new configuration variable, `CONTAINER_ITEM_PREVIEWER_PREFERENCE`, holds previewers that work for items contained 
-inside ZIP files. Currently, all standard previewers except IIIF are supported. IIIF requires additional image server 
+A new configuration variable, `CONTAINER_ITEM_PREVIEWER_PREFERENCE`, holds previewers that work for items contained
+inside ZIP files. Currently, all standard previewers except IIIF are supported. IIIF requires additional image server
 links that are not available for container items.
 
-This variable follows the same format as `PREVIEWER_PREFERENCE` but is applied to container items rather than top-level 
+This variable follows the same format as `PREVIEWER_PREFERENCE` but is applied to container items rather than top-level
 record files.
 
 ```python
@@ -67,8 +67,8 @@ CONTAINER_ITEM_PREVIEWER_PREFERENCE = [
 
 ## ZIP processing limits
 
-In invenio-records-resources, new configuration variables have been added to configure ZIP formats and provide defaults 
-for ZIP validity checks, maximum listing entries, maximum header size, and extracted-stream chunk size. These are 
+In invenio-records-resources, new configuration variables have been added to configure ZIP formats and provide defaults
+for ZIP validity checks, maximum listing entries, maximum header size, and extracted-stream chunk size. These are
 checked at upload time.
 
 | Variable | Default | Description |
@@ -94,9 +94,9 @@ RECORDS_RESOURCES_EXTRACTED_STREAM_CHUNK_SIZE = 128 * 1024  # 128 KB
 
 ## Supported formats and extensibility
 
-By default, files with extensions listed in the RECORDS_RESOURCES_ZIP_FORMATS configuration (default: [".zip"]) are 
+By default, files with extensions listed in the RECORDS_RESOURCES_ZIP_FORMATS configuration (default: [".zip"]) are
 automatically processed as ZIP containers.
 
-Support for additional container formats can be added by implementing the `FileExtractor` interface in 
-`invenio-records-resources` and registering it for the relevant file extension. See the 
+Support for additional container formats can be added by implementing the `FileExtractor` interface in
+`invenio-records-resources` and registering it for the relevant file extension. See the
 [architecture documentation](../../../maintenance/architecture/records.md#container-files) for details.

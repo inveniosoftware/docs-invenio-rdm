@@ -348,7 +348,7 @@ USERPROFILES_READ_ONLY = True
 
 ### Auto-confirm user
 
-*Introduced in InvenioRDM v11*
+_Introduced in v11_
 
 By default, users who log in using an external authentication provider are `confirmed` and the e-mail confirmation
 is not sent anymore.
@@ -542,7 +542,7 @@ OAUTHCLIENT_SIGNUP_FORM = my_registration_form
 
 ### Custom user info
 
-*Introduced in InvenioRDM v11*
+_Introduced in v11_
 
 You can customize how each OAuth plugin will fetch the user information on login, and what
 fields should be kept or how they should be serialized.

@@ -1,6 +1,6 @@
 # Administration panel
 
-*Introduced in InvenioRDM v10*
+_Introduced in v10_
 
 ## Summary
 

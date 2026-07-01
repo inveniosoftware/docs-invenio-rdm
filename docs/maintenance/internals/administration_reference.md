@@ -1,6 +1,6 @@
 # Administration views reference guide
 
-*Introduced in InvenioRDM v10*
+_Introduced in v10_
 
 This document provides a reference guide for all the attributes available to `invenio-administration` views.
 

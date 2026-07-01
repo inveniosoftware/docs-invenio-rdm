@@ -1,6 +1,6 @@
 # Adding custom Python and Javascript code
 
-*Introduced in InvenioRDM v11*
+_Introduced in v11_
 
 To extend your instance with your own custom code and views, you can use the predefined “site” folder in your instance. The site folder works just like any other installed package. This means that you no longer need to develop and publish a separate package to add custom views and functionality to your instance.
 

@@ -52,7 +52,7 @@ You can manage OAI sets by using the administration panel.
 
 ### Default sets
 
-*Introduced in InvenioRDM v11*
+_Introduced in v11_
 
 The OpenAIRE OAI sets is included by default in InvenioRDM.
 

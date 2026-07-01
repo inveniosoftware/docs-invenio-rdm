@@ -1,6 +1,6 @@
 # Create a new type of custom field
 
-*Introduced in InvenioRDM v10*
+_Introduced in v10_
 
 This guide describes how to create your own custom field. If you have not done it yet, please read first about configuring [records custom fields](./records.md).
 The new custom field in this example will extend the use case described in the records custom field documentation:

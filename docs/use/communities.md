@@ -108,7 +108,7 @@ The **Pages** section allows you to create and edit custom content pages for you
 
 ### Collections
 
-_Introduced in InvenioRDM v14_
+_Introduced in v14_
 
 The **Collections** section allows you to organize your community's records into curated collections based on search filters. Collections help users browse and discover records through meaningful thematic groupings.
 

@@ -1,6 +1,6 @@
 # Create search terms mappings
 
-*Introduced in InvenioRDM v11*
+_Introduced in v11_
 
 This guide describes the process to create search terms mappings in the application layer.
 

@@ -1388,7 +1388,7 @@ Last-Modified: Thu, 26 Nov 2020 14:30:06 GMT
 
 ### Container files
 
-*Introduced in InvenioRDM v14*
+_Introduced in v14_
 
 Container files are archive files (e.g., ZIP) whose internal structure InvenioRDM understands. For supported formats, two additional endpoints are available on a published record's files: one to list the archive's contents and one to download individual files or directories from within it.
 
@@ -1448,8 +1448,8 @@ Content-Type: application/json
 
 `GET /api/records/{id}/files/{filename}/container/{path}`
 
-Retrieve specific container items from the archive. Enables downloading individual files or groups of files without 
-downloading the entire archive. If <path> points to a single container item, the API streams the container item content. 
+Retrieve specific container items from the archive. Enables downloading individual files or groups of files without
+downloading the entire archive. If <path> points to a single container item, the API streams the container item content.
 If <path> points to a container item that is a directory, the API streams a ZIP archive of that directory.
 
 **Parameters**

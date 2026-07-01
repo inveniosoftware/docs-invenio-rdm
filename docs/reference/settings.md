@@ -105,7 +105,7 @@ RDM_CITATION_STYLES_DEFAULT = 'chicago-annotated-bibliography'
 
 ## Download all files button
 
-*Introduced in InvenioRDM v11*
+_Introduced in v11_
 
 !!! warning "Blocking connection and large files"
      In contrast to other file-serving endpoints, this functionality does not offload the response to nginx, which means that for very large files and slower client connections these might become long-running blocking requests. You can mitigate these issues either via rate-limiting or setting up dedicated resources for serving this type of requests.
@@ -118,11 +118,11 @@ RDM_ARCHIVE_DOWNLOAD_ENABLED = True
 
 ## ZIP and container file preview
 
-*Introduced in InvenioRDM v14*
+_Introduced in v14_
 
 ### Previewers
 
-A new `previewable_zip` previewer enables container browsing for ZIP files in the record landing page. 
+A new `previewable_zip` previewer enables container browsing for ZIP files in the record landing page.
 It should replace the old `zip` entry in `PREVIEWER_PREFERENCE` in your `invenio.cfg` to allow previewing ZIP files:
 
 ```python
@@ -142,8 +142,8 @@ PREVIEWER_PREFERENCE = [
 ]
 ```
 
-`CONTAINER_ITEM_PREVIEWER_PREFERENCE` controls which previewers are tried for files *inside* an archive. 
-It follows the same format as `PREVIEWER_PREFERENCE` but IIIF is excluded, since it requires additional image server 
+`CONTAINER_ITEM_PREVIEWER_PREFERENCE` controls which previewers are tried for files *inside* an archive.
+It follows the same format as `PREVIEWER_PREFERENCE` but IIIF is excluded, since it requires additional image server
 links that are not available for container items:
 
 ```python
