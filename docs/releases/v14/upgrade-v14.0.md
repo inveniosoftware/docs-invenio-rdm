@@ -199,6 +199,7 @@ This step ensures that all subsequent commands use the correct Python environmen
 Execute the database migrations to update table schemas:
 
 ```bash
+invenio shell $(find $(pipenv --venv)/lib/*/site-packages/invenio_app_rdm -name prepare_migration_13_0_to_14_0.py)
 invenio alembic upgrade
 ```
 
@@ -207,6 +208,9 @@ TODO: Fill with more advanced migration command of this version that fixes migra
 ### Apply data changes
 
 Execute the data migration script to update the content of the DB:
+
+TODO: add explanation that vocabularies have to be updated first, to run the
+theses migration in migrate_13_0_to_14_0.py
 
 ```bash
 # if using uv
@@ -359,143 +363,10 @@ Because the datastream index has `"dynamic": true` on the `context` object, exis
 
 You will need to run the code below against the live index **before the new code is deployed**. The script is updating all requestevents documents of type comment to mark them as "parent". This is required so that the `join` relationship queries succeed (the request timeline will be broken otherwise!!!). The script exits when all comments are updated. After deployment of the new code you might need to rerun it to fix the delta-comments created between the last run of the script and the deployment of the new code.
 
-TODO: this should be a script
+TODO: the script has been merged into migrate_13_0_to_14_0.py. since the
+migration script is applied before the index updates it should fullfill what is
+written here
 
-```python
-import time
-from datetime import datetime
-
-import click
-from invenio_search import current_search_client
-from invenio_search.api import build_alias_name
-from invenio_requests.records.api import RequestEvent
-
-
-click.secho("Starting parent_child field migration for parent comments...", fg="green")
-
-# Poll interval in seconds to recheck remaining comments without tagged as parents
-poll_interval = 10
-
-# Get the OpenSearch client and index name
-index_name = build_alias_name(RequestEvent.index._name)
-
-click.echo(f"Target index: {index_name}")
-
-# Capture migration start timestamp
-migration_start_time = datetime.utcnow().isoformat()
-click.echo(f"Migration timestamp: {migration_start_time}")
-
-# Query for documents that need updating (created before migration, without parent_child field)
-def get_pending_count():
-    """Get count of documents that still need updating."""
-    return current_search_client.count(
-        index=index_name,
-        body={
-            "query": {
-                "bool": {
-                    "must": [
-                        # Created before migration started
-                        {"range": {"created": {"lt": migration_start_time}}},
-                    ],
-                    "must_not": [
-                        # Has parent_id (is a child)
-                        {"exists": {"field": "parent_id"}},
-                        # Already has parent_child field
-                        {"exists": {"field": "parent_child"}},
-                    ],
-                }
-            }
-        },
-    )
-
-# Initial count
-initial_count_response = get_pending_count()
-initial_count = initial_count_response["count"]
-
-click.echo(f"\nFound {initial_count} parent comments to update")
-
-# Trigger the update (async with wait_for_completion=False)
-click.echo("\nTriggering update_by_query...")
-update_response = current_search_client.update_by_query(
-    index=index_name,
-    body={
-        "query": {
-            "bool": {
-                "must": [
-                    # Created before migration started
-                    {"range": {"created": {"lt": migration_start_time}}},
-                ],
-                "must_not": [
-                    # Has parent_id (is a child)
-                    {"exists": {"field": "parent_id"}},
-                    # Already has parent_child field
-                    {"exists": {"field": "parent_child"}},
-                ],
-            }
-        },
-        "script": {
-            "source": "ctx._source.parent_child = ['name': 'parent']",
-            "lang": "painless",
-        },
-    },
-    wait_for_completion=False,
-    refresh=True,
-)
-
-task_id = update_response.get("task")
-if task_id:
-    click.echo(f"Task ID: {task_id}")
-
-click.echo(f"\nPolling cluster every {poll_interval}s until completion...")
-click.echo("(Checking for documents created before {})".format(migration_start_time))
-
-# Poll until all documents are updated
-total_updated = 0
-poll_count = 0
-
-with click.progressbar(
-    length=initial_count,
-    label="Migrating parent comments",
-    show_eta=True,
-) as bar:
-    bar.update(0)
-
-    while True and initial_count != 0:
-        poll_count += 1
-        time.sleep(poll_interval)
-
-        # Check how many documents still need updating
-        pending_response = get_pending_count()
-        pending_count = pending_response["count"]
-
-        # Calculate how many have been updated
-        updated_since_last = (initial_count - total_updated) - pending_count
-        if updated_since_last > 0:
-            bar.update(updated_since_last)
-            total_updated += updated_since_last
-
-        # Check if we're done
-        if pending_count == 0:
-            # Make sure we update to 100%
-            remaining = initial_count - total_updated
-            if remaining > 0:
-                bar.update(remaining)
-            break
-
-        # Progress update every 10 polls
-        if poll_count % 10 == 0:
-            click.echo(f"\nStill processing... {pending_count} documents remaining")
-
-click.secho(f"\n✓ Migration complete!", fg="green")
-click.echo(f"Total updated: {initial_count} parent comments")
-
-# Final verification
-final_pending = get_pending_count()["count"]
-if final_pending == 0:
-    click.secho("✓ Verification passed: All documents updated", fg="green")
-else:
-    click.secho(f"⚠ Warning: {final_pending} documents still pending", fg="yellow")
-```
 
 ### Update vocabularies
 
