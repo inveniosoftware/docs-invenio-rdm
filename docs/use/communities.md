@@ -165,3 +165,15 @@ The request page provides a dedicated space for communication. You can **have a 
 When a submission requires expert input or peer review, you can **assign reviewers** to give specific users or groups access to review the inclusion request. This allows you to share the request with external experts, collaborators outside your community, or community members who normally wouldn't have access (such as readers). Reviewers can provide feedback on the research publication draft or assess whether a record meets your community's inclusion criteria. They participate in the request conversation and share their expertise to help you make an informed curation decision, while the possibility to accept or decline the request remains to the community responsibles (curators, managers and owners).
 
 You can find the high-level architecture documentation for communities [here](../maintenance/architecture/communities.md) and configuration options for requests and reviewers [here](../operate/customize/requests.md).
+
+## Curate records
+
+Curators, managers and owners can curate records in your community. This includes removing records from the community.
+
+To remove a record from a community, navigate to the "Communities" menu on the record's landing page.
+
+![Manage communities](imgs/communities/community-manage-in-record.png)
+
+Click on the "Manage communities" button. You will then see a list of communities that the record is associated with. The communities of which you have curation permissions will display a "Remove" button.
+
+![Remove record from community](imgs/communities/community-remove-from-record.png)
