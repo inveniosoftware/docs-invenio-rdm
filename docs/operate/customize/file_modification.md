@@ -1,6 +1,6 @@
 # File modification
 
-_Introduced in vNext_
+_Introduced in v14_
 
 Admins can now modify the files of all records on their instance by default and, with configuration, you can also allow users to edit their own published records within a certain time period.
 
@@ -36,7 +36,7 @@ Using the default grace periods, here is how file modification works from a user
 1. I create a draft, I have an unlimited time to edit the files before publishing
 2. After publishing, I have 30 days from publication to edit the files
     * The time to unlock the files is configured via passing a custom timedelta to the policy, e.g. `FileModificationGracePeriodPolicy(timedelta(days=30))`
-3. After editing the files, I have 45 days from publication to upload my files and publish my changes 
+3. After editing the files, I have 45 days from publication to upload my files and publish my changes
     * The time in which to publish the changes, which should be greater than the grace period, is configured in your config via `RDM_FILE_MODIFICATION_PERIOD = timedelta(days=30 + 15)`
 
 The second time period of 45 days is to prevent people from editing the files, and leaving the files editable for an unknown date in the future.
