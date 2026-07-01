@@ -113,7 +113,10 @@ The sort option is defined by:
 
 ### Configure date range facets
 
-InvenioRDM supports date range facets rendered as a histogram with a range
+### Configure date range facets
+
+_Introduced in v14_
+
 slider. The built-in ``publication_date`` facet is defined in
 [invenio-rdm-records](https://github.com/inveniosoftware/invenio-rdm-records/blob/master/invenio_rdm_records/services/facets.py) and
 enabled by default in ``RDM_SEARCH`` and ``RDM_SEARCH_DRAFTS``:
