@@ -51,9 +51,15 @@ A rule configuration is a dictionary with the following structure:
 ```python
 {
     "id": "unique-rule-id",  # Required
-    "title": "Human-readable title",
-    "message": "Error message shown when rule fails",
-    "description": "Detailed description of the rule",
+    "title": {
+        "en": "Human-readable title",
+    },
+    "message": {
+        "en": "Error message shown when rule fails"
+    },
+    "description": {
+        "en": "Detailed description of the rule"
+    },
     "level": "info|warning|failure",  # Default: "info"
     "condition": {  # Optional condition expression
         "type": "expression_type",
@@ -69,6 +75,13 @@ A rule configuration is a dictionary with the following structure:
 ```
 
 This object is stored in the `params` section of the `CheckConfig` model in the database.
+
+_Introduced in v14_
+
+Rule `title`, `message`, and `description` values support multilingual dictionaries keyed by locale (for example, `en`, `sv`). Plain string values remain supported for backwards compatibility.
+
+!!! Warning "Known limitation"
+    Plain string results are stored as-is and shown unchanged to all viewers. This can matter when submitters and reviewers use different locales. Checks that need per-viewer localization should return multilingual dictionaries with an English fallback.
 
 ### Expression types
 
@@ -160,15 +173,25 @@ Here's a complete example showing multiple rules with different expression types
 ```python
 {
     "id": "metadata-validation",
-    "title": "Metadata Validation",
-    "description": "Validates basic metadata requirements",
+    "title": {
+        "en": "Metadata Validation"
+    },
+    "description": {
+        "en": "Validates basic metadata requirements"
+    },
     "rules": [
         {
             "id": "license:exists",
             "level": "error",
-            "title": "Record license",
-            "message": "Licenses are required.",
-            "description": "All submissions must specify the licensing terms.",
+            "title": {
+                "en": "Record license"
+            },
+            "message": {
+                "en": "Licenses are required."
+            },
+            "description": {
+                "en": "All submissions must specify the licensing terms."
+            },
             "checks": [
                 {
                     "path": "metadata.rights",
@@ -181,9 +204,15 @@ Here's a complete example showing multiple rules with different expression types
         {
             "id": "creators:identifier",
             "level": "info",
-            "title": "Creator Identifiers",
-            "message": "Affiliations are recommended for all creators",
-            "description": "All creators should have a persistent identifier (e.g. an ORCID)",
+            "title": {
+                "en": "Creator Identifiers"
+            },
+            "message": {
+                "en": "Affiliations are recommended for all creators"
+            },
+            "description": {
+                "en": "All creators should have a persistent identifier (e.g. an ORCID)"
+            },
             "condition": {
                 "path": "metadata.creators",
                 "type": "list",
