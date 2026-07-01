@@ -399,6 +399,19 @@ Once your job is created and active, click on **Schedule** to configure the timi
 
 After clicking **Save**, the job will be scheduled. The first run will occur within the first 5 minutes, and subsequent runs will follow the schedule you specified.
 
+#### Deleting a Job
+
+You can delete a job from its detail page in the administration interface.
+
+1. Head to the administration interface and navigate to the "Jobs" section.
+2. Open the job you want to remove.
+3. Click the delete button in the actions bar on the job detail page.
+4. Confirm the deletion in the dialog.
+
+![Job detail page with delete button](./imgs/administration/job-detail-delete-button.png)
+
+After confirming, the job will be removed from the administration interface.
+
 #### Job Notifications
 
 Jobs can send email notifications to configured recipients when runs complete with specific statuses. This feature enables administrators and librarians to be automatically informed about the outcome of scheduled or manually triggered jobs.
