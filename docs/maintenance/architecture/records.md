@@ -145,6 +145,45 @@ diagram below depicts how files are modelled:
   object versions may link to the same file instance. This enables
   deduplication and thereby supports optimizing disk storage usage.
 
+## Container files
+
+A container file is a record file (e.g. a ZIP archive) that holds other files inside it. 
+InvenioRDM models container support as a distinct capability layer on top of the existing file model, 
+so the underlying file storage is unchanged: a ZIP is stored as a regular file instance with an object version, bucket, 
+and file record like any other file. What changes is that the system additionally understands its internal structure.
+
+### Components
+
+**`FileExtractor`**
+
+`FileExtractor` is the abstract interface that all container format handlers must implement. It defines two operations: 
+listing the archive's contents and extracting a specific item by path. Adding support for a new container format (e.g., 
+NetCDF, TAR) means implementing `FileExtractor` and registering the new handler for the relevant file extension.
+
+**`ZipProcessor`**
+
+`ZipProcessor` is invoked by the standard Invenio upload flow, and performs two tasks: it validates the archive 
+(checking entry count, uncompressed size, and compression ratio against the configured safety limits) and it stores 
+the starting position (the byte offset of the archive's table of contents) in the file's metadata.
+
+**`ZipExtractor`**
+
+`ZipExtractor` implements `FileExtractor` for ZIP archives and handles both listing and container item extraction
+operations. When listing or extracting is requested, it uses the saved starting position, bypassing the need to scan
+from the beginning. This makes repeated listing calls cheap regardless of archive size.
+
+**`ReplyStream`**
+
+`ReplyStream` handles the response path for content extraction. It streams data from the object storage backend without 
+loading the entire archive into memory. For file-level requests it streams the individual entry; 
+for directory-level requests it generates a ZIP archive on the fly from the selected entries.
+
+### Extensibility
+
+New container formats can be supported by implementing `FileExtractor` and registering the handler for the corresponding
+file extension. The listing and extraction API endpoints are format-agnostic, calling the registered handler for the 
+file's extension.
+
 
 ## Community relations
 
