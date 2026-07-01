@@ -27,6 +27,19 @@ role-aware views and groups CRUD support.
     migrate all existing logic and related references to role ids after
     upgrading to v14, or access behavior may break.
 
+### Publication date range facet
+
+InvenioRDM v14 introduces an interactive publication date facet on the search
+page. Users can filter records by year using a histogram and range slider, or
+pick from preset ranges (last 6 months, last year, last 5 years) and enter a
+custom date range.
+
+![Publication date range facet](../../operate/customize/imgs/publication-date-range-facet.png)
+
+You can enable additional date facets, tune backend aggregation settings, and
+override the frontend UI. See [Configure date range
+facets](../../operate/customize/search.md#customize-publication-date-facet).
+
 ### Record deletion
 
 You can now allow users to delete, or request deletion of, their own records in accordance with any required criteria you may have. When enabled, the default behavior is that records can be deleted by their owners within 30 days of publication and record owners can request deletion outside this period. Deletion requests are visible within the admin panel and the user's request dashboard.
