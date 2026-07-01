@@ -91,11 +91,6 @@ properties, e.g. "send a webhook for all records of type `software` added to the
 
 ### Audit log
 
-!!! info "Not supported"
+Audit logging is an important feature in InvenioRDM that allows administrators, community curators/managers, and users to review past actions for security and transparency. InvenioRDM provides built-in support for logging key actions as audit log events. These audit log entries are triggered by well-defined actions and can be extended to new operations if needed.
 
-    This feature has not been implemented yet
-
-For many operations it's useful to keep an audit log, so that administrators, community
-curators/managers, and users, can review past actions. This is both a security and
-"inspection" feature. Events can be mapped to actions, and logging them could be
-implemented via event handlers.
+To check which actions are supported out of the box and how to add new ones, see [Audit logs](../../operate/customize/audit-logs.md).
