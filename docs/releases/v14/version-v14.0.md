@@ -22,10 +22,10 @@ In v14, the administration panel adds users/roles improvements, including
 role-aware views and groups CRUD support.
 
 !!! Danger "v14 breaking change"
-    Access checks now resolve roles by **role id** (not role name).
-    If you previously relied on role **names** for access control, you must
-    migrate all existing logic and related references to role ids after
-    upgrading to v14, or access behavior may break.
+Access checks now resolve roles by **role id** (not role name).
+If you previously relied on role **names** for access control, you must
+migrate all existing logic and related references to role ids after
+upgrading to v14, or access behavior may break.
 
 ### Publication date range facet
 
@@ -80,18 +80,15 @@ To share a link to a comment, simply click the "Copy link" button on a comment:
 
 ![Comment with the "copy link" button](imgs/comment-deep-link.png)
 
-
 #### LaTeX equations
 
 Comments now support LaTeX, so mathematical equations can be written inline (using `$`) or as full-width blocks (using `$$`). A "Preview math equations" button lets you check the rendered result before publishing the comment.
-
 
 #### Quoting comments
 
 You can now quote a comment, or part of a comment, when writing a reply. When quoting a whole comment, there is a "Quote reply" option in its action menu. To quote just part of it, highlight the text you want to quote and a "Quote reply" option will appear in line.
 
 ![Quoting other comments](imgs/quote-reply-popover.png)
-
 
 #### Replying to comments
 
@@ -103,10 +100,9 @@ Community curators, managers, and owners can now lock a request's conversation t
 
 ![The "lock"/"unlock" events in the timeline](imgs/locking-event.png)
 
-
 #### Attaching files to comments
 
-You can now attach files directly to a comment, with attachments displayed beneath the comment text once submitted. 
+You can now attach files directly to a comment, with attachments displayed beneath the comment text once submitted.
 
 ![A submitted comment showing an attached file below the comment text](imgs/attached-file-comment.png)
 
@@ -170,7 +166,6 @@ Here is a quick summary of the other improvements in this release:
 - Addition of a previewer to display web archive files (WACZ, WARC, HAR, CDX, CDXJ file types) via an embedded [ReplayWeb.page](https://replayweb.page/) viewer. See "Enabling Web Archives" in [invenio-previewer](https://github.com/inveniosoftware/invenio-previewer/blob/master/invenio_previewer/__init__.py)
 - Communities: Fix permissions to enable community owners to [remove it from a record](../../../use/communities#curate-records). This does not change the expected behavior for when a [community is required](../../../operate/customize/require_community/#require-community-for-record-publication) for record publication.
 
-
 ## Deprecations
 
 - Many [custom field widgets](../../operate/customize/metadata/custom_fields/widgets.md) used the `icon` and `description` props, which have now been deprecated and replaced with `labelIcon` and `helpText` respectively. This is to improve consistency with the naming of the built-in fields used in the deposit form and thereby avoid confusion. The old names will continue to function for now.
@@ -201,3 +196,70 @@ If you have questions related to these release notes, don't hesitate to jump on 
 ## Credit
 
 The development of this release wouldn't have been possible without the help of these smart people (name or GitHub handle, alphabetically sorted):
+
+- Alex Ioannidis
+- Alžběta Pokorná
+- Anika Churilova
+- Brian Kelly
+- Carlin MacKenzie
+- Chokri Ben Romdhane
+- Chris Wagner
+- Christoph Ladurner
+- Dan Granville
+- ducica
+- Dusan Stojanovic
+- enitu
+- Eric Newman
+- Esteban J. G. Gabancho
+- Fatimah Zulfiqar
+- gressho
+- Guillaume Viger
+- Hrafn Malmquist
+- Ian Scott
+- Jacob Collins
+- Jakob
+- jakob miesner
+- Javier Romero Castro
+- Jorge Marco
+- jrcastro2
+- Julie Hinge
+- Karl Krägelin
+- Karolina Przerwa
+- Lars Holm Nielsen
+- Laura
+- Maira Salazar
+- Markus Klöpper
+- Martin Fenner
+- Maximilian Moser
+- Miroslav Bauer
+- Miroslav Simek
+- mkloeppe
+- Mohammed Taha Khan
+- Nicola
+- Oliver Geneser
+- Ondřej Ruml
+- Orkun BALCI
+- Pablo Saiz
+- Pablo Tamarit
+- Pal Kerecsenyi
+- Pascal Repond
+- Peter Desmet
+- Peter Weber
+- Rafael Martínez-Estévez
+- Rishabh Oberoi
+- ron
+- Saksham
+- Sam Arbid
+- Sarah Wiechers
+- senyaaa
+- Simone Tripodi
+- sushmithainjeti
+- Taha Khan
+- Till Korten
+- Tom Morrell
+- Uma Ganapathy
+- utnapischtim
+- Werner Greßhoff
+- yashlamba
+- Zacharias Zacharodimos
+- Zübeyde Civelek
