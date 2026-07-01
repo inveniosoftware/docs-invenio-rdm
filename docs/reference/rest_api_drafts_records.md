@@ -1386,6 +1386,113 @@ Last-Modified: Thu, 26 Nov 2020 14:30:06 GMT
 <...file binary data...>
 ```
 
+### Container files
+
+*Introduced in InvenioRDM v14*
+
+Container files are archive files (e.g., ZIP) whose internal structure InvenioRDM understands. For supported formats, two additional endpoints are available on a published record's files: one to list the archive's contents and one to download individual files or directories from within it.
+
+#### List the contents of a file
+
+`GET /api/records/{id}/files/{filename}/container`
+
+**Parameters**
+
+| Name       | Type   | Location | Description                                           |
+| ---------- | ------ | -------- | ----------------------------------------------------- |
+| `id`       | string | path     | Identifier of the record, e.g. `cbc2k-q9x58`         |
+| `filename` | string | path     | Name of a container file, e.g. `dataset.zip`         |
+
+**Request**
+
+```http
+GET /api/records/{id}/files/dataset.zip/container HTTP/1.1
+```
+
+**Response**
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "entries": [
+    {
+      // saved path inside the ZIP archive (used as container item key)
+      "key": "test_zip/test1.txt",
+      // other metadata fields can be added here and should be ignored by clients if not recognized
+      // fields below come from the Python zipfile library
+      "size": 12,
+      "compressed_size": 14,
+      "mimetype": "text/plain",
+      "checksum": "crc:2962613731",
+    },
+  ],
+  "folders": [
+    {
+      "key": "test_zip",
+      "links": {
+        "content": ".../api/records/abc123-yz89/files/demo_with_subfolders.zip/container/test_zip",
+      },
+      "entries": [
+        "test_zip/test1.txt",
+      ],
+    },
+  ],
+  "total": 1, // total number of entries
+  "truncated": false, // true if the listing was truncated (e.g., too many entries)
+}
+```
+
+#### Download a container item
+
+`GET /api/records/{id}/files/{filename}/container/{path}`
+
+Retrieve specific container items from the archive. Enables downloading individual files or groups of files without 
+downloading the entire archive. If <path> points to a single container item, the API streams the container item content. 
+If <path> points to a container item that is a directory, the API streams a ZIP archive of that directory.
+
+**Parameters**
+
+| Name       | Type   | Location | Description                                                                       |
+| ---------- | ------ | -------- | --------------------------------------------------------------------------------- |
+| `id`       | string | path     | Identifier of the record, e.g. `cbc2k-q9x58`                                     |
+| `filename` | string | path     | Name of a container file, e.g. `dataset.zip`                                     |
+| `path`     | string | path     | Path of the item inside the archive, e.g. `data/measurements.csv` or `data`      |
+
+**Request (single file)**
+
+```http
+GET /api/records/{id}/files/dataset.zip/container/data/measurements.csv HTTP/1.1
+```
+
+**Response (single file)**
+
+```http
+HTTP/1.1 200 OK
+Content-Disposition: attachment; filename="measurements.csv"
+Content-Type: text/csv
+
+<...file binary data...>
+```
+
+**Request (directory)**
+
+```http
+GET /api/records/{id}/files/dataset.zip/container/data HTTP/1.1
+```
+
+**Response (directory)**
+
+```http
+HTTP/1.1 200 OK
+Content-Disposition: attachment; filename="data.zip"
+Content-Type: application/zip
+
+<...ZIP archive of directory contents, streamed...>
+```
+
+
 ## Versions
 
 Used for interacting with record versions.

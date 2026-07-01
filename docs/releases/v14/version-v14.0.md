@@ -111,6 +111,22 @@ Administrators can now manage user roles directly from the administration panel.
 
 ![Manage user roles dropdown menu](../../use/imgs/administration/manage-user-roles-dropdow-menu.png)
 
+### Support for ZIP and container formats
+
+We've added support for ZIP files and introduced a flexible framework for handling container formats (e.g., NetCDF, TAR). Users can now explore and access files inside archives without downloading them entirely, making large datasets easier to work with.
+
+These new features allow:
+
+- Browsing archive contents directly in the UI with a hierarchical tree view
+
+- Previewing files inside ZIPs (images, PDFs, text, notebooks, audio/video, etc.)
+
+- Downloading individual files or folders without extracting the entire archive
+
+![ZIP file preview](imgs/container-file-formats.png)
+
+See the [ZIP and other container files configuration guide](../../operate/customize/file-uploads/zip-and-container-files.md) for how to enable the feature and tune its behavior, and the [REST API reference](../../reference/rest_api_drafts_records.md#container-files) for the new API endpoints.
+
 ### Miscellaneous additions
 
 Here is a quick summary of the other improvements in this release:

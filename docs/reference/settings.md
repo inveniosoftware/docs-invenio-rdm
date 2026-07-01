@@ -116,6 +116,69 @@ To enable/disable the UI button and backend functionality for being able to down
 RDM_ARCHIVE_DOWNLOAD_ENABLED = True
 ```
 
+## ZIP and container file preview
+
+*Introduced in InvenioRDM v14*
+
+### Previewers
+
+A new `previewable_zip` previewer enables container browsing for ZIP files in the record landing page. 
+It should replace the old `zip` entry in `PREVIEWER_PREFERENCE` in your `invenio.cfg` to allow previewing ZIP files:
+
+```python
+PREVIEWER_PREFERENCE = [
+    "csv_papaparsejs",
+    "pdfjs",
+    "iiif",
+    "simple_image",
+    "json_prismjs",
+    "xml_prismjs",
+    "mistune",
+    "video_videojs",
+    "audio_videojs",
+    "ipynb",
+    "previewable_zip",
+    "txt",
+]
+```
+
+`CONTAINER_ITEM_PREVIEWER_PREFERENCE` controls which previewers are tried for files *inside* an archive. 
+It follows the same format as `PREVIEWER_PREFERENCE` but IIIF is excluded, since it requires additional image server 
+links that are not available for container items:
+
+```python
+CONTAINER_ITEM_PREVIEWER_PREFERENCE = [
+    "csv_papaparsejs",
+    "pdfjs",
+    "simple_image",
+    "json_prismjs",
+    "xml_prismjs",
+    "mistune",
+    "video_videojs",
+    "audio_videojs",
+    "ipynb",
+    "zip",
+    "txt",
+]
+```
+
+See [ZIP and container files](../operate/customize/file-uploads/zip-and-container-files.md) for the full configuration guide.
+
+### ZIP processing limits
+
+The following variables control ZIP processing to protect against resource exhaustion. They are enforced at upload time.
+
+| Variable | Default | Description |
+| -------- | ------- | ----------- |
+| `RECORDS_RESOURCES_ZIP_FORMATS` | `[".zip"]` | File extensions treated as ZIP archives by the ZIP extractor. |
+| `RECORDS_RESOURCES_ZIP_MAX_LISTING_ENTRIES` | `1000` | Maximum entries returned in a single listing response. Listings are truncated beyond this limit. |
+| `RECORDS_RESOURCES_ZIP_MAX_ENTRIES` | `10000` | Maximum total entries allowed in a ZIP archive. Archives exceeding this limit cannot be listed or extracted via the API. |
+| `RECORDS_RESOURCES_ZIP_MAX_TOTAL_UNCOMPRESSED` | `524288000` | Maximum total uncompressed size of all entries, in bytes (500 MB). |
+| `RECORDS_RESOURCES_ZIP_MAX_HEADER_SIZE` | `65536` | Maximum size of the ZIP central directory preloaded into memory, in bytes (64 KB). |
+| `RECORDS_RESOURCES_ZIP_MAX_RATIO` | `200.0` | Maximum allowed compression ratio (uncompressed / compressed size). Protects against ZIP bomb attacks. |
+| `RECORDS_RESOURCES_EXTRACTED_STREAM_CHUNK_SIZE` | `65536` | Chunk size in bytes used when streaming extracted content (64 KB). |
+
+
 ## Membership requests
 
 Enable the feature i.e., allow communities to decide if users can request to join them:
