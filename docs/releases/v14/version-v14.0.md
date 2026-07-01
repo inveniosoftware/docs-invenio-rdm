@@ -58,15 +58,44 @@ Additionally in a similar way to the new record deletion feature, you can also a
 
 We've introduced a number of exciting new features to improve the commenting experience on requests, which are currently used across InvenioRDM for a range of purposes such as community record submission.
 
-#### Deep links
+#### Sharing a link to a comment
 
 You can now copy a link to a comment directly, allowing for easy and precise sharing.
 When opened, the link will take the user to the comment and highlight it, regardless of which page it's on.
 
-To use deep links, simply click the "Copy link" button on a comment:
+To share a link to a comment, simply click the "Copy link" button on a comment:
 
 ![Comment with the "copy link" button](imgs/comment-deep-link.png)
 
+
+#### LaTeX equations
+
+Comments now support LaTeX, so mathematical equations can be written inline (using `$`) or as full-width blocks (using `$$`). A "Preview math equations" button lets you check the rendered result before publishing the comment.
+
+
+#### Quoting comments
+
+You can now quote a comment, or part of a comment, when writing a reply. When quoting a whole comment, there is a "Quote reply" option in its action menu. To quote just part of it, highlight the text you want to quote and a "Quote reply" option will appear in line.
+
+![Quoting other comments](imgs/quote-reply-popover.png)
+
+
+#### Replying to comments
+
+A dedicated "Write a reply" box lets you reply directly to a specific comment, keeping related discussion grouped together and the conversation easier to follow.
+
+#### Locking conversations
+
+Community curators, managers, and owners can now lock a request's conversation to prevent further comments at any time, with locking and unlocking events recorded in the conversation timeline for transparency. Once a conversation is locked, existing comments can still be deleted but not edited.
+
+![The "lock"/"unlock" events in the timeline](imgs/locking-event.png)
+
+
+#### Attaching files to comments
+
+You can now attach files directly to a comment, with attachments displayed beneath the comment text once submitted. 
+
+![A submitted comment showing an attached file below the comment text](imgs/attached-file-comment.png)
 
 ### OAuth improvements
 

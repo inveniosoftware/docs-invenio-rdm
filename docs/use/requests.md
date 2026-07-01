@@ -26,7 +26,7 @@ In InvenioRDM, requests allow users to manage many different use cases themselve
 
 * [User moderation](./administration.md#user-management) — moderation requests for review by administrators 
 * Record deletion — requests from users to administrators to delete their own records
-* File modification — requests from users to administrators to delete their own records
+* File modification — requests from users to administrators to modify their own records
 
 ## Actions
 
@@ -134,7 +134,7 @@ A link to the stub can still be copied, and existing links to the deleted commen
 
 ### Locking the conversation
 
-In some cases, you may wish to lock the conversation after a certain period of the review is concluded.
+In some cases, you may wish to lock a conversation at any time to prevent further comments from being added.
 When a conversation is locked or unlocked, an event appears in the conversation timeline for all viewers:
 
 - New comments and replies cannot be created by anyone, including community curators
@@ -145,10 +145,24 @@ To lock a conversation, click the "Lock conversation" button in the right-hand s
 
 ![The bottom part of the sidebar with the "Lock conversation" button visible](imgs/requests/lock_conversation.png)
 
-To unlock, click the "Unlock conversation" button.
-Community curators (and above) can unlock the conversation at any time.
-<!-- TODO: add a link to the community permissions docs once we have written them -->
+To unlock, click the "Unlock conversation" button. 
+Community curators, managers, and owners can unlock the conversation at any time. See more information about community roles in 
+[members](./communities.md#members).
 
 Locking and unlocking create an event visible to all viewers in the conversation timeline:
 
 ![The "lock"/"unlock" events in the timeline](imgs/requests/locking_event.png)
+
+
+### Attaching files to comments
+
+You can attach files directly to a comment, making it easy to share supporting material as part of the conversation.
+This is particularly useful for reviewers, who can, for example, annotate a submitted PDF and upload their full review or attach corrected material such as figures or diagrams.
+
+To attach a file, click the "Attach files" button in the comment editor:
+
+![Comment editor with the "Attach files" button](imgs/requests/attach_files.png)
+
+Once the comment is submitted, any attached files will be displayed beneath the comment text:
+
+![A submitted comment showing an attached file below the comment text](imgs/requests/attached_file_comment.png)
