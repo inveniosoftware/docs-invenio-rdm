@@ -70,9 +70,9 @@ nav:
 
   - Operate an Instance:
       - Overview: "operate/index.md"
-      - Deployment and other operations:
-          - Infrastructure: operate/ops/infrastructure.md
-          - Deploy: operate/ops/deploy.md
+      - Production deployment:
+          - Infrastructure architecture: operate/ops/infrastructure.md
+          - Deploy to production: operate/ops/deploy.md
           - Logs: operate/ops/logging.md
           - Back up search indices: operate/ops/backup_search_indices.md
           - Redirect legacy routes: operate/ops/route_migration.md

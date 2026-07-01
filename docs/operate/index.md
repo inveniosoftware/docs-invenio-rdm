@@ -4,10 +4,10 @@
 
 This guide is intended for developers that need to operate their own InvenioRDM instance, customize it, configure it, or develop new features for it. It assumes you have followed the "Getting Started" section enough to have at least a development instance locally installed.
 
-## Deployment and other operations
+## Production deployment
 
-- [Infrastructure](./ops/infrastructure.md)
-- [Deploy](./ops/deploy.md)
+- [Infrastructure architecture](./ops/infrastructure.md)
+- [Deploy to production](./ops/deploy.md)
 - [Log](./ops/logging.md)
 - [Back up search indices](./ops/backup_search_indices.md)
 - [Redirect legacy routes](./ops/route_migration.md)
