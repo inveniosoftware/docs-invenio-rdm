@@ -1,13 +1,15 @@
 # Profiler
 
-Invenio App RDM integrates [Flask-MultiProfiler](https://github.com/inveniosoftware/Flask-MultiProfiler) for analyzing Python, SQL, and search performance.
+_Introduced in v14_
+
+InvenioRDM integrates [Flask-MultiProfiler](https://github.com/inveniosoftware/Flask-MultiProfiler) for analyzing Python, SQL, and search performance.
 
 ## Features
 
 - Start/stop profiling sessions from a web UI
 - **Code profiling**: function-level profiling using [pyinstrument](https://pyinstrument.readthedocs.io/)
 - **SQL profiling**: database query profiling using [sqltap](https://github.com/inconshreveable/sqltap)
-- **Search profiling**: OpenSearch/Elasticsearch operation tracing via client trace logging
+- **Search profiling**: OpenSearch operation tracing via client trace logging
 - Profiling data is saved per session as SQLite files in the configured storage directory
 - Generated reports can be viewed (or downloaded) per request for each enabled profiler
 
@@ -67,13 +69,12 @@ With the profiler extra installed:
 
 ## Search profiling
 
-Search profiling intercepts trace logs from the OpenSearch or Elasticsearch Python client. InvenioRDM defaults to `opensearchpy.trace`.
+Search profiling intercepts trace logs from the OpenSearch Python client. InvenioRDM defaults to `opensearchpy.trace`.
 
 Supported clients:
 
 - OpenSearch
 - Elasticsearch v7.x
-
 ## Troubleshooting
 
 - If the profiler menu does not appear, confirm `invenio-app-rdm[profiler]` is installed and that `flask-multiprofiler` imported successfully.
