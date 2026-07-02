@@ -109,6 +109,7 @@ nav:
           - Overview: "operate/customize/configuration.md"
           - Audit logs: "operate/customize/audit-logs.md"
           - Authentication: "operate/customize/authentication.md"
+          - Code archival: "operate/customize/code_archival.md"
           - Curation checks: "operate/customize/curation-checks.md"
           - Collections: "operate/customize/collections.md"
           - Compliance info when publishing: "operate/customize/compliance_info.md"

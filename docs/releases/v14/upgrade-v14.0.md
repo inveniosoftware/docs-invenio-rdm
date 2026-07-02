@@ -562,5 +562,21 @@ The new feature of allowing replies to comments available in all requests introd
 
 The new feature of allowing locking/unlocking a request's conversation is controlled via a feature flag config variable `REQUESTS_LOCKING_ENABLED`.
 
+### Deprecated GitHub integration
+
+The [`invenio-github`](https://github.com/inveniosoftware/invenio-github) module has been deprecated.
+You can continue to use it for now, but it will be fully removed in InvenioRDM v15.
+
+It has been replaced with the new [`invenio-vcs`](https://github.com/inveniosoftware/invenio-vcs) module.
+
+Unlike `invenio-github`, `invenio-vcs` is an optional dependency and must be added to your instance-level dependencies.
+There are also some steps involved if you wish to migrate existing `invenio-github` data to `invenio-vcs`.
+
+Please see [this detailed guide](https://github.com/inveniosoftware/invenio-vcs/blob/master/docs/upgrading.rst) for more information on how to upgrade.
+This is only necessary if your instance was actively using `invenio-github` (with at least one user having connected their GitHub account) **and**
+you want to keep the existing data.
+
+See also the [documentation on how to configure the new module](../../operate/customize/code_archival.md).
+
 
 That's it, you have upgraded to InvenioRDM v14!
