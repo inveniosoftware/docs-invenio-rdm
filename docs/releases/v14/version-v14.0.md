@@ -152,6 +152,16 @@ These new features allow:
 
 See the [ZIP and other container files configuration guide](../../operate/customize/file-uploads/zip-and-container-files.md) for how to enable the feature and tune its behavior, and the [REST API reference](../../reference/rest_api_drafts_records.md#container-files) for the new API endpoints.
 
+### New generic VCS integration
+
+The new [`invenio-vcs`](https://github.com/inveniosoftware/invenio-vcs/) module replaces the `invenio-github` module with a near-identical end-user experience, while adding support for a generic VCS provider interface.
+This means other providers such as GitLab or GitHub Enterprise can now be used.
+
+The integration now also supports selecting a target community when enabling a repository.
+
+The new module is an optional dependency and must be installed and configured.
+See [the documentation](../../operate/customize/code_archival.md) for more details.
+
 ### Miscellaneous additions
 
 Here is a quick summary of the other improvements in this release:
