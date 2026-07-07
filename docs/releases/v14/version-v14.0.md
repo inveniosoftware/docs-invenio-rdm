@@ -38,7 +38,7 @@ custom date range.
 
 You can enable additional date facets, tune backend aggregation settings, and
 override the frontend UI. See [Configure date range
-facets](../../operate/customize/search.md#customize-publication-date-facet).
+facets](../../operate/customize/search.md#configure-date-range-facets).
 
 ### Record deletion
 
@@ -164,7 +164,7 @@ Here is a quick summary of the other improvements in this release:
 - Addition of support for Wikidata identifiers (QIDs) for creators and contributors of records and their affiliations.
 - Addition of an HTTP User-Agent helper (`invenio_user_agent`) for outbound HTTP requests in `invenio-vocabularies` datastreams.
 - Addition of a previewer to display web archive files (WACZ, WARC, HAR, CDX, CDXJ file types) via an embedded [ReplayWeb.page](https://replayweb.page/) viewer. See "Enabling Web Archives" in [invenio-previewer](https://github.com/inveniosoftware/invenio-previewer/blob/master/invenio_previewer/__init__.py)
-- Communities: Fix permissions to enable community owners to [remove it from a record](../../../use/communities#curate-records). This does not change the expected behavior for when a [community is required](../../../operate/customize/require_community/#require-community-for-record-publication) for record publication.
+- Communities: Fix permissions to enable community owners to [remove it from a record](../../use/communities.md#curate-records). This does not change the expected behavior for when a [community is required](../../operate/customize/require_community.md#require-community-for-record-publication) for record publication.
 
 ## Deprecations
 
