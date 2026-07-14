@@ -562,6 +562,11 @@ The new feature of allowing replies to comments available in all requests introd
 
 The new feature of allowing locking/unlocking a request's conversation is controlled via a feature flag config variable `REQUESTS_LOCKING_ENABLED`.
 
+### Community reviews for each record version
+
+The new feature of requiring community reviews for each version of a record (rather than just the first) must be [manually configured](../../operate/customize/requests.md#require-reviews-for-each-record-version).
+The default behaviour remains unchanged.
+
 ### Deprecated GitHub integration
 
 The [`invenio-github`](https://github.com/inveniosoftware/invenio-github) module has been deprecated.

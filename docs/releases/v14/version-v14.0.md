@@ -34,7 +34,7 @@ page. Users can filter records by year using a histogram and range slider, or
 pick from preset ranges (last 6 months, last year, last 5 years) and enter a
 custom date range.
 
-![Publication date range facet](../../operate/customize/imgs/publication-date-range-facet.png)
+![Publication date range facet](../../operate/customize/imgs/publication-date-range-facet.png){ width="300" }
 
 You can enable additional date facets, tune backend aggregation settings, and
 override the frontend UI. See [Configure date range
@@ -127,6 +127,16 @@ Community curators, managers, and owners can now lock a request's conversation t
 You can now attach files directly to a comment, with attachments displayed beneath the comment text once submitted.
 
 ![A submitted comment showing an attached file below the comment text](imgs/attached-file-comment.png)
+
+### Community reviews for each record version
+
+Previously, when [submitting a record to a community](../../use/requests.md), only the first version of the record required a review by the community's curators.
+It was not possible to require a review for new versions of the record.
+
+**It is now possible to require a review for all record versions**, subject to custom code on the instance level.
+The default behaviour (where reviews are only required for the initial version) remains unchanged.
+
+See the [requests documentation](../../operate/customize/requests.md#require-reviews-for-each-record-version) for more information.
 
 ### OAuth improvements
 
