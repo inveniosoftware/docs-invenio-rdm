@@ -16,6 +16,28 @@ The throughline of this article is a sequential series of steps to execute. We h
 
     Always backup your database, statistics indices and files before you try to perform an upgrade.
 
+## Check your database for the `alembic_version` table
+
+InvenioRDM v13 contained a race condition that, in some cases, prevented the `alembic_version` table from being created in the database. [Alembic](https://alembic.sqlalchemy.org/) uses this table to track database schema migrations, and you cannot upgrade to v14 without it.
+
+To check whether your database has the `alembic_version` table, log in to the database and run the following SQL query:
+
+```sql
+SELECT * FROM alembic_version;
+```
+
+If you get `ERROR: relation "alembic_version" does not exist`, the table is missing and you must create it before proceeding.
+
+To create the table, you need to run the command on the InvenioRDM server. The server **must** be using the same source code version as the one used to install the current database schema. In other words, if you upgraded the source code to a newer v13 release after installation, the source code and database schema may be out of sync and you **cannot** safely use the command below. If that is your situation, please ask for help on our Discord server.
+
+On the server, run the following command to create the `alembic_version` table:
+
+```bash
+pipenv run invenio alembic stamp
+```
+
+Afterwards, check the `alembic_version` table again to confirm that the operation completed successfully.
+
 ## Switch from pipenv to uv — optional but recommended
 
 Although not strictly necessary for this upgrade, we highly encourage you to switch to [uv](https://docs.astral.sh/uv/) from [pipenv](https://pipenv.pypa.io/) for your Python package and project manager. Future releases will only document steps using `uv` commands and may remove support for `pipenv`.
@@ -196,13 +218,40 @@ This step ensures that all subsequent commands use the correct Python environmen
 
 ### Apply database migrations
 
-Execute the database migrations to update table schemas:
+The database migration consists of two steps: a pre-migration step that cleans up the existing database schema, followed by an Alembic upgrade to the v14 schema.
+
+#### Run the pre-migration step
+
+Run one of the following commands, depending on whether your installation uses `uv` or `pipenv`:
+
+```bash
+# if using uv
+invenio shell $(find $(dirname $(dirname $(uv python find)))/lib/*/site-packages/invenio_app_rdm -name prepare_migration_13_0_to_14_0.py)
+# if using pipenv
+invenio shell $(find $(pipenv --venv)/lib/*/site-packages/invenio_app_rdm -name prepare_migration_13_0_to_14_0.py)
+```
+
+If the script completes successfully, it should end with output similar to the following:
+
+```
+...
+
+    v13 -> v14 database cleanup completed successfully.
+
+    Please run:
+
+        invenio alembic upgrade
+
+    to finish the database structure migration process. Then continue with the data migration script.
+```
+
+#### Run the schema migration step
+
+Once the pre-migration step has completed successfully, run the Alembic migration to update the database schema:
 
 ```bash
 invenio alembic upgrade
 ```
-
-TODO: Fill with more advanced migration command of this version that fixes migration histories
 
 ### Apply data changes
 
