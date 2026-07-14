@@ -126,6 +126,7 @@ nav:
               - Local storage: "operate/customize/file-uploads/local.md"
               - S3 compatible storage: "operate/customize/file-uploads/s3.md"
               - Upload limits: "operate/customize/file-uploads/upload_limits.md"
+              - ZIP and container files: "operate/customize/file-uploads/zip-and-container-files.md"
           - Jobs/Automated tasks: "operate/customize/jobs.md"
           - Landing page: "operate/customize/landing_page.md"
           - Language(s) and locale(s): "operate/customize/i18n-and-l10n.md"
@@ -133,16 +134,17 @@ nav:
               - Overview: "operate/customize/notifications.md"
               - Modify notifications: operate/customize/notifications_modify.md
           - Record deletion: operate/customize/record_deletion.md
-          - Require a community to publish: "operate/customize/require_community.md"
+          - Requests: operate/customize/requests.md
+          - Require a community to publish: operate/customize/require_community.md
           - Restrict access to pages: operate/customize/restrict_access.md
-          - Restrict community creation: "operate/customize/restrict_community_creation.md"
+          - Restrict community creation: operate/customize/restrict_community_creation.md
           - Search:
-              - Change facets/sorting: "operate/customize/search.md"
+              - Change facets/sorting: operate/customize/search.md
               - Create search terms mappings: operate/customize/search_terms_migration.md
               - Customize search index templates: operate/customize/search_templates.md
-          - Sitemaps: "operate/customize/sitemaps.md"
-          - Static pages: "operate/customize/static_pages.md"
-          - Subcommunities: "operate/customize/subcommunities.md"
+          - Sitemaps: operate/customize/sitemaps.md
+          - Static pages: operate/customize/static_pages.md
+          - Subcommunities: operate/customize/subcommunities.md
       - Add custom code:
           - Custom Python and JS code: operate/code/custom_code.md
           - Debugging: "operate/code/debugging.md"

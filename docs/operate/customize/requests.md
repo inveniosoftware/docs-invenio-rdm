@@ -38,7 +38,7 @@ USERS_RESOURCES_GROUPS_ENABLED = True
 ```
 then you will be able to use them as request reviewers.
 
-- **Use cases**: 
+- **Use cases**:
   - Institutional Review Boards
   - Editorial committees
   - Subject matter expert panels
@@ -69,5 +69,6 @@ Community members with the role: *Readers** cannot assign reviewers but can be a
 ## Related configuration
 
 See also:
+
 - [Communities](../../use/communities.md#requests) - User guide for requests and reviewers
 - [Architecture documentation](../../maintenance/architecture/requests.md) - Technical overview of the requests system
