@@ -97,10 +97,20 @@ from invenio_rdm_records.config import RDM_SORT_OPTIONS
 RDM_SORT_OPTIONS.update({
     "title": dict(
         title=_('Title'),
-        fields=['metadata.title'],
+        fields=['metadata.title.keyword'],
     ),
 })
 ```
+
+!!! note
+
+    When sorting on a text field such as ``metadata.title``, use its
+    ``.keyword`` sub-field (``metadata.title.keyword``). Analyzed ``text``
+    fields are tokenized for full-text search and cannot be sorted on
+    directly, whereas the ``.keyword`` sub-field stores the raw value as an
+    exact-match ``keyword`` type that is sortable. Numeric and date fields
+    (for example ``-created``) can be sorted on directly and do not require
+    ``.keyword``.
 
 Note, that this only defines a new sort option. You still need to change e.g.
 ``RDM_SEARCH`` to use it.
