@@ -242,17 +242,19 @@ invenio shell $(find $(dirname $(dirname $(uv python find)))/lib/*/site-packages
 invenio shell $(find $(pipenv --venv)/lib/*/site-packages/invenio_app_rdm -name migrate_13_to_14.py)
 ```
 
-#### Change resource type `publication-thesis` to `publication-dissertation`
+#### Optional: change resource type `publication-thesis` to `publication-dissertation`
 
-!!! info "**Does this migration step apply to me?**"
-    - **Yes**: You are using `publication-thesis` as a resource type (e.g., because you are using the default resource types) AND you want to use `publication-dissertation` instead.
-    - **No**: You are not using `publication-thesis` as a resource type.
+With InvenioRDM v14, we consolidated the distinction between "Thesis" and "Dissertation" resource types, as these are treated as [the same category](https://datacite-metadata-schema.readthedocs.io/en/4.7/appendices/appendix-1/resourceTypeGeneral/#dissertation) in the DataCite metadata standard. InvenioRDM now uses "Publication / Thesis" as the primary term for the resource type field in the deposit form (which is more intuitive) and removes "Publication / Dissertation". When minting DataCite DOIs, InvenioRDM automatically maps the resource type to `publication-dissertation`.
 
-*Steps to follow if you want to migrate to `publication-dissertation`:*
+![](./imgs/dissertation-thesis.jpg)
+
+To update your existing records and align with DataCite interoperability standards, follow the optional steps below. You can skip this section if you prefer to keep your current configuration: it will not affect your InvenioRDM installation.
+
+*Steps to migrate resource types:*
 
 1. If you are using a customized list of resource types in `<my_instance>/app_data/vocabularies/resource_types.yaml`, then:
-    - set `title.<lang>` to "Thesis" (in appropriate language) for entry with `id` equal to `publication-dissertation`
-    - remove the entry with `id` equal to `publication-thesis`
+    1. Set `title.<lang>` to "Thesis" (in appropriate language) for entry with `id` equal to `publication-dissertation`.
+    2. Remove the entry with `id` equal to `publication-thesis`.
 
     If you didn't customize resource types, you can skip this step.
 
@@ -260,7 +262,7 @@ invenio shell $(find $(pipenv --venv)/lib/*/site-packages/invenio_app_rdm -name 
     - `invenio rdm-records add-to-fixture resourcetypes`
     - Note that this will change the title, but will not delete the `publication-thesis` from your data stores. Deletion is done in step 4.
 
-3. Run the publication dissertation migration script:
+3. Run the publication dissertation migration script. This will automatically change any existing record and draft with resource type `publication-thesis` to `publication-dissertation`.
 
     ```shell
     # if using uv
@@ -276,19 +278,17 @@ invenio shell $(find $(pipenv --venv)/lib/*/site-packages/invenio_app_rdm -name 
     vocabulary_service.delete(system_identity, ('resourcetypes', 'publication-thesis'))
     ```
 
-
-
 #### OAuth client changes
 
 The `extra_data` column of the `oauthclient_remoteaccount` table, storing remote-specific user information as required by various integrations, has been migrated from the `JSON` type to the `JSONB` type (only on PostgreSQL databases).
 This gives significant performance improvements when running certain queries.
 An automated Alembic migration is included and has been executed when you ran the [database migration](#apply-database-migrations) step above.
 
-However, if your `oauthclient_remoteaccount` table has more than ~50k rows and you are unable to take the system offline offline for an update, this operation could overload your database and create a lock lasting several minutes, due to the need to individually transform every row.
+However, if your `oauthclient_remoteaccount` table has more than ~50k rows and you are unable to take the system offline for an update, this operation could overload your database and create a lock lasting several minutes, due to the need to individually transform every row.
 To avoid issues in such cases, we recommend instead running the migration manually.
 Please follow [the upgrade guide](https://invenio-oauthclient.readthedocs.io/en/latest/upgrading.html#v6-0-0).
 
-### Update document engine mappings and content
+### Update search engine mappings and content
 
 Many mappings have been updated in this release. You can perform granular changes if you want to avoid downtimes or simply discard and rebuild the indices in one go.
 
