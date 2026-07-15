@@ -142,12 +142,12 @@ PREVIEWER_PREFERENCE = [
 ]
 ```
 
-`CONTAINER_ITEM_PREVIEWER_PREFERENCE` controls which previewers are tried for files *inside* an archive.
+`PREVIEWER_CONTAINER_ITEM_PREFERENCE` controls which previewers are tried for files *inside* an archive.
 It follows the same format as `PREVIEWER_PREFERENCE` but IIIF is excluded, since it requires additional image server
 links that are not available for container items:
 
 ```python
-CONTAINER_ITEM_PREVIEWER_PREFERENCE = [
+PREVIEWER_CONTAINER_ITEM_PREFERENCE = [
     "csv_papaparsejs",
     "pdfjs",
     "simple_image",
