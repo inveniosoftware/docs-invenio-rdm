@@ -168,7 +168,7 @@ These new features allow:
 
 - Previewing files inside ZIPs (images, PDFs, text, notebooks, audio/video, etc.)
 
-- Downloading individual files or folders without extracting the entire archive
+- Downloading individual files or directories without extracting the entire archive
 
 ![ZIP file preview](imgs/container-file-formats.png)
 

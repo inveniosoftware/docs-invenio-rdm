@@ -156,3 +156,45 @@ Find below the `Accept` header MIME type for each export format.
 | [BibTex](https://www.bibtex.com/format/)                                                                                                          | `application/x-bibtex`                    |
 | [Dublin Core](https://www.dublincore.org/specifications/dublin-core/dces/)                                                                        | `application/x-dc+xml`                    |
 | [GeoJSON](https://datatracker.ietf.org/doc/html/rfc7946)                                                                                          | `application/vnd.geojson+json`            |
+
+## Container files (ZIP archives)
+
+_Introduced in v14_
+
+InvenioRDM supports ZIP files as **container files**. You can browse, preview, and download individual files from within archives without downloading the entire archive.
+
+### How it works
+
+When you upload a ZIP file to a record:
+
+1. **Tree view navigation**: The record landing page displays a hierarchical tree view of the ZIP contents
+2. **Individual file preview**: Click any file to preview it using the appropriate previewer (images, PDFs, notebooks, etc.)
+3. **Selective downloading**: Download specific files or directories without extracting the entire archive
+4. **Directory downloads**: Directories are downloaded as on-the-fly generated ZIP archives
+
+![ZIP file preview](../operate/customize/imgs/container-file-formats.png)
+
+### Use cases
+
+- **Large datasets**: Share thousands of files organized in directories without requiring users to download everything
+- **Research data**: Allow researchers to explore and select specific data files from complex dataset structures  
+- **Multi-file publications**: Provide easy access to supplementary materials, figures, and supporting documents
+
+### Enable container file browsing
+
+To enable container file browsing for your instance, do the following:
+
+1. Replace the standard `zip` previewer with `previewable_zip` in the configuration
+2. Optionally configure `PREVIEWER_CONTAINER_ITEM_PREFERENCE` to control which previewers work inside archives
+3. Adjust ZIP processing limits if needed for your use case
+
+See the [ZIP and container files configuration guide](../operate/customize/file-uploads/zip-and-container-files.md) for detailed setup instructions.
+
+### API access
+
+Container files can also be accessed programmatically via the REST API:
+
+- List archive contents: `GET /api/records/{id}/files/{filename}/container`
+- Download individual items: `GET /api/records/{id}/files/{filename}/container/{path}`
+
+See the [REST API reference](../reference/rest_api_drafts_records.md#container-files) for details.

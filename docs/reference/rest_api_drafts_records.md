@@ -1390,11 +1390,22 @@ Last-Modified: Thu, 26 Nov 2020 14:30:06 GMT
 
 _Introduced in v14_
 
-Container files are archive files (e.g., ZIP) whose internal structure InvenioRDM understands. For supported formats, two additional endpoints are available on a published record's files: one to list the archive's contents and one to download individual files or directories from within it.
+Container files are archive files (e.g., ZIP) that InvenioRDM understands. You can browse, preview, and extract individual files from archives without downloading the entire archive. This feature is particularly useful for large datasets organized in directory structures.
 
-#### List the contents of a file
+For supported formats, two additional endpoints are available on a **published record's** files:
+- List the archive contents in a hierarchical tree structure
+- Download or preview individual files and directories from within the archive
+
+!!! note "Published records only"
+    Container file endpoints are available only for **published records**, not drafts. Use `/api/records/{id}/files/` (not `/draft/files/`).
+
+See the [ZIP and container files configuration guide](../operate/customize/file-uploads/zip-and-container-files.md) for setup instructions and supported formats.
+
+#### List the contents of a container file
 
 `GET /api/records/{id}/files/{filename}/container`
+
+List all entries and directories inside a container file. Returns a hierarchical tree structure that can be used to navigate the archive contents.
 
 **Parameters**
 
@@ -1428,11 +1439,11 @@ Content-Type: application/json
       "checksum": "crc:2962613731",
     },
   ],
-  "folders": [
+  "directories": [
     {
       "key": "test_zip",
       "links": {
-        "content": ".../api/records/abc123-yz89/files/demo_with_subfolders.zip/container/test_zip",
+        "content": ".../api/records/abc123-yz89/files/demo_with_subdirectories.zip/container/test_zip",
       },
       "entries": [
         "test_zip/test1.txt",
@@ -1444,13 +1455,61 @@ Content-Type: application/json
 }
 ```
 
-#### Download a container item
+#### List contents of a specific directory
 
 `GET /api/records/{id}/files/{filename}/container/{path}`
 
-Retrieve specific container items from the archive. Enables downloading individual files or groups of files without
-downloading the entire archive. If <path> points to a single container item, the API streams the container item content.
-If <path> points to a container item that is a directory, the API streams a ZIP archive of that directory.
+List the contents of a specific directory inside the container file. The `{path}` parameter specifies the directory path within the archive.
+
+**Parameters**
+
+| Name       | Type   | Location | Description                                                                       |
+| ---------- | ------ | -------- | --------------------------------------------------------------------------------- |
+| `id`       | string | path     | Identifier of the record, e.g. `cbc2k-q9x58`                                     |
+| `filename` | string | path     | Name of a container file, e.g. `dataset.zip`                                     |
+| `path`     | string | path     | Path of the directory inside the archive, e.g. `data/regional/north`                |
+
+**Request**
+
+```http
+GET /api/records/{id}/files/dataset.zip/container/data/regional HTTP/1.1
+```
+
+**Response**
+
+```http
+HTTP/1.1 200 OK
+Content-Type: application/json
+
+{
+  "entries": [
+    {
+      "key": "data/regional/north/images.zip",
+      "size": 1048576,
+      "compressed_size": 524288,
+      "mimetype": "application/zip",
+      "checksum": "crc:1234567890",
+    },
+  ],
+  "directories": [
+    {
+      "key": "data/regional/south",
+      "links": {
+        "content": "/api/records/{id}/files/dataset.zip/container/data/regional/south",
+      },
+      "entries": ["data/regional/south/data.csv"],
+    },
+  ],
+  "total": 1,
+  "truncated": false,
+}
+```
+
+#### Download or preview a container item
+
+`GET /api/records/{id}/files/{filename}/container/{path}`
+
+Retrieve specific container items from the archive. This endpoint supports both downloading and previewing files inside the archive. When used with a file path, it streams the file content directly. When used with a directory path, it generates a ZIP archive of the directory contents on-the-fly.
 
 **Parameters**
 
