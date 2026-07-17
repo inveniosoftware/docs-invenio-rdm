@@ -22,10 +22,11 @@ In v14, the administration panel adds users/roles improvements, including
 role-aware views and groups CRUD support.
 
 !!! Danger "v14 breaking change"
-Access checks now resolve roles by **role id** (not role name).
-If you previously relied on role **names** for access control, you must
-migrate all existing logic and related references to role ids after
-upgrading to v14, or access behavior may break.
+
+    Access checks now resolve roles by **role id** (not role name).
+    If you previously relied on role **names** for access control, you must
+    migrate all existing logic and related references to role ids after
+    upgrading to v14, or access behavior may break.
 
 ### Publication date range facet
 

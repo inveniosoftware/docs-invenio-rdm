@@ -10,17 +10,27 @@ As usual, these steps do assume an existing installation of InvenioRDM v13, the 
 If your InvenioRDM installation is older than v13, you must first upgrade
 to v13 before proceeding with the steps in this guide. However, it doesn't assume you are necessarily on [v13.1](../v13/version-v13.1.0.md), and the instructions will work wether you are on v13.0.x or v13.1.y.
 
-The throughline of this article is a sequential series of steps to execute. We highly recommend running the steps in a local development environment first where experience from the particularities of your instance can be gained without data loss worry. Then we recommend you run the steps into a staging environment mirroring your production deployment and accrue further insight into specificities to your environment (or missing details in these update steps!). Equipped with that knowledge, running the steps on your production environment should be smooth.
+The throughline of this article is a sequential series of steps to execute. **Do read** the optional sections as they indicate changes to apply even if NOT adopting change. We highly recommend running the steps in a local development environment first where experience from the particularities of your instance can be gained without data loss worry. Then we recommend you run the steps into a staging environment mirroring your production deployment and accrue further insight into specificities to your environment (or missing details in these update steps!). Equipped with that knowledge, running the steps on your production environment should be smooth.
 
 !!! warning "Backup"
 
     Always backup your database, statistics indices and files before you try to perform an upgrade.
 
-## Switch from pipenv to uv — optional but recommended
+## Switch from pipenv to uv — action needed even if optional but recommended
 
 Although not strictly necessary for this upgrade, we highly encourage you to switch to [uv](https://docs.astral.sh/uv/) from [pipenv](https://pipenv.pypa.io/) for your Python package and project manager, for improvements in speed, ergonomics, and [security](https://docs.astral.sh/uv/concepts/resolution/#dependency-cooldowns). Future releases will only document steps using `uv` commands and may remove support for `pipenv`.
 
 See the dedicated [Pipenv-to-uv migration guide](../uv-upgrade.md), which includes a helper script that converts your `Pipfile` to `pyproject.toml`, updates the `site/` package, and adjusts `.invenio` (`python_package_manager = uv`).
+
+If you want to keep using pipenv for now AND you want to use the recommended base Docker image for InvenioRDM v14 in your Dockerfile, you will need to edit your Dockerfile to install `pipenv` (it is not installed in the base image anymore):
+
+```dockerfile
+FROM <v14 base image of your choice>
+
+RUN pip install pipenv
+
+# keep the rest of your Dockerfile as it was with calls to pipenv
+```
 
 ## Switch to supported Python version — required if not already done
 
