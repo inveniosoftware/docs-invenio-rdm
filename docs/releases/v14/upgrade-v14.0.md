@@ -18,7 +18,7 @@ The throughline of this article is a sequential series of steps to execute. We h
 
 ## Switch from pipenv to uv — optional but recommended
 
-Although not strictly necessary for this upgrade, we highly encourage you to switch to [uv](https://docs.astral.sh/uv/) from [pipenv](https://pipenv.pypa.io/) for your Python package and project manager. Future releases will only document steps using `uv` commands and may remove support for `pipenv`.
+Although not strictly necessary for this upgrade, we highly encourage you to switch to [uv](https://docs.astral.sh/uv/) from [pipenv](https://pipenv.pypa.io/) for your Python package and project manager, for improvements in speed, ergonomics, and [security](https://docs.astral.sh/uv/concepts/resolution/#dependency-cooldowns). Future releases will only document steps using `uv` commands and may remove support for `pipenv`.
 
 TODO: Insert link to uv upgrade documentation from https://github.com/inveniosoftware/docs-invenio-rdm/pull/843
 
@@ -75,7 +75,7 @@ TODO: adapt text to reflect Python 3.14 being recommended or a requirement based
 
 ## Switch from npm to pnpm — optional but recommended
 
-[Pnpm](https://pnpm.io/) is now the recommended tool to manage Javascript dependencies in InvenioRDM (don't worry npm still works) because it is much faster and has good community support. If you have it installed, `invenio-cli` and lower level `invenio` commands will use it under the hood.
+[Pnpm](https://pnpm.io/) is now the recommended tool to manage Javascript dependencies in InvenioRDM (don't worry npm still works) because it is much faster, [has better protection against supply chain attacks](https://pnpm.io/supply-chain-security), and has good community support. If you have it installed, `invenio-cli` and lower level `invenio` commands will use it under the hood.
 
 1. Locally, simply install [pnpm](https://pnpm.io/installation) version 10 (working version at time of writing).
 
