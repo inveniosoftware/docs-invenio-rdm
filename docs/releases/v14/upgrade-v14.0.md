@@ -86,21 +86,33 @@ TODO: adapt text to reflect Python 3.14 being recommended or a requirement based
 
 [Pnpm](https://pnpm.io/) is now the recommended tool to manage Javascript dependencies in InvenioRDM (don't worry npm still works) because it is much faster, [has better protection against supply chain attacks](https://pnpm.io/supply-chain-security), and has good community support. If you have it installed, `invenio-cli` and lower level `invenio` commands will use it under the hood.
 
-1. Locally, simply install [pnpm](https://pnpm.io/installation) version 10 (working version at time of writing).
+1.  Locally, simply install [pnpm](https://pnpm.io/installation) version 10 (working version at time of writing).
 
-2. Make sure to set "pnpm" as your invenio javascript package manager in `.invenio`.
+2.  Make sure to set "pnpm" as your invenio javascript package manager in `.invenio`.
 
-```ini
-[cli]
-# set this line or remove it altogether
-javascript_package_manager = pnpm
-```
+    ```ini
+    [cli]
+    # set this line or remove it altogether
+    javascript_package_manager = pnpm
+    ```
 
-You could remove the line altogether since pnpm is the new default if that line is not present.
+    You could remove the line altogether since pnpm is the new default if that line is not present.
 
-Generate the lockfile with `invenio-cli assets lock` and commit the resulting `pnpm-lock.yaml` and `package.json` at the project root. Re-run `assets lock` whenever your JavaScript dependencies change.
+3.  In your `invenio.cfg`, set:
+
+    ```python
+    WEBPACKEXT_NPM_PKG_CLS = "pynpm:PNPMPackage"
+    ```
+
+    to make sure pnpm is used by assets building commands inside and outside your containers.
+    The flag tells `flask-webpackext` which `pynpm` class to use when invoking the package manager,
+    so set it whenever you also enable pnpm.
 
 That's it, faster JavaScript package resolutions are yours now!
+
+**You can now also optionally lock your js dependencies!**
+
+Generate the lockfile with `invenio-cli assets lock` and commit the resulting `pnpm-lock.yaml` and `package.json` at the project root. Re-run `assets lock` whenever your JavaScript dependencies change.
 
 !!! info "Building production Docker images with pnpm"
 
@@ -113,10 +125,7 @@ Switch from `webpack` to [Rspack](https://www.rspack.dev/) for asset bundling. I
 
 ```python
 WEBPACKEXT_PROJECT = "invenio_assets.webpack:rspack_project"
-WEBPACKEXT_NPM_PKG_CLS = "pynpm:PNPMPackage"  # only when also using pnpm
 ```
-
-The second flag tells `flask-webpackext` which `pynpm` class to use when invoking the package manager, so set it whenever you also enable pnpm.
 
 ## Upgrade to InvenioRDM v14 proper — required
 
