@@ -218,10 +218,14 @@ Here is a quick summary of the other improvements in this release:
 - Addition of an HTTP User-Agent helper (`invenio_user_agent`) for outbound HTTP requests in `invenio-vocabularies` datastreams.
 - Addition of a previewer to display web archive files (WACZ, WARC, HAR, CDX, CDXJ file types) via an embedded [ReplayWeb.page](https://replayweb.page/) viewer. See "Enabling Web Archives" in [invenio-previewer](https://github.com/inveniosoftware/invenio-previewer/blob/master/invenio_previewer/__init__.py)
 - Communities: Fix permissions to enable community owners to [remove it from a record](../../use/communities.md#curate-records). This does not change the expected behavior for when a [community is required](../../operate/customize/require_community.md#require-community-for-record-publication) for record publication.
+- Over 15 deprecations (mostly from third-parties) were addressed in this release, helping the codebase be up-to-date and logs more free of distractions (until inevitable new deprecations arise!)
+- and plenty of bug fixes as usual!
 
 ## Deprecations
 
 - Many [custom field widgets](../../operate/customize/metadata/custom_fields/widgets.md) used the `icon` and `description` props, which have now been deprecated and replaced with `labelIcon` and `helpText` respectively. This is to improve consistency with the naming of the built-in fields used in the deposit form and thereby avoid confusion. The old names will continue to function for now.
+- In preparation for Marshmallow 4+ removing `context` in its serialization/deserialization, a couple of changes were made: a `ContextVar` was introduced in `marshmallow_utils.context`, some context values were passed to the `Schema` constructors, and some class properties were parameterized with former context values. Some former values were kept in `self.context` because not used in serialization/deserialization anyway.
+- Since `pkg-resources` has been deprecated and removed from pypi, and the dependency `fs` is not updated anymore, we decided to re-implement the interface in `invenio-files-rest` directly.
 
 ## Breaking changes
 
