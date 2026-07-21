@@ -45,7 +45,7 @@ RDM_CUSTOM_FIELDS_UI = [
 ]
 ```
 
-You'll need to initialize the field by typing `pipenv run invenio rdm-records custom-fields init`. Restart your instance, and you should see the fields appear in the deposit form. If you create a record, the metadata will also appear in the UI. By default, much of the optional field metadata will appear in both the "Additional details" section and in a condensed citation style form in the "Details" sidebar of the landing pages. This is a bit repetitive, and you can remove the metadata from the "Additional details" section with the configuration.
+You'll need to initialize the field by typing `invenio rdm-records custom-fields init` (preceded by `uv run` or `pipenv run` as appropriate). Restart your instance, and you should see the fields appear in the deposit form. If you create a record, the metadata will also appear in the UI. By default, much of the optional field metadata will appear in both the "Additional details" section and in a condensed citation style form in the "Details" sidebar of the landing pages. This is a bit repetitive, and you can remove the metadata from the "Additional details" section with the configuration.
 
 ```python
 MEETING_CUSTOM_FIELDS_UI["hide_from_landing_page"] = True
@@ -107,7 +107,7 @@ RDM_CUSTOM_FIELDS_UI = [
 ]
 ```
 
-You'll need to initialize the field by typing `pipenv run invenio rdm-records custom-fields init`. Restart your instance, and you should see the fields appear in the deposit form.
+You'll need to initialize the field by typing `invenio rdm-records custom-fields init` (preceded by `uv run` or `pipenv run` as appropriate). Restart your instance, and you should see the fields appear in the deposit form.
 
 You can activate both the meeting and publishing fields at once, with this full configuration:
 
@@ -168,7 +168,7 @@ RDM_CUSTOM_FIELDS_UI = [
 MEETING_CUSTOM_FIELDS_UI["hide_from_landing_page"] = True
 ```
 
-You'll need to initialize the field by typing `pipenv run invenio rdm-records custom-fields init`. Restart your instance, and you should see the fields appear in the deposit form like:
+You'll need to initialize the field by typing `invenio rdm-records custom-fields init` (preceded by `uv run` or `pipenv run` as appropriate). Restart your instance, and you should see the fields appear in the deposit form like:
 
 ![Optional field result (deposit form)](./imgs/pub_info_deposit_form.png)
 

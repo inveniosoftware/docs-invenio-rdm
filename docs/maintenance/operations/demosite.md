@@ -22,7 +22,7 @@ For example, if transitioning from InvenioRDM v6 to v7, then you would follow th
 Code is on GitHub: [demo-inveniordm](https://github.com/inveniosoftware/demo-inveniordm).
 
 !!! warning
-    To lock the Pipenv file, **you need to have the Python version of the Docker file on your machine**.
+    To generate the lock file, **you need to have the same Python version as the Dockerfile one on your machine**.
     No other versions will work. Other Python version might install some Python packages that are not compatible.
 
 1. Clone and make a local install of the code
@@ -37,9 +37,9 @@ Code is on GitHub: [demo-inveniordm](https://github.com/inveniosoftware/demo-inv
    invenio-cli packages update 7.0.0
    ```
 
-2. Create a PR with the needed changes. If you change `Pipenv` dependencies, make sure that you also add the
-   new `Pipfile.lock` file. To do so, locally in your machine, delete the previous .lock file and run
-   `pipenv lock`. Note: This PR should not be the release PR as this would create a tag, the release PR
+2. Create a PR with the needed changes. If you change Python dependencies, make sure that you also add the
+   new lock file. To do so, locally in your machine, delete the previous .lock file and run
+   `uv lock`. Note: This PR should not be the release PR as this would create a tag, the release PR
    is only created when upgrading the production site.
 3. You can test such changes locally: the demo site is an InvenioRDM instance and thus can be used in your
    local machine with the usual *invenio-cli* commands.

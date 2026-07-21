@@ -113,12 +113,12 @@ cd path/to/your/instance
 invenio-cli packages install path/to/your/extension
 ```
 
-When you are ready to go in production, add the extension to your Pipfile e.g. `pipenv install my-subjects-extension` if you've open-sourced it. The command `invenio-cli packages install path/to/your/extension` doesn't add it to your Pipfile as of writing.
+When you are ready to go in production, add the extension to your project file e.g. `uv add my-subjects-extension` (or `pipenv install my-subjects-extension`) if you've open-sourced it. The command `invenio-cli packages install path/to/your/extension` doesn't add it to your project file (`pyproject.toml` or `Pipfile`) as of writing.
 
-For controlled vocabulary extensions like ours, we need to load the terms in the database and Elasticsearch to see them. Run at the top-level of your instance directory:
+For controlled vocabulary extensions like ours, we need to load the terms in the database and Elasticsearch to see them. Run at the top-level of your instance directory (precede by `uv run` or `pipenv run` as appropriate):
 
 ```
-pipenv run invenio rdm-records fixtures
+invenio rdm-records fixtures
 ```
 
 This will load all new controlled vocabularies not already present in your database. This process actually queues the loading for

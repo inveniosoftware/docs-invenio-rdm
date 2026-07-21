@@ -17,7 +17,8 @@ You can also install [Flask-DebugToolbar](https://flask-debugtoolbar.readthedocs
 
 ```shell
 cd ~/src/my-site
-pipenv run pip install Flask-Debugtoolbar
+# precede by `uv run` or `pipenv run` as appropriate
+pip install Flask-Debugtoolbar
 ```
 
 It has built-in:

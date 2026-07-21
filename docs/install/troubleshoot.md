@@ -17,12 +17,28 @@ pkg_resources.DistributionNotFound: The 'greenlet!=0.4.17; python_version >= "3"
 ```
 
 In order to solve it, a common workaround consists in installing the `sqlalchemy[asyncio]` package which brings in the correct dependencies.
-As such, you should add the following line inside your `Pipfile`:
+As such, you should add the following line inside your project file:
 
-```python
-sqlalchemy = {version = "*", extras = ["asyncio"]}
-```
-in the `[packages]` section.
+=== "pyproject.toml"
+
+    ```ini
+    [project]
+
+    dependencies = [
+        # ...
+        "sqlalchemy[asyncio]",
+    ]
+    ```
+
+=== "Pipfile"
+
+    ```ini
+    [packages]
+    # ...
+    sqlalchemy = {version = "*", extras = ["asyncio"]}
+    ```
+
+
 
 ## Getting help
 

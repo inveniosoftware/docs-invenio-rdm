@@ -74,10 +74,10 @@ For our example, you'll then want to make a file `app_data/vocabularies/cern_exp
 {"id": "LHC", "title": {"en": "Large Hadron Collider"}}
 ```
 
-If you've already set up your services, you can create this vocabulary with
+If you've already set up your services, you can create this vocabulary with (precede by `uv run` or `pipenv run` as appropriate)
 
-```
-pipenv run invenio rdm-records fixtures
+```bash
+invenio rdm-records fixtures
 ```
 
 You can see then see the vocabulary at `/api/vocabularies/cernexperiments`
@@ -126,16 +126,17 @@ In a shell, run:
 
 ```bash
 cd my-site
-
 # initialize all custom fields to make them searchable
-pipenv run invenio rdm-records custom-fields init
+# precede by `uv run` or `pipenv run` as appropriate
+invenio rdm-records custom-fields init
 ```
 
 When you want to make a new specific field searchable:
 
 ```bash
 # initialize specific custom fields to make them searchable
-pipenv run invenio rdm-records custom-fields init -f cern:experiment -f <field_name>
+# precede by `uv run` or `pipenv run` as appropriate
+invenio rdm-records custom-fields init -f cern:experiment -f <field_name>
 ```
 
 !!! tip

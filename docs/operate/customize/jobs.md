@@ -9,7 +9,7 @@ A job is a wrapper around a `Celery` task that can be scheduled, run on demand, 
 The Invenio job system uses a custom Celery task scheduler which requires a separate Celery beat. You can run the custom beat in a separate container or shell like so:
 
 ```bash
-celery -A invenio_app.celery beat -l INFO --scheduler invenio_jobs.services.scheduler:RunScheduler 
+celery -A invenio_app.celery beat -l INFO --scheduler invenio_jobs.services.scheduler:RunScheduler
 ```
 
 The `-l INFO` flag sets the logging level to `INFO`. You can adjust the logging level (e.g., `DEBUG`, `WARNING`, `ERROR`) based on your needs, and the logs will reflect the level you set.
@@ -103,19 +103,33 @@ class UpdateEmbargoesJob(JobType):
 
 ### 3. Register Your Job and Task
 
-In your `setup.cfg`, register the task and job using entry points:
+In your project file, register the task and job using entry points:
 
-```ini
-[options.entry_points]
-invenio_celery.tasks =
-    mysite_tasks = mysite.tasks
 
-invenio_jobs.jobs =
-    update_expired_embargoes = mysite.jobs:UpdateEmbargoesJob
-```
+=== "pyproject.toml"
+
+    ```toml
+    [project.entry-points."invenio_celery.tasks"]
+    mysite_tasks = "mysite.tasks"
+
+    [project.entry-points."invenio_jobs.jobs"]
+    update_expired_embargoes = "mysite.jobs:UpdateEmbargoesJob"
+    ```
+
+=== "setup.cfg"
+
+    ```ini
+    [options.entry_points]
+    invenio_celery.tasks =
+        mysite_tasks = mysite.tasks
+
+    invenio_jobs.jobs =
+        update_expired_embargoes = mysite.jobs:UpdateEmbargoesJob
+    ```
+
 !!! tip
 
-    **Note (local development only):** If you're developing locally and have modified `setup.cfg`, remember to re-run `pipenv run pip install -e ./site` so that entry point changes take effect.
+    **Note (local development only):** If you're developing locally and have modified `pyproject.toml`/`setup.cfg`, remember to re-run `pip install -e ./site` (preceded by `uv run` or `pipenv run` as appropriate) so that entry point changes take effect.
 
 ### 4. Run and Monitor Jobs
 

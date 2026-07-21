@@ -33,16 +33,26 @@ package. This package is provided by Northwestern University, and we hope that m
 
 In order to install that extension:
 
-```
-cd /path/to/your/instance
-pipenv install invenio-subjects-mesh
-```
+=== "uv"
 
-You should see the dependency being added to the `Pipfile`.
+    ```shell
+    cd /path/to/your/instance
+    uv add invenio-subjects-mesh
+    ```
+
+=== "pipenv"
+
+    ```shell
+    cd /path/to/your/instance
+    pipenv install invenio-subjects-mesh
+    ```
+
+You should see the dependency being added to your project file (`pyproject.toml` for `uv`, `Pipfile` for `pipenv`).
 
 Then you need to run the fixtures command and start your instance (if not running already).
 
 ```
+# precede this command by uv run or pipenv run as appropriate
 invenio rdm-records fixtures
 invenio-cli run
 ```

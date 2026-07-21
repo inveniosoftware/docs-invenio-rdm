@@ -728,10 +728,19 @@ data between two parties: an identity provider (IdP) and a service provider (SP)
 
 * Make sure you have installed the required Invenio Python module:
 
-    ```console
-    cd my-site
-    pipenv run pip install invenio-saml
-    ```
+    === "uv"
+
+        ```shell
+        cd my-site
+        uv add invenio-saml
+        ```
+
+    === "pipenv"
+
+        ```shell
+        cd my-site
+        pipenv install invenio-saml
+        ```
 
 #### Server information
 

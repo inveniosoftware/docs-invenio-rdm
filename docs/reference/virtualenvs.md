@@ -72,7 +72,7 @@ This means that a virtual environment has its own ``python`` and ``pip`` command
 
 - ``pyenv`` is a tool to manage and install multiple Python **distributions**.
 - ``venv`` and ``virtualenv`` are tools to create **virtual environments** for a specific installation of a **distribution**.
-- ``pipenv``, ``poetry``, ``virtualenv-wrapper`` are tools used to manage ``venv`` and/or ``virtualenv``.
+- ``uv``, ``pipenv``, ``poetry``, ``virtualenv-wrapper`` are tools used to manage ``venv`` and/or ``virtualenv``.
 - ``brew``, ``yum``, ``apt`` are package manages that can be used to install e.g. multiple Python **distributions**.
-- ``invenio-cli`` uses ``pipenv`` on your local machine or in containers to create and manage
+- ``invenio-cli`` uses ``uv`` (or ``pipenv`` in legacy installations) on your local machine or in containers to create and manage
   a **virtual environment**.

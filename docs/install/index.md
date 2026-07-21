@@ -33,16 +33,16 @@ Here is the most succinct outline of the steps to take to get started whether yo
 
 Irrespective of *preview* or *development* installation, you will need this command line tool:
 
-=== "pip"
-
-    ```shell
-    pip install invenio-cli
-    ```
-
 === "uv"
 
     ```shell
     uv tool install invenio-cli
+    ```
+
+=== "pip"
+
+    ```shell
+    pip install invenio-cli
     ```
 
 === "pipx"

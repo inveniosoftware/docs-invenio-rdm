@@ -10,7 +10,7 @@ Because fixtures are loaded when `invenio-cli services setup` is run, you will w
 
 Behind the scenes, fixtures are currently loaded in a 2-step process: first `invenio-cli services setup` puts them in the task queue to be loaded and second the task workers take up those tasks and actually create the fixture entries in the database and document index. This is why you won't see changes until you run `invenio-cli run` initially.
 
-Another behind the scenes note, `invenio-cli services setup` calls `pipenv run invenio rdm-records fixtures` to deal with fixtures. That command-line tool (part of the internal API and therefore subject to change) assesses if fixtures are already existing before submitting them to the task queue. This means, it can be used to **add** new fixtures to your instance by being run again later which can be useful to add new subjects. It won't override/update previously existing fixtures.
+Another behind the scenes note, `invenio-cli services setup` calls `invenio rdm-records fixtures` to deal with fixtures. That command-line tool (part of the internal API and therefore subject to change) assesses if fixtures are already existing before submitting them to the task queue. This means, it can be used to **add** new fixtures to your instance by being run again later which can be useful to add new subjects. It won't override/update previously existing fixtures.
 
 !!! warning "Unsupported cases"
     There is no moment between database creation and fixture loading when you can create database entries (e.g., a role) and then use them for your fixtures. However, you can still create roles and assign them to users manually with `invenio` commands.
@@ -19,20 +19,19 @@ Another behind the scenes note, `invenio-cli services setup` calls `pipenv run i
 
 _Introduced in v12_
 
-To add or update a vocabulary fixture:
+To add or update a vocabulary fixture (precede with `uv` or `pipenv` as appropriate):
 
 ```bash
-pipenv run invenio rdm-records add-to-fixture <vocabulary_name>
+invenio rdm-records add-to-fixture <vocabulary_name>
 ```
 
 This command enables the addition or updating of entries within specified vocabulary fixtures in InvenioRDM and is operational on live instances.
 Note that its functionality is restricted to the addition of new vocabularies or the updating of existing ones.
 
-Example
-To update the 'contributorsroles' vocabulary fixture, use:
+For example, to update the 'contributorsroles' vocabulary fixture, use:
 
 ```bash
-pipenv run invenio rdm-records add-to-fixture contributorsroles
+invenio rdm-records add-to-fixture contributorsroles
 ```
 
 !!! warning "Note"

@@ -41,7 +41,7 @@ Note that `destroy` will also `stop` the containers, so there is no need to run 
 
 ## Destroy everything
 
-If you want to also destroy any ``pipenv``-managed Python virtual environment, you can use the global `destroy command`. This command is the same for both installation options and wipes everything but your project files:
+If you want to wipe everything (virtual environment, containers, data...) EXCEPT your project files (all files setup by cookiecutter), you can use the global `destroy command`. This command is the same for both installation options:
 
 ```bash
 invenio-cli destroy
