@@ -213,6 +213,7 @@ Here is a quick summary of the other improvements in this release:
 - Temporarily pinned `bcrypt<5.0.0` due to compatibility issues ([flask-security-fork#82](https://github.com/inveniosoftware/flask-security-fork/pull/82)). Will be lifted in a future release.
 - A new configuration variable, `RDM_RECORDS_RELATED_IDENTIFIERS_SCHEMES`, enables configuring identifier schemes specifically for related identifiers, defaulting to `RDM_RECORDS_IDENTIFIERS_SCHEMES` when not defined.
 - Deposit form: "Creators" label was changed to "Authors" to clarify that they appear in citations.
+- Resource types: the default vocabulary now labels `publication-dissertation` as "Thesis" and drops the separate `publication-thesis` entry, so DataCite DOIs use the standard `Dissertation` value instead of a custom `Text` one. Migrating your existing records to this change is entirely optional; see [aligning the "Thesis" and "Dissertation" resource types](./upgrade-v14.0.md#align-thesis-and-dissertation-resource-types-optional) in the upgrade guide.
 - A new configuration variable, `RDM_RECORDS_REQUIRE_SECRET_LINKS_EXPIRATION`, controls whether an expiration date must be set for access links and secret links. Defaults to `FALSE` when not defined.
 - Addition of support for Wikidata identifiers (QIDs) for creators and contributors of records and their affiliations.
 - Addition of an HTTP User-Agent helper (`invenio_user_agent`) for outbound HTTP requests in `invenio-vocabularies` datastreams.
