@@ -242,42 +242,6 @@ invenio shell $(find $(dirname $(dirname $(uv python find)))/lib/*/site-packages
 invenio shell $(find $(pipenv --venv)/lib/*/site-packages/invenio_app_rdm -name migrate_13_to_14.py)
 ```
 
-#### Optional: change resource type `publication-thesis` to `publication-dissertation`
-
-With InvenioRDM v14, we consolidated the distinction between "Thesis" and "Dissertation" resource types, as these are treated as [the same category](https://datacite-metadata-schema.readthedocs.io/en/4.7/appendices/appendix-1/resourceTypeGeneral/#dissertation) in the DataCite metadata standard. InvenioRDM now uses "Publication / Thesis" as the primary term for the resource type field in the deposit form (which is more intuitive) and removes "Publication / Dissertation". When minting DataCite DOIs, InvenioRDM automatically maps the resource type to `publication-dissertation`.
-
-![](./imgs/dissertation-thesis.jpg)
-
-To update your existing records and align with DataCite interoperability standards, follow the optional steps below. You can skip this section if you prefer to keep your current configuration: it will not affect your InvenioRDM installation.
-
-*Steps to migrate resource types:*
-
-1. If you are using a customized list of resource types in `<my_instance>/app_data/vocabularies/resource_types.yaml`, then:
-    1. Set `title.<lang>` to "Thesis" (in appropriate language) for entry with `id` equal to `publication-dissertation`.
-    2. Remove the entry with `id` equal to `publication-thesis`.
-
-    If you didn't customize resource types, you can skip this step.
-
-2. Apply the resource types title change.
-    - `invenio rdm-records add-to-fixture resourcetypes`
-    - Note that this will change the title, but will not delete the `publication-thesis` from your data stores. Deletion is done in step 4.
-
-3. Run the publication dissertation migration script. This will automatically change any existing record and draft with resource type `publication-thesis` to `publication-dissertation`.
-
-    ```shell
-    # if using uv
-    invenio shell $(find $(dirname $(dirname $(uv python find)))/lib/*/site-packages/invenio_app_rdm -name migrate_13_0_to_14.py) --migrate-theses
-    # if using pipenv
-    invenio shell $(find $(pipenv --venv)/lib/*/site-packages/invenio_app_rdm -name migrate_13_0_to_14.py) --migrate-theses
-    ```
-
-4. Delete `publication-thesis` vocabulary via invenio shell:
-
-    ```python
-    from invenio_vocabularies.proxies import current_service as vocabulary_service
-    vocabulary_service.delete(system_identity, ('resourcetypes', 'publication-thesis'))
-    ```
-
 #### OAuth client changes
 
 The `extra_data` column of the `oauthclient_remoteaccount` table, storing remote-specific user information as required by various integrations, has been migrated from the `JSON` type to the `JSONB` type (only on PostgreSQL databases).
@@ -646,3 +610,74 @@ you want to keep the existing data.
 See also the [documentation on how to configure the new module](../../operate/customize/code_archival.md).
 
 That's it, you have upgraded to InvenioRDM v14!
+
+## Align "Thesis" and "Dissertation" resource types — optional
+
+Your upgrade is complete. This last section describes an **entirely optional** change that is not part of the upgrade. Nothing here affects your instance unless you choose to run it, and you can do so at any later time. Because resource types are a highly visible and commonly customized vocabulary, we suggest rather than impose this change. Decide together with your instance's stakeholders (librarians, curators) whether it fits your data before applying it.
+
+### What changed and why
+
+With InvenioRDM v14, the default resource types "Publication / Thesis" (id `publication-thesis`) and "Publication / Dissertation" (id `publication-dissertation`) were merged into one: "Publication / Thesis" (id `publication-dissertation`). This resource type maps to Datacite's `resourceTypeGeneral` "Dissertation" (`datacite_general: Dissertation` in the InvenioRDM's default resource type YAML file). The separate `publication-thesis` entry is dropped.
+
+InvenioRDM interprets [Datacite's Dissertation](https://datacite-metadata-schema.readthedocs.io/en/4.7/appendices/appendix-1/resourceTypeGeneral/#dissertation) as covering both former entries, so a single entry mapping to "Dissertation" was more accurate. Datacite's `resourceTypeGeneral` "Text" is not as precise in this context. Staying close to the DataCite schema as a default is a core goal of InvenioRDM.
+
+If you deliberately want to keep both types (for example `publication-dissertation` for PhD work and `publication-thesis` for the rest), or you have customized their DataCite mappings, you may prefer to keep your current setup or apply only part of this change. Skipping this section does not affect your InvenioRDM installation.
+
+### Applying the change
+
+If you decide to go ahead, follow whichever of the two options below matches your instance.
+
+Both rely on the [`migrate_thesis_to_dissertation.py`](./migrate_thesis_to_dissertation.py) helper. This is a set of **reference functions**, not a ready-to-run tool: read it, and copy or adapt the parts that fit your case. One convenient way to use it as-is is to download it and load its functions into an `invenio shell`:
+
+```bash
+curl -LsSf https://raw.githubusercontent.com/inveniosoftware/docs-invenio-rdm/master/docs/releases/v14/migrate_thesis_to_dissertation.py -o /tmp/migrate_thesis_to_dissertation.py
+```
+
+```python
+# in `invenio shell`
+exec(open("/tmp/migrate_thesis_to_dissertation.py").read())
+```
+
+Always test against a copy of your data first.
+
+#### Option A: adopt the new default `publication-dissertation`
+
+Use this if you want to switch your `publication-thesis` records over to the new default `publication-dissertation` resource type, id and all. It rewrites your records and drafts, re-registers their DataCite DOIs, and re-indexes them.
+
+1. If you are using a customized list of resource types in `<my_instance>/app_data/vocabularies/resource_types.yaml`, then:
+    1. Set `title.<lang>` to "Thesis" (in the appropriate language) for the entry with `id` equal or equivalent to `publication-dissertation`.
+    2. Remove the entry with `id` equal or equivalent to `publication-thesis`.
+
+2. Apply the resource types change:
+    - `invenio rdm-records add-to-fixture resourcetypes`
+    - Note that this changes the vocabulary, but does not delete `publication-thesis` from your data stores. Deletion is done in step 4.
+
+3. Rewrite every existing record and draft from `publication-thesis` to `publication-dissertation`. The `run_update_for_resource_type` function rewrites the resource type (including in related identifiers), re-registers DataCite DOI metadata, and re-indexes the affected records:
+
+    ```python
+    # in `invenio shell`, with the helper loaded (see above)
+    run_update_for_resource_type()
+    ```
+
+4. Delete the `publication-thesis` vocabulary entry via `invenio shell`:
+
+    ```python
+    from invenio_vocabularies.proxies import current_service as vocabulary_service
+    vocabulary_service.delete(system_identity, ('resourcetypes', 'publication-thesis'))
+    ```
+
+#### Option B: keep your resource type, map it to DataCite's "Dissertation"
+
+Use this if you want to keep your own resource type (for example your existing `publication-thesis`, or any custom type) but have its DataCite DOIs use `Dissertation` as a value instead of `Text`. Your records are not changed, only the DataCite metadata of their DOIs is updated.
+
+1. In `<my_instance>/app_data/vocabularies/resource_types.yaml`, set `props.datacite_general` to `Dissertation` for your resource type entry (and adjust `props.datacite_type` if you set one).
+
+2. Apply the vocabulary change:
+    - `invenio rdm-records add-to-fixture resourcetypes`
+
+3. Re-register the DataCite DOI metadata of every published record of that resource type, so DataCite reflects the new value. The `run_update_doi_metadata_for_resource_type` function does this without changing the records (replace `publication-thesis` with your resource type id):
+
+    ```python
+    # in `invenio shell`, with the helper loaded (see above)
+    run_update_doi_metadata_for_resource_type("publication-thesis")
+    ```
