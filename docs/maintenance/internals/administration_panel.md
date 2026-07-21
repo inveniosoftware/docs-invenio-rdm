@@ -246,16 +246,28 @@ To register your new view, you will have to:
 
 In OAI-PMH sets example, views are registered in `Invenio-Administration` as individual entry points from `invenio-rdm-records`.
 
-Edit the setup.cfg in the module and add:
+Edit the project file in the module and add:
 
-```ini
-[options.entry_points]
-invenio_administration.views =
-    invenio_rdm_records_oai_list = invenio_rdm_records.administration.views.oai:OaiPmhListView
-    invenio_rdm_records_oai_edit = invenio_rdm_records.administration.views.oai:OaiPmhEditView
-    invenio_rdm_records_oai_create = invenio_rdm_records.administration.views.oai:OaiPmhCreateView
-    invenio_rdm_records_details = invenio_rdm_records.administration.views.oai:OaiPmhDetailView
-```
+=== "pyproject.toml"
+
+    ```toml
+    [project.entry-points."invenio_administration.views"]
+    invenio_rdm_records_oai_list = "invenio_rdm_records.administration.views.oai:OaiPmhListView"
+    invenio_rdm_records_oai_edit = "invenio_rdm_records.administration.views.oai:OaiPmhEditView"
+    invenio_rdm_records_oai_create = "invenio_rdm_records.administration.views.oai:OaiPmhCreateView"
+    invenio_rdm_records_details = "invenio_rdm_records.administration.views.oai:OaiPmhDetailView"
+    ```
+
+=== "setup.cfg"
+
+    ```ini
+    [options.entry_points]
+    invenio_administration.views =
+        invenio_rdm_records_oai_list = invenio_rdm_records.administration.views.oai:OaiPmhListView
+        invenio_rdm_records_oai_edit = invenio_rdm_records.administration.views.oai:OaiPmhEditView
+        invenio_rdm_records_oai_create = invenio_rdm_records.administration.views.oai:OaiPmhCreateView
+        invenio_rdm_records_details = invenio_rdm_records.administration.views.oai:OaiPmhDetailView
+    ```
 
 #### Create custom view
 
@@ -281,13 +293,22 @@ class MyCustomView(AdminView):
 
 The class defined for the custom view must be registered as an entry point, as follows:
 
-Edit the `setup.cfg` of your module and add:
+Edit the project file of your module and add:
 
-```ini
-[options.entry_points]
-invenio_administration.views =
-    invenio_module_admin_custom_view = invenio_module.path.to.filename:MyCustomView
-```
+=== "pyproject.toml"
+
+    ```toml
+    [project.entry-points."invenio_administration.views"]
+    invenio_module_admin_custom_view = "invenio_module.path.to.filename:MyCustomView"
+    ```
+
+=== "setup.cfg"
+
+    ```ini
+    [options.entry_points]
+    invenio_administration.views =
+        invenio_module_admin_custom_view = invenio_module.path.to.filename:MyCustomView
+    ```
 
 For the full attributes list and description visit the [reference docs](./administration_reference.md)
 
@@ -428,19 +449,20 @@ There are two ways to grant this permission:
     ```bash
       # make sure you are inside your instance's directory
       cd my-site
+      # precede the invenio commands by `uv run` or `pipenv run` as appropriate
       # Create a role named administration
-      pipenv run invenio roles create administration
+      invenio roles create administration
       # Allow access to administration to the administration role
-      pipenv run invenio access allow administration-access role administration
+      invenio access allow administration-access role administration
       # Add administration role to an user email
-      pipenv run invenio roles add <user_email> administration
+      invenio roles add <user_email> administration
     ```
 
-2. Permission can be added to a specific user:
+2. Permission can be added to a specific user (precede by `uv run` or `pipenv run` as appropriate):
 
     ```bash
       # Grant access to a specific user to the action administration-access
-      pipenv run invenio access allow administration-access user <user_email>
+      invenio access allow administration-access user <user_email>
     ```
 
 ### Admin actions permissions

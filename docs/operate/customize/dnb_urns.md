@@ -12,6 +12,15 @@ If you're interested in the source code, you will find it [here](https://github.
 
 The module implements a thin wrapper around the [Rest-API](https://wiki.dnb.de/display/URNSERVDOK/URN-Service+API) provided by the DNB (German national library) and enhances InvenioRDM with URN minting support. New is the support of versioning: the first versions URN automatically forwards to the most actual version.
 
+=== "pyproject.toml"
+
+    ```diff
+    dependencies = [
+    ...
+    +   "invenio-pidstore-extra>=0.2.0,<1.0.0",
+    ]
+    ```
+
 === "Pipfile"
 
     ```diff
@@ -20,24 +29,7 @@ The module implements a thin wrapper around the [Rest-API](https://wiki.dnb.de/d
     + invenio-pidstore-extra = ">=0.2.0,<1.0.0"
     ```
 
-=== "pyproject.toml"
-
-    ```diff
-    dependencies = [
-    ...
-    +   "invenio-pidstore-extra >= 0.2.0,<1.0.0",
-    ]
-    ```
-
-
-And next:
-
-=== "pip"
-
-    ```shell
-    rm -f Pipfile.lock
-    invenio-cli install
-    ```
+And next, run the following commands:
 
 === "uv"
 
@@ -45,6 +37,14 @@ And next:
     rm -f uv.lock
     invenio-cli install
     ```
+
+=== "pipenv"
+
+    ```shell
+    rm -f Pipfile.lock
+    invenio-cli install
+    ```
+
 
 ## Configure the DNB URN PID provider
 
@@ -75,8 +75,8 @@ When putting this to production, set `PIDSTORE_EXTRA_TEST_MODE = False`!
 +   RDM_PERSISTENT_IDENTIFIER_PROVIDERS = DEFAULT_PERSISTENT_IDENTIFIER_PROVIDERS + [
 +       providers.DnbUrnProvider(
 +         "urn",
-+         client=providers.DNBUrnClient("dnb", PIDSTORE_EXTRA_DNB_ID_PREFIX, 
-+         PIDSTORE_EXTRA_DNB_USERNAME, PIDSTORE_EXTRA_DNB_PASSWORD, 
++         client=providers.DNBUrnClient("dnb", PIDSTORE_EXTRA_DNB_ID_PREFIX,
++         PIDSTORE_EXTRA_DNB_USERNAME, PIDSTORE_EXTRA_DNB_PASSWORD,
 +         PIDSTORE_EXTRA_FORMAT),
 +         label=_("URN"),
 +       ),
@@ -97,7 +97,7 @@ When putting this to production, set `PIDSTORE_EXTRA_TEST_MODE = False`!
 +   from invenio_pidstore_extra.services.components import URNRelationsComponent
 +   from invenio_rdm_records.services.components import DefaultRecordsComponents
 
-+   RDM_RECORDS_SERVICE_COMPONENTS = DefaultRecordsComponents + 
++   RDM_RECORDS_SERVICE_COMPONENTS = DefaultRecordsComponents +
 +   [URNRelationsComponent]
 
 ```

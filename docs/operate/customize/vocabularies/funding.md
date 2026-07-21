@@ -41,7 +41,7 @@ Here is an example of two such records in YAML format:
 
 The **Funder** vocabulary uses the new DataStreams API for importing entries. You can find more information about this new API in [RFC 0053](https://github.com/inveniosoftware/rfcs/pull/53).
 
-** Version 13 and later **
+**Version 13 and later**
 
 You can set up a job to import the ROR funders dataset directly by going
 to https://my-repository-url/administration/jobs
@@ -56,13 +56,13 @@ be loaded.
 You can also use the "Schedule job" button to download the latest version of
 the ROR vocabulary on a regular schedule.
 
-If you prefer to work on the command line, you can type
+If you prefer to work on the command line, you can type (preceded by `pipenv run` or `uv run` as appropriate)
 
 ```bash
-pipenv run invenio vocabularies update --vocabulary funders --origin ror-http
+invenio vocabularies update --vocabulary funders --origin ror-http
 ```
 
-** Version 12 and earlier **
+**Version 12 and earlier**
 
 You can fetch the [ROR data dump](https://ror.readme.io/docs/data-dump) and import it directly using the following command:
 

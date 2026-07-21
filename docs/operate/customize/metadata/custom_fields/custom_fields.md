@@ -215,8 +215,8 @@ Custom field initialization, in a new shell run:
 
 ```bash
 $ cd my-site
-
-$ pipenv run invenio rdm-records custom-fields init -f experiments
+$ # precede by `uv run` or `pipenv run` as appropriate
+$ invenio rdm-records custom-fields init -f experiments
 ```
 
 ## See it in action

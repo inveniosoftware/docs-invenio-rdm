@@ -133,14 +133,24 @@ First, you should store the credentials to access the ORCID Public Data Sync in 
 
 #### Installing
 
-Then, you should install the required `s3fs` dependency. This can be achieved by adding the following to the `Pipfile` in your instance:
+Then, you should install the required `s3fs` dependency. This can be achieved by adding the following to your project file:
 
-```toml
-[packages]
-...
-invenio-vocabularies = {extras = ["s3fs"]}
-...
-```
+=== "pyproject.toml"
+
+  ```toml
+  [project]
+
+  dependencies = [
+    "invenio-vocabularies[s3fs]",
+  ]
+  ```
+
+=== "Pipfile"
+
+  ```ini
+  [packages]
+  invenio-vocabularies = {extras = ["s3fs"]}
+  ```
 
 #### Configuring
 

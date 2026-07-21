@@ -6,16 +6,16 @@ InvenioRDM is set up with a command line management tool, `invenio-cli`, which i
 
 `invenio-cli` is available on [PyPI](https://pypi.org/project/invenio-cli/). Use your favorite way to install it:
 
-=== "pip"
-
-    ```shell
-    pip install invenio-cli
-    ```
-
 === "uv"
 
     ```shell
     uv tool install invenio-cli
+    ```
+
+=== "pip"
+
+    ```shell
+    pip install invenio-cli
     ```
 
 === "pipx"

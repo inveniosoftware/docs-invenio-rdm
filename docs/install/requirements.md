@@ -5,7 +5,7 @@
 InvenioRDM depends on the following requirements to be installed on your local system:
 
 - MacOS or Linux-based systems (Windows systems is not supported).
-- [Python](https://www.python.org/) 3.9 / 3.11 / 3.12 and [pip](https://pip.pypa.io/en/stable/)
+- [Python](https://www.python.org/) 3.14 recommended ; 3.11, 3.12, 3.13 possible and [pip](https://pip.pypa.io/en/stable/)
     - Python development headers:
         - On Ubuntu: `sudo apt install python3-dev`.
         - On RHEL/Fedora: `yum install -y python3-devel.x86_64`.
@@ -22,7 +22,7 @@ InvenioRDM depends on the following requirements to be installed on your local s
 For running and building the application locally you will also need:
 
 - [Git](https://git-scm.com/).
-- [Node.js](https://nodejs.org) 24.0+ and corresponding `npm`. InvenioRDM also works with version 26.0+. We recommend that you install Node through [nvm](https://github.com/nvm-sh/nvm) (e.g. `nvm install --lts`) or [equivalent](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
+- [Node.js](https://nodejs.org) 24 recommended (22 and 26 possible) and corresponding `npm`. We recommend that you install Node through [nvm](https://github.com/nvm-sh/nvm) (e.g. `nvm install --lts`) or [equivalent](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm).
 - [Cairo](https://invenio-formatter.readthedocs.io/en/latest/installation.html) needed for badges to be properly displayed.
 - [DejaVu Fonts](https://dejavu-fonts.github.io/Download.html) needed for badges rendering.
 - [ImageMagick](https://imagemagick.org/script/download.php) needed for IIIF file rendering.
@@ -53,7 +53,7 @@ InvenioRDM runs on machines that have at least 8GB of RAM and at least 4 cores.
 
 ## Python packages
 
-Because we want to avoid cluttering the Python packages of the system or user with InvenioRDM dependencies, `invenio-cli` uses virtual environments. This is done by interacting with `pipenv` behind the scenes.
+Because we want to avoid cluttering the Python packages of the system or user with InvenioRDM dependencies, `invenio-cli` uses virtual environments. This is done by interacting with your selected python package manager (`uv` or `pipenv`) behind the scenes.
 
 To use a different Python version in the virtual environment than the one installed globally, a Python version manager such as `pyenv` or `asdf` with `asdf-python` or `mise` is required.
 

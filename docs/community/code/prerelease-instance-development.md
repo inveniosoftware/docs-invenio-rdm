@@ -76,15 +76,31 @@ instance permanently. For example, you might have a local identifier scheme that
 you want [idutils](https://github.com/inveniosoftware/idutils)
 to verify. It wouldn't be appropriate to make a pull request, since this
 change is only relevant to your organization. You can make your fork available on GitHub
-and add the following to your Pipfile:
+and add the following to your project file (by default `pyproject.toml` in v14+ InvenioRDM, `Pipfile` before):
 
-```toml
-[packages]
-idutils = {git = "https://github.com/your-username/idutils.git", ref = "main"}
-```
+=== "pyproject.toml"
 
-You will need to update your `Pipfile.lock` after this kind of change. Run
-`pipenv lock` or `invenio-cli install`.
+    ```toml
+    [project]
+
+    dependencies = [
+        # ...
+        "idutils",
+    ]
+
+    [tool.uv.sources]
+    idutils = { git = "https://github.com/your-username/idutils.git", branch = "main" }
+    ```
+
+=== "Pipfile"
+
+    ```ini
+    [packages]
+    idutils = {git = "https://github.com/your-username/idutils.git", ref = "main"}
+    ```
+
+You will need to update your lock file after this kind of change. Run
+`invenio-cli packages lock`.
 
 !!! warning
     It's not recommended to do this with invenio packages that change often,

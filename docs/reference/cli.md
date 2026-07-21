@@ -1,4 +1,4 @@
-# Invenio-cli commands reference 
+# Invenio-cli commands reference
 
 **Summary**
 
@@ -340,8 +340,8 @@ The primary intended purpose of this command is for developers to install a deve
 
 Lock Python dependencies.
 
-This creates a `Pipfile.lock` in your instance with hashes and versions of all
-Python packages. This ensures you have reproducible builds, and that you don't risk
+This creates a lock file depending on your python package manager: `uv.lock` if using `uv` and `Pipfile.lock` if using `pipenv`.
+It contains hashes and versions of all Python packages. This ensures you have reproducible builds, and that you don't risk
 having new patch-level versions of third-party Python packages break your build.
 
 **Options**

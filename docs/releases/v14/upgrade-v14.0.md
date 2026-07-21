@@ -38,38 +38,50 @@ With the end-of-life of Python 3.9 in October 2025, InvenioRDM v14 recommends us
 
 1.  Install Python 3.14 so it can be used by your application (including in new [virtualenv](../../reference/virtualenvs.md) created by invenio-cli). We only list two methods here — the internet is rife with other examples.
 
-    ```bash
-    # with uv
-    uv python install 3.14
-    # OR with the pyenv tool (https://github.com/pyenv/pyenv)
-    pyenv install 3.14
-    ```
+
+    === "uv"
+
+        ```bash
+        uv python install 3.14
+        ```
+
+    === "pyenv"
+
+        ```bash
+        # With the pyenv tool (https://github.com/pyenv/pyenv)
+        pyenv install 3.14
+        ```
 
 2.  Change the required Python version in `pyproject.toml` if using `uv` or `Pipfile` if still using `pipenv`.
 
-    **pyproject.toml**
+    === "pyproject.toml"
 
-    ```toml
-    # Set this line
-    requires-python = "~=3.14.0"
-    ```
+        ```toml
+        # Set this line
+        requires-python = "~=3.14.0"
+        ```
 
-    **Pipfile**
+    === "Pipfile"
 
-    ```ini
-    [requires]
-    # Set this line
-    python_version = "3.14"
-    ```
+        ```ini
+        [requires]
+        # Set this line
+        python_version = "3.14"
+        ```
 
 3.  Regenerate the lock file
 
-    ```bash
-    # with uv
-    uv lock --refresh
-    # with pipenv
-    pipenv lock
-    ```
+    === "uv"
+
+        ```bash
+        uv lock --refresh
+        ```
+
+    === "pipenv"
+
+        ```bash
+        pipenv lock
+        ```
 
     You will then want to use a new virtualenv like [detailed below](#upgrade-option-2-new-virtual-environment). At this point you may want to re-install the v13 packages in this new environment just to make sure your instance is compatible with Python 3.14 and resolve any issues specific to that if any. Keep in mind that InvenioRDM v14 may resolve some too.
 
@@ -184,19 +196,22 @@ option you choose.
 
 Change the version of `invenio-app-rdm` to 14.0 in `<my-site>/pyproject.toml` or `<my-site>/Pipfile`:
 
-**Pipfile**
-```diff
-[packages]
----invenio-app-rdm = {extras = [...], version = "~=13.0.0"}
-+++invenio-app-rdm = {extras = [...], version = "~=14.0.0"}
-```
+=== "pyproject.toml"
 
-**pyproject.toml**
-```diff
-dependencies = [
----    invenio-app-rdm[opensearch2]~=13.0.0",
-+++    invenio-app-rdm[opensearch2]~=14.0.0",
-```
+    ```diff
+    dependencies = [
+    ---    invenio-app-rdm[opensearch2]~=13.0.0",
+    +++    invenio-app-rdm[opensearch2]~=14.0.0",
+    ```
+
+=== "Pipfile"
+
+    ```diff
+    [packages]
+    ---invenio-app-rdm = {extras = [...], version = "~=13.0.0"}
+    +++invenio-app-rdm = {extras = [...], version = "~=14.0.0"}
+    ```
+
 
 ##### Step 3
 
@@ -244,12 +259,17 @@ TODO: Fill with more advanced migration command of this version that fixes migra
 
 Execute the data migration script to update the content of the DB:
 
-```bash
-# if using uv
-invenio shell $(find $(dirname $(dirname $(uv python find)))/lib/*/site-packages/invenio_app_rdm -name migrate_13_to_14.py)
-# if using pipenv
-invenio shell $(find $(pipenv --venv)/lib/*/site-packages/invenio_app_rdm -name migrate_13_to_14.py)
-```
+=== "uv"
+
+    ```bash
+    invenio shell $(find $(dirname $(dirname $(uv python find)))/lib/*/site-packages/invenio_app_rdm -name migrate_13_0_to_14_0.py)
+    ```
+
+=== "pipenv"
+
+    ```bash
+    invenio shell $(find $(pipenv --venv)/lib/*/site-packages/invenio_app_rdm -name migrate_13_0_to_14_0.py)
+    ```
 
 #### OAuth client changes
 
@@ -268,7 +288,9 @@ Many mappings have been updated in this release. You can perform granular change
 TODO: Check if it is indeed the case that the discard and rebuild is enough
 
 **Discard and rebuild indices**
+
 ```bash
+# precede by uv run or pipenv run as appropriate
 invenio index destroy --yes-i-know
 invenio index init
 # if you have records custom fields
