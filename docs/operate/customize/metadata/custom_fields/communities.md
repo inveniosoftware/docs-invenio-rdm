@@ -54,7 +54,8 @@ make them searchable. The only difference is the CLI command:
 cd my-site
 
 # initialize all custom fields to make them searchable
-pipenv run invenio communities custom-fields init
+# precede by `uv run` or `pipenv run` as appropriate
+invenio communities custom-fields init
 ```
 
 ## Displaying fields

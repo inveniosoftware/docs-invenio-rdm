@@ -19,13 +19,28 @@ Select site_code:
 Choose from 1, 2 [1]:
 ```
 
-To generate the site folder, you will need to select option `1 - yes` (this is already the default option). Now, after the bootstrapping is finished, you can see a folder named "site" in the root folder of your instance, as well as the following line in your instance folder's Pipfile:
+To generate the site folder, you will need to select option `1 - yes` (this is already the default option). Now, after the bootstrapping is finished, you can see a folder named "site" in the root folder of your instance, as well as the following line in your instance folder's project file:
 
-```python hl_lines="3"
-[packages]
-...
-my-site = {editable=true, path="./site"}
-```
+=== "pyproject.toml"
+
+    ```toml
+    [project]
+
+    dependencies = [
+        # ...
+        "my-site",
+    ]
+
+    [tool.uv.sources]
+    my-site = { path: "./site", editable = true }
+    ```
+
+=== "Pipfile"
+
+    ```ini hl_lines="3"
+    [packages]
+    my-site = {editable=true, path="./site"}
+    ```
 
 This means that the site folder will be installed as a package with the name `my-site`, and it is editable. This package now works as any other package installed in your instance (`invenio-app-rdm`, `invenio-communities`, etc.), allowing you to customize your instance and create new views and features without adding a separate package manually.
 

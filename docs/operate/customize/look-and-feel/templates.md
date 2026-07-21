@@ -91,10 +91,10 @@ We will simply change the content to the following as an example:
 
 !!! info "Side-note: How to find routes"
 
-    To find the value to use in `url_for`, you can list InvenioRDM's routes via this command:
+    To find the value to use in `url_for`, you can list InvenioRDM's routes via this command (preceded by `uv run` or `pipenv run` as appropriate):
 
     ```shell
-    pipenv run invenio routes
+    invenio routes
     ```
 
 **Step 2** - Restart your server

@@ -4,7 +4,7 @@ Now that we have created a project folder, we need to build and set up the Inven
 
 As mentioned before, the application can be built and installed in two different ways:
 
-- *Local development* (good for developers or for customizing your instance): The application is installed directly on your machine in a Python [virtual environment](../reference/virtualenvs.md) managed by the ``pipenv`` tool (its services are containerized though).
+- *Local development* (good for developers or for customizing your instance): The application is installed directly on your machine in a Python [virtual environment](../reference/virtualenvs.md) managed by the python package manager tool (by default ``uv``). Its services are containerized though.
 - *Containerized preview* (good for quick preview): The application is built inside a Docker image and, it, along with the services are all containerized.
 
 ## Condensed version
@@ -48,30 +48,11 @@ invenio-cli packages lock
 ```console
 Locking dependencies... Allow pre-releases: False. Include dev-packages: False.
 Locking python dependencies...
-Creating a virtualenv for this project…
-Pipfile: /Users/johnsmith/src/tmp/my-site/Pipfile
-Using /Users/johnsmith/.virtualenvs/cli/bin/python3.8 (3.8.5) to create virtualenv…
-⠇ Creating virtual environment...created virtual environment CPython3.8.5.final.0-64 in 542ms
-  creator CPython3Posix(dest=/Users/johnsmith/.virtualenvs/my-site-0wtHqD1g, clear=False, global=False)
-  seeder FromAppData(download=False, pip=bundle, setuptools=bundle, wheel=bundle, via=copy, app_data_dir=/Users/johnsmith/Library/Application Support/virtualenv)
-    added seed packages: pip==21.0.1, setuptools==53.1.0, wheel==0.36.2
-  activators BashActivator,CShellActivator,FishActivator,PowerShellActivator,PythonActivator,XonshActivator
-
-✔ Successfully created virtual environment!
-Virtualenv location: /Users/johnsmith/.virtualenvs/my-site-0wtHqD1g
-Locking [dev-packages] dependencies…
-Building requirements...
-Resolving dependencies...
-✔ Success!
-Locking [packages] dependencies…
-Building requirements...
-Resolving dependencies...
-✔ Success!
-Updated Pipfile.lock (271a6d)!
+[...]
 Dependencies locked successfully.
 ```
 
-A new file ``Pipfile.lock`` has now been created with the locked dependencies.
+A new lock file (e.g., ``uv.lock``) has now been created with the locked dependencies.
 
 Next, follow the *local development* option or *containerized preview* option according to your preferred installation method.
 
@@ -88,19 +69,14 @@ invenio-cli install
 ```
 ```console
 Installing python dependencies... Please be patient, this operation might take some time...
-Installing dependencies from Pipfile.lock (271a6d)…
-  🐍   ▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉▉ 200/200 — 00:02:00
-
 [...]
-
 Built webpack project.
-Assets and statics updated.
 Dependencies installed successfully.
 ```
 
 The command does the following:
 
-- Install Python dependencies (according the ``Pipfile.lock``)
+- Install Python dependencies (according to the lock file)
 - Install JavaScript dependencies
 - Build the JavaScript/CSS web assets
 
@@ -194,7 +170,7 @@ The command will:
 
 - Download the Docker images for the services (database, cache, search engine, etc.)
 - Build the Docker image for the InvenioRDM application using the ``Dockerfile`` in your project.
-- Install Python dependencies (according the ``Pipfile.lock``)
+- Install Python dependencies (according to the lock file)
 - Install JavaScript dependencies
 - Build the JavaScript/CSS web assets
 
@@ -265,7 +241,3 @@ Go and explore your InvenioRDM instance at [https://127.0.0.1](https://127.0.0.1
 
 - You may see the following error message `TypeError: Object.fromEntries is not a function`.
   This means you need to update your base Invenio docker image because Node.js 14+ is needed. Make sure the base Invenio image is up to date. You can re-build your instance image with `invenio-cli containers build --pull --no-cache` to make sure things are done from scratch.
-- You may see `SystemError: Parent module 'setuptools' not loaded, cannot perform relative import`
-  at the dependency locking step when running `invenio-cli containers start`. This depends on your version of `setuptools` (bleeding edge causes this)
-  and can be solved by setting an environment variable: `SETUPTOOLS_USE_DISTUTILS=stdlib`. [See more details](https://github.com/pypa/setuptools/blob/17cb9d6bf249cefe653d3bdb712582409035a7db/CHANGES.rst#v5000). This sudden upstream change will be addressed more systematically in future releases.
-- You may see the following error message  ``pkg_resources.ContextualVersionConflict: (setuptools 60.5.0 (...), Requirement.parse('setuptools<59.7.0,>=59.1.1'), {'celery'})`` when running ``invenio-cli install``. This happens when you recently installed or upgraded ``invenio-cli``. The problem can be fixed by adding ``setuptools = ">=59.1.1,<59.7.0"`` to the ``[dev-packages]`` section in your ``Pipfile``. The problem happens when virtualenv v20.13.1+ gets installed with Invenio-CLI and when Celery v5.2.3 gets is installed with InvenioRDM. Only Celery v5.2.3 causes this issue.

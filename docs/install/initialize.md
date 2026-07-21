@@ -19,11 +19,10 @@ The CLI will require the following data:
 - **Author name**: Your name or that of your organization
 - **Author email**: Email for communication
 - **Year**: The current year
-- **Database**: PostgreSQL (default)
-- **Search**: OpenSearch 2 (default)
 - **Storage backend**: Local file system (default) or in a S3-like backend. If S3 is chosen a MinIO container is provided.
 - **Development tools**: `Yes` if you want to add extra development tools (e.g. OpenSearch Dashboard) to your instance.
 - **Site code**: `Yes` if you want to add custom code to your instance.
+- **Base image**: The base Invenio image derived from a specific OS to use.
 - **Reduced vocabularies**: `Yes` builds a full set of language, license and name vocabularies. `No` uses a reduced set for faster setup.
 
 It will also generate a test private key which is needed for SSL support in the development server.
@@ -46,41 +45,36 @@ Let's do it! Pressing `[Enter]` selects the default option in brackets `[]`.
     invenio-cli init rdm -c master
     ```
 
-The current InvenioRDM release (for production systems) is ``v12.0``
 
 ```console
 Initializing RDM application...
 Running cookiecutter...
-project_name [My Site]:
-project_shortname [my-site]:
-package_name [my_site]:
-project_site [my-site.com]:
-author_name [CERN]:
-author_email [info@my-site.com]:
-year [2023]:
-Choose from 1 [1]:
-Select database:
-1 - postgresql
-Choose from 1 [1]:
-Select search:
-1 - opensearch2
-Choose from 1, 2 [1]:
-Select file_storage:
-1 - local
-2 - S3
-Choose from 1, 2 [1]:
-Select development_tools:
-1 - yes
-2 - no
-Choose from 1, 2 [1]:
-Select site_code:
-1 - yes
-2 - no
-Choose from 1, 2 [1]:
-Select use_reduced_vocabs:
-1 - no
-2 - yes
-Choose from 1, 2 [1]:
+  [1/12] project_name (My Site):
+  [2/12] project_shortname (my-site):
+  [3/12] package_name (my_site):
+  [4/12] project_site (my-site.com):
+  [5/12] author_name (CERN):
+  [6/12] author_email (info@my-v14-2026-07-21-site.com):
+  [7/12] year (2026):
+  [8/12] Select file_storage
+    1 - local
+    2 - S3
+    Choose from [1/2] (1):
+  [9/12] Select development_tools
+    1 - yes
+    2 - no
+    Choose from [1/2] (1):
+  [10/12] Select site_code
+    1 - yes
+    2 - no
+    Choose from [1/2] (1): 2
+  [11/12] Select base_image
+    1 - debian
+    Choose from [1] (1):
+  [12/12] Select use_reduced_vocabs
+    1 - yes
+    2 - no
+    Choose from [1/2] (1): 2
 ```
 
 ## Project structure
@@ -100,7 +94,7 @@ ls -a1
 .invenio
 .invenio.private
 Dockerfile
-Pipfile
+pyproject.toml
 README.md
 app_data
 assets
@@ -119,7 +113,7 @@ Following is an overview of the generated files and folders:
 | Name | Description |
 |---|---|
 | ``Dockerfile`` | Dockerfile used to build your application image. |
-| ``Pipfile`` | Python requirements installed via [pipenv](https://pipenv.pypa.io) |
+| ``pyproject.toml`` | Python project file setup via [uv](https://pipenv.pypa.io) |
 | ``app_data/`` | Application data for e.g. vocabularies. |
 | ``assets/`` | Web assets (CSS, JavaScript, LESS, JSX templates) used in the Webpack build. |
 | ``docker/`` | Example configuration for NGINX and uWSGI for running InvenioRDM. |

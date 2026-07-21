@@ -67,16 +67,16 @@ To load the new static page to your instance, you have 2 options:
 
 1. Run the instance setup command `invenio-cli services setup`: the command will find the pages defined as above and load them. **Warning: this command will delete all your data!**
 
-2. In a previously created instance folder, run:
+2. In a previously created instance folder, run (preceded by `uv run` or `pipenv run` as appropriate):
 
 ```bash
-pipenv run invenio rdm pages create
+invenio rdm pages create
 ```
 
 For updating existing templates:
 
 ```bash
-pipenv run invenio rdm pages create --force
+invenio rdm pages create --force
 ```
 
 This will wipe out all previously created static pages and load them again. In other words, it will delete the templates you have removed from your `pages.yaml` and update the existing templates with the changes you have made, if any.
@@ -101,10 +101,10 @@ templates
 └── my_site/my_custom_base_template.html
 ```
 
-After making this change, you will have to restart your instance and run
+After making this change, you will have to restart your instance and run (preceded by `uv run` or `pipenv run` as appropriate)
 
 ```bash
-pipenv run invenio rdm pages create --force
+invenio rdm pages create --force
 ```
 
 ## Edit pages
@@ -159,10 +159,10 @@ templates
 └── my_site/my_custom_base_template.html
 ```
 
-After making this change, you'll have to restart your instance and run
+After making this change, you'll have to restart your instance and run (preceded by `uv run` or `pipenv run` as appropriate)
 
 ```bash
-pipenv run invenio rdm pages create --force
+invenio rdm pages create --force
 ```
 
 ## Static Pages Content HTML Sanitization
@@ -201,8 +201,8 @@ PAGES_ALLOWED_EXTRA_HTML_ATTRS = {
 
 ```
 
-After adding these configs, you'll have to restart your instance and run
+After adding these configs, you'll have to restart your instance and run (preceded by `uv run` or `pipenv run` as appropriate)
 
 ```bash
-pipenv run invenio rdm pages create --force
+invenio rdm pages create --force
 ```

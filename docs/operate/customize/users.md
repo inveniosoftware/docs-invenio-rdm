@@ -59,7 +59,7 @@ but is empty, no default user is created.
 
 ## Change password
 
-To set or change the password for an existing user, create a new shell with `pipenv run invenio shell` and run:
+To set or change the password for an existing user, create a new shell with `invenio shell` (preceded by `uv run` or `pipenv run` as appropriate) and run:
 
 ```python
 from flask_security.utils import hash_password
@@ -79,7 +79,8 @@ You might need to add users or modify their permissions after the initial user v
 Use the invenio users create command. The `--active` flag ensures the user can log in immediately, and `--confirm` confirms their email address (assuming email verification is enabled by default).
 
 ```shell
-pipenv run invenio users create email@domain.edu --password <password> --active --confirm
+# precede by `uv run` or `pipenv run` as appropriate
+invenio users create email@domain.edu --password <password> --active --confirm
 ```
 
 This will automatically confirm the account. If you prefer the user to verify their email address themselves, omit the `--confirm` parameter:
@@ -127,7 +128,7 @@ invenio access allow superuser-access user <e-mail>
 
 Only confirmed accounts can log in to InvenioRDM. You can confirm an account automatically upon creation using the `--confirm` parameter.
 
-Alternatively you can confirm an account programmatically by opening a new shell using `pipenv run invenio shell` and
+Alternatively you can confirm an account programmatically by opening a new shell using `invenio shell` (preceded by `uv run` or `pipenv run` as appropriate) and
 running:
 
 ```python
