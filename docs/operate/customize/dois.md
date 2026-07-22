@@ -6,7 +6,7 @@
 
 _Introduced in v14_
 
-DOI registration with Crossref is a new feature in InvenioRDM v14. Crossref has a different metadata schema than DataCite and supports textual content types such as journal articles, books, conference proceedings, preprints, possters or dissertations. The pricing and membership models are also different from DataCite.
+DOI registration with Crossref is a new feature in InvenioRDM v14. Crossref has a different metadata schema than DataCite and supports textual content types such as journal articles, books, conference proceedings, preprints, posters or dissertations. The pricing and membership models are also different from DataCite.
 
 ## Configure
 
