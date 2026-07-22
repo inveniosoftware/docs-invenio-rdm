@@ -195,6 +195,11 @@ This new module addresses existing limitations, such as allowing users to select
 The module is **optional** and must be installed and configured.
 See [the documentation](../../operate/customize/software_archival.md) for more details.
 
+### DOI registration with Crossref
+
+[DOI registration](../../operate/customize/dois.md) with Crossref is a new feature in InvenioRDM v14. Crossref has a different metadata schema than DataCite and supports textual content types such as journal articles, books, conference proceedings, preprints, posters or dissertations.
+For more advanced use cases InvenioRDM v14 also supports DOI registration with DataCite and Crossref in the same instance and/or using multiple DOI prefixes. Migration of existing DataCite DOIs to Crossref (or vice versa) is another advanced use case.
+
 ### Modern toolchain
 
 The modern build toolchain introduced as experimental in v13 is now considered stable and ready for adoption:
