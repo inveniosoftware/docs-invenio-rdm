@@ -70,9 +70,7 @@ In production mode, InvenioRDM will use the following DataCite systems:
 - DOI Fabrica (https://doi.datacite.org).
 - REST API (https://api.datacite.org).
 
-Alternatively, you can use the [Crossref test environment](https://www.crossref.org/documentation/register-maintain-records/direct-deposit-xml/https-post/) to avoid accidentally registering DOIs during test. In test mode InvenioRDM will use the following Crossref test systems:
-
-- Administration Console Sandbox (https://test.crossref.org).
+Alternatively, you can use the [Crossref test environment](https://www.crossref.org/documentation/register-maintain-records/direct-deposit-xml/https-post/) to avoid accidentally registering DOIs during test. In test mode InvenioRDM will use the [Crossref test system](https://test.crossref.org).
 
 To enable production mode, set the following configuration variable in ``invenio.cfg``:
 
