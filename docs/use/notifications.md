@@ -10,8 +10,8 @@ Consider the case of submitting a record to a community. When you do this, a not
 
 Available notification settings can be accessed via the account settings page (`<domain>/account/settings/notifications/`). Additionally, the main menu has an entry for easy access:
 
-![Notifications Setting Menu Entry](./imgs/notifications/menu.png "Notification Settings Menu Entry")
+![Notifications Setting Menu Entry](imgs/notifications/menu.png "Notification Settings Menu Entry"){: .screenshot}
 
 For personal preferences, it is possible to completely enable or disable receiving notifications. The info on the right hand side will show the channel on which notifications will be received.
 
-![Notifications Setting Page](./imgs/notifications/settings.png "Notification Settings Page")
+![Notifications Setting Page](imgs/notifications/settings.png "Notification Settings Page"){: .screenshot}

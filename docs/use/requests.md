@@ -11,7 +11,7 @@ In InvenioRDM, requests allow users to manage many different use cases themselve
 
 * Community inclusion — to include a published record in a [community](communities.md)
 * Draft review — to include a draft record in a community (internally known as submission)
- 
+
 *Membership*
 
 <!-- * Membership request — to join a community as a member -->
@@ -24,7 +24,7 @@ In InvenioRDM, requests allow users to manage many different use cases themselve
 
 *Moderation*
 
-* [User moderation](./administration.md#user-management) — moderation requests for review by administrators 
+* [User moderation](./administration.md#user-management) — moderation requests for review by administrators
 * Record deletion — requests from users to administrators to delete their own records
 * File modification — requests from users to administrators to modify their own records
 
@@ -38,7 +38,7 @@ Requests come with advanced conversation features allowing everyone involved to 
 
 ### Writing a comment
 
-![Example of a new comment being created in the rich text editor](imgs/requests/new_comment.png)
+![Example of a new comment being created in the rich text editor](imgs/requests/new_comment.png){: .screenshot}
 
 The text editor at the bottom of the page allows you to create a new comment.
 This is a feature-rich editor with support for many advanced types of content.
@@ -52,9 +52,9 @@ You can surround LaTeX content with one of two 'delimiters' to ensure it's rende
 - `$$` for full-width 'block' equations
 
 **The content is not rendered immediately in the editor.**
-However, you can preview it before submitting by clicking the "Preview math equations" button: 
+However, you can preview it before submitting by clicking the "Preview math equations" button:
 
-![Math equation preview button](imgs/requests/preview_math_equation.png)
+![Math equation preview button](imgs/requests/preview_math_equation.png){: .screenshot}
 
 This will show the full comment in a dialog box, exactly as it will be shown to readers.
 It will **not** save or submit the comment; it's just a temporary preview.
@@ -71,11 +71,11 @@ You can also include multiple separate quotes if you want to reply to different 
 
 To quote the full comment, simply click the action menu (the 3 horizontal dots) on the comment you want to quote, and select "Quote reply":
 
-![The dropdown action menu with the "quote reply" button an a sample comment](imgs/requests/quote_reply_dropdown.png)
+![The dropdown action menu with the "quote reply" button an a sample comment](imgs/requests/quote_reply_dropdown.png){: .screenshot}
 
 Alternatively, to quote a part of a comment, highlight the text you wish to quote and click "Quote reply" in the popover that appears:
 
-![The popover with the "quote reply" button above a highlighted piece of text](imgs/requests/quote_reply_popover.png)
+![The popover with the "quote reply" button above a highlighted piece of text](imgs/requests/quote_reply_popover.png){: .screenshot}
 
 #### Auto-saved drafts
 
@@ -99,7 +99,7 @@ This helps group related information together and makes the review more readable
 To write a reply, simply click the "Write a reply" box.
 When clicked, the full rich text editor will appear, and you can use all the same editing tools to compose the reply.
 
-![The input to reply to a comment](imgs/requests/reply.png)
+![The input to reply to a comment](imgs/requests/reply.png){: .screenshot}
 
 ### Sharing a link to a comment
 
@@ -108,7 +108,7 @@ This way, the recipient will always be taken to the exact comment you intended a
 
 To copy a link to a comment, click the action menu (the 3 horizontal dots) and select "Copy link":
 
-![The dropdown action menu with the "copy link" button](imgs/requests/copy_link.png)
+![The dropdown action menu with the "copy link" button](imgs/requests/copy_link.png){: .screenshot}
 
 The link will be copied to your clipboard.
 Unauthenticated users might not be able to open the link; it's important that the recipient has access to the request.
@@ -126,7 +126,7 @@ The comment will be deleted immediately, and replaced with a "stub".
 Existing replies will **not** be deleted and new replies can still be added.
 A link to the stub can still be copied, and existing links to the deleted comment will continue to work.
 
-![An example of a deleted "stub" comment](imgs/requests/deleted_comment.png)
+![An example of a deleted "stub" comment](imgs/requests/deleted_comment.png){: .screenshot}
 
 !!! Warning
     You cannot restore the original comment.
@@ -143,15 +143,15 @@ When a conversation is locked or unlocked, an event appears in the conversation 
 
 To lock a conversation, click the "Lock conversation" button in the right-hand sidebar:
 
-![The bottom part of the sidebar with the "Lock conversation" button visible](imgs/requests/lock_conversation.png)
+![The bottom part of the sidebar with the "Lock conversation" button visible](imgs/requests/lock_conversation.png){: .screenshot}
 
-To unlock, click the "Unlock conversation" button. 
-Community curators, managers, and owners can unlock the conversation at any time. See more information about community roles in 
+To unlock, click the "Unlock conversation" button.
+Community curators, managers, and owners can unlock the conversation at any time. See more information about community roles in
 [members](./communities.md#members).
 
 Locking and unlocking create an event visible to all viewers in the conversation timeline:
 
-![The "lock"/"unlock" events in the timeline](imgs/requests/locking_event.png)
+![The "lock"/"unlock" events in the timeline](imgs/requests/locking_event.png){: .screenshot}
 
 
 ### Attaching files to comments
@@ -161,8 +161,8 @@ This is particularly useful for reviewers, who can, for example, annotate a subm
 
 To attach a file, click the "Attach files" button in the comment editor:
 
-![Comment editor with the "Attach files" button](imgs/requests/attach_files.png)
+![Comment editor with the "Attach files" button](imgs/requests/attach_files.png){: .screenshot}
 
 Once the comment is submitted, any attached files will be displayed beneath the comment text:
 
-![A submitted comment showing an attached file below the comment text](imgs/requests/attached_file_comment.png)
+![A submitted comment showing an attached file below the comment text](imgs/requests/attached_file_comment.png){: .screenshot}

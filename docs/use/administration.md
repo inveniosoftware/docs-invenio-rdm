@@ -47,13 +47,13 @@ Individual admin views can then be restricted to specific roles by overriding th
 
 **As an administrator** you can access the administration panel at `/administration`. This is also available through the user menu in the top right corner of your instance:
 
-![User Menu Admin](./imgs/banners/user_menu_admin.png)
+![User Menu Admin](imgs/banners/user_menu_admin.png){: .screenshot}
 
 ## Communities
 
 The **Communities** section in the administration panel lets you see and manage [communities](communities.md).
 
-![Communities Admin UI](./imgs/administration/communities.png)
+![Communities Admin UI](imgs/administration/communities.png){: .screenshot}
 
 You can:
 
@@ -99,7 +99,7 @@ access attempts receive a 403 error.
 
 The **Records** page provides access to all published [records](records.md) you can manage.
 
-![Records](./imgs/administration/records.png)
+![Records](imgs/administration/records.png){: .screenshot}
 
 You can:
 
@@ -118,15 +118,15 @@ _Introduced in v13_
 The `Compare Revisions` feature allows administrators to audit record updates and follow changes over time.
 From the **Records** list in the Administration panel, click the **Compare revisions...** button in the _Actions_ column to open a side-by-side comparison window:
 
-![Records List: Compare Revisions](./imgs/administration/records-compare.png)
+![Records List: Compare Revisions](imgs/administration/records-compare.png){: .screenshot}
 
 A modal window appears, allowing you to choose two revisions to compare:
 
-![Compare Modal: Version Selection](./imgs/administration/records-compare-select.png)
+![Compare Modal: Version Selection](imgs/administration/records-compare-select.png){: .screenshot}
 
 The changes are then displayed in a JSON **side-by-side diff** view:
 
-![Compare Modal: Diff View](./imgs/administration/records-compare-diff.png)
+![Compare Modal: Diff View](imgs/administration/records-compare-diff.png){: .screenshot}
 
 !!! info "Revisions VS versions"
 
@@ -136,7 +136,7 @@ The changes are then displayed in a JSON **side-by-side diff** view:
 
 The **Drafts** page allows you to view and manage records that have not yet been published.
 
-![Drafts](./imgs/administration/drafts.png)
+![Drafts](imgs/administration/drafts.png){: .screenshot}
 
 You can:
 
@@ -157,7 +157,7 @@ _Introduced in v13_
 
 The **Audit Logs** page provides actions taken in the system. As an administrator, you can keep track of recent changes across the repository.
 
-![Audit Logs](./imgs/administration/logs.png)
+![Audit Logs](imgs/administration/logs.png){: .screenshot}
 
 You can:
 
@@ -179,7 +179,7 @@ You can filter by:
 
 The **OAI-PMH** page allows you to manage sets used for metadata harvesting via the OAI-PMH protocol. Sets are defined by search queries and help external systems harvest records.
 
-![OAI-PMH Sets](./imgs/administration/oai-pmh.png)
+![OAI-PMH Sets](imgs/administration/oai-pmh.png){: .screenshot}
 
 You can:
 
@@ -187,7 +187,7 @@ You can:
 - Edit or delete existing sets
 - Create new sets
 
-  ![Create OAI-PMH Set](./imgs/administration/create-oai-pmh.png)
+  ![Create OAI-PMH Set](imgs/administration/create-oai-pmh.png){: .screenshot}
 
 !!! info
 
@@ -198,7 +198,7 @@ You can:
 
 The **Pages** section allows you to manage static informational pages on your site.
 
-![Pages](./imgs/administration/pages.png)
+![Pages](imgs/administration/pages.png){: .screenshot}
 
 You can:
 
@@ -220,7 +220,7 @@ You can:
 - Filter by status, flagged state, or top-level domain
 - Create, edit, or delete domain entries
 
-![Domains](./imgs/administration/domains.png)
+![Domains](imgs/administration/domains.png){: .screenshot}
 
 !!! info
 
@@ -236,11 +236,11 @@ The **Banners** section allows you to add announcement banners to your InvenioRD
 
 Banners can be added globally or restricted to a specific path. When you open the section, you'll see an overview of all banners currently added to your instance. In the example below, the list is empty because no banners have been created yet.
 
-![Banners page](./imgs/banners/empty_banners_page.png)
+![Banners page](imgs/banners/empty_banners_page.png){: .screenshot}
 
 To add a new banner, you can click the green "Create" button in the top right corner. This will take you to the form where you can add all the details for your new banner:
 
-![New banner form](./imgs/banners/new_banner_form.png)
+![New banner form](imgs/banners/new_banner_form.png){: .screenshot}
 
 Here you can see that the first field "Start time" is already pre-filled, however, you are free to update this to whatever start date and time you want. Note that both the start and end time need to be specified in UTC format.
 
@@ -253,11 +253,11 @@ Here you can see that the first field "Start time" is already pre-filled, howeve
 
 In the following example, the banner will show up on all subpages of `/records` as an info banner between April 3, 2023, at 12:00 and May 3, 2023, at 12:00.
 
-![Filled banner form](./imgs/banners/filled_banner_form.png)
+![Filled banner form](imgs/banners/filled_banner_form.png){: .screenshot}
 
 When ready, click save and you will be taken back to the "Banners" page where the new banner will appear in the list:
 
-![Banner in list](./imgs/banners/banner_added_list.png)
+![Banner in list](imgs/banners/banner_added_list.png){: .screenshot}
 
 The list is searchable and can be filtered by selecting an option from the dropdown next to the search bar, above the list of banners.
 
@@ -265,15 +265,15 @@ From the list you can see the key details of your banners, and whether they are 
 
 Clicking the link in the "ID" column will take you to a details page where you can see more details of the selected banner:
 
-![Banner details](./imgs/banners/banner_details.png)
+![Banner details](imgs/banners/banner_details.png){: .screenshot}
 
 Now that the banner is enabled, visiting any page under `/records` within the specified date range, will show the banner above the header:
 
-![Banner on page](./imgs/banners/banner_on_page.png)
+![Banner on page](imgs/banners/banner_on_page.png){: .screenshot}
 
 If you have multiple active banners at the same time, they will simply stack on top of each other:
 
-![Double banner on page](./imgs/banners/double_banner.png)
+![Double banner on page](imgs/banners/double_banner.png){: .screenshot}
 
 ### Vocabulary Types
 
@@ -284,7 +284,7 @@ You can:
 - Browse available vocabulary types
 - View how many entries exist in each type
 
-![Vocabulary Types](./imgs/administration/vocabulary-types.png)
+![Vocabulary Types](imgs/administration/vocabulary-types.png){: .screenshot}
 
 !!! info
 
@@ -308,11 +308,11 @@ See the [related documentation](../operate/customize/jobs.md) on how to enable a
 
 1. Head to the administration interface and navigate to the "Jobs" section.
 
-    ![Jobs Tab on Admin Panel](./imgs/administration/jobs-tab.jpg)
+    ![Jobs Tab on Admin Panel](imgs/administration/jobs-tab.jpg){: .screenshot}
 
 2. Click the create button on the top right.
 
-    ![Highlighting Create Job Button](./imgs/administration/create-button-jobs.jpg)
+    ![Highlighting Create Job Button](imgs/administration/create-button-jobs.jpg){: .screenshot}
 
 3. Here, you can define a new job by specifying the following:
     - **Name**: A descriptive name for the job.
@@ -321,17 +321,17 @@ See the [related documentation](../operate/customize/jobs.md) on how to enable a
     - **Task**: Select the task from the available Jobs.
     - **Active**: Whether the job is currently active or not. Inactive jobs will not be executed automatically even if scheduled but they can can be [executed manually](#configure-and-run-manual-run).
     <figure markdown="span">
-        ![Create job form not filled](./imgs/administration/create-form-job.jpg)
+        ![Create job form not filled](imgs/administration/create-form-job.jpg){: .screenshot}
         <figcaption>Create Job form</figcaption>
     </figure>
     <figure markdown="span">
-        ![Create job form filled with ROR example](./imgs/administration/create-form-filled-job.jpg)
+        ![Create job form filled with ROR example](imgs/administration/create-form-filled-job.jpg){: .screenshot}
         <figcaption>Create Job form filled</figcaption>
     </figure>
 
 4. Once you have filled in the details, click `Save` to save the job. Now you should see the job in the Jobs list page.
 
-    ![Created job on job list page](./imgs/administration/created-job.jpg)
+    ![Created job on job list page](imgs/administration/created-job.jpg){: .screenshot}
 
 #### Running a Job
 
@@ -343,7 +343,7 @@ There are two ways to run a job:
 2. **Schedule and Run (Automatic):** Set up a recurring schedule and let the job run automatically based on that.
 
 <figure>
-  <img src="../imgs/administration/jobs-actions.png" alt="Jobs Actions" width="600" />
+  <img src="../imgs/administration/jobs-actions.png" alt="Jobs Actions" width="600" class="screenshot" />
 </figure>
 
 After each run, check the logs and output to confirm that the job executed successfully.
@@ -352,7 +352,7 @@ After each run, check the logs and output to confirm that the job executed succe
 
 When creating a new run, you'll need to configure several key parameters in the **Configure and run** dialog:
 
-![Jobs Configuration](./imgs/administration/jobs-configuration.png)
+![Jobs Configuration](imgs/administration/jobs-configuration.png){: .screenshot}
 
 #### Basic Configuration
 
@@ -381,10 +381,10 @@ Use the Custom args field to provide additional arguments that will override any
 Once your job is created and active, click on **Schedule** to configure the timing. You can schedule jobs using either of the following methods:
 
 - **Interval**
-  ![Jobs Interval Schedule](./imgs/administration/jobs-schedule-interval.png)
+  ![Jobs Interval Schedule](imgs/administration/jobs-schedule-interval.png){: .screenshot}
 
 - **Crontab**
-  ![Jobs Crontab Schedule](./imgs/administration/jobs-schedule-crontab.png)
+  ![Jobs Crontab Schedule](imgs/administration/jobs-schedule-crontab.png){: .screenshot}
 
 !!! tip "When to use which?"
 
@@ -408,7 +408,7 @@ You can delete a job from its detail page in the administration interface.
 3. Click the delete button in the actions bar on the job detail page.
 4. Confirm the deletion in the dialog.
 
-![Job detail page with delete button](./imgs/administration/job-detail-delete-button.png)
+![Job detail page with delete button](imgs/administration/job-detail-delete-button.png){: .screenshot}
 
 After confirming, the job will be removed from the administration interface.
 
@@ -443,7 +443,7 @@ The notification emails include:
 
 _Introduced in v12_
 
-![The User Management](imgs/user-management.png){ loading=lazy }
+![The User Management](imgs/user-management.png){: .screenshot}
 
 #### Setting up the moderation role (CLI)
 
@@ -484,7 +484,7 @@ Associated JSON APIs (e.g. `/api/domains`) have been added. Bulk versions of the
 _Introduced in v14_
 
 <figure>
-  <img src="../imgs/administration/manage-user-roles-modal.png" alt="manage user roles modal" />
+  <img src="../imgs/administration/manage-user-roles-modal.png" alt="manage user roles modal" class="screenshot" />
 </figure>
 
 Administrators can manage user roles directly through the administration panel. This provides a visual interface for assigning and removing roles from users.
@@ -497,17 +497,17 @@ To manage a user's roles as an administrator:
 1.  Navigate to the **Users** section in the Administration panel.
 2.  Open the dropdown menu of a specific user and click on **"Manage roles"** in the dropdown menu
     <figure>
-    <img src="../imgs/administration/manage-user-roles-dropdow-menu.png" alt="manage user roles dropdown menu" />
+    <img src="../imgs/administration/manage-user-roles-dropdow-menu.png" alt="manage user roles dropdown menu" class="screenshot" />
     </figure>
 3.  A modal window will appear where you can see currently assigned roles and select from available roles to assign or remove them using the provided interface.
 4.  You can optionally select multiple roles at once and flip the toggle to assign or remove unmanaged roles "usually granted via oauth or other external identity providers"
     Once done, click the "Save" button to apply the changes.
     <figure>
-    <img src="../imgs/administration/manage-user-roles-unmanaged-roles.png" alt="manage user roles unmanaged roles" />
+    <img src="../imgs/administration/manage-user-roles-unmanaged-roles.png" alt="manage user roles unmanaged roles" class="screenshot" />
     </figure>
 5.  Confirm the changes in the confirmation dialog and click "Save" again to finalize the role updates.
     <figure>
-    <img src="../imgs/administration/manage-user-roles-confirm-action.png" alt="manage user roles confirm action" />
+    <img src="../imgs/administration/manage-user-roles-confirm-action.png" alt="manage user roles confirm action" class="screenshot" />
     </figure>
 
 !!! info "Permissions"

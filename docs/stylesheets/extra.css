@@ -219,3 +219,10 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/templates/assets/st
 .rdm-toc-item.level2 {
     font-size: small;
 }
+
+.screenshot {
+    border: 1px solid #cccccc;
+    border-radius: 0;
+    padding: 2px;
+}
+

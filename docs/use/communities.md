@@ -15,11 +15,11 @@ As a community manager, communities enable you to:
 
 ## Create a community
 
-![New community button](imgs/communities/new-community-btn.jpg)
+![New community button](imgs/communities/new-community-btn.jpg){: .screenshot}
 
 When creating a community, you can choose its name and identifier, which is used as a `slug` for its URL:
 
-![New community form](imgs/communities/new-community-form.jpg)
+![New community form](imgs/communities/new-community-form.jpg){: .screenshot}
 
 !!! tip
 
@@ -31,11 +31,11 @@ When creating a community, you can choose its name and identifier, which is used
 
 The **Profile** section in the Settings panel, you can provide your community's information and upload its logo.
 
-![Community settings](imgs/communities/community-settings.jpg)
+![Community settings](imgs/communities/community-settings.jpg){: .screenshot}
 
 You can also change its identifier and delete the community.
 
-![Community settings deletion](imgs/communities/community-deletion.jpg)
+![Community settings deletion](imgs/communities/community-deletion.jpg){: .screenshot}
 
 !!! tip
 
@@ -70,7 +70,7 @@ This setting determines if authenticated users can request to join your communit
 - **Open**: Any authenticated user can request to join your community. This is only possible if your community has a **Public** visibility.
 - **Closed**: No one can request to join your community. Members can only be added by invitation. This is the default for newly created communities.
 
-![Community settings Privileges](imgs/communities/community-settings-privileges.jpg)
+![Community settings Privileges](imgs/communities/community-settings-privileges.jpg){: .screenshot}
 
 ### Submission Policy
 
@@ -95,7 +95,7 @@ This setting controls which users are allowed to submit records to your communit
 - **Open**: All authenticated users are permitted to submit records to your community. If your community is set to "Restricted" under Privileges, only members can submit records.
 - **Closed**: Only members of your community can submit records.
 
-![Community settings Submission Policy](imgs/communities/community-settings-submission-policy.jpg)
+![Community settings Submission Policy](imgs/communities/community-settings-submission-policy.jpg){: .screenshot}
 
 ### Pages
 
@@ -104,7 +104,7 @@ The **Pages** section allows you to create and edit custom content pages for you
 - **Curation policy**: Use this rich text editor to clearly outline your community's curation policy. This helps contributors understand the standards and criteria for content inclusion.
 - **About page**: Use this rich text editor to provide general information about your community. You can include details such as its mission, goals, scope, or any other relevant information for your members and visitors.
 
-![Community settings Pages](imgs/communities/community-settings-pages.jpg)
+![Community settings Pages](imgs/communities/community-settings-pages.jpg){: .screenshot}
 
 ### Collections
 
@@ -117,7 +117,7 @@ Community owners can manage collections through the community settings interface
 1. Navigate to your community's settings page
 2. Click on the **Collections** tab in the left sidebar
 
-    ![Collection settings](imgs/communities/collections-settings.jpg)
+    ![Collection settings](imgs/communities/collections-settings.jpg){: .screenshot}
 
 3. Use the interface to:
     - Create new sections (collection trees).
@@ -127,11 +127,11 @@ Community owners can manage collections through the community settings interface
     - Reorder collections via drag-and-drop.
     - Delete collections and sections.
 
-    ![Collection creation](imgs/communities/collections-create.jpg)
+    ![Collection creation](imgs/communities/collections-create.jpg){: .screenshot}
 
 When at least one collection is created, a new "Browser" menu tab will appear and will be visible to the users:
 
-![Collection browse](imgs/communities/collections-browse.jpg)
+![Collection browse](imgs/communities/collections-browse.jpg){: .screenshot}
 
 For more details on collections, including configuration options and programmatic management, see the [Collections documentation](../operate/customize/collections.md).
 
@@ -143,15 +143,15 @@ A community can be linked as a **subcommunity** of another community, so that a 
 
 You can ask to have your community added as a subcommunity of a parent, as long as the parent has been set up to accept subcommunities. From the parent community, open its **Create subcommunity** page and either pick one of your existing communities or create a new one.
 
-![Subcommunity request form with a community selected](imgs/communities/subcommunity-create-request.png)
+![Subcommunity request form with a community selected](imgs/communities/subcommunity-create-request.png){: .screenshot}
 
 Submitting the form creates a request to the parent community. If you own both the community and the parent, it is accepted right away. Otherwise the parent's owners or managers review it in their **Requests** tab, where they can discuss it with you before accepting or declining, the same way they handle [inclusion requests](#requests).
 
-![Pending subcommunity requests in a parent community's Requests tab, with accept and decline controls](imgs/communities/subcommunity-request-review.png)
+![Pending subcommunity requests in a parent community's Requests tab, with accept and decline controls](imgs/communities/subcommunity-request-review.png){: .screenshot}
 
 Once accepted, the subcommunity appears on the parent community's **Browse** page.
 
-![Subcommunities listed on a community's Browse page](imgs/communities/subcommunities-browse.png)
+![Subcommunities listed on a community's Browse page](imgs/communities/subcommunities-browse.png){: .screenshot}
 
 Once two communities are linked, records added to the subcommunity are automatically added to the parent community, so they show up in the parent's records as well.
 
@@ -163,7 +163,7 @@ The **Members** tab in your community's navigation allows you to view and manage
 
 The main "Members" view provides a comprehensive list of your current community members. As a owner of your community, you can search for existing members, change its visibility and role.
 
-![Community members](imgs/communities/community-members.jpg)
+![Community members](imgs/communities/community-members.jpg){: .screenshot}
 
 You can invite new members to collaborate in your community. The search autocompletion will look for existing users or groups in your system. Members can invited with a role:
 
@@ -174,22 +174,22 @@ You can invite new members to collaborate in your community. The search autocomp
 
 This operation will create an invitation request and the user will receive an e-mail [notification](notifications.md). Once approved, the user will become a member. Be aware that **groups will be immediately added**, without request or notification.
 
-![Community invite](imgs/communities/community-invite.jpg)
+![Community invite](imgs/communities/community-invite.jpg){: .screenshot}
 
 If your community's [membership policy](#membership-policy) is **Open**, users may request to join your community.
 
-![Request membership button](imgs/communities/community-request-membership.png)
+![Request membership button](imgs/communities/community-request-membership.png){: .screenshot}
 
 These requests will notify the owners and managers of the community. If you have one of those roles, you can then assess (accept/decline) the requests in the dedicated "Membership requests" section that lists them or on the request page itself like any other request. The requester may cancel the request on their end too.
 
-![Assess membership requests](imgs/communities/community-list-membership-requests.png)
+![Assess membership requests](imgs/communities/community-list-membership-requests.png){: .screenshot}
 
 
 ## Requests
 
 In the **Requests** tab, you can view all [requests](./requests.md) for your community. It allows you to manage both draft reviews and inclusion requests, and any other kind of request.
 
-![Community requests](imgs/communities/community-requests.jpg)
+![Community requests](imgs/communities/community-requests.jpg){: .screenshot}
 
 The request page provides a dedicated space for communication. You can **have a conversation with the submitter** directly within the request, and you can **accept or decline the inclusion request** based on your community's curation policies.
 
@@ -203,8 +203,8 @@ Curators, managers and owners can curate records in your community. This include
 
 To remove a record from a community, navigate to the "Communities" menu on the record's landing page.
 
-![Manage communities](imgs/communities/community-manage-in-record.png)
+![Manage communities](imgs/communities/community-manage-in-record.png){: .screenshot}
 
 Click on the "Manage communities" button. You will then see a list of communities that the record is associated with. The communities of which you have curation permissions will display a "Remove" button.
 
-![Remove record from community](imgs/communities/community-remove-from-record.png)
+![Remove record from community](imgs/communities/community-remove-from-record.png){: .screenshot}
