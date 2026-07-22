@@ -5,6 +5,6 @@ hide:
 template: frontpage.html
 ---
 
-!!! tip "July 23rd, 2025: InvenioRDM v13.0 available! ✨"
+!!! tip "MONTH DAY, 2026: InvenioRDM v14.0 available! 🌠"
 
-    🚀 Read the full [release notes](releases/v13/version-v13.0.0.md).
+    🚀 Read the full [release notes](releases/v14/version-v14.0.md).

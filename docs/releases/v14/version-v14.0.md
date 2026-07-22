@@ -213,7 +213,7 @@ Here is a quick summary of the other improvements in this release:
 - Temporarily pinned `bcrypt<5.0.0` due to compatibility issues ([flask-security-fork#82](https://github.com/inveniosoftware/flask-security-fork/pull/82)). Will be lifted in a future release.
 - A new configuration variable, `RDM_RECORDS_RELATED_IDENTIFIERS_SCHEMES`, enables configuring identifier schemes specifically for related identifiers, defaulting to `RDM_RECORDS_IDENTIFIERS_SCHEMES` when not defined.
 - Deposit form: "Creators" label was changed to "Authors" to clarify that they appear in citations.
-- Resource types: the default vocabulary now labels `publication-dissertation` as "Thesis" and drops the separate `publication-thesis` entry, so DataCite DOIs use the standard `Dissertation` value instead of a custom `Text` one. Migrating your existing records to this change is entirely optional; see [aligning the "Thesis" and "Dissertation" resource types](./upgrade-v14.0.md#align-thesis-and-dissertation-resource-types-optional) in the upgrade guide.
+- Resource types: the default vocabulary now labels `publication-dissertation` as "Thesis" and drops the separate `publication-thesis` entry, so DataCite DOIs use the standard `Dissertation` value instead of a custom `Text` one. Migrating your existing records to this change is entirely optional; see [aligning the "Thesis" and "Dissertation" resource types](./upgrade-v14.0.md#align-thesis-and-dissertation-resource-types) in the upgrade guide.
 - A new configuration variable, `RDM_RECORDS_REQUIRE_SECRET_LINKS_EXPIRATION`, controls whether an expiration date must be set for access links and secret links. Defaults to `FALSE` when not defined.
 - Addition of support for Wikidata identifiers (QIDs) for creators and contributors of records and their affiliations.
 - Addition of an HTTP User-Agent helper (`invenio_user_agent`) for outbound HTTP requests in `invenio-vocabularies` datastreams.
@@ -232,9 +232,10 @@ Here is a quick summary of the other improvements in this release:
 ## Breaking changes
 
 - Overridables in the deposit form have been modified to improve consistency in structure and naming conventions. This has involved renaming the IDs of several `<Overridable>`s, but none have been removed. If you are using these IDs to override components, please see [the full list of updates](https://github.com/inveniosoftware/invenio-rdm-records/pull/2101/files#diff-ff3c479edefad986d2fe6fe7ead575a46b086e3bbcf0ccc86d85efc4a4c63c79) and change your IDs accordingly.
-- The changes to [invenio-oauthclient](https://github.com/inveniosoftware/invenio-oauthclient) include automated database migrations that will run smoothly for most instances. However, if your `oauthclient_remoteaccount` table has more than ~50k rows and you are unable to take your system offline for the upgrade, please instead [follow the manual steps](./upgrade-v14.0.md#oauth-client-changes).
 - The default value for `WSGI_PROXIES` has been removed from Invenio-App-RDM in [PR 3284](https://github.com/inveniosoftware/invenio-app-rdm/pull/3284); instead `PROXYFIX_CONFIG` should be configured (cf. the [cookiecutter](https://github.com/inveniosoftware/cookiecutter-invenio-rdm/blob/83bb37436980ab8998a80fa0429e7d09f01f45f2/%7B%7Bcookiecutter.project_shortname%7D%7D/docker-services.yml#L24))
 - The configuration variable to display the Browse menu tab in communities has been renamed from `COMMUNITIES_SHOW_BROWSE_MENU_ENTRY` to `COMMUNITIES_COLLECTIONS_ENABLED`. Check if the former was declared in your `invenio.cfg`.
+- Per [v13 deprecation notice](../v13/version-v13.0.0.md#deprecations), usage of `invenio_records_resources.services.Link` has been replaced by `invenio_records_resources.services.EndpointLink` for InvenioRDM links and `invenio_records_resources.services.ExternalLink` for external third-party links. Continued import of `Link` is incorrect (may still work, but is being removed completely).
+
 
 ## Requirements
 
@@ -281,7 +282,6 @@ The development of this release wouldn't have been possible without the help of 
 - jakob miesner
 - Javier Romero Castro
 - Jorge Marco
-- jrcastro2
 - Julie Hinge
 - Karl Krägelin
 - Karolina Przerwa
@@ -318,7 +318,6 @@ The development of this release wouldn't have been possible without the help of 
 - Till Korten
 - Tom Morrell
 - Uma Ganapathy
-- utnapischtim
 - Werner Greßhoff
 - yashlamba
 - Zacharias Zacharodimos

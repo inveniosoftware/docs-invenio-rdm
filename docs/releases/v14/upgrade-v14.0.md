@@ -4,13 +4,14 @@
 
 This article details the low-level steps to follow to upgrade your InvenioRDM v13 instance to v14.0.
 
-Version 14 introduces a number of default tooling changes (`pipenv` -> `uv`, `npm` -> `pnpm`, ...) and recommends using Python 3.14. Previous tools and Python versions will still work with this release, but this is the last release where we document the upgrade process with the old and new tools. Future releases will only detail the upgrade steps using the new default tools. Don't worry, we point to documentation to upgrade those aspects too.
+Version 14 introduces a number of default tooling changes (`pipenv` -> `uv`, `npm` -> `pnpm`, ...) and recommends using Python 3.14. Previous tools and Python versions will still work with this release, but this is the last release where we document the upgrade process with the old and new tools. In particular, this is the last version where we document usage of `pipenv`. Future releases will only detail the upgrade steps using the new default tools or assuming them (most visibly only `uv`). Don't worry, we point to documentation below that you can follow at your pace (even after upgrade) to switch to those tools.
 
 As usual, these steps do assume an existing installation of InvenioRDM v13, the previous version.
-If your InvenioRDM installation is older than v13, you must first upgrade
-to v13 before proceeding with the steps in this guide. However, it doesn't assume you are necessarily on [v13.1](../v13/version-v13.1.0.md), and the instructions will work wether you are on v13.0.x or v13.1.y.
+If your InvenioRDM installation is older than v13, you must first upgrade to v13 before proceeding
+with the steps in this guide. However, it doesn't assume you are necessarily on
+[v13.1](../v13/version-v13.1.0.md). The instructions will work whether you are on v13.0.x or v13.1.y.
 
-The throughline of this article is a sequential series of steps to execute. **Do read** the optional sections as they indicate changes to apply even if NOT adopting change. We highly recommend running the steps in a local development environment first where experience from the particularities of your instance can be gained without data loss worry. Then we recommend you run the steps into a staging environment mirroring your production deployment and accrue further insight into specificities to your environment (or missing details in these update steps!). Equipped with that knowledge, running the steps on your production environment should be smooth.
+The throughline of this document is a sequential series of steps to execute. **Do read** the optional sections as they sometimes indicate changes to apply even if NOT adopting change. We highly recommend running the steps in a local development environment first where experience with the particularities of your instance can be gained without data loss worry. Then we recommend you run the steps into a staging environment mirroring your production deployment and accrue further insight into specificities of your environment (or missing details in these update steps!). Equipped with that knowledge, running the steps on your production environment should be smooth.
 
 !!! warning "Backup"
 
@@ -212,7 +213,7 @@ Install InvenioRDM v14:
 invenio-cli install
 ```
 
-!!! warning "A note on virtual environments and possible data loss*
+!!! warning "A note on virtual environments and possible data loss"
 
     In previous upgrade notes (e.g., from InvenioRDM v12 to v13),
     creation of a new virtual environment was mentioned as an option
@@ -382,6 +383,7 @@ current_search_client.indices.put_mapping(
 # Reindex all percolator queries from OAISets
 oaipmh_service = current_rdm_records.oaipmh_server_service
 oaipmh_service.rebuild_index(identity=system_identity)
+```
 
 #### Job Logs Index Template Update
 
@@ -425,13 +427,15 @@ For instance, you will want to run: `invenio rdm-records add-to-fixture detetype
 If you've customized any of these vocabularies for your instance, you will need to merge changes from the [source files in invenio-rdm-records](https://github.com/inveniosoftware/invenio-rdm-records/tree/master/invenio_rdm_records/fixtures/data/vocabularies) into the custom vocabulary files in your instance before running the `add-to-fixture` command.
 
 
-## Update your configuration or infrastructure — necessity depends on your instance
+## Update your configuration or infrastructure
 
-This last section highlights the changes to your configuration or infrastrcuture that you should assess. It's the last series of tweaks you want to assess and apply or not to your environment.
+*Required for upgrade*: Assess on a case by case basis. Typically optional.
+
+This last section highlights the changes to your configuration or infrastructure that you should assess. Determine if each applies to your instance, and perform the appropriate changes.
 
 ### invenio-cli run --host ... --port ...
 
-When running `invenio-cli run` with `--host`/`--port` passed on the command line or host/port defined in `.invenio.private`, it used to be that those values would override `SITE_UI_URL` and `SITE_API_URL`. This is no longer the case in order to allow for listening on a host/port (defined by passed host and port) different than the host/port used to generate the URLs. This is a common situation when listening on 0.0.0.0 and using the exact IP or fully qualified domain name for URL generation. As such you need to provide the appropriate `SITE_UI_URL` and `SITE_API_URL` values for your environment which typically means:
+When running `invenio-cli run` (in development) with `--host`/`--port` passed on the command line or host/port defined in `.invenio.private`, it used to be that those values would override `SITE_UI_URL` and `SITE_API_URL`. This is no longer the case in order to allow for listening on a host/port (defined by passed host and port) different than the host/port used to generate the URLs. This is a common situation when listening on 0.0.0.0, but using the fully qualified domain name for URL generation. As such, you need to provide the appropriate `SITE_UI_URL` and `SITE_API_URL` values for your environment which typically means:
 
 ```diff
 -SITE_UI_URL = "https://127.0.0.1"
@@ -440,6 +444,8 @@ When running `invenio-cli run` with `--host`/`--port` passed on the command line
 -SITE_API_URL = "https://127.0.0.1/api"
 +SITE_API_URL = "https://127.0.0.1:5000/api"
 ```
+
+in development outside containers.
 
 ### Overridable IDs in the deposit form
 
@@ -494,7 +500,9 @@ See also the [documentation on how to configure the new module](../../operate/cu
 
 That's it, you have upgraded to InvenioRDM v14!
 
-## Align "Thesis" and "Dissertation" resource types — optional
+## Align "Thesis" and "Dissertation" resource types
+
+*Required for upgrade*: No.
 
 Your upgrade is complete. This last section describes an **entirely optional** change that is not part of the upgrade. Nothing here affects your instance unless you choose to run it, and you can do so at any later time. Because resource types are a highly visible and commonly customized vocabulary, we suggest rather than impose this change. Decide together with your instance's stakeholders (librarians, curators) whether it fits your data before applying it.
 
