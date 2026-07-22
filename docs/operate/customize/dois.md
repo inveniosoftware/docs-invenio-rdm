@@ -101,7 +101,7 @@ identifier. You can change the generated DOI string by editing your ``invenio.cf
 ```python
 DATACITE_FORMAT = "{prefix}/inveniordm.{id}"
 # or
-DATACITE_FORMAT = "{prefix}/inveniordm.{id}"
+CROSSREF_FORMAT = "{prefix}/inveniordm.{id}"
 ```
 
 !!! tip
