@@ -224,5 +224,7 @@ https://github.com/squidfunk/mkdocs-material/blob/master/src/templates/assets/st
     border: 1px solid #cccccc;
     border-radius: 0;
     padding: 2px;
+    margin: auto;
+    display: block;
 }
 

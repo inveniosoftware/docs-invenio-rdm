@@ -23,7 +23,21 @@ This action will open the **deposit form page**, where you can:
 
 Once you save your record as a draft for the first time, you gain access to additional features. You can then **preview how your record will appear** on its landing page by using the **Preview** button, and you can also **share it with colleagues** for feedback or collaboration before final publication.
 
-![Upload actions](imgs/records/deposit-actions.jpg){: .screenshot}
+![Upload actions](imgs/records/deposit-actions.jpg){width="300", : .screenshot}
+
+### Files modification and storage quota
+
+You can edit files after publication within a defined policy. The behaviour can be customized according to institutional constraints. See [the related documentation](../operate/customize/file_modification.md) for more information.
+
+![Files modification](imgs/records/files-modification.jpg){: .screenshot}
+
+When uploading files, you can see the current storage quota used. Depending on configuration, you can extend the quota and use it across multiple records.
+
+![Files quota](../releases/v14/imgs/manage-storage.jpg){: .screenshot}
+
+The storage panel in your profile's settings gives you an overview of the storage quota allocation.
+
+![Profile quota](../releases/v14/imgs/storage-settings.jpg){: .screenshot}
 
 ### Metadata-only records
 
@@ -39,9 +53,9 @@ To mark a record as metadata-only, simply select the "Metadata-only record" chec
 
 A record can be marked as restricted in order to restrict its access to specific users. This is useful for example to share a record with a colleague or team before making it public.
 
-When creating or editing a record, click the "Restricted" checkbox under "Full record" in the "Visibility" section of the form to make the entire record -metadata and files- restricted:
+When creating or editing a record, click the "Restricted" checkbox under "Full record" in the "Visibility" section of the form to make the entire record, metadata and files,  restricted:
 
-![Visibility Options](imgs/records/visibility_options.png){: .screenshot}
+![Visibility Options](imgs/records/visibility_options.png){width="300", : .screenshot}
 
 To **only** make the files restricted, click the "Restricted" checkbox under "Files only" in the "Visibility" section.
 

@@ -35,60 +35,42 @@ page. Users can filter records by year using a histogram and range slider, or
 pick from preset ranges (last 6 months, last year, last 5 years) and enter a
 custom date range.
 
-![Publication date range facet](../../operate/customize/imgs/publication-date-range-facet.png){ width="300" }
+![Publication date range facet](../../operate/customize/imgs/publication-date-range-facet.png){ width="300", : .screenshot}
 
 You can enable additional date facets, tune backend aggregation settings, and
 override the frontend UI. See [Configure date range
 facets](../../operate/customize/search.md#configure-date-range-facets).
 
-### Empowering users with self-service
+### Record deletion
 
-This release includes three new features which allow users to handle tasks which previously required an administrator to accomplish: deleting their records, modifying files of their records and increasing the storage quota for their drafts. All three of these features are opt in, and can be customized to suit your instance's needs.
+You can now configure InvenioRDM to allow users to delete, or request deletion of, their own published records in accordance with any policy or criteria you may have. When enabled, the default behavior is that records can be deleted within 30 days of publication. After, the deletion can be requested to repository's administrators. Deletion requests are visible within the administration panel and the user's request dashboard.
 
-#### Record deletion
-
-You can now allow users to delete, or request deletion of, their own records in accordance with any required criteria you may have. When enabled, the default behavior is that records can be deleted by their owners within 30 days of publication and record owners can request deletion outside this period. Deletion requests are visible within the admin panel and the user's request dashboard.
-
-![Modal to immediately delete a record](imgs/deletion-modal.png)
+![Modal to immediately delete a record](imgs/deletion-modal.png){: .screenshot}
 /// caption
 Modal to immediately delete a record
 ///
 
-This feature is also [highly customizable](../../operate/customize/record_deletion.md)! You can introduce deletion policies based on the resource type, community role, file type or any other criteria you require. Additionally, you can prevent extraneous record deletion by adding a deletion checklist. This allows you to suggest how the user can fix the problem in the correct way instead of deleting the record.
+This feature is highly customizable. You can introduce deletion policies based on resource type, community role, file type, or any other criteria you require. Additionally, you can prevent unnecessary record deletion by adding a deletion checklist that suggests how users can resolve the issue correctly instead of deleting the record. See the [relevant documentation](../../operate/customize/record_deletion.md) to enable and customize this feature.
 
-#### User file modification
+### Files modification
 
-You can also allow users to modify the files of published records in line with your defined policies. By adding the relevant policy, the files can be unlocked by the owner of the record within 30 days (by default) of initial publication and the edits published within 45 days (by default), thus giving them at least 15 days to upload and publish their changes. See the [relevant documentation](../../operate/customize/file_modification.md) to see how to enable this behavior.
+You can now allow users to modify the files of their published records, in accordance with your policies. When enabled, the record's owner can unlock file editing within the first 30 days of publication and modify them within 45 days (by default), thus giving them at least 15 days to upload and publish again. See the [relevant documentation](../../operate/customize/file_modification.md) to see how to enable and customize this feature.
 
-#### Quota increase
+![Showing the flow to edit the files of a record](imgs/file-modification.png){: .screenshot}
 
-You can now specify a default amount of extra quota which users can spread across their records, allowing them to selectively use a budget of quota for extra large records.
+### Files quota
 
+You can now specify a default amount of extra storage quota for files which users can spread across their records, allowing them to selectively use a budget of quota for extra large records.
 
 There is a new section added to the deposit form which provides an intuitive interface to manage the extra quota:
 
-![Manage storage area of the deposit form showing increasing quota by 110 GB](imgs/manage-storage.jpg)
+![Manage storage area of the deposit form showing increasing quota by 110 GB](imgs/manage-storage.jpg){: .screenshot}
 
 Additionally users can view the extra quota which they have used across their records in the new storage page in their settings.
 
-![Storage settings page showing the 110 GB quota assigned to our record](imgs/storage-settings.jpg)
+![Storage settings page showing the 110 GB quota assigned to our record](imgs/storage-settings.jpg){: .screenshot}
 
-
-The diagram below shows how a user's additional quota acts as a shared budget, distributed across their records as needed, while tracking how much remains unused.
-![Diagram showing how a user's additional quota is shared as a budget across their records](imgs/quota.svg)
-
-
-### File modification
-
-Admins can now edit the files of all versions by default. To do so, simply edit the record and then unlock the files by completing the "Edit published files" modal. The files are then unlocked for you (or anyone with manage permissions) to add, remove or exchange files. Finally the draft can be published by an admin.
-
-![Showing the flow to edit the files of a record](imgs/file-modification.png)
-
-If you would like to disable file modification for all users including admins, add the following to your `invenio.cfg`.
-
-```
-RDM_IMMEDIATE_FILE_MODIFICATION_ENABLED = False
-```
+See the [related documentation](../../operate/customize/file-uploads/user-quota.md) to discover how to enable and customize this feature.
 
 ### Request commenting enhancements
 
@@ -235,7 +217,9 @@ Here is a quick summary of the other improvements in this release:
 - The default value for `WSGI_PROXIES` has been removed from Invenio-App-RDM in [PR 3284](https://github.com/inveniosoftware/invenio-app-rdm/pull/3284); instead `PROXYFIX_CONFIG` should be configured (cf. the [cookiecutter](https://github.com/inveniosoftware/cookiecutter-invenio-rdm/blob/83bb37436980ab8998a80fa0429e7d09f01f45f2/%7B%7Bcookiecutter.project_shortname%7D%7D/docker-services.yml#L24))
 - The configuration variable to display the Browse menu tab in communities has been renamed from `COMMUNITIES_SHOW_BROWSE_MENU_ENTRY` to `COMMUNITIES_COLLECTIONS_ENABLED`. Check if the former was declared in your `invenio.cfg`.
 - Per [v13 deprecation notice](../v13/version-v13.0.0.md#deprecations), usage of `invenio_records_resources.services.Link` has been replaced by `invenio_records_resources.services.EndpointLink` for InvenioRDM links and `invenio_records_resources.services.ExternalLink` for external third-party links. Continued import of `Link` is incorrect (may still work, but is being removed completely).
-
+- TO DOCUMENT:
+    - https://github.com/inveniosoftware/invenio-accounts/pull/557
+    - https://github.com/inveniosoftware/invenio-rdm-records/commit/eaa4ba426a1a5f9ae192461105fb109183444b2a
 
 ## Requirements
 
