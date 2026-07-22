@@ -2,22 +2,26 @@
 
 !!! info
 
-    The DOI registration feature requires that you have a contract with [DataCite](https://datacite.org/feemodel.html). In addition, you will also need a [DataCite test account](https://support.datacite.org/docs/getting-a-test-account) to test the feature.
+    The DOI registration feature requires that you have a contract with [DataCite](https://datacite.org/feemodel.html) or [CrossRef](https://www.crossref.org/fees/). In addition, you will also need a [DataCite test account](https://support.datacite.org/docs/getting-a-test-account) or [Crossref test account](https://www.crossref.org/documentation/register-maintain-records/direct-deposit-xml/https-post/) to test the feature.
+
+_Introduced in v14_
+
+DOI registration with Crossref is a new feature in InvenioRDM v14. Crossref has a different metadata schema than DataCite and supports textual content types such as journal articles, books, conference proceedings, preprints, possters or dissertations. The pricing and membership models are also different from DataCite.
 
 ## Configure
 
 #### Enable DOI registration
 
-You enable the DOI minting feature in your ``invenio.cfg`` file:
+You enable the DOI minting feature in your ``invenio.cfg`` file for DataCite and/or Crossref by setting the following configuration variables:
 
 ```python
 DATACITE_ENABLED = True
+# and/or
+CROSSREF_ENABLED = True
 ```
 
-You need set this to `True` if you want to use the InvenioRDM DOI field in any
-way, such as using external DOIs from CrossRef. If you will not be using
-DataCite to mint DOIs, you can remove `datacite` from
-RDM_PERSISTENT_IDENTIFIERS.
+You need to set this to `True` if you want to use the InvenioRDM DOI field in any
+way, such as using external DOIs.
 
 #### DataCite credentials and prefix
 
@@ -29,6 +33,18 @@ You need to provide the account credentials and the DOI prefix for the DataCite 
 DATACITE_USERNAME = "..." # Your username
 DATACITE_PASSWORD = "..."  # Your password
 DATACITE_PREFIX = "10.1234"  # Your prefix
+```
+
+#### Crossref credentials and prefix
+
+Before you continue, make sure you first have a [Crossref test account](https://www.crossref.org/documentation/register-maintain-records/direct-deposit-xml/https-post/).
+
+You need to provide the account credentials and the DOI prefix for the Crossref repository account in your ``invenio.cfg`` file:
+
+```python
+CROSSREF_USERNAME = "..." # Your username
+CROSSREF_PASSWORD = "..."  # Your password
+CROSSREF_PREFIX = "10.1234"  # Your prefix
 ```
 
 !!! tip
@@ -54,6 +70,24 @@ In production mode, InvenioRDM will use the following DataCite systems:
 - DOI Fabrica (https://doi.datacite.org).
 - REST API (https://api.datacite.org).
 
+Alternatively, you can use the [Crossref test environment](https://www.crossref.org/documentation/register-maintain-records/direct-deposit-xml/https-post/) to avoid accidentally registering DOIs during test. In test mode InvenioRDM will use the following Crossref test systems:
+
+- Administration Console Sandbox (https://test.crossref.org).
+
+To enable production mode, set the following configuration variable in ``invenio.cfg``:
+
+```python
+CROSSREF_TEST_MODE = False
+```
+
+In production mode, InvenioRDM will use the following Crossref systems:
+
+- Administration Console (https://doi.crossref.org).
+- REST API (https://api.crossref.org).
+
+#### Advanced DOI registration configuration
+
+More advanced DOI registration configuration is possible, including registering DOIs with multiple DOI prefixes and/or registering DOIs with DataCite and Crossref in the same InvenioRDM instance. This requires custom configuration in your ``invenio.cfg`` file. 
 
 !!! tip "Did you know?"
 
@@ -65,6 +99,8 @@ By default, InvenioRDM generates a DOI using the prefix and internal persistent
 identifier. You can change the generated DOI string by editing your ``invenio.cfg``.
 
 ```python
+DATACITE_FORMAT = "{prefix}/inveniordm.{id}"
+# or
 DATACITE_FORMAT = "{prefix}/inveniordm.{id}"
 ```
 
