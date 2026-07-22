@@ -16,11 +16,17 @@ The throughline of this article is a sequential series of steps to execute. **Do
 
     Always backup your database, statistics indices and files before you try to perform an upgrade.
 
-## Switch from pipenv to uv — optional but recommended
+## Switch from pipenv to uv
+
+*Required for upgrade*: No, but recommended. If switch not done, additional steps detailed below are needed.
+
+### Switching to uv
 
 Although not strictly necessary for this upgrade, we highly encourage you to switch to [uv](https://docs.astral.sh/uv/) from [pipenv](https://pipenv.pypa.io/) for your Python package and project manager, for improvements in speed, ergonomics, and [security](https://docs.astral.sh/uv/concepts/resolution/#dependency-cooldowns). Future releases will only document steps using `uv` commands and may remove support for `pipenv`.
 
 See the dedicated [Pipenv-to-uv migration guide](../uv-upgrade.md), which includes a helper script that converts your `Pipfile` to `pyproject.toml`, updates the `site/` package, and adjusts `.invenio` (`python_package_manager = uv`).
+
+### Not switching to uv
 
 If you want to keep using pipenv for now AND you want to use the recommended base Docker image for InvenioRDM v14 in your Dockerfile, you will need to edit your Dockerfile to install `pipenv` (it is not installed in the base image anymore):
 
@@ -32,9 +38,13 @@ RUN pip install pipenv
 # keep the rest of your Dockerfile as it was with calls to pipenv
 ```
 
-## Switch to supported Python version — required if not already done
+## Switch to supported Python version
 
-With the end-of-life of Python 3.9 in October 2025, InvenioRDM v14 recommends using Python 3.14 for its performance improvements and future-facing features. Python versions still supported by the Python community but below 3.14 (3.10, 3.11, 3.12, 3.13) *may* work but with varying levels of certainty. With high confidence Python 3.11 will work for instance. On the other hand, Python 3.10 has never been recommended and always faced issues, so it will likely not work. Details below take Python 3.14 as the example version to upgrade to.
+*Required for upgrade*: Yes from Python 3.9 to 3.11+, with Python 3.14 being the the recommended and best supported version. If already running 3.11+ this is not needed for the upgrade to InvenioRDM v14.
+
+With the end-of-life of Python 3.9 in October 2025, InvenioRDM v14 recommends using Python 3.14 for its performance improvements and future-facing features. Python versions still supported by the Python community but below 3.14 (3.10, 3.11, 3.12, 3.13) *may* work but with varying levels of certainty. With high confidence Python 3.11 will work for instance. On the other hand, Python 3.10 has never been recommended and always faced issues, so it will likely not work.
+
+The steps below take Python 3.14 as the example version to upgrade to.
 
 1.  Install Python 3.14 so it can be used by your application (including in new [virtualenv](../../reference/virtualenvs.md) created by invenio-cli). We only list two methods here — the internet is rife with other examples.
 
@@ -69,30 +79,17 @@ With the end-of-life of Python 3.9 in October 2025, InvenioRDM v14 recommends us
         python_version = "3.14"
         ```
 
-3.  Regenerate the lock file
-
-    === "uv"
-
-        ```bash
-        uv lock --refresh
-        ```
-
-    === "pipenv"
-
-        ```bash
-        pipenv lock
-        ```
-
-    You will then want to use a new virtualenv like [detailed below](#upgrade-option-2-new-virtual-environment). At this point you may want to re-install the v13 packages in this new environment just to make sure your instance is compatible with Python 3.14 and resolve any issues specific to that if any. Keep in mind that InvenioRDM v14 may resolve some too.
-
-4.  Change the `FROM` line in your Dockerfile to a base image using Python 3.14
+3.  Change the `FROM` line in your Dockerfile to a base image using Python 3.14
 
     ```Dockerfile
-    # TODO: Fill with appropriate source
-    FROM ghcr.io/...
+    FROM <Invenio base image with OS of your choice supporting v14 and running Python 3.14>
     ```
 
-## Switch from npm to pnpm — optional but recommended
+## Switch from npm to pnpm
+
+*Required for upgrade*: No, but recommended. If you want to keep using npm, settings to verify are detailed below.
+
+### Switching to pnpm
 
 [Pnpm](https://pnpm.io/) is now the recommended tool to manage Javascript dependencies in InvenioRDM (don't worry npm still works) because it is much faster, [has better protection against supply chain attacks](https://pnpm.io/supply-chain-security), and has good community support. If you have it installed, `invenio-cli` and lower level `invenio` commands will use it under the hood.
 
@@ -120,24 +117,58 @@ With the end-of-life of Python 3.9 in October 2025, InvenioRDM v14 recommends us
 
 That's it, faster JavaScript package resolutions are yours now!
 
-**You can now also optionally lock your js dependencies!**
+### Not switching to pnpm
 
-Generate the lockfile with `invenio-cli assets lock` and commit the resulting `pnpm-lock.yaml` and `package.json` at the project root. Re-run `assets lock` whenever your JavaScript dependencies change.
+You can keep using npm to manage JS dependencies. To do so, verify that the following are set:
 
-!!! info "Building production Docker images with pnpm"
+1.  "npm" is set as your invenio javascript package manager in `.invenio`.
 
-    - Ensure the image has Node.js ≥18.12 and `pnpm` installed (the `inveniosoftware/almalinux:1` base image ships Node 16, so switch its `nodejs` module stream to `22` and install `pnpm` via `npm install -g pnpm@<version>`).
-    - For best layer-cache reuse, run `pnpm install --frozen-lockfile --shamefully-hoist` in its own layer, fed only by `package.json` + `pnpm-lock.yaml`, placed above any layer that copies frequently-changing source.
+    ```ini
+    [cli]
+    javascript_package_manager = npm
+    ```
 
-## Switch from webpack to Rspack — optional but recommended
+2.  In your `invenio.cfg`, set:
 
-Switch from `webpack` to [Rspack](https://www.rspack.dev/) for asset bundling. Its Rust-based builds are much faster and drop-in compatible with the existing Invenio asset pipeline. In your `invenio.cfg`:
+    ```python
+    # The default is "pynpm:NPMPackage" but may change in a future major version
+    WEBPACKEXT_NPM_PKG_CLS = "pynpm:NPMPackage"
+    ```
+
+### Optionally lock your JS dependencies
+
+With either, pnpm or npm, you can now optionally lock your Javascript dependencies.
+Like the lock file used to freeze Python dependencies to a deterministic set, the
+generated lock file will let you deterministically set your Javascript dependencies.
+Finally, reproducible Javascript builds!
+
+Generate the lockfile with `invenio-cli assets lock` and commit at the project root the resulting:
+
+- `pnpm-lock.yaml` and `package.json` if using pnpm
+- `package-lock.json` and `package.json` if using npm
+
+Re-run `assets lock` whenever your JavaScript dependencies change.
+
+!!! info "Building production Docker images"
+
+    - Ensure the image has Node.js ≥18.12 and `pnpm` installed if using a custom image and pnpm (the `inveniosoftware/almalinux:1` base image ships Node 16, so switch its `nodejs` module stream to `22` and install `pnpm` via `npm install -g pnpm@<version>`).
+    - For best layer-cache reuse, have in its own layer, fed only by `package.json` + `pnpm-lock.yaml`/`package-lock.json`, placed above any layer that copies frequently-changing source.
+        * for pnpm: `RUN pnpm install --frozen-lockfile --shamefully-hoist`
+        * for npm: `RUN npm ci`
+
+## Switch from webpack to Rspack
+
+*Required for upgrade*: No, but recommended. Can be skipped without performing any change if not switching.
+
+We recommend switching from `webpack` to [Rspack](https://www.rspack.dev/) for asset bundling. Its Rust-based builds are much faster and drop-in compatible with the existing Invenio asset pipeline. In your `invenio.cfg`:
 
 ```python
 WEBPACKEXT_PROJECT = "invenio_assets.webpack:rspack_project"
 ```
 
-## Upgrade to InvenioRDM v14 proper — required
+## Upgrade to InvenioRDM v14 proper
+
+*Required for upgrade*: Yes! This *is* the main upgrade section afterall.
 
 Here are the core sequential steps to upgrade to InvenioRDM v14.
 
@@ -148,7 +179,7 @@ Here are the core sequential steps to upgrade to InvenioRDM v14.
 ### Upgrade invenio-cli
 
 Make sure you have the latest `invenio-cli` installed. For InvenioRDM v14,
-it should be v1.12.0.
+it should be v1.12.0 or higher. See [Install the command line tool](../../install/cli.md) for how to install it.
 
 ```bash
 $ invenio-cli --version
@@ -156,34 +187,8 @@ invenio-cli, version 1.12.0
 ```
 
 ### Upgrade packages
-#### Step 1: New virtual environment
 
-This approach will create a new virtual environment and leaves the v13 one as-is.
-If you are using a docker image on your production instance this will be the
-option you choose.
-
-!!! warning "Risk of losing data"
-
-    Your virtual environment folder a.k.a., `venv` folder, may contain uploaded files. If you kept the default
-    location, it is in `<venv folder>/var/instance/data`. If you need to keep those files,
-    make sure you copy them over to the new `venv` folder in the same location.
-    The command `invenio files location list` shows the file upload location.
-
-- create a new virtual environment
-- activate your new virtual environment
-- install `invenio-cli` by running
-
-```bash
-# if using uv
-uv pip install invenio-cli
-
-# if using pipenv
-pip install invenio-cli
-```
-
-#### Step 2
-
-Change the version of `invenio-app-rdm` to 14.0 in `<my-site>/pyproject.toml` or `<my-site>/Pipfile`:
+Change the version of `invenio-app-rdm` to 14.0 in `<my-site>/pyproject.toml` if using `uv` or `<my-site>/Pipfile` if using `pipenv`:
 
 === "pyproject.toml"
 
@@ -201,14 +206,37 @@ Change the version of `invenio-app-rdm` to 14.0 in `<my-site>/pyproject.toml` or
     +++invenio-app-rdm = {extras = [...], version = "~=14.0.0"}
     ```
 
-
-#### Step 4
-
 Install InvenioRDM v14:
 
 ```bash
 invenio-cli install
 ```
+
+!!! warning "A note on virtual environments and possible data loss*
+
+    In previous upgrade notes (e.g., from InvenioRDM v12 to v13),
+    creation of a new virtual environment was mentioned as an option
+    where to install the new InvenioRDM version. Doing so carries
+    the risk of losing the uploaded files that are stored by default
+    in `<venv folder>/var/instance/data`. However, in practice, creating
+    a new virtualenv for an upgrade is a relatively niche case.
+
+    Indeed, if you are using containers to run your application
+    (and we recommend you do in production), then a new isolated
+    environment is created for each Docker image, but your data is persisted
+    elsewhere anyway. In this case, you shouldn't have to worry about
+    virtualenv data loss.
+
+    And if you are running your application outside of
+    a container (typically in development), doing the upgrade in-place
+    within your existing virtualenv is also not subject to data loss.
+
+    Only if you do create a new virtualenv (e.g., to upgrade Python version)
+    outside of the above scenarios, should you copy the folder with uploaded
+    files over to the new `venv` folder in the same location.
+    The command `invenio files location list` shows the file upload location.
+
+    As such we don't mention this option anymore.
 
 
 ### Apply database migrations
@@ -235,27 +263,35 @@ To create the table, you need to run the command on the InvenioRDM server. The s
 
 On the server, run the following command to create the `alembic_version` table:
 
-```bash
-# if using uv
-uv run invenio alembic stamp
+=== "uv"
 
-# if using pipenv
-pipenv run invenio alembic stamp
-```
+    ```bash
+    uv run invenio alembic stamp
+    ```
+
+=== "pipenv"
+
+    ```bash
+    pipenv run invenio alembic stamp
+    ```
 
 Afterwards, check the `alembic_version` table again to confirm that the operation completed successfully.
-
 
 #### Run the pre-migration step
 
 Run one of the following commands, depending on whether your installation uses `uv` or `pipenv`:
 
-```bash
-# if using uv
-invenio shell $(find $(dirname $(dirname $(uv python find)))/lib/*/site-packages/invenio_app_rdm -name prepare_migration_13_0_to_14_0.py)
-# if using pipenv
-invenio shell $(find $(pipenv --venv)/lib/*/site-packages/invenio_app_rdm -name prepare_migration_13_0_to_14_0.py)
-```
+=== "uv"
+
+    ```bash
+    invenio shell $(find $(dirname $(dirname $(uv python find)))/lib/*/site-packages/invenio_app_rdm -name prepare_migration_13_0_to_14_0.py)
+    ```
+
+=== "pipenv"
+
+    ```bash
+    invenio shell $(find $(pipenv --venv)/lib/*/site-packages/invenio_app_rdm -name prepare_migration_13_0_to_14_0.py)
+    ```
 
 If the script completes successfully, it should end with output similar to the following:
 
