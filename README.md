@@ -10,6 +10,6 @@ Install [uv](https://docs.astral.sh/uv/getting-started/installation/), then run:
 
 ```console
 $ uv sync
-$ uv run mkdocs serve
+$ uv run mkdocs serve --livereload
 $ firefox http://127.0.0.1:8000
 ```

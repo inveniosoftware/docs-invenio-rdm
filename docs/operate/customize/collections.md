@@ -16,17 +16,25 @@ Each collection is stored in the database with a search query string that dynami
 
 Collections **cannot** be used to apply access restrictions or permission-based control over their contained records. Instead, use [Communities](../../use/communities.md) for managing access and edit permissions over records.
 
+Collections are organized within **Collection Trees** (also called **Sections**) - hierarchical structures that allow you to create logical groupings and nested relationships. Collection trees serve as the root containers for your collections and can be:
+
+- **Community-specific** - Scoped to records of a particular community
+- **Global** - Scoped across records of your entire instance
+
+!!! info "Global collections"
+    Global collections display is not yet implemented in InvenioRDM.
+
 ## Configuration
 
-### Display Settings
+### Display settings
 
 To enable displaying the communities "Browse" menu entry in your InvenioRDM instance, add to your `invenio.cfg`:
 
 ```python
-COMMUNITIES_SHOW_BROWSE_MENU_ENTRY = True
+COMMUNITIES_COLLECTIONS_ENABLED = True
 ```
 
-### Collection Hierarchy Limits
+### Collection hierarchy limits
 
 You can configure limits for collection hierarchies to maintain good user experience and system performance:
 
@@ -48,11 +56,11 @@ COMMUNITIES_COLLECTIONS_MAX_TREES = 10
 COMMUNITIES_COLLECTIONS_MAX_COLLECTIONS_PER_TREE = 100
 ```
 
-### Access Control
+### Access control
 
 By default, collections can be managed by **community owners** in the settings tab of the community.
 
-#### Permission Customization
+#### Permission customization
 
 You can customize who can manage collections by overriding the permission policy in your instance.
 
@@ -81,7 +89,7 @@ from my_site.permissions import MyCommunitiesPermissionPolicy
 COMMUNITIES_PERMISSION_POLICY = MyCommunitiesPermissionPolicy
 ```
 
-#### Customizing Collection Management Permissions for Specific Communities
+#### Customizing permissions for a specific community
 
 You can use the `IfCommunitySlug` generator to apply a different collection management permission to specific communities across your instance based on a community's slug. For example, to block collections management for a community with slug `physics`:
 
@@ -115,22 +123,11 @@ from my_site.permissions import MyCommunitiesPermissionPolicy
 COMMUNITIES_PERMISSION_POLICY = MyCommunitiesPermissionPolicy
 ```
 
-
-## Managing Collections
-
-Collections are organized within **Collection Trees** (also called **Sections**) - hierarchical structures that allow you to create logical groupings and nested relationships. Collection trees serve as the root containers for your collections and can be:
-
-- **Community-specific** - Scoped to records of a particular community
-- **Global** - Scoped across records of your entire instance
-
-!!! info "Global collections"
-    Global collections display is not yet implemented in InvenioRDM.
-
-### Managing Collections Programmatically
+## Managing collections programmatically
 
 You can also manage collections programmatically via the Python shell or custom scripts. This is useful for bulk operations or automated setup.
 
-### Create a Collection Tree
+### Create a collection tree
 
 First, create a collection tree to serve as the root container:
 
@@ -148,7 +145,7 @@ ctree = CollectionTree.create(
 )
 ```
 
-### Create top-level Collections
+### Create top-level collections
 
 Create your first collections within the tree:
 
@@ -180,7 +177,7 @@ social_sciences_col = collections_service.create(
 )
 ```
 
-### Create nested Collections
+### Create nested collections
 
 Add two sub-collections to the "Natural Sciences" top-level collection:
 
@@ -253,17 +250,9 @@ Nested collections automatically inherit their parent's search criteria, combini
 !!! info "Architecture Details"
     For more technical implementation details, see [RFC0079](https://github.com/inveniosoftware/rfcs/blob/master/rfcs/rdm-0079-collections.md).
 
-## Accessing Collections
-
-!!! note "TODO: Move to Use > Communities section of docs"
-    This section is aimed mostly at end-users, but we don't have currently the
-    "Communities" section in the docs.
-
-Once created, individual collections are accessible through dedicated pages that display all records matching the collection's search criteria. Communities have a "Browse" page that provides an overview of all available collections.
-
 ### Community "Browse" page
 
-Communities with configured collections, feature a browse page that provides an overview of all available Collection Trees and their contained Collections hierarchy, along with the total number of records contained within each collection level. This serves as the main entry point for users to discover and navigate collections within a community. The same Browse page also lists the community's [subcommunities](subcommunities.md).
+Communities with configured collections, feature a browse page that provides an overview of all available Collection Trees and their contained Collections hierarchy, along with the total number of records contained within each collection level. This serves as the main entry point for users to discover and navigate collections within a community.
 
 ![Community browse page showing multiple collection tree hierarchies](imgs/collection-browse.png)
 /// caption

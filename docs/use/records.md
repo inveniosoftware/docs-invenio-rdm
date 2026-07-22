@@ -177,7 +177,7 @@ When you upload a ZIP file to a record:
 ### Use cases
 
 - **Large datasets**: Share thousands of files organized in directories without requiring users to download everything
-- **Research data**: Allow researchers to explore and select specific data files from complex dataset structures  
+- **Research data**: Allow researchers to explore and select specific data files from complex dataset structures
 - **Multi-file publications**: Provide easy access to supplementary materials, figures, and supporting documents
 
 ### Enable container file browsing

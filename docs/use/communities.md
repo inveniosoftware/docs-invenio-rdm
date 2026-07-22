@@ -116,6 +116,9 @@ Community owners can manage collections through the community settings interface
 
 1. Navigate to your community's settings page
 2. Click on the **Collections** tab in the left sidebar
+
+    ![Collection settings](imgs/communities/collections-settings.jpg)
+
 3. Use the interface to:
     - Create new sections (collection trees).
     - Add collections within sections.
@@ -123,6 +126,12 @@ Community owners can manage collections through the community settings interface
     - Edit collection queries and metadata.
     - Reorder collections via drag-and-drop.
     - Delete collections and sections.
+
+    ![Collection creation](imgs/communities/collections-create.jpg)
+
+When at least one collection is created, a new "Browser" menu tab will appear and will be visible to the users:
+
+![Collection browse](imgs/communities/collections-browse.jpg)
 
 For more details on collections, including configuration options and programmatic management, see the [Collections documentation](../operate/customize/collections.md).
 
