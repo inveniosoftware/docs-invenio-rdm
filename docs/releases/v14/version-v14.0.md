@@ -185,15 +185,15 @@ These new features allow:
 
 See the [ZIP and other container files configuration guide](../../operate/customize/file-uploads/zip-and-container-files.md) for how to enable the feature and tune its behavior, and the [REST API reference](../../reference/rest_api_drafts_records.md#container-files) for the new API endpoints.
 
-### New generic VCS integration
+### Software archival (from GitHub, GitLab, etc.)
 
-The new [`invenio-vcs`](https://github.com/inveniosoftware/invenio-vcs/) module replaces the `invenio-github` module with a near-identical end-user experience, while adding support for a generic VCS provider interface.
-This means other providers such as GitLab or GitHub Enterprise can now be used.
+Software releases can now be archived not only from GitHub, but also from other code forges such as GitLab and GitHub Enterprise.
+The new [`invenio-vcs`](https://github.com/inveniosoftware/invenio-vcs/) module replaces the existing `invenio-github` module with a nearly identical end-user experience while adding support for a generic code forge interface.
 
-The integration now also supports selecting a target community when enabling a repository.
+This new module addresses existing limitations, such as allowing users to select which community should receive their code releases.
 
-The new module is an optional dependency and must be installed and configured.
-See [the documentation](../../operate/customize/code_archival.md) for more details.
+The module is **optional** and must be installed and configured.
+See [the documentation](../../operate/customize/software_archival.md) for more details.
 
 ### Modern toolchain
 
@@ -227,6 +227,7 @@ Here is a quick summary of the other improvements in this release:
 - Many [custom field widgets](../../operate/customize/metadata/custom_fields/widgets.md) used the `icon` and `description` props, which have now been deprecated and replaced with `labelIcon` and `helpText` respectively. This is to improve consistency with the naming of the built-in fields used in the deposit form and thereby avoid confusion. The old names will continue to function for now.
 - In preparation for Marshmallow 4+ removing `context` in its serialization/deserialization, a couple of changes were made: a `ContextVar` was introduced in `marshmallow_utils.context`, some context values were passed to the `Schema` constructors, and some class properties were parameterized with former context values. Some former values were kept in `self.context` because not used in serialization/deserialization anyway.
 - Since `pkg-resources` has been deprecated and removed from pypi, and the dependency `fs` is not updated anymore, we decided to re-implement the interface in `invenio-files-rest` directly.
+- invenio-github
 
 ## Breaking changes
 

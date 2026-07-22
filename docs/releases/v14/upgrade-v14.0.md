@@ -607,7 +607,7 @@ Please see [this detailed guide](https://github.com/inveniosoftware/invenio-vcs/
 This is only necessary if your instance was actively using `invenio-github` (with at least one user having connected their GitHub account) **and**
 you want to keep the existing data.
 
-See also the [documentation on how to configure the new module](../../operate/customize/code_archival.md).
+See also the [documentation on how to configure the new module](../../operate/customize/software_archival.md).
 
 That's it, you have upgraded to InvenioRDM v14!
 
