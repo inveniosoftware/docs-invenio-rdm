@@ -12,14 +12,6 @@ If you're interested in the source code, you will find it [here](https://github.
 
 The module implements a thin wrapper around the [Rest-API](https://wiki.dnb.de/display/URNSERVDOK/URN-Service+API) provided by the DNB (German national library) and enhances InvenioRDM with URN minting support. Versioning is supported, too: the first versions URN automatically forwards to the most actual version. New in this version is the possibility to define several namespaces (or even clients), so every community can mint URN's in an own namespace. 
 
-=== "Pipfile"
-
-    ```diff
-    [packages]
-    ...
-    + invenio-pidstore-extra = ">=0.4.0,<1.0.0"
-    ```
-
 === "pyproject.toml"
 
     ```diff
@@ -29,15 +21,16 @@ The module implements a thin wrapper around the [Rest-API](https://wiki.dnb.de/d
     ]
     ```
 
+=== "Pipfile"
+
+    ```diff
+    [packages]
+    ...
+    + invenio-pidstore-extra = ">=0.4.0,<1.0.0"
+    ```
+
 
 And next:
-
-=== "pip"
-
-    ```shell
-    rm -f Pipfile.lock
-    invenio-cli install
-    ```
 
 === "uv"
 
@@ -46,7 +39,14 @@ And next:
     invenio-cli install
     ```
 
-## Configure the DNB URN PID provider
+=== "pip"
+
+    ```shell
+    rm -f Pipfile.lock
+    invenio-cli install
+    ```
+
+## Configure the DNB URN PID provider(s)
 
 !!! tip "DNB sandbox replacement"
 
@@ -116,9 +116,10 @@ When putting this to production, set `PIDSTORE_EXTRA_TEST_MODE = False`!
 
 ```
 
-If you want to add support for separate prefixes for communities you need to define a custom field on the community. 
-You'll have to configure the URN prefix to the community, then the proper provider will decide it's responsibility
-for the prefix of the URN.
+If you want to add support for separate prefixes for separate communities, you need to define a custom field 
+on the community. 
+You will have to configure the URN prefix in the community administration, then the provider that is configured
+for the URN's prefix will automatically hook in and mint the URN.
 
 ```diff
 +   from invenio_records_resources.services.custom_fields import TextCF
