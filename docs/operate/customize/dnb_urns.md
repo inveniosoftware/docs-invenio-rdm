@@ -1,6 +1,6 @@
 # Deutsche National Bibliothek (DNB) URN registration
 
-*Updated for InvenioRDM v13*
+*Updated for InvenioRDM v14*
 
 !!! info
 
@@ -10,26 +10,34 @@ In order to register [Uniform Resource Names](https://en.wikipedia.org/wiki/Unif
 
 If you're interested in the source code, you will find it [here](https://github.com/ulbmuenster/invenio-pidstore-extra).
 
-The module implements a thin wrapper around the [Rest-API](https://wiki.dnb.de/display/URNSERVDOK/URN-Service+API) provided by the DNB (German national library) and enhances InvenioRDM with URN minting support. New is the support of versioning: the first versions URN automatically forwards to the most actual version.
-
-=== "pyproject.toml"
-
-    ```diff
-    dependencies = [
-    ...
-    +   "invenio-pidstore-extra>=0.2.0,<1.0.0",
-    ]
-    ```
+The module implements a thin wrapper around the [Rest-API](https://wiki.dnb.de/display/URNSERVDOK/URN-Service+API) provided by the DNB (German national library) and enhances InvenioRDM with URN minting support. Versioning is supported, too: the first versions URN automatically forwards to the most actual version. New in this version is the possibility to define several namespaces (or even clients), so every community can mint URN's in an own namespace. 
 
 === "Pipfile"
 
     ```diff
     [packages]
     ...
-    + invenio-pidstore-extra = ">=0.2.0,<1.0.0"
+    + invenio-pidstore-extra = ">=0.4.0,<1.0.0"
     ```
 
-And next, run the following commands:
+=== "pyproject.toml"
+
+    ```diff
+    dependencies = [
+    ...
+    +   "invenio-pidstore-extra >= 0.4.0,<1.0.0",
+    ]
+    ```
+
+
+And next:
+
+=== "pip"
+
+    ```shell
+    rm -f Pipfile.lock
+    invenio-cli install
+    ```
 
 === "uv"
 
@@ -37,14 +45,6 @@ And next, run the following commands:
     rm -f uv.lock
     invenio-cli install
     ```
-
-=== "pipenv"
-
-    ```shell
-    rm -f Pipfile.lock
-    invenio-cli install
-    ```
-
 
 ## Configure the DNB URN PID provider
 
@@ -60,11 +60,26 @@ When putting this to production, set `PIDSTORE_EXTRA_TEST_MODE = False`!
 +   PIDSTORE_EXTRA_DNB_SANDBOX_URI = "http://127.0.0.1:8000/"
 
 +   PIDSTORE_EXTRA_DNB_ENABLED = True
-+   PIDSTORE_EXTRA_DNB_USERNAME = "username"
-+   PIDSTORE_EXTRA_DNB_PASSWORD = "password"
-+   PIDSTORE_EXTRA_DNB_ID_PREFIX = "urn:nbn:de:hbz:6"
 +   PIDSTORE_EXTRA_FORMAT = "{prefix}-{id}"
 +   PIDSTORE_EXTRA_TEST_MODE = True
+
++   PIDSTORE_EXTRA_URN_PASSWORD_1 = "password"
++   PIDSTORE_EXTRA_URN_PASSWORD_2 = "password"
+
++   PIDSTORE_EXTRA_DNB_CONFIG = {
++       "urn:nbn:de:hbz:6": {
++           "pidstore_extra_dnb_username": "dnb-user1",
++           "pidstore_extra_dnb_password": PIDSTORE_EXTRA_URN_PASSWORD_1,
++           "pidstore_extra_dnb_id_prefix": "urn:nbn:de:hbz:6",
++           "pidstore_extra_dnb_default": True,
++       },
++       "urn:nbn:de:hbz:6:4": {
++           "pidstore_extra_dnb_username": "dnb-user2",
++           "pidstore_extra_dnb_password": PIDSTORE_EXTRA_URN_PASSWORD_2,
++           "pidstore_extra_dnb_id_prefix": "urn:nbn:de:hbz:6:4",
++           "pidstore_extra_dnb_default": False,
++       },
++   }
 
 #
 # Persistent identifiers configuration
@@ -75,9 +90,8 @@ When putting this to production, set `PIDSTORE_EXTRA_TEST_MODE = False`!
 +   RDM_PERSISTENT_IDENTIFIER_PROVIDERS = DEFAULT_PERSISTENT_IDENTIFIER_PROVIDERS + [
 +       providers.DnbUrnProvider(
 +         "urn",
-+         client=providers.DNBUrnClient("dnb", PIDSTORE_EXTRA_DNB_ID_PREFIX,
-+         PIDSTORE_EXTRA_DNB_USERNAME, PIDSTORE_EXTRA_DNB_PASSWORD,
-+         PIDSTORE_EXTRA_FORMAT),
++         client=providers.DNBUrnClient("dnb", PIDSTORE_EXTRA_DNB_CONFIG,
++                                       PIDSTORE_EXTRA_FORMAT),
 +         label=_("URN"),
 +       ),
 +   ]
@@ -97,8 +111,39 @@ When putting this to production, set `PIDSTORE_EXTRA_TEST_MODE = False`!
 +   from invenio_pidstore_extra.services.components import URNRelationsComponent
 +   from invenio_rdm_records.services.components import DefaultRecordsComponents
 
-+   RDM_RECORDS_SERVICE_COMPONENTS = DefaultRecordsComponents +
++   RDM_RECORDS_SERVICE_COMPONENTS = DefaultRecordsComponents + 
 +   [URNRelationsComponent]
+
+```
+
+If you want to add support for separate prefixes for communities you need to define a custom field on the community. 
+You'll have to configure the URN prefix to the community, then the proper provider will decide it's responsibility
+for the prefix of the URN.
+
+```diff
++   from invenio_records_resources.services.custom_fields import TextCF
+
++   COMMUNITIES_CUSTOM_FIELDS = [
++       TextCF(name="urn_prefix")
++   ]
+
++   COMMUNITIES_CUSTOM_FIELDS_UI = [
++       {
++           "section": _("URN customisation"),
++           "fields": [
++               dict(
++                   field="urn_prefix",
++                   ui_widget="Input",
++                   props=dict(
++                       label="URN Präfix",
++                       placeholder="urn:nbn:de:hbz:6",
++                       icon="pencil",
++                       description="Der URN-Präfix, der für diese Community verwendet werden soll.",
++                   )
++               ),
++           ]
++       }
++   ]
 
 ```
 
