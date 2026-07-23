@@ -410,7 +410,7 @@ Because the datastream index has `"dynamic": true` on the `context` object, exis
 
 ### Update vocabularies
 
-A number of out-of-the-box vocabularies have been enhanced with terms from the DataCite 4.4-4.7 releases, as well as other mapping improvements and translations. In order to update these in your repository, you'll need to reload their fixtures with `invenio rdm-records add-to-fixture <vocabulary fixture>`. The `<vocabulary fixture>` for vocabularies that have updates are:
+The following out-of-the-box vocabularies have been enhanced with terms from the DataCite 4.4-4.7 releases, as well as other mapping improvements and translations:
 
 - datetypes
 - descriptiontypes
@@ -422,9 +422,33 @@ A number of out-of-the-box vocabularies have been enhanced with terms from the D
 - titletypes
 - removalreasons
 
-For instance, you will want to run: `invenio rdm-records add-to-fixture detetypes`, then `invenio rdm-records add-to-fixture descriptiontypes`, and so on.
+In order to update these in your repository, you'll need for each vocabulary to:
 
-If you've customized any of these vocabularies for your instance, you will need to merge changes from the [source files in invenio-rdm-records](https://github.com/inveniosoftware/invenio-rdm-records/tree/master/invenio_rdm_records/fixtures/data/vocabularies) into the custom vocabulary files in your instance before running the `add-to-fixture` command.
+1.  Assess if you've customized the vocabulary for your instance. Check in your instance's `app_data/vocabularies/` directory if you have a corresponding customized vocabulary file.
+
+2.  If you've customized the vocabulary for your instance, you will need to merge changes from the [source files in invenio-rdm-records](https://github.com/inveniosoftware/invenio-rdm-records/tree/master/invenio_rdm_records/fixtures/data/vocabularies) into the custom vocabulary file in your instance according to what you and/or your stakeholders think makes sense in your context. If you have not customized the vocabulary, you are probably fine with adopting the changes, but you can always double-check what those are and decide if you adopt them.
+
+3.  If you've decided to adopt the changes (and have merged the changes per step 2.), run the vocabulary update command: `invenio rdm-records add-to-fixture <vocabulary fixture>`. We do recommend running the command for each vocabulary:
+
+```bash
+# Pick the ones you want to run, but we recommend them all:
+invenio rdm-records add-to-fixture datetypes
+invenio rdm-records add-to-fixture descriptiontypes
+invenio rdm-records add-to-fixture licenses
+invenio rdm-records add-to-fixture relationtypes
+invenio rdm-records add-to-fixture resourcetypes
+invenio rdm-records add-to-fixture contributorsroles
+invenio rdm-records add-to-fixture creatorsroles
+invenio rdm-records add-to-fixture titletypes
+invenio rdm-records add-to-fixture removalreasons
+```
+
+!!! info
+
+    The `resourcetypes` vocabulary was also subject to another cleanup operation upstream, better aligning the `publication-thesis` entry with DataCite.
+    Following this operation requires further steps.
+
+    More information about this can be found in the [section about aligning "thesis" and "dissertation" resource types](#align-thesis-and-dissertation-resource-types) below.
 
 
 ## Update your configuration or infrastructure
