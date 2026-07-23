@@ -422,10 +422,25 @@ A number of out-of-the-box vocabularies have been enhanced with terms from the D
 - titletypes
 - removalreasons
 
-For instance, you will want to run: `invenio rdm-records add-to-fixture detetypes`, then `invenio rdm-records add-to-fixture descriptiontypes`, and so on.
-
 If you've customized any of these vocabularies for your instance, you will need to merge changes from the [source files in invenio-rdm-records](https://github.com/inveniosoftware/invenio-rdm-records/tree/master/invenio_rdm_records/fixtures/data/vocabularies) into the custom vocabulary files in your instance before running the `add-to-fixture` command.
 
+If you're unsure if you have customized any vocabularies, check which files you have in your instance's `app_data/vocabularies/` directory.
+You'll need to adapt the content of these files as desired.
+
+After updating your customized vocabularies as desired, you can run the following commands:
+```bash
+invenio rdm-records add-to-fixture datetypes
+invenio rdm-records add-to-fixture descriptiontypes
+invenio rdm-records add-to-fixture licenses
+invenio rdm-records add-to-fixture relationtypes
+invenio rdm-records add-to-fixture resourcetypes
+invenio rdm-records add-to-fixture contributorsroles
+invenio rdm-records add-to-fixture creatorsroles
+invenio rdm-records add-to-fixture titletypes
+invenio rdm-records add-to-fixture removalreasons
+```
+
+We recommend running all the commands regardless of whether you've customized each vocabulary, to update all vocabulary entries anyway.
 
 ## Update your configuration or infrastructure
 
