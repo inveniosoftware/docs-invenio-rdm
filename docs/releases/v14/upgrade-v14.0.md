@@ -385,12 +385,19 @@ invenio communities custom-fields init
 invenio rdm rebuild-all-indices
 ```
 
-#### OAI-PMH percolator mapping update
+#### Update OAI-PMH percolator mapping and Job Logs Index
 
-!!! note "TODO: Should become a CLI command"
+To update the OAI-PMH percolator and the job logs datastream please run:
 
-    Running this part as a script is a temporary solution until it can be integrated
-    into an `invenio` CLI command.
+```bash
+  invenio shell
+```
+
+With `invenio shell` it is possible to run python code with your instance
+configuration.
+
+Copy-Paste following python code into `invenio shell` and press enter.
+
 
 ```python
 from flask import current_app
@@ -418,30 +425,14 @@ current_search_client.indices.put_mapping(
 # Reindex all percolator queries from OAISets
 oaipmh_service = current_rdm_records.oaipmh_server_service
 oaipmh_service.rebuild_index(identity=system_identity)
+
+# end of oai-pmh percolator update
+
+# begin of job logs roll over
+
+datastream = build_alias_name("job-logs")
+current_search_client.indices.rollover(alias=datastream)
 ```
-
-#### Job Logs Index Template Update
-
-The job logs datastream index template has been updated to explicitly map two new context fields used for task tracking:
-
-- `task_id` — unique identifier for the Celery task that produced the log
-- `parent_task_id` — identifier of the parent task (null for root tasks, set for subtasks)
-
-Because the datastream index has `"dynamic": true` on the `context` object, existing indexed logs are unaffected.
-
-1. **Update the index template** — add the two new fields under `mappings.properties.context.properties` of the `<PREFIX>-job-logs-v1.0.0` template.
-   Done with the `invenio index init`
-
-2. **Trigger a rollover of the datastream** — this creates a new backing index using the updated template, cleanly separating old and new log documents.
-
-    Via the OpenSearch Dashboards UI: navigate to **Index Management → Data Streams**, find the `<PREFIX>-job-logs` datastream, click **Actions** (top right) and select **Roll over**.
-
-    Or via curl:
-
-    ```bash
-    curl -X POST "http://<OPENSEARCH_HOST>/<PREFIX>-job-logs/_rollover"
-    ```
-
 
 ### Update vocabularies
 
