@@ -324,6 +324,44 @@ Once the pre-migration step has completed successfully, run the Alembic migratio
 invenio alembic upgrade
 ```
 
+!!! info "Unique constraint violation errors can be solved with database cleanups"
+
+    In some rare cases, instances have been observed to run into *unique constraint violations* (e.g. `sqlalchemy.exc.IntegrityError: (psycopg2.errors.UniqueViolation) ...`) during the Alembic upgrade.
+    This can happen due to leftover artifacts that were never properly cleaned up, likely due to old bugs.
+    Removing the offending leftover rows from the database will resolve these errors.
+
+    The necessary steps depend on the concrete situation, but generally what's needed in such cases is to clean up the tables mentioned in the error message.
+    For example, the following error would tell you that you need to delete old entries from the `rdm_records_files` table, and which `(record_id, key)` combination to look out for.
+
+    ---
+
+    The following is a real-life example with altered identifiers:
+    ```
+    sqlalchemy.exc.IntegrityError: (psycopg2.errors.UniqueViolation) could not create unique index "uidx_rdm_records_files_record_id_key"
+    DETAIL:  Key (record_id, key)=(0e49c6bb-6772-4b13-ab7f-87fd3fca18ed, research_NMR.zip) is duplicated.
+
+    [SQL: CREATE UNIQUE INDEX IF NOT EXISTS uidx_rdm_records_files_record_id_key ON rdm_records_files (record_id, key)]
+    ```
+
+    In this example, we can see that there are two entries for the reported `record_id`, and the older one has has its `object_version_id` set to `null`:
+    ```
+    inveniordm=> SELECT * FROM rdm_records_files WHERE record_id = '0e49c6bb-6772-4b13-ab7f-87fd3fca18ed';
+              created           |          updated           |                  id                  | json | version_id |       key        |              record_id               |          object_version_id
+    ----------------------------+----------------------------+--------------------------------------+------+------------+------------------+--------------------------------------+--------------------------------------
+     2024-12-03 18:09:12.125274 | 2024-12-03 18:09:12.125283 | 20a5a54a-5c6a-400d-aa3e-5db99323768c | {}   |          1 | research_NMR.zip | 0e49c6bb-6772-4b13-ab7f-87fd3fca18ed |
+     2024-12-03 18:09:33.503182 | 2024-12-03 18:09:33.546971 | 17235935-1e95-4529-b189-82a250113e93 | {}   |          3 | research_NMR.zip | 0e49c6bb-6772-4b13-ab7f-87fd3fca18ed | 2e218ef5-ba92-4fa4-a58a-0c204fc771a1
+    (2 rows)
+    ```
+
+    It could be resolved with `DELETE FROM rdm_records_files WHERE record_id = '0e49c6bb-6772-4b13-ab7f-87fd3fca18ed' AND object_version_id IS null`.
+
+    After that cleanup, `invenio alembic upgrade` went through successfully.
+
+    ---
+
+    ⚠️ Be careful to only clean up the *leftover data*, though!
+    If you are unsure which entries *are* the leftovers, feel free to ask for help in the Discord server.
+
 ### Apply data changes
 
 Execute the data migration script to update the content of the DB:
