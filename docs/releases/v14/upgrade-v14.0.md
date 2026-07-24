@@ -177,6 +177,44 @@ Here are the core sequential steps to upgrade to InvenioRDM v14.
 
     All commands below assume you are running them according to their installation environments. Typically it means `invenio` commands should be executed inside the application's virtual environment or via `pipenv run` or `uv run` in case you are not inside a virtual environment or environment with executables installed globally.
 
+### Check your database for the `alembic_version` table
+
+InvenioRDM v13 contained a race condition that, in some cases, prevented the `alembic_version` table from being created in the database. [Alembic](https://alembic.sqlalchemy.org/) uses this table to track database schema migrations, and you cannot upgrade to v14 without it.
+
+!!! warning "Check the `alembic_version` table before updating any packages!"
+
+    It's important that this step is performed with the v13 packages still installed!
+    If you run `invenio alembic stamp` after upgrading to the v14 packages, the `alembic_version` entries will be incorrect.
+
+To check whether your database has the `alembic_version` table, log in to the database and run the following SQL query:
+
+```sql
+SELECT * FROM alembic_version;
+```
+
+**If the table exists and contains rows, then you're fine; skip the rest of this step and continue with the next ([Upgrade invenio-cli](#upgrade-invenio-cli)).**
+
+If you get `ERROR: relation "alembic_version" does not exist`, the table is missing and you must create it before proceeding.
+If the table exists but has no entries, it has to be populated in the same way.
+
+To create the table and/or populate it, you need to run the command on the InvenioRDM server. The server **must** be using the same source code version as the one used to install the current database schema. In other words, if you upgraded the source code to a newer v13 release after installation, the source code and database schema may be out of sync and you **cannot** safely use the command below. If that is your situation, please ask for help on our Discord server.
+
+On the server, run the following command to create the `alembic_version` table:
+
+=== "uv"
+
+    ```bash
+    uv run invenio alembic stamp
+    ```
+
+=== "pipenv"
+
+    ```bash
+    pipenv run invenio alembic stamp
+    ```
+
+Afterwards, check the `alembic_version` table again to confirm that the operation completed successfully.
+
 ### Upgrade invenio-cli
 
 Make sure you have the latest `invenio-cli` installed. For InvenioRDM v14,
@@ -244,39 +282,9 @@ invenio-cli install
 
 The database migration consists of three steps:
 
-- check about existing `alembic_version` table
+- check about existing `alembic_version` table (this is described in the section [Check your database for the `alembic_version` table](#check-your-database-for-the-alembic_version-table) above)
 - pre-migration step that cleans up the existing database schema
 - Alembic upgrade to the v14 schema
-
-#### Check your database for the `alembic_version` table
-
-InvenioRDM v13 contained a race condition that, in some cases, prevented the `alembic_version` table from being created in the database. [Alembic](https://alembic.sqlalchemy.org/) uses this table to track database schema migrations, and you cannot upgrade to v14 without it.
-
-To check whether your database has the `alembic_version` table, log in to the database and run the following SQL query:
-
-```sql
-SELECT * FROM alembic_version;
-```
-
-If you get `ERROR: relation "alembic_version" does not exist`, the table is missing and you must create it before proceeding.
-
-To create the table, you need to run the command on the InvenioRDM server. The server **must** be using the same source code version as the one used to install the current database schema. In other words, if you upgraded the source code to a newer v13 release after installation, the source code and database schema may be out of sync and you **cannot** safely use the command below. If that is your situation, please ask for help on our Discord server.
-
-On the server, run the following command to create the `alembic_version` table:
-
-=== "uv"
-
-    ```bash
-    uv run invenio alembic stamp
-    ```
-
-=== "pipenv"
-
-    ```bash
-    pipenv run invenio alembic stamp
-    ```
-
-Afterwards, check the `alembic_version` table again to confirm that the operation completed successfully.
 
 #### Run the pre-migration step
 
