@@ -414,8 +414,8 @@ Vocabularies command.
 | :------ | :---------------------------------------------------- |
 | convert | Convert a vocabulary to a new format.                 |
 | delete  | Delete all items or a specific one of the vocabulary. |
-| import  | Import a vocabulary.                                  |
-| update  | Import a vocabulary.                                  |
+| import  | Import a vocabulary (insert-only).                    |
+| update  | Import a vocabulary (insert and update).              |
 
 See [ROR dataset import](../operate/customize/vocabularies/funding.md#funders-ror).
 
