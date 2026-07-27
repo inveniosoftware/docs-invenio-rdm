@@ -278,13 +278,14 @@ invenio-cli install
     As such we don't mention this option anymore.
 
 
-### Apply database migrations
+### Update database schemas and content
 
 The database migration consists of three steps:
 
-- check about existing `alembic_version` table (this is described in the section [Check your database for the `alembic_version` table](#check-your-database-for-the-alembic_version-table) above)
-- pre-migration step that cleans up the existing database schema
-- Alembic upgrade to the v14 schema
+- a check for an existing `alembic_version` table. This is described in the section [Check your database for the `alembic_version` table](#check-your-database-for-the-alembic_version-table) above and should have already been done.
+- a pre-migration step that cleans up the existing database schema
+- a v14 migration of the database schemas
+- a v14 migration of the database content
 
 #### Run the pre-migration step
 
@@ -343,7 +344,7 @@ invenio alembic upgrade
     [SQL: CREATE UNIQUE INDEX IF NOT EXISTS uidx_rdm_records_files_record_id_key ON rdm_records_files (record_id, key)]
     ```
 
-    In this example, we can see that there are two entries for the reported `record_id`, and the older one has has its `object_version_id` set to `null`:
+    In this example, we can see that there are two entries for the reported `record_id`, and the older one has had its `object_version_id` set to `null`:
     ```
     inveniordm=> SELECT * FROM rdm_records_files WHERE record_id = '0e49c6bb-6772-4b13-ab7f-87fd3fca18ed';
               created           |          updated           |                  id                  | json | version_id |       key        |              record_id               |          object_version_id
@@ -362,7 +363,7 @@ invenio alembic upgrade
     ⚠️ Be careful to only clean up the *leftover data*, though!
     If you are unsure which entries *are* the leftovers, feel free to ask for help in the Discord server.
 
-### Apply data changes
+#### Run the content migration
 
 Execute the data migration script to update the content of the DB:
 
