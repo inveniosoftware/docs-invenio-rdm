@@ -1008,29 +1008,41 @@ SSO_SAML_IDPS = {
 
 ### Groups
 
-A `group` is a set of users that can be managed in your organization, externally to InvenioRDM.
+_Introduced in v9_
 
-Groups can be useful, for example, to externally manage access and roles of communities' members,
-without hard coding the list of users in your InvenioRDM instance.
-Another possible scenario, not yet supported, could be to grant or restrict access to other resources,
+A `group` is a set of users that can be managed externally to InvenioRDM by your organization.
+
+Groups can be useful, for example, to manage access and roles of community members externally,
+without hardcoding the list of users in your InvenioRDM instance.
+Another possible use case is to grant or restrict access to other resources,
 such as records or files.
 
-The support of groups is a feature  introduced in the release
-[v9.0](../../releases/v9/version-v9.0.0.md).
-
-When integrating groups in your InvenioRDM instance, you will have to:
+When integrating groups in your InvenioRDM instance, you need to:
 
 1. Import and keep in sync a copy of the groups available in your organization in the InvenioRDM database.
-This is needed to be able to search for groups when granting/restricting access to resources.
-2. When the user signs in, "assign" to the user the list of groups to which (s)he belongs. Read more below.
+This is required so you can search for groups when granting or restricting access to resources.
+2. When a user signs in, assign the groups the user belongs to. Read more below.
 
 !!! notice
-    How to import and keep in sync the local copy of groups with your organization' groups is outside the scope
-    of the InvenioRDM documentation and highly depends on your organization's policies, constraints and technologies.
+    How to import and keep in sync the local copy of groups with your organization's groups is outside the scope
+    of the InvenioRDM documentation and depends on your organization's policies, constraints, and technologies.
+
+#### Enable
+
+_Introduced in v13_
+
+To activate groups support, in your `invenio.cfg`:
+```
+USERS_RESOURCES_GROUPS_ENABLED = True
+# The configuration variable in v9 was:
+# COMMUNITIES_GROUPS_ENABLED = True
+```
 
 #### Add groups
 
-In InvenioRDM, groups are simply treated as `Roles`. To add a group, you create a role:
+In InvenioRDM, groups are implemented as `Role` objects in the authorization system; these `Roles` represent named groups that can be assigned to users and used as access-control needs (displayed as "Group" in the UI).
+
+To create a new group, create a role:
 
 ```python
 from invenio_accounts.proxies import current_datastore
@@ -1039,24 +1051,22 @@ current_datastore.create_role(name="it-dep", description="The group containing a
 current_datastore.commit()
 ```
 
+Since InvenioRDM v14 you can also create and manage roles using the [administration panel](../../use/administration.md#user-roles-management-ui) in the UI.
+
 #### Assign groups on login
 
-When the user signs in, you will have to add the user's groups as `needs` (technically `RoleNeed`).
-If an intersection between the `RoleNeed` (the groups) that the user provides and the `RoleNeed` that the resource
-requires exists, then the user has access.
+When a user signs in, you must implement a mechanism to retrieve the user's groups from your institutional account system and map them to InvenioRDM.
+Technically, this means loading the role name as a `RoleNeed`, for example `RoleNeed('it-dep')`. When a resource (such as a record) is protected and requires the same need `RoleNeed('it-dep')`, only users with that role will have access.
 
-With the example above, a user providing a `RoleNeed('it-dep')` will have access to a resource requiring the `RoleNeed('it-dep')`.
+Below is **an example** of how to add a `RoleNeed` on login.
 
-Below, you can find **an example** of how you can add a `RoleNeed` on login.
-
-!!! warning "Use at your own risk"
-    The integration of groups is not fully tested yet and the code below is just an example of a possible implementation.
-
-Assuming you're implementing a custom [OAuth plugin](#new-oauth-plugins),
-the fetching of user groups can happen after having fetched user information with the
+If you're implementing a custom [OAuth plugin](#new-oauth-plugins),
+you can fetch user groups after retrieving the user information with the
 [`signup_handler.info`](#allowdeny-user-login) handler.
 
 ```python
+from flask_principal import RoleNeed, UserNeed
+
 def info_handler(remote, resp):
     ...
     # existing code
@@ -1074,13 +1084,13 @@ def info_handler(remote, resp):
     ...
 ```
 
-The `fetch_roles_or_groups_names` might retrieve the user groups from the `user_info` attributes previously fetched
-or perform a new network request to fetch them from other REST APIs.
+The `fetch_roles_or_groups_names` function may extract group information from the previously fetched `user_info`
+attributes or make an additional network request to retrieve them from other REST APIs.
 
-When groups cannot be retrieved synchronously in the same HTTP request (slow or heavy task), a possible solution could
-be:
+If groups cannot be retrieved synchronously within the same HTTP request (for example because the operation is
+slow or resource-intensive), consider the following approach:
 
-1. Fetch user groups async in a celery task and store it in the database. The `RemoteAccount` database table
-   contains a `extra_data` column which could be used to "cache" user groups.
-2. On login, enrich the user session identity `provides` by reading the list of groups from the database.
-3. Refresh the list of user groups of each user when it makes sense in the organization context.
+1. Fetch user groups asynchronously (for example, in a Celery task) and store them in the database. The
+    `RemoteAccount` table has an `extra_data` column that can be used to cache the user's groups.
+2. On login, enrich the user session identity `provides` by reading the cached group list from the database.
+3. Refresh each user's group list as appropriate for your organization's needs (e.g. periodically or on demand).

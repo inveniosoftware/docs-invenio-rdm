@@ -18,15 +18,9 @@ The previous major version, version 13, will be out of support 6 months from tod
 
 ### Administration panel: users and roles
 
-In v14, the administration panel adds users/roles improvements, including
-role-aware views and groups CRUD support.
+Administrators can now manage user roles directly from the administration panel. See [User Roles Management](../../use/administration.md#user-roles-management-ui) for details.
 
-!!! Danger "v14 breaking change"
-
-    Access checks now resolve roles by **role id** (not role name).
-    If you previously relied on role **names** for access control, you must
-    migrate all existing logic and related references to role ids after
-    upgrading to v14, or access behavior may break.
+![Manage user roles dropdown menu](../../use/imgs/administration/manage-user-roles-dropdow-menu.png)
 
 ### Publication date range facet
 
@@ -145,12 +139,6 @@ It should lessen the administrative burden of inviting new users and further let
 
 Enabling the feature is just a matter of turning on a [configuration variable](../../reference/settings.md#membership-requests). See these links for [how to enable it on a per community basis](../../use/communities.md#membership-policy) and what the [usage flow](../../use/communities.md#members) is like.
 
-### User role management
-
-Administrators can now manage user roles directly from the administration panel. See [User Role Management](../../use/administration.md#user-role-management-ui) for details.
-
-![Manage user roles dropdown menu](../../use/imgs/administration/manage-user-roles-dropdow-menu.png)
-
 ### Support for ZIP and container formats
 
 We've added support for ZIP files and introduced a flexible framework for handling container formats (e.g., NetCDF, TAR). Users can now explore and access files inside archives without downloading them entirely, making large datasets easier to work with.
@@ -197,6 +185,7 @@ Each tool is opt-in independently. See the [upgrade guide](./upgrade-v14.0.md) f
 Here is a quick summary of the other improvements in this release:
 
 - Admin panel Jobs: Addition of a [Delete action](../../use/administration.md#deleting-a-job) to the Jobs list so admins can remove jobs directly from the UI.
+- In the search page, users can now sort search results by number of downloads.
 - Temporarily pinned `bcrypt<5.0.0` due to compatibility issues ([flask-security-fork#82](https://github.com/inveniosoftware/flask-security-fork/pull/82)). Will be lifted in a future release.
 - A new configuration variable, `RDM_RECORDS_RELATED_IDENTIFIERS_SCHEMES`, enables configuring identifier schemes specifically for related identifiers, defaulting to `RDM_RECORDS_IDENTIFIERS_SCHEMES` when not defined.
 - Deposit form: "Creators" label was changed to "Authors" to clarify that they appear in citations.
@@ -216,7 +205,18 @@ Here is a quick summary of the other improvements in this release:
 - Since `pkg-resources` has been deprecated and removed from pypi, and the dependency `fs` is not updated anymore, we decided to re-implement the interface in `invenio-files-rest` directly.
 - invenio-github
 
+- COMMUNITIES_GROUPS_ENABLED for USERS_RESOURCES_GROUPS_ENABLED
+
 ## Breaking changes
+
+
+
+!!! Danger "v14 breaking change"
+
+    Access checks now resolve roles by **role id** (not role name).
+    If you previously relied on role **names** for access control, you must
+    migrate all existing logic and related references to role ids after
+    upgrading to v14, or access behavior may break.
 
 - Overridables in the deposit form have been modified to improve consistency in structure and naming conventions. This has involved renaming the IDs of several `<Overridable>`s, but none have been removed. If you are using these IDs to override components, please see [the full list of updates](https://github.com/inveniosoftware/invenio-rdm-records/pull/2101/files#diff-ff3c479edefad986d2fe6fe7ead575a46b086e3bbcf0ccc86d85efc4a4c63c79) and change your IDs accordingly.
 - The default value for `WSGI_PROXIES` has been removed from Invenio-App-RDM in [PR 3284](https://github.com/inveniosoftware/invenio-app-rdm/pull/3284); instead `PROXYFIX_CONFIG` should be configured (cf. the [cookiecutter](https://github.com/inveniosoftware/cookiecutter-invenio-rdm/blob/83bb37436980ab8998a80fa0429e7d09f01f45f2/%7B%7Bcookiecutter.project_shortname%7D%7D/docker-services.yml#L24))

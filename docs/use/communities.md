@@ -159,13 +159,17 @@ Enabling a community to accept subcommunities, customizing what happens when a r
 
 ## Members
 
-The **Members** tab in your community's navigation allows you to view and manage all individuals and groups associated with your community. You can see their roles, visibility settings, and when they joined.
+The **Members** tab in your community's navigation allows you to view and manage all users and groups associated with your community. You can see their roles, visibility settings, and when they joined.
 
 The main "Members" view provides a comprehensive list of your current community members. As a owner of your community, you can search for existing members, change its visibility and role.
 
 ![Community members](imgs/communities/community-members.jpg){: .screenshot}
 
-You can invite new members to collaborate in your community. The search autocompletion will look for existing users or groups in your system. Members can invited with a role:
+You can invite new members to collaborate in your community. The search autocompletion will look for existing users or groups in your system.
+
+**Groups** are particularly useful when integrating with institutional account systems, as they allow you to synchronize groups in InvenioRDM and manage access and sharing more efficiently compared to managing individual users. See the [authentication](../operate/customize/authentication.md#groups) documentation for more information.
+
+Members can invited with a role:
 
 - **Reader**: Can view restricted records within the community.
 - **Curator**: Can curate records (e.g., add/remove records to/from the community) and view restricted records.

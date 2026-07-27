@@ -439,11 +439,11 @@ The notification emails include:
 
 ## User Management
 
+Using the administration panel, you can manage Users and Roles (also called Groups).
+
 ### Moderation of users and records
 
 _Introduced in v12_
-
-![The User Management](imgs/user-management.png){: .screenshot}
 
 #### Setting up the moderation role (CLI)
 
@@ -479,7 +479,7 @@ WRecords can also be deleted (with a grace period for appeal or undoing) which e
 
 Associated JSON APIs (e.g. `/api/domains`) have been added. Bulk versions of these are in the works.
 
-### User Role Management (UI)
+### User Roles Management (UI)
 
 _Introduced in v14_
 
@@ -489,10 +489,12 @@ _Introduced in v14_
 
 Administrators can manage user roles directly through the administration panel. This provides a visual interface for assigning and removing roles from users.
 
+Roles are used in the authorization system to manage permissions and for access control. Roles are displayed as "Groups" to users in the UI, for example when managing members in a community, or sharing restricted records.
+
 To manage a user's roles as an administrator:
 
 !!! note
-    You cannot manage your own roles through the UI. To change your own roles, contact another administrator or use the CLI.
+    You cannot manage the roles of your current user through the UI. To change such roles, contact another administrator or use the CLI.
 
 1.  Navigate to the **Users** section in the Administration panel.
 2.  Open the dropdown menu of a specific user and click on **"Manage roles"** in the dropdown menu
@@ -513,5 +515,7 @@ To manage a user's roles as an administrator:
 !!! info "Permissions"
 
     Managing user roles requires the `administration` AND `administration-moderation` permissions or superuser access.
+
+![The User Management](imgs/user-management.png){: .screenshot}
 
 For the api usage, see the [REST API for User Roles](../reference/rest_api_users.md).

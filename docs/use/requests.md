@@ -32,6 +32,20 @@ In InvenioRDM, requests allow users to manage many different use cases themselve
 
 Requests are resolved via **actions**. The only action available to the user is Cancel, and the receiver of the request can Accept or Decline the request. If the request is accepted, the corresponding action will be executed, and if it is cancelled or declined no action will be taken.
 
+## Reviewers
+
+External experts, collaborators, or other users or groups can be invited to provide comment and provided feedback when submitting a new record. Community curators, managers and owners can:
+
+- Assign individual users or groups as reviewers to any request
+- Share requests with users that are not members of the community
+- Grant access to community members who normally wouldn't see requests (e.g., readers)
+- Allow multiple reviewers to provide independent feedback
+- Track all reviewer interactions in the request timeline
+
+Reviewers can view the request, participate in conversations, and provide recommendations, but cannot accept or decline the request.
+
+![Request reviewers](imgs/requests/reviewers.jpg){: .screenshot}
+
 ## Comments
 
 Requests come with advanced conversation features allowing everyone involved to discuss in detail.
