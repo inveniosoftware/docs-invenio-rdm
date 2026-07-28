@@ -53,10 +53,10 @@ See below [how to enable it](#switching-between-uploaders). Once enabled, the Up
       - If a chunk fails to upload due to a random network issue, only that part is automatically retried—not the entire file—ideal for uploading multi-gigabyte research datasets, especially over unreliable networks.
       - **Per-part checksum validation** Uppy computes MD5 checksum for every chunk it uploads. Storage backend, where supported, can verify this checksum to detect any errors during transmission.
 
-- **🌐 Resilience on unstable networks**: Uppy handles random disconnects or slow connections gracefully by retrying failed chunks or uploads and allowing
+- **Resilience on unstable networks**: Uppy handles random disconnects or slow connections gracefully by retrying failed chunks or uploads and allowing
   recovery without starting over.
 
-- **🖼️ Enhanced media file support**: Especially useful for researchers working with image data:
+- **Enhanced media file support**: Especially useful for researchers working with image data:
 
       - **Automatic image previews** directly in the UI before uploading
       - **Basic image editing** (e.g., crop, rotate, resize)
