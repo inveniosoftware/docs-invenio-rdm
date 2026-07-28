@@ -2,9 +2,9 @@
 
 InvenioRDM uses the Invenio-Previewer module to provide frontend components that render previews for common file types on the record landing page.
 
-Supported preview types (examples):
+Supported preview types:
 
-- CSV (papaparse / d3)
+- CSV
 - Images (PNG, JPEG, GIF), including IIIF
 - XML, JSON, GeoJSON
 - Markdown
@@ -12,7 +12,7 @@ Supported preview types (examples):
 - Audio and video
 - Jupyter Notebooks
 - ZIP archives
-- Plain text (txt)
+- Plain text
 - Web archives
 
 ## Enabling previewers
