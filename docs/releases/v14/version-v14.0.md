@@ -49,7 +49,7 @@ For more advanced use cases, InvenioRDM v14 also supports DOI registration with 
 
 ### Files modification
 
-You can now allow users to modify the files of their published records, in accordance with your policies. When enabled, the record's owner can unlock file editing within the first 30 days of publication and modify them within 45 days (by default), thus giving them at least 15 days to upload and publish again. See the [relevant documentation](../../operate/customize/file_modification.md) to see how to enable and customize this feature.
+You can now allow users to modify the files of their published records, in accordance with your policies. When enabled, the record's owner can unlock file editing within the first 30 days of publication and modify them within 45 days (by default), thus giving them at least 15 days to upload and publish again. See the [relevant documentation](../../operate/customize/file-modification.md) to see how to enable and customize this feature.
 
 ![Showing the flow to edit the files of a record](imgs/file-modification.png){: .screenshot}
 
@@ -66,6 +66,45 @@ Additionally users can view the extra quota which they have used across their re
 ![Storage settings page showing the 110 GB quota assigned to our record](imgs/storage-settings.jpg){: .screenshot}
 
 See the [related documentation](../../operate/customize/file-uploads/user-quota.md) to discover how to enable and customize this feature.
+
+### GeoJSON and web archive previewers
+
+You can now preview GeoJSON files uploaded by users directly on an interactive map rendered with [Leaflet](https://leafletjs.com) and [OpenStreetMap](https://www.openstreetmap.org/) tiles.
+
+![GeoJSON previewer](imgs/geojson.jpg){: .screenshot}
+
+The new previewer automatically detects and displays GeoJSON files as maps within the existing JSON file previewer. When users upload a GeoJSON file, it will be rendered as an interactive map instead of raw JSON.
+
+Due to content security policy restrictions, you must allow embedding assets from OpenStreetMap. Add the following to your `invenio.cfg`:
+
+```python
+APP_DEFAULT_SECURE_HEADERS = {
+    'content_security_policy': {
+        'img-src': [
+            "'self'",
+            'data:',
+            'https://tile.openstreetmap.org',
+        ]
+    }
+}
+```
+
+See [the dedicated section](https://github.com/inveniosoftware/invenio-previewer/blob/master/invenio_previewer/__init__.py#L258) in the README for more information.
+
+You can also preview web archives (WACZ, WARC, HAR, CDX, CDXJ) using an embedded [ReplayWeb.page](https://replayweb.page/) viewer. To enable this feature, add the following to your `invenio.cfg`:
+
+```diff
+PREVIEWER_PREFERENCE = [
+    ...
++   "web_archive",
+]
+
+# ReplayWeb.page works best with HTTP Range support
+FILES_REST_ALLOW_RANGE_REQUESTS = True
+```
+
+See [the dedicated section](https://github.com/inveniosoftware/invenio-previewer/blob/master/invenio_previewer/__init__.py#L290) in the README for more information.
+
 
 ### Job notifications
 
@@ -202,6 +241,7 @@ Here is a quick summary of the other improvements in this release:
 - Addition of a previewer to display web archive files (WACZ, WARC, HAR, CDX, CDXJ file types) via an embedded [ReplayWeb.page](https://replayweb.page/) viewer. See "Enabling Web Archives" in [invenio-previewer](https://github.com/inveniosoftware/invenio-previewer/blob/master/invenio_previewer/__init__.py)
 - Communities: Fix permissions to enable community owners to [remove it from a record](../../use/communities.md#curate-records). This does not change the expected behavior for when a [community is required](../../operate/customize/require_community.md#require-community-for-record-publication) for record publication.
 - Over 15 deprecations (mostly from third-parties) were addressed in this release, helping the codebase be up-to-date and logs more free of distractions (until inevitable new deprecations arise!)
+- This release features an upgraded PDF previewer to [PDF.js v5](https://github.com/mozilla/pdf.js), which includes bugfixes and new features.
 - and plenty of bug fixes as usual!
 
 ## Deprecations

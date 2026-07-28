@@ -47,7 +47,6 @@ PREVIEWER_PREFERENCE = [
 Adding `previewable_zip` tells InvenioRDM to render ZIP files using the container browser UI on the record landing page,
 rather than offering a plain download link.
 
-
 ## Configuring previews inside archives
 
 A new configuration variable, `PREVIEWER_CONTAINER_ITEM_PREFERENCE`, holds previewers that work for items contained

@@ -27,7 +27,7 @@ Once you save your record as a draft for the first time, you gain access to addi
 
 ### Files modification and storage quota
 
-You can edit files after publication within a defined policy. The behaviour can be customized according to institutional constraints. See [the related documentation](../operate/customize/file_modification.md) for more information.
+You can edit files after publication within a defined policy. The behaviour can be customized according to institutional constraints. See [the related documentation](../operate/customize/file-modification.md) for more information.
 
 ![Files modification](imgs/records/files-modification.jpg){: .screenshot}
 
