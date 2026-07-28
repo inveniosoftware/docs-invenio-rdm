@@ -112,6 +112,17 @@ Jobs can now send email notifications to configured recipients when runs complet
 
 See [Job Notifications](../../use/administration.md#job-notifications) for usage details and [Email Notification Templates](../../operate/customize/jobs.md#email-notification-templates) for customization options.
 
+### Metadata schema update
+
+We have aligned the core metadata schema and vocabularies with the latest additions from DataCite Schema v4.6 and v4.7. The goal is to adopt relevant updates that benefit InvenioRDM instances while strictly limiting breaking changes to ensure a smooth upgrade path.
+
+List of changes:
+- The existing resource types "Publication / Thesis" (id `publication-thesis`) and "Publication / Dissertation" (id `publication-dissertation`) were merged into the former, which has been mapped to the resource type `Dissertation` in DataCite.
+- Added `Poster`, `Presentation`, and `Study Registration` as depositable resource types. Added `Project` and `Instrument` as linkable resource types.
+- Added the new relation types `IsTranslationOf`, `HasTranslation`, `IsCollectedBy`, `Collects`, and `Other`. Added the new contributor type `Translator` and the new date type `Coverage`.
+- Added `CSTR` (Science and Technology Resource Identifier) and `RRID` (Research Resource Identifier) to related identifier types.
+- When minting DataCite DOIs, renamed the `identifiers` field to `alternateIdentifiers` and moved the `doi` identifier to its own field.
+
 ### Modern toolchain
 
 The modern build toolchain introduced as experimental in v13 is now considered stable and ready for adoption:
