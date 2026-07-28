@@ -59,7 +59,7 @@ The second time period of 45 days exists to prevent users from repeatedly editin
 
 !!! info
 
-  Short time periods are recommended for the file modification period as there is a risk of submitters treating records as file storage, and not respecting that a DOI has been minted for this digital object.
+    Short time periods are recommended for the file modification period as there is a risk of submitters treating records as file storage, and not respecting that a DOI has been minted for this digital object.
 
 ## Configure out of policy messages
 
