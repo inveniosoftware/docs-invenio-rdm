@@ -119,6 +119,7 @@ Support for additional container formats can be added by implementing the `FileE
 [architecture documentation](../../../maintenance/architecture/records.md#container-files) for details.
 
 Future container formats under consideration include:
+
 - **NetCDF**: For multidimensional scientific data with logical sections
 - **TAR/TAR.GZ**: For general-purpose archive support
 - **WACZ/WARC**: For web archives (already supported via a separate previewer)
