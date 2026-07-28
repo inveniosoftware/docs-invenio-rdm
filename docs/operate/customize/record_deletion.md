@@ -56,6 +56,7 @@ If your criteria depend on resource type, community membership, or other factors
 ## Configure modal checklists
 
 The deletion modal can present a checklist to guide users toward alternatives to deleting a record. For example, deletion is usually unnecessary in these situations:
+
 - The user forgot to submit the record to a community before publishing — the record can be added to the community afterwards.
 - The user wants to replace a file — files can be replaced by the user after publication (if allowed) or by administrators.
 - The user wants to change the DOI — the DOI can be updated by editing the record (if allowed).
