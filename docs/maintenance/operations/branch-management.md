@@ -16,9 +16,10 @@ InvenioRDM follows [Trunk-Based Development](https://trunkbaseddevelopment.com/)
 Stable releases are being maintained under their equivalent `maint` branches. For example, `v12.0.x` is maintained on the `maint-v12.x` branch of `invenio-app-rdm`. Those releases receive bug fixes following SemVer, e.g., `v12.0.1`, by backporting (usually via cherry-picking) the fixes from the `master` branch into the `maint` branch.
 
 Occasionally, if we see features in `master` that the community agrees should be in the stable branches, we can organize efforts to backport them using a minor version bump in the stable release (e.g., `v12.1.x`). To qualify for such minor version bumps, the changes adhere to the following assurances:
-    - The new features **MUST** be disabled by default using config feature flags
-    - If an instance doesn't enable or use the new features, it **MUST** still work
-    - If an instance wants to enable or use the new features, there **MAY** be some migration/upgrade recipes required to be run
+
+- The new features **MUST** be disabled by default using config feature flags
+- If an instance doesn't enable or use the new features, it **MUST** still work
+- If an instance wants to enable or use the new features, there **MAY** be some migration/upgrade recipes required to be run
 
 The latest InvenioRDM release is supported until the next release.
 
