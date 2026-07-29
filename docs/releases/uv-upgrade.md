@@ -57,8 +57,9 @@ uv run /tmp/uv_migrate.py
 
 ## Step-by-Step Migration Guide
 
-!!! note "Steps covered by the script"
-    Steps that the `uv_migrate.py` script covers are marked with a 📜 icon in their header.
+The following steps marked with the 📜 icon are automatically done by the `uv_migrate.py` script above.
+Please review them carefully, especially if something failed while running the script.
+Be sure **not to skip** the steps without the 📜 icon, as they must be performed manually.
 
 ### Convert `Pipfile` to `pyproject.toml` 📜
 

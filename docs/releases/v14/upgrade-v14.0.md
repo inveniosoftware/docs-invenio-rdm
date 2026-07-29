@@ -4,12 +4,12 @@
 
 This article details the low-level steps to follow to upgrade your InvenioRDM v13 instance to v14.0.
 
-Version 14 introduces a number of default tooling changes (`pipenv` -> `uv`, `npm` -> `pnpm`, ...) and recommends using Python 3.14. Previous tools and Python versions will still work with this release, but this is the last release where we document the upgrade process with the old and new tools. In particular, this is the last version where we document usage of `pipenv`. Future releases will only detail the upgrade steps using the new default tools or assuming them (most visibly only `uv`). Don't worry, we point to documentation below that you can follow at your pace (even after upgrade) to switch to those tools.
+Version 14 introduces a number of default tooling changes (`pipenv` -> `uv`, `npm` -> `pnpm`, ...) and recommends using Python 3.14. Previous tools and Python versions will still work with this release, but this is the last release where we document the upgrade process with the old and new tools. In particular, this is the **last version** where we document usage of `pipenv`. Future releases will only detail the upgrade steps using the new default tools or assuming them (most visibly only `uv`). Don't worry, we point to documentation below that you can follow at your pace (even after upgrade) to switch to those tools.
 
 As usual, these steps do assume an existing installation of InvenioRDM v13, the previous version.
 If your InvenioRDM installation is older than v13, you must first upgrade to v13 before proceeding
 with the steps in this guide. However, it doesn't assume you are necessarily on
-[v13.1](../v13/version-v13.1.0.md). The instructions will work whether you are on v13.0.x or v13.1.y.
+[v13.1](../v13/version-v13.1.0.md). The instructions will work whether you are on v13.0 or v13.1.
 
 The throughline of this document is a sequential series of steps to execute. **Do read** the optional sections as they sometimes indicate changes to apply even if NOT adopting change. We highly recommend running the steps in a local development environment first where experience with the particularities of your instance can be gained without data loss worry. Then we recommend you run the steps into a staging environment mirroring your production deployment and accrue further insight into specificities of your environment (or missing details in these update steps!). Equipped with that knowledge, running the steps on your production environment should be smooth.
 
@@ -19,7 +19,7 @@ The throughline of this document is a sequential series of steps to execute. **D
 
 ## Switch from pipenv to uv
 
-*Required for upgrade*: No, but recommended. If switch not done, additional steps detailed below are needed.
+*Required for upgrade*: **No, but recommended**. If switch not done, additional steps detailed below are needed.
 
 ### Switching to uv
 
@@ -41,7 +41,7 @@ RUN pip install pipenv
 
 ## Switch to supported Python version
 
-*Required for upgrade*: Yes from Python 3.9 to 3.11+, with Python 3.14 being the the recommended and best supported version. If already running 3.11+ this is not needed for the upgrade to InvenioRDM v14.
+*Required for upgrade*: **Yes**. Python 3.14 being the recommended and best supported version. If already running 3.11+ this is not needed for the upgrade to InvenioRDM v14.
 
 With the end-of-life of Python 3.9 in October 2025, InvenioRDM v14 recommends using Python 3.14 for its performance improvements and future-facing features. Python versions still supported by the Python community but below 3.14 (3.10, 3.11, 3.12, 3.13) *may* work but with varying levels of certainty. With high confidence Python 3.11 will work for instance. On the other hand, Python 3.10 has never been recommended and always faced issues, so it will likely not work.
 
@@ -88,7 +88,7 @@ The steps below take Python 3.14 as the example version to upgrade to.
 
 ## Switch from npm to pnpm
 
-*Required for upgrade*: No, but recommended. If you want to keep using npm, settings to verify are detailed below.
+*Required for upgrade*: **No, but recommended**. If you want to keep using npm, settings to verify are detailed below.
 
 ### Switching to pnpm
 
@@ -159,7 +159,7 @@ Re-run `assets lock` whenever your JavaScript dependencies change.
 
 ## Switch from webpack to Rspack
 
-*Required for upgrade*: No, but recommended. Can be skipped without performing any change if not switching.
+*Required for upgrade*: **No, but recommended**. Can be skipped without performing any change if not switching.
 
 We recommend switching from `webpack` to [Rspack](https://www.rspack.dev/) for asset bundling. Its Rust-based builds are much faster and drop-in compatible with the existing Invenio asset pipeline. In your `invenio.cfg`:
 
@@ -169,13 +169,17 @@ WEBPACKEXT_PROJECT = "invenio_assets.webpack:rspack_project"
 
 ## Upgrade to InvenioRDM v14 proper
 
-*Required for upgrade*: Yes! This *is* the main upgrade section afterall.
+*Required for upgrade*: **Yes!** This *is* the main upgrade section afterall.
 
 Here are the core sequential steps to upgrade to InvenioRDM v14.
 
 !!! info "Virtual environments"
 
-    All commands below assume you are running them according to their installation environments. Typically it means `invenio` commands should be executed inside the application's virtual environment or via `pipenv run` or `uv run` in case you are not inside a virtual environment or environment with executables installed globally.
+    All commands below assume you are running them according to their installation environments. Typically it means `invenio` commands should be executed:
+
+    - inside the application's virtual environment OR
+    - via `pipenv run` or `uv run` in case you are not inside a virtual environment OR
+    - environment with executables installed globally
 
 ### Check your database for the `alembic_version` table
 
@@ -192,7 +196,7 @@ To check whether your database has the `alembic_version` table, log in to the da
 SELECT * FROM alembic_version;
 ```
 
-**If the table exists and contains rows, then you're fine; skip the rest of this step and continue with the next ([Upgrade invenio-cli](#upgrade-invenio-cli)).**
+**If the table exists and contains rows, then you're fine; skip the rest of this step and continue with the next: [Upgrade invenio-cli](#upgrade-invenio-cli).**
 
 If you get `ERROR: relation "alembic_version" does not exist`, the table is missing and you must create it before proceeding.
 If the table exists but has no entries, it has to be populated in the same way.
@@ -573,7 +577,7 @@ That's it, you have upgraded to InvenioRDM v14!
 
 ## Align "Thesis" and "Dissertation" resource types
 
-*Required for upgrade*: No.
+*Required for upgrade*: **No**.
 
 Your upgrade is complete. This last section describes an **entirely optional** change that is not part of the upgrade. Nothing here affects your instance unless you choose to run it, and you can do so at any later time. Because resource types are a highly visible and commonly customized vocabulary, we suggest rather than impose this change. Decide together with your instance's stakeholders (librarians, curators) whether it fits your data before applying it.
 
