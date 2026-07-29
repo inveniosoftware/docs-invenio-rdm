@@ -54,6 +54,22 @@ Dependencies locked successfully.
 
 A new lock file (e.g., ``uv.lock``) has now been created with the locked dependencies.
 
+## JS dependencies
+
+_Introduced in v14_
+
+With either, pnpm or npm, you can now optionally lock your Javascript dependencies.
+Like the lock file used to freeze Python dependencies to a deterministic set, the
+generated Javascript lock file will let you deterministically set your Javascript dependencies.
+Finally, reproducible Javascript builds!
+
+Generate the lockfile with `invenio-cli assets lock` and commit at the project root the resulting:
+
+- `pnpm-lock.yaml` and `package.json` if using pnpm
+- `package-lock.json` and `package.json` if using npm
+
+Re-run `assets lock` whenever your JavaScript dependencies change.
+
 Next, follow the *local development* option or *containerized preview* option according to your preferred installation method.
 
 ## Option 1: Local development

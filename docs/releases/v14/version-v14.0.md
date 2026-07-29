@@ -94,9 +94,9 @@ We have aligned the core metadata schema and vocabularies with the latest additi
 List of changes:
 
 - The existing resource types "Publication / Thesis" (id `publication-thesis`) and "Publication / Dissertation" (id `publication-dissertation`) were merged into the former, which has been mapped to the resource type `Dissertation` in DataCite. Migrating your existing records to this change is entirely optional; see [aligning the "Thesis" and "Dissertation" resource types](./upgrade-v14.0.md#align-thesis-and-dissertation-resource-types) in the upgrade guide.
-- Added `Poster`, `Presentation`, and `Study Registration` as depositable resource types. Added `Project` and `Instrument` as linkable resource types.
-- Added the new relation types `IsTranslationOf`, `HasTranslation`, `IsCollectedBy`, `Collects`, and `Other`. Added the new contributor type `Translator` and the new date type `Coverage`.
-- Added `CSTR` (Science and Technology Resource Identifier) and `RRID` (Research Resource Identifier) to related identifier types.
+- Added `Poster`, `Presentation`, and `Study Registration` to the depositable default resource types. Added `Project` and `Instrument` to the linkable default resource types.
+- Added `IsTranslationOf`, `HasTranslation`, `IsCollectedBy`, `Collects`, and `Other` to the default relation types . Added the new contributor type `Translator` and the new date type `Coverage` to their respective default vocabularies.
+- Added `CSTR` (Science and Technology Resource Identifier) and `RRID` (Research Resource Identifier) as identifiable related identifiers.
 - When minting DataCite DOIs, renamed the `identifiers` field to `alternateIdentifiers` and moved the `doi` identifier to its own field.
 
 ### Modern toolchain
@@ -230,6 +230,7 @@ Here is a summary of other improvements in this release:
 - Jobs in the administration panel: added a [**Delete action**](../../use/administration.md#deleting-a-job) to the jobs list, allowing administrators to remove jobs directly from the UI.
 - Added **cache-control headers** for both local and S3-served files. This is necessary for repositories that use a proxy service such as Cloudflare in front of InvenioRDM.
 - Added an HTTP User-Agent helper (**`invenio_user_agent`**) for outbound HTTP requests in `invenio-vocabularies` datastreams to identify requests performed by InvenioRDM.
+- Reproducible Javascript builds are finally possible. See [**Build and Lock Assets**](../../operate/ops/deploy.md#inveniordm-application).
 - Plenty of bug fixes as usual!
 
 ## Deprecations
@@ -271,7 +272,7 @@ Here is a summary of other improvements in this release:
 For InvenioRDM v14:
 
 - Python 3.14 is recommended (3.11, 3.12, 3.13 may work).
-- Node.js 24+ is required. This release has been tested with version 26+ too.
+- Node.js 24+ is required. This release has been tested with version 26 too.
 - PostgreSQL 12+ is required.
 - OpenSearch v2.12+ is required.
 

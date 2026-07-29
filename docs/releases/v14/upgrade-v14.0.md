@@ -13,6 +13,8 @@ with the steps in this guide. However, it doesn't assume you are necessarily on
 
 The throughline of this document is a sequential series of steps to execute. **Do read** the optional sections as they sometimes indicate changes to apply even if NOT adopting change. We highly recommend running the steps in a local development environment first where experience with the particularities of your instance can be gained without data loss worry. Then we recommend you run the steps into a staging environment mirroring your production deployment and accrue further insight into specificities of your environment (or missing details in these update steps!). Equipped with that knowledge, running the steps on your production environment should be smooth.
 
+As always, reach out on [Discord](https://discord.gg/8qatqBC) if you need help! There are more details in this one, so don't hesitate.
+
 !!! warning "Backup"
 
     Always backup your database, statistics indices and files before you try to perform an upgrade.
@@ -23,16 +25,18 @@ The throughline of this document is a sequential series of steps to execute. **D
 
 ### Switching to uv
 
-Although not strictly necessary for this upgrade, we highly encourage you to switch to [uv](https://docs.astral.sh/uv/) from [pipenv](https://pipenv.pypa.io/) for your Python package and project manager, for improvements in speed, ergonomics, and [security](https://docs.astral.sh/uv/concepts/resolution/#dependency-cooldowns). Future releases will only document steps using `uv` commands and may remove support for `pipenv`.
+We highly encourage you to switch to [uv](https://docs.astral.sh/uv/) from [pipenv](https://pipenv.pypa.io/) for your Python package and project manager, for improvements in speed, ergonomics, and [security](https://docs.astral.sh/uv/concepts/resolution/#dependency-cooldowns). Future releases will only document steps using `uv` commands and may remove support for `pipenv`.
 
 See the dedicated [Pipenv-to-uv migration guide](../uv-upgrade.md), which includes a helper script that converts your `Pipfile` to `pyproject.toml`, updates the `site/` package, and adjusts `.invenio` (`python_package_manager = uv`).
 
 ### Not switching to uv
 
-If you want to keep using pipenv for now AND you want to use the recommended base Docker image for InvenioRDM v14 in your Dockerfile, you will need to edit your Dockerfile to install `pipenv` (it is not installed in the base image anymore):
+If you want to keep using pipenv for now AND you want to use a recommended base Docker image for InvenioRDM v14 in your Dockerfile, you will need to edit your Dockerfile to install `pipenv` (it is not installed in the base image anymore):
 
 ```dockerfile
-FROM <v14 base image of your choice>
+# FROM <v14 base image of your choice>
+# See next section titled "Switch to supported Python version"
+# for image options.
 
 RUN pip install pipenv
 
@@ -86,6 +90,10 @@ The steps below take Python 3.14 as the example version to upgrade to.
     FROM <Invenio base image with OS of your choice supporting v14 and running Python 3.14>
     ```
 
+    At time of writing such image options are:
+
+    - For Debian: `FROM ghcr.io/inveniosoftware/invenio:14-debian`
+
 ## Switch from npm to pnpm
 
 *Required for upgrade*: **No, but recommended**. If you want to keep using npm, settings to verify are detailed below.
@@ -94,7 +102,7 @@ The steps below take Python 3.14 as the example version to upgrade to.
 
 [Pnpm](https://pnpm.io/) is now the recommended tool to manage Javascript dependencies in InvenioRDM (don't worry npm still works) because it is much faster, [has better protection against supply chain attacks](https://pnpm.io/supply-chain-security), and has good community support. If you have it installed, `invenio-cli` and lower level `invenio` commands will use it under the hood.
 
-1.  Locally, simply install [pnpm](https://pnpm.io/installation) version 10 (working version at time of writing).
+1.  Locally, install [pnpm](https://pnpm.io/installation) version 10 (working version at time of writing).
 
 2.  Make sure to set "pnpm" as your invenio javascript package manager in `.invenio`.
 
@@ -113,8 +121,6 @@ The steps below take Python 3.14 as the example version to upgrade to.
     ```
 
     to make sure pnpm is used by assets building commands inside and outside your containers.
-    The flag tells `flask-webpackext` which `pynpm` class to use when invoking the package manager,
-    so set it whenever you also enable pnpm.
 
 That's it, faster JavaScript package resolutions are yours now!
 
@@ -135,27 +141,6 @@ You can keep using npm to manage JS dependencies. To do so, verify that the foll
     # The default is "pynpm:NPMPackage" but may change in a future major version
     WEBPACKEXT_NPM_PKG_CLS = "pynpm:NPMPackage"
     ```
-
-### Optionally lock your JS dependencies
-
-With either, pnpm or npm, you can now optionally lock your Javascript dependencies.
-Like the lock file used to freeze Python dependencies to a deterministic set, the
-generated lock file will let you deterministically set your Javascript dependencies.
-Finally, reproducible Javascript builds!
-
-Generate the lockfile with `invenio-cli assets lock` and commit at the project root the resulting:
-
-- `pnpm-lock.yaml` and `package.json` if using pnpm
-- `package-lock.json` and `package.json` if using npm
-
-Re-run `assets lock` whenever your JavaScript dependencies change.
-
-!!! info "Building production Docker images"
-
-    - Ensure the image has Node.js ≥18.12 and `pnpm` installed if using a custom image and pnpm (the `inveniosoftware/almalinux:1` base image ships Node 16, so switch its `nodejs` module stream to `22` and install `pnpm` via `npm install -g pnpm@<version>`).
-    - For best layer-cache reuse, have in its own layer, fed only by `package.json` + `pnpm-lock.yaml`/`package-lock.json`, placed above any layer that copies frequently-changing source.
-        * for pnpm: `RUN pnpm install --frozen-lockfile --shamefully-hoist`
-        * for npm: `RUN npm ci`
 
 ## Switch from webpack to Rspack
 
@@ -183,7 +168,7 @@ Here are the core sequential steps to upgrade to InvenioRDM v14.
 
 ### Check your database for the `alembic_version` table
 
-InvenioRDM v13 contained a race condition that, in some cases, prevented the `alembic_version` table from being created in the database. [Alembic](https://alembic.sqlalchemy.org/) uses this table to track database schema migrations, and you cannot upgrade to v14 without it.
+InvenioRDM v13 contained a race condition that could have prevented the `alembic_version` table from being created. [Alembic](https://alembic.sqlalchemy.org/) uses this table to track database schema migrations, and you cannot upgrade to v14 without it.
 
 !!! warning "Check the `alembic_version` table before updating any packages!"
 
@@ -198,11 +183,7 @@ SELECT * FROM alembic_version;
 
 **If the table exists and contains rows, then you're fine; skip the rest of this step and continue with the next: [Upgrade invenio-cli](#upgrade-invenio-cli).**
 
-If you get `ERROR: relation "alembic_version" does not exist`, the table is missing and you must create it before proceeding.
-If the table exists but has no entries, it has to be populated in the same way.
-
-To create the table and/or populate it, you need to run the command on the InvenioRDM server. The server **must** be using the same source code version as the one used to install the current database schema. In other words, if you upgraded the source code to a newer v13 release after installation, the source code and database schema may be out of sync and you **cannot** safely use the command below. If that is your situation, please ask for help on our Discord server.
-
+If you get `ERROR: relation "alembic_version" does not exist` or no resulting rows, you must create and/or populate that table before proceeding.
 On the server, run the following command to create the `alembic_version` table:
 
 === "uv"
@@ -218,6 +199,9 @@ On the server, run the following command to create the `alembic_version` table:
     ```
 
 Afterwards, check the `alembic_version` table again to confirm that the operation completed successfully.
+
+If you encounter issues with this step or the [database migration steps below](#update-database-schemas-and-content) which would be affected by this step,
+please ask for help on our [Discord](https://discord.gg/8qatqBC) server.
 
 ### Upgrade invenio-cli
 
@@ -461,17 +445,17 @@ Because the datastream index has `"dynamic": true` on the `context` object, exis
 
 ### Update vocabularies
 
-The following out-of-the-box vocabularies have been enhanced with terms from the DataCite 4.4-4.7 releases, as well as other mapping improvements and translations:
+The following out-of-the-box vocabularies have been enhanced with terms from the DataCite 4.4-4.7 releases and/or mapping improvements. They all benefited from added translations:
 
-- datetypes
-- descriptiontypes
-- licenses
-- relationtypes
-- resourcetypes
-- contributorsroles
-- creatorsroles
-- titletypes
-- removalreasons
+- `datetypes` (new entry, translations)
+- `descriptiontypes` (translations)
+- `licenses` (new entry, translations)
+- `relationtypes` (new entries,  translations)
+- `resourcetypes` (new entries, mapping improvements, translations)
+- `contributorsroles` (new entry, translations)
+- `creatorsroles` (new entry, translations)
+- `titletypes` (translations)
+- `removalreasons` (translations)
 
 In order to update these in your repository, you'll need for each vocabulary to:
 
@@ -479,10 +463,11 @@ In order to update these in your repository, you'll need for each vocabulary to:
 
 2.  If you've customized the vocabulary for your instance, you will need to merge changes from the [source files in invenio-rdm-records](https://github.com/inveniosoftware/invenio-rdm-records/tree/master/invenio_rdm_records/fixtures/data/vocabularies) into the custom vocabulary file in your instance according to what you and/or your stakeholders think makes sense in your context. If you have not customized the vocabulary, you are probably fine with adopting the changes, but you can always double-check what those are and decide if you adopt them.
 
-3.  If you've decided to adopt the changes (and have merged the changes per step 2.), run the vocabulary update command: `invenio rdm-records add-to-fixture <vocabulary fixture>`. We do recommend running the command for each vocabulary:
+3.  If you've decided to adopt the changes (and have merged the changes per step 2.), run the vocabulary update command: `invenio rdm-records add-to-fixture <vocabulary fixture>`. For example: `invenio rdm-records add-to-fixture datetypes`/
+
+If you plan on adopting all those, you can run all the `add-to-fixture` commands:
 
 ```bash
-# Pick the ones you want to run, but we recommend them all:
 invenio rdm-records add-to-fixture datetypes
 invenio rdm-records add-to-fixture descriptiontypes
 invenio rdm-records add-to-fixture licenses
@@ -496,10 +481,9 @@ invenio rdm-records add-to-fixture removalreasons
 
 !!! info
 
-    The `resourcetypes` vocabulary was also subject to another cleanup operation upstream, better aligning the `publication-thesis` entry with DataCite.
-    Following this operation requires further steps.
-
-    More information about this can be found in the [section about aligning "thesis" and "dissertation" resource types](#align-thesis-and-dissertation-resource-types) below.
+    The `resourcetypes` vocabulary was also subject to another cleanup operation upstream that removed an entry from it.
+    The commands above only add or update entries. Steps to follow to replicate this removal in your instance can be
+    found in the [section about aligning "thesis" and "dissertation" resource types](#align-thesis-and-dissertation-resource-types) below.
 
 
 ## Update your configuration or infrastructure
@@ -513,6 +497,7 @@ This last section highlights the changes to your configuration or infrastructure
 When running `invenio-cli run` (in development) with `--host`/`--port` passed on the command line or host/port defined in `.invenio.private`, it used to be that those values would override `SITE_UI_URL` and `SITE_API_URL`. This is no longer the case in order to allow for listening on a host/port (defined by passed host and port) different than the host/port used to generate the URLs. This is a common situation when listening on 0.0.0.0, but using the fully qualified domain name for URL generation. As such, you need to provide the appropriate `SITE_UI_URL` and `SITE_API_URL` values for your environment which typically means:
 
 ```diff
+# in invenio.cfg
 -SITE_UI_URL = "https://127.0.0.1"
 +SITE_UI_URL = "https://127.0.0.1:5000"
 
@@ -534,44 +519,15 @@ If you are not overriding any of these components, you do not need to change any
 
 Many [custom field widgets](../../operate/customize/metadata/custom_fields/widgets.md) used the `icon` and `description` props, which have now been deprecated and replaced with `labelIcon` and `helpText` respectively. This is to improve consistency with the naming of the built-in fields used in the deposit form and thereby avoid confusion. The old names will continue to function for now, but we recommend updating to the new names where applicable.
 
-### Related Identifiers
-
-Backend and frontend functionality has been extended to cover related identifiers. The new `RDM_RECORDS_RELATED_IDENTIFIERS_SCHEMES` setting defines which schemes can be used (defaulting to `RDM_RECORDS_IDENTIFIERS_SCHEMES`). Validation rules, vocabularies in the UI, and scheme label resolution have been updated to ensure identifiers and related identifiers are handled consistently.
-
-### HTTP User-Agent handling
-
-Outbound HTTP requests performed by invenio-vocabularies datastream readers (e.g. OpenAIRE, ROR) now use a centralized HTTP User-Agent helper (`invenio_user_agent`).
-
-No action is required for existing installations. Deployments may optionally review or customize the `SITE_HOSTNAME` and `SITE_UI_URL` configuration values to control the User-Agent string sent to external services.
-
-### Comment replies preview
-
-The new feature of allowing replies to comments available in all requests introduces a new config variable `REQUESTS_COMMENT_PREVIEW_LIMIT`, limiting the number of retrieved indexed documents when comments have many replies.
-
-### Locking/Unlocking a request's conversation
-
-The new feature of allowing locking/unlocking a request's conversation is controlled via a feature flag config variable `REQUESTS_LOCKING_ENABLED`.
-
-### Community reviews for each record version
-
-The new feature of requiring community reviews for each version of a record (rather than just the first) must be [manually configured](../../operate/customize/requests.md#require-reviews-for-each-record-version).
-The default behaviour remains unchanged.
-
 ### Deprecated GitHub integration
 
-The [`invenio-github`](https://github.com/inveniosoftware/invenio-github) module has been deprecated.
+The [`invenio-github`](https://github.com/inveniosoftware/invenio-github) module has been deprecated
+in favor of the new [`invenio-vcs`](https://github.com/inveniosoftware/invenio-vcs) module.
 You can continue to use it for now, but it will be fully removed in InvenioRDM v15.
-
-It has been replaced with the new [`invenio-vcs`](https://github.com/inveniosoftware/invenio-vcs) module.
-
-Unlike `invenio-github`, `invenio-vcs` is an optional dependency and must be added to your instance-level dependencies.
-There are also some steps involved if you wish to migrate existing `invenio-github` data to `invenio-vcs`.
 
 Please see [this detailed guide](https://github.com/inveniosoftware/invenio-vcs/blob/master/docs/upgrading.rst) for more information on how to upgrade.
 This is only necessary if your instance was actively using `invenio-github` (with at least one user having connected their GitHub account) **and**
-you want to keep the existing data.
-
-See also the [documentation on how to configure the new module](../../operate/customize/software_archival.md).
+you want to keep the existing data. See also the [documentation on how to configure the new module](../../operate/customize/software_archival.md).
 
 That's it, you have upgraded to InvenioRDM v14!
 

@@ -155,11 +155,46 @@ $ invenio run --extra-files invenio.cfg
 $ celery -A invenio_app.celery -l INFO
 ```
 
-**Build assets:**
+**Build and lock assets:**
+
+Build assets first:
 
 ```bash
 $ invenio assets build
 ```
+
+If everything is working, it is recommended to lock Javascript assets
+
+```bash
+invenio-cli assets lock
+```
+
+and commit to your project repository the resulting:
+
+- `pnpm-lock.yaml` and `package.json` if using pnpm
+- `package-lock.json` and `package.json` if using npm
+
+Then have your Dockerfile or deployment process use the lock file to install assets.
+
+```Dockerfile
+# Example if building assets in a Dockerfile
+# For best layer-cache reuse, place above any layer
+# that copies frequently-changing source.
+# for pnpm
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install --frozen-lockfile --shamefully-hoist
+# for npm
+COPY package.json package-lock.json ./
+RUN npm ci
+```
+
+Re-run `invenio-cli assets lock` whenever your JavaScript dependencies change.
+
+!!! note "package.json must be copied as well"
+
+    The `package.json` file gets added here as well, since otherwise it would be freshly
+    generated on frontend build which may cause the package manager to dismiss the seemingly
+    outdated lock file due to its older file modification timestamp.
 
 **Start the application server:**
 

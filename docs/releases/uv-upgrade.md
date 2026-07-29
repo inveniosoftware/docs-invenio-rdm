@@ -1,10 +1,20 @@
-## Overview
+# Overview
 
 Migrating from Pipenv to [`uv`](https://docs.astral.sh/uv/) brings significantly faster
 dependency resolution and better alignment with modern Python packaging standards using
 `pyproject.toml`.
 
-### Install `uv`
+We first describe below the [migration script](#migration-script) that can be used to automate
+the first steps of the migration. Then the [step-by-step manual migration guide](#step-by-step-migration-guide)
+section outlines all the steps of the migration (including the ones that the migration script automates).
+You can choose to run the migration script and then do the remaining steps manually, or do all the steps
+manually. Doing all the steps manually lets you control better the changes, but can be longer.
+
+Overall, the script and the manual steps cover the most common aspects, but as with any migration,
+reflecing on what is applicable to your context and testing the final result is crucial. Make sure
+you run your application and try all the development and operational workflows that you would normally use.
+
+## Install `uv`
 
 Before starting with any migration steps, [install
 uv](https://docs.astral.sh/uv/getting-started/installation/) on your system. It's
@@ -12,20 +22,21 @@ recommended to use the standalone installer, since it's independent of any syste
 package managers (like `apt` or `brew`) and the installed binary comes with a
 self-upgrading mechanism using `uv self upgrade`.
 
-On top of this it's recommended that you start using `uv` to manage the `invenio-cli` tool
+On top of this, it's recommended that you start using `uv` to manage the `invenio-cli` tool
 installation. Make sure you uninstall any existing `invenio-cli` installation first, and
 then run `uv tool install invenio-cli`.
 
 ## Migration script
 
 To ease the migration process, a [helper Python script](./uv_migrate.py) is available
-for automating the following steps of this guide:
+to automate the steps of the [step-by-step guide](#step-by-step-migration-guide) below identified
+by a 📜 icon:
 
-- Converting your `Pipfile` to a `pyproject.toml` file
-- Updating your `site/` package configuration to use `pyproject.toml`
-- Updating your `.invenio` configuration to use `uv`
-- Pinning the project's Python version in `.python-version`
-- Removing old unnecessary files (`Pipfile`, `Pipfile.lock`, `setup.cfg`, `MANIFEST.in`, etc.)
+- "Convert `Pipfile` to `pyproject.toml`"
+- "Update `site/pyproject.toml`"
+- "Update Invenio configuration"
+- "Pin the Python version"
+- "Clean up old files"
 
 The script assumes a "standard" InvenioRDM bootstrapped project structure (e.g. it reads
 from the `.invenio` file to auto-detect the project name, Python version, and author
@@ -37,10 +48,6 @@ still need to manually verify and adjust the following:
 - your tests suite
 - CI/CD configuration (e.g. if you're using GitHub Actions)
 - any other custom scripts that use Pipenv
-
-This guide covers the most common aspects, but as with any migration, testing of the
-final result is crucial. Make sure you run your application and try all the development
-and operational workflows that you would normally use.
 
 To run the script follow these steps:
 
@@ -76,12 +83,15 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [packages]
-invenio-app-rdm = {version = "~=14.0.0", extras = ["opensearch2"]}
+# 13.0.0 is a stand-in for your version. You could be doing this migration after
+# migrating to InvenioRDMv14 as well in which case it would be 14.0.0 version.
+invenio-app-rdm = {version = "~=13.0.0", extras = ["opensearch2"]}
 my_site = {editable=true, path="./site"}
 # ... other dependencies
 
 [requires]
-python_version = ">=3.14"
+# 3.11 is a stand-in for your version
+python_version = ">=3.11"
 ```
 
 #### After: `pyproject.toml`
@@ -92,9 +102,10 @@ name = "my-site-app" # (1)!
 version = "1.0.0" # (2)!
 authors = [{ name = "My Organization" }] # (3)!
 license = "MIT"
-requires-python = ">=3.14"
+requires-python = ">=3.11"  # is a standin for your version
 dependencies = [
-    "invenio-app-rdm[opensearch2]~=14.0.0",
+    # 13
+    "invenio-app-rdm[opensearch2]~=13.0.0",
     "my-site", # (4)!
     # ... other dependencies
 ]
