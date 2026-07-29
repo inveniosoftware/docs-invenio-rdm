@@ -89,7 +89,7 @@ See [Job Notifications](../../use/administration.md#job-notifications) for usage
 
 ### Metadata schema update
 
-We have aligned the core metadata schema and vocabularies with the latest additions from DataCite Schema v4.6 and v4.7. The goal is to adopt relevant updates that benefit InvenioRDM instances while strictly limiting breaking changes to ensure a smooth upgrade path.
+We have aligned the core metadata schema and vocabularies with the latest additions from DataCite Schemas v4.5, v4.6 and v4.7. The goal is to adopt relevant updates that benefit InvenioRDM instances while strictly limiting breaking changes to ensure a smooth upgrade path. Additional breaking changes will happen in a future release.
 
 List of changes:
 
