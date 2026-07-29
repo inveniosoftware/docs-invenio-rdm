@@ -20,13 +20,13 @@ The previous major version, version 13, will be out of support 6 months from tod
 
 Administrators can now manage user roles directly from the administration panel. See [User Roles Management](../../use/administration.md#user-roles-management-ui) for details.
 
-![Manage user roles dropdown menu](../../use/imgs/administration/manage-user-roles-dropdow-menu.png)
+![Manage user roles dropdown menu](../../use/imgs/administration/manage-user-roles-dropdow-menu.png){: .screenshot}
 
 ### Community membership requests
 
 Users can now request to become members of communities. This feature is opt-in per community and feature-gated at the instance level.
 
-![Request membership](../../use/imgs/communities/community-request-membership.png)
+![Request membership](../../use/imgs/communities/community-request-membership.png){: .screenshot}
 
 It should lessen the administrative burden of inviting new users and further let them self-organize around their interests.
 
@@ -67,7 +67,7 @@ Additionally users can view the extra quota which they have used across their re
 
 See the [related documentation](../../operate/customize/file-uploads/user-quota.md) to discover how to enable and customize this feature.
 
-### GeoJSON and web archive previewers
+### GeoJSON and Web Archive previewers
 
 You can now preview GeoJSON files uploaded by users directly on an interactive map rendered with [Leaflet](https://leafletjs.com) and [OpenStreetMap](https://www.openstreetmap.org/) tiles.
 
@@ -75,36 +75,11 @@ You can now preview GeoJSON files uploaded by users directly on an interactive m
 
 The new previewer automatically detects and displays GeoJSON files as maps within the existing JSON file previewer. When users upload a GeoJSON file, it will be rendered as an interactive map instead of raw JSON.
 
-Due to content security policy restrictions, you must allow embedding assets from OpenStreetMap. Add the following to your `invenio.cfg`:
+Due to content security policy restrictions, you must allow embedding assets from OpenStreetMap. See [the dedicated section](https://github.com/inveniosoftware/invenio-previewer/blob/master/invenio_previewer/__init__.py#L258) in the README for more information.
 
-```python
-APP_DEFAULT_SECURE_HEADERS = {
-    'content_security_policy': {
-        'img-src': [
-            "'self'",
-            'data:',
-            'https://tile.openstreetmap.org',
-        ]
-    }
-}
-```
+You can also preview web archives (WACZ, WARC, HAR, CDX, CDXJ) using an embedded [ReplayWeb.page](https://replayweb.page/) viewer. See [the dedicated section](https://github.com/inveniosoftware/invenio-previewer/blob/master/invenio_previewer/__init__.py#L290) in the README to discover how to enable it.
 
-See [the dedicated section](https://github.com/inveniosoftware/invenio-previewer/blob/master/invenio_previewer/__init__.py#L258) in the README for more information.
-
-You can also preview web archives (WACZ, WARC, HAR, CDX, CDXJ) using an embedded [ReplayWeb.page](https://replayweb.page/) viewer. To enable this feature, add the following to your `invenio.cfg`:
-
-```diff
-PREVIEWER_PREFERENCE = [
-    ...
-+   "web_archive",
-]
-
-# ReplayWeb.page works best with HTTP Range support
-FILES_REST_ALLOW_RANGE_REQUESTS = True
-```
-
-See [the dedicated section](https://github.com/inveniosoftware/invenio-previewer/blob/master/invenio_previewer/__init__.py#L290) in the README for more information.
-
+![Web Archive previewer](imgs/web-archive-previewer.jpg){: .screenshot}
 
 ### Job notifications
 
@@ -117,7 +92,8 @@ See [Job Notifications](../../use/administration.md#job-notifications) for usage
 We have aligned the core metadata schema and vocabularies with the latest additions from DataCite Schema v4.6 and v4.7. The goal is to adopt relevant updates that benefit InvenioRDM instances while strictly limiting breaking changes to ensure a smooth upgrade path.
 
 List of changes:
-- The existing resource types "Publication / Thesis" (id `publication-thesis`) and "Publication / Dissertation" (id `publication-dissertation`) were merged into the former, which has been mapped to the resource type `Dissertation` in DataCite.
+
+- The existing resource types "Publication / Thesis" (id `publication-thesis`) and "Publication / Dissertation" (id `publication-dissertation`) were merged into the former, which has been mapped to the resource type `Dissertation` in DataCite. Migrating your existing records to this change is entirely optional; see [aligning the "Thesis" and "Dissertation" resource types](./upgrade-v14.0.md#align-thesis-and-dissertation-resource-types) in the upgrade guide.
 - Added `Poster`, `Presentation`, and `Study Registration` as depositable resource types. Added `Project` and `Instrument` as linkable resource types.
 - Added the new relation types `IsTranslationOf`, `HasTranslation`, `IsCollectedBy`, `Collects`, and `Other`. Added the new contributor type `Translator` and the new date type `Coverage`.
 - Added `CSTR` (Science and Technology Resource Identifier) and `RRID` (Research Resource Identifier) to related identifier types.
@@ -141,6 +117,14 @@ We've added a few small but crucial improvements to the [invenio-oauthclient](ht
 
 - The `extra_data` column of the `oauthclient_remoteaccount` table is now stored in the more efficient `JSONB` type when using PostgreSQL, improving the performance and flexibility of queries ([invenio-oauthclient#360](https://github.com/inveniosoftware/invenio-oauthclient/pull/360)).
 
+### Overridable: easily find components IDs
+
+When customizing InvenioRDM, you often need the UI component ID to override. Developer mode now highlights all overridable components on a page, making it easy to find the ID you need.
+
+![Metadata-only checkbox overridable ID in an overlay](../../operate/customize/look-and-feel/imgs/metadata_id_overlay.png){: .screenshot}
+
+See the [documentation](../../operate/customize/look-and-feel/override_components.md#1-find-the-component-to-override) for details.
+
 ### Preview content of ZIP files and others
 
 We've added support for ZIP files and introduced a flexible framework for handling container formats (e.g., NetCDF, TAR). Users can now explore and access files inside archives without downloading them entirely, making large datasets easier to work with.
@@ -153,7 +137,7 @@ These new features allow:
 
 - Downloading individual files or directories without extracting the entire archive
 
-![ZIP file preview](imgs/container-file-formats.png)
+![ZIP file preview](imgs/container-file-formats.png){: .screenshot}
 
 See the [ZIP and other container files configuration guide](../../operate/customize/file-uploads/zip-and-container-files.md) for how to enable the feature and tune its behavior, and the [REST API reference](../../reference/rest_api_drafts_records.md#container-files) for the new API endpoints.
 
@@ -192,7 +176,7 @@ When opened, the link will take the user to the comment and highlight it, regard
 
 To share a link to a comment, simply click the "Copy link" button on a comment:
 
-![Comment with the "copy link" button](imgs/comment-deep-link.png)
+![Comment with the "copy link" button](imgs/comment-deep-link.png){: .screenshot}
 
 #### LaTeX equations
 
@@ -202,7 +186,7 @@ Comments now support LaTeX, so mathematical equations can be written inline (usi
 
 You can now quote a comment, or part of a comment, when writing a reply. When quoting a whole comment, there is a "Quote reply" option in its action menu. To quote just part of it, highlight the text you want to quote and a "Quote reply" option will appear in line.
 
-![Quoting other comments](imgs/quote-reply-popover.png)
+![Quoting other comments](imgs/quote-reply-popover.png){: .screenshot}
 
 #### Replying to comments
 
@@ -212,24 +196,20 @@ A dedicated "Write a reply" box lets you reply directly to a specific comment, k
 
 Community curators, managers, and owners can now lock a request's conversation to prevent further comments at any time, with locking and unlocking events recorded in the conversation timeline for transparency. Once a conversation is locked, existing comments can still be deleted but not edited.
 
-![The "lock"/"unlock" events in the timeline](imgs/locking-event.png)
+![The "lock"/"unlock" events in the timeline](imgs/locking-event.png){: .screenshot}
 
 #### Attaching files to comments
 
 You can now attach files directly to a comment, with attachments displayed beneath the comment text once submitted.
 
-![A submitted comment showing an attached file below the comment text](imgs/attached-file-comment.png)
-
-
-
-
-
-
+![A submitted comment showing an attached file below the comment text](imgs/attached-file-comment.png){: .screenshot}
 
 ### Software archival (from GitHub, GitLab, etc.)
 
 Software releases can now be archived not only from GitHub, but also from other code forges such as GitLab and GitHub Enterprise.
 The new [`invenio-vcs`](https://github.com/inveniosoftware/invenio-vcs/) module replaces the existing `invenio-github` module with a nearly identical end-user experience while adding support for a generic code forge interface.
+
+![GitLab integration](imgs/gitlab.jpg){: .screenshot}
 
 This new module addresses existing limitations, such as allowing users to select which community should receive their code releases.
 
@@ -238,23 +218,19 @@ See [the documentation](../../operate/customize/software_archival.md) for more d
 
 ### Miscellaneous additions
 
-Here is a quick summary of the other improvements in this release:
+Here is a summary of other improvements in this release:
 
-- Admin panel Jobs: Addition of a [Delete action](../../use/administration.md#deleting-a-job) to the Jobs list so admins can remove jobs directly from the UI.
-- In the search page, users can now sort search results by number of downloads.
-- Temporarily pinned `bcrypt<5.0.0` due to compatibility issues ([flask-security-fork#82](https://github.com/inveniosoftware/flask-security-fork/pull/82)). Will be lifted in a future release.
-- A new configuration variable, `RDM_RECORDS_RELATED_IDENTIFIERS_SCHEMES`, enables configuring identifier schemes specifically for related identifiers, defaulting to `RDM_RECORDS_IDENTIFIERS_SCHEMES` when not defined.
-- Deposit form: "Creators" label was changed to "Authors" to clarify that they appear in citations.
-- Resource types: the default vocabulary now labels `publication-dissertation` as "Thesis" and drops the separate `publication-thesis` entry, so DataCite DOIs use the standard `Dissertation` value instead of a custom `Text` one. Migrating your existing records to this change is entirely optional; see [aligning the "Thesis" and "Dissertation" resource types](./upgrade-v14.0.md#align-thesis-and-dissertation-resource-types) in the upgrade guide.
-- A new configuration variable, `RDM_RECORDS_REQUIRE_SECRET_LINKS_EXPIRATION`, controls whether an expiration date must be set for access links and secret links. Defaults to `FALSE` when not defined.
-- Addition of support for Wikidata identifiers (QIDs) for creators and contributors of records and their affiliations.
-- Addition of an HTTP User-Agent helper (`invenio_user_agent`) for outbound HTTP requests in `invenio-vocabularies` datastreams.
-- Addition cache-control headers for both local and S3-served files. This is necessary for sites that put a proxy service such as Cloudflare in front of their InvenioRDM repository.
-- Addition of a previewer to display web archive files (WACZ, WARC, HAR, CDX, CDXJ file types) via an embedded [ReplayWeb.page](https://replayweb.page/) viewer. See "Enabling Web Archives" in [invenio-previewer](https://github.com/inveniosoftware/invenio-previewer/blob/master/invenio_previewer/__init__.py)
-- Communities: Fix permissions to enable community owners to [remove it from a record](../../use/communities.md#curate-records). This does not change the expected behavior for when a [community is required](../../operate/customize/require_community.md#require-community-for-record-publication) for record publication.
-- Over 15 deprecations (mostly from third-parties) were addressed in this release, helping the codebase be up-to-date and logs more free of distractions (until inevitable new deprecations arise!)
+- In the search page, users can now sort search results by **number of downloads**.
+- Deposit form: the "Creators" label has been changed to "Authors" to clarify that these names appear in citations.
 - This release features an upgraded PDF previewer to [PDF.js v5](https://github.com/mozilla/pdf.js), which includes bugfixes and new features.
-- and plenty of bug fixes as usual!
+- The new configuration variable `RDM_RECORDS_RELATED_IDENTIFIERS_SCHEMES` enables configuring identifier schemes specifically for related identifiers. Previously, identifiers and related identifiers used a single shared list, making it impossible to have separate configurations.
+- The new configuration variable `RDM_RECORDS_REQUIRE_SECRET_LINKS_EXPIRATION` controls whether an expiration date must be set for access links and secret links. It defaults to `FALSE` when not defined.
+- Added support for `Wikidata` identifiers (QIDs) for creators, contributors, and their affiliations.
+- Fixed permissions to enable community owners to [remove a community from a record](../../use/communities.md#curate-records). This does not affect the behavior when a [community is required](../../operate/customize/require_community.md#require-community-for-record-publication) for record publication.
+- Jobs in the administration panel: added a [Delete action](../../use/administration.md#deleting-a-job) to the jobs list, allowing administrators to remove jobs directly from the UI.
+- Added cache-control headers for both local and S3-served files. This is necessary for repositories that use a proxy service such as Cloudflare in front of InvenioRDM.
+- Added an HTTP User-Agent helper (`invenio_user_agent`) for outbound HTTP requests in `invenio-vocabularies` datastreams to identify requests performed by InvenioRDM.
+- Plenty of bug fixes as usual!
 
 ## Deprecations
 
@@ -262,7 +238,7 @@ Here is a quick summary of the other improvements in this release:
 - In preparation for Marshmallow 4+ removing `context` in its serialization/deserialization, a couple of changes were made: a `ContextVar` was introduced in `marshmallow_utils.context`, some context values were passed to the `Schema` constructors, and some class properties were parameterized with former context values. Some former values were kept in `self.context` because not used in serialization/deserialization anyway.
 - Since `pkg-resources` has been deprecated and removed from pypi, and the dependency `fs` is not updated anymore, we decided to re-implement the interface in `invenio-files-rest` directly.
 - invenio-github
-
+- Over 15 deprecations (mostly from third-party dependencies) were addressed in this release, helping keep the codebase up-to-date and reducing log clutter.
 - COMMUNITIES_GROUPS_ENABLED for USERS_RESOURCES_GROUPS_ENABLED
 
 ## Breaking changes

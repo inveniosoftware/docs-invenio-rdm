@@ -28,21 +28,6 @@ class MyCmp extends Component {
   ...
 ```
 
-#### On Hooks
-
-**Don't use [React Hooks](https://reactjs.org/docs/hooks-overview.html)**. Using hooks requires developers not only to learn React, but also to familiarize with this approach and remember the ad-hoc syntax:
-
-```javascript
-const [count, setCount] = useState(0);
-...
-useEffect(() => {
-  ...
-  return ...
-});
-```
-
-The classic component's lifecycle methods are surely much more verbose, but they favor clarity, readability and understanding of the code, in particular in the InvenioRDM context, where developers with different levels of experience are collaborating.
-
 ### Use Semantic UI React
 
 Use Semantic UI React components in React, instead of CSS classes. The React versions of Semantic UI components have normally implemented some logic, which is crucial for the component to work correctly. The plain CSS Semantic UI might not have all the features available when you use them in React.

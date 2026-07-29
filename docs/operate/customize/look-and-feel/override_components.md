@@ -28,8 +28,10 @@ At the moment, the easiest way to identify if the component that you want to ove
 
 ![React browser extension example](./imgs/react_browser_extension_example.png)
 
-If the component shows up in the React tree, it is a React component and can be overriden using the methods described on this page.
-Otherwise, it is an HTML component that can be [overriden using Jinja templates](./templates.md).
+If the component shows up in the React tree, it is a React component and can be overridden using the methods described on this page.
+Otherwise, it is an HTML component that can be [overridden using Jinja templates](./templates.md).
+
+_Introduced in v14_
 
 Next, you can find the ID of an overridable component using `react-overridable`'s built-in developer tool.
 Simply open a browser console on your local instance and call the global function `reactOverridableEnableDevMode()`.
