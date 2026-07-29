@@ -221,42 +221,50 @@ See [the documentation](../../operate/customize/software_archival.md) for more d
 Here is a summary of other improvements in this release:
 
 - In the search page, users can now sort search results by **number of downloads**.
-- Deposit form: the "Creators" label has been changed to "Authors" to clarify that these names appear in citations.
-- This release features an upgraded PDF previewer to [PDF.js v5](https://github.com/mozilla/pdf.js), which includes bugfixes and new features.
-- The new configuration variable `RDM_RECORDS_RELATED_IDENTIFIERS_SCHEMES` enables configuring identifier schemes specifically for related identifiers. Previously, identifiers and related identifiers used a single shared list, making it impossible to have separate configurations.
-- The new configuration variable `RDM_RECORDS_REQUIRE_SECRET_LINKS_EXPIRATION` controls whether an expiration date must be set for access links and secret links. It defaults to `FALSE` when not defined.
-- Added support for `Wikidata` identifiers (QIDs) for creators, contributors, and their affiliations.
-- Fixed permissions to enable community owners to [remove a community from a record](../../use/communities.md#curate-records). This does not affect the behavior when a [community is required](../../operate/customize/require_community.md#require-community-for-record-publication) for record publication.
-- Jobs in the administration panel: added a [Delete action](../../use/administration.md#deleting-a-job) to the jobs list, allowing administrators to remove jobs directly from the UI.
-- Added cache-control headers for both local and S3-served files. This is necessary for repositories that use a proxy service such as Cloudflare in front of InvenioRDM.
-- Added an HTTP User-Agent helper (`invenio_user_agent`) for outbound HTTP requests in `invenio-vocabularies` datastreams to identify requests performed by InvenioRDM.
+- Deposit form: the **"Creators"** label has been changed to **"Authors"** to clarify that these names appear in citations.
+- This release features an upgraded PDF previewer to [**PDF.js v5**](https://github.com/mozilla/pdf.js), which includes bugfixes and new features.
+- The new configuration variable **`RDM_RECORDS_RELATED_IDENTIFIERS_SCHEMES`** enables configuring identifier schemes specifically for related identifiers. Previously, identifiers and related identifiers used a single shared list, making it impossible to have separate configurations.
+- The new configuration variable **`RDM_RECORDS_REQUIRE_SECRET_LINKS_EXPIRATION`** controls whether an expiration date must be set for access links and secret links. It defaults to **`FALSE`** when not defined.
+- Added support for **`Wikidata`** identifiers (QIDs) for creators, contributors, and their affiliations.
+- Fixed permissions to enable community owners to [**remove a community from a record**](../../use/communities.md#curate-records). This does not affect the behavior when a [community is required](../../operate/customize/require_community.md#require-community-for-record-publication) for record publication.
+- Jobs in the administration panel: added a [**Delete action**](../../use/administration.md#deleting-a-job) to the jobs list, allowing administrators to remove jobs directly from the UI.
+- Added **cache-control headers** for both local and S3-served files. This is necessary for repositories that use a proxy service such as Cloudflare in front of InvenioRDM.
+- Added an HTTP User-Agent helper (**`invenio_user_agent`**) for outbound HTTP requests in `invenio-vocabularies` datastreams to identify requests performed by InvenioRDM.
 - Plenty of bug fixes as usual!
 
 ## Deprecations
 
-- Many [custom field widgets](../../operate/customize/metadata/custom_fields/widgets.md) used the `icon` and `description` props, which have now been deprecated and replaced with `labelIcon` and `helpText` respectively. This is to improve consistency with the naming of the built-in fields used in the deposit form and thereby avoid confusion. The old names will continue to function for now.
-- In preparation for Marshmallow 4+ removing `context` in its serialization/deserialization, a couple of changes were made: a `ContextVar` was introduced in `marshmallow_utils.context`, some context values were passed to the `Schema` constructors, and some class properties were parameterized with former context values. Some former values were kept in `self.context` because not used in serialization/deserialization anyway.
-- Since `pkg-resources` has been deprecated and removed from pypi, and the dependency `fs` is not updated anymore, we decided to re-implement the interface in `invenio-files-rest` directly.
-- invenio-github
-- Over 15 deprecations (mostly from third-party dependencies) were addressed in this release, helping keep the codebase up-to-date and reducing log clutter.
-- COMMUNITIES_GROUPS_ENABLED for USERS_RESOURCES_GROUPS_ENABLED
+- The configuration variable `COMMUNITIES_GROUPS_ENABLED` (used to enable Groups) is deprecated. Use `USERS_RESOURCES_GROUPS_ENABLED` instead.
+- Several [custom field widgets](../../operate/customize/metadata/custom_fields/widgets.md) previously accepted the props `icon` and `description`. These have been renamed to `labelIcon` and `helpText` to match the built-in deposit form fields and reduce confusion. The old prop names still work for now but are deprecated.
+- Preparing for `Marshmallow 4+`, we changed how schema context is handled. A `ContextVar` was added at `marshmallow_utils.context`, some context values are now passed to Schema constructors, and a few class properties were converted to parameters. Some values remain in self.context if they are not used during serialization/deserialization.
+- The older `PyFilesystem2 (fs)` dependency has been removed from `invenio-files-rest`. Its required functionality has been incorporated into the module to avoid breaking changes.
+- The `invenio-github` module for archiving software from GitHub is deprecated. Migrate to `invenio-vcs` (supports GitHub, GitLab, and other forges). See the [upgrade notes](./upgrade-v14.0.md#deprecated-github-integration) to learn how to migrate.
+- More than 15 other deprecations (mostly from third-party libraries) were cleaned up in this release to keep the codebase current and reduce noisy warnings.
 
 ## Breaking changes
 
-!!! Danger "v14 breaking change"
+- The deposit form's overridable component IDs have been renamed to improve structure and naming consistency. No `<Overridable>` components were removed. If you override components by ID, review [the full list of updates](https://github.com/inveniosoftware/invenio-rdm-records/pull/2101/files#diff-ff3c479edefad986d2fe6fe7ead575a46b086e3bbcf0ccc86d85efc4a4c63c79) and update your IDs accordingly.
+- The underlying Flask and Werkzeug Python libraries now handle multiple reverse proxies differently in production deployments. In Invenio-App-RDM, `WSGI_PROXIES` has been removed in [PR 3284](https://github.com/inveniosoftware/invenio-app-rdm/pull/3284); configure `PROXYFIX_CONFIG` instead. See documentation [here](https://github.com/inveniosoftware/invenio-base/blob/77a5b438340a1efb048963257129eeab5d56aeca/invenio_base/wsgi.py#L66), [here](https://werkzeug.palletsprojects.com/en/stable/middleware/proxy_fix/) and our [cookiecutter example here](https://github.com/inveniosoftware/cookiecutter-invenio-rdm/blob/83bb37436980ab8998a80fa0429e7d09f01f45f2/%7B%7Bcookiecutter.project_shortname%7D%7D/docker-services.yml#L24). In your `invenio.cfg`:
 
-    Access checks now resolve roles by **role id** (not role name).
-    If you previously relied on role **names** for access control, you must
-    migrate all existing logic and related references to role ids after
-    upgrading to v14, or access behavior may break.
+    ```diff
+    - WSGI_PROXIES = 2
+    + PROXYFIX_CONFIG={'x_for': 1, 'x_proto': 1}  # This is just an example; adjust it for your infrastructure
+    ```
 
-- Overridables in the deposit form have been modified to improve consistency in structure and naming conventions. This has involved renaming the IDs of several `<Overridable>`s, but none have been removed. If you are using these IDs to override components, please see [the full list of updates](https://github.com/inveniosoftware/invenio-rdm-records/pull/2101/files#diff-ff3c479edefad986d2fe6fe7ead575a46b086e3bbcf0ccc86d85efc4a4c63c79) and change your IDs accordingly.
-- The default value for `WSGI_PROXIES` has been removed from Invenio-App-RDM in [PR 3284](https://github.com/inveniosoftware/invenio-app-rdm/pull/3284); instead `PROXYFIX_CONFIG` should be configured (cf. the [cookiecutter](https://github.com/inveniosoftware/cookiecutter-invenio-rdm/blob/83bb37436980ab8998a80fa0429e7d09f01f45f2/%7B%7Bcookiecutter.project_shortname%7D%7D/docker-services.yml#L24))
-- The configuration variable to display the Browse menu tab in communities has been renamed from `COMMUNITIES_SHOW_BROWSE_MENU_ENTRY` to `COMMUNITIES_COLLECTIONS_ENABLED`. Check if the former was declared in your `invenio.cfg`.
-- Per [v13 deprecation notice](../v13/version-v13.0.0.md#deprecations), usage of `invenio_records_resources.services.Link` has been replaced by `invenio_records_resources.services.EndpointLink` for InvenioRDM links and `invenio_records_resources.services.ExternalLink` for external third-party links. Continued import of `Link` is incorrect (may still work, but is being removed completely).
-- TO DOCUMENT:
-    - https://github.com/inveniosoftware/invenio-accounts/pull/557
-    - https://github.com/inveniosoftware/invenio-rdm-records/commit/eaa4ba426a1a5f9ae192461105fb109183444b2a
+- The community `Browse` menu configuration variable has been renamed from `COMMUNITIES_SHOW_BROWSE_MENU_ENTRY` to `COMMUNITIES_COLLECTIONS_ENABLED`. Update your `invenio.cfg` if it is declared:
+
+    ```diff
+    - COMMUNITIES_SHOW_BROWSE_MENU_ENTRY = True
+    + COMMUNITIES_COLLECTIONS_ENABLED = True
+    ```
+
+- Per the [v13 deprecation notice](../v13/version-v13.0.0.md#deprecations), `invenio_records_resources.services.Link` has been replaced by `invenio_records_resources.services.EndpointLink` for InvenioRDM links and `invenio_records_resources.services.ExternalLink` for external links. Continuing to import `Link` is incorrect and it will be removed completely.
+- If you override the default `DataCite45JSONSerializer`, the `is_parent` argument must now be passed directly. In your `invenio.cfg` or custom code, replace:
+
+    ```diff
+    - serializer=DataCite45JSONSerializer(schema_context={"is_parent": True})
+    + serializer=DataCite45JSONSerializer(is_parent=True)
+    ```
 
 ## Requirements
 
