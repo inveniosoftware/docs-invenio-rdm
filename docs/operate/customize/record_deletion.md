@@ -36,7 +36,11 @@ You can define your own policies, by implementing a class with these 2 methods:
 
 ```python
 class MyGracePeriodPolicy(BasePolicy):
-    def is_allowed(self, identity, record):
+    def is_allowed(self, identity, record=None):
+        # policy evaluated without record context, e.g. to check if the feature is
+        # enabled for the current user
+        if not record:
+            return False
         is_record_owner = identity.user.id == record.parent.access.owned_by.owner_id
         return is_record_owner
 

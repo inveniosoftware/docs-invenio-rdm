@@ -5,7 +5,7 @@ _Introduced in v14_
 With this feature, users can extend their default storage quota when uploading large files.
 The following diagram explains how it works:
 
-![Quota per record](../imgs/quota.svg)
+![Quota per record](../imgs/quota.jpg){: .screenshot}
 
 The additional quota is the extra storage that a user can request, and assign it partially or entirely across records.
 
@@ -47,7 +47,12 @@ You can define your own quota increase policies, by implementing a class with th
 
 ```python
 class MyQuotaPolicy(BasePolicy):
-    def is_allowed(self, identity, record):
+
+    def is_allowed(self, identity, record=None):
+        # policy evaluated without record context, e.g. to check if the feature is
+        # enabled for the current user
+        if not record:
+            return True
         is_record_owner = identity.user.id == record.parent.access.owned_by.owner_id
         return is_record_owner
 
