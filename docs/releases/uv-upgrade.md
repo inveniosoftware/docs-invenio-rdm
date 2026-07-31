@@ -224,14 +224,6 @@ rm Pipfile Pipfile.lock site/setup.cfg site/setup.py site/MANIFEST.in
 rm -rf site/*.egg-info
 ```
 
-### Generate new Python dependencies lockfile
-
-Generate the `uv.lock` file:
-
-```bash
-invenio-cli packages lock
-```
-
 ### Update Dockerfile
 
 #### Before: Docker with Pipenv
