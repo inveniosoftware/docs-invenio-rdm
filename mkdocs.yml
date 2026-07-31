@@ -83,7 +83,7 @@ nav:
           - Overview: "operate/customize/look-and-feel/index.md"
           - Change logo: "operate/customize/look-and-feel/logo.md"
           - Change templates: "operate/customize/look-and-feel/templates.md"
-          - Change theme: "operate/customize/look-and-feel/theme.md"
+          - Change styling: "operate/customize/look-and-feel/theme.md"
           - Change font: "operate/customize/look-and-feel/font.md"
           - Change menus: "operate/customize/look-and-feel/menus.md"
           - Override React components: "operate/customize/look-and-feel/override_components.md"
