@@ -231,6 +231,7 @@ Here is a summary of other improvements in this release:
 - Added **cache-control headers** for both local and S3-served files. This is necessary for repositories that use a proxy service such as Cloudflare in front of InvenioRDM.
 - Added an HTTP User-Agent helper (**`invenio_user_agent`**) for outbound HTTP requests in `invenio-vocabularies` datastreams to identify requests performed by InvenioRDM.
 - Reproducible Javascript builds are finally possible. See [**Build and Lock Assets**](../../operate/ops/deploy.md#inveniordm-application).
+- Decoupled `invenio-checks` from `invenio-communities`. [Checks](../../operate/customize/curation-checks.md) can now be used with any request type!
 - Plenty of bug fixes as usual!
 
 ## Deprecations
