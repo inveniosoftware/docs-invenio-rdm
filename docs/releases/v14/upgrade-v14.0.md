@@ -21,136 +21,24 @@ As always, reach out on [Discord](https://discord.gg/8qatqBC) if you need help! 
 
 ## Switch from pipenv to uv
 
-*Required for upgrade*: **No, but recommended**. If switch not done, additional steps detailed below are needed.
-
-### Switching to uv
-
-We highly encourage you to switch to [uv](https://docs.astral.sh/uv/) from [pipenv](https://pipenv.pypa.io/) for your Python package and project manager, for improvements in speed, ergonomics, and [security](https://docs.astral.sh/uv/concepts/resolution/#dependency-cooldowns). Future releases will only document steps using `uv` commands and may remove support for `pipenv`.
-
-See the dedicated [Pipenv-to-uv migration guide](../uv-upgrade.md), which includes a helper script that converts your `Pipfile` to `pyproject.toml`, updates the `site/` package, and adjusts `.invenio` (`python_package_manager = uv`).
-
-### Not switching to uv
-
-If you want to keep using pipenv for now AND you want to use a recommended base Docker image for InvenioRDM v14 in your Dockerfile, you will need to edit your Dockerfile to install `pipenv` (it is not installed in the base image anymore):
-
-```dockerfile
-# FROM <v14 base image of your choice>
-# See next section titled "Switch to supported Python version"
-# for image options.
-
-RUN pip install pipenv
-
-# keep the rest of your Dockerfile as it was with calls to pipenv
-```
+*Required for upgrade*: **No, but recommended**. Please have a look at the dedicated [uv-upgrade](../uv-upgrade.md) section.
 
 ## Switch to supported Python version
 
-*Required for upgrade*: **Yes**. Python 3.14 being the recommended and best supported version. If already running 3.11+ this is not needed for the upgrade to InvenioRDM v14.
+*Required for upgrade*: **Yes**. 3.14 is the recommended Python version for InvenioRDM v14.
 
-With the end-of-life of Python 3.9 in October 2025, InvenioRDM v14 recommends using Python 3.14 for its performance improvements and future-facing features. Python versions still supported by the Python community but below 3.14 (3.10, 3.11, 3.12, 3.13) *may* work but with varying levels of certainty. With high confidence Python 3.11 will work for instance. On the other hand, Python 3.10 has never been recommended and always faced issues, so it will likely not work.
+Please use your preferred package manager to install Python 3.14.
 
-The steps below take Python 3.14 as the example version to upgrade to.
+If you plan to use `uv`, please have a look at the [uv-upgrade](../uv-upgrade.md) section to install Python 3.14
 
-1.  Install Python 3.14 so it can be used by your application (including in new [virtualenv](../../reference/virtualenvs.md) created by invenio-cli). We only list two methods here — the internet is rife with other examples.
-
-
-    === "uv"
-
-        ```bash
-        uv python install 3.14
-        ```
-
-    === "pyenv"
-
-        ```bash
-        # With the pyenv tool (https://github.com/pyenv/pyenv)
-        pyenv install 3.14
-        ```
-
-2.  Change the required Python version in `pyproject.toml` if using `uv` or `Pipfile` if still using `pipenv`.
-
-    === "pyproject.toml"
-
-        ```toml
-        # Set this line
-        requires-python = "~=3.14.0"
-        ```
-
-    === "Pipfile"
-
-        ```ini
-        [requires]
-        # Set this line
-        python_version = "3.14"
-        ```
-
-3.  Change the `FROM` line in your Dockerfile to a base image using Python 3.14
-
-    ```Dockerfile
-    FROM <Invenio base image with OS of your choice supporting v14 and running Python 3.14>
-    ```
-
-    At time of writing such image options are:
-
-    - For Debian: `FROM ghcr.io/inveniosoftware/invenio:14-debian`
 
 ## Switch from npm to pnpm
 
-*Required for upgrade*: **No, but recommended**. If you want to keep using npm, settings to verify are detailed below.
-
-### Switching to pnpm
-
-[Pnpm](https://pnpm.io/) is now the recommended tool to manage Javascript dependencies in InvenioRDM (don't worry npm still works) because it is much faster, [has better protection against supply chain attacks](https://pnpm.io/supply-chain-security), and has good community support. If you have it installed, `invenio-cli` and lower level `invenio` commands will use it under the hood.
-
-1.  Locally, install [pnpm](https://pnpm.io/installation) version 10 (working version at time of writing).
-
-2.  Make sure to set "pnpm" as your invenio javascript package manager in `.invenio`.
-
-    ```ini
-    [cli]
-    # set this line or remove it altogether
-    javascript_package_manager = pnpm
-    ```
-
-    You could remove the line altogether since pnpm is the new default if that line is not present.
-
-3.  In your `invenio.cfg`, set:
-
-    ```python
-    WEBPACKEXT_NPM_PKG_CLS = "pynpm:PNPMPackage"
-    ```
-
-    to make sure pnpm is used by assets building commands inside and outside your containers.
-
-That's it, faster JavaScript package resolutions are yours now!
-
-### Not switching to pnpm
-
-You can keep using npm to manage JS dependencies. To do so, verify that the following are set:
-
-1.  "npm" is set as your invenio javascript package manager in `.invenio`.
-
-    ```ini
-    [cli]
-    javascript_package_manager = npm
-    ```
-
-2.  In your `invenio.cfg`, set:
-
-    ```python
-    # The default is "pynpm:NPMPackage" but may change in a future major version
-    WEBPACKEXT_NPM_PKG_CLS = "pynpm:NPMPackage"
-    ```
+*Required for upgrade*: **No, but recommended**. Please have a look at the dedicated [pnpm-upgrade](../pnpm-upgrade.md) section.
 
 ## Switch from webpack to Rspack
 
-*Required for upgrade*: **No, but recommended**. Can be skipped without performing any change if not switching.
-
-We recommend switching from `webpack` to [Rspack](https://www.rspack.dev/) for asset bundling. Its Rust-based builds are much faster and drop-in compatible with the existing Invenio asset pipeline. In your `invenio.cfg`:
-
-```python
-WEBPACKEXT_PROJECT = "invenio_assets.webpack:rspack_project"
-```
+*Required for upgrade*: **No, but recommended**. Please have a look at the dedicated [rspack-upgrade](../rspack-upgrade.md) section.
 
 ## Upgrade to InvenioRDM v14 proper
 
@@ -166,42 +54,44 @@ Here are the core sequential steps to upgrade to InvenioRDM v14.
     - via `pipenv run` or `uv run` in case you are not inside a virtual environment OR
     - environment with executables installed globally
 
-### Check your database for the `alembic_version` table
+!!! warning "A note on virtual environments and possible data loss"
 
-InvenioRDM v13 contained a race condition that could have prevented the `alembic_version` table from being created. [Alembic](https://alembic.sqlalchemy.org/) uses this table to track database schema migrations, and you cannot upgrade to v14 without it.
+    If you store your data in `<venv folder>/var/instance/data` you
+    should backup your data before you continue.
 
-!!! warning "Check the `alembic_version` table before updating any packages!"
 
-    It's important that this step is performed with the v13 packages still installed!
-    If you run `invenio alembic stamp` after upgrading to the v14 packages, the `alembic_version` entries will be incorrect.
+Use the following command to check the location of your data:
 
-To check whether your database has the `alembic_version` table, log in to the database and run the following SQL query:
-
-```sql
-SELECT * FROM alembic_version;
+```bash
+invenio files location list
 ```
 
-**If the table exists and contains rows, then you're fine; skip the rest of this step and continue with the next: [Upgrade invenio-cli](#upgrade-invenio-cli).**
 
-If you get `ERROR: relation "alembic_version" does not exist` or no resulting rows, you must create and/or populate that table before proceeding.
-On the server, run the following command to create the `alembic_version` table:
+### Check your database for the `alembic_version` table
 
-=== "uv"
+Check if instance has the `alembic_version` table in your database.
 
-    ```bash
-    uv run invenio alembic stamp
-    ```
+```bash
+invenio alembic current
+```
 
-=== "pipenv"
+If the command's output is very short and contains no lines of the
+shape `{id} -> {id} ({package_name}) (head), {description}`, that
+means that the `alembic_versions` table either doesn't exist or is
+empty. In this case, create and populate the table with the following
+command:
 
-    ```bash
-    pipenv run invenio alembic stamp
-    ```
 
-Afterwards, check the `alembic_version` table again to confirm that the operation completed successfully.
+```bash
+invenio alembic stamp
+```
 
-If you encounter issues with this step or the [database migration steps below](#update-database-schemas-and-content) which would be affected by this step,
-please ask for help on our [Discord](https://discord.gg/8qatqBC) server.
+to create the `alembic_version` table.
+
+NOTE:
+InvenioRDM v13 contained a race condition that could have prevented the `alembic_version` table from being created. [Alembic](https://alembic.sqlalchemy.org/) uses this table to track database schema migrations, and you cannot upgrade to v14 without it.
+
+On problems please ask for help on our [Discord](https://discord.gg/8qatqBC) server.
 
 ### Upgrade invenio-cli
 
@@ -233,47 +123,14 @@ Change the version of `invenio-app-rdm` to 14.0 in `<my-site>/pyproject.toml` if
     +++invenio-app-rdm = {extras = [...], version = "~=14.0.0"}
     ```
 
-Install InvenioRDM v14:
+### Install InvenioRDM v14:
+
 
 ```bash
 invenio-cli install
 ```
 
-!!! warning "A note on virtual environments and possible data loss"
-
-    In previous upgrade notes (e.g., from InvenioRDM v12 to v13),
-    creation of a new virtual environment was mentioned as an option
-    where to install the new InvenioRDM version. Doing so carries
-    the risk of losing the uploaded files that are stored by default
-    in `<venv folder>/var/instance/data`. However, in practice, creating
-    a new virtualenv for an upgrade is a relatively niche case.
-
-    Indeed, if you are using containers to run your application
-    (and we recommend you do in production), then a new isolated
-    environment is created for each Docker image, but your data is persisted
-    elsewhere anyway. In this case, you shouldn't have to worry about
-    virtualenv data loss.
-
-    And if you are running your application outside of
-    a container (typically in development), doing the upgrade in-place
-    within your existing virtualenv is also not subject to data loss.
-
-    Only if you do create a new virtualenv (e.g., to upgrade Python version)
-    outside of the above scenarios, should you copy the folder with uploaded
-    files over to the new `venv` folder in the same location.
-    The command `invenio files location list` shows the file upload location.
-
-    As such we don't mention this option anymore.
-
-
 ### Update database schemas and content
-
-The database migration consists of three steps:
-
-- a check for an existing `alembic_version` table. This is described in the section [Check your database for the `alembic_version` table](#check-your-database-for-the-alembic_version-table) above and should have already been done.
-- a pre-migration step that cleans up the existing database schema
-- a v14 migration of the database schemas
-- a v14 migration of the database content
 
 #### Run the pre-migration step
 
@@ -291,65 +148,20 @@ Run one of the following commands, depending on whether your installation uses `
     invenio shell $(find $(pipenv --venv)/lib/*/site-packages/invenio_app_rdm -name prepare_migration_13_0_to_14_0.py)
     ```
 
-If the script completes successfully, it should end with output similar to the following:
-
-```
-...
-
-    v13 -> v14 database cleanup completed successfully.
-
-    Please run:
-
-        invenio alembic upgrade
-
-    to finish the database structure migration process. Then continue with the data migration script.
-```
+If it exits with an error, please contact us on
+[Discord](https://discord.gg/8qatqBC), and we will help you find an individual
+solution for the issue.
 
 #### Run the schema migration step
 
-Once the pre-migration step has completed successfully, run the Alembic migration to update the database schema:
+Run the Alembic migration to update the database schema:
 
 ```bash
 invenio alembic upgrade
 ```
 
-!!! info "Unique constraint violation errors can be solved with database cleanups"
-
-    In some rare cases, instances have been observed to run into *unique constraint violations* (e.g. `sqlalchemy.exc.IntegrityError: (psycopg2.errors.UniqueViolation) ...`) during the Alembic upgrade.
-    This can happen due to leftover artifacts that were never properly cleaned up, likely due to old bugs.
-    Removing the offending leftover rows from the database will resolve these errors.
-
-    The necessary steps depend on the concrete situation, but generally what's needed in such cases is to clean up the tables mentioned in the error message.
-    For example, the following error would tell you that you need to delete old entries from the `rdm_records_files` table, and which `(record_id, key)` combination to look out for.
-
-    ---
-
-    The following is a real-life example with altered identifiers:
-    ```
-    sqlalchemy.exc.IntegrityError: (psycopg2.errors.UniqueViolation) could not create unique index "uidx_rdm_records_files_record_id_key"
-    DETAIL:  Key (record_id, key)=(0e49c6bb-6772-4b13-ab7f-87fd3fca18ed, research_NMR.zip) is duplicated.
-
-    [SQL: CREATE UNIQUE INDEX IF NOT EXISTS uidx_rdm_records_files_record_id_key ON rdm_records_files (record_id, key)]
-    ```
-
-    In this example, we can see that there are two entries for the reported `record_id`, and the older one has had its `object_version_id` set to `null`:
-    ```
-    inveniordm=> SELECT * FROM rdm_records_files WHERE record_id = '0e49c6bb-6772-4b13-ab7f-87fd3fca18ed';
-              created           |          updated           |                  id                  | json | version_id |       key        |              record_id               |          object_version_id
-    ----------------------------+----------------------------+--------------------------------------+------+------------+------------------+--------------------------------------+--------------------------------------
-     2024-12-03 18:09:12.125274 | 2024-12-03 18:09:12.125283 | 20a5a54a-5c6a-400d-aa3e-5db99323768c | {}   |          1 | research_NMR.zip | 0e49c6bb-6772-4b13-ab7f-87fd3fca18ed |
-     2024-12-03 18:09:33.503182 | 2024-12-03 18:09:33.546971 | 17235935-1e95-4529-b189-82a250113e93 | {}   |          3 | research_NMR.zip | 0e49c6bb-6772-4b13-ab7f-87fd3fca18ed | 2e218ef5-ba92-4fa4-a58a-0c204fc771a1
-    (2 rows)
-    ```
-
-    It could be resolved with `DELETE FROM rdm_records_files WHERE record_id = '0e49c6bb-6772-4b13-ab7f-87fd3fca18ed' AND object_version_id IS null`.
-
-    After that cleanup, `invenio alembic upgrade` went through successfully.
-
-    ---
-
-    ⚠️ Be careful to only clean up the *leftover data*, though!
-    If you are unsure which entries *are* the leftovers, feel free to ask for help in the Discord server.
+If this exits with errors, please have a look to the [Troubleshooting](#troubleshooting)
+section or contact us on [Discord](https://discord.gg/8qatqBC).
 
 #### Run the content migration
 
@@ -369,10 +181,6 @@ Execute the data migration script to update the content of the DB:
 
 ### Update search engine mappings and content
 
-Many mappings have been updated in this release. You can perform granular changes if you want to avoid downtimes or simply discard and rebuild the indices in one go.
-
-
-**Discard and rebuild indices**
 
 ```bash
 # precede by uv run or pipenv run as appropriate
@@ -387,14 +195,14 @@ invenio rdm rebuild-all-indices
 
 #### Update OAI-PMH percolator mapping and Job Logs Index
 
-To update the OAI-PMH percolator and the job logs datastream please run:
+
+Percolators and job datastreams are not affected by
+`invenio index destroy && invenio index init`. They have to be updated
+by running the following script in `invenio shell`.
 
 ```bash
   invenio shell
 ```
-
-With `invenio shell` it is possible to run python code with your instance
-configuration.
 
 Copy-Paste following python code into `invenio shell` and press enter.
 
@@ -433,6 +241,8 @@ oaipmh_service.rebuild_index(identity=system_identity)
 datastream = build_alias_name("job-logs")
 current_search_client.indices.rollover(alias=datastream)
 ```
+
+
 
 ### Update vocabularies
 
@@ -485,7 +295,7 @@ This last section highlights the changes to your configuration or infrastructure
 
 ### invenio-cli run --host ... --port ...
 
-When running `invenio-cli run` (in development) with `--host`/`--port` passed on the command line or host/port defined in `.invenio.private`, it used to be that those values would override `SITE_UI_URL` and `SITE_API_URL`. This is no longer the case in order to allow for listening on a host/port (defined by passed host and port) different than the host/port used to generate the URLs. This is a common situation when listening on 0.0.0.0, but using the fully qualified domain name for URL generation. As such, you need to provide the appropriate `SITE_UI_URL` and `SITE_API_URL` values for your environment which typically means:
+Due to changes in `invenio-cli, change the following lines:
 
 ```diff
 # in invenio.cfg
@@ -496,33 +306,30 @@ When running `invenio-cli run` (in development) with `--host`/`--port` passed on
 +SITE_API_URL = "https://127.0.0.1:5000/api"
 ```
 
-in development outside containers.
-
 ### Overridable IDs in the deposit form
-
-To improve consistency in naming conventions and structure, some IDs of Overridables in the deposit form have been modified. If you are overriding any of these components, you will need to change the ID in your mapping file to reflect these modifications.
-
-The full list of ID changes [can be found here](https://github.com/inveniosoftware/invenio-rdm-records/pull/2101/files#diff-ff3c479edefad986d2fe6fe7ead575a46b086e3bbcf0ccc86d85efc4a4c63c79).
 
 If you are not overriding any of these components, you do not need to change anything.
 
+The full list of ID changes [can be found here](https://github.com/inveniosoftware/invenio-rdm-records/pull/2101/files#diff-ff3c479edefad986d2fe6fe7ead575a46b086e3bbcf0ccc86d85efc4a4c63c79).
+
 ### Custom field widget prop names
 
-Many [custom field widgets](../../operate/customize/metadata/custom_fields/widgets.md) used the `icon` and `description` props, which have now been deprecated and replaced with `labelIcon` and `helpText` respectively. This is to improve consistency with the naming of the built-in fields used in the deposit form and thereby avoid confusion. The old names will continue to function for now, but we recommend updating to the new names where applicable.
+Many [custom field widgets](../../operate/customize/metadata/custom_fields/widgets.md) used the `icon` and `description` props, which have now been deprecated and replaced with `labelIcon` and `helpText` respectively. The old names are deprecated and will be removed in a future release. Please update to the new names.
 
 ### Deprecated GitHub integration
 
-The [`invenio-github`](https://github.com/inveniosoftware/invenio-github) module has been deprecated
-in favor of the new [`invenio-vcs`](https://github.com/inveniosoftware/invenio-vcs) module.
-You can continue to use it for now, but it will be fully removed in InvenioRDM v15.
+If you are using Github integration, please read this section; otherwise, you can skip it.
+
+The [`invenio-github`](https://github.com/inveniosoftware/invenio-github) module has been deprecated and its support will be removed with InvenioRDM v15. Please use [`invenio-vcs`](https://github.com/inveniosoftware/invenio-vcs) instead.
 
 Please see [this detailed guide](https://github.com/inveniosoftware/invenio-vcs/blob/master/docs/upgrading.rst) for more information on how to upgrade.
 This is only necessary if your instance was actively using `invenio-github` (with at least one user having connected their GitHub account) **and**
 you want to keep the existing data. See also the [documentation on how to configure the new module](../../operate/customize/software_archival.md).
 
-That's it, you have upgraded to InvenioRDM v14!
 
-## Align "Thesis" and "Dissertation" resource types
+## Optional changes
+
+### Align "Thesis" and "Dissertation" resource types
 
 *Required for upgrade*: **No**.
 
@@ -590,3 +397,47 @@ Use this if you want to keep your own resource type (for example your existing `
     # in `invenio shell`, with the helper loaded (see above)
     run_update_doi_metadata_for_resource_type("publication-thesis")
     ```
+
+
+## Troubleshooting
+
+### Invenio alembic upgrade could cause problems
+
+
+!!! info "Unique constraint violation errors can be solved with database cleanups"
+
+    In some rare cases, instances have been observed to run into *unique constraint violations* (e.g. `sqlalchemy.exc.IntegrityError: (psycopg2.errors.UniqueViolation) ...`) during the Alembic upgrade.
+    This can happen due to leftover artifacts that were never properly cleaned up, likely due to old bugs.
+    Removing the offending leftover rows from the database will resolve these errors.
+
+    The necessary steps depend on the concrete situation, but generally what's needed in such cases is to clean up the tables mentioned in the error message.
+    For example, the following error would tell you that you need to delete old entries from the `rdm_records_files` table, and which `(record_id, key)` combination to look out for.
+
+    ---
+
+    The following is a real-life example with altered identifiers:
+    ```
+    sqlalchemy.exc.IntegrityError: (psycopg2.errors.UniqueViolation) could not create unique index "uidx_rdm_records_files_record_id_key"
+    DETAIL:  Key (record_id, key)=(imagine-this-were-a-valid-uuid, research_NMR.zip) is duplicated.
+
+    [SQL: CREATE UNIQUE INDEX IF NOT EXISTS uidx_rdm_records_files_record_id_key ON rdm_records_files (record_id, key)]
+    ```
+
+    In this example, we can see that there are two entries for the reported `record_id`, and the older one has had its `object_version_id` set to `null`:
+    ```
+    inveniordm=> SELECT * FROM rdm_records_files WHERE record_id = 'imagine-this-were-a-valid-uuid';
+              created           |          updated           |                  id                  | json | version_id |       key        |              record_id               |          object_version_id
+    ----------------------------+----------------------------+--------------------------------------+------+------------+------------------+--------------------------------------+--------------------------------------
+     2024-12-03 18:09:12.125274 | 2024-12-03 18:09:12.125283 | 20a5a54a-5c6a-400d-aa3e-5db99323768c | {}   |          1 | research_NMR.zip | imagine-this-were-a-valid-uuid       |
+     2024-12-03 18:09:33.503182 | 2024-12-03 18:09:33.546971 | 17235935-1e95-4529-b189-82a250113e93 | {}   |          3 | research_NMR.zip | imagine-this-were-a-valid-uuid       | 2e218ef5-ba92-4fa4-a58a-0c204fc771a1
+    (2 rows)
+    ```
+
+    The duplication was resolved with `DELETE FROM rdm_records_files WHERE record_id = 'imagine-this-were-a-valid-uuid' AND object_version_id IS null`.
+
+    After that cleanup, `invenio alembic upgrade` went through successfully.
+
+    ---
+
+    ⚠️ Be careful to only clean up the *leftover data*, though!
+    If you are unsure which entries *are* the leftovers, feel free to ask for help in the Discord server.
