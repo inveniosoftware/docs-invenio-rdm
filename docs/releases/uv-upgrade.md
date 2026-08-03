@@ -285,6 +285,12 @@ RUN --mount=type=cache,target=/opt/.cache/uv \
 ...
 ```
 
+To use the uv.lock file in the `Dockerfile` it is necessary to run, in your virtual environment
+
+```bash
+invenio-cli packages lock
+```
+
 ### Update CI/CD Configuration
 
 #### Before: GitHub Actions with Pipenv
