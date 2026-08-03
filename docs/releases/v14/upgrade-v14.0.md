@@ -21,7 +21,12 @@ As always, reach out on [Discord](https://discord.gg/8qatqBC) if you need help! 
 
 ## Switch from pipenv to uv
 
-*Required for upgrade*: **No, but recommended**. Please have a look at the dedicated [uv-upgrade](../uv-upgrade.md) section.
+*Required for upgrade*: **No, but recommended**. Please have a look at the
+dedicated [uv-upgrade](../uv-upgrade.md) section.
+
+Note:
+If you don't switch, please have a look if your chosen base Docker image has
+`pipenv` still installed.
 
 ## Switch to supported Python version
 
@@ -67,12 +72,12 @@ Here are the core sequential steps to upgrade to InvenioRDM v14.
     command checks the location of your deposited files:
 
 
-```bash
-invenio files location list
-```
+    ```bash
+    invenio files location list
+    ```
 
-This is usually only the case in development, as a containerized
-production deployment will store the deposited files elsewhere.
+    This is usually only the case in development, as a containerized
+    production deployment will store the deposited files elsewhere.
 
 
 ### Check your database for the `alembic_version` table
@@ -82,23 +87,21 @@ In order to proceed with the database migration later on, the
 to check for its existence:
 
 ```bash
-invenio shell -c "from invenio_db import db; from sqlalchemy import inspect; print('Success!' if inspect(db.engine).has_table('alembic_version') else 'The DB table does not exist')"
+invenio alembic current
 ```
 
-**If the command returns `Success` you're fine; skip the rest of this step and continue with the next: [Upgrade invenio-cli](#upgrade-invenio-cli).**
-
-If you get `The DB table does not exist` you must create and/or populate that table before proceeding.
+If the command's output is very short and contains no lines of the
+shape `{id} -> {id} ({package_name}) (head), {description}`, that
+means that the `alembic_versions` table either doesn't exist or is
+empty.
 
 On the server (production instance), run the following command to
 create the `alembic_version` table. This command should
 **only be run now with InvenioRDM v13** (not with InvenioRDM v14).
 
-
 ```bash
 invenio alembic stamp
 ```
-
-to create the `alembic_version` table.
 
 NOTE: InvenioRDM v13 contained a race condition that could have
 prevented the `alembic_version` table from being created.
@@ -273,7 +276,10 @@ This last section highlights the changes to your configuration or infrastructure
 
 ### invenio-cli run --host ... --port ...
 
-Due to changes in `invenio-cli, change the following lines:
+`invenio-cli run` no longer overrides `SITE_API_URL` and `SITE_UI_URL`. Passing
+`--host` and `--port` only defines the port and host the development server is
+listening on. As such, you should change the following lines in `invenio.cfg`
+for your non-containerized development environment:
 
 ```diff
 # in invenio.cfg
