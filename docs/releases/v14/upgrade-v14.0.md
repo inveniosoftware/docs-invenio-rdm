@@ -25,20 +25,26 @@ As always, reach out on [Discord](https://discord.gg/8qatqBC) if you need help! 
 
 ## Switch to supported Python version
 
-*Required for upgrade*: **Yes**. 3.14 is the recommended Python version for InvenioRDM v14.
+*Required for upgrade*: **Yes**. Python 3.14 is now the required
+Python version for InvenioRDM v14. Support for lower versions is not
+maintained moving forward.
 
 Please use your preferred package manager to install Python 3.14.
 
-If you plan to use `uv`, please have a look at the [uv-upgrade](../uv-upgrade.md) section to install Python 3.14
-
-
 ## Switch from npm to pnpm
 
-*Required for upgrade*: **No, but recommended**. Please have a look at the dedicated [pnpm-upgrade](../pnpm-upgrade.md) section.
+*Required for upgrade*: **No, but recommended**. The new JavaScript
+dependencies manager `pnpm` makes installations faster and more
+secure.
+
+Please have a look at the dedicated [pnpm-upgrade](../pnpm-upgrade.md) section.
 
 ## Switch from webpack to Rspack
 
-*Required for upgrade*: **No, but recommended**. Please have a look at the dedicated [rspack-upgrade](../rspack-upgrade.md) section.
+*Required for upgrade*: **No, but recommended**. The new assets
+builder drastically reduces installations time.
+
+Please have a look at the dedicated [rspack-upgrade](../rspack-upgrade.md) section.
 
 ## Upgrade to InvenioRDM v14 proper
 
@@ -56,30 +62,36 @@ Here are the core sequential steps to upgrade to InvenioRDM v14.
 
 !!! warning "A note on virtual environments and possible data loss"
 
-    If you store your data in `<venv folder>/var/instance/data` you
-    should backup your data before you continue.
+    If your deposited files are stored in `<venv folder>/var/instance/data`,
+    you should back them up outside this location before you continue. This
+    command checks the location of your deposited files:
 
-
-Use the following command to check the location of your data:
 
 ```bash
 invenio files location list
 ```
 
+This is usually only the case in development, as a containerized
+production deployment will store the deposited files elsewhere.
+
 
 ### Check your database for the `alembic_version` table
 
-Check if instance has the `alembic_version` table in your database.
+In order to proceed with the database migration later on, the
+`alembic_version` table must exist in your database. Run the following
+to check for its existence:
 
 ```bash
-invenio alembic current
+invenio shell -c "from invenio_db import db; from sqlalchemy import inspect; print('Success!' if inspect(db.engine).has_table('alembic_version') else 'The DB table does not exist')"
 ```
 
-If the command's output is very short and contains no lines of the
-shape `{id} -> {id} ({package_name}) (head), {description}`, that
-means that the `alembic_versions` table either doesn't exist or is
-empty. In this case, create and populate the table with the following
-command:
+**If the command returns `Success` you're fine; skip the rest of this step and continue with the next: [Upgrade invenio-cli](#upgrade-invenio-cli).**
+
+If you get `The DB table does not exist` you must create and/or populate that table before proceeding.
+
+On the server (production instance), run the following command to
+create the `alembic_version` table. This command should
+**only be run now with InvenioRDM v13** (not with InvenioRDM v14).
 
 
 ```bash
@@ -88,10 +100,12 @@ invenio alembic stamp
 
 to create the `alembic_version` table.
 
-NOTE:
-InvenioRDM v13 contained a race condition that could have prevented the `alembic_version` table from being created. [Alembic](https://alembic.sqlalchemy.org/) uses this table to track database schema migrations, and you cannot upgrade to v14 without it.
+NOTE: InvenioRDM v13 contained a race condition that could have
+prevented the `alembic_version` table from being created.
+[Alembic](https://alembic.sqlalchemy.org/) uses this table to track
+database schema migrations, and you cannot upgrade to v14 without it.
 
-On problems please ask for help on our [Discord](https://discord.gg/8qatqBC) server.
+If you encounter issues, please ask for help on our [Discord](https://discord.gg/8qatqBC) server.
 
 ### Upgrade invenio-cli
 
@@ -160,8 +174,9 @@ Run the Alembic migration to update the database schema:
 invenio alembic upgrade
 ```
 
-If this exits with errors, please have a look to the [Troubleshooting](#troubleshooting)
-section or contact us on [Discord](https://discord.gg/8qatqBC).
+If this exits with errors, please have a look to the
+[Troubleshooting](#troubleshooting) section and if you don't find a
+solution there contact us on [Discord](https://discord.gg/8qatqBC).
 
 #### Run the content migration
 
@@ -196,52 +211,15 @@ invenio rdm rebuild-all-indices
 #### Update OAI-PMH percolator mapping and Job Logs Index
 
 
-Percolators and job datastreams are not affected by
-`invenio index destroy && invenio index init`. They have to be updated
-by running the following script in `invenio shell`.
+Percolators and job datastreams need the `invenio index init` step to
+get the new mapping and the new mapping but are not affected by index
+rebuild from the step before. They have to be updated by running the
+following script.
 
 ```bash
-  invenio shell
+curl -LsSf https://raw.githubusercontent.com/inveniosoftware/docs-invenio-rdm/master/docs/releases/v14/migrate_percolator_and_jobs_datastream.py -o /tmp/migrate_percolator_and_jobs_datastream.py
+invenio shell /tmp/migrate_percolator_and_jobs_datastream.py
 ```
-
-Copy-Paste following python code into `invenio shell` and press enter.
-
-
-```python
-from flask import current_app
-from invenio_access.permissions import system_identity
-from invenio_oaiserver.percolator import _build_percolator_index_name
-from invenio_rdm_records.proxies import current_rdm_records
-from invenio_search.proxies import current_search_client
-from invenio_search.utils import build_alias_name
-
-index = current_app.config["OAISERVER_RECORD_INDEX"]
-percolator_index = _build_percolator_index_name(index)
-record_index = build_alias_name(index)
-
-# Fetch the mapping from the "live" index (this will include custom fields)
-record_mapping = current_search_client.indices.get_mapping(index=record_index)
-assert len(record_mapping) == 1
-percolator_mappings = list(record_mapping.values())[0]["mappings"]
-
-# Update the mapping
-current_search_client.indices.put_mapping(
-    index=percolator_index,
-    body=percolator_mappings,
-)
-
-# Reindex all percolator queries from OAISets
-oaipmh_service = current_rdm_records.oaipmh_server_service
-oaipmh_service.rebuild_index(identity=system_identity)
-
-# end of oai-pmh percolator update
-
-# begin of job logs roll over
-
-datastream = build_alias_name("job-logs")
-current_search_client.indices.rollover(alias=datastream)
-```
-
 
 
 ### Update vocabularies
@@ -308,17 +286,47 @@ Due to changes in `invenio-cli, change the following lines:
 
 ### Overridable IDs in the deposit form
 
-If you are not overriding any of these components, you do not need to change anything.
+If you are not overriding any of these components, you do not need to
+change anything, else you will need to change the ID(s) in your
+mapping file to reflect these modifications.
 
 The full list of ID changes [can be found here](https://github.com/inveniosoftware/invenio-rdm-records/pull/2101/files#diff-ff3c479edefad986d2fe6fe7ead575a46b086e3bbcf0ccc86d85efc4a4c63c79).
 
 ### Custom field widget prop names
 
-Many [custom field widgets](../../operate/customize/metadata/custom_fields/widgets.md) used the `icon` and `description` props, which have now been deprecated and replaced with `labelIcon` and `helpText` respectively. The old names are deprecated and will be removed in a future release. Please update to the new names.
+Many [custom field widgets](../../operate/customize/metadata/custom_fields/widgets.md)
+used the `icon` and `description` props, which have now been
+deprecated and replaced with `labelIcon` and `helpText` respectively.
+
+If you have developed React components in your instance, or overridden
+existing UI components, look for any declaration of icon or
+description and change them to:
+
+```Javascript
+import { parametrize } from "react-overridable"
+import { TitlesField } from "@js/invenio_rdm_records"
+
+export const overriddenComponents = {
+  "InvenioRdmRecords.DepositForm.TitlesField": parametrize(
+    TitlesField,
+    {
+        ...
+-      description: "Describe your resource in a few words",
++      helpText: "Describe your resource in a few words",
+        ...
+-      icon: "barcode",
++      labelIcon: "barcode",
+        ...
+    }
+  )
+}
+```
+
+The old names are deprecated and will be removed in a future release.
+Please update to the new names.
+
 
 ### Deprecated GitHub integration
-
-If you are using Github integration, please read this section; otherwise, you can skip it.
 
 The [`invenio-github`](https://github.com/inveniosoftware/invenio-github) module has been deprecated and its support will be removed with InvenioRDM v15. Please use [`invenio-vcs`](https://github.com/inveniosoftware/invenio-vcs) instead.
 
@@ -327,15 +335,13 @@ This is only necessary if your instance was actively using `invenio-github` (wit
 you want to keep the existing data. See also the [documentation on how to configure the new module](../../operate/customize/software_archival.md).
 
 
-## Optional changes
-
 ### Align "Thesis" and "Dissertation" resource types
 
 *Required for upgrade*: **No**.
 
 Your upgrade is complete. This last section describes an **entirely optional** change that is not part of the upgrade. Nothing here affects your instance unless you choose to run it, and you can do so at any later time. Because resource types are a highly visible and commonly customized vocabulary, we suggest rather than impose this change. Decide together with your instance's stakeholders (librarians, curators) whether it fits your data before applying it.
 
-### What changed and why
+#### What changed and why
 
 With InvenioRDM v14, the default resource types "Publication / Thesis" (id `publication-thesis`) and "Publication / Dissertation" (id `publication-dissertation`) were merged into one: "Publication / Thesis" (id `publication-dissertation`). This resource type maps to Datacite's `resourceTypeGeneral` "Dissertation" (`datacite_general: Dissertation` in the InvenioRDM's default resource type YAML file). The separate `publication-thesis` entry is dropped.
 
@@ -343,7 +349,7 @@ InvenioRDM interprets [Datacite's Dissertation](https://datacite-metadata-schema
 
 If you deliberately want to keep both types (for example `publication-dissertation` for PhD work and `publication-thesis` for the rest), or you have customized their DataCite mappings, you may prefer to keep your current setup or apply only part of this change. Skipping this section does not affect your InvenioRDM installation.
 
-### Applying the change
+#### Applying the change
 
 If you decide to go ahead, follow whichever of the two options below matches your instance.
 
@@ -356,7 +362,7 @@ invenio shell -i -- /tmp/migrate_thesis_to_dissertation.py
 
 Always test against a copy of your data first.
 
-#### Option A: adopt the new default `publication-dissertation`
+##### Option A: adopt the new default `publication-dissertation`
 
 Use this if you want to switch your `publication-thesis` records over to the new default `publication-dissertation` resource type, id and all. It rewrites your records and drafts, re-registers their DataCite DOIs, and re-indexes them.
 
@@ -382,7 +388,7 @@ Use this if you want to switch your `publication-thesis` records over to the new
     vocabulary_service.delete(system_identity, ('resourcetypes', 'publication-thesis'))
     ```
 
-#### Option B: keep your resource type, map it to DataCite's "Dissertation"
+##### Option B: keep your resource type, map it to DataCite's "Dissertation"
 
 Use this if you want to keep your own resource type (for example your existing `publication-thesis`, or any custom type) but have its DataCite DOIs use `Dissertation` as a value instead of `Text`. Your records are not changed, only the DataCite metadata of their DOIs is updated.
 
