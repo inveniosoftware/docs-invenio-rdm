@@ -58,6 +58,8 @@ cd my-site/
 # Download the script in a temporary location
 curl -LsSf https://raw.githubusercontent.com/inveniosoftware/docs-invenio-rdm/main/docs/releases/uv_migrate.py -o /tmp/uv_migrate.py
 
+# Adjust "TARGET_PYTHON_VERSION" in the script to your desired Python version
+
 # Run the script using uv
 uv run /tmp/uv_migrate.py
 ```
@@ -102,9 +104,9 @@ name = "my-site-app" # (1)!
 version = "1.0.0" # (2)!
 authors = [{ name = "My Organization" }] # (3)!
 license = "MIT"
-requires-python = ">=3.11"  # is a standin for your version
+requires-python = ">=3.14"  # the value defined by TARGET_PYTHON_VERSION in the
+                            # uv_migrate.py script
 dependencies = [
-    # 13
     "invenio-app-rdm[opensearch2]~=13.0.0",
     "my-site", # (4)!
     # ... other dependencies
@@ -209,11 +211,8 @@ project_name = My Site
 The script writes a `.python-version` file so everyone working on the instance and your CI resolve to the same interpreter. It holds a single line:
 
 ```text title=".python-version"
-3.14
+3.14 # the value defined by TARGET_PYTHON_VERSION in the uv_migrate.py script
 ```
-
-!!! note "This upgrades your instance to Python 3.14"
-    The migration deliberately sets both `requires-python` and `.python-version` to Python 3.14, the version recommended for InvenioRDM v14, instead of carrying over the version from your v13 `Pipfile`. To stay on an older Python for now, edit both values after running the script.
 
 ### Clean up old files 📜
 
@@ -285,7 +284,8 @@ RUN --mount=type=cache,target=/opt/.cache/uv \
 ...
 ```
 
-To use the uv.lock file in the `Dockerfile` it is necessary to run, in your virtual environment
+To use the `uv.lock` file in the `Dockerfile` it is necessary to run following
+command in your virtual environment
 
 ```bash
 invenio-cli packages lock
