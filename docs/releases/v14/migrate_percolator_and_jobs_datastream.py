@@ -11,6 +11,7 @@ from invenio_oaiserver.percolator import _build_percolator_index_name
 from invenio_rdm_records.proxies import current_rdm_records
 from invenio_search.proxies import current_search_client
 from invenio_search.utils import build_alias_name
+from opensearchpy.exceptions import RequestError
 
 
 def update_oai_pmh_percolator():
@@ -39,8 +40,12 @@ def update_oai_pmh_percolator():
 def update_jobs_datastream_index():
     """Update jobs datastream index."""
     datastream = build_alias_name("job-logs")
-    current_search_client.indices.rollover(alias=datastream)
-    secho("jobs datastream rollover was successfull.", fg="green")
+    try:
+        current_search_client.indices.rollover(alias=datastream)
+    except RequestError:
+        secho("No jobs have been used yet — no rollover needed.", fg="yellow")
+    else:
+        secho("Jobs datastream rollover was successfull.", fg="green")
 
 
 def execute_upgrade():
