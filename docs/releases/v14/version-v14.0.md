@@ -272,7 +272,7 @@ Here is a summary of other improvements in this release:
 
 For InvenioRDM v14:
 
-- Python 3.14 is recommended (3.11, 3.12, 3.13 may work).
+- Python 3.14 is required (3.11, 3.12, 3.13 may work).
 - Node.js 24+ is required. This release has been tested with version 26 too.
 - PostgreSQL 12+ is required.
 - OpenSearch v2.12+ is required.

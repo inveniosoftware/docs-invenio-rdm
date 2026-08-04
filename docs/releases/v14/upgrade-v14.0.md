@@ -24,9 +24,12 @@ As always, reach out on [Discord](https://discord.gg/8qatqBC) if you need help! 
 *Required for upgrade*: **No, but recommended**. Please have a look at the
 dedicated [uv-upgrade](../uv-upgrade.md) section.
 
-Note:
-If you don't switch, please have a look if your chosen base Docker image has
-`pipenv` still installed.
+!!! note "If keeping pipenv for now"
+    If you don't switch, make sure your chosen base Docker image has `pipenv`
+    still installed. The default v14 provided ones don't and you will need to
+    add `RUN pip install pipenv` inside your Dockerfile to install it in that
+    case.
+
 
 ## Switch to supported Python version
 
@@ -103,10 +106,11 @@ create the `alembic_version` table. This command should
 invenio alembic stamp
 ```
 
-NOTE: InvenioRDM v13 contained a race condition that could have
-prevented the `alembic_version` table from being created.
-[Alembic](https://alembic.sqlalchemy.org/) uses this table to track
-database schema migrations, and you cannot upgrade to v14 without it.
+!!! info "Why was this necessary"
+    InvenioRDM v13 contained a race condition that could have
+    prevented the `alembic_version` table from being created.
+    [Alembic](https://alembic.sqlalchemy.org/) uses this table to track
+    database schema migrations, and you cannot upgrade to v14 without it.
 
 If you encounter issues, please ask for help on our [Discord](https://discord.gg/8qatqBC) server.
 
