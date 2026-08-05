@@ -52,23 +52,11 @@ Here are the core sequential steps to upgrade to InvenioRDM v14.
 
 In order to proceed with the database migration later on, the
 `alembic_version` table must exist in your database. Run the following
-to check for its existence:
+to ensure it exists:
 
 ```bash
-invenio alembic current
-```
-
-If the command's output is very short and contains no lines of the
-shape `{id} -> {id} ({package_name}) (head), {description}`, that
-means that the `alembic_versions` table either doesn't exist or is
-empty.
-
-On the server (production instance), run the following command to
-create the `alembic_version` table. This command should
-**only be run now with InvenioRDM v13** (not with InvenioRDM v14).
-
-```bash
-invenio alembic stamp
+curl -LsSf https://raw.githubusercontent.com/inveniosoftware/docs-invenio-rdm/master/docs/releases/v14/ensure_alembic_version_table_exists.py -o /tmp/ensure_alembic_version_table_exists.py
+invenio shell /tmp/ensure_alembic_version_table_exists.py
 ```
 
 !!! info "Why was this necessary"
