@@ -27,11 +27,11 @@ def main():
                     context = MigrationContext.configure(connection)
                     all_heads = alembic.script_directory.revision_map._real_heads
                     context.stamp(alembic.script_directory, tuple(all_heads))
-                msg = "Table has been filled"
+                msg = "Everything is fine, the table has been filled"
 
     else:
         create_alembic_version_table()
-        msg = "Table has been created and filled"
+        msg = "Everything is fine, the table has been created and filled"
 
     secho(msg, fg="green")
 
