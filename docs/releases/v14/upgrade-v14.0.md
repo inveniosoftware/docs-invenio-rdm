@@ -4,7 +4,7 @@
 
 This article details the low-level steps to follow to upgrade your InvenioRDM v13 instance to v14.0.
 
-Version 14 introduces a number of default tooling changes (`pipenv` -> `uv`, `npm` -> `pnpm`, ...) and recommends using Python 3.14. Previous tools and Python versions will still work with this release, but this is the last release where we document the upgrade process with the old and new tools. In particular, this is the **last version** where we document usage of `pipenv`. Future releases will only detail the upgrade steps using the new default tools or assuming them (most visibly only `uv`). Don't worry, we point to documentation below that you can follow at your pace (even after upgrade) to switch to those tools.
+Version 14 introduces a number of default tooling changes (`pipenv` -> `uv`, `npm` -> `pnpm`, ...) and recommends using Python 3.14.
 
 As usual, these steps do assume an existing installation of InvenioRDM v13, the previous version.
 If your InvenioRDM installation is older than v13, you must first upgrade to v13 before proceeding
@@ -18,41 +18,6 @@ As always, reach out on [Discord](https://discord.gg/8qatqBC) if you need help! 
 !!! warning "Backup"
 
     Always backup your database, statistics indices and files before you try to perform an upgrade.
-
-## Switch from pipenv to uv
-
-*Required for upgrade*: **No, but recommended**. Please have a look at the
-dedicated [uv-upgrade](../uv-upgrade.md) section.
-
-!!! note "If keeping pipenv for now"
-    If you don't switch, make sure your chosen base Docker image has `pipenv`
-    still installed. The default v14 provided ones don't and you will need to
-    add `RUN pip install pipenv` inside your Dockerfile to install it in that
-    case.
-
-
-## Switch to supported Python version
-
-*Required for upgrade*: **Yes**. Python 3.14 is now the required
-Python version for InvenioRDM v14. Support for lower versions is not
-maintained moving forward.
-
-Please use your preferred package manager to install Python 3.14.
-
-## Switch from npm to pnpm
-
-*Required for upgrade*: **No, but recommended**. The new JavaScript
-dependencies manager `pnpm` makes installations faster and more
-secure.
-
-Please have a look at the dedicated [pnpm-upgrade](../pnpm-upgrade.md) section.
-
-## Switch from webpack to Rspack
-
-*Required for upgrade*: **No, but recommended**. The new assets
-builder drastically reduces installations time.
-
-Please have a look at the dedicated [rspack-upgrade](../rspack-upgrade.md) section.
 
 ## Upgrade to InvenioRDM v14 proper
 
@@ -277,6 +242,44 @@ invenio rdm-records add-to-fixture removalreasons
 *Required for upgrade*: Assess on a case by case basis. Typically optional.
 
 This last section highlights the changes to your configuration or infrastructure that you should assess. Determine if each applies to your instance, and perform the appropriate changes.
+
+### Tool Switching
+
+####  Python
+
+InvenioRDM v14 starts applying the new python support policy
+[RFC](https://github.com/inveniosoftware/rfcs/blob/master/rfcs/rdm-0109-python-versions.md).
+This means for InvenioRDM v14, switching to Python 3.14 is highly recommended.
+
+!!! note "Docker Image"
+
+    The recommended docker-invenio
+    [image](https://github.com/inveniosoftware/docker-invenio/pkgs/container/invenio-debian-rdm-v14)
+    comes with Python 3.14.
+
+#### pipenv to uv
+
+Please have a look at the dedicated [uv-upgrade](../uv-upgrade.md) section.
+
+!!! note "If keeping pipenv for now"
+    If you don't switch, make sure your chosen base Docker image has `pipenv`
+    still installed. The default v14 provided ones don't and you will need to
+    add `RUN pip install pipenv` inside your Dockerfile to install it in that
+    case.
+
+#### npm to pnpm
+
+The new JavaScript dependencies manager `pnpm` makes installations
+faster and more secure.
+
+Please have a look at the dedicated [pnpm-upgrade](../pnpm-upgrade.md) section.
+
+#### webpack to rspack
+
+The new assets builder drastically reduces installations time.
+
+Please have a look at the dedicated [rspack-upgrade](../rspack-upgrade.md) section.
+
 
 ### invenio-cli run --host ... --port ...
 
