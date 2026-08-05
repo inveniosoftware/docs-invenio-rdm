@@ -19,6 +19,62 @@ As always, reach out on [Discord](https://discord.gg/8qatqBC) if you need help! 
 
     Always backup your database, statistics indices and files before you try to perform an upgrade.
 
+## Switch to Python 3.14
+
+*Required for upgrade*: **Yes**. Python 3.14 is now the required Python version for InvenioRDM v14. Support for lower versions is not maintained moving forward. Maybe they work, but there is no guarantee.
+
+If you need to switch, here are the steps:
+
+1. Install Python 3.14 locally
+
+    === "uv"
+
+        ```bash
+        uv python install 3.14
+        ```
+
+    === "pyenv"
+
+        ```bash
+        # With the pyenv tool (https://github.com/pyenv/pyenv)
+        pyenv install 3.14
+        ```
+
+2.  Change the required Python version in `pyproject.toml` if using `uv` or `Pipfile` if still using `pipenv`.
+
+    === "pyproject.toml"
+
+        ```toml
+        # Set this line
+        requires-python = "~=3.14.0"
+        ```
+
+    === "Pipfile"
+
+        ```ini
+        [requires]
+        # Set this line
+        python_version = "3.14"
+        ```
+
+3.  Change the `FROM` line in your Dockerfile to a base image using Python 3.14
+
+    ```Dockerfile
+    FROM <Invenio base image with OS of your choice supporting v14 and running Python 3.14>
+    ```
+
+    At time of writing such image options are:
+
+    - For Debian: `FROM ghcr.io/inveniosoftware/invenio:14-debian`
+
+
+!!! note "InvenioRDM's new Python support policy"
+
+    Starting with v14, InvenioRDM follows a new explicit Python support policy. See the
+    [RFC](https://github.com/inveniosoftware/rfcs/blob/master/rfcs/rdm-0109-python-versions.md)
+    for all the details.
+
+
 ## Upgrade to InvenioRDM v14 proper
 
 *Required for upgrade*: **Yes!** This *is* the main upgrade section afterall.
@@ -233,17 +289,6 @@ This last section highlights the changes to your configuration or infrastructure
 
 ### Tool Switching
 
-####  Python
-
-InvenioRDM v14 starts applying the new python support policy
-[RFC](https://github.com/inveniosoftware/rfcs/blob/master/rfcs/rdm-0109-python-versions.md).
-This means for InvenioRDM v14, switching to Python 3.14 is highly recommended.
-
-!!! note "Docker Image"
-
-    The recommended docker-invenio
-    [image](https://github.com/inveniosoftware/docker-invenio/pkgs/container/invenio-debian-rdm-v14)
-    comes with Python 3.14.
 
 #### pipenv to uv
 
