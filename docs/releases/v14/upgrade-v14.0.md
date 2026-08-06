@@ -1,23 +1,35 @@
-# Upgrading from v13 to v14
+# Upgrade from v13 to v14
 
 ## Background and prerequisites
 
 This article details the low-level steps to follow to upgrade your InvenioRDM v13 instance to v14.0.
 
-Version 14 introduces a number of default tooling changes (`pipenv` -> `uv`, `npm` -> `pnpm`, ...) and recommends using Python 3.14.
+Version 14 introduces a number of default tooling changes (`pipenv` -> `uv`, `npm` -> `pnpm`, ...) and requires using Python 3.14. In particular, this is the **last version** where we document usage of `pipenv`. Future releases will assume usage of `uv` in all documentation. Although using `pipenv` will still work for this version, it will not be actively supported in the next version (at that point it may or may not work).
 
 As usual, these steps do assume an existing installation of InvenioRDM v13, the previous version.
 If your InvenioRDM installation is older than v13, you must first upgrade to v13 before proceeding
 with the steps in this guide. However, it doesn't assume you are necessarily on
 [v13.1](../v13/version-v13.1.0.md). The instructions will work whether you are on v13.0 or v13.1.
 
-The throughline of this document is a sequential series of steps to execute. **Do read** the optional sections as they sometimes indicate changes to apply even if NOT adopting change. We highly recommend running the steps in a local development environment first where experience with the particularities of your instance can be gained without data loss worry. Then we recommend you run the steps into a staging environment mirroring your production deployment and accrue further insight into specificities of your environment (or missing details in these update steps!). Equipped with that knowledge, running the steps on your production environment should be smooth.
+The throughline of this document is a sequential series of steps to execute. We highly recommend running the steps in a local development environment first where experience with the particularities of your instance can be gained without data loss worry. Then we recommend you run the steps into a staging environment mirroring your production deployment and accrue further insight into specificities of your environment (or missing details in these update steps!). Equipped with that knowledge, running the steps on your production environment should be smooth.
 
 As always, reach out on [Discord](https://discord.gg/8qatqBC) if you need help! There are more details in this one, so don't hesitate.
 
 !!! warning "Backup"
 
-    Always backup your database, statistics indices and files before you try to perform an upgrade.
+    Always backup your database, [statistics indices](../../operate/ops/backup_search_indices.md) and files before you try to perform an upgrade.
+
+    If your deposited files are stored in `<venv folder>/var/instance/data`,
+    you should back them up outside this location before you continue. This
+    command checks the location of your deposited files:
+
+
+    ```bash
+    invenio files location list
+    ```
+
+    This is usually only the case in development, as a containerized
+    production deployment will store the deposited files elsewhere.
 
 ## Switch to Python 3.14
 
@@ -60,24 +72,17 @@ If you need to switch, here are the steps:
 3.  Change the `FROM` line in your Dockerfile to a base image using Python 3.14
 
     ```Dockerfile
-    FROM <Invenio base image with OS of your choice supporting v14 and running Python 3.14>
+    # This image also provides all other libraries & tools for InvenioRDM v14
+    FROM ghcr.io/inveniosoftware/invenio:14-debian
     ```
 
-    At time of writing such image options are:
-
-    - For Debian: `FROM ghcr.io/inveniosoftware/invenio:14-debian`
-
-
-!!! note "InvenioRDM's new Python support policy"
-
-    Starting with v14, InvenioRDM follows a new explicit Python support policy. See the
-    [RFC](https://github.com/inveniosoftware/rfcs/blob/master/rfcs/rdm-0109-python-versions.md)
-    for all the details.
+    At time of writing the image above is the only official one, but you may use your own.
+    As long as your image provides Python 3.14 (and the tools you want).
 
 
 ## Upgrade to InvenioRDM v14 proper
 
-*Required for upgrade*: **Yes!** This *is* the main upgrade section afterall.
+*Required for upgrade*: **Yes!** This *is* the main upgrade section.
 
 Here are the core sequential steps to upgrade to InvenioRDM v14.
 
@@ -88,21 +93,6 @@ Here are the core sequential steps to upgrade to InvenioRDM v14.
     - inside the application's virtual environment OR
     - via `pipenv run` or `uv run` in case you are not inside a virtual environment OR
     - environment with executables installed globally
-
-!!! warning "A note on virtual environments and possible data loss"
-
-    If your deposited files are stored in `<venv folder>/var/instance/data`,
-    you should back them up outside this location before you continue. This
-    command checks the location of your deposited files:
-
-
-    ```bash
-    invenio files location list
-    ```
-
-    This is usually only the case in development, as a containerized
-    production deployment will store the deposited files elsewhere.
-
 
 ### Check your database for the `alembic_version` table
 
@@ -287,31 +277,24 @@ invenio rdm-records add-to-fixture removalreasons
 
 This last section highlights the changes to your configuration or infrastructure that you should assess. Determine if each applies to your instance, and perform the appropriate changes.
 
-### Tool Switching
+### Switch tools
 
+#### Switch from pipenv to uv
 
-#### pipenv to uv
+Please have a look at the dedicated [Switch from pipenv to uv](./switch-to-uv.md) page.
 
-Please have a look at the dedicated [uv-upgrade](../uv-upgrade.md) section.
-
-!!! note "If keeping pipenv for now"
-    If you don't switch, make sure your chosen base Docker image has `pipenv`
-    still installed. The default v14 provided ones don't and you will need to
-    add `RUN pip install pipenv` inside your Dockerfile to install it in that
-    case.
-
-#### npm to pnpm
+#### Switch from npm to pnpm
 
 The new JavaScript dependencies manager `pnpm` makes installations
 faster and more secure.
 
-Please have a look at the dedicated [pnpm-upgrade](../pnpm-upgrade.md) section.
+Please have a look at the dedicated [Switch from npm to pnpm](./switch-to-pnpm.md) page.
 
-#### webpack to rspack
+#### Switch from webpack to rspack
 
 The new assets builder drastically reduces installations time.
 
-Please have a look at the dedicated [rspack-upgrade](../rspack-upgrade.md) section.
+Please have a look at the dedicated [Switch from webpack to rspack](./switch-to-rspack.md) page.
 
 
 ### invenio-cli run --host ... --port ...

@@ -1,4 +1,4 @@
-# Switching to pnpm
+# Switch from npm to pnpm
 
 [Pnpm](https://pnpm.io/) is now the recommended tool to manage
 Javascript dependencies in InvenioRDM (don't worry npm still works)

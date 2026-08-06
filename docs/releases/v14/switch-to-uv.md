@@ -1,4 +1,4 @@
-# Overview
+# Switch from pipenv to uv
 
 Migrating from Pipenv to [`uv`](https://docs.astral.sh/uv/) brings significantly faster
 dependency resolution and better alignment with modern Python packaging standards using

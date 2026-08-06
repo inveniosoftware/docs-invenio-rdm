@@ -103,11 +103,16 @@ List of changes:
 
 The modern build toolchain introduced as experimental in v13 is now considered stable and ready for adoption:
 
-- **[uv](https://github.com/astral-sh/uv)** in place of `pipenv` for Python dependency management.
+- **[uv](https://docs.astral.sh/uv/)** in place of `pipenv` for Python dependency management.
 - **[pnpm](https://pnpm.io/)** in place of `npm` for JavaScript dependency management, with faster installs and a disk-efficient content-addressable store.
 - **[Rspack](https://www.rspack.dev/)** in place of `webpack` for asset bundling, with Rust-based builds that are much faster and drop-in compatible with the existing Invenio asset pipeline.
 
 Each tool is opt-in independently. See the [upgrade guide](./upgrade-v14.0.md) for how to enable each of them.
+
+Python 3.14 also becomes the required Python version. Starting with v14, InvenioRDM follows a new explicit Python support policy.
+Each InvenioRDM major version will have an official anointed Python version guaranteed to work that establishes a modern baseline to develop against.
+The same version will typically be kept for a few major versions.
+See the [RFC](https://github.com/inveniosoftware/rfcs/blob/master/rfcs/rdm-0109-python-versions.md) for all the details.
 
 ### OAuth improvements
 
@@ -204,7 +209,7 @@ You can now attach files directly to a comment, with attachments displayed benea
 
 ![A submitted comment showing an attached file below the comment text](imgs/attached-file-comment.png){: .screenshot}
 
-### Software archival (from GitHub, GitLab, etc.)
+### Software archiving (from GitHub, GitLab, etc.)
 
 Software releases can now be archived not only from GitHub, but also from other code forges such as GitLab and GitHub Enterprise.
 The new [`invenio-vcs`](https://github.com/inveniosoftware/invenio-vcs/) module replaces the existing `invenio-github` module with a nearly identical end-user experience while adding support for a generic code forge interface.
@@ -272,9 +277,9 @@ Here is a summary of other improvements in this release:
 
 For InvenioRDM v14:
 
-- Python 3.14 is required (3.11, 3.12, 3.13 may work).
+- Python 3.14 is required (3.11, 3.12, 3.13 may happen to work, but there is no guarantee).
 - Node.js 24+ is required. This release has been tested with version 26 too.
-- PostgreSQL 12+ is required.
+- PostgreSQL 15+ is required.
 - OpenSearch v2.12+ is required.
 
 ## Upgrading to v14
@@ -283,7 +288,7 @@ Detailed instructions on how to upgrade from v13 to v14 are in the [v14 upgrade 
 
 ## Questions?
 
-If you have questions related to these release notes, don't hesitate to jump on [discord](https://discord.gg/8qatqBC) and ask us!
+If you have questions related to these release notes, don't hesitate to jump on [Discord](https://discord.gg/8qatqBC) and ask us!
 
 ## Credit
 
