@@ -131,16 +131,16 @@ Change the version of `invenio-app-rdm` to 14.0 in `<my-site>/pyproject.toml` if
 
     ```diff
     dependencies = [
-    ---    invenio-app-rdm[opensearch2]~=13.0.0",
-    +++    invenio-app-rdm[opensearch2]~=14.0.0",
+    -    "invenio-app-rdm[opensearch2]~=13.0.0",
+    +    "invenio-app-rdm[opensearch2]~=14.0.0",
     ```
 
 === "Pipfile"
 
     ```diff
     [packages]
-    ---invenio-app-rdm = {extras = [...], version = "~=13.0.0"}
-    +++invenio-app-rdm = {extras = [...], version = "~=14.0.0"}
+    -invenio-app-rdm = {extras = [opensearch2], version = "~=13.0.0"}
+    +invenio-app-rdm = {extras = [opensearch2], version = "~=14.0.0"}
     ```
 
 ### Install InvenioRDM v14:
@@ -229,10 +229,9 @@ invenio rdm rebuild-all-indices
 #### Update OAI-PMH percolator mapping and Job Logs Index
 
 
-Percolators and job datastreams need the `invenio index init` step to
-get the new mapping and the new mapping but are not affected by index
-rebuild from the step before. They have to be updated by running the
-following script.
+Percolators and job datastreams get their new mapping from the `invenio
+index init` step, but are not affected by the index rebuild from the step
+before. They have to be updated by running the following script.
 
 ```bash
 curl -LsSf https://raw.githubusercontent.com/inveniosoftware/docs-invenio-rdm/master/docs/releases/v14/migrate_percolator_and_jobs_datastream.py -o /tmp/migrate_percolator_and_jobs_datastream.py
@@ -260,7 +259,7 @@ In order to update these in your repository, you'll need for each vocabulary to:
 
 2.  If you've customized the vocabulary for your instance, you will need to merge changes from the [source files in invenio-rdm-records](https://github.com/inveniosoftware/invenio-rdm-records/tree/master/invenio_rdm_records/fixtures/data/vocabularies) into the custom vocabulary file in your instance according to what you and/or your stakeholders think makes sense in your context. If you have not customized the vocabulary, you are probably fine with adopting the changes, but you can always double-check what those are and decide if you adopt them.
 
-3.  If you've decided to adopt the changes (and have merged the changes per step 2.), run the vocabulary update command: `invenio rdm-records add-to-fixture <vocabulary fixture>`. For example: `invenio rdm-records add-to-fixture datetypes`/
+3.  If you've decided to adopt the changes (and have merged the changes per step 2.), run the vocabulary update command: `invenio rdm-records add-to-fixture <vocabulary fixture>`. For example: `invenio rdm-records add-to-fixture datetypes`.
 
 If you plan on adopting all those, you can run all the `add-to-fixture` commands:
 
