@@ -1,6 +1,6 @@
 # InvenioRDM v14.0
 
-_2026-07-XX_
+_2026-08-07_
 
 Here are the release notes for InvenioRDM v14.0, the open-source
 repository platform for research data management, institutional repositories,
