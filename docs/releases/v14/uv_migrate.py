@@ -30,6 +30,11 @@ import tomllib
 # explicitly rather than carrying over the version from the v13 Pipfile.
 TARGET_PYTHON_VERSION = "3.14"
 
+# The v13 `tests` extra pins pytest-invenio 2.x, which pulls a pytest that does not run on
+# Python 3.14. uv installs the dev group by default, so carrying the old pin over breaks the
+# test suite of every migrated instance.
+TARGET_PYTEST_INVENIO = "pytest-invenio>=4.0.0,<5.0.0"
+
 
 @dataclass
 class ProjectConfig:
@@ -354,6 +359,23 @@ def convert_pipfile_to_pyproject(config: ProjectConfig) -> str:
         dev_dependencies = [
             dep for dep in dev_dependencies if not dep.startswith("check-manifest")
         ]
+        for i, dep in enumerate(dev_dependencies):
+            if (
+                dep.split("[")[0]
+                .split("=")[0]
+                .split("<")[0]
+                .split(">")[0]
+                .split("!")[0]
+                .split("~")[0]
+                .strip()
+                == "pytest-invenio"
+                and dep != TARGET_PYTEST_INVENIO
+            ):
+                click.secho(
+                    f"  ℹ️ Bumped '{dep}' to '{TARGET_PYTEST_INVENIO}' (required by InvenioRDM v14)",
+                    fg="blue",
+                )
+                dev_dependencies[i] = TARGET_PYTEST_INVENIO
 
     pyproject_data = {
         "project": {

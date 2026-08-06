@@ -120,7 +120,7 @@ members = ["site"]
 
 [dependency-groups] # (7)!
 dev = [
-    "pytest-invenio>=3.0.0,<4.0.0",
+    "pytest-invenio>=4.0.0,<5.0.0", # (8)!
     # ... other dev dependencies
 ]
 ```
@@ -132,6 +132,7 @@ dev = [
 5. Defines where uv should find local packages (including workspace members)
 6. Declares this is a workspace project with "site" as a member package
 7. Replaces Pipfile's `[dev-packages]` - groups dependencies by their purpose
+8. v14 needs `pytest-invenio` 4.x. The script bumps the pin it copies from `site/setup.cfg`.
 
 ??? info "Understanding uv Workspaces"
 
@@ -154,7 +155,7 @@ name = my-site
 
 [options.extras_require]
 tests =
-    pytest-invenio>=3.0.0,<4.0.0
+    pytest-invenio>=2.1.0,<3.0.0
     # ...other test dependencies
 
 [options.entry_points]
