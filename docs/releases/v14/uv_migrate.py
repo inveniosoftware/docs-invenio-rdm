@@ -591,12 +591,7 @@ def cleanup_old_files(root_dir: Path) -> None:
     "--project-name",
     help="Name for the project (auto-detected from '.invenio' project_shortname if not provided)",
 )
-@click.option(
-    "--cleanup",
-    is_flag=True,
-    help="Remove old files (Pipfile, setup.cfg, etc.) after migration",
-)
-def main(root_dir: Path, project_name: Optional[str], cleanup: bool):
+def main(root_dir: Path, project_name: Optional[str]):
     """Migrate from Pipenv to uv."""
     site_dir = root_dir / "site"
 
@@ -703,15 +698,7 @@ def main(root_dir: Path, project_name: Optional[str], cleanup: bool):
         update_invenio_config(project_config)
         write_python_version(root_dir, python_version)
 
-        if cleanup:
-            cleanup_old_files(root_dir)
-        else:
-            click.secho(
-                "ℹ️ Old files (Pipfile, setup.cfg, etc.) were not removed", fg="yellow"
-            )
-            click.secho(
-                "   Run again with --cleanup to remove them after testing", fg="yellow"
-            )
+        cleanup_old_files(root_dir)
 
         click.secho("\n✅ Migration completed successfully!", fg="green", bold=True)
         click.secho("\nNext steps:", fg="cyan", bold=True)
