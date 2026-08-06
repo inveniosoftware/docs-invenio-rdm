@@ -1,4 +1,4 @@
-# Switching to rspack
+# Switch from webpack to rspack
 
 Can be skipped without performing any change if not switching.
 
