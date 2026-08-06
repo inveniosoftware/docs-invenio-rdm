@@ -39,7 +39,7 @@ by a 📜 icon:
 - "Clean up old files"
 
 The script assumes a "standard" InvenioRDM bootstrapped project structure (e.g. it reads
-from the `.invenio` file to auto-detect the project name, Python version, and author
+from the `.invenio` file to auto-detect the project name and author
 info), so you may come across issues if your project structure and configuration has
 deviated significantly. In any case, the script is just a starting point, and you will
 still need to manually verify and adjust the following:
@@ -57,8 +57,6 @@ cd my-site/
 
 # Download the script in a temporary location
 curl -LsSf https://raw.githubusercontent.com/inveniosoftware/docs-invenio-rdm/master/docs/releases/v14/uv_migrate.py -o /tmp/uv_migrate.py
-
-# Adjust "TARGET_PYTHON_VERSION" in the script to your desired Python version
 
 # Run the script using uv
 uv run /tmp/uv_migrate.py
@@ -104,8 +102,7 @@ name = "my-site-app" # (1)!
 version = "1.0.0" # (2)!
 authors = [{ name = "My Organization" }] # (3)!
 license = "MIT"
-requires-python = ">=3.14"  # the value defined by TARGET_PYTHON_VERSION in the
-                            # uv_migrate.py script
+requires-python = "~=3.14.0"
 dependencies = [
     "invenio-app-rdm[opensearch2]~=13.0.0",
     "my-site", # (4)!
@@ -212,7 +209,7 @@ project_name = My Site
 The script writes a `.python-version` file so everyone working on the instance and your CI resolve to the same interpreter. It holds a single line:
 
 ```text title=".python-version"
-3.14 # the value defined by TARGET_PYTHON_VERSION in the uv_migrate.py script
+3.14
 ```
 
 ### Clean up old files 📜
