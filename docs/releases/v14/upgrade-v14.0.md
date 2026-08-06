@@ -146,9 +146,21 @@ Change the version of `invenio-app-rdm` to 14.0 in `<my-site>/pyproject.toml` if
 ### Install InvenioRDM v14:
 
 
-```bash
-invenio-cli install
-```
+=== "uv"
+
+    ```bash
+    invenio-cli install
+    ```
+
+=== "pipenv"
+
+    `invenio-cli install` reuses the existing virtualenv and `Pipfile.lock`, so recreate both:
+
+    ```bash
+    pipenv --rm
+    invenio-cli packages lock
+    invenio-cli install
+    ```
 
 ### Update database schemas and content
 
@@ -269,7 +281,6 @@ invenio rdm-records add-to-fixture removalreasons
     The `resourcetypes` vocabulary was also subject to another cleanup operation upstream that removed an entry from it.
     The commands above only add or update entries. Steps to follow to replicate this removal in your instance can be
     found in the [section about aligning "thesis" and "dissertation" resource types](#align-thesis-and-dissertation-resource-types) below.
-
 
 ## Update your configuration or infrastructure
 
