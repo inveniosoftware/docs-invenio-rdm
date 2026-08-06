@@ -220,8 +220,8 @@ The script writes a `.python-version` file so everyone working on the instance a
 Remove any old files, including a stale `*.egg-info` directory under `site/` (a leftover from the old setuptools build can shadow your new entry points):
 
 ```bash
-rm Pipfile Pipfile.lock site/setup.cfg site/setup.py site/MANIFEST.in
-rm -rf site/*.egg-info
+rm -f Pipfile Pipfile.lock site/setup.cfg site/setup.py site/MANIFEST.in
+find site -maxdepth 1 -name '*.egg-info' -exec rm -rf {} +
 ```
 
 ### Update Dockerfile
