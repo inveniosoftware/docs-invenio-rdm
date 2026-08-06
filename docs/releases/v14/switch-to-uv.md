@@ -56,7 +56,7 @@ To run the script follow these steps:
 cd my-site/
 
 # Download the script in a temporary location
-curl -LsSf https://raw.githubusercontent.com/inveniosoftware/docs-invenio-rdm/main/docs/releases/uv_migrate.py -o /tmp/uv_migrate.py
+curl -LsSf https://raw.githubusercontent.com/inveniosoftware/docs-invenio-rdm/master/docs/releases/v14/uv_migrate.py -o /tmp/uv_migrate.py
 
 # Adjust "TARGET_PYTHON_VERSION" in the script to your desired Python version
 
