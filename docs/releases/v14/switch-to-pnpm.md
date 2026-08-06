@@ -4,8 +4,7 @@
 Javascript dependencies in InvenioRDM (don't worry npm still works)
 because it is much faster, [has better protection against supply chain
 attacks](https://pnpm.io/supply-chain-security), and has good
-community support. If you have it installed, `invenio-cli` and lower
-level `invenio` commands will use it under the hood (if installed).
+community support.
 
 1.  Locally, install [pnpm](https://pnpm.io/installation) version 11 (working version at time of writing).
 
@@ -13,11 +12,9 @@ level `invenio` commands will use it under the hood (if installed).
 
     ```ini
     [cli]
-    # set this line or remove it altogether
+    # set this line
     javascript_package_manager = pnpm
     ```
-
-    You could remove the line altogether since pnpm is the new default if that line is not present.
 
 3.  In your `invenio.cfg`, set:
 
