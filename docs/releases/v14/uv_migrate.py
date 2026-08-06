@@ -383,7 +383,7 @@ def convert_pipfile_to_pyproject(config: ProjectConfig) -> str:
             "version": "1.0.0",
             "authors": [{"name": config.author_name, "email": config.author_email}],
             "license": "MIT",
-            "requires-python": f">={TARGET_PYTHON_VERSION}",
+            "requires-python": f"~={TARGET_PYTHON_VERSION}.0",
             "dependencies": dependencies,
         }
     }
