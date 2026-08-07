@@ -95,7 +95,7 @@ List of changes:
 
 - The existing resource types "Publication / Thesis" (id `publication-thesis`) and "Publication / Dissertation" (id `publication-dissertation`) were merged into the former, which has been mapped to the resource type `Dissertation` in DataCite. Migrating your existing records to this change is entirely optional; see [aligning the "Thesis" and "Dissertation" resource types](./upgrade-v14.0.md#align-thesis-and-dissertation-resource-types) in the upgrade guide.
 - Added `Poster`, `Presentation`, and `Study Registration` to the depositable default resource types. Added `Project` and `Instrument` to the linkable default resource types.
-- Added `IsTranslationOf`, `HasTranslation`, `IsCollectedBy`, `Collects`, and `Other` to the default relation types . Added the new contributor type `Translator` and the new date type `Coverage` to their respective default vocabularies.
+- Added `IsTranslationOf`, `HasTranslation`, `IsCollectedBy`, `Collects`, and `Other` to the default relation types. Added the new contributor type `Translator` and the new date type `Coverage` to their respective default vocabularies.
 - Added `CSTR` (Science and Technology Resource Identifier) and `RRID` (Research Resource Identifier) as identifiable related identifiers.
 - When minting DataCite DOIs, renamed the `identifiers` field to `alternateIdentifiers` and moved the `doi` identifier to its own field.
 
@@ -161,7 +161,7 @@ facets](../../operate/customize/search.md#configure-date-range-facets).
 
 ### Record deletion
 
-You can now configure InvenioRDM to allow users to delete, or request deletion of, their own published records in accordance with any policy or criteria you may have. When enabled, the default behavior is that records can be deleted within 30 days of publication. After, the deletion can be requested to repository's administrators. Deletion requests are visible within the administration panel and the user's request dashboard.
+You can now configure InvenioRDM to allow users to delete, or request deletion of, their own published records in accordance with any policy or criteria you may have. When enabled, the default behavior is that records can be deleted within 30 days of publication. After, the deletion can be requested to the repository's administrators. Deletion requests are visible within the administration panel and the user's request dashboard.
 
 ![Modal to immediately delete a record](imgs/deletion-modal.png){: .screenshot}
 /// caption
@@ -309,13 +309,11 @@ The development of this release wouldn't have been possible without the help of 
 - Eric Newman
 - Esteban J. G. Gabancho
 - Fatimah Zulfiqar
-- gressho
 - Guillaume Viger
 - Hrafn Malmquist
 - Ian Scott
 - Jacob Collins
-- Jakob
-- jakob miesner
+- Jakob Miesner
 - Javier Romero Castro
 - Jorge Marco
 - Julie Hinge
@@ -329,9 +327,7 @@ The development of this release wouldn't have been possible without the help of 
 - Maximilian Moser
 - Miroslav Bauer
 - Miroslav Simek
-- mkloeppe
-- Mohammed Taha Khan
-- Nicola
+- Nicola Tarocco
 - Oliver Geneser
 - Ondřej Ruml
 - Orkun BALCI
