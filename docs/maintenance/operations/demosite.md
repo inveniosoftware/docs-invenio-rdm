@@ -9,7 +9,7 @@ Both QA and production infrastructure (OpenShift) projects are located on
 [https://paas.cern.ch](https://paas.cern.ch):
 
 * [inveniordm-qa](https://paas.cern.ch/console/project/inveniordm-qa/)
-* [inveniordm](https://paas.cern.ch/console/project/inveniordm/)
+* [inveniordm-prod](https://paas.cern.ch/console/project/inveniordm-prod/)
 * [Sentry Error tracking](https://inveniordm-sentry.web.cern.ch/sentry/demo-inveniordm). The QA environment tracks the errors of inveniordm-qa and the Prod environment those of the inveniordm site.
 
 The steps to upgrade any of the two instances to a newer version or release are the same.
@@ -21,20 +21,12 @@ For example, if transitioning from InvenioRDM v6 to v7, then you would follow th
 
 Code is on GitHub: [demo-inveniordm](https://github.com/inveniosoftware/demo-inveniordm).
 
-!!! warning
-    To generate the lock file, **you need to have the same Python version as the Dockerfile one on your machine**.
-    No other versions will work. Other Python version might install some Python packages that are not compatible.
-
 1. Clone and make a local install of the code
    ```
    cd ~/src
    git clone https://github.com/inveniosoftware/demo-inveniordm.git
-   cd demo-inveniordm/demo-inveniordm
-   # Create .invenio.private
-   export cwd=`pwd`
-   echo "[cli]\nproject_dir = ${cwd}\ninstance_path = ${cwd}\nservices_setup = False" >> .invenio.private
+   cd demo-inveniordm
    invenio-cli install
-   invenio-cli packages update 7.0.0
    ```
 
 2. Create a PR with the needed changes. If you change Python dependencies, make sure that you also add the
@@ -70,8 +62,12 @@ oc get pods
 oc exec web-18-wlbqs /bin/bash -c
 ```
 - Then you need to wipe and re-create the content. All the `invenio` commands needed
-are available in the `wipe-recreate.sh` script. You just need to run it. In case you
+are available in the `wipe_recreate.sh` script. You just need to run it. In case you
 need to cross-check anything (e.g. assets creation) the instance path is `/opt/invenio/var/instance/`.
+
+The script loads the vocabularies eagerly, which is the slow part of the run and
+takes around 10 minutes. It queues the demo records instead, and the worker
+creates them afterwards, so search stays empty for a while.
 
 **3. Upgrade the production site**
 
@@ -83,27 +79,25 @@ Create a new release commit and tag for the latest version in the
 
 !!! note
     The tags naming convention follow the numeration of the `invenio-app-rdm` package. For example, if you're
-    deploying `invenio-app-rdm==0.25.9`, then the new release tag of the demo site will be `v0.25.9`.
+    deploying `invenio-app-rdm==14.0.0`, then the new release tag of the demo site will be `v14.0.0`.
 
 ```console
-git commit --allow-empty -m "release: v0.25.9"
-git tag v0.25.9
-git push origin v0.25.9
+git commit --allow-empty -m "release: v14.0.0"
+git tag v14.0.0
+git push origin v14.0.0
 ```
 
-This will trigger a new docker image build, that will be pushed to the GitHub Docker registry with tag `0.25.9`.
+This will trigger a new docker image build, that will be pushed to the GitHub Docker registry with tag `14.0.0`.
 
 Once the GitHub action succeeds and the Docker image is ready to be deployed, you need to update
-the references to the images' tags on the OpenShift project.
-The easiest way to do it is manually on the web UI. For that go to the
-[inveniordm](https://paas.cern.ch/console/project/inveniordm/) project on OpenShift, then
-*Applications -> Deployment -> Web -> Edit YAML*.
+the references to the images' tags on the OpenShift project:
 
-![Access web pods on OpenShift web UI](img/change_tag_1.png)
-
-![Edit web pods yaml on OpenShift web UI](img/change_tag_2.png)
-
-The image tag needs to be changed also for the `worker` pods.
-*Applications -> Deployment -> Worker -> Edit YAML*.
+```console
+oc project inveniordm-prod
+IMG=ghcr.io/inveniosoftware/demo-inveniordm/demo-inveniordm:14.0.0
+oc set image dc/web web=$IMG
+oc set image dc/worker worker=$IMG
+oc set image dc/worker-beat worker-beat=$IMG worker-beat-jobs-scheduler=$IMG
+```
 
 Finally, repeat step 2 to re-create the data on the production site.
