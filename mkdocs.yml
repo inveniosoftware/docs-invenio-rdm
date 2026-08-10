@@ -35,6 +35,7 @@ theme:
   favicon: "images/favicon.svg"
   features:
     - navigation.tabs
+    - navigation.tabs.sticky
     - navigation.footer
     - content.code.copy
     - content.code.annotate
