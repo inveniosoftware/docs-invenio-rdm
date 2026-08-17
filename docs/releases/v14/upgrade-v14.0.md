@@ -307,7 +307,7 @@ The new assets builder drastically reduces installations time.
 Please have a look at the dedicated [Switch from webpack to rspack](./switch-to-rspack.md) page.
 
 
-### invenio-cli run --host ... --port ...
+### invenio-cli run --host ... --port ... / invenio-cli containers start
 
 `invenio-cli run` no longer overrides `SITE_API_URL` and `SITE_UI_URL`. Passing
 `--host` and `--port` only defines the port and host the development server is
@@ -322,6 +322,10 @@ for your non-containerized development environment:
 -SITE_API_URL = "https://127.0.0.1/api"
 +SITE_API_URL = "https://127.0.0.1:5000/api"
 ```
+
+Consequently, to match your non-local setup, set `INVENIO_SITE_UI_URL` and `INVENIO_SITE_API_URL` in
+`docker-services.yml` (for `app`) or your custom environment setup.
+
 
 ### Overridable IDs in the deposit form
 
