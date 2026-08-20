@@ -101,7 +101,7 @@ In order to proceed with the database migration later on, the
 to ensure it exists:
 
 ```bash
-curl -LsSf https://raw.githubusercontent.com/inveniosoftware/docs-invenio-rdm/master/docs/releases/v14/ensure_alembic_version_table_exists.py -o /tmp/ensure_alembic_version_table_exists.py
+wget -nv https://raw.githubusercontent.com/inveniosoftware/docs-invenio-rdm/master/docs/releases/v14/ensure_alembic_version_table_exists.py -O /tmp/ensure_alembic_version_table_exists.py
 invenio shell /tmp/ensure_alembic_version_table_exists.py
 ```
 
@@ -234,7 +234,7 @@ index init` step, but are not affected by the index rebuild from the step
 before. They have to be updated by running the following script.
 
 ```bash
-curl -LsSf https://raw.githubusercontent.com/inveniosoftware/docs-invenio-rdm/master/docs/releases/v14/migrate_percolator_and_jobs_datastream.py -o /tmp/migrate_percolator_and_jobs_datastream.py
+wget -nv https://raw.githubusercontent.com/inveniosoftware/docs-invenio-rdm/master/docs/releases/v14/migrate_percolator_and_jobs_datastream.py -O /tmp/migrate_percolator_and_jobs_datastream.py
 invenio shell /tmp/migrate_percolator_and_jobs_datastream.py
 ```
 
@@ -395,7 +395,7 @@ If you decide to go ahead, follow whichever of the two options below matches you
 Both rely on the [`migrate_thesis_to_dissertation.py`](./migrate_thesis_to_dissertation.py) helper. This is a set of **reference functions**, not a ready-to-run tool: read it, and copy or adapt the parts that fit your case. One convenient way to use it as-is is to download it and load its functions into an `invenio shell`:
 
 ```bash
-curl -LsSf https://raw.githubusercontent.com/inveniosoftware/docs-invenio-rdm/master/docs/releases/v14/migrate_thesis_to_dissertation.py -o /tmp/migrate_thesis_to_dissertation.py
+wget -nv https://raw.githubusercontent.com/inveniosoftware/docs-invenio-rdm/master/docs/releases/v14/migrate_thesis_to_dissertation.py -O /tmp/migrate_thesis_to_dissertation.py
 invenio shell -i -- /tmp/migrate_thesis_to_dissertation.py
 ```
 
@@ -445,6 +445,24 @@ Use this if you want to keep your own resource type (for example your existing `
 
 
 ## Troubleshooting
+
+### `uv` cache permission errors
+
+If a `uv` command fails with a permission error for its cache directory, the
+configured cache may not be writable by the user running the command. For
+example:
+
+```console
+$ uv python find
+error: Failed to initialize cache at `/.cache/uv`
+  Caused by: failed to create directory `/.cache/uv`: Permission denied (os error 13)
+```
+
+Set a writable temporary cache directory and retry the command:
+
+```bash
+export UV_CACHE_DIR=/tmp/uv-cache
+```
 
 ### Invenio alembic upgrade could cause problems
 
