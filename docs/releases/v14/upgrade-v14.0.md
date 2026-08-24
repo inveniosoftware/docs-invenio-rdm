@@ -504,3 +504,22 @@ export UV_CACHE_DIR=/tmp/uv-cache
 
     ⚠️ Be careful to only clean up the *leftover data*, though!
     If you are unsure which entries *are* the leftovers, feel free to ask for help in the Discord server.
+
+### Issues due to Role.id not equal to Role.name
+
+If you encounter issues with your custom code (e.g., relied on `RoleNeed` holding the `Role.name` as its value, but it now holds `Role.id`),
+then you should run the following script to set `Role.id` to `Role.name` for all your `Role`s (make sure you have invenio-app-rdm 14.0.1
+installed beforehand):
+
+
+=== "uv"
+
+    ```bash
+    invenio shell $(find $(dirname $(dirname $(uv python find)))/lib/*/site-packages/invenio_app_rdm -name migrate_role_ids_to_names.py)
+    ```
+
+=== "pipenv"
+
+    ```bash
+    invenio shell $(find $(pipenv --venv)/lib/*/site-packages/invenio_app_rdm -name migrate_role_ids_to_names.py)
+    ```

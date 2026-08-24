@@ -272,6 +272,7 @@ Here is a summary of other improvements in this release:
     - serializer=DataCite45JSONSerializer(schema_context={"is_parent": True})
     + serializer=DataCite45JSONSerializer(is_parent=True)
     ```
+- `RoleNeed`s use a `Role`'s `id` instead of `name` as their value. Apriori, `id` and `name` are the same: for a number of releases now, the CLI has been creating new `Role`s this way and it is now programmatically enforced as well. However, if you have created `Role`s a fair amount of time ago (or through programmatic means before the change), they may not have their `id` and `name` equal and code relying on a `RoleNeed`'s value being a `Role.name` will now fail. Use the [data migration script](./upgrade-v14.0.md#issues-due-to-roleid-not-equal-to-rolename) in the Troubleshooting section of the upgrade notes to remedy this situation.
 
 ## Requirements
 
