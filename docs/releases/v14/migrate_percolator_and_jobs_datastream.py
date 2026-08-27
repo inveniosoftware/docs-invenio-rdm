@@ -39,7 +39,7 @@ def update_oai_pmh_percolator():
     # Reindex all percolator queries from OAISets
     oaipmh_service = current_rdm_records.oaipmh_server_service
     oaipmh_service.rebuild_index(identity=system_identity)
-    secho("updating oai-pmh percolator mapping was successfull.", fg="green")
+    secho("updating oai-pmh percolator mapping was successful.", fg="green")
 
 
 def update_jobs_datastream_index():
@@ -50,7 +50,7 @@ def update_jobs_datastream_index():
     except RequestError:
         secho("No jobs have been used yet — no rollover needed.", fg="yellow")
     else:
-        secho("Jobs datastream rollover was successfull.", fg="green")
+        secho("Jobs datastream rollover was successful.", fg="green")
 
 
 def execute_upgrade():
