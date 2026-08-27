@@ -11,23 +11,38 @@ module(s) you want to work on.
 ### Install
 
 Once you got the source code, create a Python virtual environment and make an
-editable install of the Python package:
+editable install of the Python package. We recommend using ``uv``, but you can
+also use ``pip``:
 
-!!! note
+To install optional dependency sets, add each extra declared by the
+package separately. For example:
 
-    ``mkvirtualenv`` is a tool provided by virtualenv-wrapper to manage Python
-    virtualenvs. See [Python virtual environments](../../reference/virtualenvs.md)
+=== "uv"
 
-```bash
-cd ~/src/invenio-app-rdm
-mkvirtualenv app-rdm
-# opensearch2 only needed for certain modules
-pip install -e ".[tests,opensearch2]"
-```
+    ```bash
+    cd ~/src/invenio-app-rdm
+    # opensearch2 only needed for certain modules
+    uv sync --extra tests --extra opensearch2
+    # or, if you are used to the pip way:
+    uv pip install -e ".[tests,opensearch2]"
+    ```
 
-For each module, you'll have to check what is the precise list of extras
-you need to add (the ``tests,opensearch2``). If you don't add them,
-you won't have all the tools needed for testing.
+=== "pip"
+
+    ```bash
+    cd ~/src/invenio-app-rdm
+    mkvirtualenv app-rdm
+    # opensearch2 only needed for certain modules
+    pip install -e ".[tests,opensearch2]"
+    ```
+
+    See [Python virtual environments](../../reference/virtualenvs.md) for more
+    information about virtual environments.
+
+For each package, check which extras it declares and install only those you
+need. For example, ``tests`` is commonly needed for testing, while
+``opensearch2`` is needed only by packages that support OpenSearch 2. An extra
+that is not declared by a package cannot be passed to ``uv sync``.
 
 ### Run tests
 
@@ -56,14 +71,26 @@ you could be adding a cross-cutting feature to ``invenio-communities`` and
 ``invenio-requests`` at the same time, the installation is almost identical
 to a single module:
 
-First make sure you have the source code of both modules. Next, simply do
-editable installs of both:
+First make sure you have the source code of both modules. Next, create one
+virtual environment and install both packages in editable mode:
 
-```bash
-mkvirtualenv communities
-pip install -e "~/src/invenio-communities[tests,opensearch2]" \
-    -e "~/src/invenio-requests[tests,elasticsearch7]"
-```
+For independent packages, use ``uv pip`` to install them into one environment.
+``uv sync`` is scoped to its current project (or a configured uv workspace).
+
+=== "uv"
+
+    ```bash
+    uv pip install -e "~/src/invenio-communities[tests,opensearch2]" \
+        -e "~/src/invenio-requests[tests,elasticsearch7]"
+    ```
+
+=== "pip"
+
+    ```bash
+    mkvirtualenv communities
+    pip install -e "~/src/invenio-communities[tests,opensearch2]" \
+        -e "~/src/invenio-requests[tests,elasticsearch7]"
+    ```
 
 ### Application integration
 
