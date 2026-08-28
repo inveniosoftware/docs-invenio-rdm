@@ -13,31 +13,29 @@ Sign up for a free Open Source Transifex account at <https://explore.transifex.c
 
 For more details, check out the [Transifex Getting Started Guide](https://help.transifex.com/en/articles/6248698-getting-started-as-a-translator).
 
-## Step 2 - Join the inveniosoftware team
+## Step 2 - Submit your Transifex join request
 
-!!! Danger "Required Discord introduction"
-    To process language and team-join requests, first introduce yourself in [Discord translations channel](https://discord.gg/Ya7qSG43Br) and include your Transifex username, target language(s), and the organization you represent.
-    Requests that do not include this information are not reviewed.
+Before introducing yourself on Discord, make sure that you are signed in to Transifex and have submitted the relevant request. This allows the team to find and approve your pending request.
 
-
-1. **Introduce yourself on Discord first**
-
-    Post your Transifex username, target language(s), **and the organization you work with** in [Discord `#rdm-translations`](https://discord.gg/Ya7qSG43Br). A member of the team will confirm they can vouch for you.
-
-2. Ask to join the inveniosoftware team: <https://explore.transifex.com/inveniosoftware/invenio/>.
-
-    Your request will be accepted once the Discord step above is complete.
+1. Go to the [inveniosoftware Invenio project on Transifex](https://explore.transifex.com/inveniosoftware/invenio/).
+2. Check the existing [languages](https://app.transifex.com/inveniosoftware/invenio/languages/).
+3. Submit the relevant request:
+    - **If your desired language is not on the list**, click **Request language** and search for the language you need.
+      ![transifex request language](img/transifex-request-language.png)
+    - **If your desired language already exists**, choose the language and click [Join team](https://help.transifex.com/en/articles/6248698-getting-started-as-a-translator#h_48ba92e523).
+4. In your Transifex request, include:
+    - your target language(s).
+    - whether you would like to join as a **translator** or a **reviewer**.
 
 For more details, check out the [“Joining a translation team” section](https://help.transifex.com/en/articles/6248698-getting-started-as-a-translator#h_48ba92e523) of the Transifex guide.
 
-## Step 3 - Find your language
+## Step 3 - Introduce yourself on Discord
 
-Check for the existing [languages](https://app.transifex.com/inveniosoftware/invenio/languages/).
+!!! Danger "Required Discord introduction"
+    To process language and team-join requests, introduce yourself in the [Discord translations channel](https://discord.gg/Ya7qSG43Br) after submitting your Transifex request. Include your Transifex username, target language(s), requested role, and the organization you represent.
+    Requests that do not include this information are not reviewed.
 
-- **If your desired language is not on the list**, click **Request language** and search for the language you need.
-  ![transifex request language](img/transifex-request-language.png)
-  - Ping the team again on Discord so they can approve the request.
-- **If your desired language already exists**, choose the language and click [Join team](https://help.transifex.com/en/articles/6248698-getting-started-as-a-translator#h_48ba92e523)
+Post your Transifex username, target language(s), requested role (**translator** or **reviewer**), **and the organization you work with** in [Discord `#rdm-translations`](https://discord.gg/Ya7qSG43Br). A member of the team will confirm they can vouch for you and approve the pending Transifex request.
 
 ## Step 4 - Learn about your translation team
 
