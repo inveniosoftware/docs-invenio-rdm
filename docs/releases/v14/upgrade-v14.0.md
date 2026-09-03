@@ -287,6 +287,28 @@ invenio rdm-records add-to-fixture removalreasons
 
 This last section highlights the changes to your configuration or infrastructure that you should assess. Determine if each applies to your instance, and perform the appropriate changes.
 
+### Cache backend configuration
+
+*Required for upgrade*: **Yes, if your instance explicitly sets `CACHE_TYPE`**.
+
+[Flask-Caching](https://github.com/pallets-eco/flask-caching) 2.5.0 removed the deprecated legacy backend names such as `redis`, `simple`, and `memcached`. If your existing configuration still uses one of those names, update it to the corresponding backend class name before running the upgraded instance or its test suite.
+
+For example, in `docker-services.yml`:
+
+```diff
+- INVENIO_CACHE_TYPE=redis
++ INVENIO_CACHE_TYPE=RedisCache
+```
+
+If you set the value directly in `invenio.cfg`, update it there instead:
+
+```diff
+- CACHE_TYPE = "redis"
++ CACHE_TYPE = "RedisCache"
+```
+
+Common replacements are `redis` -> `RedisCache`, `simple` -> `SimpleCache`, and `memcached` -> `MemcachedCache`. Also check any CI/test-specific environment files, because stale values there can cause unit tests to fail even when the running service configuration has already been updated.
+
 ### Switch tools
 
 #### Switch from pipenv to uv
