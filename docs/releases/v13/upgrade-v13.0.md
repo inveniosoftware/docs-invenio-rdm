@@ -179,6 +179,20 @@ Since these imports use external data sources, local overrides via `{funders,aff
 
 ### Required changes
 
+#### Flask-Caching version
+
+Flask-Caching 2.5 removed the deprecated legacy backend names such as `redis`, `simple`, and `memcached`. InvenioRDM v13 still uses these legacy names in generated instance configuration, so pin Flask-Caching below 2.5 when installing or updating v13 dependencies.
+
+For example, in `Pipfile`:
+
+```diff
+ [packages]
+ invenio-app-rdm = {extras = [...], version = "~=13.0.0"}
++flask-caching = "<2.5"
+```
+
+After updating the dependency file, refresh your lock file and reinstall your dependencies.
+
 #### OpenSearch version
 The minimum required OpenSearch version is now **v2.12**. This change is necessary due to a bug in earlier OpenSearch versions that affects the handling of `geo-shape` fields introduced in InvenioRDM v13.
 For more details, see the related [InvenioRDM issue](https://github.com/inveniosoftware/invenio-rdm-records/issues/1807) and the [OpenSearch issue and discussion](https://github.com/opensearch-project/OpenSearch/issues/10958#issuecomment-2037882756).
