@@ -125,7 +125,7 @@ The sort option is defined by:
 
 _Introduced in v14_
 
-slider. The built-in ``publication_date`` facet is defined in
+The built-in ``publication_date`` facet is defined in
 [invenio-rdm-records](https://github.com/inveniosoftware/invenio-rdm-records/blob/master/invenio_rdm_records/services/facets.py) and
 enabled by default in ``RDM_SEARCH`` and ``RDM_SEARCH_DRAFTS``:
 
@@ -141,9 +141,11 @@ publication_date = DateFacet(
 # invenio_rdm_records/config.py — RDM_FACETS
 "publication_date": {
     "facet": facets.publication_date,
-    "ui": {"field": "publication_date", 
-    "type": "date", 
-    "separator": ".."},
+    "ui": {
+        "field": "publication_date",
+        "type": "date",
+        "separator": "..",
+    },
 },
 ```
 
@@ -155,6 +157,7 @@ To add a custom date range facet, register a ``DateFacet`` in ``RDM_FACETS`` and
 mark the UI configuration with ``"type": "date"``:
 
 ```python
+# invenio.cfg
 from invenio_i18n import lazy_gettext as _
 from invenio_records_resources.services.records.facets import DateFacet
 from invenio_rdm_records.config import RDM_FACETS
