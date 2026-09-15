@@ -1034,8 +1034,6 @@ _Introduced in v13_
 To activate groups support, in your `invenio.cfg`:
 ```
 USERS_RESOURCES_GROUPS_ENABLED = True
-# The configuration variable in v9 was:
-# COMMUNITIES_GROUPS_ENABLED = True
 ```
 
 #### Add groups
