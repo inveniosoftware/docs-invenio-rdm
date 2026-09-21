@@ -68,6 +68,7 @@ nav:
       - Build, setup & run: "install/build-setup-run.md"
       - Explore: "install/explore.md"
       - Stop: "install/stop.md"
+      - Windows WSL installation: "install/windows-subsystem-linux.md"
       - Troubleshooting & help: "install/troubleshoot.md"
 
   - Operate an Instance:
