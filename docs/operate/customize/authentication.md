@@ -726,21 +726,14 @@ data between two parties: an identity provider (IdP) and a service provider (SP)
 
   `libxml2-dev libxmlsec1-dev pkg-config`
 
-* Make sure you have installed the required Invenio Python module:
+* Add invenio-saml to your install by adding `saml` to the extras of `invenio-app-rdm` in your `pyproject.toml` file like:
 
-    === "uv"
+````python
+dependencies = [
+  "invenio-app-rdm[opensearch2,saml]~=14.0.0",
+```
 
-        ```shell
-        cd my-site
-        uv add invenio-saml
-        ```
-
-    === "pipenv"
-
-        ```shell
-        cd my-site
-        pipenv install invenio-saml
-        ```
+Make sure to relock your python packages and reinstall after making this change.
 
 #### Server information
 
