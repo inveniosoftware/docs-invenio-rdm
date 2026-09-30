@@ -77,6 +77,10 @@ Here is a full list of pages that are translated this way:
 
 Once your Pull Request is merged, the changes will be reflected in the next release of InvenioRDM.
 
+## Translation release policy
+
+Translations are provided only for `maint-*` branches, where message IDs (`msgid`s) are expected to remain stable, rather than `master`, where changes during development would require every language to update its translations repeatedly. For each new InvenioRDM release, updated strings are pushed to Transifex and the updated translations are published in a subsequent release.
+
 ## Troubleshooting
 
 If you have any questions or suggestions, reach out to the InvenioRDM translation team via [Discord `#rdm-translations`](https://discord.gg/Ya7qSG43Br).
