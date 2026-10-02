@@ -1,6 +1,6 @@
 # Curation checks
 
-_Introduced in v13_
+_Introduced in v13. Async and community checks introduced in v15._
 
 **Intended audience**
 
@@ -36,18 +36,45 @@ Curation checks in Zenodo's EU Open Research Repository
 
 A check config defines the parameters for a check in a community. Note that each [type of check](#check-component) requires a separate config so there can be multiple per community. See the [Operate an Instance](../../operate/customize/curation-checks.md) documentation for usage details.
 
+The `target_type` column indicates what kind of object the check applies to (`"record"`, `"community"`, etc.). Setting `community_id=None` creates a global check that applies across the entire instance.
+
 ## Check Run
 
-A check run is the result of running the check rules against a draft or a record.
+A check run is the result of running the check rules against a draft or a record (or community, depending on `target_type`). Each run has a `status`:
+
+| Status | Description |
+|---|---|
+| `PENDING` | The check has been queued but the Celery task has not started yet. |
+| `RUNNING` | The Celery task is actively executing the check. |
+| `COMPLETED` | The check finished successfully (results may still contain errors or warnings). |
+| `ERROR` | The check failed after exhausting retries. |
+
+Synchronous checks go directly to `COMPLETED`. Asynchronous checks pass through `PENDING → RUNNING → COMPLETED/ERROR`.
+
+The `state` JSON column stores auxiliary information for async checks, as for example, an external job ID, a progress message surfaced to the user, or a hash of the relevant inputs.
 
 ## Check Component
 
 A check component is the code which executes the check on the record in accordance with the `params` defined in the database. At current there are two check components defined:
 
-* MetadataCheck — uses the [metadata check config schema](#metadata-checks-configuration-schema) to verify the metadata of a record
+* MetadataCheck - uses the [metadata check config schema](#metadata-checks-configuration-schema) to verify the metadata of a record or community.
 * FileFormatsCheck - verifies the extensions of the records files to check if they adhere to an open standard.
 
 Check components are designed so that future checks can interact with third-party systems.
+
+### Synchronous vs asynchronous execution
+
+A check class with `sync = True` (the default) runs inline during the HTTP request. A check class with `sync = False` creates a `PENDING` run and dispatches a Celery task (`run_check_async`). Inside the task, the check is called with `sync=True` to force inline execution within the worker.
+
+```
+Synchronous
+  HTTP request → run_check() → Check.run() → COMPLETED
+
+Asynchronous
+  HTTP request → run_check() → PENDING → [Celery task] → RUNNING → Check.run() → COMPLETED/ERROR
+```
+
+The Celery task retries up to three times (10 s / 20 s / 30 s backoff) before setting the run to `ERROR`.
 
 ## Metadata checks configuration schema
 
