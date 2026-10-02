@@ -35,6 +35,15 @@ spawned uWSGI worker 2 (pid: 257, cores: 2)
 *** Stats server enabled on 0.0.0.0:9001 fd: 11 ***
 ```
 
+## Nginx access logs
+
+Starting with InvenioRDM v14.1, the Nginx configurations provided by the
+cookiecutter and Helm chart emit access logs as JSON to standard output and
+error logs to standard error. This allows container log collectors to ingest
+Nginx request logs together with application logs.
+
+Static asset requests are excluded from the access log to reduce log volume.
+
 ## invenio-logging
 
 InvenioRDM enhances its logging capabilities with the [`invenio-logging`](https://github.com/inveniosoftware/invenio-logging) module, improving the observability and reliability of your repository. This ensures a smoother operational experience for administrators and end-users alike.
