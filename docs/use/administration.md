@@ -343,7 +343,7 @@ There are two ways to run a job:
 2. **Schedule and Run (Automatic):** Set up a recurring schedule and let the job run automatically based on that.
 
 <figure>
-  <img src="../imgs/administration/jobs-actions.png" alt="Jobs Actions" width="600" class="screenshot" />
+  <img src="./imgs/administration/jobs-actions.png" alt="Jobs Actions" width="600" class="screenshot" />
 </figure>
 
 After each run, check the logs and output to confirm that the job executed successfully.
@@ -484,7 +484,7 @@ Associated JSON APIs (e.g. `/api/domains`) have been added. Bulk versions of the
 _Introduced in v14_
 
 <figure>
-  <img src="../imgs/administration/manage-user-roles-modal.png" alt="manage user roles modal" class="screenshot" />
+  <img src="./imgs/administration/manage-user-roles-modal.png" alt="manage user roles modal" class="screenshot" />
 </figure>
 
 Administrators can manage user roles directly through the administration panel. This provides a visual interface for assigning and removing roles from users.
@@ -499,17 +499,17 @@ To manage a user's roles as an administrator:
 1.  Navigate to the **Users** section in the Administration panel.
 2.  Open the dropdown menu of a specific user and click on **"Manage roles"** in the dropdown menu
     <figure>
-    <img src="../imgs/administration/manage-user-roles-dropdow-menu.png" alt="manage user roles dropdown menu" class="screenshot" />
+    <img src="./imgs/administration/manage-user-roles-dropdow-menu.png" alt="manage user roles dropdown menu" class="screenshot" />
     </figure>
 3.  A modal window will appear where you can see currently assigned roles and select from available roles to assign or remove them using the provided interface.
 4.  You can optionally select multiple roles at once and flip the toggle to assign or remove unmanaged roles "usually granted via oauth or other external identity providers"
     Once done, click the "Save" button to apply the changes.
     <figure>
-    <img src="../imgs/administration/manage-user-roles-unmanaged-roles.png" alt="manage user roles unmanaged roles" class="screenshot" />
+    <img src="./imgs/administration/manage-user-roles-unmanaged-roles.png" alt="manage user roles unmanaged roles" class="screenshot" />
     </figure>
 5.  Confirm the changes in the confirmation dialog and click "Save" again to finalize the role updates.
     <figure>
-    <img src="../imgs/administration/manage-user-roles-confirm-action.png" alt="manage user roles confirm action" class="screenshot" />
+    <img src="./imgs/administration/manage-user-roles-confirm-action.png" alt="manage user roles confirm action" class="screenshot" />
     </figure>
 
 !!! info "Permissions"

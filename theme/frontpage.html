@@ -14,20 +14,19 @@
     In particular, if nav_item contains deeply nested sections before an actual page
     `first_url` will find the URL for that page.
   #}
-  {% if nav_item.url %}
-    {% set link = nav_item.url | url %}
-  {% elif nav_item.children %}
-    {% set link = first_url(nav_item.children[0]) %}
-  {% else %}
-    {% set link = "" %}
-  {%endif%}
-  {{ link }}
+  {%- if nav_item.url -%}
+    {{ nav_item.url | url }}
+  {%- elif nav_item.children -%}
+    {{ first_url(nav_item.children[0]) }}
+  {%- else -%}
+    {{ "" }}
+  {%- endif -%}
 {% endmacro %}
 
 
 {% macro render(nav_item, path, level) %}
   {# Renders the nav_item section: its title and first level subsections #}
-  {% set link = first_url(nav_item) %}
+  {% set link = first_url(nav_item) | trim %}
   {% if nav_item.children and level <= 1 %}
     <li class="rdm-toc-item level{{level}} nested">
       <div>
@@ -83,7 +82,7 @@
     <div class="rdm-hero-subtitle">
         The turn-key research data management repository
     </div>
-    <a href="/install/" class="md-button md-button--primary">Quick start</a>
+    <a href="{{ 'install/' | url }}" class="md-button md-button--primary">Quick start</a>
     <a href="https://inveniordm.web.cern.ch" class="md-button">Demo site</a>
   </div>
 </section>
@@ -99,7 +98,7 @@
 {{ page.content }}
 {% include "partials/source-file.html" %}
 <ul class="rdm-toc">
-  {% for nav_item in nav %}
+  {% for nav_item in nav.items %}
     {%- if nav_item.title != "Home" %}
       {%- set path = "__nav_" ~ loop.index %}
       {%- set level = 1 %}
