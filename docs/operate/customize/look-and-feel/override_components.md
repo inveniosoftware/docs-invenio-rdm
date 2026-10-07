@@ -238,6 +238,69 @@ export const overriddenComponents = {
 
 In order to see more examples in action, you can check the [zenodo-rdm](https://github.com/zenodo/zenodo-rdm) repository!
 
+### Keep an optional deposit accordion open
+
+_Introduced in v14.1_
+
+Optional and custom-field sections in the deposit form are collapsed when empty
+and expanded when they contain values.
+
+To keep the **Funding** section initially expanded, add the following override to
+`<instance-name>/assets/js/invenio_app_rdm/overridableRegistry/mapping.js`, keeping
+any existing entries. This example also customizes the section label.
+
+```javascript
+import { parametrize } from "react-overridable";
+import { AccordionField } from "react-invenio-forms";
+
+export const overriddenComponents = {
+  // Preserve your other overrides here.
+  "InvenioAppRdm.Deposit.AccordionFieldFunding.container": parametrize(
+    AccordionField,
+    { active: true, label: "Funding (instance override)" }
+  ),
+};
+```
+
+`active: true` initially expands the section; users can still collapse it.
+Use `active: false` to initially collapse it regardless of its values, or remove
+the override to restore the default behaviour. Use translated labels for
+multilingual instances.
+
+Rebuild the assets:
+
+```console
+invenio-cli assets build
+```
+
+Open a new deposit form to verify that the empty Funding section is expanded
+and its label is customized:
+
+![Expanded empty Funding section with customized labels; other empty sections remain collapsed](./imgs/deposit-funding-accordion-override.png)
+
+To customize other sections, find their container IDs using the
+[overridable developer tool](../../../releases/v14/version-v14.0.md#overridable-easily-find-components-ids).
+Use the overridable ID, not the HTML section ID (e.g. `funding-section`).
+
+#### Custom-field sections
+
+For custom-field sections, use the existing `active` setting in
+`RDM_CUSTOM_FIELDS_UI`. For example, to keep the Software section initially
+expanded, update its entry in `<instance-name>/invenio.cfg`:
+
+```python
+from invenio_rdm_records.contrib.codemeta import CODEMETA_CUSTOM_FIELDS_UI
+
+RDM_CUSTOM_FIELDS_UI = [
+    {**CODEMETA_CUSTOM_FIELDS_UI, "active": True},
+    # Keep any other custom-field sections here.
+]
+```
+
+Set `active` to `False` to initially collapse the section even when it contains
+values. Omit `active` to use the default value-based behaviour. Restart the
+application after changing the configuration.
+
 ### Custom form fields
 
 You can also override your custom deposit form fields if they use the built-in UI widgets.
