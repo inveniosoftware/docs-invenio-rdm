@@ -1,10 +1,10 @@
-# ZIP and container files
+# Previewable ZIP content and container files
 
 _Introduced in v14_
 
-InvenioRDM v14 adds support for ZIP archives as **container files**: record files that the system understands and can expose. You can browse the contents of a ZIP directly on the record landing page, preview individual files inside the archive, and download specific files or directories without retrieving the entire archive.
+InvenioRDM v14 adds support for ZIP archives as **container files**: record files that the system understands and can expose. This makes it possible to preview individual files inside the archive, and download specific files or directories without retrieving the entire archive, all the while still listing the content of the ZIP archive directly on the record landing page. This is in contrast to the previously existing ZIP previewer that would only list the superficial content of a ZIP archive.
 
-![ZIP file preview](../imgs/container-file-formats.png)
+![ZIP file preview](./imgs/container-file-formats.png)
 
 ## Use cases
 
@@ -18,14 +18,13 @@ This feature is particularly useful for large datasets distributed as archives:
 
 The feature is designed to be extensible. Additional container formats can be supported by implementing the
 `FileExtractor` interface and registering the handler for the relevant extension. See the
-[architecture documentation](../../../maintenance/architecture/records.md#container-files) for an overview of how the
+[architecture documentation](../../maintenance/architecture/records.md#container-files) for an overview of how the
 component model works.
 
-## Enabling the ZIP previewer
+## Enabling/Disabling the new ZIP previewer
 
-By default, ZIP files are treated as opaque binary blobs and offered only for download. To enable container browsing
-and in-UI preview, replace the original `zip` previewer with `previewable_zip` in your `PREVIEWER_PREFERENCE` list in
-`invenio.cfg`:
+The new ZIP previewer identified by `"previewable_zip"` is the new default in InvenioRDM v14 for ZIP files.
+It replaces the original `"zip"` previewer in the `PREVIEWER_PREFERENCE` setting:
 
 ```python
 PREVIEWER_PREFERENCE = [
@@ -44,8 +43,8 @@ PREVIEWER_PREFERENCE = [
 ]
 ```
 
-Adding `previewable_zip` tells InvenioRDM to render ZIP files using the container browser UI on the record landing page,
-rather than offering a plain download link.
+You have nothing to do in order to use it. If you want to keep the former ZIP previewer instead, you can replace
+`"previewable_zip"` by `"zip"` in `PREVIEWER_PREFERENCE` and place the setting in your `invenio.cfg`.
 
 ## Configuring previews inside archives
 
@@ -100,7 +99,7 @@ RECORDS_RESOURCES_EXTRACTED_STREAM_CHUNK_SIZE = 128 * 1024  # 128 KB
 
 ## Browse ZIP contents in the UI
 
-When you upload a ZIP file and enable the `previewable_zip` previewer, you see:
+When you upload a ZIP file and enable the `"previewable_zip"` previewer, you see:
 
 - **Hierarchical tree view**: A navigation pane showing the directory structure and files inside the archive
 - **Preview buttons**: Individual files can be previewed using the appropriate previewer (images, PDFs, notebooks, etc.)
@@ -111,12 +110,12 @@ The previewer uses the BroadcastChannel API to communicate between the tree view
 
 ## Supported formats and extensibility
 
-By default, files with extensions listed in the RECORDS_RESOURCES_ZIP_FORMATS configuration (default: [".zip"]) are
+By default, files with extensions listed in the `RECORDS_RESOURCES_ZIP_FORMATS` configuration (default: `[".zip"]`) are
 automatically processed as ZIP containers.
 
 Support for additional container formats can be added by implementing the `FileExtractor` interface in
 `invenio-records-resources` and registering it for the relevant file extension. See the
-[architecture documentation](../../../maintenance/architecture/records.md#container-files) for details.
+[architecture documentation](../../maintenance/architecture/records.md#container-files) for details.
 
 Future container formats under consideration include:
 

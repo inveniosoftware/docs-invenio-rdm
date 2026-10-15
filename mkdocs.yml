@@ -121,7 +121,9 @@ nav:
               - Capture: operate/customize/dev_email.md
           - FAIR Signposting: "operate/customize/FAIR-signposting.md"
           - File modification: "operate/customize/file-modification.md"
-          - File previewers: "operate/customize/file-previewers.md"
+          - File previewers:
+            - Overview: "operate/customize/file-previewers.md"
+            - Previewable ZIP content and container files: "operate/customize/zip-and-container-files.md"
           - File uploads & storage:
               - Files and versioning: "operate/customize/file-uploads/files-and-versioning.md"
               - Files uploaders: "operate/customize/file-uploads/uploader.md"
@@ -129,7 +131,6 @@ nav:
               - S3 compatible storage: "operate/customize/file-uploads/s3.md"
               - Upload limits: "operate/customize/file-uploads/upload_limits.md"
               - User quota: "operate/customize/file-uploads/user-quota.md"
-              - ZIP and container files: "operate/customize/file-uploads/zip-and-container-files.md"
           - Jobs/Automated tasks: "operate/customize/jobs.md"
           - Landing page: "operate/customize/landing_page.md"
           - Language(s) and locale(s): "operate/customize/i18n-and-l10n.md"
@@ -240,17 +241,17 @@ nav:
           - Version v11:
               - Release Notes v11.0: releases/v11/version-v11.0.0.md
               - Upgrade from v10 to v11: releases/v11/upgrade-v11.0.md
+          - Version v10:
+              - Release Notes v10.1: releases/v10/version-v10.1.0.md
+              - Release Notes v10.0: releases/v10/version-v10.0.0.md
+              - Upgrade from v9 to v10: releases/v10/upgrade-v10.0.md
+              - Migrate Docker images: releases/migrate-docker-images.md
           - Version v9:
               - Release Notes v9.1: releases/v9/version-v9.1.0.md
               - Release Notes v9.0: releases/v9/version-v9.0.0.md
               - Migrate Docker images: releases/migrate-docker-images.md
               - Migrate v9 to OpenSearch: releases/v9/migrate-opensearch-v9.md
               - Upgrade from v8 to v9: releases/v9/upgrade-v9.0.md
-          - Version v10:
-              - Release Notes v10.1: releases/v10/version-v10.1.0.md
-              - Release Notes v10.0: releases/v10/version-v10.0.0.md
-              - Upgrade from v9 to v10: releases/v10/upgrade-v10.0.md
-              - Migrate Docker images: releases/migrate-docker-images.md
           - Version v8:
               - Release Notes v8.0: releases/v8/version-v8.0.0.md
               - Upgrade from v7 to v8: releases/v8/upgrade-v8.0.md
