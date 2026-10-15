@@ -132,7 +132,7 @@ See the [documentation](../../operate/customize/look-and-feel/override_component
 
 ### Preview content of ZIP files and others
 
-We've added support for ZIP files and introduced a flexible framework for handling container formats (e.g., NetCDF, TAR). Users can now explore and access files inside archives without downloading them entirely, making large datasets easier to work with.
+We've added support for previewing files inside ZIP archives and introduced a flexible framework for handling other container formats in addition to ZIP (e.g., NetCDF, TAR). Users can now explore and access files inside archives without downloading them entirely, making large datasets easier to work with.
 
 These new features allow:
 
@@ -144,7 +144,7 @@ These new features allow:
 
 ![ZIP file preview](imgs/container-file-formats.png){: .screenshot}
 
-See the [ZIP and other container files configuration guide](../../operate/customize/file-uploads/zip-and-container-files.md) for how to enable the feature and tune its behavior, and the [REST API reference](../../reference/rest_api_drafts_records.md#container-files) for the new API endpoints.
+See the [ZIP and other container files configuration guide](../../operate/customize/zip-and-container-files.md) for how to tune the new previewer's behavior, and the [REST API reference](../../reference/rest_api_drafts_records.md#container-files) for the new API endpoints.
 
 ### Publication date range facet
 

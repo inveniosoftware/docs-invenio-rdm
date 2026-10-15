@@ -1,6 +1,6 @@
 # File previewers
 
-InvenioRDM uses the Invenio-Previewer module to provide frontend components that render previews for common file types on the record landing page.
+InvenioRDM uses the [Invenio-Previewer module](https://github.com/inveniosoftware/invenio-previewer) to provide frontend components that render previews for common file types on the record landing page.
 
 Supported preview types:
 
@@ -17,21 +17,22 @@ Supported preview types:
 
 ## Enabling previewers
 
-Previewers are configured via the PREVIEWER_PREVIEWERS setting. Add the previewer identifiers you want in your configuration (e.g. config.py):
+Previewers are configured via the `PREVIEWER_PREFERENCE` setting. Add the previewer identifiers you want in your configuration:
 
 ```python
-PREVIEWER_PREVIEWERS = [
+PREVIEWER_PREFERENCE = [
     "csv_papaparsejs",  # CSV
+    "pdfjs",            # PDF
     # "iiif_simple",    # IIIF for images (optional)
     "simple_image",     # images
     "json_prismjs",     # JSON / GeoJSON
     "xml_prismjs",      # XML
     "mistune",          # Markdown
-    "pdfjs",            # PDF
     "video_videojs",    # Video
     "audio_videojs",    # Audio
     "ipynb",            # Jupyter notebooks
-    "zip",              # ZIP archives
+    # "zip",            # basic ZIP archive previewer
+    "previewable_zip",  # advanced ZIP archive previewer
     "txt",              # plain text
     # "web_archive",    # web archive previewer (optional)
 ]
@@ -43,8 +44,6 @@ Notes:
 
 ## Custom previewers
 
-To create and register a custom previewer, follow the Invenio-Previewer documentation for the previewer API and registration instructions:
+To create and register a custom previewer, follow the Invenio-Previewer documentation for the previewer API and registration instructions at [https://invenio-previewer.readthedocs.io/en/latest/usage.html#custom-previewer](https://invenio-previewer.readthedocs.io/en/latest/usage.html#custom-previewer).
 
-- https://invenio-previewer.readthedocs.io/en/latest/usage.html#custom-previewer
-
-If you implement a previewer, add its identifier to PREVIEWER_PREVIEWERS and ensure its matching logic is precise to avoid conflicts with existing previewers.
+If you implement a previewer, add its identifier to `PREVIEWER_PREFERENCE` and ensure its matching logic is precise to avoid conflicts with existing previewers.
