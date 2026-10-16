@@ -235,52 +235,7 @@ RUN pipenv install --deploy --system
 
 #### After: Docker with uv
 
-```dockerfile title="Dockerfile"
-...
-# Python and uv configuration
-ENV PYTHONDONTWRITEBYTECODE=1 \
-    PYTHONUNBUFFERED=1 \
-    # Cache directory for uv's package downloads - persisted across builds with Docker BuildKit
-    UV_CACHE_DIR=/opt/.cache/uv \
-    # Pre-compile Python bytecode for faster startup times in production
-    UV_COMPILE_BYTECODE=1 \
-    # Strictly use versions from uv.lock file, failing if lock file is outdated
-    UV_FROZEN=1 \
-    # Copy packages instead of symlinking - required for Docker's layered filesystem
-    UV_LINK_MODE=copy \
-    # Use the system's Python installation instead of uv managing Python versions
-    UV_NO_MANAGED_PYTHON=1 \
-    UV_SYSTEM_PYTHON=1 \
-    UV_PROJECT_ENVIRONMENT=/usr/ \
-    UV_PYTHON_DOWNLOADS=never \
-    # Require and verify package hashes match those in the lock file
-    UV_REQUIRE_HASHES=1 \
-    UV_VERIFY_HASHES=1
-
-# Copy uv binary from official image
-COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
-
-# First sync: install only external dependencies without workspace packages
-RUN --mount=type=cache,target=/opt/.cache/uv \
-    --mount=type=bind,source=uv.lock,target=uv.lock \
-    --mount=type=bind,source=pyproject.toml,target=pyproject.toml \
-    uv sync --no-dev --no-install-workspace --no-editable
-
-# Copy static code, assets, and configuration files
-COPY site ./site
-
-COPY ./docker/uwsgi/ ${INVENIO_INSTANCE_PATH}
-COPY ./invenio.cfg ${INVENIO_INSTANCE_PATH}
-COPY ./templates/ ${INVENIO_INSTANCE_PATH}/templates/
-COPY ./app_data/ ${INVENIO_INSTANCE_PATH}/app_data/
-COPY ./translations ${INVENIO_INSTANCE_PATH}/translations
-COPY ./ .
-
-# Second sync: install workspace packages
-RUN --mount=type=cache,target=/opt/.cache/uv \
-    uv sync --frozen --no-dev
-...
-```
+Update and adjust your Dockerfile to include the relevant uv content from [InvenioRDM v14's latest Dockerfile](https://github.com/inveniosoftware/cookiecutter-invenio-rdm/blob/v14.0/%7B%7Bcookiecutter.project_shortname%7D%7D/Dockerfile).
 
 To use the `uv.lock` file in the `Dockerfile` it is necessary to run following
 command in your virtual environment
