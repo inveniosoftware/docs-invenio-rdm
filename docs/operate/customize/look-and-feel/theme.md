@@ -1,4 +1,4 @@
-# Change the theme
+# Change the instance's styling
 
 You might also be wondering: *How do I change the colors so I can make my instance adopt my institution's theme?*
 
@@ -6,9 +6,22 @@ The theme or branding comprises the colors used for the header, footer and accen
 
 ## Step-by-step
 
-**Step 1** - Edit the appropriate `.variables` or `.overrides` files.
+**Step 1** - Select the desired base theme in `theme.config`.
 
-The `assets/less/site/globals/site.variables` is where you can override site wide less variables. Edit it as you see fit:
+The default theme for most (Semantic UI) components in a fresh InvenioRDM instance is `rdm`, which is provided by `invenio-app-rdm` and colloquially known as the "InvenioRDM theme".
+If you would like to use another of your installed base themes for any of the components, you can configure that in your instance's `assets/less/theme.config`.
+Replace `rdm` with the name of your theme for the desired components, including the `@import ... theme.less` line at the bottom (which is relevant to set up the correct theme inheritance chain).
+
+!!! info "The selection of themes out of the box is limited"
+
+    In a fresh installation, the only theme geared towards InvenioRDM is `rdm`.
+    The other themes available out of the box are `invenio` (provided by [`invenio-theme`](https://github.com/inveniosoftware/invenio-theme)) and those provided by the [`semantic-ui-less`](https://github.com/Semantic-Org/Semantic-UI-LESS/tree/master) NPM package.
+
+    You might find other themes provided by the community, e.g. in the [Awesome Invenio](https://github.com/inveniosoftware/awesome-invenio) listing.
+
+**Step 2** - Edit the appropriate `.variables` or `.overrides` files.
+
+The `assets/less/site/globals/site.variables` is where you can override site-wide `less` variables. Edit it as you see fit:
 
 ``` less
 /* Override @primaryColor to override the site-wide accents. */
@@ -53,12 +66,12 @@ a {
 
     Full list of available Semantic UI [overrides](https://github.com/Semantic-Org/Semantic-UI/tree/master/src/themes/default).
 
-    Full list of Invenio theme [overrides](https://github.com/inveniosoftware/invenio-theme/tree/master/invenio_theme/assets/semantic-ui/less/invenio_theme/theme).
+    Full list of Invenio Theme [overrides](https://github.com/inveniosoftware/invenio-theme/tree/master/invenio_theme/assets/semantic-ui/less/invenio_theme/theme).
 
 
 To know more about the philosophy behind theming see the [Theming section](../../../maintenance/internals/theming.md).
 
-**Step 2** - Run the `invenio-cli assets build` command.
+**Step 3** - Run the `invenio-cli assets build` command.
 
 Wait a minute! These files were symlinked. You may wonder why we need to run `invenio-cli assets build`.
 You will notice that any changes to the `site.variables` file are not picked up, unless `invenio-cli assets build` is run again each time. And this is the case even though we symlinked these files!
