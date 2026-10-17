@@ -1399,7 +1399,7 @@ For supported formats, two additional endpoints are available on a **published r
 !!! note "Published records only"
     Container file endpoints are available only for **published records**, not drafts. Use `/api/records/{id}/files/` (not `/draft/files/`).
 
-See the [ZIP and container files configuration guide](../operate/customize/file-uploads/zip-and-container-files.md) for setup instructions and supported formats.
+See the [ZIP and container files configuration guide](../operate/customize/zip-and-container-files.md) for setup instructions and supported formats.
 
 #### List the contents of a container file
 
