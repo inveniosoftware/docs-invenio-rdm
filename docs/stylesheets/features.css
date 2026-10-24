@@ -35,11 +35,12 @@ body > div.md-container > main > div > div.md-content > article {
     color: rgba(255, 255, 255, 0.6)
 }
 
-.feature:nth-child(2n) {
+/* Count sections, not Zensical's preceding skip-link anchor. */
+.feature:nth-of-type(2n) {
     background-color: rgba(173, 206, 224, 0.52);
 }
 
-.feature:nth-child(2n + 1) .image {
+.feature:nth-of-type(2n + 1) .image {
     order: 1;
 }
 
@@ -65,12 +66,12 @@ body > div.md-container > main > div > div.md-content > article {
     }
 }
 
-.feature:first-child .content-wrapper {
+.feature:first-of-type .content-wrapper {
     padding-top: 0;
 }
 
 @media screen and (max-width: 1219px) {
-    .feature:first-child .content-wrapper {
+    .feature:first-of-type .content-wrapper {
         padding-top: 7em;
     }
 }

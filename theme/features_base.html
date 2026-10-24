@@ -41,7 +41,7 @@
 
 
 {% block content %}
-  {% for item in nav %}
+  {% for item in nav.items %}
     {% if item.title == "What is InvenioRDM?" %}
       {% for sub_page in item.children %}
         {% if sub_page.title != "Overview" and sub_page.meta %}
