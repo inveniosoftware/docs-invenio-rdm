@@ -238,6 +238,72 @@ export const overriddenComponents = {
 
 In order to see more examples in action, you can check the [zenodo-rdm](https://github.com/zenodo/zenodo-rdm) repository!
 
+### Deposit accordion defaults
+
+_Introduced in v14.1_
+
+Optional deposit sections start expanded. To collapse empty sections by default,
+set this in `invenio.cfg` and restart the application:
+
+```python
+APP_RDM_DEPOSIT_FORM_COLLAPSE_EMPTY_SECTIONS = True  # Default: False
+```
+
+Populated sections always start expanded. Files, Basic information and discoverable
+custom-field sections are unaffected.
+
+For example, to keep **Funding** expanded while other empty sections are collapsed,
+add this override to `<instance-name>/assets/js/invenio_app_rdm/overridableRegistry/mapping.js`,
+preserving existing entries. You can also customize the section label with the
+optional `label` prop.
+
+```javascript
+import { parametrize } from "react-overridable";
+import { DepositAccordionField } from "@js/invenio_app_rdm/deposit/DepositAccordionField";
+
+export const overriddenComponents = {
+  // Preserve your other overrides here.
+  "InvenioAppRdm.Deposit.AccordionFieldFunding.container": parametrize(
+    DepositAccordionField,
+    { active: true, label: "Funding (instance override)" }
+  ),
+};
+```
+
+Use `active: false` to collapse an empty section even when the global setting is
+`False`. Populated sections still open; users can toggle sections manually.
+
+Rebuild the assets:
+
+```console
+invenio-cli assets build
+```
+
+With this example, Funding starts expanded with a customized label, while other
+empty optional sections remain collapsed:
+
+![Expanded empty Funding section with customized labels; other empty sections remain collapsed](./imgs/deposit-funding-accordion-override.png)
+
+For other sections, find their container IDs with the
+[overridable developer tool](../../../releases/v14/version-v14.0.md#overridable-easily-find-components-ids).
+
+#### Custom-field sections
+
+Set `active` on a section in `RDM_CUSTOM_FIELDS_UI` to override its empty-section
+default. For example, in `invenio.cfg`:
+
+```python
+from invenio_rdm_records.contrib.codemeta import CODEMETA_CUSTOM_FIELDS_UI
+
+RDM_CUSTOM_FIELDS_UI = [
+    {**CODEMETA_CUSTOM_FIELDS_UI, "active": True},
+    # Keep any other custom-field sections here.
+]
+```
+
+Use `False` to collapse an empty section, or omit `active` to follow the global
+setting. Populated sections always start expanded. Restart after configuration changes.
+
 ### Custom form fields
 
 You can also override your custom deposit form fields if they use the built-in UI widgets.
