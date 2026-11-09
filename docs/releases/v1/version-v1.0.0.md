@@ -146,7 +146,7 @@ We have also ensured that all database tables have proper upgrade recipes for ou
 
 **Deposit form**
 
-- Validation error messages: The form validation error messages are not displaying correctly. Labels are system names, and sometimes [Object (Object)] is displayed for errors.
+- Validation error messages: The form validation error messages are not displaying correctly. Labels are system names, and sometimes `[Object (Object)]` is displayed for errors.
 
 - Missing files: If files are missing to be uploaded, the publish button is disabled, but there no feedback to the end-user that files are missing.
 
