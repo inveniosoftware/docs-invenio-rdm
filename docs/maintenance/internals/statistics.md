@@ -56,6 +56,10 @@ An indexed `record-view` statistics event looks like the following:
 }
 ```
 
+The `country` is found from the IP address by the user anonymization preprocessor,
+before the address is discarded. See [Geolocation Services](../../operate/customize/geolocation-services.md)
+for how it works and what to expect.
+
 The mappings for newly created event indices are automatically registered as defined
 in the configured index **templates**.
 
