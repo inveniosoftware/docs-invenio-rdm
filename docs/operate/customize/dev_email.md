@@ -4,34 +4,34 @@ This guide is meant for users that are in **development** and need to test e-mai
 
 ## Step 1 - run a local SMTP server
 
-First, install a tool that runs a local SMTP server for testing purposes. This tutorial will use [MailHog](https://github.com/mailhog/MailHog).
+First, install a tool that runs a local SMTP server for testing purposes. This tutorial will use [Mailpit](https://github.com/axllent/mailpit).
 
-If a system is not listed below, check the original documentation on how to install `MailHog`.
+If a system is not listed below, check the original documentation on how to install `Mailpit`.
 
 ### MacOS
 
 ```terminal
-brew update && brew install mailhog
+brew update && brew install mailpit
 ```
 
-and then start MailHog via
+and then start Mailpit via
 
 ```terminal
-mailhog
+mailpit
 ```
 
 ### Docker version
 
 ```terminal
-docker run --restart unless-stopped --name mailhog -p 1025:1025 -p 8025:8025 -d mailhog/mailhog
+docker run --restart unless-stopped --name mailpit -p 1025:1025 -p 8025:8025 -d axllent/mailpit
 ```
 
-Note that, by default, `MailHog` uses the following ports:
+Note that, by default, `Mailpit` uses the following ports:
 
 - `SMTP` server runs in port `1025`
 - `HTTP` server runs in port `8025`.
 
-Validate that `MailHog` is running by accessing its `HTTP` server in [`http://127.0.0.1:8025`](http://127.0.0.1:8025) (or the configured `HTTP` server port).
+Validate that `Mailpit` is running by accessing its `HTTP` server in [`http://127.0.0.1:8025`](http://127.0.0.1:8025) (or the configured `HTTP` server port).
 
 ## Step 2 - enable e-mails for development
 
@@ -62,9 +62,9 @@ MAIL_PORT = 1025
 
 Restart the application and e-mails will be sent to the configured `SMTP` server.
 
-Check the inbox in [MailHog UI](http://127.0.0.1:8025).
+Check the inbox in [Mailpit UI](http://127.0.0.1:8025).
 
 ## Further reading
 
 - How to configure flask mail - [docs](https://flask-mail.readthedocs.io/en/latest/#configuring)
-- MailHog - [original repo](https://github.com/mailhog/MailHog)
+- Mailpit - [original repo](https://github.com/axllent/mailpit)
