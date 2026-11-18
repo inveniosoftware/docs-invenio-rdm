@@ -82,5 +82,5 @@ See [Deploy to production: Security](./deploy.md#security).
 - Use a [supported version](../../releases/maintenance-policy.md) and read the [upgrade policy](../../releases/upgrade-policy.md).
 - Follow the [release notes](../../releases/index.md) and apply upgrades regularly. Each major version has an upgrade guide.
 - Update the operating system, Docker images and services too.
-- Lock your JavaScript and Python dependencies. See [Deploy to production](./deploy.md#build-and-lock-assets).
+- Lock your JavaScript and Python dependencies. See [Deploy to production](./deploy.md#inveniordm-application).
 - Report security issues privately. See the [security policy](../../releases/security-policy.md).

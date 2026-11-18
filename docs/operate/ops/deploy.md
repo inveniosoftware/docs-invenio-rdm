@@ -147,7 +147,7 @@ Also look at the [Compose file of the latest cookiecutter template](https://gith
 **Configure the application:**
 
 1. Open the `invenio.cfg` file
-2. Adjust configuration for production, including service connections (see [First configuration](./first-configuration.md))
+2. Adjust configuration for production, including service connections (see [First configuration](../first-configuration.md))
 3. Test the web app and worker for errors:
 
 ```bash
