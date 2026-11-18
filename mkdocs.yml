@@ -73,8 +73,10 @@ nav:
 
   - Operate an Instance:
       - Overview: "operate/index.md"
+      - First configuration: operate/first-configuration.md
       - Production deployment:
           - Infrastructure architecture: operate/ops/infrastructure.md
+          - Security hardening: operate/ops/hardening.md
           - Deploy to production: operate/ops/deploy.md
           - Logs: operate/ops/logging.md
           - Back up search indices: operate/ops/backup_search_indices.md
@@ -112,6 +114,7 @@ nav:
           - Overview: "operate/customize/configuration.md"
           - Audit logs: "operate/customize/audit-logs.md"
           - Authentication: "operate/customize/authentication.md"
+          - Captcha: "operate/customize/captcha.md"
           - Curation checks: "operate/customize/curation-checks.md"
           - Collections: "operate/customize/collections.md"
           - Compliance info when publishing: "operate/customize/compliance_info.md"
@@ -137,6 +140,7 @@ nav:
           - Notifications:
               - Overview: "operate/customize/notifications.md"
               - Modify notifications: operate/customize/notifications_modify.md
+          - Rate limiting: operate/customize/rate-limiting.md
           - Record deletion: operate/customize/record_deletion.md
           - Requests: operate/customize/requests.md
           - Require a community to publish: operate/customize/require_community.md
@@ -224,6 +228,9 @@ nav:
       - Maintenance policy: releases/maintenance-policy.md
       - Upgrade policy: releases/upgrade-policy.md
       - Security policy: releases/security-policy.md
+      - Version v15:
+          - Release Notes v15.0: releases/v15/version-v15.0.md
+          - Upgrade from v14 to v15: releases/v15/upgrade-v15.0.md
       - Version v14:
           - Release Notes v14.0: releases/v14/version-v14.0.md
           - Upgrade from v13 to v14: releases/v14/upgrade-v14.0.md
