@@ -60,6 +60,19 @@ invenio-cli run
     for instance, install the latest master branch of a module on a
     non-development instance of InvenioRDM it's not likely to work.
 
+!!! warning "Locked JavaScript dependencies override your module's"
+
+    When the assets are rebuilt (with `invenio-cli packages install`,`invenio-cli install`
+    and `invenio-cli assets build` commands), invenio-cli copies the `package.json` and
+    the JS lock file (`pnpm-lock.yaml` or equivalent) from your instance folder
+    over the ones generated in the virtual environment, if they exist. This
+    is what makes installs reproducible, but it also means that if you add or
+    change a JavaScript dependency in the module you are developing, the
+    **locked versions are installed instead of your new ones**.
+
+    After changing JS dependencies in a module, make sure that you delete `package.json`
+    and the lock file from your instance folder before rebuilding the assets.
+
 !!! warning
 
     A development package may have database, index and schema changes that
