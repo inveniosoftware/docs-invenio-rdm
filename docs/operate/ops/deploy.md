@@ -147,7 +147,7 @@ Also look at the [Compose file of the latest cookiecutter template](https://gith
 **Configure the application:**
 
 1. Open the `invenio.cfg` file
-2. Adjust configuration for production, including service connections
+2. Adjust configuration for production, including service connections (see [First configuration](./first-configuration.md))
 3. Test the web app and worker for errors:
 
 ```bash
@@ -315,6 +315,7 @@ Many services exist that can catch and provide detailed exception information (v
 - [Correctly configure](../customize/configuration.md) your InvenioRDM instance
 - Use valid HTTPS certificates
 - Keep your instance and all services up-to-date
+- Go through the [security hardening checklist](./hardening.md)
 
 **Secure file uploads:** Be extremely careful with user-uploaded content, as served files
 could contain malicious code. Effective protection methods:
