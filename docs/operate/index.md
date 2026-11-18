@@ -2,11 +2,14 @@
 
 **Intended audience**
 
-This guide is intended for developers that need to operate their own InvenioRDM instance, customize it, configure it, or develop new features for it. It assumes you have followed the "Getting Started" section enough to have at least a development instance locally installed.
+This guide is intended for developers that need to operate their own InvenioRDM instance, customize it, configure it, or develop new features for it. It assumes you have followed the [Install section](../install/index.md) enough to have at least a development instance locally installed.
+
+Start with the [first configuration](./first-configuration.md) of your instance.
 
 ## Production deployment
 
 - [Infrastructure architecture](./ops/infrastructure.md)
+- [Security hardening](./ops/hardening.md)
 - [Deploy to production](./ops/deploy.md)
 - [Log](./ops/logging.md)
 - [Back up search indices](./ops/backup_search_indices.md)
@@ -29,3 +32,7 @@ This guide is intended for developers that need to operate their own InvenioRDM 
 
 - [Custom Python & Javascript code](./code/custom_code.md)
 - [Debugging](./code/debugging.md)
+
+## Next steps
+- Follow the [first configuration](../operate/first-configuration.md) guide.
+- Learn [how to customize, deploy and operate](../operate/index.md) an instance.
