@@ -150,7 +150,7 @@ publication_date = DateFacet(
 ```
 
 <figure>
-  <img src="../imgs/publication-date-range-facet.png" alt="Publication date range facet" width="400" />
+  <img src="./imgs/publication-date-range-facet.png" alt="Publication date range facet" width="400" />
 </figure>
 
 To add a custom date range facet, register a ``DateFacet`` in ``RDM_FACETS`` and

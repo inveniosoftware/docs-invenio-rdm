@@ -10,7 +10,7 @@ copyright: "Copyright &copy; 2019-2025 CERN, Northwestern University and contrib
 
 # Configuration
 theme:
-  name: material
+  variant: classic
   custom_dir: theme
   palette:
     # Palette toggle for light mode
@@ -27,7 +27,6 @@ theme:
       primary: black
       accent: orange
       toggle:
-        accent: orange
         icon: material/brightness-4
         name: Switch to light mode
   font: false
@@ -330,5 +329,4 @@ markdown_extensions:
 
 plugins:
   - search
-  - glightbox:
-      zoomable: true
+  - glightbox
