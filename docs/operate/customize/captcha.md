@@ -20,7 +20,7 @@ Real users barely notice it. A bot that sends thousands of requests has to solve
 - **Privacy-friendly**: no tracking and no cookies.
 - **Accessible**: users do not have to click on images or read distorted text.
 
-![ALTCHA widget on the registration form](imgs/altcha-signup.jpg){: .screenshot}
+![ALTCHA widget on the registration form](imgs/altcha-signup.jpg){width="300", : .screenshot}
 
 ## Where it is used
 
@@ -71,7 +71,7 @@ To show the standard checkbox instead, use an empty dictionary:
 ACCOUNTS_ALTCHA_WIDGET_ATTRS = {}
 ```
 
-![ALTCHA widget](imgs/altcha-resend.jpg){: .screenshot}
+![ALTCHA widget](imgs/altcha-resend.jpg){width="300", : .screenshot}
 
 You can also pass other [widget attributes](https://altcha.org/docs/v2/widget-integration/), for example a theme:
 
