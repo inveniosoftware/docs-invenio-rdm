@@ -55,8 +55,6 @@ The web archive previewer displays WACZ, WARC, HAR, CDX and CDXJ files using an 
 
 ## Custom previewers
 
-To create and register a custom previewer, follow the Invenio-Previewer documentation for the previewer API and registration instructions:
-
-- https://invenio-previewer.readthedocs.io/en/latest/usage.html#custom-previewer
+To create and register a custom previewer, follow the [Invenio-Previewer documentation](https://invenio-previewer.readthedocs.io/en/latest/usage.html#custom-previewer) for the previewer API and registration instructions.
 
 If you implement a previewer, add its identifier to PREVIEWER_PREVIEWERS and ensure its matching logic is precise to avoid conflicts with existing previewers.
