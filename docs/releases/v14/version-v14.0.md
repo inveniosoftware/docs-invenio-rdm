@@ -77,7 +77,7 @@ The new previewer automatically detects and displays GeoJSON files as maps withi
 
 Due to content security policy restrictions, you must allow embedding assets from OpenStreetMap. See [the dedicated section](https://github.com/inveniosoftware/invenio-previewer/blob/master/invenio_previewer/__init__.py#L258) in the README for more information.
 
-You can also preview web archives (WACZ, WARC, HAR, CDX, CDXJ) using an embedded [ReplayWeb.page](https://replayweb.page/) viewer. See [the dedicated section](https://github.com/inveniosoftware/invenio-previewer/blob/master/invenio_previewer/__init__.py#L290) in the README to discover how to enable it.
+You can also preview web archives (WACZ, WARC, HAR, CDX, CDXJ) using an embedded [ReplayWeb.page](https://replayweb.page/) viewer. See [the dedicated section](https://github.com/inveniosoftware/invenio-previewer/blob/master/invenio_previewer/__init__.py#L290) in the README to discover how to enable it. Note that this previewer should be served from a separate domain: see [Web archive previewer](../../operate/customize/file-previewers.md#web-archive-previewer) for the reasons.
 
 ![Web Archive previewer](imgs/web-archive-previewer.jpg){: .screenshot}
 
