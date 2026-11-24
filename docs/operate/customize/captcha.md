@@ -38,6 +38,9 @@ When enabled, ALTCHA protects these forms:
 ```python
 ACCOUNTS_ALTCHA_ENABLED = True
 ACCOUNTS_ALTCHA_HMAC_KEY = "<randomly-generated-key>"
+# Rate limit configuration
+RATELIMIT_ENABLED = True  # required: used challenges are stored by the rate limiter (default)
+RATELIMIT_STORAGE_URI = "redis://localhost:6379/3"  # shared storage, so a challenge is used once across all processes
 ```
 
 Then rebuild your assets:
@@ -47,8 +50,11 @@ $ cd my-site
 $ invenio-cli assets build
 ```
 
+!!! warning "Rate limiting must be enabled"
+    A solved challenge can only be used once. Used challenges are recorded in the rate limiter storage, so ALTCHA requires [rate limiting](./rate-limiting.md) to be enabled (`RATELIMIT_ENABLED = True`, the default). With `RATELIMIT_ENABLED = False`, there is no replay protection: a solved challenge can be reused until it expires (`ACCOUNTS_ALTCHA_EXPIRES`), and a warning is logged at startup.
+
 !!! warning "Use shared rate limit storage in production"
-    A solved challenge can only be used once. To enforce this across all your web processes, set `RATELIMIT_STORAGE_URI` to a shared storage such as Redis. With the default `memory://` storage, the protection works per process only. See [Rate limiting](./rate-limiting.md).
+    To enforce single use across all your web processes, set `RATELIMIT_STORAGE_URI` to a shared storage such as Redis. With the default `memory://` storage, the protection works per process only. See [Rate limiting](./rate-limiting.md).
 
 ## Configuration
 

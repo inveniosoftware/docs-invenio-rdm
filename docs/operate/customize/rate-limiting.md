@@ -66,6 +66,9 @@ Limits are counted per client IP address. If your instance runs behind a load ba
 
 For large imports, you may need higher limits. See [Migrate from another repository](../ops/migrate.md#rate-limiting). Remember to revert the change afterwards.
 
+!!! warning "Disabling rate limiting also disables captcha replay protection"
+    If [ALTCHA](./captcha.md) is enabled, keep `RATELIMIT_ENABLED = True`. ALTCHA stores used challenges in the rate limiter storage: with `RATELIMIT_ENABLED = False`, a solved challenge can be reused until it expires. Prefer raising the limits instead of disabling them.
+
 ## Prefer limiting at the edge
 
 Application limits are a good first layer, but heavy abuse is best stopped before it reaches the application. Add limits in your reverse proxy (for example the [Nginx `limit_req` module](https://nginx.org/en/docs/http/ngx_http_limit_req_module.html)) or load balancer. This is also the right place to block abusive bots and crawlers. See [Infrastructure architecture](../ops/infrastructure.md).
