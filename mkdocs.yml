@@ -134,6 +134,7 @@ nav:
               - Upload limits: "operate/customize/file-uploads/upload_limits.md"
               - User quota: "operate/customize/file-uploads/user-quota.md"
               - ZIP and container files: "operate/customize/file-uploads/zip-and-container-files.md"
+          - Geolocation Services: "operate/customize/geolocation-services.md"
           - Jobs/Automated tasks: "operate/customize/jobs.md"
           - Landing page: "operate/customize/landing_page.md"
           - Language(s) and locale(s): "operate/customize/i18n-and-l10n.md"
