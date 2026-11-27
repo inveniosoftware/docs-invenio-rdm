@@ -121,7 +121,7 @@ As a user that would like to get access to restricted files of a record, it is n
 
 ### Accepting/Declining the request
 
-The submitter and the record's owner can find the newly created access request in "My dashboard" -> "Requests", and can exchange comments. The record's owner can define a new expiration date (changing the default settings) for this access request, accept or decline it:
+The submitter and the record's owner or manager can find the newly created access request in "My dashboard" -> "Requests", and can exchange comments. The record's owner or manager can define a new expiration date (changing the default settings) for this access request, accept or decline it:
 ![Access request request page guest](imgs/records/access_request_request_page_guest.png){: .screenshot}
 
 After accepting the request, the requester will receive a [notification](notifications.md) by e-mail and will be able to access the restricted files:
