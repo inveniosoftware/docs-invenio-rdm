@@ -6,6 +6,9 @@ To extend your instance with your own custom code and views, you can use the pre
 
 Example of customizations could be the creation of new Python modules or utilities, new views (including Jinja templates) or REST APIs, new UI components and JavaScript code.
 
+!!! tip "Check existing extensions first"
+    Before writing custom code, have a look at [Awesome Invenio](https://inveniosoftware.github.io/awesome-invenio/) ([GitHub repository](https://github.com/inveniosoftware/awesome-invenio)): the community may already have built an extension for what you need.
+
 Let's go through an example of making a new view with some JavaScript files in our instance.
 
 ## Enable the site folder

@@ -15,7 +15,7 @@ Find here important resources for onboarding.
 * Governance: <https://inveniosoftware.org/governance/>
 * Roadmap: <https://inveniosoftware.org/products/rdm/roadmap/>
 * Feature Requests via GitHub Discussions: <https://github.com/inveniosoftware/product-rdm/discussions>
-* Awesome InvenioRDM, a place to list your instance and customizations: <https://inveniosoftware.github.io/awesome-invenio/>
+* Awesome Invenio, a curated list of plugins, extensions, instances and resources, where you can also list your own: <https://inveniosoftware.github.io/awesome-invenio/> ([GitHub repository](https://github.com/inveniosoftware/awesome-invenio))
 
 ## For developers
 The InvenioRDM source code and the technical project management (issues, milestones, etc.) are available on GitHub:
