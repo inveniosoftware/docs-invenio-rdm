@@ -61,6 +61,7 @@ See below [how to enable it](#switching-between-uploaders). Once enabled, the Up
       - **Automatic image previews** directly in the UI before uploading
       - **Basic image editing** (e.g., crop, rotate, resize)
       - Support for extensible plugins for additional media handling or metadata entry
+- **File metadata support**: Users can add file metadata (e.g. title, description, custom fields) directly in the upload interface, with support for validation and required fields. See the [Uppy file metadata configuration](#uppy-file-metadata-configuration) section below for details on how to configure this.
 
 - **Extensible plugin system**: Add features like file validation, custom metadata fields, external file sources (e.g Google Drive, Dropbox).
 
@@ -90,3 +91,79 @@ You can choose which uploader to use by toggling the `APP_RDM_DEPOSIT_NG_FILES_U
     ```
 
 Restart your site after changing the configuration to ensure the new UI is properly loaded.
+
+## Uppy file metadata configuration
+
+When using the Uppy uploader, you can configure custom metadata fields that users can fill out for each file before uploading (e.g., descriptions, captions, etc.). These fields are rendered directly in the Uppy Dashboard's file editor and saved to the file's metadata dictionary.
+
+### Defining metadata fields
+
+Metadata fields are defined as an array of configuration objects. Each object dictates how a specific metadata field is handled and rendered. The supported properties are:
+
+- `id` (string, required): The unique identifier of the metadata field. Used as the key in the file's metadata dictionary.
+- `name` (string, optional): The display name of the field in the UI. If provided without a `render` function, a standard text input will be rendered. If omitted entirely, the field won't be editable in the UI (useful for hidden or computed default values).
+- `defaultValue` (any | function, optional): A static default value or a function `(file: UppyFile) => any` that evaluates to a default based on the [Uppy file](https://uppy.io/docs/uppy/#working-with-uppy-files) object's properties.
+- `placeholder` (string, optional): Placeholder text for the standard text input.
+- `render` (function, optional): A custom render function for advanced UI rendering using the Preact `h` function. If omitted, it falls back to a standard text input. For more details, see the [Uppy Dashboard metaFields documentation](https://uppy.io/docs/dashboard/#metafields).
+- `condition` (function, optional): A function `(file: UppyFile) => boolean` to conditionally attach or render the field based on file properties (e.g., evaluating `file.type`).
+
+### Example configuration
+
+Here is an example demonstrating different types of metadata fields (a standard input, a custom rendered checkbox, and a hidden dynamic field):
+
+```javascript
+const customAllowedMetaFields = [
+  // Standard text input
+  { 
+    id: "caption", 
+    defaultValue: "", 
+    name: i18next.t("Caption"),
+    placeholder: i18next.t("Set the image caption here"),
+    condition: (file) => file.type && file.type.startsWith("image/") 
+  },
+  // Custom rendered checkbox
+  { 
+    id: "featured", 
+    defaultValue: false, 
+    name: i18next.t("Feature Image"),
+    render: ({ value, onChange, required, form }, h) => {
+      return h("input", {
+        type: "checkbox",
+        onChange: (ev) => onChange(ev.target.checked),
+        checked: value,
+        defaultChecked: value,
+        required,
+        form,
+      });
+    },
+    condition: (file) => file.type && file.type.startsWith("image/") 
+  },
+  // Hidden, dynamically computed field (no "name" or UI provided)
+  { 
+    id: "fileType", 
+    defaultValue: (file) => {
+      if (file.type && file.type.startsWith("image/")) {
+        return "image";
+      }
+      return "other";
+    },
+  },
+];
+```
+
+### Applying the configuration
+
+To use your custom metadata fields, you have two options depending on your setup:
+
+**Option 1: Passing as a prop to UppyUploader**
+If you are already wrapping or importing the uploader component, you can pass the array directly to the `allowedMetaFields` prop:
+
+```jsx
+<UppyUploader
+  allowedMetaFields={customAllowedMetaFields}
+/>
+```
+
+**Option 2: Extending the default configurations**
+Alternatively, you can override or extend the existing `defaultAllowedMetaFields` array exported from (`@js/invenio_rdm_records/src/deposit/fields/UppyUploader`). This array acts as the global default for the uploader metadata configuration. You can use standard build/webpack aliasing techniques or React-Overridable to inject your extended module in place of the [default implementation](https://github.com/oarepo/invenio-rdm-records/blob/2d78c9188c2513d20184fce121c8716c6d33ade1/invenio_rdm_records/assets/semantic-ui/js/invenio_rdm_records/src/deposit/fields/UppyUploader/metaFields.js#L60-L61).
+
