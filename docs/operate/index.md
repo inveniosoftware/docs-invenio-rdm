@@ -19,6 +19,7 @@ This guide is intended for developers that need to operate their own InvenioRDM 
 - [Customize look-and-feel](./customize/look-and-feel/index.md)
 - [Customize metadata model](./customize/metadata/metadata_only.md) (starting with metadata-only records)
 - [Customize vocabularies](./customize/vocabularies/index.md)
+- [Community extensions and resources](./customize/index.md#community-extensions-and-resources) (Awesome Invenio)
 
 ## Configure everything
 
