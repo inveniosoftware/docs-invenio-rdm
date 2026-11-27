@@ -28,7 +28,7 @@ Collections are organized within **Collection Trees** (also called **Sections**)
 
 ### Display settings
 
-To enable displaying the communities "Browse" menu entry in your InvenioRDM instance, add to your `invenio.cfg`:
+To enable on communities the "Browse" menu entry and the "Settins > Collections" section, add to your `invenio.cfg`:
 
 ```python
 COMMUNITIES_COLLECTIONS_ENABLED = True
@@ -44,16 +44,16 @@ You can configure limits for collection hierarchies to maintain good user experi
 # Depth 1 = children of root
 # Depth 2 = grandchildren
 # Setting this to 1 allows 2 levels: root + children only
-COMMUNITIES_COLLECTIONS_MAX_DEPTH = 1
+COLLECTIONS_MAX_DEPTH = 1
 
 # Maximum number of collection trees per community (default: 10)
 # Set to 0 for unlimited trees
-COMMUNITIES_COLLECTIONS_MAX_TREES = 10
+COLLECTIONS_MAX_TREES = 10
 
 # Maximum number of collections per tree (default: 100)
 # This counts all collections in a tree, regardless of depth
 # Set to 0 for unlimited collections
-COMMUNITIES_COLLECTIONS_MAX_COLLECTIONS_PER_TREE = 100
+COLLECTIONS_MAX_COLLECTIONS_PER_TREE = 100
 ```
 
 ### Access control
@@ -132,16 +132,19 @@ You can also manage collections programmatically via the Python shell or custom 
 First, create a collection tree to serve as the root container:
 
 ```python
-from invenio_collections.api import CollectionTree
+from invenio_rdm_records.proxies import current_community_collections_service
 
 COMMUNITY_ID = "<community_id>"  # Replace with your community's UUID
 
 # Create a collection tree for a subjects-based hiearchy
-ctree = CollectionTree.create(
-    title="Subjects",
-    slug="subjects",  # Used in URLs
-    community_id=COMMUNITY_ID,  # `None` for global trees
-    order=10  # Controls display order (lower numbers appear first)
+tree = current_community_collections_service.create_tree(
+    system_identity,
+    namespace_id=COMMUNITY_ID,
+    data={
+        "title": "Subjects",  # Displayed on the UI
+        "slug": "subjects",  # Used in URLs
+        "order": 10,  # Ordering across trees (lower numbers appear first)
+    },
 )
 ```
 
@@ -150,30 +153,32 @@ ctree = CollectionTree.create(
 Create your first collections within the tree:
 
 ```python
-from invenio_collections.proxies import current_collections
+from invenio_rdm_records.proxies import current_community_collections_service
 from invenio_access.permissions import system_identity
 
-collections_service = current_collections.service
-
 # Create a collection for records classified under the "Natural sciences" subject
-natural_sciences_col = collections_service.create(
+collection_a = current_community_collections_service.create(
     system_identity,
-    COMMUNITY_ID,
-    tree_slug="subjects",
-    slug="natural-sciences",  # URL slug for the collection
-    title="Natural Sciences",  # Displayed title
-    query='metadata.subjects.subject:"Natural Sciences"',  # Search filter
-    order=10,  # Display order within the tree (lower numbers appear first)
+    namespace_id=COMMUNITY_ID,
+    tree_slug="subjects",  # could also use tree_id=tree.id instead
+    data={
+        "title": "Natural Sciences",  # Displayed on the UI
+        "slug": "natural-sciences",  # Used in URLs for the collection
+        "search_query": 'metadata.subjects.subject:"Natural Sciences"',  # Search filter
+        "order": 10,  # Order within the tree (lower numbers appear first)
+    },
 )
 # Create another collection under the same tree for the "Social Sciences" subject
-social_sciences_col = collections_service.create(
+collection_b = current_community_collections_service.create(
     system_identity,
-    COMMUNITY_ID,
+    namespace_id=COMMUNITY_ID,
     tree_slug="subjects",
-    slug="social-sciences",
-    title="Social Sciences",
-    query='metadata.subjects.subject:"Social Sciences"',
-    order=20,
+    data={
+        "title": "Social Sciences",
+        "slug": "social-sciences",
+        "search_query": 'metadata.subjects.subject:"Social Sciences"',
+        "order": 20,
+    },
 )
 ```
 
@@ -182,21 +187,32 @@ social_sciences_col = collections_service.create(
 Add two sub-collections to the "Natural Sciences" top-level collection:
 
 ```python
-math_col = collections_service.add(
+# Subjects > Natural Sciences > Mathematics
+subcollection_a_a = current_community_collections_service.add(
     system_identity,
-    collection=natural_sciences_col._collection,
-    slug="mathematics",  # URL slug for the sub-collection
-    title="Mathematics",  # Displayed title
-    query='metadata.subjects.subject:"Mathematics"',  # Search filter (will be combined with the parent collection's)
-    order=10,  # Display order within the parent collection (lower numbers appear first)
+    namespace_id=COMMUNITY_ID,
+    tree_slug="subjects",
+    slug="natural-sciences",  # slug of the *parent* collection
+    data={
+        title: "Mathematics",  # Displayed on the UI
+        slug: "mathematics",  # Used in URLs for the sub-collection
+        search_query: 'metadata.subjects.subject:"Mathematics"',  # Search filter (will be combined with the parent collection's)
+        order: 10,  # Order within the parent collection (lower numbers appear first)
+    },
 )
-compsci_col = collections_service.add(
+
+# Subjects > Natural Sciences > Computer and Information Sciences
+subcollection_a_b = current_community_collections_service.add(
     system_identity,
-    collection=natural_sciences_col._collection,
-    slug="computer-science",
-    title="Computer and Information Sciences",
-    query='metadata.subjects.subject:"Computer and Information Sciences"',
-    order=20,
+    namespace_id=COMMUNITY_ID,
+    tree_slug="subjects",
+    slug="natural-sciences",
+    data={
+        title: "Computer and Information Sciences",
+        slug: "computer-science",
+        search_query: 'metadata.subjects.subject:"Computer and Information Sciences"',
+        order: 20,
+    },
 )
 ```
 
@@ -208,30 +224,17 @@ You now have a Collection Tree inside the community with the following structure
         - Computer and Information Sciences (query: `metadata.subjects.subject:"Computer and Information Sciences"`)
     - Social Sciences (query: `metadata.subjects.subject:"Social Sciences"`)
 
-### Collections hierarchy
-
-Communities can hold multiple Collection Trees, where each of them can hold collections of different levels of nesting.
-
-There is no limitation in the number of nesting levels for collections. We recommend though that you make reasonable use of them to organize your content effectively, keeping in mind the user experience of navigating and discovering content.
-
-Here is an example diagram, of what a community with two collection trees might look like:
-
-![Diagram demonstrating a community with two Collection Trees and different levels of collection nesting using "Subjects" and "Funding Programs" hierarchies](imgs/collections-diagram.png)
-/// caption
-Communities can hold multiple Collection Trees, each of them organizing collections of different nesting levels.
-///
-
 ### Collections query inheritance
 
 Community-scoped collections include records that are part of the community.
 
-Nested collections automatically inherit their parent's search criteria, combining queries with the `AND` boolean operator. Child collections show only records that match both their own query and all parent queries. This means that as you go down the hierarchy, the search criteria for record results become more narrow.
+Nested collections automatically inherit their parent's search criteria, combining queries with the `AND` boolean operator. Child collections show only records that match both their own query and all parent queries. This means that as you go down the hierarchy, the search criteria for record results become narrower and narrower.
 
 !!! example "Example query inheritance in a "Subjects" hierarchy"
 
-    Given the following collection hierarchy inside a tree:
+    Given the following collection hierarchy:
 
-    - Research Fields
+    - Subjects (tree)
         - Natural Sciences (query: `metadata.subjects.subject:"Natural sciences"`)
             - Mathematics (query: `metadata.subjects.subject:"Mathematics"`)
             - Physical Sciences (query: `metadata.subjects.subject:"Physical sciences"`)
