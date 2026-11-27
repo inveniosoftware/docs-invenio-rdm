@@ -19,7 +19,7 @@ invenio.cfg
 APP_RDM_DEPOSIT_FORM_COLLAPSE_EMPTY_SECTIONS = True
 ``` 
 
-You can [find more accordion configuration details here](../../../operate/customize/look-and-feel/override_components/#deposit-accordion-defaults).
+You can [find more accordion configuration details here](../../operate/customize/look-and-feel/override_components.md#deposit-accordion-defaults).
 
 ## What's fixed?
 
