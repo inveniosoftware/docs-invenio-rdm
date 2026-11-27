@@ -18,7 +18,11 @@ InvenioRDM consists of:
 
 - a CLI tool, [invenio-cli](https://github.com/inveniosoftware/invenio-cli)
 - an instance template, [cookiecutter-invenio-rdm](https://github.com/inveniosoftware/cookiecutter-invenio-rdm)
-- an application, [invenio-app-rdm](https://github.com/inveniosoftware/invenio-app-rdm)
+- an application: the combination of an instance template,
+  [cookiecutter-invenio-rdm](https://github.com/inveniosoftware/cookiecutter-invenio-rdm)
+  and the main module
+  [invenio-app-rdm](https://github.com/inveniosoftware/invenio-app-rdm)
+  collecting and configuring the others
 - [many modules](../modules.md)
 
 ### Tool versioning
@@ -35,15 +39,20 @@ releases major version v14.0.0, a new branch v14.0 is created for
 cookiecutter-invenio-rdm. This branch is used when `invenio-cli init -c v14.0`
 is used to init a new InvenioRDM instance)
 
-A new major version of invenio-app-rdm is released once a year. see
-[maintenance-policy](../../releases/maintenance-policy.md). The development is
-done on betaXX.devXX tags on master. Since invenio-app-rdm represents the
-product InvenioRDM it uses a slightly different versioning schema. It still
-follows the semver rules of versioning, but not on he major versions but on the
-beta versions. This means: releasing a new major version (e.g. v14.0) starts on
-the master branch the tagging of beta versions (e.g. v15.0.0b0.dev0). The new
-patch and minor releases of the currently supported major version are done on
-the `maint-*` branch (e.g. maint-v14.x)
+A new major version of invenio-app-rdm is released once a year. See the
+[maintenance-policy](../../releases/maintenance-policy.md). Development is done
+on betaXX.devXX tags on master. Since invenio-app-rdm represents the product
+InvenioRDM it uses a slightly different versioning schema than other packages.
+The development releases are done via beta releases. Since invenio-app-rdm acts
+as the product package of InvenioRDM, the major releases are tied to the major
+releases of InvenioRDM. The package follows semver rules of versioning on the
+beta level. This means, during the development every major break is reflected on
+increasing the beta version (not the major version). At the end of the product
+release cycle the major version is bumped.
+
+The patch and minor versioning of InvenioRDM is done on maintenance branches in
+invenio-app-rdm, e.g. for InvenioRDM v14 we use maint-v14.x in invenio-app-rdm
+and starts after the release of the major version of InvenioRDM (invenio-app-rdm)
 
 The application locks each dependent module to their major-level versions so that patches can be distributed without breaking compatibility.
 
@@ -54,9 +63,13 @@ Each module (e.g. invenio-rdm-records, invenio-records, ...) is versioned indepe
 ### Module releases
 
 Doing a new major release of a module starts a major release chain. A module
-supports only 1 major version of another module. This means doing a major break
+supports only 1 major version of another module. This means doing a major release
 in a low level package as `invenio-db` starts a long major release chain up to
 invenio-app-rdm.
+
+A major release chain is defined as follow: package B depends on package A.
+package C depends on package B. Package A gets a major bump -> package B gets a
+major bump and package C gets a major bump.
 
 TODO: picture of the graph?
 
@@ -68,31 +81,38 @@ inveniosoftware are tightly coupled with InvenioRDM. Those packages will get a
 new major version and a new `maint-vX.0` branch in the moment the feature freeze
 will take place.
 
-The product release cycle starts with the release of the major version. This
-means that from the date of the major version the new development cycly starts.
-The release should take place in the first 2 weeks in July. The feature freeze
-in the first two weeks of June. The considering for feature freeze PR's deadline
-takes place in the first weeks of April.
+The product release cycle (the development cycle) starts with the release of the
+major version. The cycle includes following phases:
 
-With the feature freeze maintenance branches are created in the modules listed here:
+August - March: development, discuss features
+April: finalize RFCs, finalize discussions (features started after will be
+considered for the next major release of InvenioRDM. The time to finish the
+discussions would outrun the release date)
+June (first two week): features freeze (translation window starts)
+July (first two week): major release
 
-- invenio-vocabularies [GitHub](https://github.com/inveniosoftware/invenio-vocabularies)
-- invenio-requests [GitHub](https://github.com/inveniosoftware/invenio-requests)
-- invenio-administration [GitHub](https://github.com/inveniosoftware/invenio-administration)
-- invenio-communities [GitHub](https://github.com/inveniosoftware/invenio-communities)
-- invenio-rdm-records [GitHub](https://github.com/inveniosoftware/invenio-rdm-records)
-- invenio-app-rdm [GitHub](https://github.com/inveniosoftware/invenio-app-rdm)
-- cookiecutter-invenio-rdm [GitHub](https://github.com/inveniosoftware/cookiecutter-invenio-rdm)
+The features freeze has three implications:
 
-The master branch will get a new major release. Yes it could be that the
-master branch will get a major version without any real changes on the master
-branch and therefor not follow semver in some points. But for the product
-InvenioRDM and it's further development it is easier to do it that way. It
-enables to merge breaking changes directly after the feature freeze and not
-affecting the release of the product.
+1.) every package which contains a translations directory will be released as a
+major version. This means every package which depends on this package will also
+be released as a major version. This has the effect that we have a clear line
+through the packages between one and the other major version of InvenioRDM
+2.) every of those packages will get a `maint-*` branch with the version of the
+last major version.
+3.) the `maint-*` branches are used to push the translatable strings to
+transifex and this starts the translation window which closes with the major release.
 
+
+!!! warning
+
+    The master branch will get a new major release, even without significant changes
+    (in this case, semver on the package level is not strictly followed). This
+    approach allows merging unrelated breaking changes after the features
+    freeze, without affecting an ongoing release.
 
 ### Steps
+
+TODO: this has to be updated
 
 - [feature freeze] create maint branch
     - invenio-vocabularies [GitHub](https://github.com/inveniosoftware/invenio-vocabularies)
@@ -161,9 +181,8 @@ git push upstream vX.Y.Z
 
 ## Maintenance workflow
 
-Bugfixes and features are developed against the master branch and merged into
-that branch first. Then the bugfix or feature is backported to the `maint-vX.Y`
-branch.
+Bugfixes and features are developed from and merged into the master branch.
+Then, they are backported to the `maint-vX.Y` branch.
 
 Maintenance releases follow the same workflow as a new version release. You
 only need to replace `master` with `maint-vX.Y` branches.
