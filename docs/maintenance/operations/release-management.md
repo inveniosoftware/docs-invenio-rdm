@@ -18,7 +18,11 @@ InvenioRDM consists of:
 
 - a CLI tool, [invenio-cli](https://github.com/inveniosoftware/invenio-cli)
 - an instance template, [cookiecutter-invenio-rdm](https://github.com/inveniosoftware/cookiecutter-invenio-rdm)
-- an application, [invenio-app-rdm](https://github.com/inveniosoftware/invenio-app-rdm)
+- an application: the combination of an instance template,
+  [cookiecutter-invenio-rdm](https://github.com/inveniosoftware/cookiecutter-invenio-rdm)
+  and the main module
+  [invenio-app-rdm](https://github.com/inveniosoftware/invenio-app-rdm)
+  collecting and configuring the others
 - [many modules](../modules.md)
 
 ### Tool versioning
@@ -29,80 +33,117 @@ The `invenio-cli` tool is intended to be able to work with many different applic
 
 The instance template (cookiecutter-invenio-rdm) and the application (invenio-app-rdm) are together considered the application and therefore versioned together.
 
+To be more precise: for a new major version of invenio-app-rdm a new branch with
+the same version is created for cookiecutter-invenio-rdm (e.g. invenio-app-rdm
+releases major version v14.0.0, a new branch v14.0 is created for
+cookiecutter-invenio-rdm. This branch is used when `invenio-cli init -c v14.0`
+is used to init a new InvenioRDM instance)
+
+A new major version of invenio-app-rdm is released once a year. See the
+[maintenance-policy](../../releases/maintenance-policy.md). Development is done
+on betaXX.devXX tags on master. Since invenio-app-rdm represents the product
+InvenioRDM it uses a slightly different versioning schema than other packages.
+The development releases are done via beta releases. Since invenio-app-rdm acts
+as the product package of InvenioRDM, the major releases are tied to the major
+releases of InvenioRDM. The package follows semver rules of versioning on the
+beta level. This means, during the development every major break is reflected on
+increasing the beta version (not the major version). At the end of the product
+release cycle the major version is bumped.
+
+The patch and minor versioning of InvenioRDM is done on maintenance branches in
+invenio-app-rdm, e.g. for InvenioRDM v14 we use maint-v14.x in invenio-app-rdm
+and starts after the release of the major version of InvenioRDM (invenio-app-rdm)
+
 The application locks each dependent module to their major-level versions so that patches can be distributed without breaking compatibility.
 
 ### Module versioning
 
 Each module (e.g. invenio-rdm-records, invenio-records, ...) is versioned independently. Each module MUST follow semantic versioning, so that the application can lock the module version to the major-level release.
 
-## Release checklist
+### Module releases
 
-### Initial iteration
+Doing a new major release of a module starts a major release chain. A module
+supports only 1 major version of another module. This means doing a major release
+in a low level package as `invenio-db` starts a long major release chain up to
+invenio-app-rdm.
 
-In the beginning of each iteration we start by releasing new development versions of the below modules in the order specified:
+A major release chain is defined as follow: package B depends on package A.
+package C depends on package B. Package A gets a major bump -> package B gets a
+major bump and package C gets a major bump.
 
-- flask-resources [GitHub](https://github.com/inveniosoftware/flask-resources) (if needed)
-- marshmallow-utils [GitHub](https://github.com/inveniosoftware/marshmallow-utils) (if needed)
-- invenio-records-permissions [GitHub](https://github.com/inveniosoftware/invenio-records-permissions) (if needed)
-- invenio-records-resources [GitHub](https://github.com/inveniosoftware/invenio-records-resources)
-    - bump flask-resources
-    - bump marshmallow-utils
-    - bump invenio-records-permissions
-- invenio-users-resources [Github](https://github.com/inveniosoftware/invenio-users-resources)
-    - bump invenio-administration
-    - bump invenio-records-resources
-- invenio-drafts-resources [GitHub](https://github.com/inveniosoftware/invenio-drafts-resources)
-    - bump invenio-records-resources
-- invenio-vocabularies [GitHub](https://github.com/inveniosoftware/invenio-vocabularies)
-    - bump invenio-records-resources
-- invenio-requests [GitHub](https://github.com/inveniosoftware/invenio-requests)
-    - bump invenio-records-resources
-- invenio-administration [GitHub](https://github.com/inveniosoftware/invenio-administration)
-    - bump invenio-records-resources
-    - bump invenio-vocabularies
-- invenio-communities [GitHub](https://github.com/inveniosoftware/invenio-communities)
-    - bump invenio-administration
-    - bump invenio-requests
-    - bump invenio-vocabularies
-- invenio-rdm-records [GitHub](https://github.com/inveniosoftware/invenio-rdm-records)
-    - bump invenio-administration
-    - bump invenio-drafts-resources
-    - bump invenio-vocabularies
-    - bump invenio-communities
-- react-invenio-forms [GitHub](https://github.com/inveniosoftware/react-invenio-forms)
-- react-invenio-deposit [GitHub](https://github.com/inveniosoftware/react-invenio-deposit)
-    - bump react-invenio-forms
-- invenio-app-rdm [GitHub](https://github.com/inveniosoftware/invenio-app-rdm)
-    - bump invenio-rdm-records
-    - bump react-invenio-deposit
-    - bump react-invenio-forms
-- cookiecutter-invenio-rdm [GitHub](https://github.com/inveniosoftware/cookiecutter-invenio-rdm)
-    - bump invenio-app-rdm
+TODO: picture of the graph?
 
-For modules in `v0.X.Y`, the new version is `v0.(X+1).0`.
+## Product Release
 
-For modules in `vX.Y.Z`, the new version is `v(X+1).0.0.dev0`.
+The product is InvenioRDM. The package invenio-app-rdm represents the product
+and its versioning represents the product major version. Some packages of
+inveniosoftware are tightly coupled with InvenioRDM. Those packages will get a
+new major version and a new `maint-vX.0` branch in the moment the feature freeze
+will take place.
 
-### Pre-release
+The product release cycle (the development cycle) starts with the release of the
+major version. The cycle includes following phases:
 
-- Ensure all dependent modules have been released.
-- Release invenio-app-rdm (removing the pre-release suffix - e.g. `dev0`).
-- cookiecutter-invenio-rdm:
-    - Merge everything to `master`.
-    - Create a new version branch from `master` using the pattern `vX.Y` (e.g., if Invenio-App-RDM is v1.0.0, then the branch should be named `v1.0`).
-- Write release notes on https://github.com/inveniosoftware/docs-invenio-rdm and merge them onto the master branch. Check the [dev site](https://inveniordm-dev.docs.cern.ch).
+August - March: development, discuss features
+April: finalize RFCs, finalize discussions (features started after will be
+considered for the next major release of InvenioRDM. The time to finish the
+discussions would outrun the release date)
+June (first two week): features freeze (translation window starts)
+July (first two week): major release
 
-### Release
+The features freeze has three implications:
 
-The final steps to release the new modules and source code are to release invenio-cli and reset the documentation's `production` branch to the `master` one. Releasing invenio-cli, will make all new installation use the latest released packages.
+1.) every package which contains a translations directory will be released as a
+major version. This means every package which depends on this package will also
+be released as a major version. This has the effect that we have a clear line
+through the packages between one and the other major version of InvenioRDM
+2.) every of those packages will get a `maint-*` branch with the version of the
+last major version.
+3.) the `maint-*` branches are used to push the translatable strings to
+transifex and this starts the translation window which closes with the major release.
 
-- invenio-cli:
-    - Update cookiecutter-invenio-rdm branch version in the source code.
-    - Bump version of invenio-cli and release.
-- docs-invenio-rdm:
-    - Do a final pass on the new version's release notes.
-    - Update if need be the release announcement on the [homepage of this site](../../index.md).
-    - Reset `production` by cutting from the `master` branch.
+
+!!! warning
+
+    The master branch will get a new major release, even without significant changes
+    (in this case, semver on the package level is not strictly followed). This
+    approach allows merging unrelated breaking changes after the features
+    freeze, without affecting an ongoing release.
+
+### Steps
+
+TODO: this has to be updated
+
+- [feature freeze] create maint branch
+    - invenio-vocabularies [GitHub](https://github.com/inveniosoftware/invenio-vocabularies)
+    - invenio-requests [GitHub](https://github.com/inveniosoftware/invenio-requests)
+    - invenio-administration [GitHub](https://github.com/inveniosoftware/invenio-administration)
+    - invenio-communities [GitHub](https://github.com/inveniosoftware/invenio-communities)
+    - invenio-rdm-records [GitHub](https://github.com/inveniosoftware/invenio-rdm-records)
+    - invenio-app-rdm [GitHub](https://github.com/inveniosoftware/invenio-app-rdm)
+
+- [feature freeze] release on master new major version
+    - invenio-vocabularies [GitHub](https://github.com/inveniosoftware/invenio-vocabularies)
+    - invenio-requests [GitHub](https://github.com/inveniosoftware/invenio-requests)
+    - invenio-administration [GitHub](https://github.com/inveniosoftware/invenio-administration)
+    - invenio-communities [GitHub](https://github.com/inveniosoftware/invenio-communities)
+    - invenio-rdm-records [GitHub](https://github.com/inveniosoftware/invenio-rdm-records)
+
+- [feature freeze] release bX.devY
+    - invenio-app-rdm [GitHub](https://github.com/inveniosoftware/invenio-app-rdm)
+
+- [feature freeze] release release candidate
+    - invenio-app-rdm [GitHub](https://github.com/inveniosoftware/invenio-app-rdm)
+
+- [release] cookiecutter-invenio-rdm
+    - create next major branch
+
+- [release] invenio-cli:
+    - Update default cookiecutter branch [here](https://github.com/inveniosoftware/invenio-cli/blob/master/invenio_cli/helpers/cookiecutter_wrapper.py#L69))
+
+- [release] invenio-app-rdm
+    - release vX.0.0 on maint-vX.0 branch
+
 
 ### Post-release
 
@@ -138,10 +179,13 @@ git tag vX.Y.Z
 git push upstream vX.Y.Z
 ```
 
-## Maintenance releases
+## Maintenance workflow
+
+Bugfixes and features are developed from and merged into the master branch.
+Then, they are backported to the `maint-vX.Y` branch.
 
 Maintenance releases follow the same workflow as a new version release. You
-only need to replace `master` with `maint-x.y` branches.
+only need to replace `master` with `maint-vX.Y` branches.
 
 !!! warning PyPI releases are immediately picked up
 
