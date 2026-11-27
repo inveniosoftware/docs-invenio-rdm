@@ -216,8 +216,9 @@ nav:
       - Operational tasks:
           - Release management: maintenance/operations/release-management.md
           - Branch management: maintenance/operations/branch-management.md
-          - Demo site & docs: maintenance/operations/demosite.md
+          - Demo site: maintenance/operations/demosite.md
           - Docker images: maintenance/operations/docker-images.md
+          - Docs site: maintenance/operations/docsite.md
 
   - Releases:
       - Overview: releases/index.md
